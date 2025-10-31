@@ -65,17 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Simple Solar Calculator (placeholder functionality)
-function initSolarCalculator() {
-    const calculatorBtn = document.querySelector('a[href="#solar-calculator"]');
-    if (calculatorBtn) {
-        calculatorBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Solar Calculator coming soon! This feature will help you estimate your potential savings and system requirements.');
-        });
-    }
-}
-
 // View All Cities Toggle
 function initCitiesToggle() {
     const viewAllBtn = document.getElementById('viewAllCitiesBtn');
@@ -90,7 +79,7 @@ function initCitiesToggle() {
                 viewAllBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Show Less Cities';
             } else {
                 allCitiesGrid.style.display = 'none';
-                viewAllBtn.innerHTML = '<i class="fas fa-map"></i> View All 14 Service Locations';
+                viewAllBtn.innerHTML = '<i class="fas fa-map"></i> View All 17 Service Locations';
             }
             
             // Smooth scroll to cities section
@@ -107,10 +96,12 @@ function initPhoneTracking() {
     phoneLinks.forEach(link => {
         link.addEventListener('click', function() {
             // Phone call tracking
-            gtag('event', 'phone_call', {
-                'event_category': 'Contact',
-                'event_label': 'Phone Call Initiated'
-            });
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'phone_call', {
+                    'event_category': 'Contact',
+                    'event_label': 'Phone Call Initiated'
+                });
+            }
             console.log('Phone call initiated to: ' + this.href);
         });
     });
@@ -122,10 +113,12 @@ function initWhatsAppTracking() {
     whatsappLinks.forEach(link => {
         link.addEventListener('click', function() {
             // WhatsApp click tracking
-            gtag('event', 'whatsapp_click', {
-                'event_category': 'Contact',
-                'event_label': 'WhatsApp Chat Initiated'
-            });
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_click', {
+                    'event_category': 'Contact',
+                    'event_label': 'WhatsApp Chat Initiated'
+                });
+            }
             console.log('WhatsApp chat initiated');
         });
     });
@@ -136,10 +129,12 @@ function initFormTracking() {
     const forms = document.querySelectorAll('form');
     forms.forEach(form => {
         form.addEventListener('submit', function() {
-            gtag('event', 'form_submit', {
-                'event_category': 'Contact',
-                'event_label': 'Contact Form Submitted'
-            });
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submit', {
+                    'event_category': 'Contact',
+                    'event_label': 'Contact Form Submitted'
+                });
+            }
         });
     });
 }
@@ -149,35 +144,42 @@ function initDirectionTracking() {
     const directionLinks = document.querySelectorAll('a[href*="maps.app.goo.gl"]');
     directionLinks.forEach(link => {
         link.addEventListener('click', function() {
-            gtag('event', 'get_directions', {
-                'event_category': 'Contact',
-                'event_label': 'Get Directions Clicked'
-            });
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'get_directions', {
+                    'event_category': 'Contact',
+                    'event_label': 'Get Directions Clicked'
+                });
+            }
         });
+    });
+}
+
+// Fade in animations
+function initAnimations() {
+    const fadeElements = document.querySelectorAll('.service-card, .product-card, .project-card, .resource-card, .city-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    fadeElements.forEach(element => {
+        element.classList.add('fade-in');
+        observer.observe(element);
     });
 }
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initSolarCalculator();
     initCitiesToggle();
     initPhoneTracking();
     initWhatsAppTracking();
     initFormTracking();
     initDirectionTracking();
-    
-    // Add loading animation for cards
-    const cards = document.querySelectorAll('.service-card, .product-card, .project-card, .resource-card, .city-card');
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        
-        setTimeout(() => {
-            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, index * 100);
-    });
+    initAnimations();
 });
 
 // Close dropdowns when clicking outside
