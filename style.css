@@ -538,6 +538,7 @@ section {
     gap: 1rem;
     margin-top: 1rem;
     font-size: 0.9rem;
+    flex-wrap: wrap;
 }
 
 /* About Section */
@@ -813,6 +814,113 @@ footer {
     color: var(--accent-color);
 }
 
+/* City Landing Pages */
+.city-hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.city-hero h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.breadcrumb-current {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.section-subtitle {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.coverage-areas {
+    padding: 4rem 0;
+}
+
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.area-group {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.area-group h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+}
+
+.area-group ul {
+    list-style: none;
+}
+
+.area-group li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.area-group li:last-child {
+    border-bottom: none;
+}
+
+.local-services .service-card ul {
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.local-services .service-card li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.local-services .service-card li i {
+    color: var(--secondary-color);
+}
+
+.nearby-cities .cities-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.nearby-cities .cities-links a {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.nearby-cities .cities-links a:hover {
+    background: var(--secondary-color);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     h1 {
@@ -913,6 +1021,29 @@ footer {
     
     .about-cta {
         flex-direction: column;
+    }
+    
+    .project-details {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .city-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .areas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nearby-cities .cities-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nearby-cities .cities-links a {
+        width: 100%;
+        text-align: center;
     }
 }
 
