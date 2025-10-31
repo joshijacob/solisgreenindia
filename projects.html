@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Our solar projects portfolio - Residential, Commercial & Industrial installations across Kerala">
+    <title>Our Projects | Solis Green India</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../images/logo/logo.png" alt="Solis Green India" class="logo-img">
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="cities.html">Service Areas</a></li>
+                    <li><a href="projects.html" class="active">Projects</a></li>
+                    <li><a href="contact.html" class="cta-button">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Projects</h1>
+            <p>Showcasing our successful solar installations across Kerala</p>
+        </div>
+    </section>
+
+    <section class="projects-portfolio section-light">
+        <div class="container">
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="residential">Residential</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="industrial">Industrial</button>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-item" data-category="residential">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>5kW Residential System - Thiruvalla</h3>
+                        <p class="project-location"><i class="fas fa-map-marker-alt"></i> Thiruvalla, Pathanamthitta</p>
+                        <p>Complete home solar system with net metering</p>
+                        <div class="project-specs">
+                            <span>5kW Capacity</span>
+                            <span>85% Bill Reduction</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item" data-category="commercial">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>15kW Commercial Plant - Kollam</h3>
+                        <p class="project-location"><i class="fas fa-map-marker-alt"></i> Kollam</p>
+                        <p>Business solar system with 3.2 year ROI</p>
+                        <div class="project-specs">
+                            <span>15kW Capacity</span>
+                            <span>3.2 Year ROI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more project items -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <!-- Footer content from index.html -->
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
