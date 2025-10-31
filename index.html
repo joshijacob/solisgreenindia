@@ -22,27 +22,7 @@
         "addressRegion": "Kerala",
         "addressCountry": "India"
       },
-      "areaServed": ["Pathanamthitta", "Kottayam", "Alappuzha", "Kollam", "Thiruvananthapuram", "Thiruvalla", "Changanacherry", "Chengannur", "Kozhencherry", "Ranni", "Konni", "Punalur", "Adoor", "Kottarakkara", "Mavelikkara", "Pandalam", "Kayamkulam"],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Solar Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Residential Solar Installation"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Commercial Solar Solutions"
-            }
-          }
-        ]
-      }
+      "areaServed": ["Pathanamthitta", "Kottayam", "Alappuzha", "Kollam", "Thiruvananthapuram", "Thiruvalla", "Changanacherry", "Chengannur", "Kozhencherry", "Ranni", "Konni", "Punalur", "Adoor", "Kottarakkara", "Mavelikkara", "Pandalam", "Kayamkulam"]
     }
     </script>
     
@@ -54,10 +34,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/918301849474" class="float-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- Expandable Floating CTA -->
+    <div class="floating-cta">
+        <div class="cta-main-btn" id="ctaMainBtn">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="cta-options">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Call Us">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
+                <i class="fas fa-file-alt"></i>
+            </a>
+            <a href="https://maps.app.goo.gl/C125qY2UpXTRdGay7" class="cta-option" data-tooltip="Get Directions" target="_blank">
+                <i class="fas fa-map-marker-alt"></i>
+            </a>
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Quote Modal -->
+    <div class="modal" id="quickQuoteModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Get Quick Solar Quote</h3>
+            <form class="quick-quote-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="">Select Service</option>
+                        <option value="residential">Residential Solar</option>
+                        <option value="commercial">Commercial Solar</option>
+                        <option value="industrial">Industrial Solar</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-bolt"></i> Get Instant Quote
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- Header -->
     <header>
@@ -72,474 +95,161 @@
             
             <nav id="mainNav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    
-                    <li class="dropdown-container">
-                        <a href="#services" class="dropdown-toggle">
-                            <i class="fas fa-cogs"></i> Services <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown">
-                            <li><a href="#residential-solar"><i class="fas fa-home"></i> Residential Solar</a></li>
-                            <li><a href="#commercial-solar"><i class="fas fa-building"></i> Commercial Solar</a></li>
-                            <li><a href="#industrial-solar"><i class="fas fa-industry"></i> Industrial Solutions</a></li>
-                            <li><a href="#solar-maintenance"><i class="fas fa-tools"></i> Maintenance & Repair</a></li>
-                            <li><a href="#energy-audits"><i class="fas fa-chart-bar"></i> Energy Audits</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="dropdown-container">
-                        <a href="#cities" class="dropdown-toggle">
-                            <i class="fas fa-map-marker-alt"></i> Service Areas <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown">
-                            <li><a href="solar-company-in-pathanamthitta/"><i class="fas fa-location-dot"></i> Pathanamthitta</a></li>
-                            <li><a href="solar-company-in-kottayam/"><i class="fas fa-location-dot"></i> Kottayam</a></li>
-                            <li><a href="solar-company-in-alappuzha/"><i class="fas fa-location-dot"></i> Alappuzha</a></li>
-                            <li><a href="solar-company-in-kollam/"><i class="fas fa-location-dot"></i> Kollam</a></li>
-                            <li><a href="solar-company-in-thiruvananthapuram/"><i class="fas fa-location-dot"></i> Thiruvananthapuram</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                    <li><a href="#contact" class="cta-button">
-                        <i class="fas fa-phone-alt"></i> Contact
-                    </a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="cities.html">Service Areas</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html" class="cta-button">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section with Solar Project Image -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
             <h1>Powering Kerala's Future with Sustainable Energy</h1>
-            <p>Leading solar energy solutions provider serving Pathanamthitta, Kottayam, Alappuzha and across South Kerala with professional solar installations.</p>
+            <p>Leading solar energy solutions provider serving Pathanamthitta, Kottayam, Alappuzha and across South Kerala.</p>
             <div class="hero-buttons">
                 <a href="tel:8301849474" class="btn btn-primary">
                     <i class="fas fa-phone"></i> Call Now: 8301849474
                 </a>
-                <a href="https://wa.me/918301849474" class="btn btn-secondary" target="_blank">
-                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                <a href="services.html" class="btn btn-secondary">
+                    <i class="fas fa-cogs"></i> Our Services
                 </a>
-            </div>
-            <div class="hero-features">
-                <div class="feature">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>10+ Years Warranty</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-rupee-sign"></i>
-                    <span>Government Subsidies</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-bolt"></i>
-                    <span>24/7 Support</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>17+ Cities in Kerala</span>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Quick Contact Bar -->
-    <div class="quick-contact-bar">
+    <!-- Quick Services -->
+    <section class="quick-services section-light">
         <div class="container">
-            <div class="quick-contact-items">
-                <a href="tel:8301849474" class="quick-contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>Call: 8301849474</span>
-                </a>
-                <a href="https://wa.me/918301849474" class="quick-contact-item" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp</span>
-                </a>
-                <a href="mailto:solisgreenindia@gmail.com" class="quick-contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>solisgreenindia@gmail.com</span>
-                </a>
-                <a href="https://maps.app.goo.gl/C125qY2UpXTRdGay7" class="quick-contact-item" target="_blank">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Find Us on Map</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Service Areas Section -->
-    <section id="cities" class="section-light">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Service Areas in Kerala</h2>
-                <p>Professional solar services available across 17 cities in South Kerala</p>
-            </div>
-            
-            <div class="cities-grid">
-                <div class="city-card">
-                    <div class="city-icon">
-                        <i class="fas fa-solar-panel"></i>
-                    </div>
-                    <h3>Pathanamthitta</h3>
-                    <p>Solar installation experts serving Pathanamthitta district and surrounding areas</p>
-                    <a href="solar-company-in-pathanamthitta/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Services
-                    </a>
-                </div>
-                
-                <div class="city-card">
-                    <div class="city-icon">
-                        <i class="fas fa-solar-panel"></i>
-                    </div>
-                    <h3>Kottayam</h3>
-                    <p>Complete solar solutions for Kottayam homes, businesses and industries</p>
-                    <a href="solar-company-in-kottayam/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Services
-                    </a>
-                </div>
-                
-                <div class="city-card">
-                    <div class="city-icon">
-                        <i class="fas fa-solar-panel"></i>
-                    </div>
-                    <h3>Alappuzha</h3>
-                    <p>Solar energy specialists in Alappuzha and surrounding backwater regions</p>
-                    <a href="solar-company-in-alappuzha/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Services
-                    </a>
-                </div>
-                
-                <div class="city-card">
-                    <div class="city-icon">
-                        <i class="fas fa-solar-panel"></i>
-                    </div>
-                    <h3>Kollam</h3>
-                    <p>Professional solar services throughout Kollam district and coastal areas</p>
-                    <a href="solar-company-in-kollam/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Services
-                    </a>
-                </div>
-            </div>
-            
-            <div class="all-cities-link">
-                <a href="#all-cities" class="btn btn-primary" id="viewAllCitiesBtn">
-                    <i class="fas fa-map"></i> View All 17 Service Locations
-                </a>
-            </div>
-
-            <!-- All Cities Grid -->
-            <div class="all-cities-grid" id="allCitiesGrid" style="display: none;">
-                <div class="city-card">
-                    <h3>Thiruvananthapuram</h3>
-                    <p>Capital city solar solutions</p>
-                    <a href="solar-company-in-thiruvananthapuram/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Thiruvalla</h3>
-                    <p>Commercial and residential solar</p>
-                    <a href="solar-company-in-thiruvalla/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Changanacherry</h3>
-                    <p>Solar panel installation</p>
-                    <a href="solar-company-in-changanacherry/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Chengannur</h3>
-                    <p>Complete solar energy solutions</p>
-                    <a href="solar-company-in-chengannur/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Kozhencherry</h3>
-                    <p>Professional solar services</p>
-                    <a href="solar-company-in-kozhencherry/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Ranni</h3>
-                    <p>Solar installation experts</p>
-                    <a href="solar-company-in-ranni/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Konni</h3>
-                    <p>Eco-friendly solar energy</p>
-                    <a href="solar-company-in-konni/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Punalur</h3>
-                    <p>Solar power specialists</p>
-                    <a href="solar-company-in-punalur/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Adoor</h3>
-                    <p>Quality solar solutions</p>
-                    <a href="solar-company-in-adoor/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Kottarakkara</h3>
-                    <p>Solar energy solutions</p>
-                    <a href="solar-company-in-kottarakkara/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Mavelikkara</h3>
-                    <p>Professional solar services</p>
-                    <a href="solar-company-in-mavelikkara/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Pandalam</h3>
-                    <p>Solar installation experts</p>
-                    <a href="solar-company-in-pandalam/" class="btn btn-outline">View Services</a>
-                </div>
-                <div class="city-card">
-                    <h3>Kayamkulam</h3>
-                    <p>Complete solar solutions</p>
-                    <a href="solar-company-in-kayamkulam/" class="btn btn-outline">View Services</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="section-light">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Services</h2>
-                <p>Comprehensive renewable energy solutions for every need</p>
-            </div>
+            <h2 class="section-title">Our Solar Solutions</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>Residential Solar</h3>
-                    <p>Custom solar solutions for homes with maximum efficiency and attractive subsidies.</p>
-                    <a href="#contact" class="service-link">
-                        <i class="fas fa-arrow-right"></i> Get Free Quote
-                    </a>
+                    <i class="fas fa-home"></i>
+                    <h3>Residential</h3>
+                    <p>Home solar systems with subsidies</p>
+                    <a href="services.html#residential" class="btn btn-outline">Learn More</a>
                 </div>
-                
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3>Commercial Solar</h3>
-                    <p>Cost-effective solar systems for businesses to reduce operational expenses.</p>
-                    <a href="#contact" class="service-link">
-                        <i class="fas fa-arrow-right"></i> Get Commercial Quote
-                    </a>
+                    <i class="fas fa-building"></i>
+                    <h3>Commercial</h3>
+                    <p>Business solar solutions</p>
+                    <a href="services.html#commercial" class="btn btn-outline">Learn More</a>
                 </div>
-                
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                    <h3>Industrial Solutions</h3>
-                    <p>High-capacity solar plants for industrial applications and manufacturing units.</p>
-                    <a href="#contact" class="service-link">
-                        <i class="fas fa-arrow-right"></i> Industrial Solutions
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Maintenance & Repair</h3>
-                    <p>Professional maintenance services to ensure optimal performance of your solar systems.</p>
-                    <a href="tel:8301849474" class="service-link">
-                        <i class="fas fa-phone"></i> Call for Maintenance
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <h3>Energy Audits</h3>
-                    <p>Comprehensive energy audits to identify savings opportunities and efficiency improvements.</p>
-                    <a href="#contact" class="service-link">
-                        <i class="fas fa-arrow-right"></i> Schedule Audit
-                    </a>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Consulting</h3>
-                    <p>Expert consulting services for solar project planning and implementation.</p>
-                    <a href="https://wa.me/918301849474" class="service-link" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Consult on WhatsApp
-                    </a>
+                    <i class="fas fa-industry"></i>
+                    <h3>Industrial</h3>
+                    <p>Large-scale solar plants</p>
+                    <a href="services.html#industrial" class="btn btn-outline">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section-light">
+    <!-- Featured Cities -->
+    <section class="featured-cities">
         <div class="container">
-            <div class="section-title">
-                <h2>Our Projects</h2>
-                <p>Successful solar installations across Kerala</p>
+            <h2 class="section-title">Serving Across Kerala</h2>
+            <div class="cities-grid">
+                <div class="city-card">
+                    <h3>Pathanamthitta</h3>
+                    <p>Solar experts in Pathanamthitta district</p>
+                    <a href="cities/pathanamthitta.html" class="btn btn-outline">View Services</a>
+                </div>
+                <div class="city-card">
+                    <h3>Kottayam</h3>
+                    <p>Complete solar solutions</p>
+                    <a href="cities/kottayam.html" class="btn btn-outline">View Services</a>
+                </div>
+                <div class="city-card">
+                    <h3>Alappuzha</h3>
+                    <p>Backwater region specialists</p>
+                    <a href="cities/alappuzha.html" class="btn btn-outline">View Services</a>
+                </div>
+                <div class="city-card">
+                    <h3>Kollam</h3>
+                    <p>Coastal area experts</p>
+                    <a href="cities/kollam.html" class="btn btn-outline">View Services</a>
+                </div>
             </div>
+            <div class="text-center">
+                <a href="cities.html" class="btn btn-primary">View All Service Areas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="featured-projects section-light">
+        <div class="container">
+            <h2 class="section-title">Recent Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/projects/residential/5kw-thiruvalla.jpg" alt="5kW Solar Installation in Thiruvalla" onerror="this.style.display='none'">
                         <div class="project-placeholder">
                             <i class="fas fa-home"></i>
-                            <p>5kW Residential System</p>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>5kW Residential Installation - Thiruvalla</h3>
-                        <p>Complete 5kW solar system with battery backup installed for a family home in Thiruvalla, reducing electricity bills by 85%.</p>
-                        <div class="project-details">
-                            <span><strong><i class="fas fa-bolt"></i> Capacity:</strong> 5kW</span>
-                            <span><strong><i class="fas fa-rupee-sign"></i> Savings:</strong> ₹12,000/month</span>
-                            <span><strong><i class="fas fa-calendar"></i> Completion:</strong> 2024</span>
-                        </div>
-                        <a href="tel:8301849474" class="btn btn-outline">
-                            <i class="fas fa-phone"></i> Call for Similar Project
-                        </a>
+                        <h3>5kW Residential - Thiruvalla</h3>
+                        <p>Complete home solar system with 85% bill reduction</p>
+                        <a href="projects.html" class="btn btn-outline">View Project</a>
                     </div>
                 </div>
-                
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="images/projects/commercial/15kw-kollam.jpg" alt="15kW Commercial Installation in Kollam" onerror="this.style.display='none'">
                         <div class="project-placeholder">
                             <i class="fas fa-building"></i>
-                            <p>15kW Commercial System</p>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>15kW Commercial Installation - Kollam</h3>
-                        <p>15kW solar plant for a commercial establishment in Kollam with net metering facility, providing 90% of their power needs.</p>
-                        <div class="project-details">
-                            <span><strong><i class="fas fa-bolt"></i> Capacity:</strong> 15kW</span>
-                            <span><strong><i class="fas fa-rupee-sign"></i> Savings:</strong> ₹18,000/month</span>
-                            <span><strong><i class="fas fa-chart-line"></i> ROI:</strong> 3.2 years</span>
-                        </div>
-                        <a href="https://wa.me/918301849474" class="btn btn-outline" target="_blank">
-                            <i class="fab fa-whatsapp"></i> WhatsApp for Quote
-                        </a>
+                        <h3>15kW Commercial - Kollam</h3>
+                        <p>Business solar plant with 3.2 year ROI</p>
+                        <a href="projects.html" class="btn btn-outline">View Project</a>
                     </div>
                 </div>
+            </div>
+            <div class="text-center">
+                <a href="projects.html" class="btn btn-primary">View All Projects</a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
+    <!-- Quick Contact -->
+    <section class="quick-contact">
         <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-                <p>Get in touch for a free consultation and quote</p>
-            </div>
-            
-            <div class="contact-container">
+            <div class="contact-grid">
                 <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <p>Ready to switch to solar? Contact us today for a free consultation and personalized quote.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Address</h4>
-                                <p>Based in Kerala, Serving Pan India</p>
-                                <a href="https://maps.app.goo.gl/C125qY2UpXTRdGay7" target="_blank" class="map-link">
-                                    <i class="fas fa-external-link-alt"></i> View on Google Maps
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4>Phone</h4>
-                                <p><a href="tel:8301849474">+91 8301849474</a></p>
-                                <small>Available 8AM - 8PM</small>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p><a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <div>
-                                <h4>WhatsApp</h4>
-                                <p><a href="https://wa.me/918301849474" target="_blank">+91 8301849474</a></p>
-                                <small>Quick responses</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="service-areas">
-                        <h4><i class="fas fa-map-marked-alt"></i> Service Areas</h4>
-                        <p>Kerala • Tamil Nadu • Karnataka • Maharashtra • Delhi • and across India</p>
-                    </div>
-                    
-                    <div class="business-hours">
-                        <h4><i class="fas fa-clock"></i> Business Hours</h4>
-                        <p>Monday - Saturday: 8:00 AM - 8:00 PM</p>
-                        <p>Sunday: 10:00 AM - 6:00 PM</p>
+                    <h2>Ready to Go Solar?</h2>
+                    <p>Get free consultation and quote for your solar project</p>
+                    <div class="contact-methods">
+                        <a href="tel:8301849474" class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <span>Call: 8301849474</span>
+                        </a>
+                        <a href="https://wa.me/918301849474" class="contact-method" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="contact.html" class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>Send Message</span>
+                        </a>
                     </div>
                 </div>
-                
                 <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">Service Interested In</label>
-                            <select id="service" class="form-control">
-                                <option value="">Select a service</option>
-                                <option value="residential">Residential Solar</option>
-                                <option value="commercial">Commercial Solar</option>
-                                <option value="industrial">Industrial Solar</option>
-                                <option value="maintenance">Maintenance</option>
-                                <option value="consulting">Consulting</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" rows="5" placeholder="Tell us about your requirements..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
+                    <h3>Quick Inquiry</h3>
+                    <form class="inquiry-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="tel" placeholder="Phone Number" required>
+                        <select required>
+                            <option value="">Interested In</option>
+                            <option value="residential">Residential Solar</option>
+                            <option value="commercial">Commercial Solar</option>
+                            <option value="industrial">Industrial Solar</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Get Quote</button>
                     </form>
                 </div>
             </div>
@@ -557,48 +267,40 @@
                     <p>Leading provider of sustainable energy solutions in India, committed to a greener future.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#services"><i class="fas fa-cogs"></i> Services</a></li>
-                        <li><a href="#cities"><i class="fas fa-map-marker-alt"></i> Service Areas</a></li>
-                        <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                        <li><a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="cities.html">Service Areas</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-col">
-                    <h3>Our Services</h3>
+                    <h3>Services</h3>
                     <ul>
-                        <li><a href="#residential-solar"><i class="fas fa-home"></i> Residential Solar</a></li>
-                        <li><a href="#commercial-solar"><i class="fas fa-building"></i> Commercial Solar</a></li>
-                        <li><a href="#industrial-solar"><i class="fas fa-industry"></i> Industrial Solar</a></li>
-                        <li><a href="#solar-maintenance"><i class="fas fa-tools"></i> Maintenance</a></li>
-                        <li><a href="#energy-audits"><i class="fas fa-chart-bar"></i> Energy Audits</a></li>
+                        <li><a href="services.html#residential">Residential Solar</a></li>
+                        <li><a href="services.html#commercial">Commercial Solar</a></li>
+                        <li><a href="services.html#industrial">Industrial Solar</a></li>
+                        <li><a href="services.html#maintenance">Maintenance</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-col">
-                    <h3>Contact Info</h3>
+                    <h3>Contact</h3>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> Kerala, India</li>
                         <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
                         <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474" target="_blank">WhatsApp</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Kerala, India</li>
                     </ul>
                 </div>
             </div>
-            
             <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
