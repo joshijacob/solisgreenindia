@@ -101,10 +101,70 @@ function initCitiesToggle() {
     }
 }
 
+// Phone number formatting and tracking
+function initPhoneTracking() {
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    phoneLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Phone call tracking
+            gtag('event', 'phone_call', {
+                'event_category': 'Contact',
+                'event_label': 'Phone Call Initiated'
+            });
+            console.log('Phone call initiated to: ' + this.href);
+        });
+    });
+}
+
+// WhatsApp tracking
+function initWhatsAppTracking() {
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+    whatsappLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // WhatsApp click tracking
+            gtag('event', 'whatsapp_click', {
+                'event_category': 'Contact',
+                'event_label': 'WhatsApp Chat Initiated'
+            });
+            console.log('WhatsApp chat initiated');
+        });
+    });
+}
+
+// Form submission tracking
+function initFormTracking() {
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function() {
+            gtag('event', 'form_submit', {
+                'event_category': 'Contact',
+                'event_label': 'Contact Form Submitted'
+            });
+        });
+    });
+}
+
+// Direction click tracking
+function initDirectionTracking() {
+    const directionLinks = document.querySelectorAll('a[href*="maps.app.goo.gl"]');
+    directionLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            gtag('event', 'get_directions', {
+                'event_category': 'Contact',
+                'event_label': 'Get Directions Clicked'
+            });
+        });
+    });
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initSolarCalculator();
     initCitiesToggle();
+    initPhoneTracking();
+    initWhatsAppTracking();
+    initFormTracking();
+    initDirectionTracking();
     
     // Add loading animation for cards
     const cards = document.querySelectorAll('.service-card, .product-card, .project-card, .resource-card, .city-card');
@@ -137,7 +197,6 @@ document.addEventListener('click', function(e) {
 
 // Google Maps Integration
 function initGoogleMaps() {
-    // This would be replaced with actual Google Maps API integration
     const mapLinks = document.querySelectorAll('a[href*="maps.app.goo.gl"]');
     mapLinks.forEach(link => {
         link.setAttribute('target', '_blank');
@@ -145,31 +204,7 @@ function initGoogleMaps() {
     });
 }
 
-// Phone number formatting and tracking
-function initPhoneTracking() {
-    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
-    phoneLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            // Here you can add phone call tracking
-            console.log('Phone call initiated to: ' + this.href);
-        });
-    });
-}
-
-// WhatsApp tracking
-function initWhatsAppTracking() {
-    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
-    whatsappLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            // Here you can add WhatsApp click tracking
-            console.log('WhatsApp chat initiated');
-        });
-    });
-}
-
-// Initialize tracking functions
+// Initialize Google Maps integration
 document.addEventListener('DOMContentLoaded', function() {
     initGoogleMaps();
-    initPhoneTracking();
-    initWhatsAppTracking();
 });
