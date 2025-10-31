@@ -5,21 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Solar services across Kerala - Pathanamthitta, Kottayam, Alappuzha, Kollam, Thiruvananthapuram and more">
     <title>Service Areas | Solis Green India</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Expandable Floating CTA -->
+    <div class="floating-cta">
+        <div class="cta-main-btn" id="ctaMainBtn">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="cta-options">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Call Us">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
+                <i class="fas fa-file-alt"></i>
+            </a>
+            <a href="https://maps.app.goo.gl/C125qY2UpXTRdGay7" class="cta-option" data-tooltip="Get Directions" target="_blank">
+                <i class="fas fa-map-marker-alt"></i>
+            </a>
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Quote Modal -->
+    <div class="modal" id="quickQuoteModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Get Quick Solar Quote</h3>
+            <form class="quick-quote-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="">Select Service</option>
+                        <option value="residential">Residential Solar</option>
+                        <option value="commercial">Commercial Solar</option>
+                        <option value="industrial">Industrial Solar</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-bolt"></i> Get Instant Quote
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="../images/logo/logo.png" alt="Solis Green India" class="logo-img">
+                <img src="images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
             </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
+            
             <nav id="mainNav">
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="cities.html" class="active">Service Areas</a></li>
                     <li><a href="projects.html">Projects</a></li>
@@ -29,73 +83,277 @@
         </div>
     </header>
 
+    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <h1>Our Service Areas</h1>
-            <p>Serving across Kerala with reliable solar energy solutions</p>
+            <p>We provide expert solar solutions across major districts in Kerala</p>
         </div>
     </section>
 
-    <section class="all-cities section-light">
+    <!-- Featured Cities Grid (Like Homepage) -->
+    <section class="featured-cities">
         <div class="container">
+            <h2 class="section-title">Major Service Locations</h2>
             <div class="cities-grid">
-                <!-- Major Cities -->
-                <div class="city-card-large">
-                    <h3>Pathanamthitta District</h3>
-                    <div class="city-links">
-                        <a href="solar-company-in-pathanamthitta/">Pathanamthitta</a>
-                        <a href="solar-company-in-thiruvalla/">Thiruvalla</a>
-                        <a href="solar-company-in-adoor/">Adoor</a>
-                        <a href="solar-company-in-kozhencherry/">Kozhencherry</a>
-                        <a href="solar-company-in-ranni/">Ranni</a>
-                        <a href="solar-company-in-konni/">Konni</a>
+                <div class="city-card">
+                    <h3>Pathanamthitta</h3>
+                    <p>Solar experts in Pathanamthitta district</p>
+                    <a href="solar-company-in-pathanamthitta/" class="btn btn-outline">View Services</a>
+                </div>
+                <div class="city-card">
+                    <h3>Kottayam</h3>
+                    <p>Complete solar solutions in Kottayam</p>
+                    <a href="solar-company-in-kottayam/" class="btn btn-outline">View Services</a>
+                </div>
+                <div class="city-card">
+                    <h3>Alappuzha</h3>
+                    <p>Backwater region solar specialists</p>
+                    <a href="solar-company-in-alappuzha/" class="btn btn-outline">View Services</a>
+                </div>
+                <div class="city-card">
+                    <h3>Kollam</h3>
+                    <p>Coastal area solar experts</p>
+                    <a href="solar-company-in-kollam/" class="btn btn-outline">View Services</a>
+                </div>
+                <div class="city-card">
+                    <h3>Thiruvananthapuram</h3>
+                    <p>Capital city solar solutions</p>
+                    <a href="solar-company-in-thiruvananthapuram/" class="btn btn-outline">View Services</a>
+                </div>
+                <div class="city-card">
+                    <h3>Thiruvalla</h3>
+                    <p>Commercial & residential solar</p>
+                    <a href="solar-company-in-thiruvalla/" class="btn btn-outline">View Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Districts Section -->
+    <section class="all-districts section-light">
+        <div class="container">
+            <h2 class="section-title">Complete Coverage Across Kerala</h2>
+            
+            <!-- Pathanamthitta District -->
+            <div class="district-section">
+                <h3>Pathanamthitta District</h3>
+                <div class="cities-grid">
+                    <div class="city-card-small">
+                        <h4>Pathanamthitta</h4>
+                        <p>District headquarters solar services</p>
+                        <a href="solar-company-in-pathanamthitta/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Thiruvalla</h4>
+                        <p>Commercial hub solar solutions</p>
+                        <a href="solar-company-in-thiruvalla/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Adoor</h4>
+                        <p>Industrial & residential solar</p>
+                        <a href="solar-company-in-adoor/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Kozhencherry</h4>
+                        <p>Complete solar installations</p>
+                        <a href="solar-company-in-kozhencherry/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Ranni</h4>
+                        <p>Rural area solar specialists</p>
+                        <a href="solar-company-in-ranni/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Konni</h4>
+                        <p>Eco-friendly solar solutions</p>
+                        <a href="solar-company-in-konni/" class="btn-link">View Details →</a>
                     </div>
                 </div>
+            </div>
 
-                <div class="city-card-large">
-                    <h3>Kottayam District</h3>
-                    <div class="city-links">
-                        <a href="solar-company-in-kottayam/">Kottayam</a>
-                        <a href="solar-company-in-changanacherry/">Changanacherry</a>
+            <!-- Kottayam District -->
+            <div class="district-section">
+                <h3>Kottayam District</h3>
+                <div class="cities-grid">
+                    <div class="city-card-small">
+                        <h4>Kottayam</h4>
+                        <p>District headquarters services</p>
+                        <a href="solar-company-in-kottayam/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Changanacherry</h4>
+                        <p>Urban solar solutions</p>
+                        <a href="solar-company-in-changanacherry/" class="btn-link">View Details →</a>
                     </div>
                 </div>
+            </div>
 
-                <div class="city-card-large">
-                    <h3>Alappuzha District</h3>
-                    <div class="city-links">
-                        <a href="solar-company-in-alappuzha/">Alappuzha</a>
-                        <a href="solar-company-in-chengannur/">Chengannur</a>
-                        <a href="solar-company-in-mavelikkara/">Mavelikkara</a>
-                        <a href="solar-company-in-pandalam/">Pandalam</a>
-                        <a href="solar-company-in-kayamkulam/">Kayamkulam</a>
+            <!-- Alappuzha District -->
+            <div class="district-section">
+                <h3>Alappuzha District</h3>
+                <div class="cities-grid">
+                    <div class="city-card-small">
+                        <h4>Alappuzha</h4>
+                        <p>Backwater region specialists</p>
+                        <a href="solar-company-in-alappuzha/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Chengannur</h4>
+                        <p>Residential solar experts</p>
+                        <a href="solar-company-in-chengannur/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Mavelikkara</h4>
+                        <p>Commercial solar solutions</p>
+                        <a href="solar-company-in-mavelikkara/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Pandalam</h4>
+                        <p>Royal city solar services</p>
+                        <a href="solar-company-in-pandalam/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Kayamkulam</h4>
+                        <p>Coastal area solar experts</p>
+                        <a href="solar-company-in-kayamkulam/" class="btn-link">View Details →</a>
                     </div>
                 </div>
+            </div>
 
-                <div class="city-card-large">
-                    <h3>Kollam District</h3>
-                    <div class="city-links">
-                        <a href="solar-company-in-kollam/">Kollam</a>
-                        <a href="solar-company-in-punalur/">Punalur</a>
-                        <a href="solar-company-in-kottarakkara/">Kottarakkara</a>
+            <!-- Kollam District -->
+            <div class="district-section">
+                <h3>Kollam District</h3>
+                <div class="cities-grid">
+                    <div class="city-card-small">
+                        <h4>Kollam</h4>
+                        <p>Port city solar solutions</p>
+                        <a href="solar-company-in-kollam/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Punalur</h4>
+                        <p>Industrial solar specialists</p>
+                        <a href="solar-company-in-punalur/" class="btn-link">View Details →</a>
+                    </div>
+                    <div class="city-card-small">
+                        <h4>Kottarakkara</h4>
+                        <p>Complete solar services</p>
+                        <a href="solar-company-in-kottarakkara/" class="btn-link">View Details →</a>
                     </div>
                 </div>
+            </div>
 
-                <div class="city-card-large">
-                    <h3>Thiruvananthapuram District</h3>
-                    <div class="city-links">
-                        <a href="solar-company-in-thiruvananthapuram/">Thiruvananthapuram</a>
+            <!-- Thiruvananthapuram District -->
+            <div class="district-section">
+                <h3>Thiruvananthapuram District</h3>
+                <div class="cities-grid">
+                    <div class="city-card-small">
+                        <h4>Thiruvananthapuram</h4>
+                        <p>Capital city solar experts</p>
+                        <a href="solar-company-in-thiruvananthapuram/" class="btn-link">View Details →</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Quick Contact Section (Like Homepage) -->
+    <section class="quick-contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Need Solar in Your Area?</h2>
+                    <p>Get free consultation and quote for solar installation in your location</p>
+                    <div class="contact-methods">
+                        <a href="tel:8301849474" class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <span>Call: 8301849474</span>
+                        </a>
+                        <a href="https://wa.me/918301849474" class="contact-method" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                        <a href="contact.html" class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>Send Message</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Area-specific Quote</h3>
+                    <form class="inquiry-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="tel" placeholder="Phone Number" required>
+                        <select required>
+                            <option value="">Select Your Location</option>
+                            <option value="pathanamthitta">Pathanamthitta</option>
+                            <option value="kottayam">Kottayam</option>
+                            <option value="alappuzha">Alappuzha</option>
+                            <option value="kollam">Kollam</option>
+                            <option value="thiruvananthapuram">Thiruvananthapuram</option>
+                            <option value="thiruvalla">Thiruvalla</option>
+                            <option value="changanacherry">Changanacherry</option>
+                            <option value="chengannur">Chengannur</option>
+                            <option value="adoor">Adoor</option>
+                            <option value="ranni">Ranni</option>
+                            <option value="konni">Konni</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Get Local Quote</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <!-- Footer content from index.html -->
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                    </div>
+                    <p>Leading provider of sustainable energy solutions in India, committed to a greener future.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="cities.html">Service Areas</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#residential">Residential Solar</a></li>
+                        <li><a href="services.html#commercial">Commercial Solar</a></li>
+                        <li><a href="services.html#industrial">Industrial Solar</a></li>
+                        <li><a href="services.html#maintenance">Maintenance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Kerala, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Solis Green India. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
