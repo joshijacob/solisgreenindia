@@ -17,6 +17,61 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add Kottayam theme
         addKottayamTheme();
+        
+        // Initialize hero animations
+        initKottayamHero();
+    }
+
+    function initKottayamHero() {
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            // Add Kottayam specific hero class
+            heroSection.classList.add('kottayam-theme');
+            
+            // Add floating animation to hero elements
+            const heroElements = heroSection.querySelectorAll('h1, p, .hero-buttons');
+            heroElements.forEach((element, index) => {
+                element.style.animation = `fadeInUp 1s ease ${index * 0.2}s both`;
+            });
+            
+            // Add ripple effect to hero background
+            createRippleEffect(heroSection);
+        }
+    }
+
+    function createRippleEffect(container) {
+        for (let i = 0; i < 5; i++) {
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                border: 2px solid rgba(255,255,255,0.1);
+                border-radius: 50%;
+                animation: ripple 6s linear infinite;
+                animation-delay: ${i * 1.2}s;
+                pointer-events: none;
+            `;
+            ripple.style.left = `${Math.random() * 100}%`;
+            ripple.style.top = `${Math.random() * 100}%`;
+            container.appendChild(ripple);
+        }
+        
+        // Add ripple animation to styles
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes ripple {
+                0% {
+                    transform: scale(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
     }
 
     function animateKottayamStats() {
@@ -86,12 +141,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     rings[index].style.background = 'rgba(255, 255, 255, 0.8)';
                 }
             });
+            
+            // Add click to legend items
+            item.addEventListener('click', function() {
+                const serviceType = this.querySelector('span:last-child').textContent;
+                showKottayamServiceInfo(serviceType);
+            });
         });
 
         // Add click interaction to central point
         const centralPoint = document.querySelector('.central-point');
         if (centralPoint) {
-            centralPoint.style.cursor = 'pointer';
             centralPoint.addEventListener('click', function() {
                 showKottayamCoverageInfo();
             });
@@ -102,8 +162,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const areaItems = document.querySelectorAll('.area-item');
         const areaSelect = document.querySelector('select[placeholder*="Area"]');
         
-        areaItems.forEach(item => {
+        areaItems.forEach((item, index) => {
             item.style.cursor = 'pointer';
+            item.style.animationDelay = `${index * 0.1}s`;
+            
             item.addEventListener('click', function() {
                 const areaName = this.querySelector('h4').textContent;
                 if (areaSelect) {
@@ -161,9 +223,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 z-index: 10000;
                 animation: slideInRight 0.5s ease;
                 border-left: 4px solid var(--secondary);
+                display: flex;
+                align-items: center;
+                gap: 10px;
             ">
                 <i class="fas fa-check-circle"></i>
-                <strong>${areaName}</strong> selected for Kottayam quote!
+                <div>
+                    <strong>${areaName}</strong> selected for Kottayam quote!
+                </div>
             </div>
         `;
         document.body.appendChild(feedback);
@@ -187,13 +254,61 @@ document.addEventListener('DOMContentLoaded', function() {
                     service: this.querySelector('select[placeholder*="Interested"]').value
                 };
                 
-                // Kottayam specific success message
-                showKottayamSuccess(formData);
-                
-                // Reset form
-                this.reset();
+                // Validate form
+                if (validateKottayamForm(formData)) {
+                    // Kottayam specific success message
+                    showKottayamSuccess(formData);
+                    
+                    // Reset form
+                    this.reset();
+                }
             });
         }
+    }
+
+    function validateKottayamForm(formData) {
+        if (!formData.name || !formData.phone || !formData.area || !formData.service) {
+            showKottayamError('Please fill all required fields');
+            return false;
+        }
+        
+        if (formData.phone.length < 10) {
+            showKottayamError('Please enter a valid phone number');
+            return false;
+        }
+        
+        return true;
+    }
+
+    function showKottayamError(message) {
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'kottayam-error-message';
+        errorMessage.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #f44336;
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+                animation: slideInDown 0.5s ease;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            ">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>${message}</span>
+            </div>
+        `;
+        document.body.appendChild(errorMessage);
+        
+        setTimeout(() => {
+            errorMessage.remove();
+        }, 3000);
     }
 
     function showKottayamSuccess(formData) {
@@ -272,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ">
                 <h4 style="color: var(--primary); margin-bottom: 1rem;">Kottayam District Coverage</h4>
                 <p style="margin-bottom: 1rem; color: var(--dark);">
-                    We serve the entire Kottayam district within 30km radius, including city areas, major towns, and backwater regions.
+                    We serve the entire Kottayam district within 30km radius, including city areas, major towns, and backwater regions like Kumarakom.
                 </p>
                 <button onclick="this.parentElement.parentElement.remove()" style="
                     background: var(--primary);
@@ -296,18 +411,65 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(infoMessage);
     }
 
+    function showKottayamServiceInfo(serviceType) {
+        const infoMessage = document.createElement('div');
+        infoMessage.className = 'service-info-message';
+        infoMessage.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: white;
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+                z-index: 10000;
+                text-align: center;
+                max-width: 350px;
+                width: 90%;
+            ">
+                <h4 style="color: var(--primary); margin-bottom: 1rem;">${serviceType}</h4>
+                <p style="margin-bottom: 1rem; color: var(--dark);">
+                    ${getServiceDescription(serviceType)}
+                </p>
+                <button onclick="this.parentElement.parentElement.remove()" style="
+                    background: var(--primary);
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                ">Understand</button>
+            </div>
+            <div style="
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 9999;
+            " onclick="this.parentElement.remove()"></div>
+        `;
+        document.body.appendChild(infoMessage);
+    }
+
+    function getServiceDescription(serviceType) {
+        const descriptions = {
+            'City Service (0-10 km)': 'Immediate service within Kottayam city limits with quick response times.',
+            'Town Service (10-20 km)': 'Service to major towns around Kottayam with scheduled appointments.',
+            'District Service (20-30 km)': 'Complete coverage across Kottayam district including remote areas.'
+        };
+        return descriptions[serviceType] || 'Professional solar service across Kottayam region.';
+    }
+
     function addKottayamTheme() {
-        // Add Kottayam specific theme class
+        // Add Kottayam specific theme class to areas
         const areasSection = document.querySelector('.areas-covered');
         if (areasSection) {
             areasSection.classList.add('kottayam-theme');
         }
-        
-        // Add backwater inspired animations
-        const areaItems = document.querySelectorAll('.area-item');
-        areaItems.forEach((item, index) => {
-            item.style.animationDelay = `${index * 0.1}s`;
-        });
     }
 
     // Add CSS for Kottayam specific animations
@@ -318,34 +480,30 @@ document.addEventListener('DOMContentLoaded', function() {
             to { transform: translateX(0); opacity: 1; }
         }
         
+        @keyframes slideInDown {
+            from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+        
         .area-selection-feedback {
             animation: slideInRight 0.5s ease;
+        }
+        
+        .kottayam-error-message {
+            animation: slideInDown 0.5s ease;
         }
         
         .kottayam-success-message {
             animation: fadeInScale 0.5s ease;
         }
         
-        .coverage-info-message {
+        .coverage-info-message, .service-info-message {
             animation: fadeInScale 0.4s ease;
         }
         
         @keyframes fadeInScale {
             from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
             to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        }
-        
-        /* Kottayam specific animations */
-        .kottayam-theme .area-item {
-            animation: fadeInUp 0.6s ease forwards;
-            opacity: 0;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     `;
     document.head.appendChild(kottayamStyles);
@@ -370,8 +528,5 @@ window.addEventListener('load', function() {
     }
     
     // Add Kottayam welcome effect
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-        heroSection.style.background = 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%)';
-    }
+    console.log('🌊 Welcome to Solis Green India - Kottayam Solar Solutions ⚡');
 });
