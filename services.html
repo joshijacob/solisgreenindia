@@ -3,24 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Complete solar energy services - Residential, Commercial & Industrial solar solutions in Kerala">
-    <title>Solar Services | Solis Green India</title>
-    <link rel="stylesheet" href="../style.css">
+    <meta name="description" content="Solar energy services by Solis Green India - Residential, Commercial, Industrial solar solutions across Kerala">
+    <meta name="keywords" content="solar services, residential solar, commercial solar, industrial solar, solar maintenance">
+    <meta name="author" content="Solis Green India">
+    <title>Solar Services | Solis Green India - Complete Solar Solutions</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header (same as index.html) -->
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <div class="cta-main-btn" id="ctaMainBtn">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="cta-options">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Call Us">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
+                <i class="fas fa-file-alt"></i>
+            </a>
+            <a href="https://maps.app.goo.gl/C125qY2UpXTRdGay7" class="cta-option" data-tooltip="Get Directions" target="_blank">
+                <i class="fas fa-map-marker-alt"></i>
+            </a>
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Quote Modal -->
+    <div class="modal" id="quickQuoteModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Get Quick Solar Quote</h3>
+            <form class="quick-quote-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="">Select Service</option>
+                        <option value="residential">Residential Solar</option>
+                        <option value="commercial">Commercial Solar</option>
+                        <option value="industrial">Industrial Solar</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-bolt"></i> Get Instant Quote
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="../images/logo/logo.png" alt="Solis Green India" class="logo-img">
+                <img src="images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
             </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
             <nav id="mainNav">
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="services.html" class="active">Services</a></li>
                     <li><a href="cities.html">Service Areas</a></li>
                     <li><a href="projects.html">Projects</a></li>
@@ -30,92 +83,180 @@
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
+    <!-- Services Hero Section -->
+    <section class="hero">
         <div class="container">
             <h1>Our Solar Services</h1>
-            <p>Complete end-to-end solar solutions for homes, businesses, and industries</p>
+            <p>Comprehensive solar energy solutions for homes, businesses, and industries across Kerala</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">
+                    <i class="fas fa-solar-panel"></i> Explore Services
+                </a>
+                <a href="contact.html" class="btn btn-secondary">
+                    <i class="fas fa-calendar"></i> Free Consultation
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Services Detail -->
-    <section class="services-detail section-light">
+    <!-- Services Categories -->
+    <section class="service-detail" id="services">
         <div class="container">
-            <div class="service-category" id="residential">
-                <div class="service-content">
-                    <div class="service-text">
-                        <h2>Residential Solar Solutions</h2>
-                        <p>Power your home with clean, renewable energy and reduce your electricity bills by up to 90%.</p>
-                        <ul>
-                            <li><i class="fas fa-check"></i> Rooftop solar systems (1kW - 10kW)</li>
-                            <li><i class="fas fa-check"></i> Subsidy assistance</li>
-                            <li><i class="fas fa-check"></i> Net metering setup</li>
-                            <li><i class="fas fa-check"></i> Battery backup solutions</li>
-                        </ul>
-                        <a href="contact.html" class="btn btn-primary">Get Free Consultation</a>
-                    </div>
-                    <div class="service-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-home"></i>
-                            <p>Residential Solar Installation</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="service-hero">
+                <h1>Complete Solar Solutions</h1>
+                <p>We provide end-to-end solar energy services from consultation to installation and maintenance</p>
             </div>
 
-            <div class="service-category" id="commercial">
-                <div class="service-content reverse">
-                    <div class="service-text">
-                        <h2>Commercial Solar Solutions</h2>
-                        <p>Reduce operational costs and enhance your business sustainability with commercial solar systems.</p>
-                        <ul>
-                            <li><i class="fas fa-check"></i> Commercial rooftop systems</li>
-                            <li><i class="fas fa-check"></i> Solar for offices & shops</li>
-                            <li><i class="fas fa-check"></i> High ROI solutions</li>
-                            <li><i class="fas fa-check"></i> Maintenance contracts</li>
-                        </ul>
-                        <a href="contact.html" class="btn btn-primary">Get Commercial Quote</a>
+            <div class="service-categories">
+                <div class="service-category" id="residential">
+                    <div class="service-category-icon">
+                        <i class="fas fa-home"></i>
                     </div>
-                    <div class="service-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-building"></i>
-                            <p>Commercial Solar Project</p>
-                        </div>
+                    <h3>Residential Solar</h3>
+                    <p>Perfect solar solutions for homes, apartments, and residential complexes</p>
+                    <div class="service-features-list">
+                        <p><i class="fas fa-check"></i> 3kW - 10kW systems</p>
+                        <p><i class="fas fa-check"></i> 70-90% bill reduction</p>
+                        <p><i class="fas fa-check"></i> Battery backup options</p>
                     </div>
+                    <a href="contact.html" class="btn btn-outline">Get Quote</a>
                 </div>
-            </div>
 
-            <div class="service-category" id="industrial">
-                <div class="service-content">
-                    <div class="service-text">
-                        <h2>Industrial Solar Solutions</h2>
-                        <p>Large-scale solar power plants for industries and manufacturing units.</p>
-                        <ul>
-                            <li><i class="fas fa-check"></i> MW-scale solar plants</li>
-                            <li><i class="fas fa-check"></i> Factory rooftop systems</li>
-                            <li><i class="fas fa-check"></i> Open access solar</li>
-                            <li><i class="fas fa-check"></i> EPC services</li>
-                        </ul>
-                        <a href="contact.html" class="btn btn-primary">Discuss Industrial Project</a>
+                <div class="service-category" id="commercial">
+                    <div class="service-category-icon">
+                        <i class="fas fa-building"></i>
                     </div>
-                    <div class="service-image">
-                        <div class="image-placeholder">
-                            <i class="fas fa-industry"></i>
-                            <p>Industrial Solar Plant</p>
-                        </div>
+                    <h3>Commercial Solar</h3>
+                    <p>Solar power for businesses, offices, shops, and commercial establishments</p>
+                    <div class="service-features-list">
+                        <p><i class="fas fa-check"></i> 10kW - 100kW systems</p>
+                        <p><i class="fas fa-check"></i> Excellent ROI</p>
+                        <p><i class="fas fa-check"></i> Business continuity</p>
                     </div>
+                    <a href="contact.html" class="btn btn-outline">Get Quote</a>
+                </div>
+
+                <div class="service-category" id="industrial">
+                    <div class="service-category-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Industrial Solar</h3>
+                    <p>High-capacity solar systems for factories, manufacturing units, and industries</p>
+                    <div class="service-features-list">
+                        <p><i class="fas fa-check"></i> 25kW - 500kW+ systems</p>
+                        <p><i class="fas fa-check"></i> Heavy-duty performance</p>
+                        <p><i class="fas fa-check"></i> Cost optimization</p>
+                    </div>
+                    <a href="contact.html" class="btn btn-outline">Get Quote</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer (same as index.html) -->
+    <!-- Service Features -->
+    <section class="service-features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our Services</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h4>Expert Installation</h4>
+                    <p>Professional installation by certified solar technicians with years of experience</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Quality Assurance</h4>
+                    <p>Premium quality components with extended warranties and performance guarantees</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h4>Maintenance Support</h4>
+                    <p>Complete after-sales service, maintenance, and monitoring support</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h4>Documentation Help</h4>
+                    <p>Assistance with subsidies, net metering, and government approvals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="project-consultation">
+        <div class="container">
+            <div class="consultation-content">
+                <h2>Ready to Go Solar?</h2>
+                <p>Get a free consultation and customized solar solution for your specific needs</p>
+                <div class="consultation-buttons">
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call for Consultation
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Send Requirements
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <!-- Footer content from index.html -->
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                    </div>
+                    <p>Leading provider of sustainable energy solutions in India, committed to a greener future.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="cities.html">Service Areas</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#residential">Residential Solar</a></li>
+                        <li><a href="services.html#commercial">Commercial Solar</a></li>
+                        <li><a href="services.html#industrial">Industrial Solar</a></li>
+                        <li><a href="services.html#maintenance">Maintenance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Kerala, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Solis Green India. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
