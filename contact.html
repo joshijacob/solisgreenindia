@@ -3,23 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact Solis Green India for solar solutions in Kerala. Call 8301849474 for free consultation">
-    <title>Contact Us | Solis Green India</title>
-    <link rel="stylesheet" href="../style.css">
+    <meta name="description" content="Contact Solis Green India for solar solutions in Kerala. Call 8301849474 for free consultation and customized solar quotes">
+    <meta name="keywords" content="solar contact kerala, solar consultation, solar quote, solar installation contact">
+    <meta name="author" content="Solis Green India">
+    
+    <title>Contact Us | Solis Green India - Free Solar Consultation & Quotes</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Expandable Floating CTA -->
+    <div class="floating-cta">
+        <div class="cta-main-btn" id="ctaMainBtn">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="cta-options">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Call Us">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
+                <i class="fas fa-file-alt"></i>
+            </a>
+            <a href="https://maps.app.goo.gl/C125qY2UpXTRdGay7" class="cta-option" data-tooltip="Get Directions" target="_blank">
+                <i class="fas fa-map-marker-alt"></i>
+            </a>
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Quote Modal -->
+    <div class="modal" id="quickQuoteModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Get Quick Solar Quote</h3>
+            <form class="quick-quote-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="">Select Service</option>
+                        <option value="residential">Residential Solar</option>
+                        <option value="commercial">Commercial Solar</option>
+                        <option value="industrial">Industrial Solar</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-bolt"></i> Get Instant Quote
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="../images/logo/logo.png" alt="Solis Green India" class="logo-img">
+                <img src="images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
             </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
+            
             <nav id="mainNav">
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="cities.html">Service Areas</a></li>
                     <li><a href="projects.html">Projects</a></li>
@@ -29,99 +86,309 @@
         </div>
     </header>
 
-    <section class="page-header">
+    <!-- Contact Hero Section -->
+    <section class="hero contact-hero">
         <div class="container">
-            <h1>Contact Us</h1>
-            <p>Get in touch for free solar consultation and quotes</p>
+            <h1>Start Your Solar Journey Today</h1>
+            <p>Get expert consultation and a customized solar solution for your home or business</p>
+            <div class="hero-buttons">
+                <a href="#contact-form" class="btn btn-primary">
+                    <i class="fas fa-bolt"></i> Get Free Quote
+                </a>
+                <a href="tel:8301849474" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> Call Now
+                </a>
+            </div>
         </div>
     </section>
 
-    <section class="contact-main">
+    <!-- Quick Contact Methods -->
+    <section class="quick-contact section-light">
+        <div class="container">
+            <h2 class="section-title">Multiple Ways to Connect</h2>
+            <div class="contact-methods-grid">
+                <div class="contact-method-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Call Us Directly</h3>
+                    <p>Speak directly with our solar experts for immediate assistance</p>
+                    <a href="tel:8301849474" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> 8301849474
+                    </a>
+                </div>
+                
+                <div class="contact-method-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Quick chat for quotes and consultation</p>
+                    <a href="https://wa.me/918301849474" class="btn btn-outline" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Message Now
+                    </a>
+                </div>
+                
+                <div class="contact-method-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>Send detailed requirements for comprehensive quotes</p>
+                    <a href="mailto:solisgreenindia@gmail.com" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i> Send Email
+                    </a>
+                </div>
+                
+                <div class="contact-method-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Service Areas</h3>
+                    <p>We serve across Kerala with local expertise</p>
+                    <a href="cities.html" class="btn btn-outline">
+                        <i class="fas fa-map"></i> View Areas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="contact-main" id="contact-form">
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h2>Get Your Solar Quote</h2>
-                    <p>We'll help you choose the perfect solar solution for your needs</p>
+                    <h2>Why Choose Solis Green India?</h2>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Free Site Inspection</h4>
+                                <p>Comprehensive assessment of your property</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Customized Solutions</h4>
+                                <p>Tailored solar systems for your specific needs</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Quality Assurance</h4>
+                                <p>Premium components with extended warranties</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Post-Installation Support</h4>
+                                <p>Complete maintenance and monitoring services</p>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="contact-methods">
-                        <div class="contact-method">
+                    <div class="contact-details">
+                        <h3>Contact Information</h3>
+                        <div class="contact-detail-item">
                             <i class="fas fa-phone"></i>
                             <div>
-                                <h4>Call Us</h4>
+                                <strong>Phone</strong>
                                 <a href="tel:8301849474">8301849474</a>
                             </div>
                         </div>
-                        <div class="contact-method">
+                        <div class="contact-detail-item">
                             <i class="fab fa-whatsapp"></i>
                             <div>
-                                <h4>WhatsApp</h4>
-                                <a href="https://wa.me/918301849474" target="_blank">Message Now</a>
+                                <strong>WhatsApp</strong>
+                                <a href="https://wa.me/918301849474" target="_blank">+91 8301849474</a>
                             </div>
                         </div>
-                        <div class="contact-method">
+                        <div class="contact-detail-item">
                             <i class="fas fa-envelope"></i>
                             <div>
-                                <h4>Email</h4>
+                                <strong>Email</strong>
                                 <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a>
                             </div>
                         </div>
-                        <div class="contact-method">
+                        <div class="contact-detail-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
-                                <h4>Service Areas</h4>
-                                <span>Across Kerala</span>
+                                <strong>Service Area</strong>
+                                <span>Kerala, India</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="contact-form">
-                    <h3>Send Message</h3>
-                    <form class="contact-form-main">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
+                    <div class="form-header">
+                        <h3>Get Your Custom Solar Quote</h3>
+                        <p>Fill this form and we'll get back to you within 2 hours</p>
+                    </div>
+                    <form class="contact-form-main" id="mainContactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" placeholder="Your Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" placeholder="Phone Number" required>
+                            </div>
                         </div>
+                        
                         <div class="form-group">
-                            <input type="tel" placeholder="Phone Number" required>
+                            <input type="email" placeholder="Email Address (Optional)">
                         </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Email Address">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <select required>
+                                    <option value="">Service Type</option>
+                                    <option value="residential">Residential Solar</option>
+                                    <option value="commercial">Commercial Solar</option>
+                                    <option value="industrial">Industrial Solar</option>
+                                    <option value="agricultural">Agricultural Solar</option>
+                                    <option value="maintenance">Maintenance Service</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select required>
+                                    <option value="">Your Location</option>
+                                    <option value="pathanamthitta">Pathanamthitta</option>
+                                    <option value="kottayam">Kottayam</option>
+                                    <option value="alappuzha">Alappuzha</option>
+                                    <option value="kollam">Kollam</option>
+                                    <option value="thiruvalla">Thiruvalla</option>
+                                    <option value="changanacherry">Changanacherry</option>
+                                    <option value="thiruvananthapuram">Thiruvananthapuram</option>
+                                    <option value="other">Other Area in Kerala</option>
+                                </select>
+                            </div>
                         </div>
+                        
                         <div class="form-group">
-                            <select required>
-                                <option value="">Select Service</option>
-                                <option value="residential">Residential Solar</option>
-                                <option value="commercial">Commercial Solar</option>
-                                <option value="industrial">Industrial Solar</option>
+                            <select>
+                                <option value="">Approximate Monthly Electricity Bill</option>
+                                <option value="0-2000">Below ₹2000</option>
+                                <option value="2000-5000">₹2000 - ₹5000</option>
+                                <option value="5000-10000">₹5000 - ₹10000</option>
+                                <option value="10000+">Above ₹10000</option>
                             </select>
                         </div>
+                        
                         <div class="form-group">
-                            <select required>
-                                <option value="">Select Location</option>
-                                <option value="pathanamthitta">Pathanamthitta</option>
-                                <option value="kottayam">Kottayam</option>
-                                <option value="alappuzha">Alappuzha</option>
-                                <!-- Add other locations -->
-                            </select>
+                            <textarea placeholder="Specific Requirements or Questions (Optional)" rows="4"></textarea>
                         </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message (Optional)" rows="4"></textarea>
-                        </div>
+                        
                         <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-bolt"></i> Get Free Quote
+                            <i class="fas fa-bolt"></i> Get Free Solar Consultation
                         </button>
+                        
+                        <p class="form-note">
+                            <i class="fas fa-shield-alt"></i>
+                            Your information is secure and will never be shared with third parties
+                        </p>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section section-light">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>How soon can you install my solar system?</h4>
+                    <p>Most residential installations are completed within 3-7 days after site inspection. Commercial projects may take 1-2 weeks depending on scale.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you provide maintenance services?</h4>
+                    <p>Yes, we offer comprehensive maintenance packages including regular cleaning, performance monitoring, and technical support.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What warranty do you provide?</h4>
+                    <p>We provide 5 years workmanship warranty + 25 years performance warranty on panels and 5-10 years on inverters.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you handle government subsidies?</h4>
+                    <p>Yes, we assist with all documentation and processes for availing government subsidies and net metering approvals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Contact CTA -->
+    <section class="emergency-cta">
+        <div class="container">
+            <div class="emergency-content">
+                <div class="emergency-info">
+                    <h3>Need Immediate Assistance?</h3>
+                    <p>For urgent solar system issues or emergency consultations</p>
+                </div>
+                <div class="emergency-contact">
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Emergency Line
+                    </a>
+                    <span>Available 24/7 for existing customers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <!-- Footer content from index.html -->
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                    </div>
+                    <p>Leading provider of sustainable energy solutions in India, committed to a greener future.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="cities.html">Service Areas</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#residential">Residential Solar</a></li>
+                        <li><a href="services.html#commercial">Commercial Solar</a></li>
+                        <li><a href="services.html#industrial">Industrial Solar</a></li>
+                        <li><a href="services.html#maintenance">Maintenance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Kerala, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Solis Green India. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
