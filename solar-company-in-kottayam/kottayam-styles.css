@@ -1,5 +1,87 @@
 /* Kottayam Specific Styles - Dedicated to this location only */
 
+/* Kottayam Hero Section Styles */
+.hero {
+    position: relative;
+    padding: 180px 0 100px 0;
+    color: var(--white);
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 25%, #1565C0 50%, #0D47A1 75%, #01579B 100%);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    color: var(--white);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease 0.2s both;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+/* Kottayam specific hero with image */
+.kottayam-hero-bg {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('../../images/hero/kottayam-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 /* Areas Covered Section Styles */
 .areas-covered {
     padding: 80px 0;
@@ -62,6 +144,8 @@
     border: 1px solid #e8f5e8;
     position: relative;
     overflow: hidden;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
 }
 
 .area-item::before {
@@ -154,6 +238,7 @@
     z-index: 3;
     box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
     animation: pulse 2s infinite;
+    cursor: pointer;
 }
 
 @keyframes pulse {
@@ -246,6 +331,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .legend-item:hover {
@@ -338,6 +424,15 @@
     transition: color 0.3s ease;
 }
 
+/* Kottayam Backwater Theme */
+.kottayam-theme .area-item:hover {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.kottayam-theme .central-point {
+    background: linear-gradient(135deg, var(--primary) 0%, #1e88e5 100%);
+}
+
 /* Kottayam Specific Responsive Design */
 @media (max-width: 1024px) {
     .areas-grid-expanded {
@@ -359,6 +454,29 @@
 }
 
 @media (max-width: 768px) {
+    .hero {
+        padding: 150px 0 80px 0;
+        background-attachment: scroll;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+    
     .areas-grid-expanded {
         grid-template-columns: 1fr;
     }
@@ -392,6 +510,14 @@
 }
 
 @media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
     .coverage-stats {
         grid-template-columns: 1fr;
     }
@@ -420,13 +546,4 @@
     .stat-number {
         font-size: 2.5rem;
     }
-}
-
-/* Kottayam Backwater Theme */
-.kottayam-theme .area-item:hover {
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-}
-
-.kottayam-theme .central-point {
-    background: linear-gradient(135deg, var(--primary) 0%, #1e88e5 100%);
 }
