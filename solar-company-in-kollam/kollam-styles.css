@@ -1,0 +1,644 @@
+/* Kollam Specific Styles - Dedicated to this location only */
+
+/* Cursor Trail Effect */
+.cursor-trail {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    z-index: 9999;
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cursor-trail.active {
+    opacity: 0.6;
+}
+
+.cursor-trail::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--secondary);
+    border-radius: 50%;
+    animation: pulseTrail 1s infinite;
+}
+
+@keyframes pulseTrail {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Trail particles */
+.trail-particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    pointer-events: none;
+    z-index: 9998;
+    border-radius: 50%;
+    opacity: 0;
+    animation: trailFade 0.6s ease-out forwards;
+}
+
+@keyframes trailFade {
+    0% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* Kollam Hero Section Styles */
+.hero {
+    position: relative;
+    padding: 180px 0 100px 0;
+    color: var(--white);
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 25%, #1565C0 50%, #0D47A1 75%, #01579B 100%);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    color: var(--white);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease 0.2s both;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+/* Kollam specific hero with image */
+.kollam-hero-bg {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('../../images/hero/kollam-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Areas Covered Section Styles */
+.areas-covered {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.areas-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.area-category {
+    background: var(--light);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    border-left: 4px solid var(--primary);
+}
+
+.area-category h3 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.area-category h3 i {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.areas-grid-expanded {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.area-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.8rem;
+    background: var(--white);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid #e8f5e8;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.area-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.area-item:hover::before {
+    transform: scaleY(1);
+}
+
+.area-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(46, 125, 50, 0.15);
+    border-color: var(--primary-light);
+}
+
+.area-item i {
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-top: 0.3rem;
+    flex-shrink: 0;
+    background: rgba(46, 125, 50, 0.1);
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.area-info h4 {
+    margin-bottom: 0.8rem;
+    color: var(--dark);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.area-info p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Kollam Coverage Map Styles */
+.coverage-map {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 3.5rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 3rem;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+}
+
+.coverage-map h3 {
+    color: var(--dark);
+    margin-bottom: 2.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.map-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.map-center {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.central-point {
+    position: absolute;
+    background: var(--primary);
+    color: var(--white);
+    padding: 1.2rem;
+    border-radius: 50%;
+    text-align: center;
+    z-index: 3;
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+    animation: pulse 2s infinite;
+    cursor: pointer;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.central-point i {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.central-point span {
+    font-size: 0.85rem;
+    display: block;
+    font-weight: 500;
+}
+
+.coverage-rings {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.ring {
+    position: absolute;
+    border: 3px dashed;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.8);
+    animation: rotate 25s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.ring-1 {
+    width: 150px;
+    height: 150px;
+    border-color: var(--primary);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 20s;
+}
+
+.ring-2 {
+    width: 250px;
+    height: 250px;
+    border-color: var(--primary-light);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 25s;
+    animation-direction: reverse;
+}
+
+.ring-3 {
+    width: 350px;
+    height: 350px;
+    border-color: var(--secondary);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 30s;
+}
+
+.map-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    min-width: 250px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.legend-item:hover {
+    transform: translateX(10px);
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.legend-color.primary {
+    background: var(--primary);
+}
+
+.legend-color.secondary {
+    background: var(--primary-light);
+}
+
+.legend-color.tertiary {
+    background: var(--secondary);
+}
+
+/* Kollam Coverage Stats */
+.coverage-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 2.5rem 1.5rem;
+    background: linear-gradient(135deg, var(--light) 0%, #f8f9fa 100%);
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    border: 1px solid #e8f5e8;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    transition: left 0.4s ease;
+    z-index: 1;
+}
+
+.stat-item:hover::before {
+    left: 0;
+}
+
+.stat-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(46, 125, 50, 0.2);
+}
+
+.stat-number, .stat-label {
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.stat-item:hover .stat-number,
+.stat-item:hover .stat-label {
+    color: var(--white);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
+}
+
+.stat-label {
+    color: var(--gray);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+/* Kollam Port City Theme */
+.kollam-theme .area-item:hover {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+}
+
+.kollam-theme .central-point {
+    background: linear-gradient(135deg, var(--primary) 0%, #1976d2 100%);
+}
+
+.kollam-theme .area-category {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+}
+
+/* Interactive elements with enhanced cursor effects */
+.btn, .area-item, .legend-item, .central-point {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before, .area-item::before, .legend-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before, .area-item:hover::before, .legend-item:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Kollam Specific Responsive Design */
+@media (max-width: 1024px) {
+    .areas-grid-expanded {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .map-visual {
+        gap: 3rem;
+    }
+    
+    .map-center {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .ring-1 { width: 130px; height: 130px; }
+    .ring-2 { width: 220px; height: 220px; }
+    .ring-3 { width: 320px; height: 320px; }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 150px 0 80px 0;
+        background-attachment: scroll;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .areas-grid-expanded {
+        grid-template-columns: 1fr;
+    }
+    
+    .map-visual {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .map-center {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .ring-1 { width: 110px; height: 110px; }
+    .ring-2 { width: 180px; height: 180px; }
+    .ring-3 { width: 280px; height: 280px; }
+    
+    .coverage-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .area-category {
+        padding: 2rem;
+    }
+    
+    .coverage-map {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    /* Disable cursor trail on mobile */
+    .cursor-trail {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .coverage-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .coverage-map {
+        padding: 2rem 1rem;
+    }
+    
+    .map-center {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .ring-1 { width: 90px; height: 90px; }
+    .ring-2 { width: 150px; height: 150px; }
+    .ring-3 { width: 250px; height: 250px; }
+    
+    .area-item {
+        padding: 1.5rem;
+    }
+    
+    .stat-item {
+        padding: 2rem 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+}
