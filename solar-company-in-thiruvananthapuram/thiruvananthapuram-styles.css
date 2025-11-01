@@ -1,15 +1,13 @@
-/* Hero Section with Solar Plant Background */
+/* Thiruvananthapuram Specific Styles - Capital City Theme */
+
+/* Capital City Hero Section */
 .hero {
-    background: linear-gradient(rgba(26, 82, 118, 0.85), rgba(39, 174, 96, 0.85)), 
-                url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     position: relative;
+    padding: 180px 0 100px 0;
+    color: var(--white);
+    text-align: center;
     overflow: hidden;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+    background: linear-gradient(135deg, #0D47A1 0%, #1565C0 25%, #1976D2 50%, #2196F3 75%, #42A5F5 100%);
 }
 
 .hero::before {
@@ -19,171 +17,35 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(39, 174, 96, 0.3) 0%, transparent 50%);
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0%, transparent 50%);
     animation: float 6s ease-in-out infinite;
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
 }
 
 .hero h1 {
     font-size: 3.5rem;
-    color: white;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
     margin-bottom: 1.5rem;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     animation: fadeInUp 1s ease;
 }
 
 .hero p {
     font-size: 1.3rem;
-    color: white;
     margin-bottom: 2.5rem;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-    animation: fadeInUp 1s ease 0.3s both;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    animation: fadeInUp 1s ease 0.6s both;
-}
-
-/* Solar Stats Floating Cards */
-.solar-stats {
-    position: absolute;
-    bottom: 2rem;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    animation: fadeInUp 1s ease 0.9s both;
-}
-
-.stat-card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 1.5rem;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
-
-.stat-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.stat-card i {
-    font-size: 2.5rem;
-    color: var(--capital-gold);
-}
-
-.stat-content h3 {
-    font-size: 2rem;
-    color: var(--primary);
-    margin: 0;
-}
-
-.stat-content p {
-    color: var(--dark);
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-/* Solar Panel Animation */
-.solar-panel-animation {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.panel-row {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.solar-panel {
-    width: 80px;
-    height: 40px;
-    background: linear-gradient(45deg, #2c3e50, #34495e);
-    border-radius: 5px;
-    position: relative;
-    opacity: 0.1;
-    animation: solarGlow 3s ease-in-out infinite;
-}
-
-.solar-panel::before {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    right: 2px;
-    bottom: 2px;
-    background: linear-gradient(45deg, #f39c12, #f1c40f);
-    border-radius: 3px;
-    opacity: 0.3;
-}
-
-.solar-panel:nth-child(1) { animation-delay: 0s; }
-.solar-panel:nth-child(2) { animation-delay: 0.5s; }
-.solar-panel:nth-child(3) { animation-delay: 1s; }
-.solar-panel:nth-child(4) { animation-delay: 1.5s; }
-.solar-panel:nth-child(5) { animation-delay: 2s; }
-.solar-panel:nth-child(6) { animation-delay: 2.5s; }
-
-/* Enhanced Button Styles */
-.btn {
-    padding: 12px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-primary {
-    background: linear-gradient(45deg, var(--secondary), var(--accent));
-    color: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-}
-
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 2px solid white;
-    backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-    background: white;
-    color: var(--primary);
-    transform: translateY(-3px);
-}
-
-/* Animations */
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(1deg); }
+    color: var(--white);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease 0.2s both;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @keyframes fadeInUp {
@@ -197,19 +59,427 @@
     }
 }
 
-@keyframes solarGlow {
-    0%, 100% { 
-        opacity: 0.1;
-        transform: scale(1);
-    }
-    50% { 
-        opacity: 0.3;
-        transform: scale(1.05);
-    }
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
 }
 
-/* Responsive Design for Hero */
+/* Capital City specific hero with image */
+.thiruvananthapuram-hero-bg {
+    background: linear-gradient(rgba(13, 71, 161, 0.8), rgba(21, 101, 192, 0.8)), 
+                url('../../images/hero/thiruvananthapuram-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Capital City Areas Section */
+.areas-covered {
+    padding: 80px 0;
+    background: var(--white);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.areas-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.area-category {
+    background: var(--light);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    border-left: 4px solid var(--primary);
+}
+
+.area-category h3 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.area-category h3 i {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.areas-grid-expanded {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.area-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.8rem;
+    background: var(--white);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid #e3f2fd;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.area-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.area-item:hover::before {
+    transform: scaleY(1);
+}
+
+.area-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(13, 71, 161, 0.15);
+    border-color: var(--primary-light);
+}
+
+.area-item i {
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-top: 0.3rem;
+    flex-shrink: 0;
+    background: rgba(13, 71, 161, 0.1);
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.area-info h4 {
+    margin-bottom: 0.8rem;
+    color: var(--dark);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.area-info p {
+    color: var(--gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Capital City Coverage Map */
+.coverage-map {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 3.5rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 3rem;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+}
+
+.coverage-map h3 {
+    color: var(--dark);
+    margin-bottom: 2.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.map-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.map-center {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.central-point {
+    position: absolute;
+    background: linear-gradient(135deg, var(--primary) 0%, #1565C0 100%);
+    color: var(--white);
+    padding: 1.2rem;
+    border-radius: 50%;
+    text-align: center;
+    z-index: 3;
+    box-shadow: 0 8px 25px rgba(13, 71, 161, 0.4);
+    animation: pulse 2s infinite;
+    cursor: pointer;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.central-point i {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    display: block;
+}
+
+.central-point span {
+    font-size: 0.85rem;
+    display: block;
+    font-weight: 500;
+}
+
+.coverage-rings {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.ring {
+    position: absolute;
+    border: 3px dashed;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.8);
+    animation: rotate 25s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.ring-1 {
+    width: 150px;
+    height: 150px;
+    border-color: var(--primary);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 20s;
+}
+
+.ring-2 {
+    width: 250px;
+    height: 250px;
+    border-color: var(--primary-light);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 25s;
+    animation-direction: reverse;
+}
+
+.ring-3 {
+    width: 350px;
+    height: 350px;
+    border-color: var(--secondary);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 30s;
+}
+
+.map-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    min-width: 250px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.legend-item:hover {
+    transform: translateX(10px);
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.legend-color.primary {
+    background: var(--primary);
+}
+
+.legend-color.secondary {
+    background: var(--primary-light);
+}
+
+.legend-color.tertiary {
+    background: var(--secondary);
+}
+
+/* Capital City Coverage Stats */
+.coverage-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 2.5rem 1.5rem;
+    background: linear-gradient(135deg, var(--light) 0%, #f8f9fa 100%);
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    border: 1px solid #e3f2fd;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, #1565C0 100%);
+    transition: left 0.4s ease;
+    z-index: 1;
+}
+
+.stat-item:hover::before {
+    left: 0;
+}
+
+.stat-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(13, 71, 161, 0.2);
+}
+
+.stat-number, .stat-label {
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.stat-item:hover .stat-number,
+.stat-item:hover .stat-label {
+    color: var(--white);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
+}
+
+.stat-label {
+    color: var(--gray);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+/* Capital City Theme */
+.capital-theme .area-item:hover {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+}
+
+.capital-theme .central-point {
+    background: linear-gradient(135deg, var(--primary) 0%, #1976d2 100%);
+}
+
+.capital-theme .area-category {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+}
+
+/* Interactive elements */
+.btn, .area-item, .legend-item, .central-point {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before, .area-item::before, .legend-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before, .area-item:hover::before, .legend-item:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Capital City Responsive Design */
+@media (max-width: 1024px) {
+    .areas-grid-expanded {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .map-visual {
+        gap: 3rem;
+    }
+    
+    .map-center {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .ring-1 { width: 130px; height: 130px; }
+    .ring-2 { width: 220px; height: 220px; }
+    .ring-3 { width: 320px; height: 320px; }
+}
+
 @media (max-width: 768px) {
+    .hero {
+        padding: 150px 0 80px 0;
+        background-attachment: scroll;
+    }
+    
     .hero h1 {
         font-size: 2.5rem;
     }
@@ -223,37 +493,40 @@
         align-items: center;
     }
     
-    .btn {
+    .hero-buttons .btn {
         width: 100%;
-        justify-content: center;
-        text-align: center;
+        max-width: 250px;
     }
     
-    .solar-stats {
-        position: relative;
-        bottom: auto;
-        margin-top: 2rem;
+    .areas-grid-expanded {
+        grid-template-columns: 1fr;
     }
     
-    .stat-card {
-        padding: 1rem;
+    .map-visual {
+        flex-direction: column;
+        gap: 2rem;
     }
     
-    .stat-card i {
-        font-size: 2rem;
+    .map-center {
+        width: 280px;
+        height: 280px;
     }
     
-    .stat-content h3 {
-        font-size: 1.5rem;
+    .ring-1 { width: 110px; height: 110px; }
+    .ring-2 { width: 180px; height: 180px; }
+    .ring-3 { width: 280px; height: 280px; }
+    
+    .coverage-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
     
-    .panel-row {
-        gap: 1rem;
+    .area-category {
+        padding: 2rem;
     }
     
-    .solar-panel {
-        width: 60px;
-        height: 30px;
+    .coverage-map {
+        padding: 2.5rem 1.5rem;
     }
 }
 
@@ -262,13 +535,36 @@
         font-size: 2rem;
     }
     
-    .solar-stats {
-        flex-direction: column;
-        align-items: center;
+    .hero p {
+        font-size: 1rem;
     }
     
-    .stat-card {
-        width: 100%;
-        max-width: 250px;
+    .coverage-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .coverage-map {
+        padding: 2rem 1rem;
+    }
+    
+    .map-center {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .ring-1 { width: 90px; height: 90px; }
+    .ring-2 { width: 150px; height: 150px; }
+    .ring-3 { width: 250px; height: 250px; }
+    
+    .area-item {
+        padding: 1.5rem;
+    }
+    
+    .stat-item {
+        padding: 2rem 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
     }
 }
