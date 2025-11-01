@@ -296,3 +296,222 @@ if ('IntersectionObserver' in window) {
         imageObserver.observe(img);
     });
 }
+// ===== CONTACT PAGE FUNCTIONALITY =====
+function initContactPage() {
+    const contactForm = document.querySelector('.contact-form-main');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = this.querySelector('input[type="text"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const service = this.querySelector('select:nth-of-type(1)').value;
+            const location = this.querySelector('select:nth-of-type(2)').value;
+            const message = this.querySelector('textarea').value;
+            
+            // Validation
+            if (!name || !phone || !service || !location) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            if (phone && !/^[0-9+\-\s()]{10,}$/.test(phone)) {
+                showNotification('Please enter a valid phone number.', 'error');
+                return;
+            }
+            
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Success message
+            showNotification(`Thank you ${name}! We have received your inquiry for ${service} service in ${location}. We will contact you at ${phone} within 2 hours.`, 'success');
+            
+            // Reset form
+            this.reset();
+        });
+    }
+    
+    // Phone number formatting
+    const phoneInput = document.querySelector('input[type="tel"]');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.substring(0, 10);
+            
+            if (value.length >= 6) {
+                value = value.replace(/(\d{5})(\d{5})/, '$1 $2');
+            } else if (value.length >= 3) {
+                value = value.replace(/(\d{3})(\d{0,5})/, '$1 $2');
+            }
+            
+            e.target.value = value;
+        });
+    }
+}
+
+// ===== SERVICES PAGE FUNCTIONALITY =====
+function initServicesPage() {
+    // Smooth scroll to service sections
+    const serviceLinks = document.querySelectorAll('a[href^="#"]');
+    serviceLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#') && href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Service category animations
+    const serviceCategories = document.querySelectorAll('.service-category');
+    serviceCategories.forEach(category => {
+        category.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px)';
+        });
+        
+        category.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// ===== SERVICE AREAS FUNCTIONALITY =====
+function initServiceAreasPage() {
+    // City cards animation
+    const cityCards = document.querySelectorAll('.city-card-enhanced');
+    
+    cityCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // Quick contact buttons
+    const quickContactBtns = document.querySelectorAll('.btn-outline');
+    quickContactBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            if (this.href.includes('tel:') || this.href.includes('mailto:') || this.href.includes('wa.me')) {
+                // Track contact attempts
+                console.log('Contact attempt:', this.href);
+            }
+        });
+    });
+}
+
+// ===== COMMON UTILITY FUNCTIONS =====
+function showNotification(message, type = 'info') {
+    // Remove existing notification
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+            <button class="notification-close">&times;</button>
+        </div>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#d4edda' : type === 'error' ? '#f8d7da' : '#d1ecf1'};
+        color: ${type === 'success' ? '#155724' : type === 'error' ? '#721c24' : '#0c5460'};
+        padding: 1rem 1.5rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        z-index: 10000;
+        max-width: 400px;
+        border-left: 4px solid ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#17a2b8'};
+    `;
+    
+    // Add close button functionality
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.style.cssText = `
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        margin-left: 1rem;
+    `;
+    
+    closeBtn.addEventListener('click', () => {
+        notification.remove();
+    });
+    
+    // Auto remove after 5 seconds
+    document.body.appendChild(notification);
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 5000);
+}
+
+// ===== INITIALIZE PAGES =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize based on current page
+    const currentPage = window.location.pathname;
+    
+    if (currentPage.includes('contact.html')) {
+        initContactPage();
+    } else if (currentPage.includes('services.html')) {
+        initServicesPage();
+    } else if (currentPage.includes('cities.html')) {
+        initServiceAreasPage();
+    }
+    
+    // Common functionality for all pages
+    initCommonFeatures();
+});
+
+function initCommonFeatures() {
+    // Smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && !href.includes('.html')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+    
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+        });
+    }
+}
