@@ -1,4 +1,4 @@
-/* Thiruvananthapuram Specific Styles with Enhanced Effects */
+/* Thiruvananthapuram Specific Styles - Matching Kollam Structure */
 
 :root {
     --primary: #1a5276;
@@ -10,127 +10,66 @@
     --capital-gold: #d4af37;
 }
 
-/* Enhanced Hero Section for Capital City */
+/* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                 url('https://images.unsplash.com/photo-1580651315530-69c8e0026377?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    position: relative;
-    overflow: hidden;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 20%, rgba(39, 174, 96, 0.1) 0%, transparent 50%);
-    animation: float 6s ease-in-out infinite;
-}
-
-.hero h1 {
-    font-size: 3.5rem;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    background: linear-gradient(45deg, var(--capital-gold), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: fadeInUp 1s ease;
-}
-
-/* Enhanced Service Cards with Hover Effects */
+/* Service Cards */
 .service-card {
     background: white;
     padding: 2.5rem;
     border-radius: 15px;
     text-align: center;
     box-shadow: var(--shadow);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
+    transition: all 0.3s ease;
     border: 1px solid rgba(212, 175, 55, 0.1);
 }
 
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-    transition: left 0.5s ease;
-}
-
-.service-card:hover::before {
-    left: 100%;
-}
-
 .service-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    border-color: var(--capital-gold);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .service-card i {
     font-size: 3rem;
     color: var(--capital-gold);
     margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
 }
 
-.service-card:hover i {
-    transform: scale(1.2) rotate(5deg);
-    color: var(--accent);
-}
-
-/* Enhanced Area Categories */
+/* Area Categories */
 .area-category {
-    background: linear-gradient(135deg, white, #f8f9fa);
+    background: white;
     border-radius: 15px;
     padding: 2rem;
     margin-bottom: 2rem;
     box-shadow: var(--shadow);
     border-left: 4px solid var(--capital-gold);
-    transition: all 0.3s ease;
 }
 
-.area-category:hover {
-    transform: translateX(10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-.area-category h3 {
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.area-category h3 i {
-    color: var(--capital-gold);
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
 }
 
 .area-item {
     display: flex;
     align-items: center;
     padding: 1rem;
-    margin-bottom: 0.5rem;
-    background: white;
+    background: var(--light);
     border-radius: 10px;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
 }
 
 .area-item:hover {
     transform: translateX(5px);
-    border-color: var(--capital-gold);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background: white;
+    box-shadow: var(--shadow);
 }
 
 .area-item i {
@@ -139,7 +78,7 @@
     font-size: 1.2rem;
 }
 
-/* Enhanced Coverage Map */
+/* Coverage Map */
 .coverage-map {
     background: linear-gradient(135deg, var(--primary), #2980b9);
     color: white;
@@ -147,24 +86,6 @@
     border-radius: 20px;
     margin: 3rem 0;
     text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.coverage-map::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, transparent 30%, rgba(212, 175, 55, 0.1) 70%);
-    animation: rotate 20s linear infinite;
-}
-
-.map-center {
-    position: relative;
-    z-index: 2;
 }
 
 .central-point {
@@ -177,7 +98,6 @@
     gap: 10px;
     font-weight: 600;
     margin-bottom: 2rem;
-    animation: pulse 2s infinite;
 }
 
 .coverage-rings {
@@ -195,7 +115,6 @@
     justify-content: center;
     color: white;
     font-weight: 500;
-    animation: ripple 3s infinite;
 }
 
 .ring-1 {
@@ -203,7 +122,6 @@
     height: 150px;
     top: 75px;
     left: calc(50% - 75px);
-    animation-delay: 0s;
 }
 
 .ring-2 {
@@ -211,7 +129,6 @@
     height: 250px;
     top: 25px;
     left: calc(50% - 125px);
-    animation-delay: 1s;
 }
 
 .ring-3 {
@@ -219,39 +136,95 @@
     height: 350px;
     top: -25px;
     left: calc(50% - 175px);
-    animation-delay: 2s;
 }
 
-/* Enhanced Project Cards */
+.map-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.legend-color.primary { background: var(--primary); }
+.legend-color.secondary { background: var(--secondary); }
+.legend-color.tertiary { background: var(--accent); }
+
+/* Coverage Stats */
+.coverage-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--capital-gold);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--dark);
+    font-weight: 500;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 2rem;
+}
+
+.feature-item i {
+    font-size: 3rem;
+    color: var(--capital-gold);
+    margin-bottom: 1rem;
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
 .project-card {
     background: white;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-}
-
-.project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(45deg, var(--capital-gold), var(--accent));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover::before {
-    transform: scaleX(1);
+    transition: all 0.3s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .project-image {
@@ -260,41 +233,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.project-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-}
-
-.project-card:hover .project-image::before {
-    transform: translateX(100%);
 }
 
 .project-placeholder {
     color: white;
     font-size: 4rem;
     opacity: 0.7;
-    transition: all 0.3s ease;
 }
 
-.project-card:hover .project-placeholder {
-    transform: scale(1.1);
-    opacity: 1;
+.project-content {
+    padding: 1.5rem;
 }
 
 .project-location {
     color: var(--capital-gold);
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.project-specs {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
 }
 
 .project-specs span {
@@ -303,10 +266,9 @@
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.9rem;
-    margin-right: 0.5rem;
 }
 
-/* Enhanced Quick Contact */
+/* Quick Contact */
 .quick-contact {
     background: linear-gradient(135deg, var(--primary), #2980b9);
     color: white;
@@ -368,144 +330,6 @@
     box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
-/* Enhanced Cursor Trail */
-.cursor-trail {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle, var(--capital-gold), transparent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-/* Enhanced Floating CTA */
-.floating-cta {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 1000;
-}
-
-.cta-main-btn {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(45deg, var(--capital-gold), var(--accent));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    animation: bounce 2s infinite;
-}
-
-.cta-main-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-.cta-options {
-    position: absolute;
-    bottom: 70px;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-}
-
-.floating-cta.active .cta-options {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.cta-option {
-    width: 50px;
-    height: 50px;
-    background: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.cta-option:hover {
-    transform: scale(1.1);
-    background: var(--capital-gold);
-}
-
-.cta-option::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    right: 60px;
-    background: var(--dark);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateX(10px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-.cta-option:hover::before {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Animations */
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-@keyframes ripple {
-    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3); }
-    70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero h1 {
@@ -516,7 +340,7 @@
         grid-template-columns: 1fr;
     }
     
-    .areas-grid-expanded {
+    .areas-grid {
         grid-template-columns: 1fr;
     }
     
@@ -527,4 +351,27 @@
     .ring-1 { width: 100px; height: 100px; top: 50px; left: calc(50% - 50px); }
     .ring-2 { width: 150px; height: 150px; top: 25px; left: calc(50% - 75px); }
     .ring-3 { width: 200px; height: 200px; top: 0; left: calc(50% - 100px); }
+    
+    .map-legend {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .coverage-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .coverage-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
