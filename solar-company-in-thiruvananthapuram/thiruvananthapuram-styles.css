@@ -1,377 +1,274 @@
-/* Thiruvananthapuram Specific Styles - Matching Kollam Structure */
-
-:root {
-    --primary: #1a5276;
-    --secondary: #27ae60;
-    --accent: #f39c12;
-    --light: #ecf0f1;
-    --dark: #2c3e50;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    --capital-gold: #d4af37;
-}
-
-/* Hero Section */
+/* Hero Section with Solar Plant Background */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                url('https://images.unsplash.com/photo-1580651315530-69c8e0026377?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    background: linear-gradient(rgba(26, 82, 118, 0.85), rgba(39, 174, 96, 0.85)), 
+                url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-}
-
-/* Service Cards */
-.service-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-.service-card i {
-    font-size: 3rem;
-    color: var(--capital-gold);
-    margin-bottom: 1.5rem;
-}
-
-/* Area Categories */
-.area-category {
-    background: white;
-    border-radius: 15px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow);
-    border-left: 4px solid var(--capital-gold);
-}
-
-.areas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
-}
-
-.area-item {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    background: var(--light);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.area-item:hover {
-    transform: translateX(5px);
-    background: white;
-    box-shadow: var(--shadow);
-}
-
-.area-item i {
-    color: var(--capital-gold);
-    margin-right: 1rem;
-    font-size: 1.2rem;
-}
-
-/* Coverage Map */
-.coverage-map {
-    background: linear-gradient(135deg, var(--primary), #2980b9);
-    color: white;
-    padding: 3rem;
-    border-radius: 20px;
-    margin: 3rem 0;
-    text-align: center;
-}
-
-.central-point {
-    background: var(--capital-gold);
-    color: var(--dark);
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    margin-bottom: 2rem;
-}
-
-.coverage-rings {
     position: relative;
-    height: 300px;
-    margin: 2rem auto;
-}
-
-.ring {
-    position: absolute;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 500;
-}
-
-.ring-1 {
-    width: 150px;
-    height: 150px;
-    top: 75px;
-    left: calc(50% - 75px);
-}
-
-.ring-2 {
-    width: 250px;
-    height: 250px;
-    top: 25px;
-    left: calc(50% - 125px);
-}
-
-.ring-3 {
-    width: 350px;
-    height: 350px;
-    top: -25px;
-    left: calc(50% - 175px);
-}
-
-.map-legend {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.legend-color {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-}
-
-.legend-color.primary { background: var(--primary); }
-.legend-color.secondary { background: var(--secondary); }
-.legend-color.tertiary { background: var(--accent); }
-
-/* Coverage Stats */
-.coverage-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.stat-item {
-    text-align: center;
-    padding: 2rem;
-    background: white;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-}
-
-.stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--capital-gold);
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    color: var(--dark);
-    font-weight: 500;
-}
-
-/* Features Grid */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.feature-item {
-    text-align: center;
-    padding: 2rem;
-}
-
-.feature-item i {
-    font-size: 3rem;
-    color: var(--capital-gold);
-    margin-bottom: 1rem;
-}
-
-/* Projects Grid */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.project-card {
-    background: white;
-    border-radius: 15px;
     overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.project-image {
-    height: 200px;
-    background: linear-gradient(45deg, var(--primary), #2980b9);
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
-.project-placeholder {
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(39, 174, 96, 0.3) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
     color: white;
-    font-size: 4rem;
-    opacity: 0.7;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 1s ease;
 }
 
-.project-content {
+.hero p {
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 2.5rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.6s both;
+}
+
+/* Solar Stats Floating Cards */
+.solar-stats {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.9s both;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.95);
     padding: 1.5rem;
-}
-
-.project-location {
-    color: var(--capital-gold);
-    font-weight: 500;
+    border-radius: 15px;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin: 0.5rem 0;
+    gap: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
-.project-specs {
-    display: flex;
-    gap: 0.5rem;
-    margin: 1rem 0;
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.project-specs span {
-    background: rgba(212, 175, 55, 0.1);
+.stat-card i {
+    font-size: 2.5rem;
+    color: var(--capital-gold);
+}
+
+.stat-content h3 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin: 0;
+}
+
+.stat-content p {
     color: var(--dark);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
+    margin: 0;
     font-size: 0.9rem;
 }
 
-/* Quick Contact */
-.quick-contact {
-    background: linear-gradient(135deg, var(--primary), #2980b9);
-    color: white;
-    padding: 4rem 0;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-}
-
-.contact-method {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    color: white;
-}
-
-.contact-method:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(10px);
-}
-
-.contact-form {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-}
-
-.contact-form h3 {
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.inquiry-form input,
-.inquiry-form select {
+/* Solar Panel Animation */
+.solar-panel-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.panel-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.solar-panel {
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(45deg, #2c3e50, #34495e);
+    border-radius: 5px;
+    position: relative;
+    opacity: 0.1;
+    animation: solarGlow 3s ease-in-out infinite;
+}
+
+.solar-panel::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: linear-gradient(45deg, #f39c12, #f1c40f);
+    border-radius: 3px;
+    opacity: 0.3;
+}
+
+.solar-panel:nth-child(1) { animation-delay: 0s; }
+.solar-panel:nth-child(2) { animation-delay: 0.5s; }
+.solar-panel:nth-child(3) { animation-delay: 1s; }
+.solar-panel:nth-child(4) { animation-delay: 1.5s; }
+.solar-panel:nth-child(5) { animation-delay: 2s; }
+.solar-panel:nth-child(6) { animation-delay: 2.5s; }
+
+/* Enhanced Button Styles */
+.btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    cursor: pointer;
 }
 
-.inquiry-form input:focus,
-.inquiry-form select:focus {
-    outline: none;
-    border-color: var(--capital-gold);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+.btn-primary {
+    background: linear-gradient(45deg, var(--secondary), var(--accent));
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design */
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-3px);
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes solarGlow {
+    0%, 100% { 
+        opacity: 0.1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.3;
+        transform: scale(1.05);
+    }
+}
+
+/* Responsive Design for Hero */
 @media (max-width: 768px) {
     .hero h1 {
         font-size: 2.5rem;
     }
     
-    .contact-grid {
-        grid-template-columns: 1fr;
+    .hero p {
+        font-size: 1.1rem;
     }
     
-    .areas-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .coverage-rings {
-        height: 200px;
-    }
-    
-    .ring-1 { width: 100px; height: 100px; top: 50px; left: calc(50% - 50px); }
-    .ring-2 { width: 150px; height: 150px; top: 25px; left: calc(50% - 75px); }
-    .ring-3 { width: 200px; height: 200px; top: 0; left: calc(50% - 100px); }
-    
-    .map-legend {
+    .hero-buttons {
         flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .solar-stats {
+        position: relative;
+        bottom: auto;
+        margin-top: 2rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .stat-card i {
+        font-size: 2rem;
+    }
+    
+    .stat-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .panel-row {
         gap: 1rem;
     }
     
-    .coverage-stats {
-        grid-template-columns: repeat(2, 1fr);
+    .solar-panel {
+        width: 60px;
+        height: 30px;
     }
 }
 
 @media (max-width: 480px) {
-    .coverage-stats {
-        grid-template-columns: 1fr;
+    .hero h1 {
+        font-size: 2rem;
     }
     
-    .features-grid {
-        grid-template-columns: 1fr;
+    .solar-stats {
+        flex-direction: column;
+        align-items: center;
     }
     
-    .projects-grid {
-        grid-template-columns: 1fr;
+    .stat-card {
+        width: 100%;
+        max-width: 250px;
     }
 }
