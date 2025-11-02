@@ -283,65 +283,46 @@
         </div>
     </section>
 
-    <!-- Featured Projects with Location Tags -->
-    <section class="featured-projects">
+    <!-- Kerala Coverage Map -->
+    <section class="coverage-map section-light">
         <div class="container">
-            <h2 class="section-title">Recent Projects Across Kerala</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-location-tag">Thiruvalla</div>
-                    <div class="project-image">
-                        <div class="project-placeholder residential-bg">
-                            <i class="fas fa-home"></i>
-                        </div>
+            <h2 class="section-title">Our Service Coverage Across Kerala</h2>
+            <p class="text-center">We provide solar solutions throughout South Kerala with our central location in Pathanamthitta</p>
+            
+            <div class="map-container">
+                <!-- Simple SVG Kerala Map -->
+                <div class="kerala-map">
+                    <svg viewBox="0 0 800 400" class="kerala-svg">
+                        <!-- Simplified Kerala outline -->
+                        <path class="kerala-outline" d="M150,100 Q200,80 250,90 Q300,100 350,120 Q400,150 450,180 Q500,220 550,250 Q600,280 650,300 L600,350 Q550,320 500,300 Q450,280 400,250 Q350,220 300,200 Q250,180 200,150 Q150,130 150,100 Z" 
+                              fill="#e8f5e8" stroke="#2E7D32" stroke-width="3"/>
+                        
+                        <!-- District markers -->
+                        <circle class="district-marker" cx="300" cy="180" r="8" data-district="Pathanamthitta"/>
+                        <circle class="district-marker" cx="350" cy="200" r="8" data-district="Kottayam"/>
+                        <circle class="district-marker" cx="400" cy="150" r="8" data-district="Alappuzha"/>
+                        <circle class="district-marker" cx="450" cy="120" r="8" data-district="Kollam"/>
+                        <circle class="district-marker" cx="500" cy="100" r="8" data-district="Thiruvananthapuram"/>
+                        
+                        <!-- Solis Green India Main Location -->
+                        <circle class="main-location" cx="300" cy="180" r="15">
+                            <animate attributeName="r" values="15;20;15" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <text x="320" y="185" class="location-label">Solis Green India</text>
+                    </svg>
+                </div>
+                
+                <!-- Map Legend -->
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="legend-icon main-location-legend"></div>
+                        <span>Our Main Location (Pathanamthitta)</span>
                     </div>
-                    <div class="project-content">
-                        <h3>5kW Residential System</h3>
-                        <p>Complete home solar installation with 85% electricity bill reduction in Thiruvalla</p>
-                        <div class="project-specs">
-                            <span><i class="fas fa-bolt"></i> 5kW Capacity</span>
-                            <span><i class="fas fa-rupee-sign"></i> 85% Savings</span>
-                        </div>
-                        <a href="projects.html" class="btn btn-outline">View Project</a>
+                    <div class="legend-item">
+                        <div class="legend-icon district-marker-legend"></div>
+                        <span>Service Districts</span>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-location-tag">Kottayam</div>
-                    <div class="project-image">
-                        <div class="project-placeholder commercial-bg">
-                            <i class="fas fa-building"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>15kW Commercial System</h3>
-                        <p>Business solar plant with 3.2 year ROI in Kottayam commercial area</p>
-                        <div class="project-specs">
-                            <span><i class="fas fa-bolt"></i> 15kW Capacity</span>
-                            <span><i class="fas fa-chart-line"></i> 3.2 Year ROI</span>
-                        </div>
-                        <a href="projects.html" class="btn btn-outline">View Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-location-tag">Cherthala</div>
-                    <div class="project-image">
-                        <div class="project-placeholder industrial-bg">
-                            <i class="fas fa-industry"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>25kW Industrial System</h3>
-                        <p>Factory solar installation in Cherthala industrial area with net metering</p>
-                        <div class="project-specs">
-                            <span><i class="fas fa-bolt"></i> 25kW Capacity</span>
-                            <span><i class="fas fa-tools"></i> Net Metering</span>
-                        </div>
-                        <a href="projects.html" class="btn btn-outline">View Project</a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center">
-                <a href="projects.html" class="btn btn-primary">View All Projects</a>
             </div>
         </div>
     </section>
@@ -370,56 +351,6 @@
                     <i class="fas fa-rupee-sign"></i>
                     <h3>Best Value</h3>
                     <p>Competitive pricing with maximum ROI and subsidy assistance</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Contact -->
-    <section class="quick-contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Ready to Go Solar?</h2>
-                    <p>Get free consultation and quote for your solar project anywhere in Kerala</p>
-                    <div class="contact-methods">
-                        <a href="tel:8301849474" class="contact-method">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Call Us Directly</h4>
-                                <span>8301849474</span>
-                            </div>
-                        </a>
-                        <a href="https://wa.me/918301849474" class="contact-method" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                            <div>
-                                <h4>WhatsApp</h4>
-                                <span>Quick Chat & Quote</span>
-                            </div>
-                        </a>
-                        <a href="contact.html" class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Send Message</h4>
-                                <span>Get Detailed Quote</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Quick Inquiry</h3>
-                    <form class="inquiry-form">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="tel" placeholder="Phone Number" required>
-                        <input type="text" placeholder="Your Location/City">
-                        <select required>
-                            <option value="">Interested In</option>
-                            <option value="residential">Residential Solar</option>
-                            <option value="commercial">Commercial Solar</option>
-                            <option value="industrial">Industrial Solar</option>
-                        </select>
-                        <button type="submit" class="btn btn-primary">Get Quote</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -474,6 +405,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>
