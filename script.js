@@ -297,36 +297,6 @@ if ('IntersectionObserver' in window) {
     });
 }
 
-// ===== KERALA MAP FUNCTIONALITY =====
-function initKeralaMap() {
-    const districtMarkers = document.querySelectorAll('.district-marker');
-    
-    districtMarkers.forEach(marker => {
-        marker.addEventListener('click', function() {
-            const district = this.getAttribute('data-district');
-            const districtPages = {
-                'Pathanamthitta': 'solar-company-in-pathanamthitta/',
-                'Kottayam': 'solar-company-in-kottayam/',
-                'Alappuzha': 'solar-company-in-alappuzha/',
-                'Kollam': 'solar-company-in-kollam/',
-                'Thiruvananthapuram': 'solar-company-in-thiruvananthapuram/'
-            };
-            
-            if (districtPages[district]) {
-                window.location.href = districtPages[district];
-            }
-        });
-        
-        marker.addEventListener('mouseenter', function() {
-            this.style.fill = '#FFC107';
-        });
-        
-        marker.addEventListener('mouseleave', function() {
-            this.style.fill = '#2E7D32';
-        });
-    });
-}
-
 // ===== CONTACT PAGE FUNCTIONALITY =====
 function initContactPage() {
     const contactForm = document.querySelector('.contact-form-main');
@@ -568,9 +538,14 @@ function initCommonFeatures() {
         });
     }
     
-    // Initialize Kerala Map (NEW ADDITION)
-    initKeralaMap();
-    
     // Initialize Back to Top
     initBackToTop();
+    
+    // Track Google Maps directions clicks
+    document.querySelectorAll('a[href*="google.com/maps/dir"]').forEach(link => {
+        link.addEventListener('click', function() {
+            // Google Analytics event tracking can be added here
+            console.log('Directions requested to Solis Green Energy Solutions');
+        });
+    });
 }
