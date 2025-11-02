@@ -296,6 +296,37 @@ if ('IntersectionObserver' in window) {
         imageObserver.observe(img);
     });
 }
+
+// ===== KERALA MAP FUNCTIONALITY =====
+function initKeralaMap() {
+    const districtMarkers = document.querySelectorAll('.district-marker');
+    
+    districtMarkers.forEach(marker => {
+        marker.addEventListener('click', function() {
+            const district = this.getAttribute('data-district');
+            const districtPages = {
+                'Pathanamthitta': 'solar-company-in-pathanamthitta/',
+                'Kottayam': 'solar-company-in-kottayam/',
+                'Alappuzha': 'solar-company-in-alappuzha/',
+                'Kollam': 'solar-company-in-kollam/',
+                'Thiruvananthapuram': 'solar-company-in-thiruvananthapuram/'
+            };
+            
+            if (districtPages[district]) {
+                window.location.href = districtPages[district];
+            }
+        });
+        
+        marker.addEventListener('mouseenter', function() {
+            this.style.fill = '#FFC107';
+        });
+        
+        marker.addEventListener('mouseleave', function() {
+            this.style.fill = '#2E7D32';
+        });
+    });
+}
+
 // ===== CONTACT PAGE FUNCTIONALITY =====
 function initContactPage() {
     const contactForm = document.querySelector('.contact-form-main');
@@ -469,6 +500,28 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
+// ===== BACK TO TOP FUNCTIONALITY =====
+function initBackToTop() {
+    const backToTop = document.getElementById('backToTop');
+    
+    if (!backToTop) return;
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    
+    backToTop.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
 // ===== INITIALIZE PAGES =====
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize based on current page
@@ -514,4 +567,10 @@ function initCommonFeatures() {
             this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
         });
     }
+    
+    // Initialize Kerala Map (NEW ADDITION)
+    initKeralaMap();
+    
+    // Initialize Back to Top
+    initBackToTop();
 }
