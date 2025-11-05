@@ -1,0 +1,37 @@
+# _config.yml for Solis Green Energy Solutions
+
+# Site Settings
+title: "Solis Green Energy Solutions"
+description: "Leading solar energy solutions provider in Kerala - Solar panel installation, maintenance across Pathanamthitta, Kottayam, Alappuzha and South Kerala"
+baseurl: "" # Leave empty if your site is at username.github.io or custom domain
+url: "https://solisgreenindia.in" # Your custom domain
+
+# Build Settings
+markdown: kramdown
+permalink: pretty # This creates clean URLs without .html
+
+# Theme (required for GitHub Pages to process the site)
+theme: jekyll-theme-cayman
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - node_modules/
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+
+# Include files that are normally excluded
+include:
+  - .htaccess
+  - _redirects
+
+# Custom variables for your site
+company_name: "Solis Green Energy Solutions"
+phone: "+91-8301849474"
+email: "solisgreenenergy@gmail.com"
+address: "Opposite St. George Orthodox Church, Muthoor, Thiruvalla, Kerala 689101"
+
+# SEO Settings
+google_analytics: GTM-XXXXXXX # Your Google Tag Manager ID
+lang: "en-US"
