@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get Free Solar Quote from Solis Green India. Customized solar solutions with government subsidy for homes and businesses across Kerala.">
+    <meta name="keywords" content="solar quote kerala, solar panel cost, solar installation quote, free solar consultation">
+    <title>Free Solar Quote | Solis Green India | Customized Solar Solutions Kerala</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <div class="cta-main-btn" id="ctaMainBtn">
+            <i class="fas fa-comments"></i>
+            <span class="pulse-dot"></span>
+        </div>
+        <div class="cta-options">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Primary Call">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="tel:9539316623" class="cta-option" data-tooltip="Alternate Call">
+                <i class="fas fa-phone-alt"></i>
+            </a>
+            <a href="tel:8606849474" class="cta-option" data-tooltip="Support Call">
+                <i class="fas fa-headset"></i>
+            </a>
+            <a href="../contact" class="cta-option" data-tooltip="Contact">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+            </div>
+            
+            <div class="header-contact">
+                <a href="tel:8301849474" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                    <span>Primary: 8301849474</span>
+                </a>
+                <a href="tel:9539316623" class="contact-link">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Alternate: 9539316623</span>
+                </a>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a href="../services">Services</a></li>
+                    <li><a href="../cities">Service Areas</a></li>
+                    <li><a href="../projects">Projects</a></li>
+                    <li><a href="../contact">Contact</a></li>         
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Quote Hero Section -->
+    <section class="quote-hero">
+        <div class="container">
+            <div class="quote-hero-content">
+                <h1>Get Your Free Solar Quote</h1>
+                <p>Customized solar solutions with accurate pricing and government subsidy calculation</p>
+                <div class="quote-features">
+                    <div class="feature">
+                        <i class="fas fa-calculator"></i>
+                        <span>Accurate Pricing</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-rupee-sign"></i>
+                        <span>Subsidy Included</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <span>Free Site Survey</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Best Warranty</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Form Section -->
+    <section class="quote-form-section">
+        <div class="container">
+            <div class="quote-form-container">
+                <div class="form-main">
+                    <h2>Tell Us About Your Solar Needs</h2>
+                    <p>Fill this detailed form for accurate quote with government subsidy</p>
+                    
+                    <form class="detailed-quote-form" id="quoteForm">
+                        <!-- Personal Information -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name *</label>
+                                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="Your email address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="location">Your Location *</label>
+                                    <input type="text" id="location" name="location" placeholder="City/Town" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Details -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-home"></i> Project Details</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="projectType">Project Type *</label>
+                                    <select id="projectType" name="projectType" required>
+                                        <option value="">Select Project Type</option>
+                                        <option value="residential">Residential Home</option>
+                                        <option value="commercial">Commercial Building</option>
+                                        <option value="industrial">Industrial Unit</option>
+                                        <option value="agricultural">Agricultural Farm</option>
+                                        <option value="institution">Educational Institution</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="roofType">Roof Type</label>
+                                    <select id="roofType" name="roofType">
+                                        <option value="">Select Roof Type</option>
+                                        <option value="concrete">Concrete RCC</option>
+                                        <option value="sheet">Metal Sheet</option>
+                                        <option value="tiled">Tiled Roof</option>
+                                        <option value="ground">Ground Mounted</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="roofArea">Available Roof Area (sq.ft)</label>
+                                    <input type="number" id="roofArea" name="roofArea" placeholder="Approximate area">
+                                </div>
+                                <div class="form-group">
+                                    <label for="electricityBill">Monthly Electricity Bill (₹)</label>
+                                    <input type="number" id="electricityBill" name="electricityBill" placeholder="Current bill amount">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Solar Requirements -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-solar-panel"></i> Solar Requirements</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="systemSize">Estimated System Size</label>
+                                    <select id="systemSize" name="systemSize">
+                                        <option value="">Select System Size</option>
+                                        <option value="1kw">1 kW System</option>
+                                        <option value="2kw">2 kW System</option>
+                                        <option value="3kw">3 kW System</option>
+                                        <option value="5kw">5 kW System</option>
+                                        <option value="10kw">10 kW System</option>
+                                        <option value="custom">Custom Size</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="budget">Approximate Budget (₹)</label>
+                                    <input type="number" id="budget" name="budget" placeholder="Your budget range">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="specialRequirements">Special Requirements</label>
+                                <textarea id="specialRequirements" name="specialRequirements" placeholder="Any specific requirements or concerns..." rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Timeline -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-calendar-alt"></i> Project Timeline</h3>
+                            <div class="form-group">
+                                <label for="timeline">When do you plan to install?</label>
+                                <select id="timeline" name="timeline">
+                                    <option value="">Select Timeline</option>
+                                    <option value="immediately">Immediately (Within 1 month)</option>
+                                    <option value="1-3months">1-3 Months</option>
+                                    <option value="3-6months">3-6 Months</option>
+                                    <option value="planning">Just Planning/Researching</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-large">
+                            <i class="fas fa-bolt"></i> Get Detailed Quote with Subsidy
+                        </button>
+                    </form>
+                </div>
+
+                <div class="quote-sidebar">
+                    <div class="quote-benefits">
+                        <h3>What You'll Get</h3>
+                        <div class="benefit-item">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <div>
+                                <h4>Detailed Quote</h4>
+                                <p>Itemized cost breakdown with all components</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <div>
+                                <h4>Subsidy Calculation</h4>
+                                <p>Exact government subsidy amount you qualify for</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <h4>ROI Analysis</h4>
+                                <p>Payback period and savings calculation</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-cogs"></i>
+                            <div>
+                                <h4>System Design</h4>
+                                <p>Optimal system design for your specific needs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-contact-sidebar">
+                        <h4>Need Immediate Quote?</h4>
+                        <div class="quick-contact-options">
+                            <a href="tel:8301849474" class="quick-contact-btn primary">
+                                <i class="fas fa-phone"></i> Call Primary
+                            </a>
+                            <a href="https://wa.me/918301849474" class="quick-contact-btn whatsapp" target="_blank">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Quote
+                            </a>
+                            <a href="mailto:solisgreenindia@gmail.com" class="quick-contact-btn email">
+                                <i class="fas fa-envelope"></i> Email Requirements
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="subsidy-info">
+                        <h4>Government Subsidy Available</h4>
+                        <div class="subsidy-rates">
+                            <div class="subsidy-rate">
+                                <strong>Up to 3 kW</strong>
+                                <span>40% Subsidy</span>
+                            </div>
+                            <div class="subsidy-rate">
+                                <strong>3 kW to 10 kW</strong>
+                                <span>20% Subsidy</span>
+                            </div>
+                            <div class="subsidy-rate">
+                                <strong>Above 10 kW</strong>
+                                <span>No Subsidy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Quote CTA -->
+    <section class="quick-quote-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Too Busy to Fill Form?</h2>
+                <p>Just call us and get instant quote over phone</p>
+                <div class="emergency-numbers-large">
+                    <a href="tel:8301849474" class="emergency-number-large primary">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <span>Primary Line</span>
+                            <strong>8301849474</strong>
+                        </div>
+                    </a>
+                    <a href="tel:9539316623" class="emergency-number-large alternate">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <span>Alternate Line</span>
+                            <strong>9539316623</strong>
+                        </div>
+                    </a>
+                    <a href="tel:8606849474" class="emergency-number-large support">
+                        <i class="fas fa-headset"></i>
+                        <div>
+                            <span>Support Line</span>
+                            <strong>8606849474</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                    </div>
+                    <p>Leading provider of sustainable energy solutions in Kerala, committed to a greener future with local expertise across multiple districts.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../services">Services</a></li>
+                        <li><a href="../cities">Service Areas</a></li>
+                        <li><a href="../projects">Projects</a></li>
+                        <li><a href="../contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Service Areas</h3>
+                    <ul>
+                        <li><a href="../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
+                        <li><a href="../solar-company-in-kottayam/">Kottayam District</a></li>
+                        <li><a href="../solar-company-in-alappuzha/">Alappuzha District</a></li>
+                        <li><a href="../solar-company-in-kollam/">Kollam District</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Solis Green India</h3>
+                    <ul class="contact-info">
+                        <li class="contact-primary">
+                            <i class="fas fa-phone"></i> 
+                            <div>
+                                <a href="tel:8301849474">Primary: 8301849474</a>
+                                <span class="contact-label">Main Line</span>
+                            </div>
+                        </li>
+                        <li class="contact-alternate">
+                            <i class="fas fa-phone-alt"></i> 
+                            <div>
+                                <a href="tel:9539316623">Alternate: 9539316623</a>
+                                <span class="contact-label">Emergency/Backup</span>
+                            </div>
+                        </li>
+                        <li class="contact-support">
+                            <i class="fas fa-headset"></i> 
+                            <div>
+                                <a href="tel:8606849474">Support: 8606849474</a>
+                                <span class="contact-label">Customer Support</span>
+                            </div>
+                        </li>
+                        <li class="whatsapp-primary">
+                            <i class="fab fa-whatsapp"></i> 
+                            <div>
+                                <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
+                                <span class="contact-label">Primary Chat</span>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Thiruvalla - 689107</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Professional Solar Solutions Across Kerala</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="../script.js"></script>
+    
+    <style>
+        /* Quote Page Specific Styles */
+        .quote-hero {
+            background: linear-gradient(135deg, #ffc107 0%, #e6ac00 100%);
+            color: var(--text-color);
+            padding: 100px 0 60px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .quote-hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .quote-hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .quote-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature i {
+            font-size: 2.5rem;
+            background: rgba(255,255,255,0.2);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .quote-form-section {
+            padding: 80px 0;
+            background: var(--background-light);
+        }
+
+        .quote-form-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+        }
+
+        .form-main {
+            background: var(--white);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-main h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .form-main p {
+            color: var(--text-light);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f8f9fa;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .form-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            color: var(--text-color);
+            font-size: 1.3rem;
+        }
+
+        .form-section h3 i {
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn-large {
+            padding: 18px 30px;
+            font-size: 1.1rem;
+        }
+
+        .quote-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .quote-benefits {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .quote-benefits h3 {
+            margin-bottom: 25px;
+            color: var(--text-color);
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .benefit-item:hover {
+            transform: translateX(5px);
+        }
+
+        .benefit-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 2px;
+        }
+
+        .benefit-item h4 {
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .benefit-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .quick-contact-sidebar {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .quick-contact-sidebar h4 {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .quick-contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quick-contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .quick-contact-btn.primary {
+            background: #28a745;
+            color: white;
+        }
+
+        .quick-contact-btn.whatsapp {
+            background: #25d366;
+            color: white;
+        }
+
+        .quick-contact-btn.email {
+            background: #6f42c1;
+            color: white;
+        }
+
+        .quick-contact-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .subsidy-info {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .subsidy-info h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .subsidy-rates {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .subsidy-rate {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+        }
+
+        .subsidy-rate strong {
+            font-size: 0.9rem;
+        }
+
+        .subsidy-rate span {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .quick-quote-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .emergency-numbers-large {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .emergency-number-large {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: white;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            min-width: 250px;
+        }
+
+        .emergency-number-large:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        .emergency-number-large i {
+            font-size: 2rem;
+        }
+
+        .emergency-number-large span {
+            display: block;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .emergency-number-large strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 1024px) {
+            .quote-form-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .emergency-numbers-large {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .quote-hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .form-main {
+                padding: 30px;
+            }
+
+            .quote-features {
+                gap: 20px;
+            }
+
+            .feature i {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quote-hero {
+                padding: 80px 0 40px;
+            }
+
+            .quote-hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .form-main {
+                padding: 20px;
+            }
+
+            .form-section h3 {
+                font-size: 1.1rem;
+            }
+
+            .emergency-number-large {
+                min-width: auto;
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</body>
+</html>
