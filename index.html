@@ -288,7 +288,7 @@
         </div>
     </header>
 
-    <!-- Enhanced Hero Slider with WebP & Effects -->
+    <!-- Enhanced Hero Slider with Proper Z-index -->
     <section class="hero-slider" id="home">
         <div class="particles-container">
             <div class="particles"></div>
@@ -298,14 +298,18 @@
         <div class="hero-slides">
             <!-- Slide 1 -->
             <div class="hero-slide active">
-                <img src="images/hero/hero-image-1.webp" alt="Solar Power Kerala" class="hero-bg-image" loading="lazy" fetchpriority="high">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                     alt="Solar Power Kerala" 
+                     class="hero-bg-image" 
+                     loading="eager" 
+                     fetchpriority="high">
                 <div class="gradient-overlay gradient-blue"></div>
                 <div class="floating-elements">
                     <div class="floating-element element-1">☀️</div>
                     <div class="floating-element element-2">⚡</div>
                     <div class="floating-element element-3">🌱</div>
                 </div>
-                <div class="container">
+                <div class="hero-content container">
                     <h1>Powering Kerala's Future with Sustainable Energy</h1>
                     <p>Leading solar energy solutions provider serving Pathanamthitta, Kottayam, Alappuzha and across South Kerala.</p>
                     <div class="hero-buttons">
@@ -334,14 +338,17 @@
             
             <!-- Slide 2 -->
             <div class="hero-slide">
-                <img src="images/hero/hero-image-2.webp" alt="Complete Solar Solutions Kerala" class="hero-bg-image" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                     alt="Complete Solar Solutions Kerala" 
+                     class="hero-bg-image" 
+                     loading="lazy">
                 <div class="gradient-overlay gradient-green"></div>
                 <div class="floating-elements">
                     <div class="floating-element element-1">💰</div>
                     <div class="floating-element element-2">🏠</div>
                     <div class="floating-element element-3">⚡</div>
                 </div>
-                <div class="container">
+                <div class="hero-content container">
                     <h1>Complete Solar Energy Solutions</h1>
                     <p>Expert solar services from consultation to installation and maintenance across Kerala</p>
                     <div class="hero-buttons">
@@ -367,14 +374,17 @@
             
             <!-- Slide 3 -->
             <div class="hero-slide">
-                <img src="images/hero/hero-image-3.webp" alt="Solar Experts Kerala" class="hero-bg-image" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                     alt="Solar Experts Kerala" 
+                     class="hero-bg-image" 
+                     loading="lazy">
                 <div class="gradient-overlay gradient-purple"></div>
                 <div class="floating-elements">
                     <div class="floating-element element-1">🔧</div>
                     <div class="floating-element element-2">⭐</div>
                     <div class="floating-element element-3">🏆</div>
                 </div>
-                <div class="container">
+                <div class="hero-content container">
                     <h1>Expert Solar Installation Since 2019</h1>
                     <p>Trusted by 500+ homes across South Kerala. Quality products with 25-year performance warranty.</p>
                     <div class="hero-buttons">
@@ -821,9 +831,9 @@
 
     <script src="script.js"></script>
 
-    <!-- Enhanced Hero Slider with Animations -->
+    <!-- Enhanced Hero Slider with Proper Z-index Management -->
     <script>
-    // Enhanced Hero Slider with Special Effects
+    // Enhanced Hero Slider with Proper Z-index Management
     class HeroSlider {
         constructor() {
             this.slides = document.querySelectorAll('.hero-slide');
@@ -838,8 +848,10 @@
         }
         
         init() {
-            this.prevBtn.addEventListener('click', () => this.prevSlide());
-            this.nextBtn.addEventListener('click', () => this.nextSlide());
+            if (this.slides.length === 0) return;
+            
+            this.prevBtn?.addEventListener('click', () => this.prevSlide());
+            this.nextBtn?.addEventListener('click', () => this.nextSlide());
             
             this.dots.forEach((dot, index) => {
                 dot.addEventListener('click', () => this.goToSlide(index));
@@ -848,26 +860,23 @@
             this.startAutoSlide();
             
             const slider = document.querySelector('.hero-slider');
-            slider.addEventListener('mouseenter', () => this.stopAutoSlide());
-            slider.addEventListener('mouseleave', () => this.startAutoSlide());
+            slider?.addEventListener('mouseenter', () => this.stopAutoSlide());
+            slider?.addEventListener('mouseleave', () => this.startAutoSlide());
+            
+            // Initialize first slide
+            this.showSlide(0);
         }
         
         showSlide(index) {
-            this.slides[this.currentSlide].style.animation = 'slideOutLeft 0.8s ease forwards';
+            // Hide current slide
+            this.slides[this.currentSlide].classList.remove('active');
+            this.dots[this.currentSlide].classList.remove('active');
             
-            setTimeout(() => {
-                this.slides.forEach(slide => {
-                    slide.classList.remove('active');
-                    slide.style.animation = '';
-                });
-                this.dots.forEach(dot => dot.classList.remove('active'));
-                
-                this.slides[index].classList.add('active');
-                this.slides[index].style.animation = 'slideInRight 0.8s ease forwards';
-                this.dots[index].classList.add('active');
-                
-                this.currentSlide = index;
-            }, 400);
+            // Show new slide
+            this.slides[index].classList.add('active');
+            this.dots[index].classList.add('active');
+            
+            this.currentSlide = index;
         }
         
         nextSlide() {
@@ -899,116 +908,12 @@
         }
     }
 
-    // Add slide animations
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideOutLeft {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(-100px); opacity: 0; }
-        }
-        
-        @keyframes slideInRight {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes kenBurns {
-            0% {
-                transform: scale(1.1) translateX(0) translateY(0);
-            }
-            50% {
-                transform: scale(1.15) translateX(-10px) translateY(-5px);
-            }
-            100% {
-                transform: scale(1.1) translateX(0) translateY(0);
-            }
-        }
-        
-        @keyframes floatParticles {
-            0% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-            }
-        }
-        
-        @keyframes solarFlare {
-            0%, 100% {
-                transform: rotate(0deg) scale(1);
-                opacity: 0.1;
-            }
-            50% {
-                transform: rotate(180deg) scale(1.2);
-                opacity: 0.3;
-            }
-        }
-        
-        @keyframes floatAround {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(100px, 50px) rotate(90deg);
-            }
-            50% {
-                transform: translate(50px, 100px) rotate(180deg);
-            }
-            75% {
-                transform: translate(-50px, 50px) rotate(270deg);
-            }
-            100% {
-                transform: translate(0, 0) rotate(360deg);
-            }
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(255, 193, 7, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
-            }
-        }
-        
-        @keyframes pulse-dot {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        .hero-bg-image {
-            animation: kenBurns 20s ease-in-out infinite;
-        }
-        
-        .particles::before {
-            animation: floatParticles 20s linear infinite;
-        }
-        
-        .solar-flare {
-            animation: solarFlare 15s ease-in-out infinite;
-        }
-        
-        .floating-element {
-            animation: floatAround 20s linear infinite;
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-        
-        .pulse-dot {
-            animation: pulse-dot 2s infinite;
-        }
-    `;
-    document.head.appendChild(style);
-
     // Initialize when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
         new HeroSlider();
+        
+        // Add any additional initialization here
+        console.log('Solis Green India website initialized successfully');
     });
     </script>
 </body>
