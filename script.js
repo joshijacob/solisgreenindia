@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeModals();
     initializeFormHandling();
     initializeScrollAnimations();
-    initializeServiceWorker();
+    initializeHeroImages();
 });
 
 // Mobile Menu Toggle
@@ -81,10 +81,10 @@ function initializeBackToTop() {
         // Show/hide button based on scroll position
         window.addEventListener('scroll', function() {
             if (window.pageYOffset > 300) {
-                backToTopBtn.style.display = 'flex';
+                backToTopBtn.classList.add('show');
                 backToTopBtn.setAttribute('aria-hidden', 'false');
             } else {
-                backToTopBtn.style.display = 'none';
+                backToTopBtn.classList.remove('show');
                 backToTopBtn.setAttribute('aria-hidden', 'true');
             }
         });
@@ -447,151 +447,29 @@ function initializeScrollAnimations() {
     document.head.appendChild(style);
 }
 
-// Service Worker Registration
-function initializeServiceWorker() {
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/sw.js')
-                .then(function(registration) {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                })
-                .catch(function(error) {
-                    console.log('ServiceWorker registration failed: ', error);
-                });
-        });
-    }
-}
-
-// Enhanced Phone Number Formatting
-function formatPhoneNumber(phone) {
-    const cleaned = phone.replace(/\D/g, '');
-    const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-    if (match) {
-        return '(' + match[1] + ') ' + match[2] + '-' + match[3];
-    }
-    return phone;
-}
-
-// Local Storage for Form Data
-function initializeFormPersistence() {
-    const forms = document.querySelectorAll('form');
+// Hero Image Loading with Fallbacks
+function initializeHeroImages() {
+    const heroImages = document.querySelectorAll('.hero-bg-image');
     
-    forms.forEach(form => {
-        const formId = form.id || 'form-' + Math.random().toString(36).substr(2, 9);
-        const inputs = form.querySelectorAll('input, select, textarea');
-        
-        // Load saved data
-        inputs.forEach(input => {
-            const savedValue = localStorage.getItem(`${formId}-${input.name}`);
-            if (savedValue && input.type !== 'password') {
-                input.value = savedValue;
+    heroImages.forEach((img, index) => {
+        img.addEventListener('error', function() {
+            console.warn(`Hero image ${index + 1} failed to load, using fallback`);
+            // Fallback to solid color background
+            this.style.display = 'none';
+            const slide = this.closest('.hero-slide');
+            if (slide) {
+                slide.style.background = index === 0 ? '#1a5276' : 
+                                      index === 1 ? '#27ae60' : '#8e44ad';
             }
         });
-        
-        // Save on input
-        inputs.forEach(input => {
-            input.addEventListener('input', function() {
-                if (this.type !== 'password') {
-                    localStorage.setItem(`${formId}-${this.name}`, this.value);
-                }
-            });
-        });
-        
-        // Clear on successful submission
-        form.addEventListener('submit', function() {
-            inputs.forEach(input => {
-                localStorage.removeItem(`${formId}-${input.name}`);
-            });
+
+        img.addEventListener('load', function() {
+            console.log(`Hero image ${index + 1} loaded successfully`);
         });
     });
 }
 
-// Image Lazy Loading Enhancement
-function initializeLazyLoading() {
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-
-        images.forEach(img => imageObserver.observe(img));
-    }
-}
-
-// Performance Monitoring
-function initializePerformanceMonitoring() {
-    window.addEventListener('load', function() {
-        // Report page load time
-        if ('performance' in window) {
-            const perfData = window.performance.timing;
-            const loadTime = perfData.loadEventEnd - perfData.navigationStart;
-            const domReadyTime = perfData.domContentLoadedEventEnd - perfData.navigationStart;
-            
-            console.log('Page Load Time:', loadTime + 'ms');
-            console.log('DOM Ready Time:', domReadyTime + 'ms');
-            
-            // You can send this data to your analytics
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'timing_complete', {
-                    'event_category': 'Performance',
-                    'event_label': 'Page Load Time',
-                    'value': loadTime
-                });
-            }
-        }
-    });
-}
-
-// Error Tracking
-function initializeErrorTracking() {
-    window.addEventListener('error', function(e) {
-        console.error('JavaScript Error:', e.error);
-        
-        // Send to analytics
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'exception', {
-                'description': e.error.toString(),
-                'fatal': false
-            });
-        }
-    });
-}
-
-// Utility Functions
-function debounce(func, wait, immediate) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            timeout = null;
-            if (!immediate) func(...args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func(...args);
-    };
-}
-
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
-
-// Enhanced Hero Slider (if not using the inline version)
+// Enhanced Hero Slider (Backup)
 class EnhancedHeroSlider {
     constructor() {
         this.slides = document.querySelectorAll('.hero-slide');
@@ -621,26 +499,20 @@ class EnhancedHeroSlider {
         slider?.addEventListener('mouseenter', () => this.stopAutoSlide());
         slider?.addEventListener('mouseleave', () => this.startAutoSlide());
         
-        // Touch support for mobile
-        this.addTouchSupport();
+        // Initialize first slide
+        this.showSlide(0);
     }
     
     showSlide(index) {
-        this.slides[this.currentSlide].style.animation = 'slideOutLeft 0.8s ease forwards';
+        // Hide current slide
+        this.slides[this.currentSlide].classList.remove('active');
+        this.dots[this.currentSlide].classList.remove('active');
         
-        setTimeout(() => {
-            this.slides.forEach(slide => {
-                slide.classList.remove('active');
-                slide.style.animation = '';
-            });
-            this.dots.forEach(dot => dot.classList.remove('active'));
-            
-            this.slides[index].classList.add('active');
-            this.slides[index].style.animation = 'slideInRight 0.8s ease forwards';
-            this.dots[index].classList.add('active');
-            
-            this.currentSlide = index;
-        }, 400);
+        // Show new slide
+        this.slides[index].classList.add('active');
+        this.dots[index].classList.add('active');
+        
+        this.currentSlide = index;
     }
     
     nextSlide() {
@@ -670,36 +542,6 @@ class EnhancedHeroSlider {
             this.slideInterval = null;
         }
     }
-    
-    addTouchSupport() {
-        const slider = document.querySelector('.hero-slider');
-        if (!slider) return;
-        
-        let startX = 0;
-        let endX = 0;
-        
-        slider.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        });
-        
-        slider.addEventListener('touchend', (e) => {
-            endX = e.changedTouches[0].clientX;
-            this.handleSwipe(startX, endX);
-        });
-    }
-    
-    handleSwipe(startX, endX) {
-        const swipeThreshold = 50;
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                this.nextSlide();
-            } else {
-                this.prevSlide();
-            }
-        }
-    }
 }
 
 // Initialize everything when DOM is ready
@@ -711,25 +553,12 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeModals();
     initializeFormHandling();
     initializeScrollAnimations();
-    initializeFormPersistence();
-    initializeLazyLoading();
-    initializePerformanceMonitoring();
-    initializeErrorTracking();
+    initializeHeroImages();
     
     // Initialize Hero Slider if not already initialized inline
     if (!window.heroSliderInitialized) {
         new EnhancedHeroSlider();
     }
     
-    // Add any additional initialization here
     console.log('Solis Green India website initialized successfully');
 });
-
-// Export for potential module usage
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        EnhancedHeroSlider,
-        validateForm,
-        showNotification
-    };
-}
