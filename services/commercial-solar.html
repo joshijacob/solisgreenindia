@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Commercial Solar Solutions in Kerala - Business Solar Systems with Tax Benefits. Reduce Operational Costs by 60%">
+    <meta name="keywords" content="commercial solar kerala, business solar, shop solar, office solar, solar for business">
+    <title>Commercial Solar Kerala | Business Solar Systems with Tax Benefits - Solis Green India</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Commercial Solar Installation",
+        "description": "Solar solutions for businesses, shops, and commercial establishments in Kerala",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "Solis Green India"
+        },
+        "areaServed": "Kerala"
+    }
+    </script>
+</head>
+<body>
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <div class="cta-main-btn" id="ctaMainBtn">
+            <i class="fas fa-comments"></i>
+            <span class="pulse-dot"></span>
+        </div>
+        <div class="cta-options">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Primary Call">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="tel:9539316623" class="cta-option" data-tooltip="Alternate Call">
+                <i class="fas fa-phone-alt"></i>
+            </a>
+            <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
+                <i class="fas fa-file-alt"></i>
+            </a>
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Quote Modal -->
+    <div class="modal" id="quickQuoteModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Get Commercial Solar Quote</h3>
+            <form class="quick-quote-form" id="modalQuoteForm">
+                <input type="hidden" name="_subject" value="🔆 Commercial Solar Quote - Solis Green India">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select name="business_type" required>
+                        <option value="">Business Type</option>
+                        <option value="shop">Shop/Retail</option>
+                        <option value="office">Office</option>
+                        <option value="hotel">Hotel/Restaurant</option>
+                        <option value="hospital">Hospital/Clinic</option>
+                        <option value="school">School/College</option>
+                        <option value="other">Other Business</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select name="system_size">
+                        <option value="">Approximate System Size</option>
+                        <option value="10-20kW">10-20 kW (Small Business)</option>
+                        <option value="20-50kW">20-50 kW (Medium Business)</option>
+                        <option value="50-100kW">50-100 kW (Large Business)</option>
+                        <option value="100kW+">100+ kW (Enterprise)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="location" placeholder="Business Location" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-bolt"></i> Get Business Quote
+                </button>
+            </form>
+            <div class="emergency-contact-modal">
+                <h4>Need Immediate Business Consultation?</h4>
+                <div class="emergency-numbers">
+                    <a href="tel:8301849474" class="emergency-number">
+                        <i class="fas fa-phone"></i> Primary: 8301849474
+                    </a>
+                    <a href="tel:9539316623" class="emergency-number">
+                        <i class="fas fa-phone-alt"></i> Alternate: 9539316623
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+            </div>
+            
+            <div class="header-contact">
+                <a href="tel:8301849474" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                    <span>Primary: 8301849474</span>
+                </a>
+                <a href="tel:9539316623" class="contact-link">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Alternate: 9539316623</span>
+                </a>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a href="../services">Services</a></li>
+                    <li><a href="../cities">Service Areas</a></li>
+                    <li><a href="../projects">Projects</a></li>
+                    <li><a href="../contact" class="cta-button">Contact</a></li>         
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Commercial Hero Section -->
+    <section class="service-page-hero commercial-hero">
+        <div class="hero-bg-image-commercial"></div>
+        <div class="gradient-overlay gradient-blue"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Commercial Solar Solutions</h1>
+                <p>Power your business with solar energy and reduce operational costs by 60% with attractive tax benefits</p>
+                <div class="hero-buttons">
+                    <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                        <i class="fas fa-phone"></i> Call Business Expert: 8301849474
+                    </a>
+                    <a href="#roi-calculator" class="btn btn-secondary">
+                        <i class="fas fa-chart-line"></i> Calculate ROI
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Benefits -->
+    <section class="business-benefits">
+        <div class="container">
+            <h2 class="section-title">Why Businesses Choose Solar</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>60% Cost Reduction</h3>
+                    <p>Significantly reduce electricity bills and operational costs</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h3>Tax Benefits</h3>
+                    <p>Accelerated depreciation and tax savings under government schemes</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Green Image</h3>
+                    <p>Enhance your brand reputation as an environmentally responsible business</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Reliable Power</h3>
+                    <p>Ensure uninterrupted operations during grid outages</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Types -->
+    <section class="business-types section-light">
+        <div class="container">
+            <h2 class="section-title">Solar Solutions for Every Business</h2>
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="business-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Shops & Retail</h3>
+                    <p>10-50 kW systems for shops, showrooms, and retail outlets</p>
+                    <ul>
+                        <li>Reduce daytime energy costs</li>
+                        <li>Attract eco-conscious customers</li>
+                        <li>Reliable lighting and AC power</li>
+                    </ul>
+                    <a href="tel:8301849474" class="btn btn-outline">Get Shop Quote</a>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Offices</h3>
+                    <p>20-100 kW systems for corporate offices and IT parks</p>
+                    <ul>
+                        <li>Power computers and servers</li>
+                        <li>AC and lighting during peak hours</li>
+                        <li>Enhanced corporate image</li>
+                    </ul>
+                    <a href="tel:8301849474" class="btn btn-outline">Get Office Quote</a>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Hotels & Restaurants</h3>
+                    <p>50-200 kW systems for hospitality businesses</p>
+                    <ul>
+                        <li>Power kitchen equipment</li>
+                        <li>AC for guest comfort</li>
+                        <li>24/7 hot water supply</li>
+                    </ul>
+                    <a href="tel:8301849474" class="btn btn-outline">Get Hotel Quote</a>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3>Hospitals</h3>
+                    <p>100-500 kW systems for healthcare facilities</p>
+                    <ul>
+                        <li>Critical power backup</li>
+                        <li>Medical equipment operation</li>
+                        <li>24/7 reliable energy</li>
+                    </ul>
+                    <a href="tel:8301849474" class="btn btn-outline">Get Hospital Quote</a>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3>Schools & Colleges</h3>
+                    <p>30-150 kW systems for educational institutions</p>
+                    <ul>
+                        <li>Power classrooms and labs</li>
+                        <li>Educational opportunity</li>
+                        <li>Long-term cost savings</li>
+                    </ul>
+                    <a href="tel:8301849474" class="btn btn-outline">Get School Quote</a>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Manufacturing</h3>
+                    <p>100kW-1MW+ systems for factories and industries</p>
+                    <ul>
+                        <li>Reduce production costs</li>
+                        <li>Power machinery and equipment</li>
+                        <li>Carbon credit benefits</li>
+                    </ul>
+                    <a href="../services/industrial-solar.html" class="btn btn-outline">Industrial Solutions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="roi-calculator" id="roi-calculator">
+        <div class="container">
+            <h2 class="section-title">Business ROI Calculator</h2>
+            <div class="calculator-container">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label>Monthly Electricity Bill</label>
+                        <select id="businessBill">
+                            <option value="10000">₹10,000 - ₹20,000</option>
+                            <option value="30000">₹20,000 - ₹40,000</option>
+                            <option value="60000" selected>₹40,000 - ₹80,000</option>
+                            <option value="120000">₹80,000 - ₹1,60,000</option>
+                            <option value="250000">₹1,60,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Business Type</label>
+                        <select id="businessType">
+                            <option value="shop">Shop/Retail</option>
+                            <option value="office">Office</option>
+                            <option value="hotel">Hotel/Restaurant</option>
+                            <option value="hospital">Hospital</option>
+                            <option value="school">Educational</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Operation Hours</label>
+                        <select id="operationHours">
+                            <option value="8">8 Hours/Day</option>
+                            <option value="12" selected>12 Hours/Day</option>
+                            <option value="16">16 Hours/Day</option>
+                            <option value="24">24 Hours/Day</option>
+                        </select>
+                    </div>
+                    <button id="calculateROI" class="btn btn-primary btn-block">
+                        Calculate Business ROI
+                    </button>
+                </div>
+                <div class="calculator-results">
+                    <div class="result-card">
+                        <h4>Recommended System</h4>
+                        <div class="result-value" id="businessSystem">50 kW System</div>
+                    </div>
+                    <div class="result-card">
+                        <h4>Monthly Savings</h4>
+                        <div class="result-value" id="businessSavings">₹30,000</div>
+                    </div>
+                    <div class="result-card">
+                        <h4>ROI Period</h4>
+                        <div class="result-value" id="roiPeriod">2-3 Years</div>
+                    </div>
+                    <div class="result-card">
+                        <h4>5-Year Savings</h4>
+                        <div class="result-value" id="fiveYearSavings">₹18,00,000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tax Benefits -->
+    <section class="tax-benefits section-light">
+        <div class="container">
+            <h2 class="section-title">Business Tax Benefits & Incentives</h2>
+            <div class="benefits-content">
+                <div class="benefit-item">
+                    <i class="fas fa-percentage"></i>
+                    <div class="benefit-text">
+                        <h3>Accelerated Depreciation</h3>
+                        <p>Claim 40% depreciation in the first year itself on solar assets</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <div class="benefit-text">
+                        <h3>Tax Savings</h3>
+                        <p>Reduce taxable income through capital expenditure on solar systems</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-file-contract"></i>
+                    <div class="benefit-text">
+                        <h3>GST Benefits</h3>
+                        <p>Input tax credit available on GST paid for commercial solar systems</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-award"></i>
+                    <div class="benefit-text">
+                        <h3>Carbon Credits</h3>
+                        <p>Earn carbon credits for reducing carbon footprint (additional revenue)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies">
+        <div class="container">
+            <h2 class="section-title">Successful Business Installations</h2>
+            <div class="case-studies-grid">
+                <div class="case-study">
+                    <div class="case-image">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="case-content">
+                        <h3>Textile Showroom, Thiruvalla</h3>
+                        <p><strong>System:</strong> 25 kW Commercial Solar</p>
+                        <p><strong>Savings:</strong> ₹18,000/month (65% reduction)</p>
+                        <p><strong>ROI:</strong> 2.8 years</p>
+                    </div>
+                </div>
+                <div class="case-study">
+                    <div class="case-image">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="case-content">
+                        <h3>IT Office, Kottayam</h3>
+                        <p><strong>System:</strong> 75 kW Office Solar</p>
+                        <p><strong>Savings:</strong> ₹45,000/month (60% reduction)</p>
+                        <p><strong>ROI:</strong> 3.1 years</p>
+                    </div>
+                </div>
+                <div class="case-study">
+                    <div class="case-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="case-content">
+                        <h3>Restaurant, Alappuzha</h3>
+                        <p><strong>System:</strong> 40 kW Hotel Solar</p>
+                        <p><strong>Savings:</strong> ₹28,000/month (70% reduction)</p>
+                        <p><strong>ROI:</strong> 2.5 years</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financing Options -->
+    <section class="financing-options section-light">
+        <div class="container">
+            <h2 class="section-title">Business Financing Options</h2>
+            <div class="financing-grid">
+                <div class="financing-option">
+                    <h3>Business Loan</h3>
+                    <p>Low-interest business loans from partner banks</p>
+                    <ul>
+                        <li>Up to 80% financing</li>
+                        <li>5-7 year tenure</li>
+                        <li>Quick approval</li>
+                    </ul>
+                </div>
+                <div class="financing-option">
+                    <h3>OPEX Model</h3>
+                    <p>Pay-as-you-go model with no upfront investment</p>
+                    <ul>
+                        <li>Zero capital expenditure</li>
+                        <li>Pay only for energy consumed</li>
+                        <li>We maintain the system</li>
+                    </ul>
+                </div>
+                <div class="financing-option">
+                    <h3>Lease Financing</h3>
+                    <p>Lease the solar system with buyout option</p>
+                    <ul>
+                        <li>Fixed monthly payments</li>
+                        <li>Ownership transfer option</li>
+                        <li>Tax benefits available</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="service-cta commercial-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Reduce Your Business Costs?</h2>
+                <p>Get a free business consultation and customized solar proposal</p>
+                <div class="cta-buttons">
+                    <a href="tel:8301849474" class="btn btn-primary btn-large">
+                        <i class="fas fa-phone"></i> Call Business Expert: 8301849474
+                    </a>
+                    <a href="https://wa.me/918301849474" class="btn btn-whatsapp btn-large" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Business Query
+                    </a>
+                </div>
+                <div class="cta-features">
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <span>ROI Analysis</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Tax Benefit Calculation</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-cogs"></i>
+                        <span>Custom Business Solution</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                    </div>
+                    <p>Powering Kerala businesses with reliable solar energy solutions since 2019.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Commercial Services</h3>
+                    <ul>
+                        <li><a href="commercial-solar.html">Business Solar Systems</a></li>
+                        <li><a href="#">Shop Solar Solutions</a></li>
+                        <li><a href="#">Office Solar Power</a></li>
+                        <li><a href="../services/industrial-solar.html">Industrial Solar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Business Resources</h3>
+                    <ul>
+                        <li><a href="#roi-calculator">ROI Calculator</a></li>
+                        <li><a href="#tax-benefits">Tax Benefits Guide</a></li>
+                        <li><a href="#case-studies">Case Studies</a></li>
+                        <li><a href="#financing">Financing Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Business Team</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">Primary: 8301849474</a></li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:9539316623">Alternate: 9539316623</a></li>
+                        <li><i class="fas fa-headset"></i> <a href="tel:8606849474">Support: 8606849474</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474">WhatsApp Business</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Solis Green India. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="../script.js"></script>
+
+    <!-- Additional CSS for Commercial Page -->
+    <style>
+        .commercial-hero .hero-bg-image-commercial {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+            z-index: 1;
+        }
+
+        .business-benefits {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: var(--background-light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .benefit-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .business-types {
+            padding: 80px 0;
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .business-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .business-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .business-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+        }
+
+        .business-card h3 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .business-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .business-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .business-card li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .business-card li:before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .roi-calculator {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .tax-benefits {
+            padding: 80px 0;
+        }
+
+        .benefits-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 30px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .benefit-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-top: 5px;
+        }
+
+        .benefit-text h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .benefit-text p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .case-studies {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .case-study {
+            background: var(--background-light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .case-image {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .case-content h3 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .case-content p {
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .financing-options {
+            padding: 80px 0;
+        }
+
+        .financing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .financing-option {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .financing-option h3 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .financing-option p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .financing-option ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .financing-option li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .financing-option li:before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .commercial-cta {
+            background: linear-gradient(135deg, #17a2b8, #6f42c1);
+        }
+
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .feature i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .business-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-content {
+                grid-template-columns: 1fr;
+            }
+
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .case-study {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .financing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-features {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+
+    <!-- ROI Calculator JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calculateROI = document.getElementById('calculateROI');
+            
+            if (calculateROI) {
+                calculateROI.addEventListener('click', function() {
+                    calculateBusinessROI();
+                });
+            }
+
+            function calculateBusinessROI() {
+                const businessBill = parseInt(document.getElementById('businessBill').value);
+                const businessType = document.getElementById('businessType').value;
+                const operationHours = parseInt(document.getElementById('operationHours').value);
+
+                let businessSystem, businessSavings, roiPeriod, fiveYearSavings;
+
+                if (businessBill <= 20000) {
+                    businessSystem = "10-20 kW";
+                    businessSavings = "₹6,000 - ₹12,000";
+                    roiPeriod = "2-3 Years";
+                    fiveYearSavings = "₹7,20,000";
+                } else if (businessBill <= 40000) {
+                    businessSystem = "20-40 kW";
+                    businessSavings = "₹12,000 - ₹24,000";
+                    roiPeriod = "2-3 Years";
+                    fiveYearSavings = "₹14,40,000";
+                } else if (businessBill <= 80000) {
+                    businessSystem = "40-80 kW";
+                    businessSavings = "₹24,000 - ₹48,000";
+                    roiPeriod = "2-3 Years";
+                    fiveYearSavings = "₹28,80,000";
+                } else if (businessBill <= 160000) {
+                    businessSystem = "80-150 kW";
+                    businessSavings = "₹48,000 - ₹90,000";
+                    roiPeriod = "2-3 Years";
+                    fiveYearSavings = "₹54,00,000";
+                } else {
+                    businessSystem = "150-300 kW";
+                    businessSavings = "₹90,000 - ₹1,80,000";
+                    roiPeriod = "2-3 Years";
+                    fiveYearSavings = "₹1,08,00,000";
+                }
+
+                // Update results
+                document.getElementById('businessSystem').textContent = businessSystem;
+                document.getElementById('businessSavings').textContent = businessSavings;
+                document.getElementById('roiPeriod').textContent = roiPeriod;
+                document.getElementById('fiveYearSavings').textContent = fiveYearSavings;
+
+                // Show notification
+                showNotification('ROI calculated! Contact us for detailed business proposal.', 'success');
+            }
+        });
+    </script>
+</body>
+</html>
