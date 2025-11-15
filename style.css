@@ -261,6 +261,7 @@ nav a.active {
     position: absolute;
     font-size: 2rem;
     opacity: 0.3;
+    animation: floatAround 20s linear infinite;
 }
 
 .element-1 {
@@ -569,6 +570,16 @@ nav a.active {
 .form-group select:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 45px;
 }
 
 .quote-benefits h4 {
@@ -1130,7 +1141,7 @@ footer {
     transition: var(--transition);
 }
 
-.floating-cta:hover .cta-options {
+.cta-options.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -1203,6 +1214,10 @@ footer {
     justify-content: center;
 }
 
+.modal.active {
+    display: flex;
+}
+
 .modal-content {
     background: var(--white);
     padding: 30px;
@@ -1211,6 +1226,14 @@ footer {
     width: 90%;
     position: relative;
     box-shadow: var(--box-shadow);
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
 }
 
 .close-modal {
@@ -1224,6 +1247,41 @@ footer {
 
 .close-modal:hover {
     color: var(--text-color);
+}
+
+/* Form Validation Styles */
+.field-error {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.form-group input.error,
+.form-group select.error {
+    border-color: #dc3545;
+}
+
+.form-group input.success,
+.form-group select.success {
+    border-color: #28a745;
+}
+
+/* Loading State */
+.btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+    position: relative;
+}
+
+.btn.loading::before {
+    content: '';
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid var(--primary-color);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
 }
 
 /* Animations */
@@ -1306,6 +1364,44 @@ footer {
     100% { transform: scale(1); opacity: 1; }
 }
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
 /* Apply Animations */
 .hero-bg-image {
     animation: kenBurns 20s ease-in-out infinite;
@@ -1317,10 +1413,6 @@ footer {
 
 .solar-flare {
     animation: solarFlare 15s ease-in-out infinite;
-}
-
-.floating-element {
-    animation: floatAround 20s linear infinite;
 }
 
 .pulse-animation {
@@ -1455,6 +1547,11 @@ nav a[href*="kayamkulam"] {
     .section-title {
         font-size: 2rem;
     }
+    
+    .btn {
+        min-height: 44px;
+        padding: 12px 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1482,5 +1579,24 @@ nav a[href*="kayamkulam"] {
     
     .hero-slider {
         height: 70vh;
+    }
+    
+    .floating-cta {
+        left: 10px;
+        bottom: 10px;
+    }
+    
+    .cta-main-btn {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
