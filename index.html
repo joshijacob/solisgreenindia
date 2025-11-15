@@ -12,13 +12,13 @@
     <link rel="preload" href="images/hero/hero-image-2.webp" as="image" type="image/webp">
     
     <!-- Enhanced Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-KTT5M68J"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4VD9LGY29"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'GT-KTT5M68J', {
+      gtag('config', 'G-R4VD9LGY29', {
         'page_title': document.title,
         'page_location': window.location.href
       });
@@ -215,15 +215,19 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h3>Get Quick Solar Quote</h3>
-            <form class="quick-quote-form">
+            <form class="quick-quote-form" id="modalQuoteForm">
+                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                
                 <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
+                    <input type="text" name="name" placeholder="Your Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" placeholder="Phone Number" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
                 </div>
                 <div class="form-group">
-                    <select required>
+                    <select name="service" required>
                         <option value="">Select Service</option>
                         <option value="residential">Residential Solar</option>
                         <option value="commercial">Commercial Solar</option>
@@ -231,7 +235,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Your Location/City">
+                    <input type="text" name="location" placeholder="Your Location/City">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">
                     <i class="fas fa-bolt"></i> Get Instant Quote
@@ -302,7 +306,9 @@
                      alt="Solar Power Kerala" 
                      class="hero-bg-image" 
                      loading="eager" 
-                     fetchpriority="high">
+                     fetchpriority="high"
+                     width="2000" 
+                     height="1333">
                 <div class="gradient-overlay gradient-blue"></div>
                 <div class="floating-elements">
                     <div class="floating-element element-1">☀️</div>
@@ -341,7 +347,9 @@
                 <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
                      alt="Complete Solar Solutions Kerala" 
                      class="hero-bg-image" 
-                     loading="lazy">
+                     loading="lazy"
+                     width="2000" 
+                     height="1333">
                 <div class="gradient-overlay gradient-green"></div>
                 <div class="floating-elements">
                     <div class="floating-element element-1">💰</div>
@@ -377,7 +385,9 @@
                 <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
                      alt="Solar Experts Kerala" 
                      class="hero-bg-image" 
-                     loading="lazy">
+                     loading="lazy"
+                     width="2000" 
+                     height="1333">
                 <div class="gradient-overlay gradient-purple"></div>
                 <div class="floating-elements">
                     <div class="floating-element element-1">🔧</div>
@@ -442,18 +452,22 @@
         <div class="container">
             <h2 class="section-title">Get Your Free Solar Quote in 30 Seconds</h2>
             <div class="quote-form-container">
-                <form class="quick-quote-form">
+                <form class="quick-quote-form" id="mainQuoteForm">
+                    <input type="hidden" name="_subject" value="🔆 Solar Quote Request - Solis Green India">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
+                            <input type="text" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" placeholder="Phone Number" required>
+                            <input type="tel" name="phone" placeholder="Phone Number" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <select required>
+                            <select name="service" required>
                                 <option value="">Select Service</option>
                                 <option value="residential">Home Solar</option>
                                 <option value="commercial">Business Solar</option>
@@ -461,7 +475,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Your Location" required>
+                            <input type="text" name="location" placeholder="Your Location" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
@@ -830,91 +844,5 @@
     </button>
 
     <script src="script.js"></script>
-
-    <!-- Enhanced Hero Slider with Proper Z-index Management -->
-    <script>
-    // Enhanced Hero Slider with Proper Z-index Management
-    class HeroSlider {
-        constructor() {
-            this.slides = document.querySelectorAll('.hero-slide');
-            this.dots = document.querySelectorAll('.dot');
-            this.prevBtn = document.querySelector('.slider-prev');
-            this.nextBtn = document.querySelector('.slider-next');
-            this.currentSlide = 0;
-            this.slideInterval = null;
-            this.autoSlideDelay = 5000;
-            
-            this.init();
-        }
-        
-        init() {
-            if (this.slides.length === 0) return;
-            
-            this.prevBtn?.addEventListener('click', () => this.prevSlide());
-            this.nextBtn?.addEventListener('click', () => this.nextSlide());
-            
-            this.dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => this.goToSlide(index));
-            });
-            
-            this.startAutoSlide();
-            
-            const slider = document.querySelector('.hero-slider');
-            slider?.addEventListener('mouseenter', () => this.stopAutoSlide());
-            slider?.addEventListener('mouseleave', () => this.startAutoSlide());
-            
-            // Initialize first slide
-            this.showSlide(0);
-        }
-        
-        showSlide(index) {
-            // Hide current slide
-            this.slides[this.currentSlide].classList.remove('active');
-            this.dots[this.currentSlide].classList.remove('active');
-            
-            // Show new slide
-            this.slides[index].classList.add('active');
-            this.dots[index].classList.add('active');
-            
-            this.currentSlide = index;
-        }
-        
-        nextSlide() {
-            let next = this.currentSlide + 1;
-            if (next >= this.slides.length) next = 0;
-            this.showSlide(next);
-        }
-        
-        prevSlide() {
-            let prev = this.currentSlide - 1;
-            if (prev < 0) prev = this.slides.length - 1;
-            this.showSlide(prev);
-        }
-        
-        goToSlide(index) {
-            this.showSlide(index);
-        }
-        
-        startAutoSlide() {
-            this.stopAutoSlide();
-            this.slideInterval = setInterval(() => this.nextSlide(), this.autoSlideDelay);
-        }
-        
-        stopAutoSlide() {
-            if (this.slideInterval) {
-                clearInterval(this.slideInterval);
-                this.slideInterval = null;
-            }
-        }
-    }
-
-    // Initialize when DOM is ready
-    document.addEventListener('DOMContentLoaded', function() {
-        new HeroSlider();
-        
-        // Add any additional initialization here
-        console.log('Solis Green India website initialized successfully');
-    });
-    </script>
 </body>
 </html>
