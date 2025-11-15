@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Industrial Solar Plants in Kerala - Large-scale Solar Solutions for Factories & Industries. Reduce Production Costs by 50%">
+    <meta name="keywords" content="industrial solar kerala, factory solar, manufacturing solar, large scale solar, solar power plant">
+    <title>Industrial Solar Kerala | Factory Solar Plants & Large-scale Solutions - Solis Green India</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Industrial Solar Installation",
+        "description": "Large-scale solar power plants for factories and industrial units in Kerala",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "Solis Green India"
+        },
+        "areaServed": "Kerala"
+    }
+    </script>
+</head>
+<body>
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <div class="cta-main-btn" id="ctaMainBtn">
+            <i class="fas fa-comments"></i>
+            <span class="pulse-dot"></span>
+        </div>
+        <div class="cta-options">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Primary Call">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="tel:9539316623" class="cta-option" data-tooltip="Alternate Call">
+                <i class="fas fa-phone-alt"></i>
+            </a>
+            <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
+                <i class="fas fa-file-alt"></i>
+            </a>
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Quote Modal -->
+    <div class="modal" id="quickQuoteModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Get Industrial Solar Quote</h3>
+            <form class="quick-quote-form" id="modalQuoteForm">
+                <input type="hidden" name="_subject" value="🔆 Industrial Solar Quote - Solis Green India">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select name="industry_type" required>
+                        <option value="">Industry Type</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="textile">Textile</option>
+                        <option value="food">Food Processing</option>
+                        <option value="chemical">Chemical</option>
+                        <option value="metal">Metal & Engineering</option>
+                        <option value="other">Other Industry</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select name="system_size">
+                        <option value="">Approximate System Size</option>
+                        <option value="100-500kW">100-500 kW</option>
+                        <option value="500kW-1MW">500 kW - 1 MW</option>
+                        <option value="1-5MW">1-5 MW</option>
+                        <option value="5MW+">5+ MW</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="location" placeholder="Factory Location" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="monthly_consumption" placeholder="Monthly Consumption (kWh)">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-bolt"></i> Get Industrial Quote
+                </button>
+            </form>
+            <div class="emergency-contact-modal">
+                <h4>Need Industrial Consultation?</h4>
+                <div class="emergency-numbers">
+                    <a href="tel:8301849474" class="emergency-number">
+                        <i class="fas fa-phone"></i> Primary: 8301849474
+                    </a>
+                    <a href="tel:9539316623" class="emergency-number">
+                        <i class="fas fa-phone-alt"></i> Alternate: 9539316623
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+            </div>
+            
+            <div class="header-contact">
+                <a href="tel:8301849474" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                    <span>Primary: 8301849474</span>
+                </a>
+                <a href="tel:9539316623" class="contact-link">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Alternate: 9539316623</span>
+                </a>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a href="../services">Services</a></li>
+                    <li><a href="../cities">Service Areas</a></li>
+                    <li><a href="../projects">Projects</a></li>
+                    <li><a href="../contact" class="cta-button">Contact</a></li>         
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Industrial Hero Section -->
+    <section class="service-page-hero industrial-hero">
+        <div class="hero-bg-image-industrial"></div>
+        <div class="gradient-overlay gradient-purple"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Industrial Solar Power Plants</h1>
+                <p>Large-scale solar solutions for factories and industries. Reduce production costs by 50% with reliable solar energy</p>
+                <div class="hero-buttons">
+                    <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                        <i class="fas fa-phone"></i> Call Industrial Expert: 8301849474
+                    </a>
+                    <a href="#feasibility-study" class="btn btn-secondary">
+                        <i class="fas fa-clipboard-check"></i> Free Feasibility Study
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industrial Benefits -->
+    <section class="industrial-benefits">
+        <div class="container">
+            <h2 class="section-title">Why Industries Choose Solar</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>50% Cost Reduction</h3>
+                    <p>Significantly reduce electricity costs - major component of production expenses</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-industry"></i>
+                    <h3>Energy Independence</h3>
+                    <p>Reduce dependency on grid power and diesel generators</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Carbon Credits</h3>
+                    <p>Earn additional revenue through carbon credit trading</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Reliable Power</h3>
+                    <p>Ensure uninterrupted operations with hybrid solar systems</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industrial Solutions -->
+    <section class="industrial-solutions section-light">
+        <div class="container">
+            <h2 class="section-title">Industrial Solar Solutions</h2>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Rooftop Solar Plants</h3>
+                    <p>Utilize factory roof space for solar power generation</p>
+                    <ul>
+                        <li>100 kW - 5 MW capacity</li>
+                        <li>No additional land required</li>
+                        <li>Reduces roof temperature</li>
+                        <li>Quick installation</li>
+                    </ul>
+                    <div class="solution-capacity">
+                        <span>Capacity: 100 kW - 5 MW</span>
+                    </div>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Ground Mounted Plants</h3>
+                    <p>Large-scale solar farms on available land</p>
+                    <ul>
+                        <li>1 MW - 50 MW capacity</li>
+                        <li>Higher efficiency</li>
+                        <li>Easy maintenance</li>
+                        <li>Scalable design</li>
+                    </ul>
+                    <div class="solution-capacity">
+                        <span>Capacity: 1 MW - 50 MW</span>
+                    </div>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3>Captive Power Plants</h3>
+                    <p>Dedicated solar plants for industrial consumption</p>
+                    <ul>
+                        <li>Wheeling allowed</li>
+                        <li>Open access available</li>
+                        <li>Group captive option</li>
+                        <li>Third-party sale possible</li>
+                    </ul>
+                    <div class="solution-capacity">
+                        <span>Custom Capacity</span>
+                    </div>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Solar Thermal Systems</h3>
+                    <p>Solar energy for industrial heating applications</p>
+                    <ul>
+                        <li>Process heating</li>
+                        <li>Steam generation</li>
+                        <li>Hot water systems</li>
+                        <li>Drying applications</li>
+                    </ul>
+                    <div class="solution-capacity">
+                        <span>Thermal Applications</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Applications -->
+    <section class="industry-applications">
+        <div class="container">
+            <h2 class="section-title">Industry-specific Applications</h2>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <h3>Textile Industry</h3>
+                    <p>Power for spinning, weaving, and processing units</p>
+                    <div class="application-features">
+                        <span>Dyeing machines</span>
+                        <span>Weaving looms</span>
+                        <span>Compressed air</span>
+                    </div>
+                </div>
+
+                <div class="application-card">
+                    <h3>Food Processing</h3>
+                    <p>Energy for refrigeration, processing, and packaging</p>
+                    <div class="application-features">
+                        <span>Cold storage</span>
+                        <span>Processing lines</span>
+                        <span>Packaging machines</span>
+                    </div>
+                </div>
+
+                <div class="application-card">
+                    <h3>Chemical Industry</h3>
+                    <p>Power for reactors, pumps, and control systems</p>
+                    <div class="application-features">
+                        <span>Reactor systems</span>
+                        <span>Pumping stations</span>
+                        <span>Control panels</span>
+                    </div>
+                </div>
+
+                <div class="application-card">
+                    <h3>Metal & Engineering</h3>
+                    <p>Energy for furnaces, machining, and fabrication</p>
+                    <div class="application-features">
+                        <span>Furnaces</span>
+                        <span>CNC machines</span>
+                        <span>Welding units</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Analysis -->
+    <section class="cost-analysis section-light">
+        <div class="container">
+            <h2 class="section-title">Industrial Cost-Benefit Analysis</h2>
+            <div class="analysis-container">
+                <div class="analysis-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>System Size</th>
+                                <th>Approx. Cost</th>
+                                <th>Monthly Savings</th>
+                                <th>ROI Period</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>100 kW</td>
+                                <td>₹45-55 Lakhs</td>
+                                <td>₹1.5-2 Lakhs</td>
+                                <td>2-3 Years</td>
+                                <td><a href="tel:8301849474" class="btn btn-small">Get Quote</a></td>
+                            </tr>
+                            <tr>
+                                <td>500 kW</td>
+                                <td>₹2-2.5 Crores</td>
+                                <td>₹7-9 Lakhs</td>
+                                <td>2.5-3 Years</td>
+                                <td><a href="tel:8301849474" class="btn btn-small">Get Quote</a></td>
+                            </tr>
+                            <tr>
+                                <td>1 MW</td>
+                                <td>₹4-4.5 Crores</td>
+                                <td>₹15-18 Lakhs</td>
+                                <td>2.5-3 Years</td>
+                                <td><a href="tel:8301849474" class="btn btn-small">Get Quote</a></td>
+                            </tr>
+                            <tr>
+                                <td>5 MW</td>
+                                <td>₹18-20 Crores</td>
+                                <td>₹70-80 Lakhs</td>
+                                <td>3-3.5 Years</td>
+                                <td><a href="tel:8301849474" class="btn btn-small">Get Quote</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="analysis-note">
+                    <p><strong>Note:</strong> Costs are indicative. Final pricing depends on site conditions, system configuration, and specific requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Government Incentives -->
+    <section class="government-incentives">
+        <div class="container">
+            <h2 class="section-title">Government Incentives for Industries</h2>
+            <div class="incentives-grid">
+                <div class="incentive-card">
+                    <i class="fas fa-percentage"></i>
+                    <h3>Accelerated Depreciation</h3>
+                    <p>80% depreciation in first year for solar assets</p>
+                </div>
+                <div class="incentive-card">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Tax Benefits</h3>
+                    <p>Income tax benefits under Section 32 of Income Tax Act</p>
+                </div>
+                <div class="incentive-card">
+                    <i class="fas fa-file-contract"></i>
+                    <h3>GST Benefits</h3>
+                    <p>5% GST with input tax credit for commercial solar</p>
+                </div>
+                <div class="incentive-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Carbon Credits</h3>
+                    <p>Additional revenue through carbon credit trading</p>
+                </div>
+                <div class="incentive-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Net Metering</h3>
+                    <p>Export excess power to grid and get credits</p>
+                </div>
+                <div class="incentive-card">
+                    <i class="fas fa-landmark"></i>
+                    <h3>State Subsidies</h3>
+                    <p>Additional incentives from Kerala government</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Timeline -->
+    <section class="project-timeline section-light">
+        <div class="container">
+            <h2 class="section-title">Industrial Project Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <h3>Feasibility Study (1-2 Weeks)</h3>
+                        <p>Site assessment, load analysis, and technical feasibility</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <h3>Design & Approval (2-3 Weeks)</h3>
+                        <p>System design, financial modeling, and management approval</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <h3>Regulatory Clearances (3-4 Weeks)</h3>
+                        <p>KSEB approval, net metering, and statutory clearances</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content">
+                        <h3>Installation (4-8 Weeks)</h3>
+                        <p>Civil work, mounting structure, and panel installation</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">5</div>
+                    <div class="timeline-content">
+                        <h3>Commissioning (1 Week)</h3>
+                        <p>System testing, grid synchronization, and handover</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="industrial-case-studies">
+        <div class="container">
+            <h2 class="section-title">Industrial Case Studies</h2>
+            <div class="case-studies-grid">
+                <div class="industrial-case">
+                    <div class="case-header">
+                        <h3>Textile Mill, Kottayam</h3>
+                        <span class="case-size">750 kW</span>
+                    </div>
+                    <div class="case-details">
+                        <p><strong>Challenge:</strong> High electricity costs affecting competitiveness</p>
+                        <p><strong>Solution:</strong> 750 kW rooftop solar plant</p>
+                        <p><strong>Results:</strong> ₹4.5 Lakhs monthly savings, 18-month ROI</p>
+                    </div>
+                </div>
+
+                <div class="industrial-case">
+                    <div class="case-header">
+                        <h3>Food Processing Unit, Alappuzha</h3>
+                        <span class="case-size">1.2 MW</span>
+                    </div>
+                    <div class="case-details">
+                        <p><strong>Challenge:</strong> Unreliable power affecting production</p>
+                        <p><strong>Solution:</strong> 1.2 MW ground-mounted plant with storage</p>
+                        <p><strong>Results:</strong> 24/7 reliable power, ₹7 Lakhs monthly savings</p>
+                    </div>
+                </div>
+
+                <div class="industrial-case">
+                    <div class="case-header">
+                        <h3>Rubber Factory, Pathanamthitta</h3>
+                        <span class="case-size">500 kW</span>
+                    </div>
+                    <div class="case-details">
+                        <p><strong>Challenge:</strong> Rising production costs</p>
+                        <p><strong>Solution:</strong> 500 kW captive power plant</p>
+                        <p><strong>Results:</strong> 40% cost reduction, carbon credits earned</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="service-cta industrial-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Industrial Power Costs?</h2>
+                <p>Get a free feasibility study and detailed project report for your industry</p>
+                <div class="cta-buttons">
+                    <a href="tel:8301849474" class="btn btn-primary btn-large">
+                        <i class="fas fa-phone"></i> Call Industrial Expert: 8301849474
+                    </a>
+                    <a href="https://wa.me/918301849474" class="btn btn-whatsapp btn-large" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Industrial Query
+                    </a>
+                </div>
+                <div class="cta-features">
+                    <div class="feature">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span>Free Feasibility Study</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Detailed ROI Analysis</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-cogs"></i>
+                        <span>Turnkey Solutions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                    </div>
+                    <p>Powering Kerala industries with reliable large-scale solar solutions since 2019.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Industrial Services</h3>
+                    <ul>
+                        <li><a href="industrial-solar.html">Industrial Solar Plants</a></li>
+                        <li><a href="#">Captive Power Plants</a></li>
+                        <li><a href="#">Solar Thermal Systems</a></li>
+                        <li><a href="#">Energy Audits</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Industrial Resources</h3>
+                    <ul>
+                        <li><a href="#cost-analysis">Cost-Benefit Analysis</a></li>
+                        <li><a href="#incentives">Government Incentives</a></li>
+                        <li><a href="#case-studies">Case Studies</a></li>
+                        <li><a href="#timeline">Project Timeline</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Industrial Team</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">Primary: 8301849474</a></li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:9539316623">Alternate: 9539316623</a></li>
+                        <li><i class="fas fa-headset"></i> <a href="tel:8606849474">Technical Support: 8606849474</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474">WhatsApp Industrial</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Solis Green India. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="../script.js"></script>
+
+    <!-- Additional CSS for Industrial Page -->
+    <style>
+        .industrial-hero .hero-bg-image-industrial {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+            z-index: 1;
+        }
+
+        .industrial-benefits {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .industrial-solutions {
+            padding: 80px 0;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .solution-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .solution-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2rem;
+        }
+
+        .solution-card h3 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .solution-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .solution-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .solution-card li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .solution-card li:before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .solution-capacity {
+            background: var(--background-light);
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .industry-applications {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .application-card {
+            background: var(--background-light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .application-card h3 {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .application-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .application-features {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .application-features span {
+            background: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .cost-analysis {
+            padding: 80px 0;
+        }
+
+        .analysis-table {
+            overflow-x: auto;
+            margin-bottom: 30px;
+        }
+
+        .analysis-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .analysis-table th,
+        .analysis-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .analysis-table th {
+            background: var(--primary-color);
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .analysis-table tr:hover {
+            background: var(--background-light);
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 0.8rem;
+        }
+
+        .analysis-note {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .government-incentives {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .incentives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .incentive-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--background-light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .incentive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .incentive-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .incentive-card h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .incentive-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .project-timeline {
+            padding: 80px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: var(--text-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 30px;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            flex: 1;
+        }
+
+        .timeline-content h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .industrial-case-studies {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .industrial-case {
+            background: var(--background-light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .case-header h3 {
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .case-size {
+            background: var(--primary-color);
+            color: var(--text-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .case-details p {
+            color: var(--text-light);
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .industrial-cta {
+            background: linear-gradient(135deg, #6f42c1, #e83e8c);
+        }
+
+        @media (max-width: 768px) {
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .applications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .incentives-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 25px;
+            }
+
+            .timeline-marker {
+                width: 50px;
+                height: 50px;
+                margin-right: 20px;
+            }
+
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .case-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</body>
+</html>
