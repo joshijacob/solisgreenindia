@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeFormHandling();
     initializeScrollAnimations();
     initializeHeroImages();
+    initializeHeroSlider();
 });
 
 // Mobile Menu Toggle
@@ -131,7 +132,7 @@ function initializeModals() {
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
-        modal.style.display = 'flex';
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
         modal.setAttribute('aria-hidden', 'false');
     }
@@ -140,64 +141,92 @@ function openModal(modalId) {
 function closeAllModals() {
     const modals = document.querySelectorAll('.modal');
     modals.forEach(modal => {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
         modal.setAttribute('aria-hidden', 'true');
     });
     document.body.style.overflow = 'auto';
 }
 
-// Form Handling
+// Form Handling with FormSubmit + WhatsApp Backup
 function initializeFormHandling() {
-    const forms = document.querySelectorAll('form');
+    const forms = document.querySelectorAll('form.quick-quote-form');
 
     forms.forEach(form => {
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                service: formData.get('service'),
+                location: formData.get('location'),
+                timestamp: new Date().toLocaleString('en-IN')
+            };
+
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            
+
             // Validate form
             if (!validateForm(this)) {
                 showNotification('Please fill all required fields correctly.', 'error');
                 return;
             }
 
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-
             try {
-                // Simulate API call
-                await simulateFormSubmission(formData);
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                submitBtn.classList.add('loading');
+
+                // Try FormSubmit first
+                const formSubmitSuccess = await submitToFormSubmit(data, form);
                 
-                // Success state
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent Successfully!';
-                showNotification('Thank you! We will contact you shortly.', 'success');
-                
-                // Reset form after delay
-                setTimeout(() => {
-                    this.reset();
+                if (formSubmitSuccess) {
+                    // Success state
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent Successfully!';
+                    showNotification('Thank you! We will call you within 30 minutes.', 'success');
+                    
+                    // Track conversion
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'conversion', {
+                            'send_to': 'G-R4VD9LGY29/quote_request',
+                            'value': 1.0,
+                            'currency': 'INR'
+                        });
+                    }
+                    
+                    // Reset form after delay
+                    setTimeout(() => {
+                        form.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('loading');
+                        closeAllModals();
+                    }, 3000);
+
+                } else {
+                    // Fallback to WhatsApp
+                    fallbackToWhatsApp(data);
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                    closeAllModals();
-                }, 3000);
+                    submitBtn.classList.remove('loading');
+                }
 
             } catch (error) {
-                // Error state
-                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Try Again';
-                showNotification('Something went wrong. Please try again.', 'error');
+                console.error('Form submission failed:', error);
                 
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                }, 3000);
+                // Fallback to WhatsApp on error
+                fallbackToWhatsApp(data);
+                
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
             }
         });
 
         // Real-time validation
-        const inputs = form.querySelectorAll('input, select, textarea');
+        const inputs = form.querySelectorAll('input, select');
         inputs.forEach(input => {
             input.addEventListener('blur', function() {
                 validateField(this);
@@ -210,6 +239,72 @@ function initializeFormHandling() {
     });
 }
 
+// FormSubmit Integration
+async function submitToFormSubmit(data, form) {
+    try {
+        // Create FormData for FormSubmit
+        const formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('phone', data.phone);
+        formData.append('service', data.service);
+        formData.append('location', data.location || 'Not specified');
+        formData.append('timestamp', data.timestamp);
+        formData.append('_subject', `🔆 New Solar Quote - ${data.name}`);
+        formData.append('_template', 'table');
+        formData.append('_captcha', 'false');
+        formData.append('_replyto', data.email || '');
+        
+        // Add hidden success URL
+        formData.append('_next', window.location.origin + '/thank-you.html');
+
+        const response = await fetch('https://formsubmit.co/ajax/solisgreenindia@gmail.com', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log('FormSubmit success:', result);
+            return true;
+        } else {
+            console.warn('FormSubmit failed, falling back to WhatsApp');
+            return false;
+        }
+    } catch (error) {
+        console.warn('FormSubmit error, falling back to WhatsApp:', error);
+        return false;
+    }
+}
+
+// WhatsApp Fallback
+function fallbackToWhatsApp(data) {
+    const message = `🔆 SOLIS GREEN INDIA - Quote Request 🔆
+
+Name: ${data.name}
+Phone: ${data.phone}
+Service Needed: ${data.service}
+Location: ${data.location}
+Timestamp: ${data.timestamp}
+
+URGENT: Please contact for solar installation quote.`;
+
+    const whatsappUrl = `https://wa.me/918301849474?text=${encodeURIComponent(message)}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+    
+    showNotification('Opening WhatsApp to send your details. We will contact you soon!', 'success');
+    
+    // Track WhatsApp fallback
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'whatsapp_fallback', {
+            'event_category': 'Form',
+            'event_label': 'FormSubmit to WhatsApp Fallback'
+        });
+    }
+}
+
+// Form Validation
 function validateForm(form) {
     let isValid = true;
     const requiredFields = form.querySelectorAll('[required]');
@@ -249,7 +344,8 @@ function validateField(field) {
     // Phone validation
     if (field.type === 'tel' && value) {
         const phoneRegex = /^[0-9]{10}$/;
-        if (!phoneRegex.test(value.replace(/\D/g, ''))) {
+        const cleanPhone = value.replace(/\D/g, '');
+        if (!phoneRegex.test(cleanPhone)) {
             isValid = false;
             errorMessage = 'Please enter a valid 10-digit phone number';
         }
@@ -257,13 +353,16 @@ function validateField(field) {
 
     if (!isValid) {
         showFieldError(field, errorMessage);
+    } else {
+        markFieldSuccess(field);
     }
 
     return isValid;
 }
 
 function showFieldError(field, message) {
-    field.style.borderColor = '#dc3545';
+    field.classList.add('error');
+    field.classList.remove('success');
     
     let errorElement = field.parentNode.querySelector('.field-error');
     if (!errorElement) {
@@ -278,27 +377,18 @@ function showFieldError(field, message) {
     errorElement.style.marginTop = '5px';
 }
 
+function markFieldSuccess(field) {
+    field.classList.remove('error');
+    field.classList.add('success');
+}
+
 function clearFieldError(field) {
-    field.style.borderColor = '';
+    field.classList.remove('error', 'success');
     
     const errorElement = field.parentNode.querySelector('.field-error');
     if (errorElement) {
         errorElement.remove();
     }
-}
-
-async function simulateFormSubmission(formData) {
-    // Simulate API call delay
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            // Simulate 90% success rate
-            if (Math.random() > 0.1) {
-                resolve('Form submitted successfully');
-            } else {
-                reject('Submission failed');
-            }
-        }, 2000);
-    });
 }
 
 // Notification System
@@ -347,12 +437,18 @@ function showNotification(message, type = 'info') {
         font-size: 1.2rem;
         cursor: pointer;
         margin-left: auto;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     `;
 
     document.body.appendChild(notification);
 
     // Auto remove after 5 seconds
-    setTimeout(() => {
+    const autoRemove = setTimeout(() => {
         if (notification.parentNode) {
             notification.style.animation = 'slideOutRight 0.3s ease';
             setTimeout(() => notification.remove(), 300);
@@ -361,6 +457,7 @@ function showNotification(message, type = 'info') {
 
     // Close on click
     notification.querySelector('.notification-close').addEventListener('click', () => {
+        clearTimeout(autoRemove);
         notification.style.animation = 'slideOutRight 0.3s ease';
         setTimeout(() => notification.remove(), 300);
     });
@@ -407,44 +504,6 @@ function initializeScrollAnimations() {
         element.style.transform = 'translateY(30px)';
         observer.observe(element);
     });
-
-    // Add scroll animation styles
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes slideOutRight {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
 }
 
 // Hero Image Loading with Fallbacks
@@ -469,96 +528,159 @@ function initializeHeroImages() {
     });
 }
 
-// Enhanced Hero Slider (Backup)
-class EnhancedHeroSlider {
-    constructor() {
-        this.slides = document.querySelectorAll('.hero-slide');
-        this.dots = document.querySelectorAll('.dot');
-        this.prevBtn = document.querySelector('.slider-prev');
-        this.nextBtn = document.querySelector('.slider-next');
-        this.currentSlide = 0;
-        this.slideInterval = null;
-        this.autoSlideDelay = 5000;
+// Hero Slider Functionality
+function initializeHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.slider-prev');
+    const nextBtn = document.querySelector('.slider-next');
+    
+    if (slides.length === 0) return;
+    
+    let currentSlide = 0;
+    let slideInterval;
+
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
         
-        this.init();
+        // Show current slide
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        let next = currentSlide + 1;
+        if (next >= slides.length) next = 0;
+        showSlide(next);
+    }
+
+    function prevSlide() {
+        let prev = currentSlide - 1;
+        if (prev < 0) prev = slides.length - 1;
+        showSlide(prev);
+    }
+
+    // Event listeners
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
     }
     
-    init() {
-        if (this.slides.length === 0) return;
-        
-        this.prevBtn?.addEventListener('click', () => this.prevSlide());
-        this.nextBtn?.addEventListener('click', () => this.nextSlide());
-        
-        this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.goToSlide(index));
-        });
-        
-        this.startAutoSlide();
-        
-        const slider = document.querySelector('.hero-slider');
-        slider?.addEventListener('mouseenter', () => this.stopAutoSlide());
-        slider?.addEventListener('mouseleave', () => this.startAutoSlide());
-        
-        // Initialize first slide
-        this.showSlide(0);
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
     }
-    
-    showSlide(index) {
-        // Hide current slide
-        this.slides[this.currentSlide].classList.remove('active');
-        this.dots[this.currentSlide].classList.remove('active');
-        
-        // Show new slide
-        this.slides[index].classList.add('active');
-        this.dots[index].classList.add('active');
-        
-        this.currentSlide = index;
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Auto slide
+    function startAutoSlide() {
+        slideInterval = setInterval(nextSlide, 5000);
     }
-    
-    nextSlide() {
-        let next = this.currentSlide + 1;
-        if (next >= this.slides.length) next = 0;
-        this.showSlide(next);
+
+    function stopAutoSlide() {
+        clearInterval(slideInterval);
     }
-    
-    prevSlide() {
-        let prev = this.currentSlide - 1;
-        if (prev < 0) prev = this.slides.length - 1;
-        this.showSlide(prev);
+
+    // Start auto slide
+    startAutoSlide();
+
+    // Pause on hover
+    const slider = document.querySelector('.hero-slider');
+    if (slider) {
+        slider.addEventListener('mouseenter', stopAutoSlide);
+        slider.addEventListener('mouseleave', startAutoSlide);
     }
-    
-    goToSlide(index) {
-        this.showSlide(index);
-    }
-    
-    startAutoSlide() {
-        this.stopAutoSlide();
-        this.slideInterval = setInterval(() => this.nextSlide(), this.autoSlideDelay);
-    }
-    
-    stopAutoSlide() {
-        if (this.slideInterval) {
-            clearInterval(this.slideInterval);
-            this.slideInterval = null;
-        }
-    }
+
+    // Initialize first slide
+    showSlide(0);
 }
 
-// Initialize everything when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all components
-    initializeMobileMenu();
-    initializeFloatingCTA();
-    initializeBackToTop();
-    initializeModals();
-    initializeFormHandling();
-    initializeScrollAnimations();
-    initializeHeroImages();
-    
-    // Initialize Hero Slider if not already initialized inline
-    if (!window.heroSliderInitialized) {
-        new EnhancedHeroSlider();
+// Enhanced Tracking
+function trackEvent(category, action, label, value = null) {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', action, {
+            event_category: category,
+            event_label: label,
+            value: value
+        });
     }
     
-    console.log('Solis Green India website initialized successfully');
+    // Console log for debugging
+    console.log(`Event Tracked: ${category} - ${action} - ${label}`, value);
+}
+
+// Initialize enhanced tracking
+document.addEventListener('DOMContentLoaded', function() {
+    // Track form interactions
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', () => {
+            trackEvent('Form', 'submit', form.id || 'unknown-form');
+        });
+    });
+    
+    // Track phone clicks
+    document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+        link.addEventListener('click', () => {
+            trackEvent('Contact', 'phone_click', link.textContent.trim());
+        });
+    });
+    
+    // Track WhatsApp clicks
+    document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+        link.addEventListener('click', () => {
+            trackEvent('Contact', 'whatsapp_click', link.textContent.trim());
+        });
+    });
+    
+    // Track CTA clicks
+    document.querySelectorAll('#quickFormBtn, .cta-button').forEach(button => {
+        button.addEventListener('click', () => {
+            trackEvent('CTA', 'button_click', button.textContent.trim());
+        });
+    });
 });
+
+// Performance optimization - Debounce scroll events
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Update back to top with debouncing
+window.addEventListener('scroll', debounce(function() {
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    }
+}, 10));
+
+// Service Worker Registration (Optional - for future PWA)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('ServiceWorker registration successful');
+            })
+            .catch(function(error) {
+                console.log('ServiceWorker registration failed: ', error);
+            });
+    });
+}
+
+console.log('Solis Green India website initialized successfully');
