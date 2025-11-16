@@ -12,30 +12,45 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- NEW: About Us Page -->
+  <url>
+    <loc>https://solisgreenindia.in/about/</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Main Service Pages -->
   <url>
-    <loc>https://solisgreenindia.in/services</loc>
+    <loc>https://solisgreenindia.in/services/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/services/residential-solar</loc>
+    <loc>https://solisgreenindia.in/services/residential-solar/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/services/commercial-solar</loc>
+    <loc>https://solisgreenindia.in/services/commercial-solar/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/services/industrial-solar</loc>
+    <loc>https://solisgreenindia.in/services/industrial-solar/</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://solisgreenindia.in/services/solar-maintenance/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -43,7 +58,7 @@
 
   <!-- Service Areas Pages -->
   <url>
-    <loc>https://solisgreenindia.in/cities</loc>
+    <loc>https://solisgreenindia.in/cities/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -51,7 +66,7 @@
 
   <!-- Projects Gallery -->
   <url>
-    <loc>https://solisgreenindia.in/projects</loc>
+    <loc>https://solisgreenindia.in/projects/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -59,7 +74,7 @@
 
   <!-- Contact Page -->
   <url>
-    <loc>https://solisgreenindia.in/contact</loc>
+    <loc>https://solisgreenindia.in/contact/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -77,56 +92,56 @@
 
   <!-- Pathanamthitta City Pages -->
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/thiruvalla</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/thiruvalla/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/kozhencherry</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/kozhencherry/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/adoor</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/adoor/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/rami</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/rami/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/pandalam</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/pandalam/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/mallappally</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/mallappally/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/elanthoor</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/elanthoor/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/komi</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-pathanamthitta/komi/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -142,63 +157,63 @@
 
   <!-- Kottayam City Pages -->
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kottayam/changanacherry</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kottayam/changanacherry/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kottayam/pala</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kottayam/pala/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kottayam/kanjirapally</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kottayam/kanjirapally/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kottayam/vaikom</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kottayam/vaikom/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kottayam/ettumanoor</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kottayam/ettumanoor/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kottayam/kumarakom</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kottayam/kumarakom/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kottayam/kuravilangad</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kottayam/kuravilangad/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kottayam/mundakayam</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kottayam/mundakayam/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kottayam/vakaihanam</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kottayam/vakaihanam/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -214,42 +229,42 @@
 
   <!-- Alappuzha City Pages -->
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/cherthala</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/cherthala/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/haripad</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/haripad/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/mavelikkara</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/mavelikkara/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/kayamkulam</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/kayamkulam/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/chengannur</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/chengannur/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/ambalapuzha</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-alappuzha/ambalapuzha/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -265,42 +280,42 @@
 
   <!-- Kollam City Pages -->
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kollam/karunagapally</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kollam/karunagapally/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kollam/punalur</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kollam/punalur/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kollam/kottarakara</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kollam/kottarakara/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kollam/paravur</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kollam/paravur/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kollam/sasthamkotta</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kollam/sasthamkotta/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://solisgreenindia.in/solar-company-in-kollam/anchal</loc>
+    <loc>https://solisgreenindia.in/solar-company-in-kollam/anchal/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
