@@ -7,9 +7,10 @@
     <meta name="keywords" content="solar company kerala, solar panels thiruvalla, solar installation pathanamthitta, solar subsidy kerala">
     <meta name="author" content="Solis Green India">
     
-    <!-- Preload WebP images -->
-    <link rel="preload" href="images/hero/hero-image-1.webp" as="image" type="image/webp">
-    <link rel="preload" href="images/hero/hero-image-2.webp" as="image" type="image/webp">
+    <!-- Preload WebP hero images (4,5,6) -->
+    <link rel="preload" href="images/hero/hero-image-4.webp" as="image" type="image/webp">
+    <link rel="preload" href="images/hero/hero-image-5.webp" as="image" type="image/webp">
+    <link rel="preload" href="images/hero/hero-image-6.webp" as="image" type="image/webp">
     
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -173,7 +174,7 @@
         </div>
     </header>
 
-    <!-- Enhanced Hero Slider with Proper Z-index -->
+    <!-- Hero Slider (Style A, 3 slides, using hero-image-4/5/6) -->
     <section class="hero-slider" id="home">
         <div class="particles-container">
             <div class="particles"></div>
@@ -183,8 +184,8 @@
         <div class="hero-slides">
             <!-- Slide 1 -->
             <div class="hero-slide active">
-                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-                     alt="Solar Power Kerala" 
+                <img src="images/hero/hero-image-4.webp" 
+                     alt="Solar panels powering homes in Kerala" 
                      class="hero-bg-image" 
                      loading="eager" 
                      fetchpriority="high"
@@ -225,8 +226,8 @@
             
             <!-- Slide 2 -->
             <div class="hero-slide">
-                <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-                     alt="Complete Solar Solutions Kerala" 
+                <img src="images/hero/hero-image-5.webp" 
+                     alt="Commercial solar rooftop installation in Kerala" 
                      class="hero-bg-image" 
                      loading="lazy"
                      width="2000" 
@@ -239,7 +240,7 @@
                 </div>
                 <div class="hero-content container">
                     <h1>Complete Solar Energy Solutions</h1>
-                    <p>Expert solar services from consultation to installation and maintenance across Kerala</p>
+                    <p>Expert solar services from consultation to installation and maintenance across Kerala.</p>
                     <div class="hero-buttons">
                         <div class="contact-options">
                             <a href="tel:8301849474" class="btn btn-primary">
@@ -263,8 +264,8 @@
             
             <!-- Slide 3 -->
             <div class="hero-slide">
-                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-                     alt="Solar Experts Kerala" 
+                <img src="images/hero/hero-image-6.webp" 
+                     alt="Experienced solar installation team in Kerala" 
                      class="hero-bg-image" 
                      loading="lazy"
                      width="2000" 
@@ -448,7 +449,7 @@
                         <span><i class="fas fa-check"></i> Govt Subsidy</span>
                         <span><i class="fas fa-check"></i> 25-Year Warranty</span>
                     </div>
-                    <a href="services/residential-solar/" class="btn btn-outline">
+                    <a href="services/residential-solar.html" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
@@ -461,7 +462,7 @@
                         <span><i class="fas fa-check"></i> Tax Benefits</span>
                         <span><i class="fas fa-check"></i> Quick ROI</span>
                     </div>
-                    <a href="services/commercial-solar/" class="btn btn-outline">
+                    <a href="services/commercial-solar.html" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
@@ -474,7 +475,7 @@
                         <span><i class="fas fa-check"></i> Carbon Credits</span>
                         <span><i class="fas fa-check"></i> Energy Independence</span>
                     </div>
-                    <a href="services/industrial-solar/" class="btn btn-outline">
+                    <a href="services/industrial-solar.html" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
@@ -487,7 +488,7 @@
                         <span><i class="fas fa-check"></i> System Repair</span>
                         <span><i class="fas fa-check"></i> 24/7 Support</span>
                     </div>
-                    <a href="services/solar-maintenance/" class="btn btn-outline">
+                    <a href="services/solar-maintenance.html" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
@@ -777,7 +778,7 @@
 
     <script src="script.js"></script>
     
-    <!-- Mobile Menu Fix -->
+    <!-- Mobile Menu Fix (optional helper, same style as other pages) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -789,7 +790,6 @@
                     this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
                 });
                 
-                // Close menu when clicking on links
                 const navLinks = mainNav.querySelectorAll('a');
                 navLinks.forEach(link => {
                     link.addEventListener('click', () => {
@@ -798,7 +798,6 @@
                     });
                 });
                 
-                // Close menu when clicking outside
                 document.addEventListener('click', function(event) {
                     if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
                         mainNav.classList.remove('active');
