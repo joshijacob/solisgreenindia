@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solis Green India - Complete solar services in Kerala. Residential, commercial, industrial solar installation with government subsidy and 5-year FREE AMC.">
-    <meta name="keywords" content="solar services kerala, residential solar, commercial solar, industrial solar, solar maintenance kerala">
+    <meta name="description" content="Solis Green India solar services in Kerala – residential, commercial, industrial solar and maintenance with subsidy assistance. Serving Pathanamthitta, Kottayam, Alappuzha, Kollam and nearby towns.">
+    <meta name="keywords" content="solar services kerala, residential solar Kerala, commercial solar Kerala, industrial solar plant, solar maintenance Kerala">
     <meta name="author" content="Solis Green India">
-    
-    <!-- Preload critical resources -->
+
+    <!-- Preload critical hero image -->
     <link rel="preload" href="../images/hero/hero-image-1.webp" as="image" type="image/webp">
-    
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -17,210 +17,170 @@
     'https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
     <!-- End Google Tag Manager -->
-    
-    <title>Solar Services - Solis Green India | Residential, Commercial & Industrial Solar Kerala</title>
+
+    <!-- Local Business Schema (optional but good for SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Solis Green India",
+      "description": "Solar energy company in Kerala providing residential, commercial and industrial solar installations with government subsidy assistance.",
+      "url": "https://solisgreenindia.in/services/",
+      "telephone": [
+        "+91-8301849474",
+        "+91-9539316623",
+        "+91-8606849474"
+      ],
+      "email": "solisgreenindia@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Opposite St. George Orthodox Church, Muthoor",
+        "addressLocality": "Thiruvalla",
+        "addressRegion": "Kerala",
+        "postalCode": "689107",
+        "addressCountry": "India"
+      },
+      "areaServed": ["Pathanamthitta", "Kottayam", "Alappuzha", "Kollam", "Thiruvananthapuram"],
+      "openingHours": "Mo-Su 08:00-20:00",
+      "priceRange": "₹₹"
+    }
+    </script>
+
+    <title>Solar Services in Kerala | Residential, Commercial, Industrial & Maintenance</title>
+
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
+    <!-- Small mobile-menu helper to ensure menu shows (works with existing CSS) -->
     <style>
-        /* Services Page Specific Styles */
-        .services-hero {
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            color: white;
-            padding: 100px 0 80px;
-            text-align: center;
-            margin-top: 80px;
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                display: flex !important;
+            }
+
+            .mobile-menu-btn {
+                display: block !important;
+            }
         }
-        
-        .service-features-grid {
+
+        /* Page-specific minor tweaks */
+        .services-intro {
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+
+        .services-intro p {
+            max-width: 720px;
+            margin: 10px auto 0;
+            color: var(--text-light);
+        }
+
+        .service-details-section {
+            padding: 60px 0;
+        }
+
+        .service-details-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
-            margin: 50px 0;
         }
-        
-        .service-feature {
-            text-align: center;
-            padding: 30px 20px;
-            background: rgba(255,255,255,0.1);
+
+        .service-detail-card {
+            background: var(--white);
+            padding: 25px 25px 30px;
             border-radius: var(--border-radius);
-            backdrop-filter: blur(10px);
+            box-shadow: var(--box-shadow);
         }
-        
-        .service-feature i {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+
+        .service-detail-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .service-detail-card ul {
+            margin: 10px 0 20px;
+            padding-left: 18px;
+            color: var(--text-light);
+        }
+
+        .service-detail-card ul li {
+            margin-bottom: 6px;
+        }
+
+        .service-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .service-badge {
+            font-size: 0.8rem;
+            background: var(--background-light);
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid #e1e5ea;
+        }
+
+        .services-areas-section {
+            padding: 60px 0;
+            background: var(--background-light);
+        }
+
+        .district-areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .district-areas-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .district-areas-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .district-areas-card h3 i {
             color: var(--primary-color);
         }
-        
-        .service-comparison {
-            background: var(--background-light);
-            padding: 80px 0;
+
+        .towns-list {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.7;
         }
-        
-        .comparison-table {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-            margin: 40px 0;
+
+        .services-main-cta {
+            padding: 60px 0 80px;
         }
-        
-        .comparison-header {
-            background: var(--primary-color);
-            color: var(--text-color);
-            padding: 20px;
+
+        .services-main-cta .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
-            font-weight: 600;
-        }
-        
-        .comparison-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            padding: 15px 20px;
-            border-bottom: 1px solid #e9ecef;
-            align-items: center;
-        }
-        
-        .comparison-row:nth-child(even) {
-            background: #f8f9fa;
-        }
-        
-        .comparison-row:last-child {
-            border-bottom: none;
-        }
-        
-        .service-benefits {
-            padding: 80px 0;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .benefit-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            text-align: center;
-            transition: var(--transition);
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .benefit-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.5rem;
-            color: var(--text-color);
-        }
-        
-        .service-process {
-            background: var(--background-light);
-            padding: 80px 0;
-        }
-        
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .process-step {
-            text-align: center;
-            position: relative;
-        }
-        
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            color: var(--text-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            margin: 0 auto 20px;
-            font-size: 1.2rem;
-        }
-        
-        .service-faq {
-            padding: 80px 0;
-        }
-        
-        .faq-item {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            margin-bottom: 15px;
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-        }
-        
-        .faq-question {
-            padding: 20px;
-            background: var(--primary-color);
-            color: var(--text-color);
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .faq-item.active .faq-answer {
-            padding: 20px;
-            max-height: 500px;
-        }
-        
-        @media (max-width: 768px) {
-            .comparison-row {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 10px;
-            }
-            
-            .comparison-row div:first-child {
-                font-weight: 600;
-                background: #f8f9fa;
-                padding: 10px;
-                border-radius: 5px;
-            }
-            
-            .service-features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .process-steps {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -230,7 +190,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Floating CTA -->
+    <!-- Floating CTA (same pattern as home) -->
     <div class="floating-cta">
         <div class="cta-main-btn" id="ctaMainBtn">
             <i class="fas fa-comments"></i>
@@ -258,7 +218,7 @@
         </div>
     </div>
 
-    <!-- Quick Quote Modal -->
+    <!-- Quick Quote Modal (same structure as home) -->
     <div class="modal" id="quickQuoteModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -280,6 +240,7 @@
                         <option value="residential">Residential Solar</option>
                         <option value="commercial">Commercial Solar</option>
                         <option value="industrial">Industrial Solar</option>
+                        <option value="maintenance">Solar Maintenance / AMC</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -343,60 +304,149 @@
         </div>
     </header>
 
-    <!-- Services Hero Section -->
-    <section class="services-hero">
-        <div class="container">
-            <h1>Complete Solar Energy Solutions</h1>
-            <p>Professional solar services for homes, businesses, and industries with 5-year FREE AMC and government subsidy assistance</p>
-            
-            <div class="service-features-grid">
-                <div class="service-feature">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>5-Year FREE AMC</h3>
-                    <p>Complete maintenance with daily monitoring included</p>
+    <!-- Hero Slider (3 slides, like home/about) -->
+    <section class="hero-slider" id="services-hero">
+        <div class="particles-container">
+            <div class="particles"></div>
+            <div class="solar-flare"></div>
+        </div>
+
+        <div class="hero-slides">
+            <!-- Slide 1 -->
+            <div class="hero-slide active">
+                <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=2000&q=80"
+                     alt="Residential rooftop solar installation in Kerala"
+                     class="hero-bg-image"
+                     loading="eager"
+                     fetchpriority="high"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-blue"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">🏠</div>
+                    <div class="floating-element element-2">☀️</div>
+                    <div class="floating-element element-3">⚡</div>
                 </div>
-                <div class="service-feature">
-                    <i class="fas fa-rupee-sign"></i>
-                    <h3>40% Subsidy</h3>
-                    <p>Government subsidy assistance for residential projects</p>
+                <div class="hero-content container">
+                    <h1>Smart Solar Solutions for Every Home & Business</h1>
+                    <p>From small homes to large industries – custom solar systems designed for Kerala’s power needs.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                                <i class="fas fa-phone"></i> Talk to a Solar Expert
+                            </a>
+                            <a href="../contact/" class="btn btn-secondary">
+                                <i class="fas fa-file-signature"></i> Book Free Site Visit
+                            </a>
+                        </div>
+                        <div class="whatsapp-options">
+                            <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Your Requirement
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="service-feature">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Quick Installation</h3>
-                    <p>Professional installation in 3-5 days</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=2000&q=80"
+                     alt="Commercial solar power plant on factory roof"
+                     class="hero-bg-image"
+                     loading="lazy"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-green"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">🏭</div>
+                    <div class="floating-element element-2">💼</div>
+                    <div class="floating-element element-3">💰</div>
                 </div>
-                <div class="service-feature">
-                    <i class="fas fa-headset"></i>
-                    <h3>24/7 Support</h3>
-                    <p>Technical support and emergency services</p>
+                <div class="hero-content container">
+                    <h1>Cut Your Electricity Bills by Up to 80%</h1>
+                    <p>Commercial & industrial solar plants with fast ROI, tax benefits and government subsidy support.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="tel:9539316623" class="btn btn-primary">
+                                <i class="fas fa-phone-alt"></i> Call for Project Study
+                            </a>
+                            <a href="../projects/" class="btn btn-secondary">
+                                <i class="fas fa-images"></i> View Completed Projects
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=2000&q=80"
+                     alt="Solar technician doing panel maintenance in Kerala"
+                     class="hero-bg-image"
+                     loading="lazy"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-purple"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">🔧</div>
+                    <div class="floating-element element-2">🛡️</div>
+                    <div class="floating-element element-3">⭐</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>End-to-End Service & 5-Year FREE AMC</h1>
+                    <p>Installation, monitoring, cleaning and repairs – everything handled by our in-house team.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="tel:8606849474" class="btn btn-support pulse-animation">
+                                <i class="fas fa-headset"></i> 24/7 Support: 8606849474
+                            </a>
+                            <a href="solar-maintenance.html" class="btn btn-primary">
+                                <i class="fas fa-tools"></i> Know About Maintenance
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Slider Controls -->
+        <button class="slider-prev" aria-label="Previous slide">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-next" aria-label="Next slide">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Slider Dots (must match slide count) -->
+        <div class="slider-dots">
+            <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
+            <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
+            <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
+        </div>
     </section>
 
-    <!-- Main Services Grid -->
+    <!-- Small intro under hero -->
+    <section class="services-intro">
+        <div class="container">
+            <h2 class="section-title">Solar Services We Provide</h2>
+            <p>Whether you are planning a new solar plant, upgrading your existing system, or looking for professional AMC & maintenance, Solis Green India has a dedicated service package for you.</p>
+        </div>
+    </section>
+
+    <!-- Quick services grid (re-using .quick-services styles) -->
     <section class="quick-services">
         <div class="container">
-            <h2 class="section-title">Our Solar Services</h2>
-            <p class="text-center">Comprehensive solar solutions tailored to your specific needs</p>
-            
             <div class="services-grid">
                 <div class="service-card">
                     <i class="fas fa-home"></i>
                     <h3>Residential Solar</h3>
-                    <p>Complete home solar systems with 40% government subsidy. Perfect for houses, apartments, and villas.</p>
+                    <p>On-grid home solar systems with up to 40% government subsidy and 25-year performance warranty.</p>
                     <div class="service-features">
-                        <span><i class="fas fa-check"></i> 1-10kW Systems</span>
-                        <span><i class="fas fa-check"></i> Govt Subsidy Available</span>
-                        <span><i class="fas fa-check"></i> 25-Year Performance Warranty</span>
-                        <span><i class="fas fa-check"></i> Battery Backup Options</span>
+                        <span><i class="fas fa-check"></i> 1–10 kW rooftop systems</span>
+                        <span><i class="fas fa-check"></i> Kerala Govt subsidy guidance</span>
+                        <span><i class="fas fa-check"></i> Net metering support</span>
                     </div>
-                    <div class="service-specs">
-                        <strong>Bill Reduction:</strong> Up to 90%<br>
-                        <strong>Payback Period:</strong> 3-4 years<br>
-                        <strong>Best For:</strong> Homes, Apartments
-                    </div>
-                    <a href="residential-solar/" class="btn btn-outline">
+                    <a href="residential-solar.html" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
@@ -404,19 +454,13 @@
                 <div class="service-card">
                     <i class="fas fa-building"></i>
                     <h3>Commercial Solar</h3>
-                    <p>Business solar solutions with tax benefits and accelerated depreciation. Ideal for shops, offices, and commercial complexes.</p>
+                    <p>Solar plants for shops, hospitals, institutions and offices – reduce monthly EB bills drastically.</p>
                     <div class="service-features">
-                        <span><i class="fas fa-check"></i> 10-100kW Systems</span>
-                        <span><i class="fas fa-check"></i> Tax Benefits Available</span>
-                        <span><i class="fas fa-check"></i> Net Metering</span>
-                        <span><i class="fas fa-check"></i> Custom Solutions</span>
+                        <span><i class="fas fa-check"></i> 10–100 kW systems</span>
+                        <span><i class="fas fa-check"></i> Tax benefits & depreciation</span>
+                        <span><i class="fas fa-check"></i> Tailor-made ROI planning</span>
                     </div>
-                    <div class="service-specs">
-                        <strong>Cost Saving:</strong> Up to 60%<br>
-                        <strong>ROI Period:</strong> 2-3 years<br>
-                        <strong>Best For:</strong> Shops, Offices, Malls
-                    </div>
-                    <a href="commercial-solar/" class="btn btn-outline">
+                    <a href="commercial-solar.html" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
@@ -424,298 +468,202 @@
                 <div class="service-card">
                     <i class="fas fa-industry"></i>
                     <h3>Industrial Solar</h3>
-                    <p>Large-scale solar plants for factories and manufacturing units with captive power consumption benefits.</p>
+                    <p>Large-scale solar plants for factories and industrial units with captive power and energy security.</p>
                     <div class="service-features">
-                        <span><i class="fas fa-check"></i> 100kW-1MW+ Systems</span>
-                        <span><i class="fas fa-check"></i> Carbon Credit Benefits</span>
-                        <span><i class="fas fa-check"></i> Captive Power</span>
-                        <span><i class="fas fa-check"></i> Energy Management</span>
+                        <span><i class="fas fa-check"></i> 100 kW – 1 MW+ plants</span>
+                        <span><i class="fas fa-check"></i> Load study & design</span>
+                        <span><i class="fas fa-check"></i> SCADA & monitoring</span>
                     </div>
-                    <div class="service-specs">
-                        <strong>Energy Cost:</strong> 50% Reduction<br>
-                        <strong>ROI Period:</strong> 3-4 years<br>
-                        <strong>Best For:</strong> Factories, Industries
-                    </div>
-                    <a href="industrial-solar/" class="btn btn-outline">
+                    <a href="industrial-solar.html" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
 
                 <div class="service-card">
                     <i class="fas fa-tools"></i>
-                    <h3>Solar Maintenance</h3>
-                    <p>Professional cleaning, repair, and Annual Maintenance Contracts to keep your solar system at peak performance.</p>
+                    <h3>Solar Maintenance & AMC</h3>
+                    <p>Annual maintenance contracts, cleaning, fault finding and performance improvement services.</p>
                     <div class="service-features">
-                        <span><i class="fas fa-check"></i> Panel Cleaning</span>
-                        <span><i class="fas fa-check"></i> System Repair</span>
-                        <span><i class="fas fa-check"></i> Performance Monitoring</span>
-                        <span><i class="fas fa-check"></i> 24/7 Emergency Support</span>
+                        <span><i class="fas fa-check"></i> Panel cleaning & inspection</span>
+                        <span><i class="fas fa-check"></i> Inverter & wiring checks</span>
+                        <span><i class="fas fa-check"></i> 5-year FREE AMC on new plants</span>
                     </div>
-                    <div class="service-specs">
-                        <strong>AMC Plans:</strong> Available<br>
-                        <strong>Response Time:</strong> 24-48 hours<br>
-                        <strong>Coverage:</strong> All Kerala
-                    </div>
-                    <a href="solar-maintenance/" class="btn btn-outline">
+                    <a href="solar-maintenance.html" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Service Comparison -->
-    <section class="service-comparison">
-        <div class="container">
-            <h2 class="section-title">Service Comparison</h2>
-            <p class="text-center">Choose the right solar solution for your needs</p>
-            
-            <div class="comparison-table">
-                <div class="comparison-header">
-                    Solar Service Features Comparison
-                </div>
-                
-                <div class="comparison-row">
-                    <div><strong>Feature</strong></div>
-                    <div><strong>Residential</strong></div>
-                    <div><strong>Commercial</strong></div>
-                    <div><strong>Industrial</strong></div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div>System Size Range</div>
-                    <div>1-10 kW</div>
-                    <div>10-100 kW</div>
-                    <div>100kW-1MW+</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div>Government Subsidy</div>
-                    <div><i class="fas fa-check text-success"></i> Available</div>
-                    <div><i class="fas fa-times text-muted"></i> Not Available</div>
-                    <div><i class="fas fa-times text-muted"></i> Not Available</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div>Tax Benefits</div>
-                    <div><i class="fas fa-times text-muted"></i> Limited</div>
-                    <div><i class="fas fa-check text-success"></i> Available</div>
-                    <div><i class="fas fa-check text-success"></i> Available</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div>Installation Time</div>
-                    <div>3-5 days</div>
-                    <div>1-2 weeks</div>
-                    <div>2-4 weeks</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div>Bill Reduction</div>
-                    <div>Up to 90%</div>
-                    <div>Up to 60%</div>
-                    <div>Up to 50%</div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div>5-Year FREE AMC</div>
-                    <div><i class="fas fa-check text-success"></i> Included</div>
-                    <div><i class="fas fa-check text-success"></i> Included</div>
-                    <div><i class="fas fa-check text-success"></i> Included</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Service Benefits -->
-    <section class="service-benefits">
-        <div class="container">
-            <h2 class="section-title">Why Choose Our Solar Services?</h2>
-            <p class="text-center">Experience the Solis Green India difference with our comprehensive service package</p>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Technical Excellence</h3>
-                    <p>Engineering-driven solutions with comprehensive technical assessments and custom design</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>5-Year FREE AMC</h3>
-                    <p>Complete protection including daily monitoring, bi-annual visits, and zero-cost repairs</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-rupee-sign"></i>
-                    </div>
-                    <h3>Subsidy Assistance</h3>
-                    <p>Complete guidance and paperwork support for government subsidy applications</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Quality Components</h3>
-                    <p>Premium solar panels and equipment from trusted brands with long-term warranties</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>24/7 Support</h3>
-                    <p>Round-the-clock technical support and emergency services across Kerala</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>Expert Team</h3>
-                    <p>Certified solar engineers and technicians with 5+ years of field experience</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Service Process -->
-    <section class="service-process">
-        <div class="container">
-            <h2 class="section-title">Our Solar Installation Process</h2>
-            <p class="text-center">Simple, transparent process from consultation to commissioning</p>
-            
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3>Free Site Survey</h3>
-                    <p>Professional assessment of your location, roof structure, and energy needs</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3>Custom Design</h3>
-                    <p>Engineering-based system design with detailed proposal and ROI calculation</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3>Approval & Subsidy</h3>
-                    <p>KSEB approval assistance and government subsidy application support</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3>Professional Installation</h3>
-                    <p>Quick and clean installation by certified technicians with quality checks</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">5</div>
-                    <h3>Commissioning</h3>
-                    <p>System testing, KSEB inspection, and handover with complete documentation</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="step-number">6</div>
-                    <h3>After-Sales Support</h3>
-                    <p>5-year FREE AMC with daily monitoring and 24/7 emergency support</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="service-faq">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="text-center">Get answers to common questions about our solar services</p>
-            
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        What is included in the 5-year FREE AMC?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Our 5-year FREE AMC includes: bi-annual professional site visits, daily remote system monitoring, all genuine fault repairs at zero cost, replacement parts when needed, performance optimization, and 24/7 emergency support. Everything is completely FREE for 5 years.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        How much government subsidy can I get for residential solar?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>For residential solar systems, you can get up to 40% subsidy from the government. For a 3kW system, this means approximately ₹45,000-₹50,000 subsidy. We provide complete assistance with subsidy application and paperwork.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        How long does solar installation take?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Residential installations typically take 3-5 days, commercial projects 1-2 weeks, and industrial installations 2-4 weeks. This includes KSEB approval process and commissioning.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Do you provide battery backup systems?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we offer both on-grid systems (without battery) and hybrid systems (with battery backup). Battery systems are recommended for areas with frequent power cuts and provide uninterrupted power supply.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        What is the payback period for solar investment?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Typically 3-4 years for residential systems, 2-3 years for commercial, and 3-4 years for industrial systems. After the payback period, you get virtually free electricity for 20+ years.</p>
+            <div class="services-cta">
+                <div class="cta-content">
+                    <h3>Not Sure Which Service is Right for You?</h3>
+                    <p>Share your electricity bill and rooftop / land details. Our engineers will suggest the best solar option for your budget.</p>
+                    <div class="cta-buttons">
+                        <a href="tel:8301849474" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> Call: 8301849474
+                        </a>
+                        <a href="../contact/" class="btn btn-secondary">
+                            <i class="fas fa-file-signature"></i> Request Site Visit
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Service CTA -->
-    <section class="project-cta">
+    <!-- Detailed service blocks -->
+    <section class="service-details-section">
+        <div class="container">
+            <div class="service-details-grid">
+                <div class="service-detail-card">
+                    <div class="service-badges">
+                        <span class="service-badge">Homes</span>
+                        <span class="service-badge">Subsidy</span>
+                        <span class="service-badge">Net Metering</span>
+                    </div>
+                    <h3>Residential Rooftop Systems</h3>
+                    <p>Perfect for villas, independent houses and small apartments looking to reduce EB bills and enjoy stable power.</p>
+                    <ul>
+                        <li>1–10 kW grid-tied systems designed as per KSEB rules</li>
+                        <li>Assistance for central/state subsidy and documentation</li>
+                        <li>Aesthetic panel layout with safe wiring & earthing</li>
+                        <li>Monitoring support via mobile app / web portal</li>
+                    </ul>
+                    <a href="residential-solar.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Explore Residential Solar
+                    </a>
+                </div>
+
+                <div class="service-detail-card">
+                    <div class="service-badges">
+                        <span class="service-badge">Shops & Offices</span>
+                        <span class="service-badge">Institutions</span>
+                    </div>
+                    <h3>Commercial & Institutional Solar</h3>
+                    <p>Designed for shops, malls, hospitals, hotels, schools and colleges that require reliable daytime power.</p>
+                    <ul>
+                        <li>Load analysis and customized sizing for your business</li>
+                        <li>Financial modelling with payback period and ROI</li>
+                        <li>Integration with existing diesel generators if required</li>
+                        <li>Flexible structures for RCC roofs, metal roofs & sheds</li>
+                    </ul>
+                    <a href="commercial-solar.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Explore Commercial Solar
+                    </a>
+                </div>
+
+                <div class="service-detail-card">
+                    <div class="service-badges">
+                        <span class="service-badge">Factories</span>
+                        <span class="service-badge">High Load</span>
+                    </div>
+                    <h3>Industrial Solar Power Plants</h3>
+                    <p>End-to-end EPC solutions for industries with high power consumption and demanding operating conditions.</p>
+                    <ul>
+                        <li>High-efficiency modules & string/central inverters</li>
+                        <li>SCADA-based monitoring and preventive alerts</li>
+                        <li>Strong structures for high wind & corrosion zones</li>
+                        <li>Coordination with DISCOM for approvals & commissioning</li>
+                    </ul>
+                    <a href="industrial-solar.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Explore Industrial Solar
+                    </a>
+                </div>
+
+                <div class="service-detail-card">
+                    <div class="service-badges">
+                        <span class="service-badge">AMC</span>
+                        <span class="service-badge">Cleaning</span>
+                        <span class="service-badge">Repairs</span>
+                    </div>
+                    <h3>Solar Maintenance, Repair & AMC</h3>
+                    <p>Even a good system can underperform without regular care. Our maintenance team ensures maximum generation.</p>
+                    <ul>
+                        <li>Periodic panel cleaning & structure inspection</li>
+                        <li>Inverter fault diagnosis and replacement support</li>
+                        <li>Performance audit for old/underperforming plants</li>
+                        <li>Flexible AMC packages for homes, flats & industries</li>
+                    </ul>
+                    <a href="solar-maintenance.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Learn About AMC Plans
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Areas: towns visible for SEO but not linked -->
+    <section class="services-areas-section">
+        <div class="container">
+            <h2 class="section-title">Where We Provide Solar Services</h2>
+            <p class="text-center">Solis Green India offers solar installation, upgrade and maintenance services across these districts and key towns in South Kerala.</p>
+
+            <div class="district-areas-grid">
+                <div class="district-areas-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Pathanamthitta District</h3>
+                    <p class="towns-list">
+                        Main towns we actively serve include: Thiruvalla, Ranni, Adoor, Kozhencherry, Konni, Pandalam, Mallappally, Elanthoor, and nearby locations.
+                    </p>
+                    <a href="../solar-company-in-pathanamthitta/" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> View Pathanamthitta Details
+                    </a>
+                </div>
+
+                <div class="district-areas-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Kottayam District</h3>
+                    <p class="towns-list">
+                        Service coverage includes: Kottayam town, Changanacherry, Pala, Kanjirappally, Ettumanoor, Vaikom, Kuravilangad, Mundakayam, Vakathanam and surrounding areas.
+                    </p>
+                    <a href="../solar-company-in-kottayam/" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> View Kottayam Details
+                    </a>
+                </div>
+
+                <div class="district-areas-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Alappuzha District</h3>
+                    <p class="towns-list">
+                        We install and maintain solar systems in towns like Alappuzha, Cherthala, Haripad, Kayamkulam, Mavelikkara, Chengannur, Ambalapuzha and nearby coastal / inland regions.
+                    </p>
+                    <a href="../solar-company-in-alappuzha/" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> View Alappuzha Details
+                    </a>
+                </div>
+
+                <div class="district-areas-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Kollam District</h3>
+                    <p class="towns-list">
+                        Key service towns include: Kollam, Karunagappally, Punalur, Kottarakkara, Paravur, Sasthamkotta, Anchal and neighbouring industrial / residential areas.
+                    </p>
+                    <a href="../solar-company-in-kollam/" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> View Kollam Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="services-main-cta">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to Start Your Solar Journey?</h2>
-                <p>Get a free site survey and custom quote from our solar experts</p>
+                <h2>Ready to Start Your Solar Project?</h2>
+                <p>Share your latest electricity bill or simply call us. Our engineers will suggest the right capacity, investment and subsidy options for your home or business.</p>
                 <div class="cta-buttons">
                     <a href="tel:8301849474" class="btn btn-primary">
-                        <i class="fas fa-phone"></i> Call Expert: 8301849474
-                    </a>
-                    <a href="../contact/" class="btn btn-secondary">
-                        <i class="fas fa-calendar"></i> Schedule Site Visit
+                        <i class="fas fa-phone"></i> Call: 8301849474
                     </a>
                     <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> Get Instant Quote
+                        <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
                     </a>
-                </div>
-                <div class="support-contact">
-                    <p><strong>Technical Consultation:</strong> <a href="tel:8606849474">8606849474</a> | Available for all service inquiries</p>
+                    <a href="../contact/" class="btn btn-secondary">
+                        <i class="fas fa-file-signature"></i> Fill Contact Form
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (same structure as home) -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -723,7 +671,7 @@
                     <div class="footer-logo">
                         <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Complete solar energy solutions provider in Kerala with technical excellence and 5-year FREE AMC protection.</p>
+                    <p>Leading provider of residential, commercial and industrial solar solutions in Kerala with strong local service support.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -742,43 +690,50 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Our Services</h3>
+                    <h3>Service Areas</h3>
                     <ul>
-                        <li><a href="residential-solar/">Residential Solar</a></li>
-                        <li><a href="commercial-solar/">Commercial Solar</a></li>
-                        <li><a href="industrial-solar/">Industrial Solar</a></li>
-                        <li><a href="solar-maintenance/">Solar Maintenance</a></li>
+                        <li><a href="../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
+                        <li><a href="../solar-company-in-kottayam/">Kottayam District</a></li>
+                        <li><a href="../solar-company-in-alappuzha/">Alappuzha District</a></li>
+                        <li><a href="../solar-company-in-kollam/">Kollam District</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Contact Service Team</h3>
+                    <h3>Contact Solis Green India</h3>
                     <ul class="contact-info">
                         <li class="contact-primary">
                             <i class="fas fa-phone"></i> 
                             <div>
-                                <a href="tel:8301849474">Service Expert: 8301849474</a>
-                                <span class="contact-label">Consultation & Quotes</span>
+                                <a href="tel:8301849474">Primary: 8301849474</a>
+                                <span class="contact-label">Main Line</span>
                             </div>
                         </li>
                         <li class="contact-alternate">
                             <i class="fas fa-phone-alt"></i> 
                             <div>
                                 <a href="tel:9539316623">Alternate: 9539316623</a>
-                                <span class="contact-label">Project Coordination</span>
+                                <span class="contact-label">Emergency/Backup</span>
                             </div>
                         </li>
                         <li class="contact-support">
                             <i class="fas fa-headset"></i> 
                             <div>
                                 <a href="tel:8606849474">Support: 8606849474</a>
-                                <span class="contact-label">Technical Support</span>
+                                <span class="contact-label">Customer Support</span>
                             </div>
                         </li>
                         <li class="whatsapp-primary">
                             <i class="fab fa-whatsapp"></i> 
                             <div>
                                 <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
-                                <span class="contact-label">Service Inquiries</span>
+                                <span class="contact-label">Primary Chat</span>
+                            </div>
+                        </li>
+                        <li class="whatsapp-alternate">
+                            <i class="fab fa-whatsapp"></i> 
+                            <div>
+                                <a href="https://wa.me/919539316623">WhatsApp: 9539316623</a>
+                                <span class="contact-label">Alternate Chat</span>
                             </div>
                         </li>
                         <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
@@ -787,7 +742,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Complete Solar Services Across Kerala</p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Professional Solar Services Across Kerala</p>
             </div>
         </div>
     </footer>
@@ -797,76 +752,7 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
+    <!-- No extra JS needed; main script handles menu, slider, CTA, forms -->
     <script src="../script.js"></script>
-    
-    <!-- Services Page JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu Fix
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mainNav = document.getElementById('mainNav');
-            
-            if (mobileMenuBtn && mainNav) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    mainNav.classList.toggle('active');
-                    this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
-                });
-                
-                // Close menu when clicking on links
-                const navLinks = mainNav.querySelectorAll('a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mainNav.classList.remove('active');
-                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    });
-                });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-                        mainNav.classList.remove('active');
-                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-
-            // FAQ Accordion
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                question.addEventListener('click', () => {
-                    // Close all other items
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle current item
-                    item.classList.toggle('active');
-                });
-            });
-
-            // Service card animations
-            const serviceCards = document.querySelectorAll('.service-card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            serviceCards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                observer.observe(card);
-            });
-        });
-    </script>
 </body>
 </html>
