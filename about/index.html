@@ -3,36 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn about Solis Green Energy Solutions - Kerala's leading solar energy company. Our mission, vision, team, and commitment to sustainable energy.">
-    <meta name="keywords" content="about solar company kerala, solar company mission, sustainable energy kerala, solar experts">
-    <meta name="author" content="Solis Green Energy Solutions">
+    <meta name="description" content="Solis Green India - Powering Kerala's sustainable future with 5+ years of solar excellence. 500+ projects completed across South Kerala.">
+    <meta name="keywords" content="solar company kerala, about solis green, solar experts kerala, sustainable energy">
+    <meta name="author" content="Solis Green India">
     
-    <title>About Us - Solis Green Energy Solutions | Leading Solar Company in Kerala</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../images/hero/hero-image-1.webp" as="image" type="image/webp">
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GT-KTT5M68J');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4VD9LGY29"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R4VD9LGY29');
+    </script>
+    
+    <!-- Enhanced Event Tracking for Multiple Contact Numbers -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Primary Phone Number Tracking
+        document.querySelectorAll('a[href^="tel:8301849474"]').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'phone_call', {
+              'event_category': 'Contact',
+              'event_label': 'Primary Number - 8301849474',
+              'value': 1
+            });
+          });
+        });
+
+        // Alternate Phone Number Tracking
+        document.querySelectorAll('a[href^="tel:9539316623"]').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'phone_call', {
+              'event_category': 'Contact',
+              'event_label': 'Alternate Number - 9539316623',
+              'value': 1
+            });
+          });
+        });
+
+        // Support Phone Number Tracking
+        document.querySelectorAll('a[href^="tel:8606849474"]').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'phone_call', {
+              'event_category': 'Contact',
+              'event_label': 'Support Number - 8606849474',
+              'value': 1
+            });
+          });
+        });
+
+        // WhatsApp Tracking
+        document.querySelectorAll('a[href*="wa.me/918301849474"]').forEach(link => {
+          link.addEventListener('click', function() {
+            gtag('event', 'whatsapp_click', {
+              'event_category': 'Contact',
+              'event_label': 'WhatsApp - 8301849474',
+              'value': 1
+            });
+          });
+        });
+
+        // Form Submission Tracking
+        document.querySelectorAll('form').forEach(form => {
+          form.addEventListener('submit', function() {
+            gtag('event', 'form_submit', {
+              'event_category': 'Lead',
+              'event_label': 'About Page Form Submission',
+              'value': 1
+            });
+          });
+        });
+      });
+    </script>
+    
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "About Solis Green India",
+      "description": "Technical solar engineering company in Kerala providing FREE 5-year AMC with daily monitoring",
+      "url": "https://solisgreenindia.in/about/",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Solis Green India",
+        "description": "Engineering-driven solar solutions provider in Kerala",
+        "foundingDate": "2019",
+        "employee": {
+          "@type": "Person",
+          "name": "Solar Engineering Team",
+          "jobTitle": "Certified Solar Engineers"
+        }
+      }
+    }
+    </script>
+    
+    <title>About Solis Green India - Powering Kerala's Sustainable Future | 5+ Years Excellence</title>
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Expandable Floating CTA -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-KTT5M68J"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Floating CTA -->
     <div class="floating-cta">
         <div class="cta-main-btn" id="ctaMainBtn">
             <i class="fas fa-comments"></i>
+            <span class="pulse-dot"></span>
         </div>
         <div class="cta-options">
-            <a href="tel:8301849474" class="cta-option" data-tooltip="Call Us">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Primary Call">
                 <i class="fas fa-phone"></i>
+            </a>
+            <a href="tel:9539316623" class="cta-option" data-tooltip="Alternate Call">
+                <i class="fas fa-phone-alt"></i>
+            </a>
+            <a href="tel:8606849474" class="cta-option" data-tooltip="Support Call">
+                <i class="fas fa-headset"></i>
             </a>
             <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
                 <i class="fas fa-file-alt"></i>
             </a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=9.39512320,76.56610090" class="cta-option" data-tooltip="Get Directions" target="_blank">
-                <i class="fas fa-map-marker-alt"></i>
-            </a>
-            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp" target="_blank">
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="Primary WhatsApp" target="_blank">
                 <i class="fab fa-whatsapp"></i>
             </a>
+            <a href="https://wa.me/919539316623" class="cta-option" data-tooltip="Alternate WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Quote Modal -->
+    <div class="modal" id="quickQuoteModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Get Quick Solar Quote</h3>
+            <form class="quick-quote-form" id="modalQuoteForm">
+                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select name="service" required>
+                        <option value="">Select Service</option>
+                        <option value="residential">Residential Solar</option>
+                        <option value="commercial">Commercial Solar</option>
+                        <option value="industrial">Industrial Solar</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="location" placeholder="Your Location/City">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-bolt"></i> Get Instant Quote
+                </button>
+            </form>
+            <div class="emergency-contact-modal">
+                <h4>Need Immediate Help?</h4>
+                <div class="emergency-numbers">
+                    <a href="tel:8301849474" class="emergency-number">
+                        <i class="fas fa-phone"></i> Primary: 8301849474
+                    </a>
+                    <a href="tel:9539316623" class="emergency-number">
+                        <i class="fas fa-phone-alt"></i> Alternate: 9539316623
+                    </a>
+                    <a href="tel:8606849474" class="emergency-number">
+                        <i class="fas fa-headset"></i> Support: 8606849474
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -40,7 +202,20 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="images/logo/logo.png" alt="Solis Green Energy Solutions - Solar Energy Solutions" class="logo-img">
+                <a href="../">
+                    <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+                </a>
+            </div>
+            
+            <div class="header-contact">
+                <a href="tel:8301849474" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                    <span>Primary: 8301849474</span>
+                </a>
+                <a href="tel:9539316623" class="contact-link">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Alternate: 9539316623</span>
+                </a>
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
@@ -49,220 +224,181 @@
             
             <nav id="mainNav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="cities.html">Service Areas</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html" class="cta-button">Contact</a></li>
+                    <li><a href="../">Home</a></li>
+                    <li><a href="../services/">Services</a></li>
+                    <li><a href="../cities/">Service Areas</a></li>
+                    <li><a href="../about/" class="active">About Us</a></li>
+                    <li><a href="../projects/">Projects</a></li>
+                    <li><a href="../contact/" class="cta-button">Contact</a></li>         
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- About Hero Section -->
-    <section class="about-hero">
-        <div class="container">
-            <div class="about-hero-content">
-                <h1>Powering Kerala's Sustainable Future</h1>
-                <p class="hero-subtitle">Leading the solar energy revolution with expertise, innovation, and commitment to a greener tomorrow</p>
-                <div class="experience-badge">
-                    <span class="years">5+</span>
-                    <span class="label">Years of Excellence</span>
+    <!-- Hero Section -->
+    <section class="hero-slider" id="home">
+        <div class="particles-container">
+            <div class="particles"></div>
+            <div class="solar-flare"></div>
+        </div>
+        
+        <div class="hero-slides">
+            <div class="hero-slide active">
+                <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                     alt="Solis Green India - Powering Kerala's Sustainable Future" 
+                     class="hero-bg-image" 
+                     loading="eager" 
+                     fetchpriority="high"
+                     width="2000" 
+                     height="1333">
+                <div class="gradient-overlay gradient-green"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">🌱</div>
+                    <div class="floating-element element-2">⚡</div>
+                    <div class="floating-element element-3">🌟</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>Powering Kerala's Sustainable Future</h1>
+                    <p>Leading the solar energy revolution with expertise, innovation, and commitment to a greener tomorrow</p>
+                    <div class="hero-stats">
+                        <div class="stat-badge">
+                            <strong>5+ Years</strong>
+                            <span>of Excellence</span>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                                <i class="fas fa-phone"></i> Call Experts: 8301849474
+                            </a>
+                            <a href="tel:9539316623" class="btn btn-secondary">
+                                <i class="fas fa-phone-alt"></i> Alternate: 9539316623
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Our Story Section -->
-    <section class="our-story section-light">
+    <section class="our-story-section section-light">
         <div class="container">
-            <div class="story-grid">
-                <div class="story-content">
-                    <h2>Our Story</h2>
-                    <p class="lead">Founded with a vision to transform Kerala's energy landscape, Solis Green Energy Solutions emerged as a pioneer in sustainable energy solutions.</p>
+            <div class="story-header">
+                <h2 class="section-title">Our Story</h2>
+                <p class="story-subtitle">From vision to reality - transforming Kerala's energy landscape</p>
+            </div>
+            
+            <div class="story-content-grid">
+                <div class="story-text">
+                    <div class="story-paragraph">
+                        <p>Founded with a vision to transform Kerala's energy landscape, Solis Green India emerged as a pioneer in sustainable energy solutions.</p>
+                    </div>
                     
-                    <p>What started as a small venture in Pathanamthitta has grown into one of South Kerala's most trusted solar energy providers. Our journey began with a simple belief: every home and business in Kerala deserves access to clean, affordable, and reliable solar energy.</p>
+                    <div class="story-paragraph">
+                        <p>What started as a small venture in Pathanamthitta has grown into one of South Kerala's most trusted solar energy providers. Our journey began with a simple belief: every home and business in Kerala deserves access to clean, affordable, and reliable solar energy.</p>
+                    </div>
                     
-                    <p>Today, we've successfully completed <strong>500+ solar installations</strong> across multiple districts, helping families and businesses reduce their electricity bills by up to 90% while contributing to a cleaner environment.</p>
-                    
-                    <div class="story-stats">
-                        <div class="stat">
-                            <span class="number">500+</span>
-                            <span class="label">Projects Completed</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number">5</span>
-                            <span class="label">Districts Served</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number">25+</span>
-                            <span class="label">Towns Covered</span>
-                        </div>
-                        <div class="stat">
-                            <span class="number">98%</span>
-                            <span class="label">Customer Satisfaction</span>
-                        </div>
+                    <div class="story-paragraph">
+                        <p>Today, we've successfully completed 500+ solar installations across multiple districts, helping families and businesses reduce their electricity bills by up to 90% while contributing to a cleaner environment.</p>
                     </div>
                 </div>
-                <div class="story-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-solar-panel"></i>
-                        <p>Our Solar Installation Team</p>
+                
+                <div class="story-stats">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Districts Served</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Towns Covered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">Customer Satisfaction</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mission & Vision -->
-    <section class="mission-vision">
+    <!-- Team Section -->
+    <section class="team-showcase">
         <div class="container">
-            <div class="mv-grid">
-                <div class="mv-card">
-                    <div class="mv-icon">
-                        <i class="fas fa-bullseye"></i>
+            <h2 class="section-title">Our Solar Installation Team</h2>
+            <div class="team-grid">
+                <div class="team-feature">
+                    <div class="team-icon">
+                        <i class="fas fa-hard-hat"></i>
                     </div>
-                    <h3>Our Mission</h3>
-                    <p>To make solar energy accessible and affordable for every home and business in Kerala, providing sustainable energy solutions that reduce electricity costs and environmental impact while delivering exceptional customer service.</p>
+                    <h3>Certified Engineers</h3>
+                    <p>Professional solar engineers with technical certifications and years of field experience</p>
                 </div>
                 
-                <div class="mv-card">
-                    <div class="mv-icon">
-                        <i class="fas fa-eye"></i>
+                <div class="team-feature">
+                    <div class="team-icon">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <h3>Our Vision</h3>
-                    <p>To be Kerala's most trusted solar energy partner, leading the transition to renewable energy and creating a sustainable future where clean power is the primary choice for energy consumption across the state.</p>
+                    <h3>Dedicated Teams</h3>
+                    <p>Specialized service and project teams working in coordination for perfect execution</p>
                 </div>
                 
-                <div class="mv-card">
-                    <div class="mv-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Our Values</h3>
-                    <p>Integrity, Quality, Innovation, and Customer Satisfaction drive everything we do. We believe in transparent pricing, superior workmanship, and building lasting relationships with our clients.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us - Enhanced -->
-    <section class="why-choose-about section-light">
-        <div class="container">
-            <h2 class="section-title">Why Choose Solis Green Energy?</h2>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3>Expert Team</h3>
-                    <p>Our certified engineers and technicians bring years of experience in solar system design, installation, and maintenance.</p>
-                    <ul class="expertise-list">
-                        <li>KSEB-approved installations</li>
-                        <li>Certified solar professionals</li>
-                        <li>Continuous training & updates</li>
-                    </ul>
-                </div>
-                
-                <div class="expertise-card">
-                    <div class="expertise-icon">
+                <div class="team-feature">
+                    <div class="team-icon">
                         <i class="fas fa-award"></i>
                     </div>
-                    <h3>Quality Assurance</h3>
-                    <p>We use only premium components from reputed brands with comprehensive warranties and performance guarantees.</p>
-                    <ul class="expertise-list">
-                        <li>Tier-1 solar panels</li>
-                        <li>25-year performance warranty</li>
-                        <li>5-year workmanship warranty</li>
-                    </ul>
+                    <h3>Quality Focus</h3>
+                    <p>Every installation undergoes multiple quality checks ensuring long-term performance</p>
                 </div>
-                
-                <div class="expertise-card">
-                    <div class="expertise-icon">
-                        <i class="fas fa-hand-holding-heart"></i>
-                    </div>
-                    <h3>End-to-End Service</h3>
-                    <p>From consultation to maintenance, we provide complete solar solutions with ongoing support and monitoring.</p>
-                    <ul class="expertise-list">
-                        <li>Free site assessment</li>
-                        <li>Subsidy assistance</li>
-                        <li>24/7 maintenance support</li>
-                    </ul>
+            </div>
+            
+            <div class="team-cta">
+                <h3>Meet Our Technical Experts</h3>
+                <p>Our team of certified professionals is ready to design your perfect solar solution</p>
+                <div class="cta-buttons">
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Consult Our Engineers
+                    </a>
+                    <a href="../projects/" class="btn btn-outline">
+                        <i class="fas fa-images"></i> See Our Work
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Our Process -->
-    <section class="our-process">
+    <!-- Technical Excellence Section -->
+    <section class="technical-excellence section-light">
         <div class="container">
-            <h2 class="section-title">Our Solar Installation Process</h2>
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Consultation & Assessment</h3>
-                        <p>Free site evaluation and energy consumption analysis to design the perfect solar solution for your needs.</p>
+            <h2 class="section-title">Why Choose Solis Green India?</h2>
+            <div class="excellence-grid">
+                <div class="excellence-card">
+                    <div class="excellence-icon">
+                        <i class="fas fa-cogs"></i>
                     </div>
+                    <h3>Technical Expertise</h3>
+                    <p>Engineering-driven solutions with comprehensive technical assessments</p>
                 </div>
-                
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Customized Proposal</h3>
-                        <p>Detailed project plan with transparent pricing, ROI analysis, and subsidy assistance guidance.</p>
+                <div class="excellence-card">
+                    <div class="excellence-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
+                    <h3>5-Year FREE AMC</h3>
+                    <p>Complete protection including daily monitoring and zero-cost repairs</p>
                 </div>
-                
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Professional Installation</h3>
-                        <p>Expert installation by our certified team with minimal disruption to your daily activities.</p>
+                <div class="excellence-card">
+                    <div class="excellence-icon">
+                        <i class="fas fa-map-marker-alt"></i>
                     </div>
+                    <h3>Local Presence</h3>
+                    <p>Serving 4 districts with local teams for quick response and support</p>
                 </div>
-                
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Commissioning & Support</h3>
-                        <p>System activation, training, and ongoing maintenance support to ensure optimal performance.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Service Areas Overview -->
-    <section class="service-areas-about section-light">
-        <div class="container">
-            <h2 class="section-title">Serving Across South Kerala</h2>
-            <p class="text-center">We bring solar solutions to your doorstep across multiple districts</p>
-            
-            <div class="areas-grid-about">
-                <div class="area-card-about">
-                    <h3>Pathanamthitta</h3>
-                    <p>Thiruvalla, Adoor, Kozhencherry, Ranni, Konni, Pandalam, and surrounding areas</p>
-                </div>
-                
-                <div class="area-card-about">
-                    <h3>Kottayam</h3>
-                    <p>Changanacherry, Pala, Kanjirapally, Vaikom, Ettumanoor, and nearby regions</p>
-                </div>
-                
-                <div class="area-card-about">
-                    <h3>Alappuzha</h3>
-                    <p>Cherthala, Haripad, Kayamkulam, Mavelikkara, Chengannur, and adjacent areas</p>
-                </div>
-                
-                <div class="area-card-about">
-                    <h3>Kollam & TVM</h3>
-                    <p>Extending our services to Kollam and Thiruvananthapuram districts</p>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <a href="cities.html" class="btn btn-primary">View All Service Areas</a>
             </div>
         </div>
     </section>
@@ -271,15 +407,21 @@
     <section class="about-cta">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to Go Solar?</h2>
-                <p>Join hundreds of satisfied customers across Kerala who are already saving on electricity bills with our solar solutions.</p>
+                <h2>Ready to Join Kerala's Solar Revolution?</h2>
+                <p>Experience the Solis Green India difference - technical excellence with complete peace of mind</p>
                 <div class="cta-buttons">
-                    <a href="contact.html" class="btn btn-primary">
-                        <i class="fas fa-calendar-check"></i> Get Free Consultation
-                    </a>
-                    <a href="tel:8301849474" class="btn btn-secondary">
+                    <a href="tel:8301849474" class="btn btn-primary">
                         <i class="fas fa-phone"></i> Call: 8301849474
                     </a>
+                    <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
+                    </a>
+                    <a href="../contact/" class="btn btn-secondary">
+                        <i class="fas fa-map-marker-alt"></i> Visit Office
+                    </a>
+                </div>
+                <div class="support-contact">
+                    <p><strong>Technical Support:</strong> <a href="tel:8606849474">8606849474</a> | Available 24/7</p>
                 </div>
             </div>
         </div>
@@ -291,9 +433,9 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="images/logo/logo-white.png" alt="Solis Green Energy Solutions" class="footer-logo-img">
+                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Leading provider of sustainable energy solutions in Kerala, committed to a greener future with local expertise across multiple districts.</p>
+                    <p>Powering Kerala's sustainable future with 5+ years of solar excellence and technical expertise.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -303,35 +445,61 @@
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="cities.html">Service Areas</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../services/">Services</a></li>
+                        <li><a href="../cities/">Service Areas</a></li>
+                        <li><a href="../about/">About Us</a></li>
+                        <li><a href="../projects/">Projects</a></li>
+                        <li><a href="../contact/">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Service Areas</h3>
                     <ul>
-                        <li><a href="solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
-                        <li><a href="solar-company-in-kottayam/">Kottayam District</a></li>
-                        <li><a href="solar-company-in-alappuzha/">Alappuzha District</a></li>
-                        <li><a href="solar-company-in-kollam/">Kollam District</a></li>
+                        <li><a href="../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
+                        <li><a href="../solar-company-in-kottayam/">Kottayam District</a></li>
+                        <li><a href="../solar-company-in-alappuzha/">Alappuzha District</a></li>
+                        <li><a href="../solar-company-in-kollam/">Kollam District</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Contact</h3>
+                    <h3>Contact Our Experts</h3>
                     <ul class="contact-info">
-                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenenergy@gmail.com">solisgreenenergy@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Muthoor, Thiruvalla</li>
-                        <li><i class="fas fa-clock"></i> Mon-Sun: 8AM - 8PM</li>
+                        <li class="contact-primary">
+                            <i class="fas fa-phone"></i> 
+                            <div>
+                                <a href="tel:8301849474">Primary: 8301849474</a>
+                                <span class="contact-label">Technical Consultation</span>
+                            </div>
+                        </li>
+                        <li class="contact-alternate">
+                            <i class="fas fa-phone-alt"></i> 
+                            <div>
+                                <a href="tel:9539316623">Alternate: 9539316623</a>
+                                <span class="contact-label">Project Coordination</span>
+                            </div>
+                        </li>
+                        <li class="contact-support">
+                            <i class="fas fa-headset"></i> 
+                            <div>
+                                <a href="tel:8606849474">Support: 8606849474</a>
+                                <span class="contact-label">24/7 Customer Support</span>
+                            </div>
+                        </li>
+                        <li class="whatsapp-primary">
+                            <i class="fab fa-whatsapp"></i> 
+                            <div>
+                                <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
+                                <span class="contact-label">Quick Consultation</span>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Thiruvalla - 689107</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Solis Green Energy Solutions. All Rights Reserved. | Professional Solar Solutions Across Kerala</p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Powering Kerala's Sustainable Future</p>
             </div>
         </div>
     </footer>
@@ -341,6 +509,6 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
