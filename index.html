@@ -11,6 +11,14 @@
     <link rel="preload" href="images/hero/hero-image-1.webp" as="image" type="image/webp">
     <link rel="preload" href="images/hero/hero-image-2.webp" as="image" type="image/webp">
     
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GT-KTT5M68J');</script>
+    <!-- End Google Tag Manager -->
+
     <!-- Enhanced Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4VD9LGY29"></script>
     <script>
@@ -179,8 +187,9 @@
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-KTT5M68J"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Expandable Floating CTA -->
     <div class="floating-cta">
@@ -261,8 +270,11 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
+            <!-- FIXED: Logo with home link -->
             <div class="logo">
-                <img src="images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+                <a href="/">
+                    <img src="images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+                </a>
             </div>
             
             <div class="header-contact">
@@ -276,18 +288,20 @@
                 </a>
             </div>
             
+            <!-- FIXED: Mobile menu button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
             
+            <!-- Navigation with About Us -->
             <nav id="mainNav">
                 <ul>
-                    <li><a href="../">Home</a></li>
-                    <li><a href="../services/">Services</a></li>
-                    <li><a href="../cities/">Service Areas</a></li>
-                    <li><a href="../about/">About Us</a></li>  
-                    <li><a href="../projects/">Projects</a></li>
-                    <li><a href="../contact/" class="cta-button">Contact</a></li>          
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="services/">Services</a></li>
+                    <li><a href="cities/">Service Areas</a></li>
+                    <li><a href="about/">About Us</a></li>  <!-- ✅ ADDED -->
+                    <li><a href="projects/">Projects</a></li>
+                    <li><a href="contact/" class="cta-button">Contact</a></li>         
                 </ul>
             </nav>
         </div>
@@ -370,7 +384,7 @@
                             </a>
                         </div>
                         <div class="whatsapp-options">
-                            <a href="/services" class="btn btn-whatsapp">
+                            <a href="services/" class="btn btn-whatsapp">
                                 <i class="fas fa-bolt"></i> Explore Services
                             </a>
                             <a href="https://wa.me/918301849474" class="btn btn-whatsapp-alt">
@@ -408,7 +422,7 @@
                             </a>
                         </div>
                         <div class="whatsapp-options">
-                            <a href="/projects" class="btn btn-whatsapp">
+                            <a href="projects/" class="btn btn-whatsapp">
                                 <i class="fas fa-images"></i> View Our Projects
                             </a>
                             <a href="https://wa.me/918301849474" class="btn btn-whatsapp-alt">
@@ -524,7 +538,7 @@
                     </div>
                     <h3>Pathanamthitta</h3>
                     <p>Thiruvalla, Kozhencherry, Ranni, Adoor, Konni, Pandalam</p>
-                    <a href="/solar-company-in-pathanamthitta/" class="btn btn-outline">View Areas</a>
+                    <a href="solar-company-in-pathanamthitta/" class="btn btn-outline">View Areas</a>
                 </div>
                 <div class="district-card">
                     <div class="district-icon">
@@ -532,7 +546,7 @@
                     </div>
                     <h3>Kottayam</h3>
                     <p>Changanacherry, Pala, Kanjirapally, Vaikom, Ettumanoor</p>
-                    <a href="/solar-company-in-kottayam/" class="btn btn-outline">View Areas</a>
+                    <a href="solar-company-in-kottayam/" class="btn btn-outline">View Areas</a>
                 </div>
                 <div class="district-card">
                     <div class="district-icon">
@@ -540,7 +554,7 @@
                     </div>
                     <h3>Alappuzha</h3>
                     <p>Cherthala, Haripad, Kayamkulam, Mavelikkara, Chengannur</p>
-                    <a href="/solar-company-in-alappuzha/" class="btn btn-outline">View Areas</a>
+                    <a href="solar-company-in-alappuzha/" class="btn btn-outline">View Areas</a>
                 </div>
                 <div class="district-card">
                     <div class="district-icon">
@@ -548,88 +562,89 @@
                     </div>
                     <h3>Kollam</h3>
                     <p>Karunagapally, Punalur, Kottarakara, Paravur, Sasthamkotta</p>
-                    <a href="/solar-company-in-kollam/" class="btn btn-outline">View Areas</a>
+                    <a href="solar-company-in-kollam/" class="btn btn-outline">View Areas</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Quick Services -->
-<section class="quick-services">
-    <div class="container">
-        <h2 class="section-title">Our Solar Solutions</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <i class="fas fa-home"></i>
-                <h3>Residential Solar</h3>
-                <p>Home solar systems with 40% government subsidy. Save 80% on electricity bills.</p>
-                <div class="service-features">
-                    <span><i class="fas fa-check"></i> 1-10kW Systems</span>
-                    <span><i class="fas fa-check"></i> Govt Subsidy</span>
-                    <span><i class="fas fa-check"></i> 25-Year Warranty</span>
-                </div>
-                <a href="services/residential-solar.html" class="btn btn-outline">
-                    <i class="fas fa-arrow-right"></i> Learn More
-                </a>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-building"></i>
-                <h3>Commercial Solar</h3>
-                <p>Business solar solutions with tax benefits. Reduce operational costs by 60%.</p>
-                <div class="service-features">
-                    <span><i class="fas fa-check"></i> 10-100kW Systems</span>
-                    <span><i class="fas fa-check"></i> Tax Benefits</span>
-                    <span><i class="fas fa-check"></i> Quick ROI</span>
-                </div>
-                <a href="services/commercial-solar.html" class="btn btn-outline">
-                    <i class="fas fa-arrow-right"></i> Learn More
-                </a>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-industry"></i>
-                <h3>Industrial Solar</h3>
-                <p>Large-scale solar plants for factories. 50% cost reduction with captive power.</p>
-                <div class="service-features">
-                    <span><i class="fas fa-check"></i> 100kW-1MW+</span>
-                    <span><i class="fas fa-check"></i> Carbon Credits</span>
-                    <span><i class="fas fa-check"></i> Energy Independence</span>
-                </div>
-                <a href="services/industrial-solar.html" class="btn btn-outline">
-                    <i class="fas fa-arrow-right"></i> Learn More
-                </a>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-tools"></i>
-                <h3>Solar Maintenance</h3>
-                <p>Professional cleaning, repair & AMC services. Keep your system at peak performance.</p>
-                <div class="service-features">
-                    <span><i class="fas fa-check"></i> Panel Cleaning</span>
-                    <span><i class="fas fa-check"></i> System Repair</span>
-                    <span><i class="fas fa-check"></i> 24/7 Support</span>
-                </div>
-                <a href="services/solar-maintenance.html" class="btn btn-outline">
-                    <i class="fas fa-arrow-right"></i> Learn More
-                </a>
-            </div>
-        </div>
-        
-        <!-- Additional CTA -->
-        <div class="services-cta">
-            <div class="cta-content">
-                <h3>Not Sure Which Service You Need?</h3>
-                <p>Call our solar experts for free consultation</p>
-                <div class="cta-buttons">
-                    <a href="tel:8301849474" class="btn btn-primary">
-                        <i class="fas fa-phone"></i> Call Expert: 8301849474
+    <section class="quick-services">
+        <div class="container">
+            <h2 class="section-title">Our Solar Solutions</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Residential Solar</h3>
+                    <p>Home solar systems with 40% government subsidy. Save 80% on electricity bills.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 1-10kW Systems</span>
+                        <span><i class="fas fa-check"></i> Govt Subsidy</span>
+                        <span><i class="fas fa-check"></i> 25-Year Warranty</span>
+                    </div>
+                    <a href="services/residential-solar.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Learn More
                     </a>
-                    <a href="services/" class="btn btn-secondary">
-                        <i class="fas fa-bolt"></i> View All Services
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Commercial Solar</h3>
+                    <p>Business solar solutions with tax benefits. Reduce operational costs by 60%.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 10-100kW Systems</span>
+                        <span><i class="fas fa-check"></i> Tax Benefits</span>
+                        <span><i class="fas fa-check"></i> Quick ROI</span>
+                    </div>
+                    <a href="services/commercial-solar.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Learn More
+                    </a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-industry"></i>
+                    <h3>Industrial Solar</h3>
+                    <p>Large-scale solar plants for factories. 50% cost reduction with captive power.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 100kW-1MW+</span>
+                        <span><i class="fas fa-check"></i> Carbon Credits</span>
+                        <span><i class="fas fa-check"></i> Energy Independence</span>
+                    </div>
+                    <a href="services/industrial-solar.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Learn More
+                    </a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Solar Maintenance</h3>
+                    <p>Professional cleaning, repair & AMC services. Keep your system at peak performance.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Panel Cleaning</span>
+                        <span><i class="fas fa-check"></i> System Repair</span>
+                        <span><i class="fas fa-check"></i> 24/7 Support</span>
+                    </div>
+                    <a href="services/solar-maintenance.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
             </div>
+            
+            <!-- Additional CTA -->
+            <div class="services-cta">
+                <div class="cta-content">
+                    <h3>Not Sure Which Service You Need?</h3>
+                    <p>Call our solar experts for free consultation</p>
+                    <div class="cta-buttons">
+                        <a href="tel:8301849474" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> Call Expert: 8301849474
+                        </a>
+                        <a href="services/" class="btn btn-secondary">
+                            <i class="fas fa-bolt"></i> View All Services
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
     <!-- Local Testimonials -->
     <section class="local-testimonials section-light">
         <div class="container">
@@ -824,19 +839,20 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="/">Home</a></li>
-                        <li><a href="/services">Services</a></li>
-                        <li><a href="/cities">Service Areas</a></li>
-                        <li><a href="/projects">Projects</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="services/">Services</a></li>
+                        <li><a href="cities/">Service Areas</a></li>
+                        <li><a href="about/">About Us</a></li>  <!-- ✅ ADDED -->
+                        <li><a href="projects/">Projects</a></li>
+                        <li><a href="contact/">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Service Areas</h3>
                     <ul>
-                        <li><a href="/solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
-                        <li><a href="/solar-company-in-kottayam/">Kottayam District</a></li>
-                        <li><a href="/solar-company-in-alappuzha/">Alappuzha District</a></li>
-                        <li><a href="/solar-company-in-kollam/">Kollam District</a></li>
+                        <li><a href="solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
+                        <li><a href="solar-company-in-kottayam/">Kottayam District</a></li>
+                        <li><a href="solar-company-in-alappuzha/">Alappuzha District</a></li>
+                        <li><a href="solar-company-in-kollam/">Kollam District</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -894,5 +910,37 @@
     </button>
 
     <script src="script.js"></script>
+    
+    <!-- Mobile Menu Fix -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+                });
+                
+                // Close menu when clicking on links
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
