@@ -15,140 +15,9 @@
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GT-KTT5M68J');</script>
+    'https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
     <!-- End Google Tag Manager -->
-
-    <!-- Enhanced Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4VD9LGY29"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-R4VD9LGY29', {
-        'page_title': document.title,
-        'page_location': window.location.href
-      });
-
-      // Enhanced Event Tracking for Multiple Contact Numbers
-      document.addEventListener('DOMContentLoaded', function() {
-        // Primary Phone Number Tracking
-        document.querySelectorAll('a[href^="tel:8301849474"]').forEach(link => {
-          link.addEventListener('click', function() {
-            gtag('event', 'phone_call', {
-              'event_category': 'Contact',
-              'event_label': 'Primary Number - 8301849474',
-              'value': 1
-            });
-          });
-        });
-
-        // Alternate Phone Number Tracking
-        document.querySelectorAll('a[href^="tel:9539316623"]').forEach(link => {
-          link.addEventListener('click', function() {
-            gtag('event', 'phone_call', {
-              'event_category': 'Contact',
-              'event_label': 'Alternate Number - 9539316623',
-              'value': 1
-            });
-          });
-        });
-
-        // Support Phone Number Tracking
-        document.querySelectorAll('a[href^="tel:8606849474"]').forEach(link => {
-          link.addEventListener('click', function() {
-            gtag('event', 'phone_call', {
-              'event_category': 'Contact',
-              'event_label': 'Support Number - 8606849474',
-              'value': 1
-            });
-          });
-        });
-
-        // Primary WhatsApp Tracking
-        document.querySelectorAll('a[href*="wa.me/918301849474"]').forEach(link => {
-          link.addEventListener('click', function() {
-            gtag('event', 'whatsapp_click', {
-              'event_category': 'Contact',
-              'event_label': 'Primary WhatsApp - 8301849474',
-              'value': 1
-            });
-          });
-        });
-
-        // Alternate WhatsApp Tracking
-        document.querySelectorAll('a[href*="wa.me/919539316623"]').forEach(link => {
-          link.addEventListener('click', function() {
-            gtag('event', 'whatsapp_click', {
-              'event_category': 'Contact',
-              'event_label': 'Alternate WhatsApp - 9539316623',
-              'value': 1
-            });
-          });
-        });
-
-        // Form Submission Tracking
-        document.querySelectorAll('form').forEach(form => {
-          form.addEventListener('submit', function() {
-            gtag('event', 'form_submit', {
-              'event_category': 'Lead',
-              'event_label': 'Quote Form Submission',
-              'value': 1
-            });
-          });
-        });
-
-        // Quote Button Clicks
-        document.querySelectorAll('#quickFormBtn, .btn[href*="#quick-quote"]').forEach(button => {
-          button.addEventListener('click', function() {
-            gtag('event', 'quote_request', {
-              'event_category': 'Lead',
-              'event_label': 'Quick Quote Button Click',
-              'value': 1
-            });
-          });
-        });
-
-        // Service Area Clicks
-        document.querySelectorAll('a[href*="solar-company-in-"]').forEach(link => {
-          link.addEventListener('click', function() {
-            const district = this.href.split('/').pop().replace('solar-company-in-', '').replace('/', '');
-            gtag('event', 'district_click', {
-              'event_category': 'Navigation',
-              'event_label': district.charAt(0).toUpperCase() + district.slice(1) + ' District',
-              'value': 1
-            });
-          });
-        });
-
-        // Scroll Depth Tracking
-        let scrollTracked = false;
-        window.addEventListener('scroll', function() {
-          const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
-          
-          if (scrollPercent > 50 && !scrollTracked) {
-            gtag('event', 'scroll_depth', {
-              'event_category': 'Engagement',
-              'event_label': '50% Scroll Depth',
-              'value': 50
-            });
-            scrollTracked = true;
-          }
-        });
-
-        // Time on Page Tracking
-        let startTime = Date.now();
-        window.addEventListener('beforeunload', function() {
-          const timeSpent = Math.round((Date.now() - startTime) / 1000);
-          gtag('event', 'time_on_page', {
-            'event_category': 'Engagement',
-            'event_label': 'Page Visit Duration',
-            'value': timeSpent
-          });
-        });
-      });
-    </script>
     
     <!-- Local Business Schema -->
     <script type="application/ld+json">
@@ -187,7 +56,7 @@
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-KTT5M68J"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -270,7 +139,6 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <!-- FIXED: Logo with home link -->
             <div class="logo">
                 <a href="/">
                     <img src="images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
@@ -288,18 +156,16 @@
                 </a>
             </div>
             
-            <!-- FIXED: Mobile menu button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
             
-            <!-- Navigation with About Us -->
             <nav id="mainNav">
                 <ul>
                     <li><a href="/" class="active">Home</a></li>
                     <li><a href="services/">Services</a></li>
                     <li><a href="cities/">Service Areas</a></li>
-                    <li><a href="about/">About Us</a></li>  <!-- ✅ ADDED -->
+                    <li><a href="about/">About Us</a></li>
                     <li><a href="projects/">Projects</a></li>
                     <li><a href="contact/" class="cta-button">Contact</a></li>         
                 </ul>
@@ -582,7 +448,7 @@
                         <span><i class="fas fa-check"></i> Govt Subsidy</span>
                         <span><i class="fas fa-check"></i> 25-Year Warranty</span>
                     </div>
-                    <a href="services/residential-solar.html" class="btn btn-outline">
+                    <a href="services/residential-solar/" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
@@ -595,7 +461,7 @@
                         <span><i class="fas fa-check"></i> Tax Benefits</span>
                         <span><i class="fas fa-check"></i> Quick ROI</span>
                     </div>
-                    <a href="services/commercial-solar.html" class="btn btn-outline">
+                    <a href="services/commercial-solar/" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
@@ -608,7 +474,7 @@
                         <span><i class="fas fa-check"></i> Carbon Credits</span>
                         <span><i class="fas fa-check"></i> Energy Independence</span>
                     </div>
-                    <a href="services/industrial-solar.html" class="btn btn-outline">
+                    <a href="services/industrial-solar/" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
@@ -621,7 +487,7 @@
                         <span><i class="fas fa-check"></i> System Repair</span>
                         <span><i class="fas fa-check"></i> 24/7 Support</span>
                     </div>
-                    <a href="services/solar-maintenance.html" class="btn btn-outline">
+                    <a href="services/solar-maintenance/" class="btn btn-outline">
                         <i class="fas fa-arrow-right"></i> Learn More
                     </a>
                 </div>
@@ -841,7 +707,7 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="services/">Services</a></li>
                         <li><a href="cities/">Service Areas</a></li>
-                        <li><a href="about/">About Us</a></li>  <!-- ✅ ADDED -->
+                        <li><a href="about/">About Us</a></li>
                         <li><a href="projects/">Projects</a></li>
                         <li><a href="contact/">Contact</a></li>
                     </ul>
