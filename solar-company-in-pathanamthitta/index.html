@@ -3,184 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solis Green India - Leading solar company in Pathanamthitta. Solar panel installation in Thiruvalla, Kozhencherry, Adoor, Ranni with government subsidy.">
-    <meta name="keywords" content="solar company pathanamthitta, solar installation thiruvalla, solar panels kozhencherry, solar experts adoor, solar ranni">
+    <meta name="description" content="Solar company in Pathanamthitta district – Solis Green India. Residential and commercial solar panel installation in Thiruvalla, Ranni, Adoor, Kozhencherry, Pandalam, Mallappally, Elanthoor, Ranni and nearby towns.">
+    <meta name="keywords" content="solar company pathanamthitta, solar panels thiruvalla, solar installation adoor, solar company ranni, solar company pandalam, solar company mallappally">
     <meta name="author" content="Solis Green India">
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="../../images/hero/hero-image-1.webp" as="image" type="image/webp">
-    
+
+    <!-- Preload critical hero image -->
+    <link rel="preload" href="../images/hero/hero-image-1.webp" as="image" type="image/webp">
+
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5C2D5BG9');
+    </script>
     <!-- End Google Tag Manager -->
-    
-    <title>Solar Company Pathanamthitta - Solis Green India | Solar Experts in Thiruvalla, Kozhencherry, Adoor</title>
-    <link rel="stylesheet" href="../../style.css">
+
+    <title>Solar Company in Pathanamthitta | Thiruvalla, Adoor, Ranni & Pandalam | Solis Green India</title>
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
+    <!-- Mobile Menu Fix CSS (same pattern as other pages) -->
     <style>
-        /* District Page Specific Styles */
-        .district-hero {
-            position: relative;
-            height: 70vh;
-            overflow: hidden;
-            margin-top: 80px;
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                display: flex !important;
+            }
+
+            .mobile-menu-btn {
+                display: block !important;
+            }
         }
-        
-        .district-hero-bg {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
+
+        /* Page-specific styling reusing Style A components */
+
+        .district-intro {
+            padding: 80px 0 40px;
+            background: var(--background-light);
         }
-        
-        .district-hero-content {
-            position: relative;
-            z-index: 10;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            color: white;
+
+        .district-intro-text {
+            max-width: 900px;
+            margin: 0 auto;
             text-align: center;
-            padding: 0 20px;
+            color: var(--text-light);
         }
-        
-        .district-stats {
+
+        .district-intro-text p {
+            margin-bottom: 12px;
+        }
+
+        .district-towns-inline {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .district-summary-stats {
+            margin-top: 40px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
         }
-        
-        .district-stat {
-            text-align: center;
-            padding: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: var(--border-radius);
-            backdrop-filter: blur(10px);
-        }
-        
-        .district-stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-        
-        .cities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        
-        .city-card {
+
+        .district-stat-card {
             background: var(--white);
-            padding: 25px;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
+            padding: 20px;
             text-align: center;
-            transition: var(--transition);
-            border: 2px solid transparent;
         }
-        
-        .city-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
+
+        .district-stat-card .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
         }
-        
-        .city-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
+
+        .district-stat-card .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .district-section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .town-meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .town-meta span {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 1.5rem;
+            gap: 6px;
+            margin-right: 12px;
+        }
+
+        .town-meta i {
+            color: var(--primary-color);
+            font-size: 0.85rem;
+        }
+
+        .district-faqs {
+            padding: 80px 0;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .faq-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+        }
+
+        .faq-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
             color: var(--text-color);
         }
-        
-        .local-projects {
-            background: var(--background-light);
-            padding: 80px 0;
+
+        .faq-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
         }
-        
-        .project-highlights {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .project-highlight {
-            background: var(--white);
-            padding: 25px;
+
+        .district-cta {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-        
-        .local-team {
-            padding: 80px 0;
-        }
-        
-        .team-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .team-feature {
             text-align: center;
-            padding: 30px 20px;
+            color: #fff;
         }
-        
-        .team-feature i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
+
+        .district-cta h2 {
+            margin-bottom: 10px;
+        }
+
+        .district-cta p {
             margin-bottom: 20px;
+            opacity: 0.95;
         }
-        
+
+        .district-cta .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .district-cta .cta-buttons .btn {
+            min-width: 200px;
+        }
+
         @media (max-width: 768px) {
-            .district-hero {
-                height: 60vh;
-            }
-            
-            .district-stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            
-            .cities-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .project-highlights {
-                grid-template-columns: 1fr;
+            .district-cta {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Floating CTA -->
+    <!-- Floating CTA (same as home/about) -->
     <div class="floating-cta">
         <div class="cta-main-btn" id="ctaMainBtn">
             <i class="fas fa-comments"></i>
@@ -214,10 +233,10 @@
             <span class="close-modal">&times;</span>
             <h3>Get Quick Solar Quote</h3>
             <form class="quick-quote-form" id="modalQuoteForm">
-                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India">
+                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India (Pathanamthitta)">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
-                
+
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Your Name" required>
                 </div>
@@ -229,11 +248,10 @@
                         <option value="">Select Service</option>
                         <option value="residential">Residential Solar</option>
                         <option value="commercial">Commercial Solar</option>
-                        <option value="industrial">Industrial Solar</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="location" placeholder="Your Location in Pathanamthitta">
+                    <input type="text" name="location" placeholder="Your Location (e.g. Thiruvalla, Adoor, Ranni)">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">
                     <i class="fas fa-bolt"></i> Get Instant Quote
@@ -260,11 +278,11 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <a href="../../">
-                    <img src="../../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+                <a href="../">
+                    <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
                 </a>
             </div>
-            
+
             <div class="header-contact">
                 <a href="tel:8301849474" class="contact-link">
                     <i class="fas fa-phone"></i>
@@ -275,103 +293,150 @@
                     <span>Alternate: 9539316623</span>
                 </a>
             </div>
-            
+
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
-            
+
             <nav id="mainNav">
                 <ul>
-                    <li><a href="../../">Home</a></li>
-                    <li><a href="../../services/">Services</a></li>
-                    <li><a href="../../cities/">Service Areas</a></li>
-                    <li><a href="../../about/">About Us</a></li>
-                    <li><a href="../../projects/">Projects</a></li>
-                    <li><a href="../../contact/" class="cta-button">Contact</a></li>         
+                    <li><a href="../">Home</a></li>
+                    <li><a href="../services/">Services</a></li>
+                    <li><a href="../cities/" class="active">Service Areas</a></li>
+                    <li><a href="../about/">About Us</a></li>
+                    <li><a href="../projects/">Projects</a></li>
+                    <li><a href="../contact/" class="cta-button">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- District Hero Section -->
-    <section class="district-hero">
-        <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-             alt="Solar Installation in Pathanamthitta - Solis Green India" 
-             class="district-hero-bg" 
-             loading="eager" 
-             fetchpriority="high">
-        <div class="gradient-overlay gradient-blue"></div>
-        <div class="floating-elements">
-            <div class="floating-element element-1">☀️</div>
-            <div class="floating-element element-2">⚡</div>
-            <div class="floating-element element-3">📍</div>
+    <!-- Hero Slider (Style A, 3 slides, using local hero images) -->
+    <section class="hero-slider" id="pathanamthitta-hero">
+        <div class="particles-container">
+            <div class="particles"></div>
+            <div class="solar-flare"></div>
         </div>
-        <div class="district-hero-content container">
-            <h1>Solar Experts in Pathanamthitta District</h1>
-            <p>Headquartered in Thiruvalla - Serving All Pathanamthitta with Professional Solar Solutions & Government Subsidy Assistance</p>
-            
-            <div class="district-stats">
-                <div class="district-stat">
-                    <div class="district-stat-number">200+</div>
-                    <div class="district-stat-label">Projects in District</div>
+
+        <div class="hero-slides">
+            <!-- Slide 1 -->
+            <div class="hero-slide active">
+                <img src="../images/hero/hero-image-1.webp"
+                     alt="Residential solar panels in Pathanamthitta district"
+                     class="hero-bg-image"
+                     loading="eager"
+                     fetchpriority="high"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-blue"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">☀️</div>
+                    <div class="floating-element element-2">🏠</div>
+                    <div class="floating-element element-3">⚡</div>
                 </div>
-                <div class="district-stat">
-                    <div class="district-stat-number">15+</div>
-                    <div class="district-stat-label">Towns Covered</div>
-                </div>
-                <div class="district-stat">
-                    <div class="district-stat-number">5+</div>
-                    <div class="district-stat-label">Years Serving</div>
-                </div>
-                <div class="district-stat">
-                    <div class="district-stat-number">95%</div>
-                    <div class="district-stat-label">Satisfaction Rate</div>
-                </div>
-            </div>
-            
-            <div class="hero-buttons">
-                <div class="contact-options">
-                    <a href="tel:8301849474" class="btn btn-primary pulse-animation">
-                        <i class="fas fa-phone"></i> Call Local Expert: 8301849474
-                    </a>
-                    <a href="tel:9539316623" class="btn btn-secondary">
-                        <i class="fas fa-phone-alt"></i> Alternate: 9539316623
-                    </a>
-                </div>
-                <div class="whatsapp-options">
-                    <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> WhatsApp Local Team
-                    </a>
-                    <a href="#cities" class="btn btn-whatsapp-alt">
-                        <i class="fas fa-map-marker-alt"></i> Check Your Area
-                    </a>
+                <div class="hero-content container">
+                    <h1>Solar Company in Pathanamthitta District</h1>
+                    <p>Trusted residential and commercial solar installations in Thiruvalla, Ranni, Adoor, Pandalam and nearby towns.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                                <i class="fas fa-phone"></i> Call Pathanamthitta Expert
+                            </a>
+                            <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Slide 2 -->
+            <div class="hero-slide">
+                <img src="../images/hero/hero-image-2.webp"
+                     alt="Solar rooftop systems with government subsidy in Kerala"
+                     class="hero-bg-image"
+                     loading="lazy"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-green"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">💡</div>
+                    <div class="floating-element element-2">💰</div>
+                    <div class="floating-element element-3">🌱</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>Government Subsidy Solar for Pathanamthitta Homes</h1>
+                    <p>Get up to 40% subsidy on residential solar panels in Thiruvalla, Ranni, Adoor, Kozhencherry and more.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="../services/residential-solar.html" class="btn btn-primary">
+                                <i class="fas fa-home"></i> Residential Solar Details
+                            </a>
+                            <a href="#pathanamthitta-quote" class="btn btn-support">
+                                <i class="fas fa-bolt"></i> Get Free Site Visit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide">
+                <img src="../images/hero/hero-image-3.webp"
+                     alt="Solar power for shops and institutions in Pathanamthitta"
+                     class="hero-bg-image"
+                     loading="lazy"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-purple"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">🏢</div>
+                    <div class="floating-element element-2">⭐</div>
+                    <div class="floating-element element-3">🔧</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>Solar for Shops, Offices & Institutions</h1>
+                    <p>Commercial solar plants for buildings in Thiruvalla, Adoor, Pandalam, Mallappally, Kozhencherry and other towns.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="../services/commercial-solar.html" class="btn btn-primary">
+                                <i class="fas fa-building"></i> Commercial Solar Details
+                            </a>
+                            <a href="../projects/" class="btn btn-secondary">
+                                <i class="fas fa-images"></i> View Sample Projects
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <button class="slider-prev" aria-label="Previous slide">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-next" aria-label="Next slide">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
+            <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
+            <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
         </div>
     </section>
 
-    <!-- Urgency Banner -->
-    <div class="urgency-banner">
+    <!-- Quick Quote Section (Pathanamthitta-focused) -->
+    <section class="quick-quote-section" id="pathanamthitta-quote">
         <div class="container">
-            <i class="fas fa-bolt"></i>
-            <span><strong>Special Pathanamthitta Offer:</strong> Extra ₹3,000 Local Discount + Government Subsidy - Book Free Site Survey Today!</span>
-            <div class="urgency-contacts">
-                <a href="tel:8301849474" class="btn-urgency">Call Local Expert</a>
-                <a href="tel:9539316623" class="btn-urgency-alt">Call Alternate</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Quick Quote Section -->
-    <section class="quick-quote-section" id="quick-quote">
-        <div class="container">
-            <h2 class="section-title">Get Free Solar Quote for Pathanamthitta</h2>
+            <h2 class="section-title">Get Your Solar Quote in Pathanamthitta</h2>
             <div class="quote-form-container">
                 <form class="quick-quote-form" id="mainQuoteForm">
-                    <input type="hidden" name="_subject" value="🔆 Solar Quote Request - Pathanamthitta - Solis Green India">
+                    <input type="hidden" name="_subject" value="🔆 Solar Quote Request - Pathanamthitta District">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_captcha" value="false">
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your Name" required>
@@ -384,23 +449,12 @@
                         <div class="form-group">
                             <select name="service" required>
                                 <option value="">Select Service</option>
-                                <option value="residential">Home Solar</option>
-                                <option value="commercial">Business Solar</option>
-                                <option value="industrial">Industrial Solar</option>
+                                <option value="residential">Home Solar (with Subsidy)</option>
+                                <option value="commercial">Commercial / Office Solar</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <select name="location" required>
-                                <option value="">Select Your Location</option>
-                                <option value="thiruvalla">Thiruvalla</option>
-                                <option value="kozhencherry">Kozhencherry</option>
-                                <option value="adoor">Adoor</option>
-                                <option value="ranni">Ranni</option>
-                                <option value="pandalam">Pandalam</option>
-                                <option value="mallappally">Mallappally</option>
-                                <option value="konni">Konni</option>
-                                <option value="other">Other Area</option>
-                            </select>
+                            <input type="text" name="location" placeholder="Your Town (Thiruvalla, Adoor, Ranni, etc.)" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
@@ -408,232 +462,281 @@
                     </button>
                 </form>
                 <div class="quote-benefits">
-                    <h4>Why Choose Local Service?</h4>
+                    <h4>Why Pathanamthitta Customers Choose Us</h4>
                     <ul>
-                        <li><i class="fas fa-check"></i> Local Team - Faster Response</li>
-                        <li><i class="fas fa-check"></i> Area Knowledge - Better Solutions</li>
-                        <li><i class="fas fa-check"></i> Quick Maintenance - Same Day Service</li>
-                        <li><i class="fas fa-check"></i> Community Trust - 200+ Local Projects</li>
+                        <li><i class="fas fa-check"></i> Local team based in Thiruvalla</li>
+                        <li><i class="fas fa-check"></i> Support for KSEB net metering & subsidy</li>
+                        <li><i class="fas fa-check"></i> 500+ projects across South Kerala</li>
+                        <li><i class="fas fa-check"></i> 5-Year Free AMC (T&amp;C apply)</li>
                     </ul>
-                    
+
                     <div class="emergency-contact">
-                        <h4>Local Emergency Support</h4>
+                        <h4>Need Immediate Assistance?</h4>
                         <div class="emergency-numbers">
                             <a href="tel:8301849474" class="emergency-number">
-                                <i class="fas fa-phone"></i> Local Expert: 8301849474
+                                <i class="fas fa-phone"></i> Primary: 8301849474
                             </a>
                             <a href="tel:9539316623" class="emergency-number">
-                                <i class="fas fa-phone-alt"></i> Alternate: 9539316623
+                                <i class="fas fa-phone"></i> Alternate: 9539316623
+                            </a>
+                            <a href="tel:8606849474" class="emergency-number">
+                                <i class="fas fa-headset"></i> Support: 8606849474
                             </a>
                         </div>
-                        <p class="emergency-note">Available for immediate site visits across Pathanamthitta</p>
+                        <p class="emergency-note">Available for urgent solar service visits in Pathanamthitta district</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Cities We Serve -->
-    <section class="local-coverage section-light" id="cities">
+    <!-- District Intro + Stats -->
+    <section class="district-intro">
         <div class="container">
-            <h2 class="section-title">Serving All Pathanamthitta District</h2>
-            <p class="text-center">Professional solar services available in these towns and panchayats</p>
-            
-            <div class="cities-grid">
-                <div class="city-card">
-                    <div class="city-icon">
-                        <i class="fas fa-city"></i>
-                    </div>
-                    <h3>Thiruvalla</h3>
-                    <p>Headquarters location with extensive local expertise and quick service response</p>
-                    <div class="service-count">
-                        <strong>80+ Projects Completed</strong>
-                    </div>
-                    <a href="thiruvalla/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Thiruvalla
-                    </a>
-                </div>
+            <h2 class="section-title">Solar in Pathanamthitta District</h2>
+            <div class="district-intro-text">
+                <p>Solis Green India provides complete solar solutions for homes, shops, offices and institutions across Pathanamthitta district – including Thiruvalla, Ranni, Adoor, Kozhencherry, Pandalam, Mallappally, Elanthoor and nearby areas.</p>
+                <p>From small 3 kW rooftop systems for houses in Thiruvalla and Adoor to larger commercial plants in Pandalam and Kozhencherry, every project is engineered for long-term performance and savings.</p>
+                <p class="district-towns-inline">
+                    <strong>Major towns we cover for solar installation:</strong> Thiruvalla, Ranni, Adoor, Kozhencherry, Rami, Pandalam, Mallappally, Elanthoor, Komi and surrounding villages.
+                </p>
 
-                <div class="city-card">
-                    <div class="city-icon">
-                        <i class="fas fa-church"></i>
+                <div class="district-summary-stats">
+                    <div class="district-stat-card">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Projects in Pathanamthitta</div>
                     </div>
-                    <h3>Kozhencherry</h3>
-                    <p>Specialized solar solutions for residential and commercial needs</p>
-                    <div class="service-count">
-                        <strong>35+ Projects Completed</strong>
+                    <div class="district-stat-card">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">Average Bill Reduction</div>
                     </div>
-                    <a href="kozhencherry/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Kozhencherry
-                    </a>
-                </div>
-
-                <div class="city-card">
-                    <div class="city-icon">
-                        <i class="fas fa-road"></i>
+                    <div class="district-stat-card">
+                        <div class="stat-number">2019</div>
+                        <div class="stat-label">Serving Since</div>
                     </div>
-                    <h3>Adoor</h3>
-                    <p>Complete solar services with government subsidy assistance</p>
-                    <div class="service-count">
-                        <strong>28+ Projects Completed</strong>
-                    </div>
-                    <a href="adoor/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Adoor
-                    </a>
-                </div>
-
-                <div class="city-card">
-                    <div class="city-icon">
-                        <i class="fas fa-mountain"></i>
-                    </div>
-                    <h3>Ranni</h3>
-                    <p>Expert solar installation in hilly terrain with optimal positioning</p>
-                    <div class="service-count">
-                        <strong>22+ Projects Completed</strong>
-                    </div>
-                    <a href="ranni/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Ranni
-                    </a>
-                </div>
-
-                <div class="city-card">
-                    <div class="city-icon">
-                        <i class="fas fa-university"></i>
-                    </div>
-                    <h3>Pandalam</h3>
-                    <p>Royal town solar solutions with cultural sensitivity</p>
-                    <div class="service-count">
-                        <strong>18+ Projects Completed</strong>
-                    </div>
-                    <a href="pandalam/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Pandalam
-                    </a>
-                </div>
-
-                <div class="city-card">
-                    <div class="city-icon">
-                        <i class="fas fa-trees"></i>
-                    </div>
-                    <h3>Mallappally</h3>
-                    <p>Rural and urban solar solutions with customized approaches</p>
-                    <div class="service-count">
-                        <strong>15+ Projects Completed</strong>
-                    </div>
-                    <a href="mallappally/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Mallappally
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Local Projects Showcase -->
-    <section class="local-projects">
-        <div class="container">
-            <h2 class="section-title">Recent Projects in Pathanamthitta</h2>
-            <p class="text-center">Showcasing our successful solar installations across the district</p>
-            
-            <div class="project-highlights">
-                <div class="project-highlight">
-                    <h4>🏠 Residential Project - Thiruvalla</h4>
-                    <p><strong>5kW Solar System</strong> with battery backup for family home</p>
-                    <div class="project-details">
-                        <span><i class="fas fa-check"></i> 90% Bill Reduction</span>
-                        <span><i class="fas fa-check"></i> Govt Subsidy Availed</span>
-                        <span><i class="fas fa-check"></i> 5-Year FREE AMC</span>
-                    </div>
-                </div>
-
-                <div class="project-highlight">
-                    <h4>🏪 Commercial Project - Kozhencherry</h4>
-                    <p><strong>15kW Solar System</strong> for shopping complex</p>
-                    <div class="project-details">
-                        <span><i class="fas fa-check"></i> 70% Cost Saving</span>
-                        <span><i class="fas fa-check"></i> Net Metering Benefits</span>
-                        <span><i class="fas fa-check"></i> 3-Year ROI</span>
-                    </div>
-                </div>
-
-                <div class="project-highlight">
-                    <h4>🏭 Industrial Project - Adoor</h4>
-                    <p><strong>50kW Solar Plant</strong> for manufacturing unit</p>
-                    <div class="project-details">
-                        <span><i class="fas fa-check"></i> 60% Energy Cost Cut</span>
-                        <span><i class="fas fa-check"></i> Carbon Credit Benefits</span>
-                        <span><i class="fas fa-check"></i> Captive Power</span>
+                    <div class="district-stat-card">
+                        <div class="stat-number">5+ Years</div>
+                        <div class="stat-label">Local Solar Experience</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Local Team Advantage -->
-    <section class="local-team">
+    <!-- Town-wise Coverage (cards link to town pages for SEO) -->
+    <section class="quick-services">
         <div class="container">
-            <h2 class="section-title">Local Pathanamthitta Team Advantage</h2>
-            <p class="text-center">Why choosing local solar experts makes a difference</p>
-            
-            <div class="team-features">
-                <div class="team-feature">
-                    <i class="fas fa-clock"></i>
-                    <h3>Quick Response</h3>
-                    <p>Same-day site surveys and faster installation timelines</p>
+            <h2 class="section-title">Solar Company Near You in Pathanamthitta</h2>
+            <p class="district-section-subtitle">
+                Choose your town to see more information and enquire about solar installation. These town pages are for SEO and local relevance and link to their respective details.
+            </p>
+
+            <div class="services-grid">
+                <!-- Thiruvalla -->
+                <div class="service-card">
+                    <i class="fas fa-city"></i>
+                    <h3>Solar Company in Thiruvalla</h3>
+                    <p>Residential and commercial solar systems in Thiruvalla, Muthoor and nearby areas with local support from our main office.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Home rooftop solar</span>
+                        <span><i class="fas fa-check"></i> Shops & office buildings</span>
+                        <span><i class="fas fa-check"></i> Fast service & maintenance</span>
+                    </div>
+                    <a href="thiruvalla.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Thiruvalla Solar Details
+                    </a>
                 </div>
-                
-                <div class="team-feature">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <h3>Area Knowledge</h3>
-                    <p>Understanding local weather, regulations, and energy needs</p>
+
+                <!-- Ranni / Rami -->
+                <div class="service-card">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Solar in Ranni & Rami</h3>
+                    <p>Solar solutions for homes and small businesses in Ranni, Rami and surrounding hill-side regions.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Grid-tied & hybrid systems</span>
+                        <span><i class="fas fa-check"></i> Suitable for rural feeders</span>
+                        <span><i class="fas fa-check"></i> Strong after-sales support</span>
+                    </div>
+                    <a href="rami.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Rami & Ranni Solar Info
+                    </a>
                 </div>
-                
-                <div class="team-feature">
-                    <i class="fas fa-users"></i>
-                    <h3>Community Trust</h3>
-                    <p>200+ satisfied local customers and growing</p>
+
+                <!-- Adoor -->
+                <div class="service-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Solar Company in Adoor</h3>
+                    <p>Rooftop solar for houses, shops and institutions in Adoor and nearby areas.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 3–15 kW home systems</span>
+                        <span><i class="fas fa-check"></i> Commercial solar rooftops</span>
+                        <span><i class="fas fa-check"></i> KSEB net-metering support</span>
+                    </div>
+                    <a href="adoor.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Adoor Solar Details
+                    </a>
                 </div>
-                
-                <div class="team-feature">
-                    <i class="fas fa-tools"></i>
-                    <h3>Local Maintenance</h3>
-                    <p>Quick access for your FREE 5-year AMC visits</p>
+
+                <!-- Kozhencherry -->
+                <div class="service-card">
+                    <i class="fas fa-church"></i>
+                    <h3>Solar Company in Kozhencherry</h3>
+                    <p>Solar installations for homes, churches and institutions in Kozhencherry and nearby locations.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Residential rooftop solar</span>
+                        <span><i class="fas fa-check"></i> Institution solar plants</span>
+                        <span><i class="fas fa-check"></i> Local maintenance team</span>
+                    </div>
+                    <a href="kozhencherry.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Kozhencherry Solar Info
+                    </a>
+                </div>
+
+                <!-- Pandalam -->
+                <div class="service-card">
+                    <i class="fas fa-landmark"></i>
+                    <h3>Solar Company in Pandalam</h3>
+                    <p>Solar plants for houses and businesses in Pandalam and surrounding areas.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Home & commercial systems</span>
+                        <span><i class="fas fa-check"></i> High-efficiency panels</span>
+                        <span><i class="fas fa-check"></i> Fast installation timelines</span>
+                    </div>
+                    <a href="pandalam.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Pandalam Solar Details
+                    </a>
+                </div>
+
+                <!-- Mallappally -->
+                <div class="service-card">
+                    <i class="fas fa-house-chimney"></i>
+                    <h3>Solar Company in Mallappally</h3>
+                    <p>Specialized rooftop systems for houses and small commercial buildings in Mallappally.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 3–8 kW family homes</span>
+                        <span><i class="fas fa-check"></i> Reliable performance</span>
+                        <span><i class="fas fa-check"></i> Long-term warranties</span>
+                    </div>
+                    <a href="mallappally.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Mallappally Solar Info
+                    </a>
+                </div>
+
+                <!-- Elanthoor -->
+                <div class="service-card">
+                    <i class="fas fa-tree"></i>
+                    <h3>Solar Company in Elanthoor</h3>
+                    <p>Clean energy for homes and agricultural properties in Elanthoor and nearby villages.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Rural rooftop solar</span>
+                        <span><i class="fas fa-check"></i> Suitable for farms</span>
+                        <span><i class="fas fa-check"></i> On-grid & hybrid options</span>
+                    </div>
+                    <a href="elanthoor.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Elanthoor Solar Details
+                    </a>
+                </div>
+
+                <!-- Komi -->
+                <div class="service-card">
+                    <i class="fas fa-sun"></i>
+                    <h3>Solar Company in Komi & Nearby Areas</h3>
+                    <p>Custom solar solutions for Komi and surrounding localities in Pathanamthitta district.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Site-specific design</span>
+                        <span><i class="fas fa-check"></i> Panel layout optimization</span>
+                        <span><i class="fas fa-check"></i> Ongoing maintenance</span>
+                    </div>
+                    <a href="komi.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Komi Solar Info
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Local CTA Section -->
-    <section class="project-cta">
+    <!-- Why Choose Us for Pathanamthitta -->
+    <section class="why-choose-us section-light">
         <div class="container">
-            <div class="cta-content">
-                <h2>Ready for Solar in Pathanamthitta?</h2>
-                <p>Join 200+ local customers who have transformed their energy costs with our solar solutions</p>
+            <h2 class="section-title">Why Pathanamthitta Customers Trust Solis Green India</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Local Presence</h3>
+                    <p>Office in Thiruvalla and dedicated teams regularly serving Ranni, Adoor, Pandalam, Mallappally, Elanthoor and other towns.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h3>Subsidy & Net Metering</h3>
+                    <p>Complete support for government subsidy documentation and KSEB net-metering approvals for Pathanamthitta customers.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-solar-panel"></i>
+                    <h3>Quality Solar Components</h3>
+                    <p>Tier-1 solar panels, trusted inverter brands and proper mounting structure suitable for Kerala’s climate.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>5-Year Free AMC*</h3>
+                    <p>Regular monitoring, cleaning guidance and priority service support for our customers in Pathanamthitta district.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="district-faqs">
+        <div class="container">
+            <h2 class="section-title">FAQs – Solar in Pathanamthitta</h2>
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <h3>Do you provide solar installation in all Pathanamthitta towns?</h3>
+                    <p>Yes, we serve all major towns in Pathanamthitta including Thiruvalla, Ranni, Adoor, Kozhencherry, Pandalam, Mallappally, Elanthoor, Rami, Komi and nearby villages.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>Is government subsidy available for homes in Pathanamthitta?</h3>
+                    <p>Residential customers in Pathanamthitta can apply for government subsidy subject to current scheme rules. Our team guides you through the entire process.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>How long does installation take?</h3>
+                    <p>For most home projects (3–6 kW), installation completes within 3–5 days after approvals. Commercial systems may take slightly longer depending on size.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>Do you offer maintenance and service?</h3>
+                    <p>Yes. Our service teams regularly visit Pathanamthitta towns for cleaning, inspection and repairs. We also provide 5-year free AMC for eligible systems.</p>
+                </div>
+            </div>
+
+            <div class="district-cta">
+                <h2>Ready to Install Solar in Pathanamthitta?</h2>
+                <p>Call our local solar experts today. We’ll guide you on system size, subsidy, approximate cost and savings for your home or business.</p>
                 <div class="cta-buttons">
                     <a href="tel:8301849474" class="btn btn-primary">
-                        <i class="fas fa-phone"></i> Call Local Expert: 8301849474
+                        <i class="fas fa-phone"></i> Call: 8301849474
                     </a>
-                    <a href="../../contact/" class="btn btn-secondary">
-                        <i class="fas fa-map-marker-alt"></i> Visit Thiruvalla Office
+                    <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
                     </a>
-                    <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i> WhatsApp Local Team
+                    <a href="../contact/" class="btn btn-secondary">
+                        <i class="fas fa-file-signature"></i> Book Free Site Visit
                     </a>
                 </div>
-                <div class="support-contact">
-                    <p><strong>Local Support:</strong> <a href="tel:8606849474">8606849474</a> | Available for all Pathanamthitta areas</p>
-                </div>
+                <p style="margin-top:15px;font-size:0.9rem;opacity:0.9;">
+                    For service or maintenance support, call our 24/7 support line: <strong><a href="tel:8606849474" style="color:#fff;text-decoration:underline;">8606849474</a></strong>
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (same pattern as other pages) -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="../../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Leading solar energy provider in Pathanamthitta district with local expertise and 5-year FREE AMC protection.</p>
+                    <p>Powering Kerala's sustainable future with 5+ years of solar excellence and technical expertise across Pathanamthitta, Kottayam, Alappuzha and Kollam.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -643,63 +746,61 @@
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="../../">Home</a></li>
-                        <li><a href="../../services/">Services</a></li>
-                        <li><a href="../../cities/">Service Areas</a></li>
-                        <li><a href="../../about/">About Us</a></li>
-                        <li><a href="../../projects/">Projects</a></li>
-                        <li><a href="../../contact/">Contact</a></li>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../services/">Services</a></li>
+                        <li><a href="../cities/">Service Areas</a></li>
+                        <li><a href="../about/">About Us</a></li>
+                        <li><a href="../projects/">Projects</a></li>
+                        <li><a href="../contact/">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Pathanamthitta Areas</h3>
+                    <h3>Service Areas</h3>
                     <ul>
-                        <li><a href="thiruvalla/">Thiruvalla</a></li>
-                        <li><a href="kozhencherry/">Kozhencherry</a></li>
-                        <li><a href="adoor/">Adoor</a></li>
-                        <li><a href="ranni/">Ranni</a></li>
-                        <li><a href="pandalam/">Pandalam</a></li>
-                        <li><a href="mallappally/">Mallappally</a></li>
+                        <li><a href="../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
+                        <li><a href="../solar-company-in-kottayam/">Kottayam District</a></li>
+                        <li><a href="../solar-company-in-alappuzha/">Alappuzha District</a></li>
+                        <li><a href="../solar-company-in-kollam/">Kollam District</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Contact Local Team</h3>
+                    <h3>Contact Our Experts</h3>
                     <ul class="contact-info">
                         <li class="contact-primary">
-                            <i class="fas fa-phone"></i> 
+                            <i class="fas fa-phone"></i>
                             <div>
-                                <a href="tel:8301849474">Local Expert: 8301849474</a>
-                                <span class="contact-label">Pathanamthitta Head</span>
+                                <a href="tel:8301849474">Primary: 8301849474</a>
+                                <span class="contact-label">Technical Consultation</span>
                             </div>
                         </li>
                         <li class="contact-alternate">
-                            <i class="fas fa-phone-alt"></i> 
+                            <i class="fas fa-phone-alt"></i>
                             <div>
                                 <a href="tel:9539316623">Alternate: 9539316623</a>
-                                <span class="contact-label">Area Coordination</span>
+                                <span class="contact-label">Project Coordination</span>
                             </div>
                         </li>
                         <li class="contact-support">
-                            <i class="fas fa-headset"></i> 
+                            <i class="fas fa-headset"></i>
                             <div>
                                 <a href="tel:8606849474">Support: 8606849474</a>
-                                <span class="contact-label">Local Maintenance</span>
+                                <span class="contact-label">24/7 Customer Support</span>
                             </div>
                         </li>
                         <li class="whatsapp-primary">
-                            <i class="fab fa-whatsapp"></i> 
+                            <i class="fab fa-whatsapp"></i>
                             <div>
                                 <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
-                                <span class="contact-label">Local Team Chat</span>
+                                <span class="contact-label">Quick Consultation</span>
                             </div>
                         </li>
                         <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Thiruvalla - 689107</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Muthoor, Thiruvalla - 689107</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Solar Experts in Pathanamthitta District</p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Powering Kerala's Sustainable Future</p>
             </div>
         </div>
     </footer>
@@ -709,22 +810,18 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <script src="../../script.js"></script>
-    
-    <!-- District Page JavaScript -->
+    <!-- Mobile Menu Fix JavaScript (same pattern as other pages) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu Fix
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mainNav = document.getElementById('mainNav');
-            
+
             if (mobileMenuBtn && mainNav) {
                 mobileMenuBtn.addEventListener('click', function() {
                     mainNav.classList.toggle('active');
                     this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
                 });
-                
-                // Close menu when clicking on links
+
                 const navLinks = mainNav.querySelectorAll('a');
                 navLinks.forEach(link => {
                     link.addEventListener('click', () => {
@@ -732,8 +829,7 @@
                         mobileMenuBtn.setAttribute('aria-expanded', 'false');
                     });
                 });
-                
-                // Close menu when clicking outside
+
                 document.addEventListener('click', function(event) {
                     if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
                         mainNav.classList.remove('active');
@@ -741,27 +837,9 @@
                     }
                 });
             }
-
-            // City card animations
-            const cityCards = document.querySelectorAll('.city-card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            cityCards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                observer.observe(card);
-            });
         });
     </script>
+
+    <script src="../script.js"></script>
 </body>
 </html>
