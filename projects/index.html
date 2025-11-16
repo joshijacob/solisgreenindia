@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore 500+ Residential & Commercial Solar Projects by Solis Green India. Leading solar provider in Pathanamthitta, Kottayam, Alappuzha & Kollam. Trusted installations with 5+ years of excellence.">
+    <meta name="description" content="Solis Green India - Solar projects across Kerala. View our residential and commercial solar installations in Pathanamthitta, Kottayam, Alappuzha and Kollam.">
     <meta name="keywords" content="solar projects kerala, residential solar projects, commercial solar projects, solis green india projects">
     <meta name="author" content="Solis Green India">
 
-    <!-- Preload hero images -->
-    <link rel="preload" href="../images/hero/hero-image-1.webp" as="image">
-    <link rel="preload" href="../images/hero/hero-image-2.webp" as="image">
-    <link rel="preload" href="../images/hero/hero-image-3.webp" as="image">
-    <link rel="preload" href="../images/hero/hero-image-4.webp" as="image">
-    <link rel="preload" href="../images/hero/hero-image-5.webp" as="image">
+    <!-- Preload critical hero image -->
+    <link rel="preload" href="../images/hero/hero-image-1.webp" as="image" type="image/webp">
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -20,243 +16,694 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
-    <!-- End GTM -->
+    <!-- End Google Tag Manager -->
 
-    <title>Solar Projects in Kerala | Solis Green India - 500+ Installations</title>
-
+    <title>Solar Projects in Kerala | Residential & Commercial | Solis Green India</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Mobile Menu Fix CSS (same pattern as other pages) -->
+    <style>
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                display: flex !important;
+            }
+
+            .mobile-menu-btn {
+                display: block !important;
+            }
+        }
+
+        /* Small project-specific tweaks reusing A-style components */
+        .projects-intro {
+            padding: 80px 0 40px;
+        }
+
+        .projects-intro-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .projects-intro-text p {
+            margin-bottom: 10px;
+        }
+
+        .projects-intro-text .project-towns {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .projects-summary-stats {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .projects-stat-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .projects-stat-card .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .projects-stat-card .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .projects-section-heading {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .projects-section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .project-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-right: 12px;
+        }
+
+        .project-meta i {
+            color: var(--primary-color);
+            font-size: 0.85rem;
+        }
+
+        .project-capacity {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
+
+        .projects-cta {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: var(--border-radius);
+            text-align: center;
+            color: #fff;
+        }
+
+        .projects-cta h2 {
+            margin-bottom: 10px;
+        }
+
+        .projects-cta p {
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .projects-cta .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .projects-cta .cta-buttons .btn {
+            min-width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .projects-cta {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End GTM noscript -->
-
-<!-- Floating CTA -->
-<div class="floating-cta">
-    <div class="cta-main-btn" id="ctaMainBtn">
-        <i class="fas fa-comments"></i>
-        <span class="pulse-dot"></span>
-    </div>
-    <div class="cta-options">
-        <a href="tel:8301849474" class="cta-option"><i class="fas fa-phone"></i></a>
-        <a href="tel:9539316623" class="cta-option"><i class="fas fa-phone-alt"></i></a>
-        <a href="https://wa.me/918301849474" target="_blank" class="cta-option"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" id="quickFormBtn" class="cta-option"><i class="fas fa-file-alt"></i></a>
-    </div>
-</div>
-
-<!-- Quick Quote Modal -->
-<div class="modal" id="quickQuoteModal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3>Get Quick Solar Quote</h3>
-        <form class="quick-quote-form">
-            <div class="form-group"><input type="text" name="name" placeholder="Your Name" required></div>
-            <div class="form-group"><input type="tel" name="phone" placeholder="Phone Number" required></div>
-            <div class="form-group">
-                <select name="service" required>
-                    <option value="">Select Service</option>
-                    <option value="Residential Solar">Residential Solar</option>
-                    <option value="Commercial Solar">Commercial Solar</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-bolt"></i> Get Quote</button>
-        </form>
-    </div>
-</div>
-
-<!-- Header -->
-<header>
-    <div class="container header-container">
-        <div class="logo">
-            <a href="../">
-                <img src="../images/logo/logo.png" alt="Solis Green India" class="logo-img">
+    <!-- Floating CTA (same as home/about) -->
+    <div class="floating-cta">
+        <div class="cta-main-btn" id="ctaMainBtn">
+            <i class="fas fa-comments"></i>
+            <span class="pulse-dot"></span>
+        </div>
+        <div class="cta-options">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Primary Call">
+                <i class="fas fa-phone"></i>
             </a>
-        </div>
-
-        <div class="header-contact">
-            <a href="tel:8301849474"><i class="fas fa-phone"></i> 8301849474</a>
-            <a href="tel:9539316623"><i class="fas fa-phone-alt"></i> 9539316623</a>
-        </div>
-
-        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-
-        <nav id="mainNav">
-            <ul>
-                <li><a href="../">Home</a></li>
-                <li><a href="../services/">Services</a></li>
-                <li><a href="../cities/">Service Areas</a></li>
-                <li><a href="../projects/" class="active">Projects</a></li>
-                <li><a href="../contact/" class="cta-button">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<!-- Hero Slider -->
-<section class="hero-slider">
-    <div class="hero-slides">
-
-        <!-- Slide 1 -->
-        <div class="hero-slide active">
-            <img src="../images/hero/hero-image-1.webp" class="hero-bg-image">
-            <div class="gradient-overlay"></div>
-            <div class="hero-content container">
-                <h1>500+ Solar Installations Across Kerala</h1>
-                <p>Residential & Commercial Projects Completed with Excellence</p>
-            </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="hero-slide">
-            <img src="../images/hero/hero-image-2.webp" class="hero-bg-image">
-            <div class="gradient-overlay"></div>
-            <div class="hero-content container">
-                <h1>Trusted by Homes & Businesses</h1>
-                <p>Expert Solar Engineering With 5+ Years of Experience</p>
-            </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="hero-slide">
-            <img src="../images/hero/hero-image-3.webp" class="hero-bg-image">
-            <div class="gradient-overlay"></div>
-            <div class="hero-content container">
-                <h1>High-Efficiency Solar Systems</h1>
-                <p>Backed by 5-Year FREE AMC & Monitoring</p>
-            </div>
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="hero-slide">
-            <img src="../images/hero/hero-image-4.webp" class="hero-bg-image">
-            <div class="gradient-overlay"></div>
-            <div class="hero-content container">
-                <h1>Energy Independence for Kerala</h1>
-                <p>Installed Across Pathanamthitta, Kottayam, Alappuzha, Kollam</p>
-            </div>
-        </div>
-
-        <!-- Slide 5 -->
-        <div class="hero-slide">
-            <img src="../images/hero/hero-image-5.webp" class="hero-bg-image">
-            <div class="gradient-overlay"></div>
-            <div class="hero-content container">
-                <h1>Your Trusted Solar Partner</h1>
-                <p>Sustainable Energy Solutions for Every Need</p>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- Projects Overview -->
-<section class="section-light">
-    <div class="container">
-        <h2 class="section-title">Our Solar Projects</h2>
-        <p class="section-subtitle">
-            We have completed over 500+ solar installations across Kerala — including homes, villas, shops, offices, schools, hospitals, and commercial buildings.
-        </p>
-
-        <div class="service-grid">
-
-            <!-- Residential Projects Card -->
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-home"></i></div>
-                <h3>Residential Projects</h3>
-                <p>Explore our installations in homes, villas, apartments, and independent houses.</p>
-                <a href="residential-projects.html" class="btn btn-primary">View Residential</a>
-            </div>
-
-            <!-- Commercial Projects Card -->
-            <div class="service-card">
-                <div class="service-icon"><i class="fas fa-building"></i></div>
-                <h3>Commercial Projects</h3>
-                <p>Solar solutions for shops, offices, schools, hospitals, and institutions.</p>
-                <a href="commercial-projects.html" class="btn btn-primary">View Commercial</a>
-            </div>
-
-        </div>
-
-        <div class="center">
-            <a href="gallery/" class="btn btn-secondary">
-                <i class="fas fa-images"></i> View Full Gallery
+            <a href="tel:9539316623" class="cta-option" data-tooltip="Alternate Call">
+                <i class="fas fa-phone-alt"></i>
+            </a>
+            <a href="tel:8606849474" class="cta-option" data-tooltip="Support Call">
+                <i class="fas fa-headset"></i>
+            </a>
+            <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
+                <i class="fas fa-file-alt"></i>
+            </a>
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="Primary WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://wa.me/919539316623" class="cta-option" data-tooltip="Alternate WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
             </a>
         </div>
     </div>
-</section>
 
-<!-- CTA -->
-<section class="about-cta">
-    <div class="container">
-        <h2>Ready to Install Solar for Your Home or Business?</h2>
-        <p>Get a free site visit and solar consultation from our expert engineers.</p>
-        <div class="cta-buttons">
-            <a href="tel:8301849474" class="btn btn-primary"><i class="fas fa-phone"></i> Call 8301849474</a>
-            <a href="https://wa.me/918301849474" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
-            <a href="../contact/" class="btn btn-secondary"><i class="fas fa-map-marker-alt"></i> Contact Office</a>
+    <!-- Quick Quote Modal -->
+    <div class="modal" id="quickQuoteModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Get Quick Solar Quote</h3>
+            <form class="quick-quote-form" id="modalQuoteForm">
+                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select name="service" required>
+                        <option value="">Select Service</option>
+                        <option value="residential">Residential Solar</option>
+                        <option value="commercial">Commercial Solar</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="location" placeholder="Your Location/City">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-bolt"></i> Get Instant Quote
+                </button>
+            </form>
+            <div class="emergency-contact-modal">
+                <h4>Need Immediate Help?</h4>
+                <div class="emergency-numbers">
+                    <a href="tel:8301849474" class="emergency-number">
+                        <i class="fas fa-phone"></i> Primary: 8301849474
+                    </a>
+                    <a href="tel:9539316623" class="emergency-number">
+                        <i class="fas fa-phone-alt"></i> Alternate: 9539316623
+                    </a>
+                    <a href="tel:8606849474" class="emergency-number">
+                        <i class="fas fa-headset"></i> Support: 8606849474
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</section>
 
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="footer-content">
-
-            <div class="footer-col">
-                <img src="../images/logo/logo-white.png" class="footer-logo-img">
-                <p>Powering Kerala’s sustainable future with 5+ years of solar excellence.</p>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="../">
+                    <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+                </a>
             </div>
 
-            <div class="footer-col">
-                <h3>Quick Links</h3>
+            <div class="header-contact">
+                <a href="tel:8301849474" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                    <span>Primary: 8301849474</span>
+                </a>
+                <a href="tel:9539316623" class="contact-link">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Alternate: 9539316623</span>
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="mainNav">
                 <ul>
                     <li><a href="../">Home</a></li>
                     <li><a href="../services/">Services</a></li>
-                    <li><a href="../projects/">Projects</a></li>
                     <li><a href="../cities/">Service Areas</a></li>
-                    <li><a href="../contact/">Contact</a></li>
+                    <li><a href="../about/">About Us</a></li>
+                    <li><a href="../projects/" class="active">Projects</a></li>
+                    <li><a href="../contact/" class="cta-button">Contact</a></li>
                 </ul>
-            </div>
+            </nav>
+        </div>
+    </header>
 
-            <div class="footer-col">
-                <h3>Districts</h3>
-                <ul>
-                    <li><a href="../solar-company-in-pathanamthitta/">Pathanamthitta</a></li>
-                    <li><a href="../solar-company-in-kottayam/">Kottayam</a></li>
-                    <li><a href="../solar-company-in-alappuzha/">Alappuzha</a></li>
-                    <li><a href="../solar-company-in-kollam/">Kollam</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h3>Contact</h3>
-                <ul>
-                    <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
-                    <li><i class="fas fa-phone"></i> <a href="tel:9539316623">9539316623</a></li>
-                    <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474">8301849474</a></li>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-                </ul>
-            </div>
-
+    <!-- Hero Slider (Style A, 3 slides, using local hero images) -->
+    <section class="hero-slider" id="projects-hero">
+        <div class="particles-container">
+            <div class="particles"></div>
+            <div class="solar-flare"></div>
         </div>
 
-        <div class="copyright">
-            © 2025 Solis Green India. All Rights Reserved.
+        <div class="hero-slides">
+            <!-- Slide 1 -->
+            <div class="hero-slide active">
+                <img src="../images/hero/hero-image-1.webp"
+                     alt="Residential rooftop solar panels in Kerala"
+                     class="hero-bg-image"
+                     loading="eager"
+                     fetchpriority="high"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-blue"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">☀️</div>
+                    <div class="floating-element element-2">🏠</div>
+                    <div class="floating-element element-3">⚡</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>Solar Projects Across Kerala</h1>
+                    <p>500+ residential and commercial solar installations powering homes and businesses in South Kerala.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="residential-projects.html" class="btn btn-primary pulse-animation">
+                                <i class="fas fa-home"></i> View Residential Projects
+                            </a>
+                            <a href="commercial-projects.html" class="btn btn-secondary">
+                                <i class="fas fa-building"></i> View Commercial Projects
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="hero-slide">
+                <img src="../images/hero/hero-image-2.webp"
+                     alt="Commercial rooftop solar plant in Kerala"
+                     class="hero-bg-image"
+                     loading="lazy"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-green"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">💡</div>
+                    <div class="floating-element element-2">🏢</div>
+                    <div class="floating-element element-3">💰</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>Designed for Maximum Savings</h1>
+                    <p>Optimized solar projects with fast ROI for homes, shops, offices and institutions.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="../contact/" class="btn btn-primary">
+                                <i class="fas fa-phone"></i> Talk to Project Expert
+                            </a>
+                            <a href="../services/" class="btn btn-support">
+                                <i class="fas fa-bolt"></i> Explore Our Services
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide">
+                <img src="../images/hero/hero-image-3.webp"
+                     alt="Solar panels with sunset sky"
+                     class="hero-bg-image"
+                     loading="lazy"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-purple"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">🌱</div>
+                    <div class="floating-element element-2">⭐</div>
+                    <div class="floating-element element-3">🔧</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>Trusted in Towns Across South Kerala</h1>
+                    <p>Projects in Thiruvalla, Ranni, Adoor, Changanacherry, Kottayam, Cherthala, Haripad, Karunagapally and more.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="../solar-company-in-pathanamthitta/" class="btn btn-primary">
+                                <i class="fas fa-map-marker-alt"></i> View District Coverage
+                            </a>
+                            <a href="../cities/" class="btn btn-secondary">
+                                <i class="fas fa-location-dot"></i> Service Areas
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</footer>
 
-<!-- Back to Top -->
-<button id="backToTop" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+        <!-- Slider Controls -->
+        <button class="slider-prev" aria-label="Previous slide">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-next" aria-label="Next slide">
+            <i class="fas fa-chevron-right"></i>
+        </button>
 
-<!-- JS -->
-<script src="../script.js"></script>
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
+            <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
+            <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
+        </div>
+    </section>
 
+    <!-- Intro + Stats -->
+    <section class="projects-intro section-light">
+        <div class="container">
+            <h2 class="section-title">Our Solar Project Portfolio</h2>
+            <div class="projects-intro-text">
+                <p>Since 2019, Solis Green India has delivered reliable solar power solutions for homes, shops, offices and institutions across South Kerala.</p>
+                <p>From small 3 kW home systems in Thiruvalla and Changanacherry to large commercial rooftops in Kottayam, Cherthala and Karunagapally, every project is engineered for long-term performance.</p>
+                <p class="project-towns">
+                    Major project locations include Thiruvalla, Ranni, Adoor, Kozhencherry, Pandalam, Mallappally, Changanacherry, Kottayam, Ettumanoor, Cherthala, Haripad, Mavelikkara, Kayamkulam, Karunagapally, Punalur and more.
+                </p>
+
+                <div class="projects-summary-stats">
+                    <div class="projects-stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="projects-stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Districts in South Kerala</div>
+                    </div>
+                    <div class="projects-stat-card">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">Average Bill Reduction</div>
+                    </div>
+                    <div class="projects-stat-card">
+                        <div class="stat-number">5+ Years</div>
+                        <div class="stat-label">Solar Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Categories (Option B: Residential + Commercial) -->
+    <section class="quick-services">
+        <div class="container">
+            <div class="projects-section-heading">
+                <h2 class="section-title">Browse Projects by Category</h2>
+            </div>
+            <p class="projects-section-subtitle">
+                Choose a category below to see sample installations, locations and system capacities.
+            </p>
+
+            <div class="services-grid">
+                <!-- Residential Projects Card -->
+                <div class="service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Residential Solar Projects</h3>
+                    <p>Rooftop solar installations for independent houses, villas and apartments with subsidy support.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 3 kW – 15 kW systems</span>
+                        <span><i class="fas fa-check"></i> Pathanamthitta, Kottayam, Alappuzha</span>
+                        <span><i class="fas fa-check"></i> 40% Government Subsidy</span>
+                    </div>
+                    <a href="residential-projects.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> View Residential Projects
+                    </a>
+                </div>
+
+                <!-- Commercial Projects Card -->
+                <div class="service-card">
+                    <i class="fas fa-building"></i>
+                    <h3>Commercial Solar Projects</h3>
+                    <p>Solar systems for shops, offices, hotels, hospitals, schools and other commercial establishments.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 10 kW – 100 kW+</span>
+                        <span><i class="fas fa-check"></i> Shops, Offices & Institutions</span>
+                        <span><i class="fas fa-check"></i> Quick ROI & Tax Benefits</span>
+                    </div>
+                    <a href="commercial-projects.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> View Commercial Projects
+                    </a>
+                </div>
+
+                <!-- Custom Project Consulting Card -->
+                <div class="service-card">
+                    <i class="fas fa-solar-panel"></i>
+                    <h3>Plan Your Solar Project</h3>
+                    <p>Get a custom solar design and estimate based on your load, roof space and budget.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Free Site Survey</span>
+                        <span><i class="fas fa-check"></i> Detailed Savings Report</span>
+                        <span><i class="fas fa-check"></i> 5-Year Free AMC*</span>
+                    </div>
+                    <a href="../contact/" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Talk to Our Experts
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Sample Projects (using A-style cards/animations) -->
+    <section class="local-testimonials section-light">
+        <div class="container">
+            <h2 class="section-title">Sample Solar Installations in Kerala</h2>
+            <p class="projects-section-subtitle">
+                A quick look at some of our completed projects. More detailed lists are available inside each category page.
+            </p>
+
+            <div class="testimonials-grid">
+                <!-- Project 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="project-meta">
+                            <span><i class="fas fa-home"></i> Residential Rooftop</span>
+                            <span><i class="fas fa-location-dot"></i> Thiruvalla, Pathanamthitta</span>
+                        </div>
+                        <div class="project-capacity">6 kW On-Grid Solar System</div>
+                        <p>"Family home shifted almost 90% of their monthly electricity usage to solar, with excellent performance even in monsoon months."</p>
+                        <div class="testimonial-author">
+                            <strong>Independent Villa</strong>
+                            <span>Premium mono PERC panels, string inverter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="project-meta">
+                            <span><i class="fas fa-building"></i> Commercial Rooftop</span>
+                            <span><i class="fas fa-location-dot"></i> Changanacherry, Kottayam</span>
+                        </div>
+                        <div class="project-capacity">25 kW Commercial Solar Plant</div>
+                        <p>"Installed on a retail building, this system significantly reduced daytime electricity bills and improved overall profitability."</p>
+                        <div class="testimonial-author">
+                            <strong>Retail & Office Complex</strong>
+                            <span>High-efficiency panels, remote monitoring</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="project-meta">
+                            <span><i class="fas fa-home"></i> Residential Rooftop</span>
+                            <span><i class="fas fa-location-dot"></i> Cherthala, Alappuzha</span>
+                        </div>
+                        <div class="project-capacity">8 kW Hybrid Solar System</div>
+                        <p>"Designed with battery backup for frequent power cuts, providing uninterrupted power and major savings on energy costs."</p>
+                        <div class="testimonial-author">
+                            <strong>Independent House</strong>
+                            <span>Hybrid inverter, backup storage</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="services-cta">
+                <div class="cta-content">
+                    <h3>Want to See Projects Similar to Your Home or Business?</h3>
+                    <p>Share your load details and location. We’ll show you matching projects from Thiruvalla, Ranni, Adoor, Changanacherry, Kottayam, Cherthala, Haripad and nearby towns.</p>
+                    <div class="cta-buttons">
+                        <a href="residential-projects.html" class="btn btn-primary">
+                            <i class="fas fa-home"></i> View Residential Portfolio
+                        </a>
+                        <a href="commercial-projects.html" class="btn btn-secondary">
+                            <i class="fas fa-building"></i> View Commercial Portfolio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects CTA (bottom) -->
+    <section class="projects-cta">
+        <div class="container">
+            <h2>Ready to Start Your Solar Project?</h2>
+            <p>Whether you are in Thiruvalla, Pathanamthitta, Kottayam, Alappuzha or Kollam, our team can guide you from site survey to commissioning.</p>
+            <div class="cta-buttons">
+                <a href="tel:8301849474" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Call: 8301849474
+                </a>
+                <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
+                </a>
+                <a href="../contact/" class="btn btn-secondary">
+                    <i class="fas fa-file-signature"></i> Book Free Site Visit
+                </a>
+            </div>
+            <p style="margin-top:15px;font-size:0.9rem;opacity:0.9;">
+                For support or maintenance of existing projects, call our 24/7 support line: <strong><a href="tel:8606849474" style="color:#fff;text-decoration:underline;">8606849474</a></strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                    </div>
+                    <p>Powering Kerala's sustainable future with 5+ years of solar excellence and technical expertise.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../services/">Services</a></li>
+                        <li><a href="../cities/">Service Areas</a></li>
+                        <li><a href="../about/">About Us</a></li>
+                        <li><a href="../projects/">Projects</a></li>
+                        <li><a href="../contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Service Areas</h3>
+                    <ul>
+                        <li><a href="../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
+                        <li><a href="../solar-company-in-kottayam/">Kottayam District</a></li>
+                        <li><a href="../solar-company-in-alappuzha/">Alappuzha District</a></li>
+                        <li><a href="../solar-company-in-kollam/">Kollam District</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Our Experts</h3>
+                    <ul class="contact-info">
+                        <li class="contact-primary">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <a href="tel:8301849474">Primary: 8301849474</a>
+                                <span class="contact-label">Technical Consultation</span>
+                            </div>
+                        </li>
+                        <li class="contact-alternate">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <a href="tel:9539316623">Alternate: 9539316623</a>
+                                <span class="contact-label">Project Coordination</span>
+                            </div>
+                        </li>
+                        <li class="contact-support">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <a href="tel:8606849474">Support: 8606849474</a>
+                                <span class="contact-label">24/7 Customer Support</span>
+                            </div>
+                        </li>
+                        <li class="whatsapp-primary">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
+                                <span class="contact-label">Quick Consultation</span>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Muthoor, Thiruvalla - 689107</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Powering Kerala's Sustainable Future</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Mobile Menu Fix JavaScript (same pattern as other pages) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+                });
+
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    });
+                });
+
+                document.addEventListener('click', function(event) {
+                    if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script src="../script.js"></script>
 </body>
 </html>
