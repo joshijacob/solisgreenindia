@@ -27,94 +27,39 @@
       gtag('config', 'G-R4VD9LGY29');
     </script>
     
-    <!-- Enhanced Event Tracking for Multiple Contact Numbers -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Primary Phone Number Tracking
-        document.querySelectorAll('a[href^="tel:8301849474"]').forEach(link => {
-          link.addEventListener('click', function() {
-            gtag('event', 'phone_call', {
-              'event_category': 'Contact',
-              'event_label': 'Primary Number - 8301849474',
-              'value': 1
-            });
-          });
-        });
-
-        // Alternate Phone Number Tracking
-        document.querySelectorAll('a[href^="tel:9539316623"]').forEach(link => {
-          link.addEventListener('click', function() {
-            gtag('event', 'phone_call', {
-              'event_category': 'Contact',
-              'event_label': 'Alternate Number - 9539316623',
-              'value': 1
-            });
-          });
-        });
-
-        // Support Phone Number Tracking
-        document.querySelectorAll('a[href^="tel:8606849474"]').forEach(link => {
-          link.addEventListener('click', function() {
-            gtag('event', 'phone_call', {
-              'event_category': 'Contact',
-              'event_label': 'Support Number - 8606849474',
-              'value': 1
-            });
-          });
-        });
-
-        // WhatsApp Tracking
-        document.querySelectorAll('a[href*="wa.me/918301849474"]').forEach(link => {
-          link.addEventListener('click', function() {
-            gtag('event', 'whatsapp_click', {
-              'event_category': 'Contact',
-              'event_label': 'WhatsApp - 8301849474',
-              'value': 1
-            });
-          });
-        });
-
-        // Form Submission Tracking
-        document.querySelectorAll('form').forEach(form => {
-          form.addEventListener('submit', function() {
-            gtag('event', 'form_submit', {
-              'event_category': 'Lead',
-              'event_label': 'About Page Form Submission',
-              'value': 1
-            });
-          });
-        });
-      });
-    </script>
-    
-    <!-- Local Business Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "name": "About Solis Green India",
-      "description": "Technical solar engineering company in Kerala providing FREE 5-year AMC with daily monitoring",
-      "url": "https://solisgreenindia.in/about/",
-      "mainEntity": {
-        "@type": "Organization",
-        "name": "Solis Green India",
-        "description": "Engineering-driven solar solutions provider in Kerala",
-        "foundingDate": "2019",
-        "employee": {
-          "@type": "Person",
-          "name": "Solar Engineering Team",
-          "jobTitle": "Certified Solar Engineers"
-        }
-      }
-    }
-    </script>
-    
     <title>About Solis Green India - Powering Kerala's Sustainable Future | 5+ Years Excellence</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Mobile Menu Fix CSS -->
+    <style>
+        /* Ensure mobile menu displays properly */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+            
+            nav ul.active {
+                display: flex !important;
+            }
+            
+            .mobile-menu-btn {
+                display: block !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -201,6 +146,7 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
+            <!-- FIXED: Logo with home link -->
             <div class="logo">
                 <a href="../">
                     <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
@@ -218,10 +164,12 @@
                 </a>
             </div>
             
+            <!-- Mobile Menu Button -->
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
             
+            <!-- Navigation -->
             <nav id="mainNav">
                 <ul>
                     <li><a href="../">Home</a></li>
@@ -235,6 +183,7 @@
         </div>
     </header>
 
+    <!-- Rest of your About Us page content remains the same -->
     <!-- Hero Section -->
     <section class="hero-slider" id="home">
         <div class="particles-container">
@@ -508,6 +457,39 @@
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </button>
+
+    <!-- Mobile Menu Fix JavaScript -->
+    <script>
+        // Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+                });
+                
+                // Close menu when clicking on links
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
 
     <script src="../script.js"></script>
 </body>
