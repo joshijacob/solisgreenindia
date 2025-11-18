@@ -3,60 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solar company in Kollam - Residential & commercial solar panel installation services in Kollam district, port city and coastal areas">
-    <meta name="keywords" content="solar company kollam, solar panels kollam, solar installation kollam, solar energy kollam, quilon solar">
+    <meta name="description" content="Solis Green India - Leading solar company in Kollam district. Residential and commercial solar panel installation in Kollam, Karunagapally, Punalur, Kottarakara, Paravur, Sasthamkotta and Anchal with Kerala government subsidy support.">
+    <meta name="keywords" content="solar company in Kollam, solar panels Kollam, solar installation Karunagapally, solar company Punalur, solar rooftop Kottarakara, solar power Paravur, solar system Sasthamkotta, solar energy Anchal, Kerala solar subsidy, on-grid solar Kollam">
     <meta name="author" content="Solis Green India">
-    
-    <!-- Local Business Schema for Kollam -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Solis Green India - Kollam",
-      "description": "Leading solar energy solutions provider in Kollam district and coastal regions",
-      "url": "https://solisgreenindia.in/solar-company-in-kollam/",
-      "telephone": "+91-8301849474",
-      "email": "solisgreenindia@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressRegion": "Kerala",
-        "addressLocality": "Kollam"
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": "Kollam"
-      }
-    }
-    </script>
-    
-    <title>Solar Company in Kollam | Solar Panels Installation | Solis Green India</title>
-    <link rel="stylesheet" href="../../style.css">
-    <link rel="stylesheet" href="kollam-styles.css">
+
+    <!-- Preload critical hero image -->
+    <link rel="preload" href="../images/hero/hero-image-4.webp" as="image" type="image/webp">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
+    <!-- End Google Tag Manager -->
+
+    <title>Solar Company in Kollam | Karunagapally, Punalur, Kottarakara | Solis Green India</title>
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Mobile Menu Fix CSS (same pattern as other pages) -->
+    <style>
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                display: flex !important;
+            }
+
+            .mobile-menu-btn {
+                display: block !important;
+            }
+        }
+
+        /* District intro + cards tweaks reusing Style A components */
+        .district-intro {
+            padding: 80px 0 40px;
+        }
+
+        .district-intro-text {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .district-intro-text p {
+            margin-bottom: 12px;
+        }
+
+        .district-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .district-badge {
+            background: var(--white);
+            border-radius: 999px;
+            padding: 8px 18px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .district-badge i {
+            color: var(--primary-color);
+        }
+
+        .district-summary-stats {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .district-stat-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .district-stat-card .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .district-stat-card .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .district-section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .town-meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .town-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-right: 12px;
+        }
+
+        .town-meta i {
+            color: var(--primary-color);
+            font-size: 0.85rem;
+        }
+
+        .district-cta-bottom {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: var(--border-radius);
+            text-align: center;
+            color: #fff;
+        }
+
+        .district-cta-bottom h2 {
+            margin-bottom: 10px;
+        }
+
+        .district-cta-bottom p {
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .district-cta-bottom .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .district-cta-bottom .cta-buttons .btn {
+            min-width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .district-cta-bottom {
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Cursor Trail Effect -->
-    <div class="cursor-trail"></div>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Expandable Floating CTA -->
+    <!-- Floating CTA -->
     <div class="floating-cta">
         <div class="cta-main-btn" id="ctaMainBtn">
             <i class="fas fa-comments"></i>
+            <span class="pulse-dot"></span>
         </div>
         <div class="cta-options">
-            <a href="tel:8301849474" class="cta-option" data-tooltip="Call Us">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Primary Call">
                 <i class="fas fa-phone"></i>
+            </a>
+            <a href="tel:9539316623" class="cta-option" data-tooltip="Alternate Call">
+                <i class="fas fa-phone-alt"></i>
+            </a>
+            <a href="tel:8606849474" class="cta-option" data-tooltip="Support Call">
+                <i class="fas fa-headset"></i>
             </a>
             <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
                 <i class="fas fa-file-alt"></i>
             </a>
-            <a href="https://maps.app.goo.gl/C125qY2UpXTRdGay7" class="cta-option" data-tooltip="Get Directions" target="_blank">
-                <i class="fas fa-map-marker-alt"></i>
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="Primary WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp" target="_blank">
+            <a href="https://wa.me/919539316623" class="cta-option" data-tooltip="Alternate WhatsApp" target="_blank">
                 <i class="fab fa-whatsapp"></i>
             </a>
         </div>
@@ -66,29 +214,46 @@
     <div class="modal" id="quickQuoteModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h3>Get Quick Solar Quote for Kollam</h3>
-            <form class="quick-quote-form">
+            <h3>Get Quick Solar Quote</h3>
+            <form class="quick-quote-form" id="modalQuoteForm">
+                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India (Kollam District)">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+
                 <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
+                    <input type="text" name="name" placeholder="Your Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" placeholder="Phone Number" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
                 </div>
                 <div class="form-group">
-                    <select required>
+                    <select name="service" required>
                         <option value="">Select Service</option>
                         <option value="residential">Residential Solar</option>
                         <option value="commercial">Commercial Solar</option>
-                        <option value="industrial">Industrial Solar</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Specific Area in Kollam" required>
+                    <input type="text" name="location" placeholder="Your Location/City in Kollam District">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">
-                    <i class="fas fa-bolt"></i> Get Kollam Quote
+                    <i class="fas fa-bolt"></i> Get Instant Quote
                 </button>
             </form>
+            <div class="emergency-contact-modal">
+                <h4>Need Immediate Help?</h4>
+                <div class="emergency-numbers">
+                    <a href="tel:8301849474" class="emergency-number">
+                        <i class="fas fa-phone"></i> Primary: 8301849474
+                    </a>
+                    <a href="tel:9539316623" class="emergency-number">
+                        <i class="fas fa-phone-alt"></i> Alternate: 9539316623
+                    </a>
+                    <a href="tel:8606849474" class="emergency-number">
+                        <i class="fas fa-headset"></i> Support: 8606849474
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -96,403 +261,416 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="../../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+                <a href="../">
+                    <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+                </a>
             </div>
-            
+
+            <div class="header-contact">
+                <a href="tel:8301849474" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                    <span>Primary: 8301849474</span>
+                </a>
+                <a href="tel:9539316623" class="contact-link">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Alternate: 9539316623</span>
+                </a>
+            </div>
+
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
-            
+
             <nav id="mainNav">
                 <ul>
-                    <li><a href="../../index.html">Home</a></li>
-                    <li><a href="../../services.html">Services</a></li>
-                    <li><a href="../../cities.html">Service Areas</a></li>
-                    <li><a href="../../projects.html">Projects</a></li>
-                    <li><a href="../../contact.html" class="cta-button">Contact</a></li>
+                    <li><a href="../">Home</a></li>
+                    <li><a href="../services/">Services</a></li>
+                    <li><a href="../cities/" class="active">Service Areas</a></li>
+                    <li><a href="../about/">About Us</a></li>
+                    <li><a href="../projects/">Projects</a></li>
+                    <li><a href="../contact/" class="cta-button">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <!-- Hero Slider (Style A, using hero images 4,5,6) -->
+    <section class="hero-slider" id="kollam-hero">
+        <div class="particles-container">
+            <div class="particles"></div>
+            <div class="solar-flare"></div>
+        </div>
+
+        <div class="hero-slides">
+            <!-- Slide 1 -->
+            <div class="hero-slide active">
+                <img src="../images/hero/hero-image-4.webp"
+                     alt="Solar company in Kollam district - residential rooftop solar panels"
+                     class="hero-bg-image"
+                     loading="eager"
+                     fetchpriority="high"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-blue"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">☀️</div>
+                    <div class="floating-element element-2">🏠</div>
+                    <div class="floating-element element-3">⚡</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>Solar Company in Kollam District</h1>
+                    <p>Residential and commercial solar panel installation in Kollam, Karunagapally, Punalur, Kottarakara, Paravur, Sasthamkotta and Anchal.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                                <i class="fas fa-phone"></i> Call Kollam Solar Expert
+                            </a>
+                            <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
+                            </a>
+                        </div>
+                        <div class="whatsapp-options">
+                            <a href="#kollam-areas" class="btn btn-secondary">
+                                <i class="fas fa-location-dot"></i> View Kollam Service Areas
+                            </a>
+                            <a href="../projects/" class="btn btn-support">
+                                <i class="fas fa-images"></i> See Our Projects
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="hero-slide">
+                <img src="../images/hero/hero-image-5.webp"
+                     alt="Commercial rooftop solar plant in Kollam"
+                     class="hero-bg-image"
+                     loading="lazy"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-green"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">💡</div>
+                    <div class="floating-element element-2">🏢</div>
+                    <div class="floating-element element-3">💰</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>Solar for Homes, Shops & Institutions</h1>
+                    <p>On-grid and hybrid solar systems designed for coastal Kollam conditions with strong wind and corrosion protection.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="../services/" class="btn btn-primary">
+                                <i class="fas fa-bolt"></i> Explore Solar Services
+                            </a>
+                            <a href="../contact/" class="btn btn-secondary">
+                                <i class="fas fa-file-signature"></i> Book Free Site Survey
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide">
+                <img src="../images/hero/hero-image-6.webp"
+                     alt="Solar panels near Kollam coast"
+                     class="hero-bg-image"
+                     loading="lazy"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-purple"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">🌱</div>
+                    <div class="floating-element element-2">⭐</div>
+                    <div class="floating-element element-3">🔧</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>Kerala Govt Subsidy & 5-Year Free AMC*</h1>
+                    <p>End-to-end support for Kollam residents – documentation, net-metering, subsidy guidance and long-term maintenance.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="tel:9539316623" class="btn btn-primary">
+                                <i class="fas fa-phone-alt"></i> Talk to District Coordinator
+                            </a>
+                            <a href="../solar-company-in-alappuzha/" class="btn btn-secondary">
+                                <i class="fas fa-map"></i> Nearby District: Alappuzha
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <button class="slider-prev" aria-label="Previous slide">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-next" aria-label="Next slide">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
+            <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
+            <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
+        </div>
+    </section>
+
+    <!-- District Intro + Stats -->
+    <section class="district-intro section-light">
         <div class="container">
-            <h1>Solar Energy Solutions in Kollam</h1>
-            <p>Leading solar company providing complete solar panel installation and maintenance services across Kollam district, port city and coastal regions</p>
-            <div class="hero-buttons">
-                <a href="tel:8301849474" class="btn btn-primary">
-                    <i class="fas fa-phone"></i> Call Kollam: 8301849474
-                </a>
-                <a href="../../services.html" class="btn btn-secondary">
-                    <i class="fas fa-cogs"></i> Our Services
-                </a>
+            <h2 class="section-title">Solar Company in Kollam District</h2>
+            <div class="district-intro-text">
+                <p>Solis Green India provides professional solar panel installation and service across Kollam district – from coastal Karunagapally and Paravur to high-range Punalur and Anchal.</p>
+                <p>Every project is engineered considering Kollam’s coastal climate, high humidity and frequent power cuts – ensuring strong structure, quality components and reliable backup options.</p>
+                <p>We help you reduce your electricity bill by up to 80–90% with Kerala government subsidy support for eligible residential customers.</p>
+
+                <div class="district-badge-row">
+                    <div class="district-badge">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kollam, Karunagapally, Punalur, Kottarakara</span>
+                    </div>
+                    <div class="district-badge">
+                        <i class="fas fa-solar-panel"></i>
+                        <span>3 kW – 50 kW+ Solar Systems</span>
+                    </div>
+                    <div class="district-badge">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>Kerala Solar Subsidy Guidance</span>
+                    </div>
+                </div>
+
+                <div class="district-summary-stats">
+                    <div class="district-stat-card">
+                        <div class="stat-number">80%+</div>
+                        <div class="stat-label">Average Bill Savings</div>
+                    </div>
+                    <div class="district-stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects in Kollam District</div>
+                    </div>
+                    <div class="district-stat-card">
+                        <div class="stat-number">5+ Years</div>
+                        <div class="stat-label">Solar Experience</div>
+                    </div>
+                    <div class="district-stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support & Maintenance</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Quick Services -->
-    <section class="quick-services section-light">
+    <!-- Kollam Service Areas (town cards, linked to city pages) -->
+    <section id="kollam-areas" class="quick-services">
         <div class="container">
-            <h2 class="section-title">Solar Solutions in Kollam</h2>
+            <h2 class="section-title">Solar Installation in Kollam & Nearby Towns</h2>
+            <p class="district-section-subtitle">
+                Choose your town to view Kollam-specific solar information and request a site survey.
+            </p>
+
             <div class="services-grid">
+                <!-- Kollam Town -->
                 <div class="service-card">
-                    <i class="fas fa-home"></i>
-                    <h3>Residential Solar</h3>
-                    <p>Home solar systems with subsidies in Kollam</p>
-                    <a href="../../services.html#residential" class="btn btn-outline">Learn More</a>
+                    <i class="fas fa-city"></i>
+                    <h3>Kollam Town & Surroundings</h3>
+                    <p>Rooftop solar systems for homes, apartments, shops and offices in Kollam city and nearby areas.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 3–10 kW home systems</span>
+                        <span><i class="fas fa-check"></i> On-grid & hybrid options</span>
+                        <span><i class="fas fa-check"></i> Coastal-grade structure</span>
+                    </div>
+                    <!-- No separate city page yet, link to contact -->
+                    <a href="../contact/" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Book Kollam Site Visit
+                    </a>
                 </div>
+
+                <!-- Karunagapally -->
                 <div class="service-card">
-                    <i class="fas fa-building"></i>
-                    <h3>Commercial Solar</h3>
-                    <p>Business solar solutions across Kollam</p>
-                    <a href="../../services.html#commercial" class="btn btn-outline">Learn More</a>
+                    <i class="fas fa-water"></i>
+                    <h3>Karunagapally</h3>
+                    <p>Solar solutions for coastal homes, resorts, shops and institutions in Karunagapally region.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Coastal corrosion protection</span>
+                        <span><i class="fas fa-check"></i> Resorts & homestays</span>
+                        <span><i class="fas fa-check"></i> Shops & small businesses</span>
+                    </div>
+                    <a href="karunagapally/" class="btn btn-outline">
+                        <i class="fas fa-location-dot"></i> Solar in Karunagapally
+                    </a>
                 </div>
+
+                <!-- Punalur -->
                 <div class="service-card">
-                    <i class="fas fa-industry"></i>
-                    <h3>Industrial Solar</h3>
-                    <p>Large-scale solar plants in Kollam</p>
-                    <a href="../../services.html#industrial" class="btn btn-outline">Learn More</a>
+                    <i class="fas fa-mountain"></i>
+                    <h3>Punalur</h3>
+                    <p>Solar for high-range homes, estates, shops and institutions in Punalur and surrounding areas.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Strong mounting structures</span>
+                        <span><i class="fas fa-check"></i> Homes & estates</span>
+                        <span><i class="fas fa-check"></i> Institutions & clinics</span>
+                    </div>
+                    <a href="punalur/" class="btn btn-outline">
+                        <i class="fas fa-location-dot"></i> Solar in Punalur
+                    </a>
+                </div>
+
+                <!-- Kottarakara -->
+                <div class="service-card">
+                    <i class="fas fa-tree"></i>
+                    <h3>Kottarakara</h3>
+                    <p>Rooftop solar systems for houses, shops and offices across Kottarakara region.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 3–15 kW home systems</span>
+                        <span><i class="fas fa-check"></i> Shops & offices</span>
+                        <span><i class="fas fa-check"></i> Net-metering assistance</span>
+                    </div>
+                    <a href="kottarakara/" class="btn btn-outline">
+                        <i class="fas fa-location-dot"></i> Solar in Kottarakara
+                    </a>
+                </div>
+
+                <!-- Paravur -->
+                <div class="service-card">
+                    <i class="fas fa-umbrella-beach"></i>
+                    <h3>Paravur</h3>
+                    <p>Solar panel installation for homes, lakeside resorts and small businesses in Paravur.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Homes & villas</span>
+                        <span><i class="fas fa-check"></i> Resorts & homestays</span>
+                        <span><i class="fas fa-check"></i> Shops & restaurants</span>
+                    </div>
+                    <a href="paravur/" class="btn btn-outline">
+                        <i class="fas fa-location-dot"></i> Solar in Paravur
+                    </a>
+                </div>
+
+                <!-- Sasthamkotta -->
+                <div class="service-card">
+                    <i class="fas fa-water"></i>
+                    <h3>Sasthamkotta</h3>
+                    <p>Solar rooftop systems around Sasthamkotta lake region for homes and institutions.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Home & small commercial</span>
+                        <span><i class="fas fa-check"></i> Schools & institutions</span>
+                        <span><i class="fas fa-check"></i> Backup options for outages</span>
+                    </div>
+                    <a href="sasthamkotta/" class="btn btn-outline">
+                        <i class="fas fa-location-dot"></i> Solar in Sasthamkotta
+                    </a>
+                </div>
+
+                <!-- Anchal -->
+                <div class="service-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Anchal</h3>
+                    <p>Solar solutions for homes, estates and commercial buildings in Anchal and nearby regions.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 3–20 kW systems</span>
+                        <span><i class="fas fa-check"></i> Estates & houses</span>
+                        <span><i class="fas fa-check"></i> Shops & clinics</span>
+                    </div>
+                    <a href="anchal/" class="btn btn-outline">
+                        <i class="fas fa-location-dot"></i> Solar in Anchal
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Areas Covered in Kollam -->
-    <section class="areas-covered">
+    <!-- Small SEO text block (towns visible, not in nav) -->
+    <section class="local-testimonials section-light">
         <div class="container">
-            <h2 class="section-title">Areas We Serve in Kollam</h2>
-            <p class="section-subtitle">Complete solar coverage across Kollam city, port area, and coastal regions</p>
-            
-            <div class="areas-layout">
-                <!-- Kollam City Areas -->
-                <div class="area-category">
-                    <h3><i class="fas fa-city"></i> Kollam City Areas</h3>
-                    <div class="areas-grid-expanded">
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Kollam Town</h4>
-                                <p>City center & commercial districts</p>
-                            </div>
+            <h2 class="section-title">Why Kollam Homeowners & Businesses Choose Solis Green India</h2>
+            <p class="district-section-subtitle">
+                From coastal Karunagapally and Paravur to high-range Punalur and Anchal, our Kollam district customers trust us for reliable solar power and long-term support.
+            </p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="town-meta">
+                            <span><i class="fas fa-location-dot"></i> Karunagapally</span>
+                            <span><i class="fas fa-home"></i> Coastal homes & shops</span>
                         </div>
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Port Area</h4>
-                                <p>Port zone & industrial areas</p>
-                            </div>
-                        </div>
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Andamukkam</h4>
-                                <p>Commercial hub & residential zones</p>
-                            </div>
-                        </div>
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Kadakkal Road</h4>
-                                <p>Major residential & commercial area</p>
-                            </div>
+                        <p>"Solis Green India designed a coastal-friendly solar system for our home near Karunagapally. Even with sea breeze and humidity, the structure and performance are excellent."</p>
+                        <div class="testimonial-author">
+                            <strong>Home Owner, Karunagapally</strong>
+                            <span>5 kW on-grid rooftop system</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Coastal & Beach Areas -->
-                <div class="area-category">
-                    <h3><i class="fas fa-umbrella-beach"></i> Coastal & Beach Areas</h3>
-                    <div class="areas-grid-expanded">
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Thangassery</h4>
-                                <p>Historic beach area & lighthouse</p>
-                            </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="town-meta">
+                            <span><i class="fas fa-location-dot"></i> Punalur</span>
+                            <span><i class="fas fa-building"></i> Small commercial</span>
                         </div>
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Mahatma Gandhi Beach</h4>
-                                <p>Tourist beach & coastal homes</p>
-                            </div>
-                        </div>
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Ashtamudi Lake Area</h4>
-                                <p>Lakefront properties & backwaters</p>
-                            </div>
-                        </div>
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Munroe Island</h4>
-                                <p>Island communities & backwaters</p>
-                            </div>
+                        <p>"Our shop in Punalur now runs mostly on solar during the day. Bills have come down drastically and the system is monitored regularly by their support team."</p>
+                        <div class="testimonial-author">
+                            <strong>Shop Owner, Punalur</strong>
+                            <span>10 kW commercial rooftop</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Major Towns -->
-                <div class="area-category">
-                    <h3><i class="fas fa-building"></i> Major Towns</h3>
-                    <div class="areas-grid-expanded">
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Punalur</h4>
-                                <p>Industrial town & residential areas</p>
-                            </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="town-meta">
+                            <span><i class="fas fa-location-dot"></i> Kottarakara</span>
+                            <span><i class="fas fa-solar-panel"></i> Residential rooftop</span>
                         </div>
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Kottarakkara</h4>
-                                <p>Cultural center & commercial town</p>
-                            </div>
-                        </div>
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Karunagappally</h4>
-                                <p>Coastal town & residential areas</p>
-                            </div>
-                        </div>
-                        <div class="area-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div class="area-info">
-                                <h4>Paravur</h4>
-                                <p>Backwater town & tourist area</p>
-                            </div>
+                        <p>"Professional service from site visit to commissioning. Documentation, subsidy guidance and installation in Kottarakara were handled smoothly."</p>
+                        <div class="testimonial-author">
+                            <strong>Resident, Kottarakara</strong>
+                            <span>6 kW on-grid system with net meter</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Coverage Map Visual -->
-            <div class="coverage-map">
-                <h3>Complete Coverage Map</h3>
-                <div class="map-visual">
-                    <div class="map-center">
-                        <div class="central-point">
-                            <i class="fas fa-crosshairs"></i>
-                            <span>Kollam Center</span>
-                        </div>
-                        <div class="coverage-rings">
-                            <div class="ring ring-1">0-10 km Radius</div>
-                            <div class="ring ring-2">10-20 km Radius</div>
-                            <div class="ring ring-3">20-30 km Radius</div>
-                        </div>
-                    </div>
-                    <div class="map-legend">
-                        <div class="legend-item">
-                            <span class="legend-color primary"></span>
-                            <span>City Service (0-10 km)</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-color secondary"></span>
-                            <span>Coastal Service (10-20 km)</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-color tertiary"></span>
-                            <span>District Service (20-30 km)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Service Coverage Stats -->
-            <div class="coverage-stats">
-                <div class="stat-item">
-                    <div class="stat-number">35+</div>
-                    <div class="stat-label">Localities Covered</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">70+</div>
-                    <div class="stat-label">Projects Completed</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">30km</div>
-                    <div class="stat-label">Service Radius</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Kollam Support</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us for Kollam -->
-    <section class="why-choose-us section-light">
-        <div class="container">
-            <h2 class="section-title">Why Choose Us in Kollam?</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <i class="fas fa-users"></i>
-                    <h3>Port City Expertise</h3>
-                    <p>Specialized knowledge of Kollam's unique coastal and industrial energy requirements</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Quick Installation</h3>
-                    <p>Fast and efficient solar setup across Kollam's diverse landscape</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-headset"></i>
-                    <h3>Local Support</h3>
-                    <p>Dedicated service team specifically for Kollam customers</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Coastal Durability</h3>
-                    <p>Premium components designed for Kollam's coastal climate</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kollam Projects -->
-    <section class="local-projects">
-        <div class="container">
-            <h2 class="section-title">Our Projects in Kollam</h2>
-            <div class="projects-grid">
-                <!-- 3kW Residential Project -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-home"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>3kW Residential System</h3>
-                        <p>Complete home solar system with battery backup</p>
-                        <span class="project-location"><i class="fas fa-map-marker-alt"></i> Kollam Town</span>
-                        <div class="project-specs">
-                            <span>3kW Capacity</span>
-                            <span>80% Bill Reduction</span>
-                        </div>
-                        <a href="../../projects.html" class="btn btn-outline">View Project</a>
-                    </div>
-                </div>
-
-                <!-- 5kW Residential Project -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-home"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>5kW Residential System</h3>
-                        <p>Luxury home solar with net metering</p>
-                        <span class="project-location"><i class="fas fa-map-marker-alt"></i> Thangassery</span>
-                        <div class="project-specs">
-                            <span>5kW Capacity</span>
-                            <span>85% Bill Reduction</span>
-                        </div>
-                        <a href="../../projects.html" class="btn btn-outline">View Project</a>
-                    </div>
-                </div>
-
-                <!-- 15kW Commercial Project -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-building"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>15kW Commercial Plant</h3>
-                        <p>Business solar system with 3-year ROI</p>
-                        <span class="project-location"><i class="fas fa-map-marker-alt"></i> Port Area</span>
-                        <div class="project-specs">
-                            <span>15kW Capacity</span>
-                            <span>3 Year ROI</span>
-                        </div>
-                        <a href="../../projects.html" class="btn btn-outline">View Project</a>
-                    </div>
-                </div>
-
-                <!-- 20kW Commercial Project -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-building"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>20kW Commercial System</h3>
-                        <p>Industrial solar installation</p>
-                        <span class="project-location"><i class="fas fa-map-marker-alt"></i> Punalur</span>
-                        <div class="project-specs">
-                            <span>20kW Capacity</span>
-                            <span>2.8 Year ROI</span>
-                        </div>
-                        <a href="../../projects.html" class="btn btn-outline">View Project</a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center">
-                <a href="../../projects.html" class="btn btn-primary">View All Kollam Projects</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Contact -->
-    <section class="quick-contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Ready for Solar in Kollam?</h2>
-                    <p>Get free consultation and quote for solar installation in your area</p>
-                    <div class="contact-methods">
-                        <a href="tel:8301849474" class="contact-method">
-                            <i class="fas fa-phone"></i>
-                            <span>Call Kollam: 8301849474</span>
+            <div class="services-cta">
+                <div class="cta-content">
+                    <h3>Not Sure Which Solar Option Suits Your Kollam Property?</h3>
+                    <p>Share your electricity bill and location (Kollam, Karunagapally, Punalur, Kottarakara, Paravur, Sasthamkotta or Anchal). Our engineers will design the right solution.</p>
+                    <div class="cta-buttons">
+                        <a href="tel:8301849474" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> Call Kollam Solar Expert
                         </a>
-                        <a href="https://wa.me/918301849474" class="contact-method" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>WhatsApp for Kollam</span>
-                        </a>
-                        <a href="../../contact.html" class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <span>Send Message</span>
+                        <a href="../contact/" class="btn btn-secondary">
+                            <i class="fas fa-file-signature"></i> Request Site Survey
                         </a>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Kollam Solar Quote</h3>
-                    <form class="inquiry-form">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="tel" placeholder="Phone Number" required>
-                        <select required>
-                            <option value="">Select Area in Kollam</option>
-                            <option value="kollam-town">Kollam Town</option>
-                            <option value="port-area">Port Area</option>
-                            <option value="andamukkam">Andamukkam</option>
-                            <option value="kadakkal-road">Kadakkal Road</option>
-                            <option value="thangassery">Thangassery</option>
-                            <option value="mahatma-gandhi-beach">Mahatma Gandhi Beach</option>
-                            <option value="ashtamudi-lake">Ashtamudi Lake Area</option>
-                            <option value="munroe-island">Munroe Island</option>
-                            <option value="punalur">Punalur</option>
-                            <option value="kottarakkara">Kottarakkara</option>
-                            <option value="karunagappally">Karunagappally</option>
-                            <option value="paravur">Paravur</option>
-                        </select>
-                        <select required>
-                            <option value="">Interested In</option>
-                            <option value="residential">Residential Solar</option>
-                            <option value="commercial">Commercial Solar</option>
-                            <option value="industrial">Industrial Solar</option>
-                        </select>
-                        <button type="submit" class="btn btn-primary">Get Kollam Quote</button>
-                    </form>
-                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- District Bottom CTA -->
+    <section class="district-cta-bottom">
+        <div class="container">
+            <h2>Start Your Solar Project in Kollam Today</h2>
+            <p>Whether you are in Kollam town, Karunagapally, Punalur, Kottarakara, Paravur, Sasthamkotta or Anchal, our team will guide you from load calculation and design to installation and Kerala government subsidy documentation.</p>
+            <div class="cta-buttons">
+                <a href="tel:8301849474" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Call: 8301849474
+                </a>
+                <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
+                </a>
+                <a href="../contact/" class="btn btn-secondary">
+                    <i class="fas fa-map-marker-alt"></i> Visit Thiruvalla Office
+                </a>
+            </div>
+            <p style="margin-top:15px;font-size:0.9rem;opacity:0.9;">
+                For support or maintenance of existing Kollam projects, call our 24/7 support line:
+                <strong><a href="tel:8606849474" style="color:#fff;text-decoration:underline;">8606849474</a></strong>
+            </p>
         </div>
     </section>
 
@@ -502,55 +680,112 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="../../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Leading solar energy solutions provider in Kollam district, committed to sustainable energy in port city and coastal regions.</p>
+                    <p>Powering Kerala's sustainable future with 5+ years of solar excellence and technical expertise across Pathanamthitta, Kottayam, Alappuzha and Kollam districts.</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/solisgreenenergysolutions/" aria-label="Facebook" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
+                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="../../index.html">Home</a></li>
-                        <li><a href="../../services.html">Services</a></li>
-                        <li><a href="../../cities.html">Service Areas</a></li>
-                        <li><a href="../../projects.html">Projects</a></li>
-                        <li><a href="../../contact.html">Contact</a></li>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../services/">Services</a></li>
+                        <li><a href="../cities/">Service Areas</a></li>
+                        <li><a href="../about/">About Us</a></li>
+                        <li><a href="../projects/">Projects</a></li>
+                        <li><a href="../contact/">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Kollam Services</h3>
+                    <h3>Service Areas</h3>
                     <ul>
-                        <li><a href="../../services.html#residential">Residential Solar</a></li>
-                        <li><a href="../../services.html#commercial">Commercial Solar</a></li>
-                        <li><a href="../../services.html#industrial">Industrial Solar</a></li>
-                        <li><a href="../../services.html#maintenance">Maintenance</a></li>
+                        <li><a href="../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
+                        <li><a href="../solar-company-in-kottayam/">Kottayam District</a></li>
+                        <li><a href="../solar-company-in-alappuzha/">Alappuzha District</a></li>
+                        <li><a href="../solar-company-in-kollam/">Kollam District</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Kollam Contact</h3>
+                    <h3>Contact Our Experts</h3>
                     <ul class="contact-info">
-                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
+                        <li class="contact-primary">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <a href="tel:8301849474">Primary: 8301849474</a>
+                                <span class="contact-label">Technical Consultation</span>
+                            </div>
+                        </li>
+                        <li class="contact-alternate">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <a href="tel:9539316623">Alternate: 9539316623</a>
+                                <span class="contact-label">Project Coordination</span>
+                            </div>
+                        </li>
+                        <li class="contact-support">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <a href="tel:8606849474">Support: 8606849474</a>
+                                <span class="contact-label">24/7 Customer Support</span>
+                            </div>
+                        </li>
+                        <li class="whatsapp-primary">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
+                                <span class="contact-label">Quick Consultation</span>
+                            </div>
+                        </li>
                         <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-                        <li><i class="fab fa-facebook"></i> <a href="https://www.facebook.com/solisgreenenergysolutions/" target="_blank">Solis Green Energy</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Kollam, Kerala</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Muthoor, Thiruvalla - 689107</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Solis Green India - Kollam. All Rights Reserved.</p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Powering Kerala's Sustainable Future</p>
             </div>
         </div>
     </footer>
 
-    <script src="../../script.js"></script>
-    <script src="kollam-scripts.js"></script>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Mobile Menu Fix JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+                });
+
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    });
+                });
+
+                document.addEventListener('click', function(event) {
+                    if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script src="../script.js"></script>
 </body>
 </html>
