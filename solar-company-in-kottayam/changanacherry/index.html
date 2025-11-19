@@ -3,152 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solis Green India – Leading solar company in Changanacherry, Kottayam. Residential and commercial rooftop solar panel installation with Kerala govt subsidy and 5-year free AMC.">
-    <meta name="keywords" content="solar company changanacherry, solar company changanassery, rooftop solar kottayam, on-grid solar changanacherry, solar panels kerala, solar installation kottayam, solar subsidy kerala">
+    <meta name="description" content="Solar company in Changanacherry – Solis Green India. Solar panel installation in Changanacherry, Kurichy, Vazhappally, Madappally, Puthuppally, Karukachal, Kangazha, Thrikkodithanam. Government subsidy & SBI loans available.">
+    <meta name="keywords" content="solar company changanacherry, solar panels changanacherry, solar installation changanacherry, solar company kurichy, solar company vazhappally, solar company madappally, solar company puthuppally, solar company karukachal">
     <meta name="author" content="Solis Green India">
 
     <!-- Preload critical hero image -->
-    <link rel="preload" href="../../images/hero/hero-image-4.webp" as="image" type="image/webp">
+    <link rel="preload" href="../../images/hero/hero-image-1.webp" as="image" type="image/webp">
 
     <!-- Google Tag Manager -->
     <script>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-5C2D5BG9');
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5C2D5BG9');
     </script>
     <!-- End Google Tag Manager -->
 
-    <title>Solar Company in Changanacherry, Kottayam | Rooftop Solar Panels & Govt Subsidy</title>
+    <title>Solar Company in Changanacherry | Kurichy, Vazhappally, Madappally | Solis Green India</title>
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Mobile Menu Fix + Town Specific Tweaks -->
+    <!-- Town Page Specific CSS -->
     <style>
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                z-index: 1000;
-            }
-            nav ul.active {
-                display: flex !important;
-            }
-            .mobile-menu-btn {
-                display: block !important;
-            }
+        .town-hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Town page styles (reusing Style A components) */
-        .town-intro {
-            padding: 80px 0 50px;
+        .town-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../../images/hero/hero-image-1.webp') center/cover;
+            opacity: 0.1;
         }
-        .town-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 999px;
-            padding: 6px 16px;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
+
+        .town-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
         }
-        .town-badge i {
-            color: var(--primary-color);
+
+        .town-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .town-intro-text {
-            max-width: 900px;
-            margin: 0 auto;
+
+        .benefits-bar {
+            background: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             text-align: center;
-            color: var(--text-light);
         }
-        .town-intro-text p {
+
+        .benefit-item {
+            padding: 15px;
+        }
+
+        .benefit-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
             margin-bottom: 10px;
         }
-        .town-local-areas {
-            font-size: 0.95rem;
-            opacity: 0.9;
+
+        .local-service-areas {
+            background: var(--background-light);
+            padding: 60px 0;
         }
 
-        .town-highlight-grid {
-            margin-top: 40px;
+        .areas-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
         }
-        .town-highlight-card {
+
+        .area-card {
             background: var(--white);
+            padding: 20px;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            padding: 25px;
-        }
-        .town-highlight-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        .town-highlight-card p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-        .town-highlight-card i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
         }
 
-        .town-services-note {
-            text-align: center;
-            color: var(--text-light);
-            margin-top: -25px;
-            margin-bottom: 40px;
+        .area-card:hover {
+            transform: translateY(-5px);
         }
 
-        .district-link-note {
-            text-align: center;
-            font-size: 0.95rem;
-            color: var(--text-light);
-            margin-top: 20px;
-        }
-
-        .town-cta-bottom {
-            margin-top: 60px;
-            padding: 40px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: var(--border-radius);
-            text-align: center;
-            color: #fff;
-        }
-        .town-cta-bottom h2 {
-            margin-bottom: 10px;
-        }
-        .town-cta-bottom p {
-            margin-bottom: 20px;
-            opacity: 0.95;
-        }
-        .town-cta-bottom .cta-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .town-cta-bottom .btn {
-            min-width: 200px;
+        .town-quote-form {
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         @media (max-width: 768px) {
-            .town-cta-bottom {
-                padding: 30px 20px;
+            .town-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -157,7 +131,7 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
-                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -183,57 +157,6 @@
             <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="Primary WhatsApp" target="_blank">
                 <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="https://wa.me/919539316623" class="cta-option" data-tooltip="Alternate WhatsApp" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-        </div>
-    </div>
-
-    <!-- Quick Quote Modal -->
-    <div class="modal" id="quickQuoteModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Get Quick Solar Quote</h3>
-            <form class="quick-quote-form" id="modalQuoteForm">
-                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India (Changanacherry)">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Phone Number" required>
-                </div>
-                <div class="form-group">
-                    <select name="service" required>
-                        <option value="">Select Service</option>
-                        <option value="residential">Residential Solar</option>
-                        <option value="commercial">Commercial Solar</option>
-                        <option value="maintenance">Solar Service / AMC</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="location" placeholder="Your Location (eg: Changanacherry)">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">
-                    <i class="fas fa-bolt"></i> Get Instant Quote
-                </button>
-            </form>
-            <div class="emergency-contact-modal">
-                <h4>Need Immediate Help?</h4>
-                <div class="emergency-numbers">
-                    <a href="tel:8301849474" class="emergency-number">
-                        <i class="fas fa-phone"></i> Primary: 8301849474
-                    </a>
-                    <a href="tel:9539316623" class="emergency-number">
-                        <i class="fas fa-phone-alt"></i> Alternate: 9539316623
-                    </a>
-                    <a href="tel:8606849474" class="emergency-number">
-                        <i class="fas fa-headset"></i> Support: 8606849474
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -251,10 +174,6 @@
                     <i class="fas fa-phone"></i>
                     <span>Primary: 8301849474</span>
                 </a>
-                <a href="tel:9539316623" class="contact-link">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>Alternate: 9539316623</span>
-                </a>
             </div>
 
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
@@ -265,7 +184,7 @@
                 <ul>
                     <li><a href="../../">Home</a></li>
                     <li><a href="../../services/">Services</a></li>
-                    <li><a href="../../cities/">Service Areas</a></li>
+                    <li><a href="../../cities/" class="active">Service Areas</a></li>
                     <li><a href="../../about/">About Us</a></li>
                     <li><a href="../../projects/">Projects</a></li>
                     <li><a href="../../contact/" class="cta-button">Contact</a></li>
@@ -274,339 +193,222 @@
         </div>
     </header>
 
-    <!-- Hero Slider (Style A, local images 4–6) -->
-    <section class="hero-slider" id="home">
-        <div class="particles-container">
-            <div class="particles"></div>
-            <div class="solar-flare"></div>
-        </div>
-
-        <div class="hero-slides">
-            <!-- Slide 1 -->
-            <div class="hero-slide active">
-                <img src="../../images/hero/hero-image-4.webp"
-                     alt="Solar panels on rooftop in Changanacherry"
-                     class="hero-bg-image"
-                     loading="eager"
-                     fetchpriority="high"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-blue"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">☀️</div>
-                    <div class="floating-element element-2">🏠</div>
-                    <div class="floating-element element-3">⚡</div>
-                </div>
-                <div class="hero-content container">
-                    <div class="town-badge">
-                        <i class="fas fa-location-dot"></i>
-                        <span>Solar Company in Changanacherry, Kottayam</span>
-                    </div>
-                    <h1>Rooftop Solar Panels in Changanacherry</h1>
-                    <p>Lower your KSEB electricity bill by up to 90% with on-grid solar systems installed by local experts.</p>
-                    <div class="hero-buttons">
-                        <div class="contact-options">
-                            <a href="tel:8301849474" class="btn btn-primary pulse-animation">
-                                <i class="fas fa-phone"></i> Call: 8301849474
-                            </a>
-                            <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp">
-                                <i class="fab fa-whatsapp"></i> WhatsApp Quote
-                            </a>
-                        </div>
-                        <div class="whatsapp-options">
-                            <a href="../../services/residential-solar/" class="btn btn-secondary">
-                                <i class="fas fa-home"></i> Home Solar Details
-                            </a>
-                            <a href="../" class="btn btn-support">
-                                <i class="fas fa-map-marker-alt"></i> Kottayam District Page
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="hero-slide">
-                <img src="../../images/hero/hero-image-5.webp"
-                     alt="Commercial solar plant near Changanacherry"
-                     class="hero-bg-image"
-                     loading="lazy"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-green"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">💡</div>
-                    <div class="floating-element element-2">🏢</div>
-                    <div class="floating-element element-3">💰</div>
-                </div>
-                <div class="hero-content container">
-                    <div class="town-badge">
-                        <i class="fas fa-bolt"></i>
-                        <span>Ideal for shops, offices & institutions</span>
-                    </div>
-                    <h1>Solar for Homes & Businesses</h1>
-                    <p>From 3 kW home systems to 50 kW commercial rooftops – engineered for maximum savings and quick ROI.</p>
-                    <div class="hero-buttons">
-                        <div class="contact-options">
-                            <a href="../../projects/" class="btn btn-primary">
-                                <i class="fas fa-images"></i> View Sample Projects
-                            </a>
-                            <a href="../../services/commercial-solar/" class="btn btn-secondary">
-                                <i class="fas fa-building"></i> Commercial Solutions
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="hero-slide">
-                <img src="../../images/hero/hero-image-6.webp"
-                     alt="Kerala solar panels with sunset"
-                     class="hero-bg-image"
-                     loading="lazy"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-purple"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">🌱</div>
-                    <div class="floating-element element-2">⭐</div>
-                    <div class="floating-element element-3">🔧</div>
-                </div>
-                <div class="hero-content container">
-                    <div class="town-badge">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Kerala Govt Subsidy & 5-Year Free AMC</span>
-                    </div>
-                    <h1>Trusted Solar Experts Since 2019</h1>
-                    <p>End-to-end support – subsidy documentation, net-metering, installation, daily monitoring and maintenance.</p>
-                    <div class="hero-buttons">
-                        <div class="contact-options">
-                            <a href="#town-services" class="btn btn-primary">
-                                <i class="fas fa-solar-panel"></i> Explore Services
-                            </a>
-                            <a href="../../contact/" class="btn btn-secondary">
-                                <i class="fas fa-file-signature"></i> Book Site Visit
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slider Controls -->
-        <button class="slider-prev" aria-label="Previous slide">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="slider-next" aria-label="Next slide">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-
-        <!-- Slider Dots -->
-        <div class="slider-dots">
-            <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
-            <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
-            <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
-        </div>
-    </section>
-
-    <!-- Town Intro -->
-    <section class="town-intro section-light">
+    <!-- Town Hero Section -->
+    <section class="town-hero">
+        <div class="town-hero-bg"></div>
         <div class="container">
-            <h2 class="section-title">Solar Company in Changanacherry, Kottayam</h2>
-            <div class="town-intro-text">
-                <p>Solis Green India provides complete rooftop solar solutions for homes, shops and institutions in and around Changanacherry (Changanassery), Kottayam.</p>
-                <p>Our systems are designed as per KSEB norms with Kerala government subsidy support, high-efficiency panels and 25-year performance warranty.</p>
-                <p class="town-local-areas">
-                    We serve customers in Changanacherry town, Perunna, Vazhoor road, Edathua route side, Tiruvalla–Kottayam route, nearby villages and surrounding areas of Kottayam district.
-                </p>
-
-                <div class="town-highlight-grid">
-                    <div class="town-highlight-card">
-                        <i class="fas fa-home"></i>
-                        <h3>Home Rooftop Solar</h3>
-                        <p>3 kW – 10 kW on-grid solar for independent houses and villas with up to 40% government subsidy.</p>
-                    </div>
-                    <div class="town-highlight-card">
-                        <i class="fas fa-building"></i>
-                        <h3>Shops & Commercial</h3>
-                        <p>Solar for shops, offices, hotels and hospitals near Changanacherry market, MC road and highways.</p>
-                    </div>
-                    <div class="town-highlight-card">
-                        <i class="fas fa-plug-circle-check"></i>
-                        <h3>Net Metering & Approvals</h3>
-                        <p>Complete documentation with KSEB, DISCOM approvals, net-metering and synchronization support.</p>
-                    </div>
-                    <div class="town-highlight-card">
-                        <i class="fas fa-screwdriver-wrench"></i>
-                        <h3>Service & AMC</h3>
-                        <p>5-year free AMC with regular cleaning, health checks and 24/7 technical support from our Thiruvalla office.</p>
-                    </div>
+            <h1>Solar Company in Changanacherry</h1>
+            <p>Professional solar installation services in Changanacherry and nearby areas including Kurichy, Vazhappally, Madappally, Puthuppally, Karukachal, Kangazha, and Thrikkodithanam</p>
+            <div class="hero-buttons">
+                <div class="contact-options">
+                    <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                        <i class="fas fa-phone"></i> Call Changanacherry Expert
+                    </a>
+                    <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section (reusing quick-services layout) -->
-    <section id="town-services" class="quick-services">
+    <!-- Benefits Bar -->
+    <section class="benefits-bar">
         <div class="container">
-            <h2 class="section-title">Solar Services in Changanacherry</h2>
-            <p class="town-services-note">
-                All solutions are available for customers in Changanacherry and across Kottayam district.
-            </p>
-
-            <div class="services-grid">
-                <!-- Residential -->
-                <div class="service-card">
-                    <i class="fas fa-home"></i>
-                    <h3>Residential Solar</h3>
-                    <p>Rooftop solar systems for houses and villas with Kerala govt subsidy and online monitoring.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> 3 kW – 10 kW systems</span>
-                        <span><i class="fas fa-check"></i> 40% Govt Subsidy*</span>
-                        <span><i class="fas fa-check"></i> EMI & finance guidance</span>
-                    </div>
-                    <a href="../../services/residential-solar/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Learn More
-                    </a>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-rupee-sign"></i>
+                    <h4>₹78,000 Subsidy</h4>
+                    <p>Government Approved</p>
                 </div>
-
-                <!-- Commercial -->
-                <div class="service-card">
-                    <i class="fas fa-building"></i>
-                    <h3>Commercial Solar</h3>
-                    <p>Solar plants for shops, offices, hotels, banks and institutions around Changanacherry town.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> 10 kW – 50 kW+</span>
-                        <span><i class="fas fa-check"></i> Fast ROI & tax benefits</span>
-                        <span><i class="fas fa-check"></i> Remote monitoring</span>
-                    </div>
-                    <a href="../../services/commercial-solar/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Learn More
-                    </a>
+                <div class="benefit-item">
+                    <i class="fas fa-university"></i>
+                    <h4>6% SBI Loan</h4>
+                    <p>Lowest Interest</p>
                 </div>
-
-                <!-- Maintenance -->
-                <div class="service-card">
+                <div class="benefit-item">
                     <i class="fas fa-tools"></i>
-                    <h3>Solar Service & AMC</h3>
-                    <p>Cleaning, testing and repair services for existing solar plants installed in Changanacherry area.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> Panel cleaning</span>
-                        <span><i class="fas fa-check"></i> Inverter & wiring checks</span>
-                        <span><i class="fas fa-check"></i> 24/7 fault support</span>
-                    </div>
-                    <a href="../../services/solar-maintenance/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Service Details
-                    </a>
+                    <h4>5-Year Free AMC</h4>
+                    <p>Complete Maintenance</p>
                 </div>
-
-                <!-- Free Site Survey -->
-                <div class="service-card">
-                    <i class="fas fa-solar-panel"></i>
-                    <h3>Free Site Survey</h3>
-                    <p>Our engineers visit your home or business, check roof space and give a detailed solar proposal.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> Load & bill study</span>
-                        <span><i class="fas fa-check"></i> Shadow analysis</span>
-                        <span><i class="fas fa-check"></i> Savings calculation</span>
-                    </div>
-                    <a href="../../contact/" class="btn btn-primary">
-                        <i class="fas fa-phone"></i> Book Free Site Visit
-                    </a>
-                </div>
-            </div>
-
-            <p class="district-link-note">
-                Looking for solar in other parts of Kottayam? Visit our
-                <a href="../" style="font-weight:600;">Solar Company in Kottayam District</a> page.
-            </p>
-        </div>
-    </section>
-
-    <!-- Local Testimonials / Sample Projects -->
-    <section class="local-testimonials section-light">
-        <div class="container">
-            <h2 class="section-title">Solar Installations Near Changanacherry</h2>
-            <p class="town-services-note">
-                Here are some example projects from Changanacherry and nearby towns in Kottayam district.
-            </p>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Our 5 kW on-grid solar system in Changanacherry reduced our KSEB bill by almost 85%. Team handled subsidy and net-metering very smoothly."</p>
-                        <div class="testimonial-author">
-                            <strong>Residential Villa</strong>
-                            <span>Changanacherry, Kottayam</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p>"25 kW solar plant installed for our commercial building on MC Road has significantly reduced operating costs. Excellent after-sales support."</p>
-                        <div class="testimonial-author">
-                            <strong>Retail & Office Complex</strong>
-                            <span>Near Changanacherry</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Solis Green India provides regular cleaning and maintenance for our existing solar plant. Their support team from Thiruvalla is very responsive."</p>
-                        <div class="testimonial-author">
-                            <strong>Solar AMC Customer</strong>
-                            <span>Kottayam District</span>
-                        </div>
-                    </div>
+                <div class="benefit-item">
+                    <i class="fas fa-bolt"></i>
+                    <h4>90% Savings</h4>
+                    <p>On Electricity Bills</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Bottom CTA -->
-    <section class="town-cta-bottom">
+    <!-- Quick Systems Section -->
+    <section class="system-comparison" style="padding: 60px 0;">
         <div class="container">
-            <h2>Ready to Install Solar in Changanacherry?</h2>
-            <p>Share your latest KSEB bill and we will prepare a customized solar proposal with subsidy options and payback period.</p>
+            <h2 class="section-title">Solar Solutions for Changanacherry Homes</h2>
+            <div class="comparison-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px;">
+                
+                <div class="system-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 25px; text-align: center;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">3kW Solar System</h3>
+                    <p style="margin-bottom: 10px; color: var(--text-light);">Perfect for 2-3 BHK Homes</p>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--primary-color); margin: 15px 0;">₹1.2 Lakhs*</div>
+                    <p style="margin-bottom: 20px; font-style: italic; color: var(--text-light);"><em>*After ₹78,000 Subsidy</em></p>
+                    
+                    <div style="text-align: left; margin: 20px 0;">
+                        <div style="margin-bottom: 8px;">✓ Monthly Savings: ₹3,500 - ₹4,500</div>
+                        <div style="margin-bottom: 8px;">✓ Powers: 3 ACs + All Home Appliances</div>
+                        <div style="margin-bottom: 8px;">✓ Best for 200-350 units usage</div>
+                    </div>
+                    
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> Get 3kW Quote
+                    </a>
+                </div>
+
+                <div class="system-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 25px; text-align: center;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">5kW Solar System</h3>
+                    <p style="margin-bottom: 10px; color: var(--text-light);">Ideal for Large Homes/Offices</p>
+                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--primary-color); margin: 15px 0;">₹2.2 Lakhs*</div>
+                    <p style="margin-bottom: 20px; font-style: italic; color: var(--text-light);"><em>*After ₹78,000 Subsidy</em></p>
+                    
+                    <div style="text-align: left; margin: 20px 0;">
+                        <div style="margin-bottom: 8px;">✓ Monthly Savings: ₹6,000 - ₹9,000</div>
+                        <div style="margin-bottom: 8px;">✓ Powers: 5 ACs + Heavy Appliances</div>
+                        <div style="margin-bottom: 8px;">✓ Best for 500-800 units usage</div>
+                    </div>
+                    
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> Get 5kW Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Service Areas -->
+    <section class="local-service-areas">
+        <div class="container">
+            <h2 class="section-title">We Serve All Areas in & Around Changanacherry</h2>
+            <p class="section-subtitle">Professional solar installation services available throughout Changanacherry and nearby localities</p>
+            
+            <div class="areas-grid">
+                <div class="area-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Changanacherry Town</h4>
+                    <p>Complete town area coverage</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-home"></i>
+                    <h4>Kurichy</h4>
+                    <p>Residential & commercial solar</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-store"></i>
+                    <h4>Vazhappally</h4>
+                    <p>Shops and home installations</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-industry"></i>
+                    <h4>Madappally</h4>
+                    <p>Industrial & residential areas</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-school"></i>
+                    <h4>Puthuppally</h4>
+                    <p>Educational institutions & homes</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-tree"></i>
+                    <h4>Karukachal</h4>
+                    <p>Rural and semi-urban areas</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-building"></i>
+                    <h4>Kangazha</h4>
+                    <p>Commercial establishments</p>
+                </div>
+                <div class="area-card">
+                    <i class="fas fa-landmark"></i>
+                    <h4>Thrikkodithanam</h4>
+                    <p>Heritage area solar solutions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Quote Section -->
+    <section class="quick-quote-section" style="padding: 60px 0;">
+        <div class="container">
+            <h2 class="section-title">Get Solar Quote for Changanacherry</h2>
+            <div class="quote-form-container">
+                <form class="quick-quote-form town-quote-form" id="mainQuoteForm">
+                    <input type="hidden" name="_subject" value="🔆 Solar Quote - Changanacherry">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="residential">Home Solar (with Subsidy)</option>
+                            <option value="commercial">Commercial Solar</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="location" value="Changanacherry" readonly style="background: #f8f9fa;">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-bolt"></i> Get Free Site Survey
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local FAQ -->
+    <section class="district-faqs" style="padding: 60px 0;">
+        <div class="container">
+            <h2 class="section-title">Solar FAQs for Changanacherry</h2>
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <h3>Do you serve all areas in Changanacherry?</h3>
+                    <p>Yes, we provide solar installation services throughout Changanacherry town and nearby localities including Kurichy, Vazhappally, Madappally, Puthuppally, Karukachal, Kangazha, and Thrikkodithanam.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>Is government subsidy available in Changanacherry?</h3>
+                    <p>Absolutely! Changanacherry residents can avail up to ₹78,000 government subsidy for 3kW solar systems. We handle all paperwork and approval process.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>How long does installation take in Changanacherry?</h3>
+                    <p>Most residential installations in Changanacherry are completed within 3-5 days after KSEB approvals. We have local teams for faster service.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>Do you provide maintenance support?</h3>
+                    <p>Yes, we offer 5-year free AMC and regular maintenance visits for all our Changanacherry customers. Our service team is just a call away.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="district-cta" style="margin: 40px 0;">
+        <div class="container">
+            <h2>Ready for Solar in Changanacherry?</h2>
+            <p>Contact our local solar experts today for free consultation and site survey</p>
             <div class="cta-buttons">
                 <a href="tel:8301849474" class="btn btn-primary">
                     <i class="fas fa-phone"></i> Call: 8301849474
                 </a>
                 <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
+                    <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
                 <a href="../../contact/" class="btn btn-secondary">
-                    <i class="fas fa-file-signature"></i> Request Site Survey
+                    <i class="fas fa-map-marker-alt"></i> Book Site Visit
                 </a>
             </div>
-            <p style="margin-top:15px;font-size:0.9rem;opacity:0.9;">
-                For service or AMC of existing solar plants, call our 24/7 support line:
-                <strong><a href="tel:8606849474" style="color:#fff;text-decoration:underline;">8606849474</a></strong>
-            </p>
         </div>
     </section>
 
@@ -618,77 +420,29 @@
                     <div class="footer-logo">
                         <img src="../../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Powering Kerala's sustainable future with 5+ years of solar excellence and technical expertise.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+                    <p>Your trusted solar partner in Changanacherry and nearby areas with 5+ years of local experience.</p>
                 </div>
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="../../">Home</a></li>
+                        <li><a href="../../solar-company-in-kottayam/">Kottayam District</a></li>
                         <li><a href="../../services/">Services</a></li>
-                        <li><a href="../../cities/">Service Areas</a></li>
-                        <li><a href="../../about/">About Us</a></li>
-                        <li><a href="../../projects/">Projects</a></li>
                         <li><a href="../../contact/">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Service Areas</h3>
-                    <ul>
-                        <li><a href="../../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
-                        <li><a href="../../solar-company-in-kottayam/">Kottayam District</a></li>
-                        <li><a href="../../solar-company-in-alappuzha/">Alappuzha District</a></li>
-                        <li><a href="../../solar-company-in-kollam/">Kollam District</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Our Experts</h3>
+                    <h3>Contact Info</h3>
                     <ul class="contact-info">
-                        <li class="contact-primary">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <a href="tel:8301849474">Primary: 8301849474</a>
-                                <span class="contact-label">Technical Consultation</span>
-                            </div>
-                        </li>
-                        <li class="contact-alternate">
-                            <i class="fas fa-phone-alt"></i>
-                            <div>
-                                <a href="tel:9539316623">Alternate: 9539316623</a>
-                                <span class="contact-label">Project Coordination</span>
-                            </div>
-                        </li>
-                        <li class="contact-support">
-                            <i class="fas fa-headset"></i>
-                            <div>
-                                <a href="tel:8606849474">Support: 8606849474</a>
-                                <span class="contact-label">24/7 Customer Support</span>
-                            </div>
-                        </li>
-                        <li class="whatsapp-primary">
-                            <i class="fab fa-whatsapp"></i>
-                            <div>
-                                <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
-                                <span class="contact-label">Quick Consultation</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            Opposite St. George Orthodox Church, Muthoor, Thiruvalla - 689107
-                        </li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">Primary: 8301849474</a></li>
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:9539316623">Alternate: 9539316623</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474">WhatsApp</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Powering Kerala's Sustainable Future</p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Solar Experts in Changanacherry</p>
             </div>
         </div>
     </footer>
@@ -697,36 +451,6 @@
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </button>
-
-    <!-- Mobile Menu Fix JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mainNav = document.getElementById('mainNav');
-
-            if (mobileMenuBtn && mainNav) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    mainNav.classList.toggle('active');
-                    this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
-                });
-
-                const navLinks = mainNav.querySelectorAll('a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mainNav.classList.remove('active');
-                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    });
-                });
-
-                document.addEventListener('click', function(event) {
-                    if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-                        mainNav.classList.remove('active');
-                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        });
-    </script>
 
     <script src="../../script.js"></script>
 </body>
