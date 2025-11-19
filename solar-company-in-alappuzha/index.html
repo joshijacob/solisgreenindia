@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solis Green India - Leading solar company in Alappuzha district. Residential and commercial solar panel installation in Cherthala, Haripad, Mavelikkara and Kayamkulam with subsidy support.">
-    <meta name="keywords" content="solar company in alappuzha, solar panels cherthala, solar company haripad, solar installation kayamkulam, solar mavelikkara, solis green india alappuzha">
+    <meta name="description" content="Solar company in Alappuzha district – Solis Green India. Residential and commercial solar panel installation in Alappuzha, Cherthala, Mavelikkara, Haripad, Kayamkulam and nearby towns.">
+    <meta name="keywords" content="solar company alappuzha, solar panels cherthala, solar installation mavelikkara, solar company haripad, solar company kayamkulam, solar company chengannur">
     <meta name="author" content="Solis Green India">
-    
+
     <!-- Preload critical hero image -->
     <link rel="preload" href="../images/hero/hero-image-1.webp" as="image" type="image/webp">
-    
+
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5C2D5BG9');
+    </script>
     <!-- End Google Tag Manager -->
-    
-    <title>Solar Company in Alappuzha | Cherthala, Haripad, Mavelikkara, Kayamkulam | Solis Green India</title>
+
+    <title>Solar Company in Alappuzha | Cherthala, Mavelikkara, Haripad & Kayamkulam | Solis Green India</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Mobile Menu Fix CSS (same as other pages) -->
+
+    <!-- Mobile Menu Fix CSS -->
     <style>
         @media (max-width: 768px) {
             nav ul {
@@ -40,53 +42,69 @@
                 box-shadow: 0 5px 15px rgba(0,0,0,0.1);
                 z-index: 1000;
             }
-            
+
             nav ul.active {
                 display: flex !important;
             }
-            
+
             .mobile-menu-btn {
                 display: block !important;
             }
         }
 
-        /* Small Alappuzha page specific tweaks (reusing Style A components) */
+        /* Page-specific styling reusing Style A components */
         .district-intro {
             padding: 80px 0 40px;
+            background: var(--background-light);
         }
 
-        .district-intro .intro-text {
+        .district-intro-text {
             max-width: 900px;
             margin: 0 auto;
             text-align: center;
             color: var(--text-light);
         }
 
-        .district-intro .intro-text p {
+        .district-intro-text p {
             margin-bottom: 12px;
         }
 
-        .district-badges {
-            margin-top: 25px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
+        .district-towns-inline {
+            font-size: 0.95rem;
+            opacity: 0.9;
         }
 
-        .district-badge {
+        .district-summary-stats {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .district-stat-card {
             background: var(--white);
-            border-radius: 20px;
-            padding: 8px 16px;
-            font-size: 0.9rem;
+            border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            padding: 20px;
+            text-align: center;
         }
 
-        .district-badge i {
+        .district-stat-card .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
             color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .district-stat-card .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .district-section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 40px;
         }
 
         .town-meta {
@@ -99,7 +117,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            margin-right: 10px;
+            margin-right: 12px;
         }
 
         .town-meta i {
@@ -107,7 +125,7 @@
             font-size: 0.85rem;
         }
 
-        .district-faq {
+        .district-faqs {
             padding: 80px 0;
         }
 
@@ -118,33 +136,69 @@
             margin-top: 30px;
         }
 
-        .faq-item {
+        .faq-card {
             background: var(--white);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            padding: 20px 22px;
+            padding: 25px;
         }
 
-        .faq-item h3 {
+        .faq-card h3 {
             font-size: 1.1rem;
             margin-bottom: 10px;
             color: var(--text-color);
         }
 
-        .faq-item p {
+        .faq-card p {
             font-size: 0.95rem;
             color: var(--text-light);
-            line-height: 1.6;
+        }
+
+        .district-cta {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: var(--border-radius);
+            text-align: center;
+            color: #fff;
+        }
+
+        .district-cta h2 {
+            margin-bottom: 10px;
+        }
+
+        .district-cta p {
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .district-cta .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .district-cta .cta-buttons .btn {
+            min-width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .district-cta {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Floating CTA (Style A) -->
+    <!-- Floating CTA -->
     <div class="floating-cta">
         <div class="cta-main-btn" id="ctaMainBtn">
             <i class="fas fa-comments"></i>
@@ -181,7 +235,7 @@
                 <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India (Alappuzha)">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
-                
+
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Your Name" required>
                 </div>
@@ -193,11 +247,10 @@
                         <option value="">Select Service</option>
                         <option value="residential">Residential Solar</option>
                         <option value="commercial">Commercial Solar</option>
-                        <option value="industrial">Industrial / Institutional Solar</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="location" placeholder="Your Location in Alappuzha (e.g., Cherthala, Haripad)">
+                    <input type="text" name="location" placeholder="Your Town (Alappuzha, Cherthala, Mavelikkara, etc.)">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">
                     <i class="fas fa-bolt"></i> Get Instant Quote
@@ -228,7 +281,7 @@
                     <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
                 </a>
             </div>
-            
+
             <div class="header-contact">
                 <a href="tel:8301849474" class="contact-link">
                     <i class="fas fa-phone"></i>
@@ -239,13 +292,11 @@
                     <span>Alternate: 9539316623</span>
                 </a>
             </div>
-            
-            <!-- Mobile Menu Button -->
+
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
-            
-            <!-- Navigation -->
+
             <nav id="mainNav">
                 <ul>
                     <li><a href="../">Home</a></li>
@@ -253,112 +304,112 @@
                     <li><a href="../cities/" class="active">Service Areas</a></li>
                     <li><a href="../about/">About Us</a></li>
                     <li><a href="../projects/">Projects</a></li>
-                    <li><a href="../contact/" class="cta-button">Contact</a></li>         
+                    <li><a href="../contact/" class="cta-button">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Slider (Style A, 3 slides using local hero images) -->
+    <!-- Hero Slider -->
     <section class="hero-slider" id="alappuzha-hero">
         <div class="particles-container">
             <div class="particles"></div>
             <div class="solar-flare"></div>
         </div>
-        
+
         <div class="hero-slides">
             <!-- Slide 1 -->
             <div class="hero-slide active">
-                <img src="../images/hero/hero-image-1.webp" 
-                     alt="Solar panels in Alappuzha district" 
-                     class="hero-bg-image" 
-                     loading="eager" 
+                <img src="../images/hero/hero-image-1.webp"
+                     alt="Residential solar panels in Alappuzha district"
+                     class="hero-bg-image"
+                     loading="eager"
                      fetchpriority="high"
-                     width="2000" 
+                     width="2000"
                      height="1333">
                 <div class="gradient-overlay gradient-blue"></div>
                 <div class="floating-elements">
                     <div class="floating-element element-1">☀️</div>
-                    <div class="floating-element element-2">🌊</div>
+                    <div class="floating-element element-2">🏠</div>
                     <div class="floating-element element-3">⚡</div>
                 </div>
                 <div class="hero-content container">
                     <h1>Solar Company in Alappuzha District</h1>
-                    <p>Rooftop solar solutions for homes, shops and institutions in Cherthala, Haripad, Mavelikkara and Kayamkulam.</p>
+                    <p>Trusted residential and commercial solar installations in Alappuzha, Cherthala, Mavelikkara, Haripad and nearby towns.</p>
                     <div class="hero-buttons">
                         <div class="contact-options">
                             <a href="tel:8301849474" class="btn btn-primary pulse-animation">
-                                <i class="fas fa-phone"></i> Call Solar Expert: 8301849474
+                                <i class="fas fa-phone"></i> Call Alappuzha Expert
                             </a>
-                            <a href="../contact/" class="btn btn-secondary">
-                                <i class="fas fa-file-signature"></i> Book Free Site Survey
+                            <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Slide 2 -->
             <div class="hero-slide">
-                <img src="../images/hero/hero-image-2.webp" 
-                     alt="Rooftop solar near Kerala backwaters" 
-                     class="hero-bg-image" 
+                <img src="../images/hero/hero-image-2.webp"
+                     alt="Solar rooftop systems with government subsidy in Kerala"
+                     class="hero-bg-image"
                      loading="lazy"
-                     width="2000" 
+                     width="2000"
                      height="1333">
                 <div class="gradient-overlay gradient-green"></div>
                 <div class="floating-elements">
-                    <div class="floating-element element-1">💰</div>
-                    <div class="floating-element element-2">🏠</div>
+                    <div class="floating-element element-1">💡</div>
+                    <div class="floating-element element-2">💰</div>
                     <div class="floating-element element-3">🌱</div>
                 </div>
                 <div class="hero-content container">
-                    <h1>Save up to 90% on Your Electricity Bill</h1>
-                    <p>Kerala government subsidy + expert design for maximum generation in coastal Alappuzha climate.</p>
+                    <h1>Government Subsidy Solar for Alappuzha Homes</h1>
+                    <p>Get up to Rs.78000/- subsidy on residential solar panels in Alappuzha, Cherthala, Mavelikkara, Haripad and more.</p>
                     <div class="hero-buttons">
                         <div class="contact-options">
-                            <a href="../services/residential-solar/" class="btn btn-primary">
+                            <a href="../services/residential-solar.html" class="btn btn-primary">
                                 <i class="fas fa-home"></i> Residential Solar Details
                             </a>
-                            <a href="../services/commercial-solar/" class="btn btn-support">
-                                <i class="fas fa-building"></i> Commercial Solar Options
+                            <a href="#alappuzha-quote" class="btn btn-support">
+                                <i class="fas fa-bolt"></i> Get Free Site Visit
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Slide 3 -->
             <div class="hero-slide">
-                <img src="../images/hero/hero-image-3.webp" 
-                     alt="Solar panels with sunset in Kerala" 
-                     class="hero-bg-image" 
+                <img src="../images/hero/hero-image-3.webp"
+                     alt="Solar power for shops and institutions in Alappuzha"
+                     class="hero-bg-image"
                      loading="lazy"
-                     width="2000" 
+                     width="2000"
                      height="1333">
                 <div class="gradient-overlay gradient-purple"></div>
                 <div class="floating-elements">
-                    <div class="floating-element element-1">⭐</div>
-                    <div class="floating-element element-2">🔧</div>
-                    <div class="floating-element element-3">🏆</div>
+                    <div class="floating-element element-1">🏢</div>
+                    <div class="floating-element element-2">⭐</div>
+                    <div class="floating-element element-3">🔧</div>
                 </div>
                 <div class="hero-content container">
-                    <h1>Trusted Solar Partner for Alappuzha</h1>
-                    <p>Backwater resorts, homes and shops across Cherthala, Haripad, Mavelikkara and Kayamkulam trust Solis Green India.</p>
+                    <h1>Solar for Shops, Offices & Institutions</h1>
+                    <p>Commercial solar plants for buildings in Alappuzha, Cherthala, Mavelikkara, Haripad, Kayamkulam and other towns.</p>
                     <div class="hero-buttons">
                         <div class="contact-options">
-                            <a href="../projects/" class="btn btn-primary">
-                                <i class="fas fa-images"></i> View Sample Projects
+                            <a href="../services/commercial-solar.html" class="btn btn-primary">
+                                <i class="fas fa-building"></i> Commercial Solar Details
                             </a>
-                            <a href="tel:9539316623" class="btn btn-secondary">
-                                <i class="fas fa-phone-alt"></i> Call Alternate: 9539316623
+                            <a href="../projects/" class="btn btn-secondary">
+                                <i class="fas fa-images"></i> View Sample Projects
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Slider Controls -->
         <button class="slider-prev" aria-label="Previous slide">
             <i class="fas fa-chevron-left"></i>
@@ -366,7 +417,7 @@
         <button class="slider-next" aria-label="Next slide">
             <i class="fas fa-chevron-right"></i>
         </button>
-        
+
         <!-- Slider Dots -->
         <div class="slider-dots">
             <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
@@ -375,203 +426,469 @@
         </div>
     </section>
 
-    <!-- District Intro -->
-    <section class="district-intro section-light">
-        <div class="container">
-            <h2 class="section-title">Solar Solutions for Alappuzha District</h2>
-            <div class="intro-text">
-                <p>Solis Green India provides complete solar solutions for the entire Alappuzha district – from Cherthala in the north to Kayamkulam in the south.</p>
-                <p>We design and install rooftop solar systems that perform reliably in Alappuzha’s coastal and backwater climate, with strong focus on corrosion protection, proper panel tilt and safe wiring.</p>
-                <p>Whether you’re a homeowner in Haripad, a shop owner in Mavelikkara or running a resort near the backwaters, we can help you convert sunlight into long-term savings.</p>
+    <!-- Scarcity Banner -->
+    <div class="scarcity-banner" style="background: linear-gradient(135deg, #ff6b6b, #ff8e8e); color: white; text-align: center; padding: 15px; font-weight: 600;">
+        🚨 LIMITED SUBSIDY SLOTS: Limited subsidy approvals remaining for Alappuzha!
+    </div>
 
-                <div class="district-badges">
-                    <div class="district-badge">
-                        <i class="fas fa-sun"></i> High solar potential throughout the year
+    <!-- Financial Benefits Section -->
+    <section class="financial-benefits" style="padding: 80px 0; background: var(--background-light);">
+        <div class="container">
+            <h2 class="section-title">Financial Benefits for Alappuzha Customers</h2>
+            <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                
+                <!-- Government Subsidy Card -->
+                <div class="benefit-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">💰</div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Government Subsidy</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-light);">Get <strong>₹78,000 subsidy</strong> for 3kW system through government schemes</p>
+                    <ul style="text-align: left; margin-bottom: 20px;">
+                        <li style="margin-bottom: 8px;">✓ We handle all subsidy paperwork</li>
+                        <li style="margin-bottom: 8px;">✓ Approved installer for Alappuzha</li>
+                        <li style="margin-bottom: 8px;">✓ Quick disbursement support</li>
+                    </ul>
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-file-alt"></i> Check Subsidy Eligibility
+                    </a>
+                </div>
+
+                <!-- SBI Loan Card -->
+                <div class="benefit-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🏦</div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">SBI PM Surya Ghar Loan</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-light);"><strong>6% Interest Rate</strong> - Lowest in Kerala market</p>
+                    <div style="display: flex; justify-content: center; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
+                        <div style="background: #f8f9fa; padding: 5px 12px; border-radius: 5px; font-weight: 600;">SBI</div>
+                        <div style="background: #f8f9fa; padding: 5px 12px; border-radius: 5px; font-weight: 600;">Canara</div>
+                        <div style="background: #f8f9fa; padding: 5px 12px; border-radius: 5px; font-weight: 600;">Union Bank</div>
                     </div>
-                    <div class="district-badge">
-                        <i class="fas fa-rupee-sign"></i> Government subsidy support for home solar
+                    <ul style="text-align: left; margin-bottom: 20px;">
+                        <li style="margin-bottom: 8px;">✓ 6% interest only - lowest rate</li>
+                        <li style="margin-bottom: 8px;">✓ 24-48 hour approval</li>
+                        <li style="margin-bottom: 8px;">✓ Zero processing fee</li>
+                    </ul>
+                    <a href="https://sbi.co.in/web/personal-banking/loans/pm-surya-ghar-loan-for-solar-roof-top" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i> Official SBI Scheme
+                    </a>
+                </div>
+
+                <!-- Free AMC Card -->
+                <div class="benefit-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🔧</div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Free AMC & Support</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-light);">Complete maintenance support for your solar system</p>
+                    <ul style="text-align: left; margin-bottom: 20px;">
+                        <li style="margin-bottom: 8px;">✓ 5 Year FREE Maintenance</li>
+                        <li style="margin-bottom: 8px;">✓ 24/7 Performance Monitoring</li>
+                        <li style="margin-bottom: 8px;">✓ Priority Service in Alappuzha</li>
+                        <li style="margin-bottom: 8px;">✓ 30-Year Panel Warranty</li>
+                        <li style="margin-bottom: 8px;">✓ 10-Year Inverter Warranty</li>
+                    </ul>
+                    <a href="tel:8606849474" class="btn btn-primary">
+                        <i class="fas fa-headset"></i> Call Support: 8606849474
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Comparison Section -->
+    <section class="system-comparison" style="padding: 80px 0;">
+        <div class="container">
+            <h2 class="section-title">Choose Perfect System for Your Alappuzha Home</h2>
+            <div class="comparison-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                
+                <!-- 3kW System -->
+                <div class="system-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center; border: 2px solid var(--primary-color); position: relative;">
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">MOST POPULAR</div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">3kW Solar System</h3>
+                    <p style="margin-bottom: 10px;">Ideal for 2-3 BHK Homes</p>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin: 15px 0;">₹1.2 Lakhs*</div>
+                    <p style="margin-bottom: 20px; font-style: italic;"><em>*After ₹78,000 Subsidy</em></p>
+                    
+                    <div style="text-align: left; margin: 20px 0;">
+                        <div style="margin-bottom: 10px;">✓ Monthly Savings: ₹3,500 - ₹4,500</div>
+                        <div style="margin-bottom: 10px;">✓ Powers: 3 ACs + All Home Appliances</div>
+                        <div style="margin-bottom: 10px;">✓ SBI EMI: ₹1,500/month</div>
+                        <div style="margin-bottom: 10px;">✓ Payback: 10 Years</div>
+                        <div style="margin-bottom: 10px;">✓ Best for 200-350 units usage</div>
                     </div>
-                    <div class="district-badge">
-                        <i class="fas fa-shield-alt"></i> 5-year free AMC* and performance monitoring
+                    
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> Get 3kW Quote in 10 Min
+                    </a>
+                </div>
+
+                <!-- 5kW System -->
+                <div class="system-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">5kW Solar System</h3>
+                    <p style="margin-bottom: 10px;">Perfect for Large Homes/Offices</p>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin: 15px 0;">₹2.2 Lakhs*</div>
+                    <p style="margin-bottom: 20px; font-style: italic;"><em>*After ₹78,000 Subsidy</em></p>
+                    
+                    <div style="text-align: left; margin: 20px 0;">
+                        <div style="margin-bottom: 10px;">✓ Monthly Savings: ₹6,000 - ₹9,000</div>
+                        <div style="margin-bottom: 10px;">✓ Powers: 5 ACs + Heavy Appliances</div>
+                        <div style="margin-bottom: 10px;">✓ SBI EMI: ₹2,500/month</div>
+                        <div style="margin-bottom: 10px;">✓ Payback: 10 Years</div>
+                        <div style="margin-bottom: 10px;">✓ Best for 500-800 units usage</div>
+                    </div>
+                    
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> Get 5kW Quote in 10 Min
+                    </a>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 30px; color: var(--text-light);">
+                <strong>90% of Alappuzha homes</strong> choose 3kW or 5kW systems
+            </p>
+        </div>
+    </section>
+
+    <!-- Quick Quote Section (Alappuzha-focused) -->
+    <section class="quick-quote-section" id="alappuzha-quote">
+        <div class="container">
+            <h2 class="section-title">Get Your Solar Quote in Alappuzha</h2>
+            <div class="quote-form-container">
+                <form class="quick-quote-form" id="mainQuoteForm">
+                    <input type="hidden" name="_subject" value="🔆 Solar Quote Request - Alappuzha District">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Phone Number" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <select name="service" required>
+                                <option value="">Select Service</option>
+                                <option value="residential">Home Solar (with Subsidy)</option>
+                                <option value="commercial">Commercial / Office Solar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="location" placeholder="Your Town (Alappuzha, Cherthala, Mavelikkara, etc.)" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-bolt"></i> Get Free Quote & Site Survey
+                    </button>
+                </form>
+                <div class="quote-benefits">
+                    <h4>Why Alappuzha Customers Choose Us</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Experienced team serving Alappuzha</li>
+                        <li><i class="fas fa-check"></i> ₹78,000 Subsidy + 6% SBI Loan Available</li>
+                        <li><i class="fas fa-check"></i> Support for KSEB net metering</li>
+                        <li><i class="fas fa-check"></i> 95+ projects in Alappuzha</li>
+                        <li><i class="fas fa-check"></i> 5-Year Free AMC Included</li>
+                    </ul>
+
+                    <div class="emergency-contact">
+                        <h4>Need Immediate Assistance?</h4>
+                        <div class="emergency-numbers">
+                            <a href="tel:8301849474" class="emergency-number">
+                                <i class="fas fa-phone"></i> Primary: 8301849474
+                            </a>
+                            <a href="tel:9539316623" class="emergency-number">
+                                <i class="fas fa-phone"></i> Alternate: 9539316623
+                            </a>
+                            <a href="tel:8606849474" class="emergency-number">
+                                <i class="fas fa-headset"></i> Support: 8606849474
+                            </a>
+                        </div>
+                        <p class="emergency-note">Available for urgent solar service visits in Alappuzha district</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Town Cards (4 cities, linked to their pages without .html) -->
+    <!-- District Intro + Stats -->
+    <section class="district-intro">
+        <div class="container">
+            <h2 class="section-title">Solar in Alappuzha District</h2>
+            <div class="district-intro-text">
+                <p>Solis Green India provides complete solar solutions for homes, shops, offices and institutions across Alappuzha district – including Alappuzha, Cherthala, Mavelikkara, Haripad, Kayamkulam, Chengannur and nearby areas.</p>
+                <p>From small 3 kW rooftop systems for houses in Alappuzha and Cherthala to larger commercial plants in Mavelikkara and Haripad, every project is engineered for long-term performance and savings.</p>
+                <p class="district-towns-inline">
+                    <strong>Major towns we cover for solar installation:</strong> Alappuzha, Cherthala, Mavelikkara, Haripad, Kayamkulam, Chengannur, Ambalapuzha, Kuttanad, Thuravoor, and surrounding villages.
+                </p>
+
+                <div class="district-summary-stats">
+                    <div class="district-stat-card">
+                        <div class="stat-number">95+</div>
+                        <div class="stat-label">Projects in Alappuzha</div>
+                    </div>
+                    <div class="district-stat-card">
+                        <div class="stat-number">90%</div>
+                        <div class="stat-label">Average Bill Reduction</div>
+                    </div>
+                    <div class="district-stat-card">
+                        <div class="stat-number">2019</div>
+                        <div class="stat-label">Serving Since</div>
+                    </div>
+                    <div class="district-stat-card">
+                        <div class="stat-number">5+ Years</div>
+                        <div class="stat-label">Local Solar Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Town-wise Coverage -->
     <section class="quick-services">
         <div class="container">
             <h2 class="section-title">Solar Company Near You in Alappuzha</h2>
-            <p class="text-center">Click on your town to see dedicated solar information and request a site visit.</p>
+            <p class="district-section-subtitle">
+                Choose your town to see more information and enquire about solar installation. These town pages are for SEO and local relevance and link to their respective details.
+            </p>
 
             <div class="services-grid">
-                <!-- Cherthala -->
+                <!-- Alappuzha -->
                 <div class="service-card">
-                    <i class="fas fa-water"></i>
-                    <h3>Solar Company in Cherthala</h3>
-                    <div class="town-meta">
-                        <span><i class="fas fa-location-dot"></i> Cherthala, Aroor, Mararikulam</span>
+                    <i class="fas fa-city"></i>
+                    <h3>Solar Company in Alappuzha</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>Rooftop solar for homes, shops and backwater homestays in and around Cherthala.</p>
+                    <p>Residential and commercial solar systems in Alappuzha city and nearby areas with dedicated local support.</p>
                     <div class="service-features">
-                        <span><i class="fas fa-check"></i> 3 kW – 15 kW home systems</span>
-                        <span><i class="fas fa-check"></i> Special corrosion protection</span>
-                        <span><i class="fas fa-check"></i> Ideal for coastal climate</span>
+                        <span><i class="fas fa-check"></i> Home rooftop solar</span>
+                        <span><i class="fas fa-check"></i> Shops & office buildings</span>
+                        <span><i class="fas fa-check"></i> Fast service & maintenance</span>
                     </div>
-                    <a href="solar-company-in-alappuzha/cherthala/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar in Cherthala
+                    <a href="alappuzha.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Alappuzha Solar Details
                     </a>
                 </div>
 
-                <!-- Haripad -->
+                <!-- Cherthala -->
                 <div class="service-card">
-                    <i class="fas fa-city"></i>
-                    <h3>Solar Company in Haripad</h3>
-                    <div class="town-meta">
-                        <span><i class="fas fa-location-dot"></i> Haripad, Mannarasala, nearby areas</span>
+                    <i class="fas fa-university"></i>
+                    <h3>Solar Company in Cherthala</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>Solar panel installation for houses, temples, shops and small commercial buildings in Haripad region.</p>
+                    <p>Solar solutions for homes and businesses in Cherthala and surrounding industrial regions.</p>
                     <div class="service-features">
-                        <span><i class="fas fa-check"></i> 3 kW – 10 kW home systems</span>
-                        <span><i class="fas fa-check"></i> Commercial rooftop plants</span>
-                        <span><i class="fas fa-check"></i> Excellent after-sales service</span>
+                        <span><i class="fas fa-check"></i> Grid-tied & hybrid systems</span>
+                        <span><i class="fas fa-check"></i> Commercial establishments</span>
+                        <span><i class="fas fa-check"></i> Strong after-sales support</span>
                     </div>
-                    <a href="haripad/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar in Haripad
+                    <a href="cherthala/index.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Cherthala Solar Info
                     </a>
                 </div>
 
                 <!-- Mavelikkara -->
                 <div class="service-card">
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-store"></i>
                     <h3>Solar Company in Mavelikkara</h3>
-                    <div class="town-meta">
-                        <span><i class="fas fa-location-dot"></i> Mavelikkara, nearby villages</span>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>Reliable home and small business solar plants designed for Mavelikkara’s residential and semi-urban layouts.</p>
+                    <p>Rooftop solar for houses, shops and institutions in Mavelikkara and nearby areas.</p>
                     <div class="service-features">
-                        <span><i class="fas fa-check"></i> On-grid & hybrid systems</span>
-                        <span><i class="fas fa-check"></i> 5-year free AMC*</span>
-                        <span><i class="fas fa-check"></i> Government subsidy support</span>
+                        <span><i class="fas fa-check"></i> 3–15 kW home systems</span>
+                        <span><i class="fas fa-check"></i> Commercial solar rooftops</span>
+                        <span><i class="fas fa-check"></i> KSEB net-metering support</span>
                     </div>
-                    <a href="mavelikkara/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar in Mavelikkara
+                    <a href="mavelikkara/index.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Mavelikkara Solar Details
+                    </a>
+                </div>
+
+                <!-- Haripad -->
+                <div class="service-card">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Solar Company in Haripad</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
+                    </div>
+                    <p>Solar installations for homes and businesses in Haripad and nearby locations.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Residential rooftop solar</span>
+                        <span><i class="fas fa-check"></i> Commercial solar plants</span>
+                        <span><i class="fas fa-check"></i> Local maintenance team</span>
+                    </div>
+                    <a href="haripad/index.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Haripad Solar Info
                     </a>
                 </div>
 
                 <!-- Kayamkulam -->
                 <div class="service-card">
-                    <i class="fas fa-bolt"></i>
+                    <i class="fas fa-landmark"></i>
                     <h3>Solar Company in Kayamkulam</h3>
-                    <div class="town-meta">
-                        <span><i class="fas fa-location-dot"></i> Kayamkulam, Oachira, nearby areas</span>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>High performance rooftop solar for homes, banks, offices and shops in the Kayamkulam belt.</p>
+                    <p>Solar plants for houses and businesses in Kayamkulam and surrounding areas.</p>
                     <div class="service-features">
-                        <span><i class="fas fa-check"></i> 5 kW – 25 kW systems</span>
-                        <span><i class="fas fa-check"></i> Tax benefit for businesses</span>
-                        <span><i class="fas fa-check"></i> Continuous monitoring</span>
+                        <span><i class="fas fa-check"></i> Home & commercial systems</span>
+                        <span><i class="fas fa-check"></i> High-efficiency panels</span>
+                        <span><i class="fas fa-check"></i> Fast installation timelines</span>
                     </div>
-                    <a href="kayamkulam/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar in Kayamkulam
+                    <a href="kayamkulam/index.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Kayamkulam Solar Details
+                    </a>
+                </div>
+
+                <!-- Chengannur -->
+                <div class="service-card">
+                    <i class="fas fa-house-chimney"></i>
+                    <h3>Solar Company in Chengannur</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
+                    </div>
+                    <p>Specialized rooftop systems for houses and small commercial buildings in Chengannur.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 3–8 kW family homes</span>
+                        <span><i class="fas fa-check"></i> Reliable performance</span>
+                        <span><i class="fas fa-check"></i> Long-term warranties</span>
+                    </div>
+                    <a href="chengannur/index.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Chengannur Solar Info
+                    </a>
+                </div>
+
+                <!-- Ambalapuzha -->
+                <div class="service-card">
+                    <i class="fas fa-water"></i>
+                    <h3>Solar Company in Ambalapuzha</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
+                    </div>
+                    <p>Clean energy for homes and institutions in Ambalapuzha and backwater regions.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Backwater area solar</span>
+                        <span><i class="fas fa-check"></i> Suitable for temples & institutions</span>
+                        <span><i class="fas fa-check"></i> On-grid & hybrid options</span>
+                    </div>
+                    <a href="ambalapuzha/index.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Ambalapuzha Solar Details
+                    </a>
+                </div>
+
+                <!-- Kuttanad -->
+                <div class="service-card">
+                    <i class="fas fa-sun"></i>
+                    <h3>Solar Company in Kuttanad</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
+                    </div>
+                    <p>Custom solar solutions for Kuttanad region and surrounding paddy field areas.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Site-specific design</span>
+                        <span><i class="fas fa-check"></i> Panel layout optimization</span>
+                        <span><i class="fas fa-check"></i> Ongoing maintenance</span>
+                    </div>
+                    <a href="kuttanad/index.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Kuttanad Solar Info
                     </a>
                 </div>
             </div>
-
-            <!-- CTA under town cards -->
-            <div class="services-cta">
-                <div class="cta-content">
-                    <h3>Not Sure Which Town Page to Choose?</h3>
-                    <p>Even if your exact town is not listed, we can still serve you anywhere in Alappuzha district.</p>
-                    <div class="cta-buttons">
-                        <a href="tel:8301849474" class="btn btn-primary">
-                            <i class="fas fa-phone"></i> Call: 8301849474
-                        </a>
-                        <a href="../contact/" class="btn btn-secondary">
-                            <i class="fas fa-file-signature"></i> Request Free Site Visit
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Why Choose Us for Alappuzha (reusing Style A) -->
+    <!-- Why Choose Us for Alappuzha -->
     <section class="why-choose-us section-light">
         <div class="container">
-            <h2 class="section-title">Why Alappuzha Homes & Businesses Choose Solis Green India</h2>
+            <h2 class="section-title">Why Alappuzha Customers Trust Solis Green India</h2>
             <div class="features-grid">
                 <div class="feature-item">
-                    <i class="fas fa-sun"></i>
-                    <h3>District-Focused Design</h3>
-                    <p>We design each system considering Alappuzha’s coastal winds, humidity and roof conditions.</p>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Local Expertise</h3>
+                    <p>Experienced teams regularly serving Alappuzha, Cherthala, Mavelikkara, Haripad, Kayamkulam and other towns.</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-rupee-sign"></i>
-                    <h3>Subsidy & Finance Support</h3>
-                    <p>Guidance for Kerala government subsidy, net metering and bank finance for your solar project.</p>
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h3>Subsidy & Net Metering</h3>
+                    <p>Complete support for government subsidy documentation and KSEB net-metering approvals for Alappuzha customers.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-solar-panel"></i>
+                    <h3>Quality Solar Components</h3>
+                    <p>Tier-1 solar panels, trusted inverter brands and proper mounting structure suitable for Kerala's coastal climate.</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-headset"></i>
-                    <h3>Local Support Team</h3>
-                    <p>Quick response for service calls across Cherthala, Haripad, Mavelikkara and Kayamkulam.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Long-Term Savings</h3>
-                    <p>Systems optimized to deliver strong generation for 25+ years with proper maintenance.</p>
+                    <h3>5-Year Free AMC*</h3>
+                    <p>Regular monitoring, cleaning guidance and priority service support for our customers in Alappuzha district.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Simple FAQ + CTA -->
-    <section class="district-faq">
+    <!-- FAQs Section -->
+    <section class="district-faqs">
         <div class="container">
-            <h2 class="section-title">Common Questions from Alappuzha Customers</h2>
+            <h2 class="section-title">FAQs – Solar in Alappuzha</h2>
             <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>Is solar effective in coastal Alappuzha?</h3>
-                    <p>Yes. With proper panel structure, anti-corrosion treatment and correct tilt, Alappuzha’s strong sunlight can give excellent solar generation throughout the year.</p>
+                <div class="faq-card">
+                    <h3>Do you provide solar installation in all Alappuzha towns?</h3>
+                    <p>Yes, we serve all major towns in Alappuzha including Alappuzha, Cherthala, Mavelikkara, Haripad, Kayamkulam, Chengannur, Ambalapuzha and nearby villages.</p>
                 </div>
-                <div class="faq-item">
-                    <h3>Can you install solar on tiled or sheet roofs?</h3>
-                    <p>We have special mounting structures for RCC, tiled and metal sheet roofs commonly found in Cherthala, Haripad, Mavelikkara and Kayamkulam.</p>
+                <div class="faq-card">
+                    <h3>Is government subsidy available for homes in Alappuzha?</h3>
+                    <p>Residential customers in Alappuzha can apply for government subsidy subject to current scheme rules. Our team guides you through the entire process.</p>
                 </div>
-                <div class="faq-item">
-                    <h3>Do I get government subsidy in Alappuzha?</h3>
-                    <p>Yes, eligible residential customers can avail central/benefit-linked subsidies. Our team will guide you through the complete process during consultation.</p>
+                <div class="faq-card">
+                    <h3>How long does installation take?</h3>
+                    <p>For most home projects (3–6 kW), installation completes within 3–5 days after approvals. Commercial systems may take slightly longer depending on size.</p>
                 </div>
-            </div>
-
-            <div class="about-cta" style="margin-top:50px;">
-                <div class="container">
-                    <div class="cta-content">
-                        <h2>Ready to Install Solar in Alappuzha?</h2>
-                        <p>Call us or send a WhatsApp message with your location (Cherthala / Haripad / Mavelikkara / Kayamkulam) and approximate electricity bill.</p>
-                        <div class="cta-buttons">
-                            <a href="tel:8301849474" class="btn btn-primary">
-                                <i class="fas fa-phone"></i> Call: 8301849474
-                            </a>
-                            <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
-                                <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
-                            </a>
-                            <a href="../contact/" class="btn btn-secondary">
-                                <i class="fas fa-map-marker-alt"></i> Visit Contact Page
-                            </a>
-                        </div>
-                        <div class="support-contact">
-                            <p><strong>Technical Support:</strong> <a href="tel:8606849474">8606849474</a> | Available 24/7</p>
-                        </div>
-                    </div>
+                <div class="faq-card">
+                    <h3>Do you offer maintenance and service?</h3>
+                    <p>Yes. Our service teams regularly visit Alappuzha towns for cleaning, inspection and repairs. We also provide 5-year free AMC for eligible systems.</p>
                 </div>
             </div>
 
+            <div class="district-cta">
+                <h2>Ready to Install Solar in Alappuzha?</h2>
+                <p>Call our local solar experts today. We'll guide you on system size, subsidy, approximate cost and savings for your home or business.</p>
+                <div class="cta-buttons">
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call: 8301849474
+                    </a>
+                    <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
+                    </a>
+                    <a href="../contact/" class="btn btn-secondary">
+                        <i class="fas fa-file-signature"></i> Book Free Site Visit
+                    </a>
+                </div>
+                <p style="margin-top:15px;font-size:0.9rem;opacity:0.9;">
+                    For service or maintenance support, call our 24/7 support line: <strong><a href="tel:8606849474" style="color:#fff;text-decoration:underline;">8606849474</a></strong>
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- Footer (same pattern) -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -579,7 +896,7 @@
                     <div class="footer-logo">
                         <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Leading solar company in Kerala, powering homes and businesses across Pathanamthitta, Kottayam, Alappuzha and Kollam.</p>
+                    <p>Powering Kerala's sustainable future with 5+ years of solar excellence and technical expertise across Pathanamthitta, Kottayam, Alappuzha and Kollam.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -610,28 +927,28 @@
                     <h3>Contact Our Experts</h3>
                     <ul class="contact-info">
                         <li class="contact-primary">
-                            <i class="fas fa-phone"></i> 
+                            <i class="fas fa-phone"></i>
                             <div>
                                 <a href="tel:8301849474">Primary: 8301849474</a>
                                 <span class="contact-label">Technical Consultation</span>
                             </div>
                         </li>
                         <li class="contact-alternate">
-                            <i class="fas fa-phone-alt"></i> 
+                            <i class="fas fa-phone-alt"></i>
                             <div>
                                 <a href="tel:9539316623">Alternate: 9539316623</a>
                                 <span class="contact-label">Project Coordination</span>
                             </div>
                         </li>
                         <li class="contact-support">
-                            <i class="fas fa-headset"></i> 
+                            <i class="fas fa-headset"></i>
                             <div>
                                 <a href="tel:8606849474">Support: 8606849474</a>
                                 <span class="contact-label">24/7 Customer Support</span>
                             </div>
                         </li>
                         <li class="whatsapp-primary">
-                            <i class="fab fa-whatsapp"></i> 
+                            <i class="fab fa-whatsapp"></i>
                             <div>
                                 <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
                                 <span class="contact-label">Quick Consultation</span>
@@ -643,7 +960,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Professional Solar Solutions Across Kerala</p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Powering Kerala's Sustainable Future</p>
             </div>
         </div>
     </footer>
@@ -653,18 +970,18 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Mobile Menu Fix JavaScript (same pattern) -->
+    <!-- Mobile Menu Fix JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mainNav = document.getElementById('mainNav');
-            
+
             if (mobileMenuBtn && mainNav) {
                 mobileMenuBtn.addEventListener('click', function() {
                     mainNav.classList.toggle('active');
                     this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
                 });
-                
+
                 const navLinks = mainNav.querySelectorAll('a');
                 navLinks.forEach(link => {
                     link.addEventListener('click', () => {
@@ -672,7 +989,7 @@
                         mobileMenuBtn.setAttribute('aria-expanded', 'false');
                     });
                 });
-                
+
                 document.addEventListener('click', function(event) {
                     if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
                         mainNav.classList.remove('active');
