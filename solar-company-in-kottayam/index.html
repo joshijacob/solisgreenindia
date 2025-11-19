@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Best solar company in Kottayam district. Solis Green India provides residential and commercial solar panel installation in Changanacherry, Pala, Kanjirapally, Vaikom, Ettumanoor, Kumarakom, Kuravilangad, Mundakayam and nearby areas with government subsidy support.">
-    <meta name="keywords" content="solar company in kottayam, solar panel kottayam, solar installation changanacherry, solar company pala, solar company vaikom, solis green india">
+    <meta name="description" content="Solar company in Kottayam district – Solis Green India. Residential and commercial solar panel installation in Kottayam, Changanacherry, Pala, Kanjirapally, Vaikom, Ettumanoor and nearby towns.">
+    <meta name="keywords" content="solar company kottayam, solar panels changanacherry, solar installation pala, solar company kanjirapally, solar company vaikom, solar company ettumanoor">
     <meta name="author" content="Solis Green India">
 
     <!-- Preload critical hero image -->
-    <link rel="preload" href="../images/hero/hero-image-4.webp" as="image" type="image/webp">
+    <link rel="preload" href="../images/hero/hero-image-1.webp" as="image" type="image/webp">
 
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5C2D5BG9');
+    </script>
     <!-- End Google Tag Manager -->
 
-    <title>Solar Company in Kottayam District | Changanacherry, Pala, Vaikom & Nearby</title>
+    <title>Solar Company in Kottayam | Changanacherry, Pala, Kanjirapally & Vaikom | Solis Green India</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Mobile Menu Fix CSS (Style A pattern) + page-specific tweaks -->
+    <!-- Mobile Menu Fix CSS (same pattern as other pages) -->
     <style>
         @media (max-width: 768px) {
             nav ul {
@@ -50,9 +52,10 @@
             }
         }
 
-        /* Kottayam district specific layout */
+        /* Page-specific styling reusing Style A components */
         .district-intro {
             padding: 80px 0 40px;
+            background: var(--background-light);
         }
 
         .district-intro-text {
@@ -66,9 +69,9 @@
             margin-bottom: 12px;
         }
 
-        .district-intro-text .towns-line {
+        .district-towns-inline {
             font-size: 0.95rem;
-            opacity: 0.95;
+            opacity: 0.9;
         }
 
         .district-summary-stats {
@@ -98,111 +101,59 @@
             color: var(--text-light);
         }
 
-        .district-section-heading {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
         .district-section-subtitle {
             text-align: center;
             color: var(--text-light);
             margin-bottom: 40px;
         }
 
-        /* Towns grid */
-        .towns-section {
-            padding: 80px 0;
-        }
-
-        .towns-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 25px;
-        }
-
-        .town-card {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 25px 20px;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .town-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            transition: var(--transition);
-        }
-
-        .town-card:hover::before {
-            left: 0;
-        }
-
-        .town-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .town-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .town-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-        }
-
-        .town-card h3 {
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        .town-card p {
+        .town-meta {
             font-size: 0.9rem;
             color: var(--text-light);
-            margin-bottom: 15px;
-        }
-
-        .town-meta {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .town-meta span {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            margin-right: 10px;
+            margin-right: 12px;
         }
 
         .town-meta i {
             color: var(--primary-color);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
 
-        .town-card .btn {
-            font-size: 0.9rem;
-            padding: 8px 18px;
+        .district-faqs {
+            padding: 80px 0;
         }
 
-        /* Bottom CTA for Kottayam */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .faq-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+        }
+
+        .faq-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .faq-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
         .district-cta {
             margin-top: 60px;
             padding: 40px;
@@ -241,11 +192,13 @@
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Floating CTA (Style A) -->
+    <!-- Floating CTA (same as home/about) -->
     <div class="floating-cta">
         <div class="cta-main-btn" id="ctaMainBtn">
             <i class="fas fa-comments"></i>
@@ -297,7 +250,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="location" placeholder="Your Location/City (eg. Changanacherry)">
+                    <input type="text" name="location" placeholder="Your Town (Kottayam, Pala, Changanacherry, etc.)">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">
                     <i class="fas fa-bolt"></i> Get Instant Quote
@@ -348,7 +301,7 @@
                 <ul>
                     <li><a href="../">Home</a></li>
                     <li><a href="../services/">Services</a></li>
-                    <li><a href="../cities/">Service Areas</a></li>
+                    <li><a href="../cities/" class="active">Service Areas</a></li>
                     <li><a href="../about/">About Us</a></li>
                     <li><a href="../projects/">Projects</a></li>
                     <li><a href="../contact/" class="cta-button">Contact</a></li>
@@ -357,7 +310,7 @@
         </div>
     </header>
 
-    <!-- Hero Slider (Style A, 2 slides, using hero 4 & 5) -->
+    <!-- Hero Slider (Style A, 3 slides, using local hero images) -->
     <section class="hero-slider" id="kottayam-hero">
         <div class="particles-container">
             <div class="particles"></div>
@@ -367,8 +320,8 @@
         <div class="hero-slides">
             <!-- Slide 1 -->
             <div class="hero-slide active">
-                <img src="../images/hero/hero-image-4.webp"
-                     alt="Solar panels on rooftop in Kottayam district"
+                <img src="../images/hero/hero-image-1.webp"
+                     alt="Residential solar panels in Kottayam district"
                      class="hero-bg-image"
                      loading="eager"
                      fetchpriority="high"
@@ -382,19 +335,14 @@
                 </div>
                 <div class="hero-content container">
                     <h1>Solar Company in Kottayam District</h1>
-                    <p>Professional solar panel installation in Changanacherry, Pala, Vaikom, Ettumanoor, Kumarakom, Kuravilangad, Mundakayam and nearby areas.</p>
+                    <p>Trusted residential and commercial solar installations in Kottayam, Changanacherry, Pala, Kanjirapally and nearby towns.</p>
                     <div class="hero-buttons">
                         <div class="contact-options">
                             <a href="tel:8301849474" class="btn btn-primary pulse-animation">
-                                <i class="fas fa-phone"></i> Call Kottayam Expert: 8301849474
+                                <i class="fas fa-phone"></i> Call Kottayam Expert
                             </a>
-                            <a href="../services/" class="btn btn-secondary">
-                                <i class="fas fa-bolt"></i> View Solar Services
-                            </a>
-                        </div>
-                        <div class="whatsapp-options">
-                            <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
-                                <i class="fab fa-whatsapp"></i> WhatsApp Your Load Details
+                            <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
                             </a>
                         </div>
                     </div>
@@ -403,8 +351,8 @@
 
             <!-- Slide 2 -->
             <div class="hero-slide">
-                <img src="../images/hero/hero-image-5.webp"
-                     alt="Commercial solar rooftop project in Kottayam"
+                <img src="../images/hero/hero-image-2.webp"
+                     alt="Solar rooftop systems with government subsidy in Kerala"
                      class="hero-bg-image"
                      loading="lazy"
                      width="2000"
@@ -412,19 +360,49 @@
                 <div class="gradient-overlay gradient-green"></div>
                 <div class="floating-elements">
                     <div class="floating-element element-1">💡</div>
-                    <div class="floating-element element-2">🏢</div>
-                    <div class="floating-element element-3">💰</div>
+                    <div class="floating-element element-2">💰</div>
+                    <div class="floating-element element-3">🌱</div>
                 </div>
                 <div class="hero-content container">
-                    <h1>Residential & Commercial Solar in Kottayam</h1>
-                    <p>End-to-end solar solutions with government subsidy support, 5-year free AMC and 25-year performance warranty.</p>
+                    <h1>Government Subsidy Solar for Kottayam Homes</h1>
+                    <p>Get up to Rs.78000/- subsidy on residential solar panels in Kottayam, Pala, Changanacherry, Kanjirapally and more.</p>
                     <div class="hero-buttons">
                         <div class="contact-options">
-                            <a href="../projects/residential-projects.html" class="btn btn-primary">
-                                <i class="fas fa-home"></i> View Residential Projects
+                            <a href="../services/residential-solar.html" class="btn btn-primary">
+                                <i class="fas fa-home"></i> Residential Solar Details
                             </a>
-                            <a href="../projects/commercial-projects.html" class="btn btn-support">
-                                <i class="fas fa-building"></i> View Commercial Projects
+                            <a href="#kottayam-quote" class="btn btn-support">
+                                <i class="fas fa-bolt"></i> Get Free Site Visit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide">
+                <img src="../images/hero/hero-image-3.webp"
+                     alt="Solar power for shops and institutions in Kottayam"
+                     class="hero-bg-image"
+                     loading="lazy"
+                     width="2000"
+                     height="1333">
+                <div class="gradient-overlay gradient-purple"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">🏢</div>
+                    <div class="floating-element element-2">⭐</div>
+                    <div class="floating-element element-3">🔧</div>
+                </div>
+                <div class="hero-content container">
+                    <h1>Solar for Shops, Offices & Institutions</h1>
+                    <p>Commercial solar plants for buildings in Kottayam, Changanacherry, Pala, Kanjirapally, Vaikom and other towns.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="../services/commercial-solar.html" class="btn btn-primary">
+                                <i class="fas fa-building"></i> Commercial Solar Details
+                            </a>
+                            <a href="../projects/" class="btn btn-secondary">
+                                <i class="fas fa-images"></i> View Sample Projects
                             </a>
                         </div>
                     </div>
@@ -444,276 +422,473 @@
         <div class="slider-dots">
             <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
             <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
+            <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
+        </div>
+    </section>
+
+    <!-- Scarcity Banner -->
+    <div class="scarcity-banner" style="background: linear-gradient(135deg, #ff6b6b, #ff8e8e); color: white; text-align: center; padding: 15px; font-weight: 600;">
+        🚨 LIMITED SUBSIDY SLOTS: Limited subsidy approvals remaining for Kottayam!
+    </div>
+
+    <!-- Financial Benefits Section -->
+    <section class="financial-benefits" style="padding: 80px 0; background: var(--background-light);">
+        <div class="container">
+            <h2 class="section-title">Financial Benefits for Kottayam Customers</h2>
+            <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                
+                <!-- Government Subsidy Card -->
+                <div class="benefit-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">💰</div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Government Subsidy</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-light);">Get <strong>₹78,000 subsidy</strong> for 3kW system through government schemes</p>
+                    <ul style="text-align: left; margin-bottom: 20px;">
+                        <li style="margin-bottom: 8px;">✓ We handle all subsidy paperwork</li>
+                        <li style="margin-bottom: 8px;">✓ Approved installer for Kottayam</li>
+                        <li style="margin-bottom: 8px;">✓ Quick disbursement support</li>
+                    </ul>
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-file-alt"></i> Check Subsidy Eligibility
+                    </a>
+                </div>
+
+                <!-- SBI Loan Card -->
+                <div class="benefit-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🏦</div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">SBI PM Surya Ghar Loan</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-light);"><strong>6% Interest Rate</strong> - Lowest in Kerala market</p>
+                    <div style="display: flex; justify-content: center; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
+                        <div style="background: #f8f9fa; padding: 5px 12px; border-radius: 5px; font-weight: 600;">SBI</div>
+                        <div style="background: #f8f9fa; padding: 5px 12px; border-radius: 5px; font-weight: 600;">Canara</div>
+                        <div style="background: #f8f9fa; padding: 5px 12px; border-radius: 5px; font-weight: 600;">Union Bank</div>
+                    </div>
+                    <ul style="text-align: left; margin-bottom: 20px;">
+                        <li style="margin-bottom: 8px;">✓ 6% interest only - lowest rate</li>
+                        <li style="margin-bottom: 8px;">✓ 24-48 hour approval</li>
+                        <li style="margin-bottom: 8px;">✓ Zero processing fee</li>
+                    </ul>
+                    <a href="https://sbi.co.in/web/personal-banking/loans/pm-surya-ghar-loan-for-solar-roof-top" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt"></i> Official SBI Scheme
+                    </a>
+                </div>
+
+                <!-- Free AMC Card -->
+                <div class="benefit-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🔧</div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Free AMC & Support</h3>
+                    <p style="margin-bottom: 20px; color: var(--text-light);">Complete maintenance support for your solar system</p>
+                    <ul style="text-align: left; margin-bottom: 20px;">
+                        <li style="margin-bottom: 8px;">✓ 5 Year FREE Maintenance</li>
+                        <li style="margin-bottom: 8px;">✓ 24/7 Performance Monitoring</li>
+                        <li style="margin-bottom: 8px;">✓ Priority Service in Kottayam</li>
+                        <li style="margin-bottom: 8px;">✓ 30-Year Panel Warranty</li>
+                        <li style="margin-bottom: 8px;">✓ 10-Year Inverter Warranty</li>
+                    </ul>
+                    <a href="tel:8606849474" class="btn btn-primary">
+                        <i class="fas fa-headset"></i> Call Support: 8606849474
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Comparison Section -->
+    <section class="system-comparison" style="padding: 80px 0;">
+        <div class="container">
+            <h2 class="section-title">Choose Perfect System for Your Kottayam Home</h2>
+            <div class="comparison-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                
+                <!-- 3kW System -->
+                <div class="system-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center; border: 2px solid var(--primary-color); position: relative;">
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">MOST POPULAR</div>
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">3kW Solar System</h3>
+                    <p style="margin-bottom: 10px;">Ideal for 2-3 BHK Homes</p>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin: 15px 0;">₹1.2 Lakhs*</div>
+                    <p style="margin-bottom: 20px; font-style: italic;"><em>*After ₹78,000 Subsidy</em></p>
+                    
+                    <div style="text-align: left; margin: 20px 0;">
+                        <div style="margin-bottom: 10px;">✓ Monthly Savings: ₹3,500 - ₹4,500</div>
+                        <div style="margin-bottom: 10px;">✓ Powers: 3 ACs + All Home Appliances</div>
+                        <div style="margin-bottom: 10px;">✓ SBI EMI: ₹1,500/month</div>
+                        <div style="margin-bottom: 10px;">✓ Payback: 10 Years</div>
+                        <div style="margin-bottom: 10px;">✓ Best for 200-350 units usage</div>
+                    </div>
+                    
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> Get 3kW Quote in 10 Min
+                    </a>
+                </div>
+
+                <!-- 5kW System -->
+                <div class="system-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">5kW Solar System</h3>
+                    <p style="margin-bottom: 10px;">Perfect for Large Homes/Offices</p>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin: 15px 0;">₹2.2 Lakhs*</div>
+                    <p style="margin-bottom: 20px; font-style: italic;"><em>*After ₹78,000 Subsidy</em></p>
+                    
+                    <div style="text-align: left; margin: 20px 0;">
+                        <div style="margin-bottom: 10px;">✓ Monthly Savings: ₹6,000 - ₹9,000</div>
+                        <div style="margin-bottom: 10px;">✓ Powers: 5 ACs + Heavy Appliances</div>
+                        <div style="margin-bottom: 10px;">✓ SBI EMI: ₹2,500/month</div>
+                        <div style="margin-bottom: 10px;">✓ Payback: 10 Years</div>
+                        <div style="margin-bottom: 10px;">✓ Best for 500-800 units usage</div>
+                    </div>
+                    
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> Get 5kW Quote in 10 Min
+                    </a>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 30px; color: var(--text-light);">
+                <strong>90% of Kottayam homes</strong> choose 3kW or 5kW systems
+            </p>
+        </div>
+    </section>
+
+    <!-- Quick Quote Section (Kottayam-focused) -->
+    <section class="quick-quote-section" id="kottayam-quote">
+        <div class="container">
+            <h2 class="section-title">Get Your Solar Quote in Kottayam</h2>
+            <div class="quote-form-container">
+                <form class="quick-quote-form" id="mainQuoteForm">
+                    <input type="hidden" name="_subject" value="🔆 Solar Quote Request - Kottayam District">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Phone Number" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <select name="service" required>
+                                <option value="">Select Service</option>
+                                <option value="residential">Home Solar (with Subsidy)</option>
+                                <option value="commercial">Commercial / Office Solar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="location" placeholder="Your Town (Kottayam, Pala, Changanacherry, etc.)" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-bolt"></i> Get Free Quote & Site Survey
+                    </button>
+                </form>
+                <div class="quote-benefits">
+                    <h4>Why Kottayam Customers Choose Us</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Experienced team serving Kottayam</li>
+                        <li><i class="fas fa-check"></i> ₹78,000 Subsidy + 6% SBI Loan Available</li>
+                        <li><i class="fas fa-check"></i> Support for KSEB net metering</li>
+                        <li><i class="fas fa-check"></i> 120+ projects in Kottayam</li>
+                        <li><i class="fas fa-check"></i> 5-Year Free AMC Included</li>
+                    </ul>
+
+                    <div class="emergency-contact">
+                        <h4>Need Immediate Assistance?</h4>
+                        <div class="emergency-numbers">
+                            <a href="tel:8301849474" class="emergency-number">
+                                <i class="fas fa-phone"></i> Primary: 8301849474
+                            </a>
+                            <a href="tel:9539316623" class="emergency-number">
+                                <i class="fas fa-phone"></i> Alternate: 9539316623
+                            </a>
+                            <a href="tel:8606849474" class="emergency-number">
+                                <i class="fas fa-headset"></i> Support: 8606849474
+                            </a>
+                        </div>
+                        <p class="emergency-note">Available for urgent solar service visits in Kottayam district</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- District Intro + Stats -->
-    <section class="district-intro section-light">
+    <section class="district-intro">
         <div class="container">
-            <h2 class="section-title">Solar Solutions for Kottayam District</h2>
+            <h2 class="section-title">Solar in Kottayam District</h2>
             <div class="district-intro-text">
-                <p>Solis Green India provides complete solar panel solutions for homes, shops, offices and institutions across Kottayam district. From initial site survey to installation, Kerala State Electricity Board (KSEB) approvals and long-term maintenance, our team handles everything for you.</p>
-                <p>Whether you are in Changanacherry, Pala, Kanjirapally, Vaikom, Ettumanoor, Kumarakom, Kuravilangad, Mundakayam or Vakathanam, we design systems that match your load, roof type and budget.</p>
-                <p class="towns-line">
-                    <strong>Key service locations:</strong> Changanacherry, Pala, Kanjirapally, Vaikom, Ettumanoor, Kumarakom, Kuravilangad, Mundakayam, Vakathanam and surrounding Kottayam town areas.
+                <p>Solis Green India provides complete solar solutions for homes, shops, offices and institutions across Kottayam district – including Kottayam, Changanacherry, Pala, Kanjirapally, Vaikom, Ettumanoor and nearby areas.</p>
+                <p>From small 3 kW rooftop systems for houses in Kottayam and Pala to larger commercial plants in Changanacherry and Kanjirapally, every project is engineered for long-term performance and savings.</p>
+                <p class="district-towns-inline">
+                    <strong>Major towns we cover for solar installation:</strong> Kottayam, Changanacherry, Pala, Kanjirapally, Vaikom, Ettumanoor, Kumarakom, Kuravilangad, Mundakayam, Vakathanam and surrounding villages.
                 </p>
 
                 <div class="district-summary-stats">
                     <div class="district-stat-card">
                         <div class="stat-number">120+</div>
-                        <div class="stat-label">Solar Projects in Kottayam</div>
-                    </div>
-                    <div class="district-stat-card">
-                        <div class="stat-number">3–30 kW</div>
-                        <div class="stat-label">Typical Home System Range</div>
-                    </div>
-                    <div class="district-stat-card">
-                        <div class="stat-number">10–100 kW+</div>
-                        <div class="stat-label">Commercial Rooftop Systems</div>
+                        <div class="stat-label">Projects in Kottayam</div>
                     </div>
                     <div class="district-stat-card">
                         <div class="stat-number">90%</div>
                         <div class="stat-label">Average Bill Reduction</div>
                     </div>
+                    <div class="district-stat-card">
+                        <div class="stat-number">2019</div>
+                        <div class="stat-label">Serving Since</div>
+                    </div>
+                    <div class="district-stat-card">
+                        <div class="stat-number">5+ Years</div>
+                        <div class="stat-label">Local Solar Experience</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Towns We Serve in Kottayam -->
-    <section class="towns-section">
+    <!-- Town-wise Coverage (cards link to town pages for SEO) -->
+    <section class="quick-services">
         <div class="container">
-            <div class="district-section-heading">
-                <h2 class="section-title">Towns We Serve in Kottayam</h2>
-            </div>
+            <h2 class="section-title">Solar Company Near You in Kottayam</h2>
             <p class="district-section-subtitle">
-                Below are major towns in Kottayam district where we offer complete solar solutions. Town pages are SEO-focused and linked to detailed information.
+                Choose your town to see more information and enquire about solar installation. These town pages are for SEO and local relevance and link to their respective details.
             </p>
 
-            <div class="towns-grid">
+            <div class="services-grid">
+                <!-- Kottayam -->
+                <div class="service-card">
+                    <i class="fas fa-city"></i>
+                    <h3>Solar Company in Kottayam</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
+                    </div>
+                    <p>Residential and commercial solar systems in Kottayam city and nearby areas with dedicated local support.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Home rooftop solar</span>
+                        <span><i class="fas fa-check"></i> Shops & office buildings</span>
+                        <span><i class="fas fa-check"></i> Fast service & maintenance</span>
+                    </div>
+                    <a href="kottayam.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Kottayam Solar Details
+                    </a>
+                </div>
+
                 <!-- Changanacherry -->
-                <div class="town-card">
-                    <div class="town-header">
-                        <div class="town-icon">
-                            <i class="fas fa-location-dot"></i>
-                        </div>
-                        <h3>Changanacherry</h3>
+                <div class="service-card">
+                    <i class="fas fa-university"></i>
+                    <h3>Solar Company in Changanacherry</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>Rooftop solar installations for homes and shops in Changanacherry with KSEB net metering and subsidy support.</p>
-                    <div class="town-meta">
-                        <span><i class="fas fa-home"></i> 3–10 kW home systems</span>
-                        <span><i class="fas fa-building"></i> Small commercial roofs</span>
+                    <p>Solar solutions for homes and businesses in Changanacherry and surrounding regions.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Grid-tied & hybrid systems</span>
+                        <span><i class="fas fa-check"></i> Commercial establishments</span>
+                        <span><i class="fas fa-check"></i> Strong after-sales support</span>
                     </div>
-                    <a href="solar-company-in-kottayam/changanacherry/index.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar Company in Changanacherry
+                    <a href="changanacherry.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Changanacherry Solar Info
                     </a>
                 </div>
 
                 <!-- Pala -->
-                <div class="town-card">
-                    <div class="town-header">
-                        <div class="town-icon">
-                            <i class="fas fa-location-dot"></i>
-                        </div>
-                        <h3>Pala</h3>
+                <div class="service-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Solar Company in Pala</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>Solar solutions for homes, educational institutions and commercial buildings in and around Pala.</p>
-                    <div class="town-meta">
-                        <span><i class="fas fa-solar-panel"></i> 5–20 kW systems</span>
-                        <span><i class="fas fa-school"></i> Schools & colleges</span>
+                    <p>Rooftop solar for houses, shops and institutions in Pala and nearby areas.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 3–15 kW home systems</span>
+                        <span><i class="fas fa-check"></i> Commercial solar rooftops</span>
+                        <span><i class="fas fa-check"></i> KSEB net-metering support</span>
                     </div>
                     <a href="pala.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar Company in Pala
+                        <i class="fas fa-arrow-right"></i> Pala Solar Details
                     </a>
                 </div>
 
                 <!-- Kanjirapally -->
-                <div class="town-card">
-                    <div class="town-header">
-                        <div class="town-icon">
-                            <i class="fas fa-location-dot"></i>
-                        </div>
-                        <h3>Kanjirapally</h3>
+                <div class="service-card">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Solar Company in Kanjirapally</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>High-performance solar systems for homes, estates and highway-side businesses in Kanjirapally region.</p>
-                    <div class="town-meta">
-                        <span><i class="fas fa-mountain"></i> Sloped roof expertise</span>
-                        <span><i class="fas fa-industry"></i> Small agro units</span>
+                    <p>Solar installations for homes and businesses in Kanjirapally and nearby locations.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Residential rooftop solar</span>
+                        <span><i class="fas fa-check"></i> Commercial solar plants</span>
+                        <span><i class="fas fa-check"></i> Local maintenance team</span>
                     </div>
                     <a href="kanjirapally.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar Company in Kanjirapally
+                        <i class="fas fa-arrow-right"></i> Kanjirapally Solar Info
                     </a>
                 </div>
 
                 <!-- Vaikom -->
-                <div class="town-card">
-                    <div class="town-header">
-                        <div class="town-icon">
-                            <i class="fas fa-location-dot"></i>
-                        </div>
-                        <h3>Vaikom</h3>
+                <div class="service-card">
+                    <i class="fas fa-landmark"></i>
+                    <h3>Solar Company in Vaikom</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>Residential and commercial rooftop solar projects in Vaikom with focus on long-term reliability.</p>
-                    <div class="town-meta">
-                        <span><i class="fas fa-bolt"></i> Grid-tied systems</span>
-                        <span><i class="fas fa-rupee-sign"></i> Strong savings focus</span>
+                    <p>Solar plants for houses and businesses in Vaikom and surrounding areas.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Home & commercial systems</span>
+                        <span><i class="fas fa-check"></i> High-efficiency panels</span>
+                        <span><i class="fas fa-check"></i> Fast installation timelines</span>
                     </div>
                     <a href="vaikom.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar Company in Vaikom
+                        <i class="fas fa-arrow-right"></i> Vaikom Solar Details
                     </a>
                 </div>
 
                 <!-- Ettumanoor -->
-                <div class="town-card">
-                    <div class="town-header">
-                        <div class="town-icon">
-                            <i class="fas fa-location-dot"></i>
-                        </div>
-                        <h3>Ettumanoor</h3>
+                <div class="service-card">
+                    <i class="fas fa-house-chimney"></i>
+                    <h3>Solar Company in Ettumanoor</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>Solar panels for houses, temples, shops and small industries in Ettumanoor and nearby areas.</p>
-                    <div class="town-meta">
-                        <span><i class="fas fa-home"></i> 3–8 kW home systems</span>
-                        <span><i class="fas fa-store"></i> Shops & small offices</span>
+                    <p>Specialized rooftop systems for houses and small commercial buildings in Ettumanoor.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 3–8 kW family homes</span>
+                        <span><i class="fas fa-check"></i> Reliable performance</span>
+                        <span><i class="fas fa-check"></i> Long-term warranties</span>
                     </div>
                     <a href="ettumanoor.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar Company in Ettumanoor
+                        <i class="fas fa-arrow-right"></i> Ettumanoor Solar Info
                     </a>
                 </div>
 
                 <!-- Kumarakom -->
-                <div class="town-card">
-                    <div class="town-header">
-                        <div class="town-icon">
-                            <i class="fas fa-location-dot"></i>
-                        </div>
-                        <h3>Kumarakom</h3>
+                <div class="service-card">
+                    <i class="fas fa-water"></i>
+                    <h3>Solar Company in Kumarakom</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>Custom solar solutions for lakeside resorts, homestays and premium homes in Kumarakom backwater region.</p>
-                    <div class="town-meta">
-                        <span><i class="fas fa-hotel"></i> Resorts & homestays</span>
-                        <span><i class="fas fa-water"></i> Corrosion-protected design</span>
+                    <p>Clean energy for homes and resorts in Kumarakom and nearby backwater regions.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Backwater area solar</span>
+                        <span><i class="fas fa-check"></i> Suitable for resorts</span>
+                        <span><i class="fas fa-check"></i> On-grid & hybrid options</span>
                     </div>
                     <a href="kumarakom.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar Company in Kumarakom
+                        <i class="fas fa-arrow-right"></i> Kumarakom Solar Details
                     </a>
                 </div>
 
                 <!-- Kuravilangad -->
-                <div class="town-card">
-                    <div class="town-header">
-                        <div class="town-icon">
-                            <i class="fas fa-location-dot"></i>
-                        </div>
-                        <h3>Kuravilangad</h3>
+                <div class="service-card">
+                    <i class="fas fa-sun"></i>
+                    <h3>Solar Company in Kuravilangad</h3>
+                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">₹78,000 Subsidy</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">6% SBI Loan</span>
+                        <span style="background: #e8f5e8; color: var(--primary-color); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Free AMC</span>
                     </div>
-                    <p>Home and small-business solar systems in Kuravilangad with high-quality components and neat installation.</p>
-                    <div class="town-meta">
-                        <span><i class="fas fa-check-circle"></i> Mono PERC panels</span>
-                        <span><i class="fas fa-tools"></i> Professional mounting</span>
+                    <p>Custom solar solutions for Kuravilangad and surrounding localities in Kottayam district.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Site-specific design</span>
+                        <span><i class="fas fa-check"></i> Panel layout optimization</span>
+                        <span><i class="fas fa-check"></i> Ongoing maintenance</span>
                     </div>
                     <a href="kuravilangad.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar Company in Kuravilangad
-                    </a>
-                </div>
-
-                <!-- Mundakayam -->
-                <div class="town-card">
-                    <div class="town-header">
-                        <div class="town-icon">
-                            <i class="fas fa-location-dot"></i>
-                        </div>
-                        <h3>Mundakayam</h3>
-                    </div>
-                    <p>Solar solutions for homes, estates and commercial buildings along Mundakayam and nearby high ranges.</p>
-                    <div class="town-meta">
-                        <span><i class="fas fa-tree"></i> Estate & agro projects</span>
-                        <span><i class="fas fa-cloud-sun"></i> High-rainfall design</span>
-                    </div>
-                    <a href="mundakayam.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar Company in Mundakayam
-                    </a>
-                </div>
-
-                <!-- Vakathanam (file: vakaihanam.html) -->
-                <div class="town-card">
-                    <div class="town-header">
-                        <div class="town-icon">
-                            <i class="fas fa-location-dot"></i>
-                        </div>
-                        <h3>Vakathanam</h3>
-                    </div>
-                    <p>Residential rooftop solar installations in Vakathanam and nearby Kottayam rural areas, with focus on bill reduction.</p>
-                    <div class="town-meta">
-                        <span><i class="fas fa-home"></i> 3–6 kW systems</span>
-                        <span><i class="fas fa-leaf"></i> Eco-friendly energy</span>
-                    </div>
-                    <a href="vakaihanam.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Solar Company in Vakathanam
+                        <i class="fas fa-arrow-right"></i> Kuravilangad Solar Info
                     </a>
                 </div>
             </div>
-
-            <!-- Extra SEO text line with towns, non-linked, still visible -->
-            <p class="district-section-subtitle" style="margin-top:35px;">
-                We also handle solar panel installation requests from Kottayam town centre and surrounding areas connecting to Changanacherry, Pala, Kanjirapally, Vaikom, Ettumanoor, Kumarakom, Kuravilangad, Mundakayam and Vakathanam.
-            </p>
         </div>
     </section>
 
-    <!-- Small "Why Us in Kottayam" section reusing Style A cards -->
+    <!-- Why Choose Us for Kottayam -->
     <section class="why-choose-us section-light">
         <div class="container">
-            <h2 class="section-title">Why Choose Solis Green India in Kottayam?</h2>
+            <h2 class="section-title">Why Kottayam Customers Trust Solis Green India</h2>
             <div class="features-grid">
                 <div class="feature-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <h3>Local Presence</h3>
-                    <p>Dedicated teams visiting Changanacherry, Pala, Vaikom, Ettumanoor, Kumarakom and other Kottayam towns regularly.</p>
+                    <h3>Local Expertise</h3>
+                    <p>Experienced teams regularly serving Kottayam, Changanacherry, Pala, Kanjirapally, Vaikom and other towns.</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-industry"></i>
-                    <h3>Quality Products</h3>
-                    <p>Premium panels, inverters and structures suitable for Kerala climate and Kottayam’s heavy rains.</p>
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h3>Subsidy & Net Metering</h3>
+                    <p>Complete support for government subsidy documentation and KSEB net-metering approvals for Kottayam customers.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-solar-panel"></i>
+                    <h3>Quality Solar Components</h3>
+                    <p>Tier-1 solar panels, trusted inverter brands and proper mounting structure suitable for Kerala's climate.</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-headset"></i>
                     <h3>5-Year Free AMC*</h3>
-                    <p>Monitoring, cleaning guidance and quick service support for all eligible systems installed by us.</p>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-rupee-sign"></i>
-                    <h3>Subsidy Assistance</h3>
-                    <p>End-to-end help with government solar subsidy application and KSEB net metering documentation.</p>
+                    <p>Regular monitoring, cleaning guidance and priority service support for our customers in Kottayam district.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- District Bottom CTA -->
-    <section class="district-cta">
+    <!-- FAQs Section -->
+    <section class="district-faqs">
         <div class="container">
-            <h2>Plan Your Solar Project in Kottayam</h2>
-            <p>Share your latest electricity bill and location (Changanacherry, Pala, Vaikom, Ettumanoor, Kumarakom, Kuravilangad, Mundakayam, Vakathanam or nearby) and get a free solar proposal.</p>
-            <div class="cta-buttons">
-                <a href="tel:8301849474" class="btn btn-primary">
-                    <i class="fas fa-phone"></i> Call: 8301849474
-                </a>
-                <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp Your Bill
-                </a>
-                <a href="../contact/" class="btn btn-secondary">
-                    <i class="fas fa-file-signature"></i> Book Free Site Visit
-                </a>
+            <h2 class="section-title">FAQs – Solar in Kottayam</h2>
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <h3>Do you provide solar installation in all Kottayam towns?</h3>
+                    <p>Yes, we serve all major towns in Kottayam including Kottayam, Changanacherry, Pala, Kanjirapally, Vaikom, Ettumanoor, Kumarakom and nearby villages.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>Is government subsidy available for homes in Kottayam?</h3>
+                    <p>Residential customers in Kottayam can apply for government subsidy subject to current scheme rules. Our team guides you through the entire process.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>How long does installation take?</h3>
+                    <p>For most home projects (3–6 kW), installation completes within 3–5 days after approvals. Commercial systems may take slightly longer depending on size.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>Do you offer maintenance and service?</h3>
+                    <p>Yes. Our service teams regularly visit Kottayam towns for cleaning, inspection and repairs. We also provide 5-year free AMC for eligible systems.</p>
+                </div>
             </div>
-            <p style="margin-top:15px;font-size:0.9rem;opacity:0.95;">
-                For service or maintenance of existing solar projects in Kottayam district, call our support line:
-                <strong><a href="tel:8606849474" style="color:#fff;text-decoration:underline;">8606849474</a></strong>
-            </p>
+
+            <div class="district-cta">
+                <h2>Ready to Install Solar in Kottayam?</h2>
+                <p>Call our local solar experts today. We'll guide you on system size, subsidy, approximate cost and savings for your home or business.</p>
+                <div class="cta-buttons">
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call: 8301849474
+                    </a>
+                    <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
+                    </a>
+                    <a href="../contact/" class="btn btn-secondary">
+                        <i class="fas fa-file-signature"></i> Book Free Site Visit
+                    </a>
+                </div>
+                <p style="margin-top:15px;font-size:0.9rem;opacity:0.9;">
+                    For service or maintenance support, call our 24/7 support line: <strong><a href="tel:8606849474" style="color:#fff;text-decoration:underline;">8606849474</a></strong>
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- Footer (same Style A) -->
+    <!-- Footer (same pattern as other pages) -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -721,7 +896,7 @@
                     <div class="footer-logo">
                         <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Powering Kerala's sustainable future with 5+ years of solar excellence and technical expertise.</p>
+                    <p>Powering Kerala's sustainable future with 5+ years of solar excellence and technical expertise across Pathanamthitta, Kottayam, Alappuzha and Kollam.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -795,7 +970,7 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Mobile Menu Fix JavaScript (Style A pattern) -->
+    <!-- Mobile Menu Fix JavaScript (same pattern as other pages) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
