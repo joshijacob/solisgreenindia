@@ -1,7 +1,7 @@
 // Christmas Campaign Configuration
 const CHRISTMAS_CONFIG = {
     // Campaign Dates
-    startDate: '2024-12-01',
+    startDate: '2024-12-19',
     endDate: '2024-12-31',
     
     // Contact Information
