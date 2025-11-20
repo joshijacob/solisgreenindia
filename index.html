@@ -50,6 +50,10 @@
     
     <title>Solis Green India - Solar Company Kerala | Govt Subsidy Solar Panels</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- ADDED: Christmas Campaign Styles -->
+    <link rel="stylesheet" href="assets/christmas-offer/christmas-styles.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,52 +64,6 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-
-    <!-- Christmas Gift Popup -->
-    <div id="solis-gift-popup">
-        <div id="solis-popup-content">
-            <button class="solis-btn-close">&times;</button>
-            <h2>🎄 Christmas Special Offer! 🎁</h2>
-            <h3>Get Extra ₹5,000 Christmas Discount</h3>
-            
-            <div class="solis-discount-badge">
-                <i class="fas fa-gift"></i> Limited Time: Christmas Week Only!
-            </div>
-            
-            <p><strong>+ Government Subsidy up to ₹78,000</strong></p>
-            <p>Book your solar installation before Dec 31st to avail this special Christmas offer!</p>
-            
-            <form id="solis-christmas-form">
-                <div class="solis-form-group">
-                    <label for="solis-name"><i class="fas fa-user"></i> Your Name</label>
-                    <input type="text" id="solis-name" name="name" placeholder="Enter your name" required>
-                </div>
-                
-                <div class="solis-form-group">
-                    <label for="solis-phone"><i class="fas fa-phone"></i> Phone Number</label>
-                    <input type="tel" id="solis-phone" name="phone" placeholder="Enter your phone number" required>
-                </div>
-                
-                <div class="solis-form-group">
-                    <label for="solis-location"><i class="fas fa-map-marker-alt"></i> Your Location</label>
-                    <input type="text" id="solis-location" name="location" placeholder="Enter your location" required>
-                </div>
-                
-                <div class="solis-submit-buttons">
-                    <button type="button" class="solis-btn solis-btn-email" id="solis-email-submit">
-                        <i class="fas fa-envelope"></i> Get Christmas Offer
-                    </button>
-                    <button type="button" class="solis-btn solis-btn-whatsapp" id="solis-whatsapp-submit">
-                        <i class="fab fa-whatsapp"></i> WhatsApp Now
-                    </button>
-                </div>
-            </form>
-            
-            <div style="margin-top: 15px; font-size: 12px; color: #666;">
-                <i class="fas fa-clock"></i> <strong>Hurry!</strong> Offer ends December 31st
-            </div>
-        </div>
-    </div>
 
     <!-- Expandable Floating CTA -->
     <div class="floating-cta">
@@ -363,11 +321,11 @@
         </div>
     </section>
 
-    <!-- Urgency Banner with Christmas Offer -->
+    <!-- Urgency Banner -->
     <div class="urgency-banner">
         <div class="container">
-            <i class="fas fa-gift"></i>
-            <span><strong>🎄 Christmas Special:</strong> Get Extra ₹5,000 Christmas Discount + Government Subsidy - Book Before Dec 31st!</span>
+            <i class="fas fa-bolt"></i>
+            <span><strong>Limited Time Offer:</strong> Get Extra ₹5,000 Discount + Government Subsidy - Book Free Site Survey Today!</span>
             <div class="urgency-contacts">
                 <a href="tel:8301849474" class="btn-urgency">Call Primary</a>
                 <a href="tel:9539316623" class="btn-urgency-alt">Call Alternate</a>
@@ -420,19 +378,19 @@
                     </ul>
                     
                     <div class="emergency-contact">
-                        <h4>🎁 Christmas Special Offer</h4>
+                        <h4>Need Immediate Assistance?</h4>
                         <div class="emergency-numbers">
                             <a href="tel:8301849474" class="emergency-number">
-                                <i class="fas fa-gift"></i> Extra ₹5,000 Off
+                                <i class="fas fa-phone"></i> Primary: 8301849474
                             </a>
                             <a href="tel:9539316623" class="emergency-number">
-                                <i class="fas fa-tree"></i> Book Before Dec 31st
+                                <i class="fas fa-phone"></i> Alternate: 9539316623
                             </a>
                             <a href="tel:8606849474" class="emergency-number">
-                                <i class="fas fa-snowflake"></i> Limited Time Only
+                                <i class="fas fa-headset"></i> Support: 8606849474
                             </a>
                         </div>
-                        <p class="emergency-note">🎄 Christmas Week Special - Don't Miss Out!</p>
+                        <p class="emergency-note">Available 24/7 for emergency solar services</p>
                     </div>
                 </div>
             </div>
@@ -543,11 +501,11 @@
             <!-- Additional CTA -->
             <div class="services-cta">
                 <div class="cta-content">
-                    <h3>🎄 Christmas Special: Get Extra ₹5,000 Discount!</h3>
-                    <p>Book your solar installation before December 31st to avail this limited Christmas offer</p>
+                    <h3>Not Sure Which Service You Need?</h3>
+                    <p>Call our solar experts for free consultation</p>
                     <div class="cta-buttons">
                         <a href="tel:8301849474" class="btn btn-primary">
-                            <i class="fas fa-gift"></i> Claim Christmas Offer
+                            <i class="fas fa-phone"></i> Call Expert: 8301849474
                         </a>
                         <a href="services/" class="btn btn-secondary">
                             <i class="fas fa-bolt"></i> View All Services
@@ -824,172 +782,37 @@
 
     <script src="script.js"></script>
     
-    <!-- Christmas Popup Script -->
+    <!-- ADDED: Christmas Campaign Scripts -->
+    <script src="assets/christmas-offer/christmas-config.js"></script>
+    <script src="assets/christmas-offer/christmas-popup.js"></script>
+    
+    <!-- Mobile Menu Fix (optional helper, same style as other pages) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Christmas Popup Functionality
-            const christmasPopup = document.getElementById('solis-gift-popup');
-            const closePopupBtn = document.querySelector('.solis-btn-close');
-            const emailSubmitBtn = document.getElementById('solis-email-submit');
-            const whatsappSubmitBtn = document.getElementById('solis-whatsapp-submit');
-            const christmasForm = document.getElementById('solis-christmas-form');
-
-            // Show popup after 3 seconds
-            setTimeout(() => {
-                if (!localStorage.getItem('solis_christmas_popup_shown')) {
-                    christmasPopup.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                }
-            }, 3000);
-
-            // Close popup
-            closePopupBtn.addEventListener('click', function() {
-                christmasPopup.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                localStorage.setItem('solis_christmas_popup_shown', 'true');
-            });
-
-            // Close popup when clicking outside
-            christmasPopup.addEventListener('click', function(e) {
-                if (e.target === christmasPopup) {
-                    christmasPopup.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                    localStorage.setItem('solis_christmas_popup_shown', 'true');
-                }
-            });
-
-            // Email submission
-            emailSubmitBtn.addEventListener('click', function() {
-                const formData = new FormData(christmasForm);
-                const data = {
-                    name: formData.get('name'),
-                    phone: formData.get('phone'),
-                    location: formData.get('location'),
-                    offer: 'Christmas Special - ₹5,000 Discount',
-                    timestamp: new Date().toLocaleString('en-IN')
-                };
-
-                // Submit to FormSubmit
-                submitChristmasOffer(data, 'email');
-            });
-
-            // WhatsApp submission
-            whatsappSubmitBtn.addEventListener('click', function() {
-                const formData = new FormData(christmasForm);
-                const data = {
-                    name: formData.get('name'),
-                    phone: formData.get('phone'),
-                    location: formData.get('location'),
-                    offer: 'Christmas Special - ₹5,000 Discount',
-                    timestamp: new Date().toLocaleString('en-IN')
-                };
-
-                submitChristmasOffer(data, 'whatsapp');
-            });
-
-            function submitChristmasOffer(data, method) {
-                if (!data.name || !data.phone || !data.location) {
-                    alert('Please fill all fields to claim your Christmas offer!');
-                    return;
-                }
-
-                if (method === 'email') {
-                    // Submit via FormSubmit
-                    const formData = new FormData();
-                    formData.append('name', data.name);
-                    formData.append('phone', data.phone);
-                    formData.append('location', data.location);
-                    formData.append('offer', data.offer);
-                    formData.append('timestamp', data.timestamp);
-                    formData.append('_subject', '🎄 Christmas Offer Claim - Solis Green India');
-                    formData.append('_template', 'table');
-                    formData.append('_captcha', 'false');
-
-                    fetch('https://formsubmit.co/ajax/solisgreenindia@gmail.com', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(result => {
-                        alert('Thank you! We will contact you shortly with your Christmas offer details.');
-                        christmasPopup.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                        localStorage.setItem('solis_christmas_popup_shown', 'true');
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        fallbackToWhatsApp(data);
-                    });
-
-                } else if (method === 'whatsapp') {
-                    fallbackToWhatsApp(data);
-                }
-            }
-
-            function fallbackToWhatsApp(data) {
-                const message = `🎄 CHRISTMAS OFFER CLAIM - SOLIS GREEN INDIA 🎄
-
-Name: ${data.name}
-Phone: ${data.phone}
-Location: ${data.location}
-Offer: ${data.offer}
-Timestamp: ${data.timestamp}
-
-URGENT: Please contact for Christmas special offer - Extra ₹5,000 discount!`;
-
-                const whatsappUrl = `https://wa.me/918301849474?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+            
+            if (mobileMenuBtn && mainNav) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+                });
                 
-                christmasPopup.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                localStorage.setItem('solis_christmas_popup_shown', 'true');
-            }
-
-            // Create snowflakes
-            function createSnowflakes() {
-                const snowContainer = document.createElement('div');
-                snowContainer.style.position = 'fixed';
-                snowContainer.style.top = '0';
-                snowContainer.style.left = '0';
-                snowContainer.style.width = '100%';
-                snowContainer.style.height = '100%';
-                snowContainer.style.pointerEvents = 'none';
-                snowContainer.style.zIndex = '10000';
-                document.body.appendChild(snowContainer);
-
-                for (let i = 0; i < 50; i++) {
-                    setTimeout(() => {
-                        const snowflake = document.createElement('div');
-                        snowflake.className = 'solis-snowflake';
-                        snowflake.innerHTML = '❄';
-                        snowflake.style.left = Math.random() * 100 + 'vw';
-                        snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                        snowflake.style.opacity = Math.random() * 0.6 + 0.4;
-                        snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
-                        snowContainer.appendChild(snowflake);
-
-                        // Remove snowflake after animation
-                        setTimeout(() => {
-                            if (snowflake.parentNode) {
-                                snowflake.remove();
-                            }
-                        }, 10000);
-                    }, i * 200);
-                }
-            }
-
-            // Create snowflakes when popup is shown
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                        if (christmasPopup.style.display === 'block') {
-                            createSnowflakes();
-                        }
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    });
+                });
+                
+                document.addEventListener('click', function(event) {
+                    if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
                     }
                 });
-            });
-
-            observer.observe(christmasPopup, { attributes: true });
+            }
         });
     </script>
 </body>
