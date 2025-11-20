@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solis Green Energy</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Christmas Campaign Styles -->
+    <link rel="stylesheet" href="assets/christmas-offer/christmas-styles.css">
+</head>
+<body>
+    <!-- Your existing website content -->
+    
+    <script src="script.js"></script>
+    <!-- Christmas Campaign Scripts -->
+    <script src="assets/christmas-offer/christmas-config.js"></script>
+    <script src="assets/christmas-offer/christmas-popup.js"></script>
+</body>
+</html>
