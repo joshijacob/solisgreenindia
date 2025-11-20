@@ -75,95 +75,6 @@ header {
 .contact-link:hover {
     color: var(--primary-color);
 }
-<style>
-/* Christmas Gift Box Styles for Solis Green Energy */
-#solis-christmas-gift {
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    z-index: 10000;
-    cursor: pointer;
-    animation: bounce 2s infinite;
-    font-family: Arial, sans-serif;
-}
-
-#solis-gift-box {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    border-radius: 8px;
-    position: relative;
-    box-shadow: 0 4px 20px rgba(231, 76, 60, 0.4);
-    transition: all 0.3s ease;
-    border: 2px solid #fff;
-}
-
-#solis-gift-box:hover {
-    transform: scale(1.15);
-    box-shadow: 0 6px 25px rgba(231, 76, 60, 0.6);
-}
-
-#solis-gift-lid {
-    width: 80px;
-    height: 18px;
-    background: linear-gradient(135deg, #c0392b, #a93226);
-    position: absolute;
-    top: -12px;
-    left: -5px;
-    border-radius: 6px;
-    border: 2px solid #fff;
-}
-
-#solis-gift-bow {
-    width: 25px;
-    height: 25px;
-    background: #27ae60;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 2px solid #fff;
-}
-
-#solis-gift-bow::before,
-#solis-gift-bow::after {
-    content: '';
-    position: absolute;
-    width: 35px;
-    height: 12px;
-    background: #27ae60;
-    border-radius: 8px;
-    border: 2px solid #fff;
-}
-
-#solis-gift-bow::before {
-    top: 50%;
-    left: -22px;
-    transform: translateY(-50%);
-}
-
-#solis-gift-bow::after {
-    top: 50%;
-    right: -22px;
-    transform: translateY(-50%);
-}
-
-#solis-gift-text {
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-size: 11px;
-    font-weight: bold;
-    color: #c0392b;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2px 8px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    border: 1px solid #ffeb3b;
-}
 
 /* Popup Modal Styles */
 #solis-gift-popup {
@@ -300,96 +211,6 @@ header {
     justify-content: center;
 }
 
-/* Animations */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-12px);
-    }
-    60% {
-        transform: translateY(-6px);
-    }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-/* Snow Flakes */
-.solis-snowflake {
-    position: absolute;
-    color: #fff;
-    font-size: 12px;
-    animation: fall linear infinite;
-}
-
-@keyframes fall {
-    to { transform: translateY(100vh); }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    #solis-christmas-gift {
-        top: 80px;
-        right: 10px;
-    }
-    
-    #solis-gift-box {
-        width: 55px;
-        height: 55px;
-    }
-    
-    #solis-gift-lid {
-        width: 65px;
-        height: 14px;
-        top: -10px;
-        left: -5px;
-    }
-    
-    #solis-gift-text {
-        font-size: 9px;
-        bottom: -25px;
-        padding: 1px 6px;
-    }
-    
-    #solis-popup-content {
-        padding: 20px 15px;
-    }
-    
-    .solis-submit-buttons {
-        flex-direction: column;
-    }
-    
-    .solis-btn {
-        min-width: auto;
-    }
-}
-
-@media (max-width: 480px) {
-    #solis-christmas-gift {
-        top: 70px;
-        right: 8px;
-    }
-    
-    #solis-gift-box {
-        width: 50px;
-        height: 50px;
-    }
-    
-    #solis-gift-lid {
-        width: 60px;
-        height: 12px;
-    }
-    
-    #solis-gift-text {
-        font-size: 8px;
-        bottom: -22px;
-    }
-}
-</style>
 /* Navigation */
 nav ul {
     display: flex;
@@ -1049,19 +870,44 @@ nav a.active {
     text-align: center;
     box-shadow: var(--box-shadow);
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transition: var(--transition);
+}
+
+.service-card:hover::before {
+    left: 0;
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 .service-card i {
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: var(--primary-color);
     margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.service-card:hover i {
+    transform: scale(1.1);
+    color: var(--secondary-color);
 }
 
 .service-card h3 {
+    font-size: 1.4rem;
     margin-bottom: 15px;
     color: var(--text-color);
 }
@@ -1069,6 +915,64 @@ nav a.active {
 .service-card p {
     color: var(--text-light);
     margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.service-features {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.service-features span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.service-features i {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 0;
+}
+
+.services-cta {
+    margin-top: 60px;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: var(--border-radius);
+    text-align: center;
+    color: white;
+}
+
+.cta-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.cta-content p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Enhanced Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
 }
 
 /* Testimonials */
@@ -1716,6 +1620,27 @@ footer {
     }
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-12px);
+    }
+    60% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes fall {
+    to { transform: translateY(100vh); }
+}
+
 /* Apply Animations */
 .hero-bg-image {
     animation: kenBurns 20s ease-in-out infinite;
@@ -1735,6 +1660,14 @@ footer {
 
 .pulse-dot {
     animation: pulse-dot 2s infinite;
+}
+
+/* Snow Flakes */
+.solis-snowflake {
+    position: absolute;
+    color: #fff;
+    font-size: 12px;
+    animation: fall linear infinite;
 }
 
 /* Hide SEO-only location pages from navigation */
@@ -1866,6 +1799,34 @@ nav a[href*="kayamkulam"] {
         min-height: 44px;
         padding: 12px 20px;
     }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-card {
+        padding: 30px 20px;
+    }
+    
+    .service-card i {
+        font-size: 3rem;
+    }
+    
+    .services-cta {
+        padding: 30px 20px;
+        margin-top: 40px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1904,6 +1865,19 @@ nav a[href*="kayamkulam"] {
         width: 56px;
         height: 56px;
     }
+    
+    /* Popup Responsive */
+    #solis-popup-content {
+        padding: 20px 15px;
+    }
+    
+    .solis-submit-buttons {
+        flex-direction: column;
+    }
+    
+    .solis-btn {
+        min-width: auto;
+    }
 }
 
 /* Reduced motion support */
@@ -1912,148 +1886,5 @@ nav a[href*="kayamkulam"] {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-    }
-}
-/* Enhanced Service Cards */
-.service-card {
-    background: var(--white);
-    padding: 40px 30px;
-    border-radius: var(--border-radius);
-    text-align: center;
-    box-shadow: var(--box-shadow);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    transition: var(--transition);
-}
-
-.service-card:hover::before {
-    left: 0;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-
-.service-card i {
-    font-size: 3.5rem;
-    color: var(--primary-color);
-    margin-bottom: 20px;
-    transition: var(--transition);
-}
-
-.service-card:hover i {
-    transform: scale(1.1);
-    color: var(--secondary-color);
-}
-
-.service-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    color: var(--text-color);
-}
-
-.service-card p {
-    color: var(--text-light);
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.service-features {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 25px;
-}
-
-.service-features span {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--text-light);
-    font-size: 0.9rem;
-}
-
-.service-features i {
-    font-size: 0.8rem;
-    color: var(--secondary-color);
-    margin-bottom: 0;
-}
-
-.services-cta {
-    margin-top: 60px;
-    padding: 40px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    border-radius: var(--border-radius);
-    text-align: center;
-    color: white;
-}
-
-.cta-content h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: white;
-}
-
-.cta-content p {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    opacity: 0.9;
-}
-
-.cta-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* Enhanced Services Grid */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .service-card {
-        padding: 30px 20px;
-    }
-    
-    .service-card i {
-        font-size: 3rem;
-    }
-    
-    .services-cta {
-        padding: 30px 20px;
-        margin-top: 40px;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .cta-buttons .btn {
-        width: 100%;
-        max-width: 300px;
     }
 }
