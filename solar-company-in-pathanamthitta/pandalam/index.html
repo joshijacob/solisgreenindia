@@ -3,120 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Company in Pandalam | Solar Panel Installation Pandalam - Solis Green India</title>
-    <meta name="description" content="Professional solar company in Pandalam. Solar panel installation, maintenance services. Free consultation: 8301849474. Serving Pathanamthitta district.">
-    <meta name="keywords" content="solar company pandalam, solar panels pandalam, solar installation pandalam">
+    <meta name="description" content="Solis Green India - Professional solar company in Pandalam. Solar panel installation with government subsidy in Pandalam and surrounding areas.">
+    <meta name="keywords" content="solar company pandalam, solar panels pandalam, solar installation pandalam, solar subsidy pandalam">
+    <meta name="author" content="Solis Green India">
     
+    <!-- Preload WebP hero images -->
+    <link rel="preload" href="../images/hero/hero-image-4.webp" as="image" type="image/webp">
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Local Business Schema for Pandalam -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "name": "Solis Green India - Solar Company in Pandalam",
-      "description": "Professional solar panel installation and maintenance services in Pandalam",
-      "url": "https://solisgreenindia.in/solar-company-in-pathanamthitta/pandalam.html",
-      "telephone": "+91-8301849474",
+      "name": "Solis Green India - Pandalam Solar Services",
+      "description": "Professional solar energy company providing solar panel installation in Pandalam with government subsidies",
+      "url": "https://solisgreenindia.in/solar-company-in-pathanamthitta/pandalam/",
+      "telephone": [
+        "+91-8301849474",
+        "+91-9539316623",
+        "+91-8606849474"
+      ],
       "email": "solisgreenindia@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Pandalam",
         "addressRegion": "Kerala",
-        "addressCountry": "IN"
+        "postalCode": "689501",
+        "addressCountry": "India"
       },
-      "areaServed": "Pandalam"
+      "areaServed": {
+        "@type": "City",
+        "name": "Pandalam"
+      },
+      "openingHours": "Mo-Su 08:00-20:00",
+      "priceRange": "₹₹"
     }
     </script>
     
-    <link rel="stylesheet" href="../style.css">
+    <title>Solar Company in Pandalam | Solar Panels Installation with Subsidy</title>
+    <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Expandable Floating CTA -->
     <div class="floating-cta">
         <div class="cta-main-btn" id="ctaMainBtn">
             <i class="fas fa-comments"></i>
+            <span class="pulse-dot"></span>
         </div>
         <div class="cta-options">
-            <a href="tel:8301849474" class="cta-option" data-tooltip="Call Us">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Primary Call">
                 <i class="fas fa-phone"></i>
+            </a>
+            <a href="tel:9539316623" class="cta-option" data-tooltip="Alternate Call">
+                <i class="fas fa-phone-alt"></i>
+            </a>
+            <a href="tel:8606849474" class="cta-option" data-tooltip="Support Call">
+                <i class="fas fa-headset"></i>
             </a>
             <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
                 <i class="fas fa-file-alt"></i>
             </a>
-            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp" target="_blank">
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="Primary WhatsApp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://wa.me/919539316623" class="cta-option" data-tooltip="Alternate WhatsApp" target="_blank">
                 <i class="fab fa-whatsapp"></i>
             </a>
         </div>
     </div>
 
+    <!-- Quick Quote Modal -->
+    <div class="modal" id="quickQuoteModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Get Quick Solar Quote for Pandalam</h3>
+            <form class="quick-quote-form" id="modalQuoteForm">
+                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Pandalam - Solis Green India">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select name="service" required>
+                        <option value="">Select Service</option>
+                        <option value="residential">Residential Solar</option>
+                        <option value="commercial">Commercial Solar</option>
+                        <option value="industrial">Industrial Solar</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="location" placeholder="Your Location in Pandalam" value="Pandalam" readonly>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-bolt"></i> Get Instant Quote for Pandalam
+                </button>
+            </form>
+            <div class="emergency-contact-modal">
+                <h4>Need Immediate Help in Pandalam?</h4>
+                <div class="emergency-numbers">
+                    <a href="tel:8301849474" class="emergency-number">
+                        <i class="fas fa-phone"></i> Primary: 8301849474
+                    </a>
+                    <a href="tel:9539316623" class="emergency-number">
+                        <i class="fas fa-phone-alt"></i> Alternate: 9539316623
+                    </a>
+                    <a href="tel:8606849474" class="emergency-number">
+                        <i class="fas fa-headset"></i> Support: 8606849474
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <a href="../index.html">
-                    <img src="../images/logo/logo.png" alt="Solis Green India - Solar Company in Pandalam" class="logo-img">
+                <a href="../../">
+                    <img src="../../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
                 </a>
             </div>
-            <nav>
+            
+            <div class="header-contact">
+                <a href="tel:8301849474" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                    <span>Primary: 8301849474</span>
+                </a>
+                <a href="tel:9539316623" class="contact-link">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Alternate: 9539316623</span>
+                </a>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../services.html">Services</a></li>
-                    <li><a href="../cities.html">Service Areas</a></li>
-                    <li><a href="../projects.html">Projects</a></li>
-                    <li><a href="../contact.html" class="cta-button">Contact</a></li>
+                    <li><a href="../../">Home</a></li>
+                    <li><a href="../../services/">Services</a></li>
+                    <li><a href="../../cities/">Service Areas</a></li>
+                    <li><a href="../../about/">About Us</a></li>
+                    <li><a href="../../projects/">Projects</a></li>
+                    <li><a href="../../contact/" class="cta-button">Contact</a></li>         
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Solar Company in Pandalam</h1>
-            <p>Expert solar panel installation and maintenance services in Pandalam and heritage areas</p>
-            <div class="hero-buttons">
-                <a href="tel:8301849474" class="btn btn-primary">
-                    <i class="fas fa-phone"></i> Call Pandalam: 8301849474
-                </a>
-                <a href="../contact.html" class="btn btn-secondary">
-                    <i class="fas fa-envelope"></i> Get Quote
-                </a>
-            </div>
+    <!-- Hero Section for Pandalam -->
+    <section class="hero-slider" id="home">
+        <div class="particles-container">
+            <div class="particles"></div>
+            <div class="solar-flare"></div>
         </div>
-    </section>
-
-    <section class="service-detail section-light">
-        <div class="container">
-            <h2>Solar Energy Solutions in Pandalam</h2>
-            <p>As the trusted <strong>solar company in Pandalam</strong>, we provide heritage-compatible solar solutions, temple area installations, and residential systems that respect the cultural significance of the region.</p>
-            
-            <div class="rating-section">
-                <h3>Google Business Rating</h3>
-                <div class="google-rating">
-                    <div class="rating-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <span>4.8/5</span>
-                    </div>
-                    <p>Based on 50+ reviews for Solis Green Energy Solutions</p>
+        
+        <div class="hero-slides">
+            <!-- Slide 1 -->
+            <div class="hero-slide active">
+                <img src="../../images/hero/hero-image-4.webp" 
+                     alt="Solar panels installation in Pandalam Kerala" 
+                     class="hero-bg-image" 
+                     loading="eager" 
+                     fetchpriority="high"
+                     width="2000" 
+                     height="1333">
+                <div class="gradient-overlay gradient-blue"></div>
+                <div class="floating-elements">
+                    <div class="floating-element element-1">☀️</div>
+                    <div class="floating-element element-2">⚡</div>
+                    <div class="floating-element element-3">🌱</div>
                 </div>
-            </div>
-
-            <div class="local-projects">
-                <h3>Recent Solar Projects in Pandalam</h3>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-content">
-                            <h4>4kW Residential System - Pandalam Town</h4>
-                            <p>Heritage-compatible home solar installation</p>
-                            <a href="../projects.html" class="btn btn-outline">View Projects</a>
+                <div class="hero-content container">
+                    <h1>Solar Panel Installation in Pandalam</h1>
+                    <p>Professional solar energy solutions serving Pandalam and surrounding areas with government subsidy support.</p>
+                    <div class="hero-buttons">
+                        <div class="contact-options">
+                            <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                                <i class="fas fa-phone"></i> Pandalam Helpline: 8301849474
+                            </a>
+                            <a href="tel:9539316623" class="btn btn-secondary">
+                                <i class="fas fa-phone-alt"></i> Alternate: 9539316623
+                            </a>
+                            <a href="tel:8606849474" class="btn btn-support">
+                                <i class="fas fa-headset"></i> Support: 8606849474
+                            </a>
                         </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-content">
-                            <h4>8kW Commercial System - Temple Area</h4>
-                            <p>Business solar with aesthetic considerations</p>
-                            <a href="../projects.html" class="btn btn-outline">View Projects</a>
+                        <div class="whatsapp-options">
+                            <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Primary
+                            </a>
+                            <a href="https://wa.me/919539316623" class="btn btn-whatsapp-alt">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Alternate
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -124,78 +226,275 @@
         </div>
     </section>
 
-    <section class="area-coverage">
+    <!-- Urgency Banner for Pandalam -->
+    <div class="urgency-banner">
         <div class="container">
-            <h2>We Serve All Areas in and Around Pandalam</h2>
-            <div class="cities-grid-enhanced">
-                <div class="city-card-enhanced">
+            <i class="fas fa-bolt"></i>
+            <span><strong>Pandalam Special Offer:</strong> Extra ₹5,000 Discount + Government Subsidy - Book Free Site Survey Today!</span>
+            <div class="urgency-contacts">
+                <a href="tel:8301849474" class="btn-urgency">Call Pandalam Expert</a>
+                <a href="tel:9539316623" class="btn-urgency-alt">Call Alternate</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Quote Section for Pandalam -->
+    <section class="quick-quote-section" id="quick-quote">
+        <div class="container">
+            <h2 class="section-title">Get Free Solar Quote for Pandalam in 30 Seconds</h2>
+            <div class="quote-form-container">
+                <form class="quick-quote-form" id="mainQuoteForm">
+                    <input type="hidden" name="_subject" value="🔆 Solar Quote Request - Pandalam - Solis Green India">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Phone Number" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <select name="service" required>
+                                <option value="">Select Service</option>
+                                <option value="residential">Home Solar</option>
+                                <option value="commercial">Business Solar</option>
+                                <option value="industrial">Industrial Solar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="location" placeholder="Your Location" value="Pandalam" readonly>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-bolt"></i> Get Free Quote for Pandalam
+                    </button>
+                </form>
+                <div class="quote-benefits">
+                    <h4>Why Choose Us in Pandalam?</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Free Site Survey in Pandalam</li>
+                        <li><i class="fas fa-check"></i> Government Subsidy Assistance</li>
+                        <li><i class="fas fa-check"></i> Local Pandalam Expertise</li>
+                        <li><i class="fas fa-check"></i> Quick Installation Service</li>
+                    </ul>
+                    
+                    <div class="emergency-contact">
+                        <h4>Pandalam Emergency Solar Service</h4>
+                        <div class="emergency-numbers">
+                            <a href="tel:8301849474" class="emergency-number">
+                                <i class="fas fa-phone"></i> Primary: 8301849474
+                            </a>
+                            <a href="tel:9539316623" class="emergency-number">
+                                <i class="fas fa-phone"></i> Alternate: 9539316623
+                            </a>
+                            <a href="tel:8606849474" class="emergency-number">
+                                <i class="fas fa-headset"></i> Support: 8606849474
+                            </a>
+                        </div>
+                        <p class="emergency-note">Available 24/7 for emergency solar services in Pandalam</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Coverage Section for Pandalam -->
+    <section class="local-coverage section-light">
+        <div class="container">
+            <h2 class="section-title">Solar Services in Pandalam Area</h2>
+            <p class="text-center">Complete solar solutions available throughout Pandalam and nearby locations</p>
+            <div class="districts-grid">
+                <div class="district-card">
+                    <div class="district-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
                     <h3>Pandalam Town</h3>
-                    <p>Commercial and residential solar solutions</p>
+                    <p>Complete solar installation services in Pandalam town area with local expertise</p>
+                    <a href="tel:8301849474" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> Call for Survey
+                    </a>
                 </div>
-                <div class="city-card-enhanced">
-                    <h3>Temple Areas</h3>
-                    <p>Heritage-compatible solar systems</p>
+                <div class="district-card">
+                    <div class="district-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Nearby Areas</h3>
+                    <p>Konni, Adoor, Kulanada, Kozhencherry, and surrounding regions</p>
+                    <a href="tel:9539316623" class="btn btn-outline">
+                        <i class="fas fa-phone-alt"></i> Call Alternate
+                    </a>
                 </div>
-                <div class="city-card-enhanced">
-                    <h3>Kadambanad</h3>
-                    <p>Agricultural and rural solar installations</p>
+                <div class="district-card">
+                    <div class="district-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Commercial Solar</h3>
+                    <p>Business solar solutions for shops, offices, and industries in Pandalam</p>
+                    <a href="../../services/commercial-solar.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Learn More
+                    </a>
+                </div>
+                <div class="district-card">
+                    <div class="district-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Maintenance</h3>
+                    <p>Professional solar panel cleaning and maintenance services in Pandalam</p>
+                    <a href="../../services/solar-maintenance.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-right"></i> Learn More
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="quick-contact">
+    <!-- Local Testimonials for Pandalam -->
+    <section class="local-testimonials section-light">
         <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Solar Services in Pandalam</h2>
-                    <p>Get free consultation for solar installation in Pandalam area</p>
-                    <div class="contact-methods">
-                        <a href="tel:8301849474" class="contact-method">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Call for Service</h4>
-                                <span>8301849474</span>
-                            </div>
+            <h2 class="section-title">What Pandalam Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Excellent solar installation service in Pandalam. The team was professional and completed the work quickly. Saved 80% on electricity bills!"</p>
+                        <div class="testimonial-author">
+                            <strong>Ramesh Kumar</strong>
+                            <span>Pandalam Town</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p>"Great experience with Solis Green India in Pandalam. They helped with government subsidy and the after-sales service is excellent."</p>
+                        <div class="testimonial-author">
+                            <strong>Latha Menon</strong>
+                            <span>Pandalam</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="rating-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Best solar company in Pandalam area. Quick response, professional installation, and great savings on electricity bills. Highly recommended!"</p>
+                        <div class="testimonial-author">
+                            <strong>Suresh Nair</strong>
+                            <span>Pandalam</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Service Areas in Pandalam -->
+    <section class="quick-services">
+        <div class="container">
+            <h2 class="section-title">Our Solar Services in Pandalam</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Home Solar Pandalam</h3>
+                    <p>Residential solar systems with 40% government subsidy for homes in Pandalam area.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 1-10kW Systems</span>
+                        <span><i class="fas fa-check"></i> Govt Subsidy</span>
+                        <span><i class="fas fa-check"></i> 25-Year Warranty</span>
+                    </div>
+                    <a href="tel:8301849474" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> Call for Survey
+                    </a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Business Solar</h3>
+                    <p>Commercial solar solutions for shops and businesses in Pandalam with tax benefits.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 10-100kW Systems</span>
+                        <span><i class="fas fa-check"></i> Tax Benefits</span>
+                        <span><i class="fas fa-check"></i> Quick ROI</span>
+                    </div>
+                    <a href="tel:9539316623" class="btn btn-outline">
+                        <i class="fas fa-phone-alt"></i> Call Expert
+                    </a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-industry"></i>
+                    <h3>Industrial Solar</h3>
+                    <p>Large-scale solar plants for factories and industries near Pandalam area.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> 100kW-1MW+</span>
+                        <span><i class="fas fa-check"></i> Cost Reduction</span>
+                        <span><i class="fas fa-check"></i> Energy Independence</span>
+                    </div>
+                    <a href="tel:8606849474" class="btn btn-outline">
+                        <i class="fas fa-headset"></i> Call Support
+                    </a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Solar Maintenance</h3>
+                    <p>Professional cleaning, repair & AMC services for solar systems in Pandalam.</p>
+                    <div class="service-features">
+                        <span><i class="fas fa-check"></i> Panel Cleaning</span>
+                        <span><i class="fas fa-check"></i> System Repair</span>
+                        <span><i class="fas fa-check"></i> 24/7 Support</span>
+                    </div>
+                    <a href="tel:8301849474" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> Schedule Service
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Additional CTA for Pandalam -->
+            <div class="services-cta">
+                <div class="cta-content">
+                    <h3>Need Solar Expert in Pandalam?</h3>
+                    <p>Call our local Pandalam solar experts for free consultation</p>
+                    <div class="cta-buttons">
+                        <a href="tel:8301849474" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> Pandalam Expert: 8301849474
                         </a>
-                        <a href="../services.html" class="contact-method">
-                            <i class="fas fa-cogs"></i>
-                            <div>
-                                <h4>Our Services</h4>
-                                <span>View all solar solutions</span>
-                            </div>
+                        <a href="../../services/" class="btn btn-secondary">
+                            <i class="fas fa-bolt"></i> View All Services
                         </a>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Pandalam Service Inquiry</h3>
-                    <form class="contact-form-main">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" placeholder="Phone Number" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Location in Pandalam" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-map-marker-alt"></i> Get Pandalam Quote
-                        </button>
-                    </form>
-                </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                        <img src="../../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Leading solar company in Pandalam and Pathanamthitta district</p>
+                    <p>Leading solar energy provider in Pandalam, Kerala. Professional solar solutions with government subsidy support.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -203,38 +502,79 @@
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h3>Pandalam Services</h3>
+                    <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="../services.html#residential">Residential Solar</a></li>
-                        <li><a href="../services.html#commercial">Commercial Solar</a></li>
-                        <li><a href="../services.html#industrial">Industrial Solar</a></li>
-                        <li><a href="../services.html#maintenance">Maintenance</a></li>
+                        <li><a href="../../">Home</a></li>
+                        <li><a href="../../services/">Services</a></li>
+                        <li><a href="../../cities/">Service Areas</a></li>
+                        <li><a href="../../about/">About Us</a></li>
+                        <li><a href="../../projects/">Projects</a></li>
+                        <li><a href="../../contact/">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Nearby Areas</h3>
+                    <h3>Pandalam Services</h3>
                     <ul>
-                        <li><a href="adoor.html">Adoor</a></li>
-                        <li><a href="thiruvalla.html">Thiruvalla</a></li>
-                        <li><a href="konni.html">Konni</a></li>
-                        <li><a href="mallappally.html">Mallappally</a></li>
+                        <li><a href="tel:8301849474">Home Solar Pandalam</a></li>
+                        <li><a href="tel:9539316623">Business Solar Pandalam</a></li>
+                        <li><a href="tel:8606849474">Solar Maintenance</a></li>
+                        <li><a href="../../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Contact in Pandalam</h3>
                     <ul class="contact-info">
-                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
+                        <li class="contact-primary">
+                            <i class="fas fa-phone"></i> 
+                            <div>
+                                <a href="tel:8301849474">Pandalam Expert: 8301849474</a>
+                                <span class="contact-label">Main Line</span>
+                            </div>
+                        </li>
+                        <li class="contact-alternate">
+                            <i class="fas fa-phone-alt"></i> 
+                            <div>
+                                <a href="tel:9539316623">Alternate: 9539316623</a>
+                                <span class="contact-label">Emergency/Backup</span>
+                            </div>
+                        </li>
+                        <li class="contact-support">
+                            <i class="fas fa-headset"></i> 
+                            <div>
+                                <a href="tel:8606849474">Support: 8606849474</a>
+                                <span class="contact-label">Customer Support</span>
+                            </div>
+                        </li>
+                        <li class="whatsapp-primary">
+                            <i class="fab fa-whatsapp"></i> 
+                            <div>
+                                <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
+                                <span class="contact-label">Primary Chat</span>
+                            </div>
+                        </li>
+                        <li class="whatsapp-alternate">
+                            <i class="fab fa-whatsapp"></i> 
+                            <div>
+                                <a href="https://wa.me/919539316623">WhatsApp: 9539316623</a>
+                                <span class="contact-label">Alternate Chat</span>
+                            </div>
+                        </li>
                         <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Pandalam, Kerala</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Serving Pandalam and surrounding areas</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved.</p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Professional Solar Solutions in Pandalam</p>
             </div>
         </div>
     </footer>
 
-    <script src="../script.js"></script>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="../../script.js"></script>
 </body>
 </html>
