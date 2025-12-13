@@ -2,24 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- SEO Meta -->
-    <meta name="description" content="Best solar company in Thiruvalla – Solis Green India. Rooftop solar installation in Thiruvalla, Kavumbhagom, Niranam, Kuttoor, Mepral & Kallooppara. Government subsidy, KSEB approval & SBI solar loans. Free site survey.">
-    <meta name="keywords" content="solar company thiruvalla, solar installation thiruvalla, solar panels thiruvalla, solar company kavumbhagom, solar company niranam, solar company kuttoor, solar company mepral, solar company kallooppara">
+    <title>Solar Company in Thiruvalla | Solar Installation Thiruvalla | Solis Green India</title>
+    <meta name="description" content="Top-rated solar company in Thiruvalla – Solis Green India. Solar panel installation in Thiruvalla, Kavumbhagom, Niranam, Kuttoor, Mepral & Kallooppara. Govt subsidy, KSEB approvals, and SBI 6% loans available.">
+    <meta name="keywords" content="solar company thiruvalla, solar panel installation thiruvalla, solar installer thiruvalla, solar subsidy thiruvalla, solar company kavumbhagom, solar company niranam, solar company kuttoor">
 
-    <!-- Page Title -->
-    <title>Solar Company in Thiruvalla | Rooftop Solar Installation | Solis Green India</title>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Solar Company in Thiruvalla | Solis Green India">
+    <meta property="og:description" content="Professional solar installation services in Thiruvalla and nearby areas. Govt subsidy up to ₹78,000. Free site survey.">
+    <meta property="og:image" content="https://www.solisgreenindia.in/images/og/solar-thiruvalla.webp">
+    <meta property="og:type" content="website">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.solisgreenindia.in/solar-company-in-pathanamthitta/thiruvalla/">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main Website CSS -->
+    <link rel="stylesheet" href="../../style.css">
 
     <!-- Preload Hero Image -->
-    <link rel="preload" href="../../images/hero/hero-image-4.webp" as="image" type="image/webp">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../../style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="../../images/hero/hero-image-4.webp" as="image">
 
     <!-- Google Tag Manager -->
     <script>
@@ -31,108 +40,91 @@
     </script>
     <!-- End Google Tag Manager -->
 
-    <!-- LocalBusiness Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Solis Green India - Solar Company in Thiruvalla",
-        "image": "https://www.solisgreenindia.in/images/logo/logo.png",
-        "telephone": "+918301849474",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Mini Kristal Arcade, Muthoor",
-            "addressLocality": "Thiruvalla",
-            "addressRegion": "Kerala",
-            "postalCode": "689107",
-            "addressCountry": "IN"
-        },
-        "areaServed": [
-            "Thiruvalla",
-            "Kavumbhagom",
-            "Niranam",
-            "Kuttoor",
-            "Mepral",
-            "Kallooppara"
-        ],
-        "url": "https://www.solisgreenindia.in/solar-company-in-thiruvalla/"
-    }
-    </script>
-
-    <!-- Page CSS Overrides -->
+    <!-- Local Page Styling (minimal overrides only) -->
     <style>
         .town-hero {
-            padding: 120px 0 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            text-align: center;
+            padding: 120px 0 90px;
+            background: #f8f9fa;
+            background-image: url('../../images/hero/hero-image-4.webp');
+            background-size: cover;
+            background-position: center;
             position: relative;
-            overflow: hidden;
         }
-        .town-hero-bg {
+
+        .town-hero::after {
+            content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('../../images/hero/hero-image-4.webp') center/cover;
-            opacity: 0.12;
+            inset: 0;
+            background: rgba(255,255,255,0.75);
         }
-        .town-hero h1 { font-size: 2.5rem; margin-bottom: 20px; position: relative; }
-        .town-hero p { max-width: 650px; margin: auto; font-size: 1.15rem; opacity: .95; }
-        @media (max-width: 768px) { .town-hero h1 { font-size: 2rem; } }
+
+        .town-hero .content {
+            position: relative;
+            text-align: left;
+            max-width: 650px;
+        }
+
+        .benefits-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .benefit-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .benefit-box i {
+            font-size: 22px;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        .system-card {
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            background: #fff;
+        }
+
+        .area-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .district-cta h2 {
+            font-size: 28px;
+            font-weight: 600;
+        }
     </style>
 </head>
 
 <body>
 
 <!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-<!-- Floating CTA Panel (Fully Restored) -->
-<div class="floating-cta">
-    <div class="cta-main-btn" id="ctaMainBtn">
-        <i class="fas fa-comments"></i>
-        <span class="pulse-dot"></span>
-    </div>
-    <div class="cta-options">
-        <a href="tel:8301849474" class="cta-option" data-tooltip="Primary Call"><i class="fas fa-phone"></i></a>
-        <a href="tel:9539316623" class="cta-option" data-tooltip="Alternate Call"><i class="fas fa-phone-alt"></i></a>
-        <a href="tel:8606849474" class="cta-option" data-tooltip="Support"><i class="fas fa-headset"></i></a>
-        <a href="#" id="quickFormBtn" class="cta-option" data-tooltip="Quick Quote"><i class="fas fa-file-alt"></i></a>
-        <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    </div>
-</div>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- HEADER -->
 <header>
     <div class="container header-container">
         <div class="logo">
-            <a href="../../">
-                <img src="../../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
-            </a>
+            <a href="../../"><img src="../../images/logo/logo.png" class="logo-img" alt="Solis Green India Logo"></a>
         </div>
-
-        <div class="header-contact">
-            <a href="tel:8301849474" class="contact-link">
-                <i class="fas fa-phone"></i><span>Primary: 8301849474</span>
-            </a>
-        </div>
-
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-
         <nav id="mainNav">
             <ul>
                 <li><a href="../../">Home</a></li>
                 <li><a href="../../services/">Services</a></li>
                 <li><a href="../../cities/" class="active">Service Areas</a></li>
-                <li><a href="../../about/">About Us</a></li>
                 <li><a href="../../projects/">Projects</a></li>
+                <li><a href="../../about/">About</a></li>
                 <li><a href="../../contact/" class="cta-button">Contact</a></li>
             </ul>
         </nav>
@@ -141,185 +133,95 @@
 
 <!-- HERO SECTION -->
 <section class="town-hero">
-    <div class="town-hero-bg"></div>
     <div class="container">
-        <h1>Solar Company in Thiruvalla</h1>
-        <p>Trusted solar installation specialists serving Thiruvalla, Kavumbhagom, Niranam, Kuttoor, Mepral & Kallooppara — delivering reliable rooftop solar systems with subsidy support, KSEB approvals & fast installation.</p>
+        <div class="content">
+            <h1>Solar Company in Thiruvalla</h1>
+            <p>
+                Reliable solar installation experts serving Thiruvalla, Kavumbhagom, Niranam, Kuttoor,
+                Mepral & Kallooppara — offering on-grid & off-grid systems with subsidy support,
+                KSEB approvals & quick installation.
+            </p>
 
-        <div class="hero-buttons">
-            <a href="tel:8301849474" class="btn btn-primary pulse-animation">
-                <i class="fas fa-phone"></i> Call Thiruvalla Expert
-            </a>
-            <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- LOCAL BENEFITS -->
-<section class="benefits-bar">
-    <div class="container">
-        <div class="benefits-grid">
-            <div class="benefit-item">
-                <i class="fas fa-rupee-sign"></i>
-                <h4>₹78,000 Subsidy</h4>
-                <p>MNRE Approved</p>
-            </div>
-            <div class="benefit-item">
-                <i class="fas fa-university"></i>
-                <h4>6% SBI Loan</h4>
-                <p>Low EMI Options</p>
-            </div>
-            <div class="benefit-item">
-                <i class="fas fa-tools"></i>
-                <h4>5-Year Free AMC</h4>
-                <p>Worry-Free Maintenance</p>
-            </div>
-            <div class="benefit-item">
-                <i class="fas fa-bolt"></i>
-                <h4>Up to 90% Savings</h4>
-                <p>Reduce Electricity Bills</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- REWRITTEN SOLAR SYSTEM OPTIONS -->
-<section style="padding: 60px 0;">
-    <div class="container">
-        <h2 class="section-title">Best Solar Systems for Thiruvalla Homes</h2>
-        <div class="comparison-grid">
-
-            <!-- 3KW SYSTEM -->
-            <div class="system-card">
-                <h3>3kW Solar System</h3>
-                <p class="text-note">Perfect for 2–3 BHK Homes</p>
-                <div class="price-tag">₹1.2 Lakhs*</div>
-                <p class="subsidy-note"><em>*After Subsidy</em></p>
-
-                <div class="features">
-                    ✓ Suitable for 200–350 monthly units<br>
-                    ✓ Supports 2–3 ACs & home appliances<br>
-                    ✓ Ideal for Kavumbhagom, Niranam & Town areas
-                </div>
-
+            <div style="margin-top: 25px;">
                 <a href="tel:8301849474" class="btn btn-primary">
-                    <i class="fas fa-calculator"></i> Get Quote
+                    <i class="fas fa-phone"></i> Call Thiruvalla Expert
+                </a>
+                <a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
                 </a>
             </div>
-
-            <!-- 5KW SYSTEM -->
-            <div class="system-card">
-                <h3>5kW Solar System</h3>
-                <p class="text-note">Great for Large Homes & Small Shops</p>
-                <div class="price-tag">₹2.2 Lakhs*</div>
-                <p class="subsidy-note"><em>*After Subsidy</em></p>
-
-                <div class="features">
-                    ✓ Ideal for 500–800 units<br>
-                    ✓ Runs multiple ACs + heavy appliances<br>
-                    ✓ Popular in Kuttoor, Mepral & Kallooppara
-                </div>
-
-                <a href="tel:8301849474" class="btn btn-primary">
-                    <i class="fas fa-calculator"></i> Get Quote
-                </a>
-            </div>
-
         </div>
     </div>
 </section>
 
-<!-- LOCAL AREAS -->
+<!-- BENEFITS -->
+<section class="container" style="padding: 50px 0;">
+    <div class="benefits-wrapper">
+        <div class="benefit-box"><i class="fas fa-rupee-sign"></i> ₹78,000 Subsidy – MNRE Approved</div>
+        <div class="benefit-box"><i class="fas fa-university"></i> 6% SBI Loan – Easy EMI</div>
+        <div class="benefit-box"><i class="fas fa-tools"></i> 5-Year Free AMC – Full Maintenance</div>
+        <div class="benefit-box"><i class="fas fa-bolt"></i> 90% Electricity Savings</div>
+    </div>
+</section>
+
+<!-- SYSTEM CARDS -->
+<section class="container" style="padding: 40px 0;">
+    <h2 class="section-title">Solar Solutions for Thiruvalla Homes</h2>
+
+    <div class="comparison-grid">
+        <div class="system-card">
+            <h3>3kW Solar System</h3>
+            <p>Best for 2–3 BHK Homes</p>
+            <h4>₹1.2 Lakhs* <small style="font-weight:300;">(*After Subsidy)</small></h4>
+            <ul>
+                <li>Save ₹3,500–₹4,500 Monthly</li>
+                <li>Runs 3 ACs + All Home Appliances</li>
+                <li>Ideal for 200–350 Units/month</li>
+            </ul>
+            <a href="tel:8301849474" class="btn btn-primary">Call for Quote</a>
+        </div>
+
+        <div class="system-card">
+            <h3>5kW Solar System</h3>
+            <p>Ideal for Large Homes & Offices</p>
+            <h4>₹2.2 Lakhs* <small>(*After Subsidy)</small></h4>
+            <ul>
+                <li>Save ₹6,000–₹9,000 Monthly</li>
+                <li>Runs 5 ACs + Heavy Appliances</li>
+                <li>Perfect for 500–800 Units/month</li>
+            </ul>
+            <a href="tel:8301849474" class="btn btn-primary">Call for Quote</a>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICE AREAS -->
 <section class="local-service-areas">
     <div class="container">
-        <h2 class="section-title">Areas We Cover in Thiruvalla</h2>
-        <p class="section-subtitle">Fast installation & service across all neighbourhoods</p>
+        <h2 class="section-title">Service Areas in Thiruvalla Region</h2>
 
         <div class="areas-grid">
-            <div class="area-card"><i class="fas fa-city"></i><h4>Thiruvalla Town</h4></div>
-            <div class="area-card"><i class="fas fa-building"></i><h4>Kavumbhagom</h4></div>
-            <div class="area-card"><i class="fas fa-chair"></i><h4>Niranam</h4></div>
-            <div class="area-card"><i class="fas fa-home"></i><h4>Kuttoor</h4></div>
-            <div class="area-card"><i class="fas fa-tractor"></i><h4>Mepral</h4></div>
-            <div class="area-card"><i class="fas fa-school"></i><h4>Kallooppara</h4></div>
-            <div class="area-card"><i class="fas fa-store"></i><h4>Commercial Areas</h4></div>
-            <div class="area-card"><i class="fas fa-water"></i><h4>Pamba Region</h4></div>
+            <div class="area-card">Thiruvalla Town</div>
+            <div class="area-card">Kavumbhagom</div>
+            <div class="area-card">Niranam</div>
+            <div class="area-card">Kuttoor</div>
+            <div class="area-card">Mepral</div>
+            <div class="area-card">Kallooppara</div>
+            <div class="area-card">Pamba Area</div>
+            <div class="area-card">Industrial Zones</div>
         </div>
     </div>
 </section>
 
-<!-- QUOTE FORM -->
-<section class="quick-quote-section">
-    <div class="container">
-        <h2 class="section-title">Request Solar Quote for Thiruvalla</h2>
-
-        <form class="quick-quote-form town-quote-form">
-            <input type="hidden" name="_subject" value="Solar Quote - Thiruvalla">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
-
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="tel" name="phone" placeholder="Phone Number" required>
-
-            <select name="service" required>
-                <option value="">Select Service</option>
-                <option value="residential">Home Solar (with Subsidy)</option>
-                <option value="commercial">Commercial Solar</option>
-            </select>
-
-            <input type="text" name="location" value="Thiruvalla" readonly>
-
-            <button type="submit" class="btn btn-primary btn-block">
-                <i class="fas fa-bolt"></i> Get Free Site Survey
-            </button>
-        </form>
-    </div>
-</section>
-
-<!-- FAQ SECTION -->
-<section class="district-faqs">
-    <div class="container">
-        <h2 class="section-title">Solar FAQs – Thiruvalla</h2>
-
-        <div class="faq-grid">
-            <div class="faq-card">
-                <h3>Do you provide solar installation across all areas of Thiruvalla?</h3>
-                <p>Yes, our solar installation team covers Thiruvalla town, Kavumbhagom, Kuttoor, Niranam, Mepral and nearby regions with fast and professional service.</p>
-            </div>
-
-            <div class="faq-card">
-                <h3>Is the government subsidy available in Thiruvalla?</h3>
-                <p>Absolutely. Homeowners can get up to ₹78,000 subsidy for a 3kW system. We manage MNRE registration, documentation & KSEB approval for you.</p>
-            </div>
-
-            <div class="faq-card">
-                <h3>How long does it take to install a system?</h3>
-                <p>Most residential systems are installed within 3–5 days after KSEB inspection. Our team ensures fast processing.</p>
-            </div>
-
-            <div class="faq-card">
-                <h3>Do you offer post-installation maintenance?</h3>
-                <p>Yes, we provide 5 Years of Free AMC which includes regular maintenance and system health checks.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA SECTION -->
+<!-- FINAL CTA -->
 <section class="district-cta">
     <div class="container">
-        <h2>Ready to Install Solar in Thiruvalla?</h2>
-        <p>Call our experts today for a free consultation & site survey.</p>
+        <h2>Ready to Go Solar in Thiruvalla?</h2>
+        <p>Book a free site survey with our certified solar experts.</p>
 
-        <div class="cta-buttons">
-            <a href="tel:8301849474" class="btn btn-primary"><i class="fas fa-phone"></i> Call Now</a>
-            <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="../../contact/" class="btn btn-secondary">
-                <i class="fas fa-map-marker-alt"></i> Contact Us
-            </a>
-        </div>
+        <a href="tel:8301849474" class="btn btn-primary"><i class="fas fa-phone"></i> Call Now</a>
+        <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="../../contact/" class="btn btn-secondary"><i class="fas fa-map-marker-alt"></i> Book Visit</a>
     </div>
 </section>
 
@@ -328,43 +230,33 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-col">
-                <div class="footer-logo">
-                    <img src="../../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
-                </div>
-                <p>Your trusted solar partner in Thiruvalla & surrounding regions.</p>
+                <img src="../../images/logo/logo-white.png" class="footer-logo-img">
+                <p>Trusted solar provider for Thiruvalla and nearby towns.</p>
             </div>
 
             <div class="footer-col">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="../../">Home</a></li>
-                    <li><a href="../../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
                     <li><a href="../../services/">Services</a></li>
+                    <li><a href="../../projects/">Projects</a></li>
                     <li><a href="../../contact/">Contact</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
-                <h3>Contact Info</h3>
-                <ul class="contact-info">
-                    <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
-                    <li><i class="fas fa-phone-alt"></i> <a href="tel:9539316623">9539316623</a></li>
-                    <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474">WhatsApp</a></li>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                <h3>Contact</h3>
+                <ul>
+                    <li>📞 <a href="tel:8301849474">8301849474</a></li>
+                    <li>📞 <a href="tel:9539316623">9539316623</a></li>
+                    <li>📧 <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                    <li>💬 <a href="https://wa.me/918301849474">WhatsApp</a></li>
                 </ul>
             </div>
-        </div>
-
-        <div class="copyright">
-            <p>&copy; 2024 Solis Green India. All Rights Reserved. | Solar Experts in Thiruvalla</p>
         </div>
     </div>
 </footer>
 
-<!-- Back to Top Button -->
-<button id="backToTop" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
-
-<!-- JS -->
 <script src="../../script.js"></script>
 
 </body>
