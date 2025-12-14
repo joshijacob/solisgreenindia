@@ -805,76 +805,107 @@
         </div>
     </section>
 
-    <!-- Footer - Fixed Layout -->
+  <!-- Footer - Fixed Equal Columns -->
 <footer>
     <div class="container">
-        <div class="footer-content">
+        <div class="footer-content" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; justify-content: center;">
+            
             <!-- Column 1: Logo & Description -->
-            <div class="footer-col">
+            <div class="footer-col" style="text-align: left;">
                 <div class="footer-logo">
                     <img src="../../images/logo/logo-white.png" 
                          alt="Solis Green India - Thiruvalla Solar Experts" 
                          class="footer-logo-img"
                          width="180"
-                         height="50">
+                         height="50"
+                         style="margin-bottom: 20px;">
                 </div>
-                <p>Your local solar partner in Thiruvalla with office at Opposite of St. George Orthodox Church, Muthoor. 6+ years of experience in Solar Industry, Servingg Surrounding Pathanamthitta district.</p>
+                <p style="color: #bdc3c7; line-height: 1.6; margin: 0; font-size: 0.95rem;">
+                    Your local solar partner in Thiruvalla with office at Opposite St. George Orthodox Church, Muthoor. 5+ years of experience in Pathanamthitta district.
+                </p>
             </div>
             
             <!-- Column 2: Thiruvalla Links -->
-            <div class="footer-col">
-                <h3>Thiruvalla Links</h3>
-                <ul>
-                    <li><a href="../../">Home</a></li>
-                    <li><a href="../../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
-                    <li><a href="../../services/residential-solar.html">Residential Solar</a></li>
-                    <li><a href="../../services/commercial-solar.html">Commercial Solar</a></li>
-                    <li><a href="../../contact/">Contact Our Office</a></li>
+            <div class="footer-col" style="text-align: left;">
+                <h3 style="color: white; margin-bottom: 20px; font-size: 1.2rem; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; display: inline-block;">Thiruvalla Links</h3>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="margin-bottom: 12px;">
+                        <a href="../../" style="color: #bdc3c7; text-decoration: none; transition: color 0.3s ease; display: flex; align-items: center;">
+                            <i class="fas fa-home" style="margin-right: 10px; color: var(--primary-color); font-size: 0.9rem;"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li style="margin-bottom: 12px;">
+                        <a href="../../solar-company-in-pathanamthitta/" style="color: #bdc3c7; text-decoration: none; transition: color 0.3s ease; display: flex; align-items: center;">
+                            <i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--primary-color); font-size: 0.9rem;"></i>
+                            Pathanamthitta District
+                        </a>
+                    </li>
+                    <li style="margin-bottom: 12px;">
+                        <a href="../../services/residential-solar.html" style="color: #bdc3c7; text-decoration: none; transition: color 0.3s ease; display: flex; align-items: center;">
+                            <i class="fas fa-home" style="margin-right: 10px; color: var(--primary-color); font-size: 0.9rem;"></i>
+                            Residential Solar
+                        </a>
+                    </li>
+                    <li style="margin-bottom: 12px;">
+                        <a href="../../services/commercial-solar.html" style="color: #bdc3c7; text-decoration: none; transition: color 0.8rem; transition: color 0.3s ease; display: flex; align-items: center;">
+                            <i class="fas fa-building" style="margin-right: 10px; color: var(--primary-color); font-size: 0.9rem;"></i>
+                            Commercial Solar
+                        </a>
+                    </li>
+                    <li style="margin-bottom: 12px;">
+                        <a href="../../contact/" style="color: #bdc3c7; text-decoration: none; transition: color 0.3s ease; display: flex; align-items: center;">
+                            <i class="fas fa-address-book" style="margin-right: 10px; color: var(--primary-color); font-size: 0.9rem;"></i>
+                            Contact Our Office
+                        </a>
+                    </li>
                 </ul>
             </div>
             
             <!-- Column 3: Contact Info -->
-            <div class="footer-col">
-                <h3>Thiruvalla Contact</h3>
-                <ul class="contact-info">
-                    <li class="contact-item">
-                        <i class="fas fa-phone"></i> 
+            <div class="footer-col" style="text-align: left;">
+                <h3 style="color: white; margin-bottom: 20px; font-size: 1.2rem; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; display: inline-block;">Thiruvalla Contact</h3>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                        <i class="fas fa-phone" style="color: var(--primary-color); margin-top: 3px; font-size: 1rem; min-width: 20px;"></i>
                         <div>
-                            <a href="tel:8301849474?utm_source=thiruvalla_footer&utm_medium=phone&utm_campaign=solar_inquiry">Primary: 8301849474</a>
-                            <span class="contact-label">Thiruvalla Office</span>
+                            <a href="tel:8301849474" style="color: #bdc3c7; text-decoration: none; font-weight: 500; display: block; margin-bottom: 3px;">Primary: 8301849474</a>
+                            <span style="color: #95a5a6; font-size: 0.85rem; display: block;">Thiruvalla Office</span>
                         </div>
                     </li>
-                    <li class="contact-item">
-                        <i class="fas fa-phone-alt"></i> 
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                        <i class="fas fa-phone-alt" style="color: var(--primary-color); margin-top: 3px; font-size: 1rem; min-width: 20px;"></i>
                         <div>
-                            <a href="tel:9539316623?utm_source=thiruvalla_footer&utm_medium=phone&utm_campaign=solar_inquiry">Alternate: 9539316623</a>
+                            <a href="tel:9539316623" style="color: #bdc3c7; text-decoration: none; font-weight: 500; display: block;">Alternate: 9539316623</a>
                         </div>
                     </li>
-                    <li class="contact-item">
-                        <i class="fab fa-whatsapp"></i> 
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                        <i class="fab fa-whatsapp" style="color: var(--primary-color); margin-top: 3px; font-size: 1rem; min-width: 20px;"></i>
                         <div>
-                            <a href="https://wa.me/918301849474?utm_source=thiruvalla_footer&utm_medium=whatsapp&utm_campaign=solar_inquiry">WhatsApp: 8301849474</a>
+                            <a href="https://wa.me/918301849474" style="color: #bdc3c7; text-decoration: none; font-weight: 500; display: block;">WhatsApp: 8301849474</a>
                         </div>
                     </li>
-                    <li class="contact-item">
-                        <i class="fas fa-envelope"></i> 
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                        <i class="fas fa-envelope" style="color: var(--primary-color); margin-top: 3px; font-size: 1rem; min-width: 20px;"></i>
                         <div>
-                            <a href="mailto:solisgreenindia@gmail.com?subject=Solar%20Inquiry%20-%20Thiruvalla">solisgreenindia@gmail.com</a>
+                            <a href="mailto:solisgreenindia@gmail.com" style="color: #bdc3c7; text-decoration: none; word-break: break-all; display: block;">solisgreenindia@gmail.com</a>
                         </div>
                     </li>
-                    <li class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i> 
+                    <li style="margin-bottom: 15px; display: flex; align-items: flex-start; gap: 12px;">
+                        <i class="fas fa-map-marker-alt" style="color: var(--primary-color); margin-top: 3px; font-size: 1rem; min-width: 20px;"></i>
                         <div>
-                            <span>Opposite St. George Orthodox Church</span>
-                            <span class="contact-label">Muthoor, Thiruvalla - 689107</span>
+                            <span style="color: #bdc3c7; display: block; margin-bottom: 3px;">Opposite St. George Church</span>
+                            <span style="color: #95a5a6; font-size: 0.85rem; display: block;">Muthoor, Thiruvalla - 689107</span>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
         
-        <div class="copyright">
-            <p>&copy; 2024 Solis Green India. All Rights Reserved. | Professional Solar Solutions in Thiruvalla</p>
+        <div class="copyright" style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #34495e;">
+            <p style="color: #bdc3c7; font-size: 0.9rem; margin: 0;">
+                &copy; 2024 Solis Green India. All Rights Reserved. | Professional Solar Solutions in Thiruvalla
+            </p>
         </div>
     </div>
 </footer>
