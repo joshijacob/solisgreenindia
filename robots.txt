@@ -1,11 +1,12 @@
 User-agent: *
 
 # ALLOW MAIN PAGES
-Allow: /$
-Allow: /services$
-Allow: /cities$
-Allow: /projects$
-Allow: /contact$
+Allow: /
+Allow: /services/
+Allow: /cities/
+Allow: /projects/
+Allow: /contact/
+Allow: /about/
 
 # ALLOW DISTRICT PAGES
 Allow: /solar-company-in-pathanamthitta/
@@ -13,32 +14,10 @@ Allow: /solar-company-in-kottayam/
 Allow: /solar-company-in-alappuzha/
 Allow: /solar-company-in-kollam/
 
-# ALLOW CITY PAGES (Local SEO)
-Allow: /solar-company-in-pathanamthitta/thiruvalla
-Allow: /solar-company-in-pathanamthitta/kozhencherry
-Allow: /solar-company-in-pathanamthitta/adoor
-Allow: /solar-company-in-pathanamthitta/rami
-Allow: /solar-company-in-pathanamthitta/pandalam
-Allow: /solar-company-in-kottayam/changanacherry
-Allow: /solar-company-in-kottayam/pala
-Allow: /solar-company-in-kottayam/kanjirapally
-Allow: /solar-company-in-kottayam/vaikom
-Allow: /solar-company-in-alappuzha/cherthala
-Allow: /solar-company-in-alappuzha/haripad
-Allow: /solar-company-in-alappuzha/mavelikkara
-Allow: /solar-company-in-kollam/karunagapally
-Allow: /solar-company-in-kollam/punalur
-Allow: /solar-company-in-kollam/kottarakara
-
 # BLOCK SENSITIVE AREAS
 Disallow: /admin/
 Disallow: /private/
 Disallow: /includes/
-
-# BLOCK TRACKING PARAMETERS
-Disallow: /*?utm_
-Disallow: /*?gclid=
-Disallow: /*?fbclid=
 
 # ALLOW ASSETS
 Allow: /images/
