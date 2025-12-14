@@ -1931,3 +1931,25 @@ nav a[href*="kayamkulam"] {
     grid-template-columns: 1fr;
   }
 }
+/* Centered Form Styles */
+.centered-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.centered-form-container .form-group {
+    margin-bottom: 20px;
+}
+
+.centered-form-container .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .centered-form-container .form-row {
+        grid-template-columns: 1fr;
+    }
+}
