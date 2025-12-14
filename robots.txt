@@ -1,5 +1,7 @@
-User-agent: *
+User-agent: TICBot
+Disallow: /
 
+User-agent: *
 # ALLOW MAIN PAGES
 Allow: /
 Allow: /services/
@@ -8,7 +10,7 @@ Allow: /projects/
 Allow: /contact/
 Allow: /about/
 
-# ALLOW ALL DISTRICT PAGES (AND THEIR CITIES)
+# ALLOW DISTRICT PAGES (AND ALL THEIR CITIES)
 Allow: /solar-company-in-pathanamthitta/
 Allow: /solar-company-in-kottayam/
 Allow: /solar-company-in-alappuzha/
