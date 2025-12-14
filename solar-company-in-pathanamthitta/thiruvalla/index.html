@@ -13,6 +13,13 @@
     
     <link rel="preload" href="../../images/hero/hero-image-1.webp" as="image" type="image/webp">
 
+    <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5C2D5BG9');
+    </script>
     <link rel="stylesheet" href="../../style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* Define common color variables (assuming they are in style.css, added here for completeness) */
         :root {
             --primary-color: #0b8a3a;
             --accent-color: #38a169;
@@ -117,6 +125,43 @@
             margin: 0 auto;
         }
 
+        /* --- Footer Optimization Styles (Inherited from Ranni refinement) --- */
+
+        footer {
+            padding: 30px 0; 
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between; 
+            align-items: flex-start;      
+            gap: 20px;
+            padding: 20px 0; 
+        }
+
+        .footer-col {
+            flex: 1; 
+            max-width: 300px; 
+        }
+
+        .contact-info li {
+            display: flex;         
+            align-items: center;   
+            margin-bottom: 5px;    
+        }
+
+        .contact-info li i {
+            margin-right: 10px;
+            font-size: 1em; 
+        }
+
+        .copyright {
+            padding: 15px 0; 
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+
+        /* Mobile Layout */
         @media (max-width: 768px) {
             .town-hero h1 {
                 font-size: 2rem;
@@ -124,6 +169,24 @@
             
             .benefits-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column; 
+                text-align: center;     
+            }
+            
+            .footer-col {
+                max-width: 100%; 
+                margin-bottom: 20px;
+            }
+            
+            .footer-col ul {
+                padding-left: 0;
+            }
+            
+            .contact-info li {
+                justify-content: center;
             }
         }
     </style>
@@ -416,10 +479,10 @@
                 <div class="footer-col">
                     <h3>Contact Info</h3>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> Muthoor, Thiruvalla (Main Office)</li>
-                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">Primary: 8301849474</a></li>
-                        <li><i class="fas fa-phone-alt"></i> <a href="tel:9539316623">Alternate: 9539316623</a></li>
-                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474">WhatsApp</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Muthoor, Thiruvalla (Main Office)</span></li>
+                        <li><i class="fas fa-phone"></i> <span><a href="tel:8301849474">Primary: 8301849474</a></span></li>
+                        <li><i class="fas fa-phone-alt"></i> <span><a href="tel:9539316623">Alternate: 9539316623</a></span></li>
+                        <li><i class="fab fa-whatsapp"></i> <span><a href="https://wa.me/918301849474">WhatsApp</a></span></li>
                     </ul>
                 </div>
             </div>
