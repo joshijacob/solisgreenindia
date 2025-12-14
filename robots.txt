@@ -8,7 +8,7 @@ Allow: /projects/
 Allow: /contact/
 Allow: /about/
 
-# ALLOW DISTRICT PAGES
+# ALLOW ALL DISTRICT PAGES (AND THEIR CITIES)
 Allow: /solar-company-in-pathanamthitta/
 Allow: /solar-company-in-kottayam/
 Allow: /solar-company-in-alappuzha/
