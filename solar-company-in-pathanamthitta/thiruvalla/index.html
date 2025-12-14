@@ -682,71 +682,86 @@
         </div>
     </section>
 
-    <!-- Quick Quote Section -->
-    <section class="quick-quote-section" id="thiruvalla-quote">
-        <div class="container">
-            <h2 class="section-title">Get Solar Quote for Thiruvalla</h2>
-            <p class="text-center" style="margin-bottom: 40px; color: var(--text-light);">
-                Fill this form for free site survey and customized quote
-            </p>
-            
-            <div class="quote-form-container">
-                <form class="quick-quote-form" id="thiruvallaQuoteForm">
-                    <input type="hidden" name="_subject" value="🔆 Solar Quote - Thiruvalla">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="../../thank-you.html">
-                    <input type="hidden" name="utm_source" value="thiruvalla_page">
-                    <input type="hidden" name="utm_medium" value="form">
-                    <input type="hidden" name="utm_campaign" value="solar_inquiry">
+<!-- Quick Quote Section - Centered Form -->
+<section class="quick-quote-section" id="thiruvalla-quote">
+    <div class="container">
+        <h2 class="section-title">Get Solar Quote for Thiruvalla</h2>
+        <p class="text-center" style="margin-bottom: 40px; color: var(--text-light);">
+            Fill this form for free site survey and customized quote
+        </p>
+        
+        <div class="quote-form-container" style="max-width: 600px; margin: 0 auto;">
+            <form class="quick-quote-form" id="thiruvallaQuoteForm">
+                <input type="hidden" name="_subject" value="🔆 Solar Quote - Thiruvalla">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="../../thank-you.html">
+                <input type="hidden" name="utm_source" value="thiruvalla_page">
+                <input type="hidden" name="utm_medium" value="form">
+                <input type="hidden" name="utm_campaign" value="solar_inquiry">
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Phone Number" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <select name="service" required>
-                                <option value="">Select Service</option>
-                                <option value="residential">Home Solar (with Subsidy)</option>
-                                <option value="commercial">Commercial/Business Solar</option>
-                                <option value="shop">Shop/Showroom Solar</option>
-                                <option value="industrial">Industrial Solar</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select name="area" required>
-                                <option value="">Select Your Area</option>
-                                <option value="thiruvalla_town">Thiruvalla Town</option>
-                                <option value="muthoor">Muthoor</option>
-                                <option value="kavumbhagom">Kavumbhagom</option>
-                                <option value="kaipattoor">Kaipattoor</option>
-                                <option value="nellikkal">Nellikkal</option>
-                                <option value="kuttoor">Kuttoor</option>
-                                <option value="mepral">Mepral</option>
-                                <option value="other">Other Area</option>
-                            </select>
-                        </div>
-                    </div>
-                    
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                
+                <div class="form-row">
                     <div class="form-group">
-                        <textarea name="message" placeholder="Additional requirements (optional)" rows="3"></textarea>
+                        <select name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="residential">Home Solar (with Subsidy)</option>
+                            <option value="commercial">Commercial/Business Solar</option>
+                            <option value="shop">Shop/Showroom Solar</option>
+                            <option value="industrial">Industrial Solar</option>
+                        </select>
                     </div>
-                    
-                    <button type="submit" 
-                            class="btn btn-primary btn-block"
-                            onclick="gtag('event', 'conversion', {'send_to': 'AW-XXXXX/YYYYY'});">
-                        <i class="fas fa-bolt"></i> Get Free Quote & Site Survey
-                    </button>
-                </form>
+                    <div class="form-group">
+                        <select name="area" required>
+                            <option value="">Select Your Area</option>
+                            <option value="thiruvalla_town">Thiruvalla Town</option>
+                            <option value="muthoor">Muthoor</option>
+                            <option value="kavumbhagom">Kavumbhagom</option>
+                            <option value="kaipattoor">Kaipattoor</option>
+                            <option value="nellikkal">Nellikkal</option>
+                            <option value="kuttoor">Kuttoor</option>
+                            <option value="mepral">Mepral</option>
+                            <option value="other">Other Area</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <textarea name="message" placeholder="Additional requirements (optional)" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" 
+                        class="btn btn-primary btn-block"
+                        onclick="gtag('event', 'conversion', {'send_to': 'AW-XXXXX/YYYYY'});">
+                    <i class="fas fa-check"></i> Get Free Quote & Site Survey
+                </button>
+            </form>
+            
+            <!-- Alternative Contact Options -->
+            <div style="text-align: center; margin-top: 30px; padding-top: 30px; border-top: 1px solid #eee;">
+                <p style="color: var(--text-light); margin-bottom: 15px;">Prefer direct contact?</p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <a href="tel:8301849474" 
+                       style="background: #f8f9fa; padding: 12px 20px; border-radius: 8px; text-decoration: none; color: var(--text-color); border: 2px solid #e9ecef;">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="https://wa.me/918301849474" 
+                       target="_blank"
+                       style="background: #25d366; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Nearby Locations -->
     <section style="padding: 40px 0; background: #f8f9fa;">
