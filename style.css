@@ -1,152 +1,236 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* =========================
+   GLOBAL RESET & BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <!-- SEO -->
-  <title>Solar Installation in Thiruvalla | Solis Green Energy Solutions</title>
-  <meta name="description" content="Solar installation in Thiruvalla by Solis Green Energy Solutions. Local office in Muthoor. Govt subsidy, KSEB net metering, residential & commercial solar.">
-  <meta name="keywords" content="solar installation in thiruvalla, solar company thiruvalla, rooftop solar thiruvalla, solar panels thiruvalla, kseb solar thiruvalla">
-  <link rel="canonical" href="https://www.solisgreenindia.in/solar-company-in-pathanamthitta/thiruvalla/">
+html {
+  scroll-behavior: smooth;
+}
 
-  <!-- Preload hero -->
-  <link rel="preload" href="../../images/hero/hero-image-4.webp" as="image">
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #222;
+  background: #fff;
+}
 
-  <!-- GTM -->
-  <script>
-  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5C2D5BG9');
-  </script>
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
-  <link rel="stylesheet" href="../../style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+a {
+  color: #0b8a3a;
+  text-decoration: none;
+}
 
-<body>
-<noscript>
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
+ul {
+  padding-left: 20px;
+}
 
-<!-- HEADER -->
-<header>
-  <div class="container header-container">
-    <div class="logo">
-      <a href="../../"><img src="../../images/logo/logo.png" alt="Solis Green Energy Solutions"></a>
-    </div>
-    <div class="header-contact">
-      <a href="tel:+918301849474">📞 Sales: 8301849474</a>
-      <a href="tel:+918606849474">🚨 Emergency: 8606849474</a>
-    </div>
-  </div>
-</header>
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-<!-- HERO -->
-<section class="town-hero">
-  <div class="container">
-    <h1>Solar Installation in Thiruvalla</h1>
-    <p>
-      Solis Green Energy Solutions is a trusted local solar company in Thiruvalla,
-      providing high-quality rooftop solar systems for homes, businesses and institutions.
-      We operate directly from our Muthoor office with fast site visits and reliable service.
-    </p>
+/* =========================
+   BUTTONS
+========================= */
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 40px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
 
-    <div class="hero-buttons">
-      <a href="tel:+918301849474" class="btn btn-primary">Sales Enquiry</a>
-      <a href="tel:+918606849474" class="btn btn-secondary">Service / Emergency</a>
-    </div>
-  </div>
-</section>
+.btn-primary {
+  background: #f9b000;
+  color: #000;
+}
 
-<!-- TRUST BAR -->
-<section class="benefits-bar">
-  <div class="container benefits-grid">
-    <div class="benefit-item"><strong>Local Office</strong><br>Muthoor, Thiruvalla</div>
-    <div class="benefit-item"><strong>Govt Subsidy</strong><br>Up to ₹78,000</div>
-    <div class="benefit-item"><strong>KSEB Net Metering</strong><br>Complete Support</div>
-    <div class="benefit-item"><strong>Service Team</strong><br>Fast Response</div>
-  </div>
-</section>
+.btn-primary:hover {
+  background: #e2a000;
+}
 
-<!-- WHY US -->
-<section class="container" style="padding:60px 0">
-  <h2>Why We Are the Preferred Solar Company in Thiruvalla</h2>
-  <p>
-    Unlike listing portals and middlemen, Solis Green Energy Solutions works directly
-    with customers in Thiruvalla. Our in-house technical team manages the full solar
-    installation process — from site survey and system design to subsidy approval,
-    KSEB net metering, installation and after-sales support.
-  </p>
-</section>
+.btn-secondary {
+  background: #555;
+  color: #fff;
+}
 
-<!-- SERVICES -->
-<section class="container" style="padding-bottom:60px">
-  <h2>Residential & Commercial Solar Solutions</h2>
-  <p>
-    We install rooftop solar systems for independent houses, villas, shops,
-    apartments, schools, hospitals and commercial buildings across Thiruvalla.
-    Each system is custom designed based on your electricity usage and roof structure
-    to ensure maximum savings and long-term reliability.
-  </p>
-</section>
+.btn-secondary:hover {
+  background: #333;
+}
 
-<!-- AREAS -->
-<section class="container" style="padding-bottom:60px">
-  <h2>Areas We Serve in Thiruvalla</h2>
-  <ul>
-    <li>Thiruvalla Town</li>
-    <li>Muthoor</li>
-    <li>Kavumbhagom</li>
-    <li>Niranam</li>
-    <li>Kuttoor</li>
-    <li>Mepral</li>
-    <li>Kallooppara</li>
-  </ul>
-</section>
+/* =========================
+   HEADER
+========================= */
+header {
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+}
 
-<!-- SALES VS SERVICE -->
-<section class="container" style="padding-bottom:60px">
-  <h2>Sales Enquiry & Emergency Support</h2>
-  <p>
-    We clearly separate new solar enquiries from service and emergency calls
-    so you always reach the right team without delay.
-  </p>
-  <ul>
-    <li><strong>Sales / New Installation:</strong> +91 83018 49474, +91 95393 16623</li>
-    <li><strong>Service / Emergency:</strong> +91 86068 49474</li>
-  </ul>
-</section>
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+}
 
-<!-- ADDRESS -->
-<section class="container" style="padding-bottom:60px">
-  <h2>Our Thiruvalla Office</h2>
-  <p>
-    <strong>Solis Green Energy Solutions</strong><br>
-    Mini Kristal Arcade, Muthoor,<br>
-    Thiruvalla, Kerala 689107
-  </p>
-</section>
+.logo img {
+  max-height: 60px;
+}
 
-<!-- CTA -->
-<section class="district-cta">
-  <div class="container">
-    <h2>Planning Solar Installation in Thiruvalla?</h2>
-    <p>Speak directly with our local solar experts today.</p>
-    <a href="tel:+918301849474" class="btn btn-primary">Call Sales</a>
-    <a href="tel:+918606849474" class="btn btn-secondary">Emergency Support</a>
-  </div>
-</section>
+.header-contact {
+  display: flex;
+  gap: 20px;
+  font-weight: 600;
+}
 
-<footer>
-  <div class="container">
-    <p>© 2024 Solis Green Energy Solutions | Solar Installation in Thiruvalla</p>
-  </div>
-</footer>
+.header-contact a {
+  color: #0b8a3a;
+  white-space: nowrap;
+}
 
-<script src="../../script.js"></script>
-</body>
-</html>
+/* =========================
+   HERO (CITY / DISTRICT)
+========================= */
+.town-hero {
+  background: linear-gradient(135deg, #0b8a3a, #0f9d58);
+  color: #fff;
+  padding: 90px 0;
+  text-align: center;
+}
+
+.town-hero h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.town-hero p {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  font-size: 18px;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   BENEFITS BAR
+========================= */
+.benefits-bar {
+  background: #f7f7f7;
+  padding: 40px 0;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.benefit-item {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 500;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+/* =========================
+   CONTENT SECTIONS
+========================= */
+section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+section p {
+  margin-bottom: 20px;
+  max-width: 900px;
+}
+
+section ul li {
+  margin-bottom: 8px;
+}
+
+/* =========================
+   CTA SECTION
+========================= */
+.district-cta {
+  background: #0b8a3a;
+  color: #fff;
+  padding: 70px 0;
+  text-align: center;
+}
+
+.district-cta h2 {
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.district-cta p {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.district-cta .btn {
+  margin: 5px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+  background: #111;
+  color: #bbb;
+  text-align: center;
+  padding: 25px 0;
+  font-size: 14px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .header-contact {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .town-hero h1 {
+    font-size: 30px;
+  }
+
+  .town-hero p {
+    font-size: 16px;
+  }
+
+  section h2 {
+    font-size: 26px;
+  }
+
+  .district-cta h2 {
+    font-size: 28px;
+  }
+}
