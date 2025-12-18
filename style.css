@@ -2053,4 +2053,16 @@ nav a[href*="kayamkulam"] {
   text-decoration: none;
   color: #0b8a3a;
 }
-  
+  .benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.benefit-item {
+  background: #fff;
+  padding: 16px;
+  border-radius: 10px;
+}
+
