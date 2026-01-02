@@ -1703,3 +1703,21 @@ nav a[href*="kayamkulam"] {
         transition-duration: 0.01ms !important;
     }
 }
+/* SEO Authority Page Hero Fix */
+.seo-hero {
+    background: var(--background-light);
+    height: auto;
+    padding: 120px 0 80px;
+}
+
+.seo-hero .hero-content {
+    color: var(--text-color);
+}
+
+.seo-hero h1 {
+    text-shadow: none;
+}
+
+.seo-hero p {
+    color: var(--text-light);
+}
