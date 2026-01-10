@@ -2079,3 +2079,33 @@ header {
         display: block;
     }
 }
+/* =========================================================
+   MOBILE-ONLY HAMBURGER VISIBILITY & UX IMPROVEMENT
+   ========================================================= */
+
+/* Hide hamburger on desktop */
+@media (min-width: 769px) {
+    .mobile-menu-btn {
+        display: none !important;
+    }
+}
+
+/* Mobile hamburger styling */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 6px;
+        background: rgba(255,255,255,0.15);
+        color: #ffffff;
+        font-size: 26px;
+        cursor: pointer;
+    }
+
+    .mobile-menu-btn:active {
+        background: rgba(255,255,255,0.3);
+    }
+}
