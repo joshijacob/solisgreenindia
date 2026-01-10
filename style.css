@@ -2000,3 +2000,34 @@ nav a.active {
 footer {
     background: #243447;
 }
+/* =========================================================
+   MOBILE HAMBURGER MENU FIX (APPEND ONLY)
+   ========================================================= */
+
+/* Ensure header stays on top */
+header {
+    position: fixed;
+    z-index: 1000;
+}
+
+/* Ensure mobile menu drops above page content */
+@media (max-width: 768px) {
+    nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1100;
+        background: #fff;
+    }
+
+    nav ul li a {
+        color: var(--text-color);
+    }
+}
+
+/* Ensure hamburger icon is clickable */
+.mobile-menu-btn {
+    z-index: 1200;
+    position: relative;
+}
