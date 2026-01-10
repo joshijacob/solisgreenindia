@@ -2031,3 +2031,51 @@ header {
     z-index: 1200;
     position: relative;
 }
+/* =========================================================
+   FINAL MOBILE HAMBURGER MENU FIX (APPEND ONLY)
+   ========================================================= */
+
+/* Ensure hamburger button is visible & clickable */
+.mobile-menu-btn {
+    display: block !important;
+    position: relative;
+    z-index: 9999;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Mobile nav hidden by default */
+@media (max-width: 768px) {
+    nav ul {
+        display: none !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        flex-direction: column;
+        padding: 20px 0;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        z-index: 9998;
+    }
+
+    /* Show menu when active */
+    nav ul.active {
+        display: flex !important;
+    }
+
+    nav ul li {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        color: #1F2933 !important;
+        font-size: 16px;
+        padding: 12px 0;
+        display: block;
+    }
+}
