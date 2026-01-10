@@ -1924,28 +1924,34 @@ footer .copyright {
     }
 }
 /* =========================================================
-   SOLIS BRAND COLOR OVERRIDES (APPEND ONLY)
-   Matches official Solis logo
+   SOLIS LIGHT BRAND COLORS (APPEND ONLY)
+   Bright, clean, solar-friendly
    ========================================================= */
 
 :root {
-    --solis-orange: #F04A23;
-    --solis-orange-dark: #D8431F;
-    --solis-yellow: #F9B233;
-    --solis-dark: #1F2933;
+    --solis-orange: #FF6A2A;
+    --solis-orange-hover: #FF824C;
+    --solis-yellow: #FFC83D;
+    --solis-light-bg: #FFF7F2;
+    --solis-text-dark: #1F2933;
 }
 
-/* Header & Navigation Accent */
+/* Header – lighter solar orange */
 header {
     background: var(--solis-orange);
 }
 
-nav a.active,
-nav a:hover {
+/* Navigation */
+nav a {
+    color: #fff;
+}
+
+nav a:hover,
+nav a.active {
     color: var(--solis-yellow);
 }
 
-/* Primary Buttons */
+/* Primary buttons */
 .btn-primary,
 .cta-button {
     background: var(--solis-orange);
@@ -1954,49 +1960,43 @@ nav a:hover {
 
 .btn-primary:hover,
 .cta-button:hover {
-    background: var(--solis-orange-dark);
+    background: var(--solis-orange-hover);
 }
 
-/* Trust Strip */
+/* Trust strip – soft gradient (not dark) */
 .trust-strip {
     background: linear-gradient(
         90deg,
-        var(--solis-orange),
-        var(--solis-yellow)
+        #FF6A2A,
+        #FFC83D
     );
 }
 
-/* Section Titles Accent */
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: var(--solis-orange);
-    margin: 15px auto 0;
-    border-radius: 2px;
+/* Light section background (optional solar feel) */
+.section-light {
+    background: var(--solis-light-bg);
 }
 
-/* EMI Button */
+/* EMI calculator button */
 .emi-box button {
     background: var(--solis-orange);
     color: #fff;
 }
 
 .emi-box button:hover {
-    background: var(--solis-orange-dark);
+    background: var(--solis-orange-hover);
 }
 
-/* Sticky Mobile Bar */
+/* Sticky mobile bar */
 .sticky-call {
     background: var(--solis-orange);
 }
 
 .sticky-whatsapp {
-    background: #25D366; /* WhatsApp brand */
+    background: #25D366;
 }
 
-/* Footer */
+/* Footer – keep dark but softer */
 footer {
-    background: var(--solis-dark);
+    background: #243447;
 }
