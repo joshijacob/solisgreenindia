@@ -1923,3 +1923,80 @@ footer .copyright {
         gap: 30px;
     }
 }
+/* =========================================================
+   SOLIS BRAND COLOR OVERRIDES (APPEND ONLY)
+   Matches official Solis logo
+   ========================================================= */
+
+:root {
+    --solis-orange: #F04A23;
+    --solis-orange-dark: #D8431F;
+    --solis-yellow: #F9B233;
+    --solis-dark: #1F2933;
+}
+
+/* Header & Navigation Accent */
+header {
+    background: var(--solis-orange);
+}
+
+nav a.active,
+nav a:hover {
+    color: var(--solis-yellow);
+}
+
+/* Primary Buttons */
+.btn-primary,
+.cta-button {
+    background: var(--solis-orange);
+    color: #fff !important;
+}
+
+.btn-primary:hover,
+.cta-button:hover {
+    background: var(--solis-orange-dark);
+}
+
+/* Trust Strip */
+.trust-strip {
+    background: linear-gradient(
+        90deg,
+        var(--solis-orange),
+        var(--solis-yellow)
+    );
+}
+
+/* Section Titles Accent */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--solis-orange);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* EMI Button */
+.emi-box button {
+    background: var(--solis-orange);
+    color: #fff;
+}
+
+.emi-box button:hover {
+    background: var(--solis-orange-dark);
+}
+
+/* Sticky Mobile Bar */
+.sticky-call {
+    background: var(--solis-orange);
+}
+
+.sticky-whatsapp {
+    background: #25D366; /* WhatsApp brand */
+}
+
+/* Footer */
+footer {
+    background: var(--solis-dark);
+}
