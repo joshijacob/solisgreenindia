@@ -667,3 +667,10 @@ document.addEventListener('DOMContentLoaded', function () {
         el.textContent = brandName;
     });
 })();
+/* ---------- EMI BUTTON EVENT BIND ---------- */
+document.addEventListener('DOMContentLoaded', function () {
+    const emiBtn = document.getElementById('emiCalcBtn');
+    if (emiBtn) {
+        emiBtn.addEventListener('click', calculateEMI);
+    }
+});
