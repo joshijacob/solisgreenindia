@@ -1721,3 +1721,153 @@ nav a[href*="kayamkulam"] {
 .seo-hero p {
     color: var(--text-light);
 }
+/* =========================================================
+   THIRUVALLA PAGE – CONVERSION ADDITIONS (APPEND ONLY)
+   ========================================================= */
+
+/* ---------- TRUST STRIP ---------- */
+.trust-strip {
+    background: var(--primary-color);
+    padding: 20px 0;
+}
+
+.trust-points {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    text-align: center;
+}
+
+.trust-points li {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+/* ---------- EMI CALCULATOR ---------- */
+.emi-section {
+    padding: 80px 0;
+}
+
+.emi-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.emi-box label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.emi-box input,
+.emi-box select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border-radius: var(--border-radius);
+    border: 2px solid #e9ecef;
+}
+
+.emi-box button {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.emi-box button:hover {
+    background: var(--primary-dark);
+}
+
+#emiResult {
+    margin-top: 15px;
+    font-size: 0.95rem;
+}
+
+.emi-disclaimer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-top: 15px;
+}
+
+/* ---------- AMC / AFTER SALES ---------- */
+.amc-section {
+    padding: 80px 0;
+    background: var(--background-light);
+}
+
+.amc-section ul {
+    max-width: 700px;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.amc-section li {
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+    font-weight: 500;
+}
+
+/* ---------- FAQ SECTION ---------- */
+.faq-section {
+    padding: 80px 0;
+}
+
+.faq-section h3 {
+    margin-top: 25px;
+    font-size: 1.1rem;
+}
+
+.faq-section p {
+    margin-top: 8px;
+    color: var(--text-light);
+}
+
+/* ---------- STICKY MOBILE CONTACT BAR ---------- */
+.sticky-contact-bar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sticky-contact-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+    }
+
+    .sticky-contact-bar a {
+        flex: 1;
+        text-align: center;
+        padding: 14px;
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .sticky-call {
+        background: #2e7d32;
+    }
+
+    .sticky-whatsapp {
+        background: #25D366;
+    }
+}
+
+/* ---------- SEO PAGE SPACING SAFETY ---------- */
+.seo-hero + .trust-strip {
+    margin-top: -20px;
+}
