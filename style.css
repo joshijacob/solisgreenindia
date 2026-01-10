@@ -1871,3 +1871,55 @@ nav a[href*="kayamkulam"] {
 .seo-hero + .trust-strip {
     margin-top: -20px;
 }
+/* =========================================================
+   FOOTER ALIGNMENT FIX – THIRUVALLA & LOCATION PAGES
+   (APPEND ONLY – NO EXISTING CSS MODIFIED)
+   ========================================================= */
+
+/* Override grid only when fewer columns exist */
+footer .footer-content {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* Improve text alignment & spacing */
+footer .footer-col {
+    max-width: 420px;
+}
+
+/* Logo alignment */
+footer .footer-logo-img {
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Address block readability */
+footer .footer-col p {
+    line-height: 1.7;
+}
+
+/* Contact links spacing */
+footer .footer-col a {
+    display: inline-block;
+    margin-top: 6px;
+}
+
+/* Reduce excessive footer height */
+footer {
+    padding: 50px 0 15px;
+}
+
+/* Center copyright properly */
+footer .copyright {
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* Mobile refinement */
+@media (max-width: 768px) {
+    footer .footer-content {
+        text-align: left;
+        gap: 30px;
+    }
+}
