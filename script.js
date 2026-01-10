@@ -674,3 +674,16 @@ document.addEventListener('DOMContentLoaded', function () {
         emiBtn.addEventListener('click', calculateEMI);
     }
 });
+/* =========================================================
+   FINAL MOBILE HAMBURGER MENU JS FIX (APPEND ONLY)
+   ========================================================= */
+
+document.addEventListener('click', function (e) {
+    const menuBtn = e.target.closest('#mobileMenuBtn');
+    if (!menuBtn) return;
+
+    const nav = document.getElementById('mainNav');
+    if (!nav) return;
+
+    nav.classList.toggle('active');
+});
