@@ -599,3 +599,71 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
+/* =========================================================
+   THIRUVALLA PAGE – CONVERSION ADDITIONS (APPEND ONLY)
+   ========================================================= */
+
+/* ---------- EMI CALCULATOR LOGIC ---------- */
+function calculateEMI() {
+    const loanAmountEl = document.getElementById('loanAmount');
+    const loanPeriodEl = document.getElementById('loanPeriod');
+    const interestRateEl = document.getElementById('interestRate');
+    const resultBox = document.getElementById('emiResult');
+
+    if (!loanAmountEl || !loanPeriodEl || !interestRateEl || !resultBox) return;
+
+    const loanAmount = parseFloat(loanAmountEl.value);
+    const years = parseInt(loanPeriodEl.value);
+    const annualRate = parseFloat(interestRateEl.value);
+
+    if (!loanAmount || !years || !annualRate) {
+        resultBox.innerHTML = '<p style="color:red;">Please fill all fields correctly.</p>';
+        return;
+    }
+
+    const monthlyRate = annualRate / 12 / 100;
+    const months = years * 12;
+
+    const emi =
+        (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+        (Math.pow(1 + monthlyRate, months) - 1);
+
+    const totalPayable = emi * months;
+    const totalInterest = totalPayable - loanAmount;
+
+    resultBox.innerHTML = `
+        <p><strong>Monthly EMI:</strong> ₹${emi.toFixed(0)}</p>
+        <p><strong>Total Interest:</strong> ₹${totalInterest.toFixed(0)}</p>
+        <p><strong>Total Amount Payable:</strong> ₹${totalPayable.toFixed(0)}</p>
+    `;
+
+    if (typeof trackEvent === 'function') {
+        trackEvent('EMI', 'calculate', 'Thiruvalla Page', emi.toFixed(0));
+    }
+}
+
+/* ---------- STICKY CONTACT BAR CLICK TRACKING ---------- */
+document.addEventListener('DOMContentLoaded', function () {
+    const stickyLinks = document.querySelectorAll('.sticky-contact-bar a');
+
+    stickyLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            if (typeof trackEvent === 'function') {
+                trackEvent(
+                    'Contact',
+                    'sticky_bar_click',
+                    this.className || 'sticky-action'
+                );
+            }
+        });
+    });
+});
+
+/* ---------- BRAND SAFETY (NON-INTRUSIVE CHECK) ---------- */
+/* Ensures no accidental old brand references are used dynamically */
+(function brandSafetyCheck() {
+    const brandName = 'Solis Green Energy Solutions';
+    document.querySelectorAll('[data-brand]').forEach(el => {
+        el.textContent = brandName;
+    });
+})();
