@@ -2109,3 +2109,44 @@ header {
         background: rgba(255,255,255,0.3);
     }
 }
+/* ===========================
+   Two-Tone Header Background
+   =========================== */
+
+header {
+  background: none;
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+/* LEFT – LOGO ZONE */
+.header-container > a {
+  background: #FFF7ED;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* RIGHT – MENU ZONE */
+nav {
+  background: #FF6A1F;
+}
+
+/* Menu text */
+nav a {
+  color: #ffffff !important;
+}
+
+/* Active menu */
+nav a.active {
+  color: #FFE2CC !important;
+}
+
+/* CTA button */
+nav .cta-button {
+  background: #ffffff;
+  color: #FF6A1F !important;
+}
