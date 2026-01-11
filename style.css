@@ -2476,3 +2476,53 @@ header {
     display: block;
   }
 }
+/* ===============================
+   MOBILE MENU – FINAL FIX
+   =============================== */
+@media (max-width: 768px) {
+
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 12px;
+    right: 12px;
+    background: #ff7a18;
+    border-radius: 16px;
+    padding: 16px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    z-index: 9999;
+  }
+
+  nav ul.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  nav ul li {
+    list-style: none;
+    text-align: center;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 14px 20px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  nav ul li a:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .mobile-menu-btn {
+    display: block;
+    font-size: 26px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ff7a18;
+  }
+}
