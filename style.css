@@ -2150,3 +2150,124 @@ nav .cta-button {
   background: #ffffff;
   color: #FF6A1F !important;
 }
+/* =========================================================
+   SOLIS HEADER – LOGO SAFE + SHAPED ORANGE MENU
+   (APPEND ONLY – DO NOT REMOVE EXISTING STYLES)
+   ========================================================= */
+
+/* Header base */
+header {
+  background: #ffffff;
+}
+
+/* Header container layout */
+.header-container {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+/* LOGO AREA (LEFT – WHITE SPACE) */
+.logo-wrap {
+  background: #ffffff;
+  padding: 12px 24px;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+}
+
+.logo-img {
+  height: 46px;
+  width: auto;
+}
+
+/* MENU STRIP (RIGHT – SOLIS ORANGE) */
+.main-nav {
+  background: linear-gradient(90deg, #ff7a18, #ff9f1c);
+  flex: 1;
+  padding: 12px 40px 12px 60px;
+  position: relative;
+  border-top-left-radius: 60px;
+}
+
+/* Create angled cut between logo & menu */
+.main-nav::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 100%;
+  background: #ffffff;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* Menu items */
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.main-nav ul li a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* CTA BUTTON */
+.main-nav ul li a.cta-button {
+  background: #ffffff;
+  color: #ff7a18 !important;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+/* Hover effects */
+.main-nav ul li a:hover {
+  opacity: 0.9;
+}
+
+/* ==========================
+   MOBILE ADJUSTMENTS
+   ========================== */
+@media (max-width: 768px) {
+
+  .header-container {
+    padding: 10px 16px;
+  }
+
+  .logo-wrap {
+    min-width: auto;
+    padding: 8px 12px;
+  }
+
+  .main-nav {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .main-nav::before {
+    display: none;
+  }
+
+  nav ul {
+    background: #ff7a18;
+    margin-top: 10px;
+    border-radius: 12px;
+  }
+
+  nav ul li a {
+    color: #ffffff !important;
+  }
+
+  nav ul li a.cta-button {
+    background: #ffffff;
+    color: #ff7a18 !important;
+    text-align: center;
+  }
+}
