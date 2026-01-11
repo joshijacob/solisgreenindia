@@ -2375,3 +2375,104 @@ header {
     display: block;
   }
 }
+/* =====================================
+   SOLIS HEADER — FINAL APPLIED VERSION
+   ===================================== */
+
+.solis-header {
+  background: #ffffff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid #eee;
+}
+
+.header-inner {
+  max-width: 1300px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 10px 20px;
+}
+
+/* LOGO */
+.header-logo img {
+  height: 44px;
+}
+
+/* CENTER ORANGE MENU */
+.header-menu {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 28px;
+  padding: 14px 48px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff7a18, #ff9f1c);
+}
+
+.header-menu a {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* RIGHT CTA */
+.header-cta {
+  margin-left: auto;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.contact-btn {
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 2px solid #ff7a18;
+  color: #ff7a18;
+  text-decoration: none;
+  font-weight: 700;
+  background: #ffffff;
+}
+
+.whatsapp-btn {
+  color: #25d366;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* HAMBURGER */
+.mobile-menu-btn {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .header-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 15px;
+    right: 15px;
+    transform: none;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .header-menu.active {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+}
