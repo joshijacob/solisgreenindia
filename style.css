@@ -542,35 +542,6 @@ header .logo-img {
   margin: 0 auto 30px;
 }
 
-/* ---------- BREADCRUMB ---------- */
-.breadcrumb {
-  background: var(--light-bg);
-  padding: 15px 0;
-  font-size: 0.9rem;
-  margin-top: 80px;
-}
-
-.breadcrumb .container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.breadcrumb a {
-  color: var(--text-medium);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.breadcrumb a:hover {
-  color: var(--solis-orange);
-}
-
-.breadcrumb span {
-  color: var(--text-dark);
-  font-weight: 500;
-}
-
 /* ---------- BENEFITS BAR ---------- */
 .benefits-bar {
   background: var(--light-bg);
