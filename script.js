@@ -687,3 +687,21 @@ document.addEventListener('click', function (e) {
 
     nav.classList.toggle('active');
 });
+/* MOBILE MENU TOGGLE – FINAL */
+document.addEventListener("DOMContentLoaded", function () {
+  const menuBtn = document.getElementById("mobileMenuBtn");
+  const navMenu = document.getElementById("mainNav");
+
+  if (!menuBtn || !navMenu) return;
+
+  menuBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    navMenu.classList.toggle("active");
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!navMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+      navMenu.classList.remove("active");
+    }
+  });
+});
