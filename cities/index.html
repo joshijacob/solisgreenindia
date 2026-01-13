@@ -3,40 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solis Green India provides professional solar panel installation and maintenance across Kerala. Service areas include Pathanamthitta, Kottayam, Alappuzha and Kollam districts with local support teams.">
-    <meta name="keywords" content="solar company kerala service areas, solar installation pathanamthitta, solar company kottayam, solar panels alappuzha, solar installers kollam">
+    
+    <!-- SEO Meta Tags -->
+    <title>Solar Service Areas in Kerala | Solis Green India - Pathanamthitta, Kottayam, Alappuzha</title>
+    <meta name="description" content="Solis Green India provides solar installation across Kerala. Service areas include Pathanamthitta, Kottayam, Alappuzha & Kollam districts with local teams.">
+    <meta name="keywords" content="solar service areas Kerala, solar installation towns, solar company near me, solar panel installers local">
     <meta name="author" content="Solis Green India">
-
-    <!-- Preload critical hero images -->
-    <link rel="preload" href="../images/hero/hero-image-1.webp" as="image" type="image/webp">
-    <link rel="preload" href="../images/hero/hero-image-2.webp" as="image" type="image/webp">
-
+    
+    <!-- OG Tags -->
+    <meta property="og:title" content="Solar Service Areas in Kerala | Solis Green India">
+    <meta property="og:description" content="Local solar experts serving all major towns in South Kerala districts.">
+    <meta property="og:image" content="https://www.solisgreenindia.in/images/service-areas/hero-areas.webp">
+    <meta property="og:url" content="https://www.solisgreenindia.in/cities/">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="../images/service-areas/hero-areas.webp" as="image" type="image/webp">
+    
     <!-- Google Tag Manager -->
-    <script>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-5C2D5BG9');
-    </script>
-    <!-- End Google Tag Manager -->
-
-    <title>Solar Service Areas in Kerala | Solis Green India</title>
-
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Service Areas Specific Styles -->
+    <style>
+        /* Service Areas Hero */
+        .areas-hero {
+            background: linear-gradient(135deg, rgba(31, 41, 51, 0.9), rgba(23, 162, 184, 0.9)),
+                        url('../images/service-areas/hero-areas.webp') center/cover no-repeat;
+            color: var(--white);
+            padding: 120px 0 80px;
+            margin-top: 80px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .areas-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .areas-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        /* Districts Grid */
+        .districts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .district-card-large {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            border-top: 4px solid var(--solis-orange);
+        }
+        
+        .district-card-large:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .district-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--solis-dark), #2c3e50);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .district-header i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .district-header h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        
+        .district-body {
+            padding: 30px;
+        }
+        
+        .towns-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .town-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-medium);
+            font-size: 0.95rem;
+        }
+        
+        .town-item i {
+            color: var(--solis-green);
+            font-size: 0.8rem;
+        }
+        
+        .district-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .district-stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--solis-orange);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        /* Interactive Map Section */
+        .interactive-map {
+            margin: 80px 0;
+            background: var(--light-bg);
+            padding: 60px 0;
+            border-radius: var(--radius-md);
+        }
+        
+        .map-container-interactive {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .map-visual {
+            position: relative;
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .district-dot {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: var(--solis-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            transform: translate(-50%, -50%);
+        }
+        
+        .district-dot:hover {
+            transform: translate(-50%, -50%) scale(1.3);
+            box-shadow: 0 0 0 8px rgba(255, 106, 42, 0.3);
+        }
+        
+        .district-dot.active {
+            background: var(--solis-blue);
+            box-shadow: 0 0 0 5px rgba(23, 162, 184, 0.3);
+        }
+        
+        .district-info-panel {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Town Search */
+        .town-search-section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            margin: 40px 0;
+        }
+        
+        .search-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--solis-orange);
+            box-shadow: 0 0 0 3px rgba(255, 106, 42, 0.1);
+        }
+        
+        .search-results {
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+        
+        .search-result-item {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-result-item:hover {
+            background: var(--light-bg);
+        }
+        
+        /* Service Coverage Banner */
+        .coverage-banner {
+            background: linear-gradient(135deg, var(--solis-orange), var(--solis-yellow));
+            color: var(--white);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .coverage-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .coverage-stat {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            backdrop-filter: blur(10px);
+        }
+        
+        .coverage-stat .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .coverage-stat .label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Local Support Section */
+        .local-support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .support-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .support-card i {
+            font-size: 2.5rem;
+            color: var(--solis-orange);
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .map-container-interactive {
+                grid-template-columns: 1fr;
+            }
+            
+            .districts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .areas-hero {
+                padding: 100px 0 60px;
+                margin-top: 70px;
+            }
+            
+            .areas-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .district-body {
+                padding: 20px;
+            }
+            
+            .town-search-section {
+                padding: 25px;
+            }
+            
+            .coverage-banner {
+                padding: 30px;
+            }
+            
+            .coverage-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .areas-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .towns-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .district-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
-                height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
     <!-- Floating CTA -->
     <div class="floating-cta">
         <div class="cta-main-btn" id="ctaMainBtn">
@@ -53,7 +387,7 @@
             <a href="tel:8606849474" class="cta-option" data-tooltip="Support Call">
                 <i class="fas fa-headset"></i>
             </a>
-            <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
+            <a href="#areas-quote" class="cta-option" data-tooltip="Quick Quote">
                 <i class="fas fa-file-alt"></i>
             </a>
             <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="Primary WhatsApp" target="_blank">
@@ -64,362 +398,401 @@
             </a>
         </div>
     </div>
-
-    <!-- Quick Quote Modal -->
-    <div class="modal" id="quickQuoteModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Get Quick Solar Quote</h3>
-            <form class="quick-quote-form" id="modalQuoteForm">
-                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Phone Number" required>
-                </div>
-                <div class="form-group">
-                    <select name="service" required>
-                        <option value="">Select Service</option>
-                        <option value="residential">Residential Solar</option>
-                        <option value="commercial">Commercial Solar</option>
-                        <option value="industrial">Industrial Solar</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="location" placeholder="Your Location/City">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">
-                    <i class="fas fa-bolt"></i> Get Instant Quote
-                </button>
-            </form>
-            <div class="emergency-contact-modal">
-                <h4>Need Immediate Help?</h4>
-                <div class="emergency-numbers">
-                    <a href="tel:8301849474" class="emergency-number">
-                        <i class="fas fa-phone"></i> Primary: 8301849474
-                    </a>
-                    <a href="tel:9539316623" class="emergency-number">
-                        <i class="fas fa-phone-alt"></i> Alternate: 9539316623
-                    </a>
-                    <a href="tel:8606849474" class="emergency-number">
-                        <i class="fas fa-headset"></i> Support: 8606849474
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <a href="../">
-                    <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+    
+    <!-- Unified Header -->
+    <header class="solis-header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="/">
+                    <img src="/images/logo/logo.png" alt="Solis Green Energy Solutions">
                 </a>
             </div>
-
-            <div class="header-contact">
-                <a href="tel:8301849474" class="contact-link">
-                    <i class="fas fa-phone"></i>
-                    <span>Primary: 8301849474</span>
-                </a>
-                <a href="tel:9539316623" class="contact-link">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>Alternate: 9539316623</span>
-                </a>
-            </div>
-
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="../">Home</a></li>
-                    <li><a href="../services/">Services</a></li>
-                    <li><a href="../cities/" class="active">Service Areas</a></li>
-                    <li><a href="../about/">About Us</a></li>
-                    <li><a href="../projects/">Projects</a></li>
-                    <li><a href="../contact/" class="cta-button">Contact</a></li>
-                </ul>
+            
+            <nav class="header-menu" id="mainNav">
+                <a href="/">Home</a>
+                <a href="/services/">Services</a>
+                <a href="/cities/" class="active">Service Areas</a>
+                <a href="/about/">About</a>
+                <a href="/projects/">Projects</a>
+                <a href="/contact/">Contact</a>
             </nav>
+            
+            <div class="header-cta">
+                <a href="tel:8301849474" class="contact-btn">Call Now</a>
+                <a href="https://wa.me/918301849474" target="_blank" class="whatsapp-btn">WhatsApp</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
-
-    <!-- Hero Slider (using local hero images) -->
-    <section class="hero-slider" id="service-areas-hero">
-        <div class="particles-container">
-            <div class="particles"></div>
-            <div class="solar-flare"></div>
-        </div>
-
-        <div class="hero-slides">
-            <!-- Slide 1 -->
-            <div class="hero-slide active">
-                <img src="../images/hero/hero-image-1.webp"
-                     alt="Solar panels installed on rooftop in Kerala"
-                     class="hero-bg-image"
-                     loading="eager"
-                     fetchpriority="high"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-blue"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">☀️</div>
-                    <div class="floating-element element-2">⚡</div>
-                    <div class="floating-element element-3">🌱</div>
-                </div>
-                <div class="hero-content container">
-                    <h1>Solar Installation Across South Kerala</h1>
-                    <p>Local solar experts serving homes and businesses in Pathanamthitta, Kottayam, Alappuzha and Kollam.</p>
-                    <div class="hero-buttons">
-                        <div class="contact-options">
-                            <a href="tel:8301849474" class="btn btn-primary pulse-animation">
-                                <i class="fas fa-phone"></i> Call Primary: 8301849474
-                            </a>
-                            <a href="../contact/" class="btn btn-secondary">
-                                <i class="fas fa-map-marker-alt"></i> Visit Our Office
-                            </a>
-                        </div>
-                        <div class="whatsapp-options">
-                            <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
-                                <i class="fab fa-whatsapp"></i> WhatsApp Us
-                            </a>
-                        </div>
-                    </div>
+    
+    <!-- Service Areas Hero -->
+    <section class="areas-hero">
+        <div class="container">
+            <h1>Solar Service Areas Across Kerala</h1>
+            <p>Local solar experts serving homes, businesses, and industries in all major towns of South Kerala. Find your location below.</p>
+            <div class="hero-buttons">
+                <div class="contact-options">
+                    <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                        <i class="fas fa-phone"></i> Call Local Team
+                    </a>
+                    <a href="#town-search" class="btn btn-secondary">
+                        <i class="fas fa-search-location"></i> Search Your Town
+                    </a>
                 </div>
             </div>
-
-            <!-- Slide 2 -->
-            <div class="hero-slide">
-                <img src="../images/hero/hero-image-2.webp"
-                     alt="Solar power plant and electric grid connection"
-                     class="hero-bg-image"
-                     loading="lazy"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-green"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">💡</div>
-                    <div class="floating-element element-2">🏠</div>
-                    <div class="floating-element element-3">💰</div>
-                </div>
-                <div class="hero-content container">
-                    <h1>Local Teams in Every Major Town</h1>
-                    <p>Fast installation and quick service support from our dedicated local solar teams.</p>
-                    <div class="hero-buttons">
-                        <div class="contact-options">
-                            <a href="../solar-company-in-pathanamthitta/" class="btn btn-primary">
-                                <i class="fas fa-map-marker-alt"></i> Pathanamthitta District
-                            </a>
-                            <a href="../solar-company-in-kottayam/" class="btn btn-secondary">
-                                <i class="fas fa-map-marker-alt"></i> Kottayam District
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="hero-slide">
-                <img src="../images/hero/hero-image-3.webp"
-                     alt="Technician installing solar panels in Kerala"
-                     class="hero-bg-image"
-                     loading="lazy"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-purple"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">🔧</div>
-                    <div class="floating-element element-2">⭐</div>
-                    <div class="floating-element element-3">🏆</div>
-                </div>
-                <div class="hero-content container">
-                    <h1>500+ Installations Across Multiple Towns</h1>
-                    <p>Trusted solar partner for Thiruvalla, Changanacherry, Cherthala, Karunagapally and many more towns.</p>
-                    <div class="hero-buttons">
-                        <div class="contact-options">
-                            <a href="../projects/" class="btn btn-primary">
-                                <i class="fas fa-images"></i> View Our Projects
-                            </a>
-                            <a href="../services/" class="btn btn-secondary">
-                                <i class="fas fa-bolt"></i> Explore Services
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 4 (optional extra image) -->
-            <div class="hero-slide">
-                <img src="../images/hero/hero-image-4.webp"
-                     alt="Large solar panel field generating clean electricity"
-                     class="hero-bg-image"
-                     loading="lazy"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-blue"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">🌞</div>
-                    <div class="floating-element element-2">🌍</div>
-                    <div class="floating-element element-3">⚡</div>
-                </div>
-                <div class="hero-content container">
-                    <h1>Clean Energy for Every Home & Business</h1>
-                    <p>From small homes to large industries, Solis Green India delivers reliable solar power.</p>
-                    <div class="hero-buttons">
-                        <div class="contact-options">
-                            <a href="tel:8301849474" class="btn btn-primary">
-                                <i class="fas fa-phone"></i> Talk to Our Team
-                            </a>
-                            <a href="#districts" class="btn btn-secondary">
-                                <i class="fas fa-map"></i> View Service Areas
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slider Controls -->
-        <button class="slider-prev" aria-label="Previous slide">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="slider-next" aria-label="Next slide">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-
-        <!-- Slider Dots -->
-        <div class="slider-dots">
-            <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
-            <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
-            <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
-            <button class="dot" data-slide="3" aria-label="Go to slide 4"></button>
         </div>
     </section>
-
-    <!-- Intro Section -->
-    <section class="quick-services" id="districts">
-        <div class="container">
-            <h2 class="section-title">Solar Service Areas in Kerala</h2>
-            <p class="text-center">
-                Solis Green India provides CEB-approved solar installation, subsidy assistance and maintenance
-                across major districts and towns of South Kerala. Choose your district below to see detailed
-                information.
-            </p>
-
-            <!-- District Cards linking to district pages -->
-            <div class="services-grid">
-                <!-- Pathanamthitta -->
-                <div class="service-card">
+    
+    <!-- Districts Overview -->
+    <section class="container">
+        <h2 class="section-title">Districts We Serve</h2>
+        <p class="section-subtitle">Professional solar installation and maintenance across these districts</p>
+        
+        <div class="districts-grid">
+            <!-- Pathanamthitta -->
+            <div class="district-card-large">
+                <div class="district-header">
                     <i class="fas fa-map-marker-alt"></i>
                     <h3>Pathanamthitta District</h3>
-                    <p>Head office at Thiruvalla with dedicated solar installation teams across Pathanamthitta district.</p>
-                    <div class="service-features">
-                        <!-- Towns visible for SEO, NOT linked -->
-                        <span><i class="fas fa-check"></i> Thiruvalla</span>
-                        <span><i class="fas fa-check"></i> Ranni / Rami</span>
-                        <span><i class="fas fa-check"></i> Adoor</span>
-                        <span><i class="fas fa-check"></i> Kozhencherry</span>
-                        <span><i class="fas fa-check"></i> Pandalam</span>
-                        <span><i class="fas fa-check"></i> Mallappally</span>
-                        <span><i class="fas fa-check"></i> Elanthoor</span>
-                        <span><i class="fas fa-check"></i> Komi & nearby areas</span>
-                    </div>
-                    <a href="../solar-company-in-pathanamthitta/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Pathanamthitta Details
-                    </a>
+                    <p>Our Headquarters District</p>
                 </div>
-
-                <!-- Kottayam -->
-                <div class="service-card">
-                    <i class="fas fa-city"></i>
-                    <h3>Kottayam District</h3>
-                    <p>Complete solar solutions for homes, shops, schools and institutions in Kottayam district.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> Changanacherry</span>
-                        <span><i class="fas fa-check"></i> Pala</span>
-                        <span><i class="fas fa-check"></i> Kanjirappally</span>
-                        <span><i class="fas fa-check"></i> Vaikom</span>
-                        <span><i class="fas fa-check"></i> Ettumanoor</span>
-                        <span><i class="fas fa-check"></i> Kumarakom</span>
-                        <span><i class="fas fa-check"></i> Kuravilangad</span>
-                        <span><i class="fas fa-check"></i> Mundakayam & Vakaihanam</span>
+                <div class="district-body">
+                    <p>Complete solar solutions with local teams in every major town. Fast installation and dedicated support.</p>
+                    
+                    <div class="towns-list">
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Thiruvalla</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Ranni / Rami</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Adoor</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Kozhencherry</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Pandalam</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Mallappally</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Elanthoor</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Kozhuvalloor</span>
+                        </div>
                     </div>
-                    <a href="../solar-company-in-kottayam/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Kottayam Details
-                    </a>
-                </div>
-
-                <!-- Alappuzha -->
-                <div class="service-card">
-                    <i class="fas fa-water"></i>
-                    <h3>Alappuzha District</h3>
-                    <p>Specialised solar solutions for coastal and backwater belt homes and resorts.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> Cherthala</span>
-                        <span><i class="fas fa-check"></i> Haripad</span>
-                        <span><i class="fas fa-check"></i> Mavelikkara</span>
-                        <span><i class="fas fa-check"></i> Kayamkulam</span>
-                        <span><i class="fas fa-check"></i> Chengannur</span>
-                        <span><i class="fas fa-check"></i> Ambalapuzha</span>
+                    
+                    <div class="district-stats">
+                        <div class="district-stat">
+                            <span class="stat-number">200+</span>
+                            <span class="stat-label">Installations</span>
+                        </div>
+                        <div class="district-stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Local Support</span>
+                        </div>
+                        <div class="district-stat">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Local Teams</span>
+                        </div>
                     </div>
-                    <a href="../solar-company-in-alappuzha/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Alappuzha Details
-                    </a>
-                </div>
-
-                <!-- Kollam -->
-                <div class="service-card">
-                    <i class="fas fa-anchor"></i>
-                    <h3>Kollam District</h3>
-                    <p>Reliable solar power for homes, flats, shops and industries in Kollam district.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> Karunagapally</span>
-                        <span><i class="fas fa-check"></i> Punalur</span>
-                        <span><i class="fas fa-check"></i> Kottarakara</span>
-                        <span><i class="fas fa-check"></i> Paravur</span>
-                        <span><i class="fas fa-check"></i> Sasthamkotta</span>
-                        <span><i class="fas fa-check"></i> Anchal & nearby towns</span>
-                    </div>
-                    <a href="../solar-company-in-kollam/" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Kollam Details
+                    
+                    <a href="/solar-company-in-pathanamthitta/" class="btn btn-outline btn-block mt-3">
+                        <i class="fas fa-map-marker-alt"></i> View Pathanamthitta Details
                     </a>
                 </div>
             </div>
-
-            <!-- Extra CTA under districts -->
-            <div class="services-cta">
-                <div class="cta-content">
-                    <h3>Don’t See Your Town Listed?</h3>
-                    <p>We also serve many nearby villages and panchayats around these towns. Call us to confirm availability.</p>
-                    <div class="cta-buttons">
-                        <a href="tel:8301849474" class="btn btn-primary">
-                            <i class="fas fa-phone"></i> Call Our Service Desk
-                        </a>
-                        <a href="#quick-quote" class="btn btn-secondary">
-                            <i class="fas fa-bolt"></i> Get Free Site Survey
-                        </a>
+            
+            <!-- Kottayam -->
+            <div class="district-card-large">
+                <div class="district-header">
+                    <i class="fas fa-city"></i>
+                    <h3>Kottayam District</h3>
+                    <p>Commercial & Residential Focus</p>
+                </div>
+                <div class="district-body">
+                    <p>Specialized solar solutions for businesses, schools, and homes with local installation teams.</p>
+                    
+                    <div class="towns-list">
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Changanacherry</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Pala</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Kanjirappally</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Vaikom</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Ettumanoor</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Kumarakom</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Kuravilangad</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Mundakayam</span>
+                        </div>
                     </div>
+                    
+                    <div class="district-stats">
+                        <div class="district-stat">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Installations</span>
+                        </div>
+                        <div class="district-stat">
+                            <span class="stat-number">2-3 Days</span>
+                            <span class="stat-label">Installation Time</span>
+                        </div>
+                        <div class="district-stat">
+                            <span class="stat-number">40%</span>
+                            <span class="stat-label">Subsidy Available</span>
+                        </div>
+                    </div>
+                    
+                    <a href="/solar-company-in-kottayam/" class="btn btn-outline btn-block mt-3">
+                        <i class="fas fa-map-marker-alt"></i> View Kottayam Details
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Alappuzha -->
+            <div class="district-card-large">
+                <div class="district-header">
+                    <i class="fas fa-water"></i>
+                    <h3>Alappuzha District</h3>
+                    <p>Coastal & Backwater Specialists</p>
+                </div>
+                <div class="district-body">
+                    <p>Specialized solutions for coastal areas and backwater tourism properties with corrosion-resistant systems.</p>
+                    
+                    <div class="towns-list">
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Cherthala</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Haripad</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Mavelikkara</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Kayamkulam</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Chengannur</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Ambalapuzha</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Kuttanad</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Karthikappally</span>
+                        </div>
+                    </div>
+                    
+                    <div class="district-stats">
+                        <div class="district-stat">
+                            <span class="stat-number">120+</span>
+                            <span class="stat-label">Installations</span>
+                        </div>
+                        <div class="district-stat">
+                            <span class="stat-number">Coastal</span>
+                            <span class="stat-label">Specialization</span>
+                        </div>
+                        <div class="district-stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Emergency Support</span>
+                        </div>
+                    </div>
+                    
+                    <a href="/solar-company-in-alappuzha/" class="btn btn-outline btn-block mt-3">
+                        <i class="fas fa-map-marker-alt"></i> View Alappuzha Details
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Kollam -->
+            <div class="district-card-large">
+                <div class="district-header">
+                    <i class="fas fa-anchor"></i>
+                    <h3>Kollam District</h3>
+                    <p>Industrial & Residential Mix</p>
+                </div>
+                <div class="district-body">
+                    <p>Complete solar solutions for industries, factories, and large residential complexes.</p>
+                    
+                    <div class="towns-list">
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Karunagapally</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Punalur</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Kottarakara</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Paravur</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Sasthamkotta</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Anchal</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Kundara</span>
+                        </div>
+                        <div class="town-item">
+                            <i class="fas fa-check"></i>
+                            <span>Chathannoor</span>
+                        </div>
+                    </div>
+                    
+                    <div class="district-stats">
+                        <div class="district-stat">
+                            <span class="stat-number">80+</span>
+                            <span class="stat-label">Installations</span>
+                        </div>
+                        <div class="district-stat">
+                            <span class="stat-number">Industrial</span>
+                            <span class="stat-label">Specialization</span>
+                        </div>
+                        <div class="district-stat">
+                            <span class="stat-number">1MW+</span>
+                            <span class="stat-label">Total Capacity</span>
+                        </div>
+                    </div>
+                    
+                    <a href="/solar-company-in-kollam/" class="btn btn-outline btn-block mt-3">
+                        <i class="fas fa-map-marker-alt"></i> View Kollam Details
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Quick Quote Section (for this page) -->
-    <section class="quick-quote-section" id="quick-quote">
+    
+    <!-- Town Search -->
+    <section class="town-search-section" id="town-search">
         <div class="container">
-            <h2 class="section-title">Check Solar Availability in Your Location</h2>
+            <h2 class="section-title">Find Your Town</h2>
+            <p class="section-subtitle">Search to check if we serve your specific location</p>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Enter your town or village name..." id="townSearch">
+                <button class="btn btn-primary" id="searchBtn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            
+            <div class="search-results" id="searchResults">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+            
+            <div class="local-support-grid" style="margin-top: 40px;">
+                <div class="support-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h4>Not Listed?</h4>
+                    <p>We serve many surrounding villages. Call us to check availability.</p>
+                </div>
+                <div class="support-card">
+                    <i class="fas fa-truck"></i>
+                    <h4>Free Site Survey</h4>
+                    <p>Available in all listed towns. Book your free survey today.</p>
+                </div>
+                <div class="support-card">
+                    <i class="fas fa-headset"></i>
+                    <h4>Local Support</h4>
+                    <p>Local technicians for quick service and maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Coverage Banner -->
+    <section class="coverage-banner">
+        <div class="container">
+            <h2 style="color: var(--white);">Our Kerala Coverage</h2>
+            <p style="color: rgba(255,255,255,0.9);">Extensive solar service network across South Kerala</p>
+            
+            <div class="coverage-stats">
+                <div class="coverage-stat">
+                    <span class="number">4</span>
+                    <span class="label">Districts Covered</span>
+                </div>
+                <div class="coverage-stat">
+                    <span class="number">50+</span>
+                    <span class="label">Towns & Villages</span>
+                </div>
+                <div class="coverage-stat">
+                    <span class="number">500+</span>
+                    <span class="label">Installations</span>
+                </div>
+                <div class="coverage-stat">
+                    <span class="number">24/7</span>
+                    <span class="label">Support Available</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Service Areas Quote Form -->
+    <section class="quick-quote-section" id="areas-quote">
+        <div class="container">
+            <h2 class="section-title">Check Solar Availability in Your Area</h2>
+            <p class="section-subtitle">Get a free quote specific to your location in Kerala</p>
+            
             <div class="quote-form-container">
-                <form class="quick-quote-form" id="mainQuoteForm">
-                    <input type="hidden" name="_subject" value="🔆 Service Area Solar Quote - Solis Green India">
+                <form class="quick-quote-form" id="areasQuoteForm">
+                    <input type="hidden" name="_subject" value="📍 Service Area Quote - Solis Green India">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_captcha" value="false">
-
+                    
                     <div class="form-row">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your Name" required>
@@ -428,93 +801,129 @@
                             <input type="tel" name="phone" placeholder="Phone Number" required>
                         </div>
                     </div>
-
+                    
                     <div class="form-row">
                         <div class="form-group">
-                            <select name="service" required>
-                                <option value="">Select Service Type</option>
-                                <option value="residential">Home / Residential Solar</option>
-                                <option value="commercial">Shop / Commercial Solar</option>
-                                <option value="industrial">Industrial / Institutional</option>
+                            <select name="district" required>
+                                <option value="">Select District</option>
+                                <option value="pathanamthitta">Pathanamthitta</option>
+                                <option value="kottayam">Kottayam</option>
+                                <option value="alappuzha">Alappuzha</option>
+                                <option value="kollam">Kollam</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="location" placeholder="Town / Village Name" required>
+                            <input type="text" name="town" placeholder="Your Town / Village" required>
                         </div>
                     </div>
-
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <select name="service_type" required>
+                                <option value="">Service Type</option>
+                                <option value="residential">Home Solar</option>
+                                <option value="commercial">Shop / Business</option>
+                                <option value="industrial">Factory / Industry</option>
+                                <option value="institutional">School / Hospital</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="urgency">
+                                <option value="">Installation Timeline</option>
+                                <option value="immediate">Immediately</option>
+                                <option value="1month">Within 1 Month</option>
+                                <option value="3months">Within 3 Months</option>
+                            </select>
+                        </div>
+                    </div>
+                    
                     <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-bolt"></i> Check Service Availability
+                        <i class="fas fa-location-dot"></i> Check Availability & Get Quote
                     </button>
                 </form>
-
+                
                 <div class="quote-benefits">
-                    <h4>What You’ll Get</h4>
+                    <h4>What You Get</h4>
                     <ul>
-                        <li><i class="fas fa-check"></i> Confirmation if we serve your exact location</li>
-                        <li><i class="fas fa-check"></i> Approximate system size & cost</li>
-                        <li><i class="fas fa-check"></i> Government subsidy eligibility details</li>
-                        <li><i class="fas fa-check"></i> Free phone consultation from our experts</li>
+                        <li><i class="fas fa-check"></i> Confirmation for your exact location</li>
+                        <li><i class="fas fa-check"></i> Local team assignment details</li>
+                        <li><i class="fas fa-check"></i> Subsidy eligibility for your area</li>
+                        <li><i class="fas fa-check"></i> Free site survey by local expert</li>
                     </ul>
-
+                    
                     <div class="emergency-contact">
-                        <h4>Need Immediate Assistance?</h4>
+                        <h4>Need Local Assistance?</h4>
                         <div class="emergency-numbers">
                             <a href="tel:8301849474" class="emergency-number">
                                 <i class="fas fa-phone"></i> Primary: 8301849474
                             </a>
                             <a href="tel:9539316623" class="emergency-number">
-                                <i class="fas fa-phone"></i> Alternate: 9539316623
-                            </a>
-                            <a href="tel:8606849474" class="emergency-number">
-                                <i class="fas fa-headset"></i> Support: 8606849474
+                                <i class="fas fa-phone-alt"></i> Alternate: 9539316623
                             </a>
                         </div>
-                        <p class="emergency-note">Available 24/7 for solar emergencies and support</p>
+                        <p class="emergency-note">Local teams available in all districts</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Local Advantage Section -->
-    <section class="why-choose-us section-light">
+    
+    <!-- Why Local Matters -->
+    <section class="section-light">
         <div class="container">
-            <h2 class="section-title">Why Choose a Local Solar Company?</h2>
+            <h2 class="section-title">Benefits of Local Solar Service</h2>
             <div class="features-grid">
                 <div class="feature-item">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Fast Installation</h3>
-                    <p>Local teams mean quicker survey, installation and commissioning in your town.</p>
+                    <i class="fas fa-clock"></i>
+                    <h3>Fast Response</h3>
+                    <p>Local teams mean quicker site surveys and installation completion</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-headset"></i>
-                    <h3>Quick Support</h3>
-                    <p>Nearby service engineers for faster response in case of issues or maintenance needs.</p>
+                    <i class="fas fa-tools"></i>
+                    <h3>Quick Maintenance</h3>
+                    <p>Local technicians for prompt service and repair support</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-rupee-sign"></i>
-                    <h3>Best Value Pricing</h3>
-                    <p>Optimised system design based on local grid conditions and sunlight patterns.</p>
+                    <i class="fas fa-users"></i>
+                    <h3>Local Expertise</h3>
+                    <p>Knowledge of local grid conditions and weather patterns</p>
                 </div>
                 <div class="feature-item">
-                    <i class="fas fa-seedling"></i>
-                    <h3>Trusted by Neighbours</h3>
-                    <p>Hundreds of local references across Thiruvalla, Changanacherry, Cherthala, Karunagapally and more.</p>
+                    <i class="fas fa-handshake"></i>
+                    <h3>Trust & References</h3>
+                    <p>Hundreds of local references and testimonials</p>
                 </div>
             </div>
         </div>
     </section>
-
+    
+    <!-- Final CTA -->
+    <section class="services-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h3>Ready to Go Solar in Your Town?</h3>
+                <p>Contact our local solar experts for a free consultation and site survey</p>
+                <div class="cta-buttons">
+                    <a href="tel:8301849474" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Local Team
+                    </a>
+                    <a href="#areas-quote" class="btn btn-secondary">
+                        <i class="fas fa-file-alt"></i> Get Local Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                        <img src="/images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Leading solar company in Kerala providing rooftop and ground-mount solar systems with local service teams across multiple districts.</p>
+                    <p>Leading solar energy provider with local teams across multiple Kerala districts.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -524,83 +933,189 @@
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="../">Home</a></li>
-                        <li><a href="../services/">Services</a></li>
-                        <li><a href="../cities/">Service Areas</a></li>
-                        <li><a href="../about/">About Us</a></li>
-                        <li><a href="../projects/">Projects</a></li>
-                        <li><a href="../contact/">Contact</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/services/">Services</a></li>
+                        <li><a href="/cities/">Service Areas</a></li>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/projects/">Projects</a></li>
+                        <li><a href="/contact/">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Service Areas</h3>
                     <ul>
-                        <li><a href="../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
-                        <li><a href="../solar-company-in-kottayam/">Kottayam District</a></li>
-                        <li><a href="../solar-company-in-alappuzha/">Alappuzha District</a></li>
-                        <li><a href="../solar-company-in-kollam/">Kollam District</a></li>
+                        <li><a href="/solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
+                        <li><a href="/solar-company-in-kottayam/">Kottayam District</a></li>
+                        <li><a href="/solar-company-in-alappuzha/">Alappuzha District</a></li>
+                        <li><a href="/solar-company-in-kollam/">Kollam District</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Contact Solis Green India</h3>
+                    <h3>Contact Our Teams</h3>
                     <ul class="contact-info">
                         <li class="contact-primary">
                             <i class="fas fa-phone"></i>
                             <div>
                                 <a href="tel:8301849474">Primary: 8301849474</a>
-                                <span class="contact-label">Main Line</span>
+                                <span class="contact-label">All Districts</span>
                             </div>
                         </li>
                         <li class="contact-alternate">
                             <i class="fas fa-phone-alt"></i>
                             <div>
                                 <a href="tel:9539316623">Alternate: 9539316623</a>
-                                <span class="contact-label">Emergency / Backup</span>
+                                <span class="contact-label">Project Coordination</span>
                             </div>
                         </li>
                         <li class="contact-support">
                             <i class="fas fa-headset"></i>
                             <div>
                                 <a href="tel:8606849474">Support: 8606849474</a>
-                                <span class="contact-label">Customer Support</span>
+                                <span class="contact-label">24/7 Support</span>
                             </div>
                         </li>
-                        <li class="whatsapp-primary">
-                            <i class="fab fa-whatsapp"></i>
-                            <div>
-                                <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
-                                <span class="contact-label">Primary Chat</span>
-                            </div>
-                        </li>
-                        <li class="whatsapp-alternate">
-                            <i class="fab fa-whatsapp"></i>
-                            <div>
-                                <a href="https://wa.me/919539316623">WhatsApp: 9539316623</a>
-                                <span class="contact-label">Alternate Chat</span>
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            Opposite St. George Orthodox Church, Muthoor, Thiruvalla - 689107
-                        </li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Thiruvalla</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Professional Solar Solutions Across Kerala</p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Local Solar Solutions Across Kerala</p>
             </div>
         </div>
     </footer>
-
+    
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </button>
-
-    <script src="../script.js"></script>
+    
+    <!-- Load Universal JavaScript -->
+    <script src="/script.js"></script>
+    
+    <!-- Service Areas Specific JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Town Search Functionality
+            const townSearch = document.getElementById('townSearch');
+            const searchBtn = document.getElementById('searchBtn');
+            const searchResults = document.getElementById('searchResults');
+            
+            // All towns we serve
+            const allTowns = [
+                // Pathanamthitta
+                'Thiruvalla', 'Ranni', 'Rami', 'Adoor', 'Kozhencherry', 'Pandalam', 
+                'Mallappally', 'Elanthoor', 'Kozhuvalloor', 'Komi', 'Muthoor', 'Aranmula',
+                // Kottayam
+                'Changanacherry', 'Pala', 'Kanjirappally', 'Vaikom', 'Ettumanoor', 
+                'Kumarakom', 'Kuravilangad', 'Mundakayam', 'Vakaihanam', 'Kaduthuruthy',
+                'Bharananganam', 'Kangazha',
+                // Alappuzha
+                'Cherthala', 'Haripad', 'Mavelikkara', 'Kayamkulam', 'Chengannur',
+                'Ambalapuzha', 'Kuttanad', 'Karthikappally', 'Mannar', 'Thuravoor',
+                // Kollam
+                'Karunagapally', 'Punalur', 'Kottarakara', 'Paravur', 'Sasthamkotta',
+                'Anchal', 'Kundara', 'Chathannoor', 'Oachira', 'Kulathupuzha'
+            ];
+            
+            // District mapping
+            const townDistricts = {
+                // Pathanamthitta
+                'Thiruvalla': 'Pathanamthitta', 'Ranni': 'Pathanamthitta', 'Rami': 'Pathanamthitta',
+                'Adoor': 'Pathanamthitta', 'Kozhencherry': 'Pathanamthitta', 'Pandalam': 'Pathanamthitta',
+                'Mallappally': 'Pathanamthitta', 'Elanthoor': 'Pathanamthitta', 'Kozhuvalloor': 'Pathanamthitta',
+                'Komi': 'Pathanamthitta', 'Muthoor': 'Pathanamthitta', 'Aranmula': 'Pathanamthitta',
+                // Kottayam
+                'Changanacherry': 'Kottayam', 'Pala': 'Kottayam', 'Kanjirappally': 'Kottayam',
+                'Vaikom': 'Kottayam', 'Ettumanoor': 'Kottayam', 'Kumarakom': 'Kottayam',
+                'Kuravilangad': 'Kottayam', 'Mundakayam': 'Kottayam', 'Vakaihanam': 'Kottayam',
+                'Kaduthuruthy': 'Kottayam', 'Bharananganam': 'Kottayam', 'Kangazha': 'Kottayam',
+                // Alappuzha
+                'Cherthala': 'Alappuzha', 'Haripad': 'Alappuzha', 'Mavelikkara': 'Alappuzha',
+                'Kayamkulam': 'Alappuzha', 'Chengannur': 'Alappuzha', 'Ambalapuzha': 'Alappuzha',
+                'Kuttanad': 'Alappuzha', 'Karthikappally': 'Alappuzha', 'Mannar': 'Alappuzha',
+                'Thuravoor': 'Alappuzha',
+                // Kollam
+                'Karunagapally': 'Kollam', 'Punalur': 'Kollam', 'Kottarakara': 'Kollam',
+                'Paravur': 'Kollam', 'Sasthamkotta': 'Kollam', 'Anchal': 'Kollam',
+                'Kundara': 'Kollam', 'Chathannoor': 'Kollam', 'Oachira': 'Kollam',
+                'Kulathupuzha': 'Kollam'
+            };
+            
+            // Search function
+            function performSearch() {
+                const query = townSearch.value.trim().toLowerCase();
+                
+                if (query.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                
+                const matches = allTowns.filter(town => 
+                    town.toLowerCase().includes(query)
+                );
+                
+                if (matches.length > 0) {
+                    searchResults.innerHTML = '';
+                    matches.forEach(town => {
+                        const district = townDistricts[town] || 'Kerala';
+                        const resultItem = document.createElement('div');
+                        resultItem.className = 'search-result-item';
+                        resultItem.innerHTML = `
+                            <strong>${town}</strong> 
+                            <span style="color: var(--text-light); font-size: 0.9rem;">(${district} District)</span>
+                            <div style="font-size: 0.85rem; color: var(--solis-green); margin-top: 5px;">
+                                <i class="fas fa-check-circle"></i> We serve this area
+                            </div>
+                        `;
+                        resultItem.addEventListener('click', () => {
+                            townSearch.value = town;
+                            searchResults.style.display = 'none';
+                        });
+                        searchResults.appendChild(resultItem);
+                    });
+                    searchResults.style.display = 'block';
+                } else {
+                    searchResults.innerHTML = `
+                        <div class="search-result-item">
+                            <p>We don't show "${query}" in our database, but we might still serve it!</p>
+                            <a href="tel:8301849474" class="btn btn-outline" style="margin-top: 10px;">
+                                <i class="fas fa-phone"></i> Call to Check
+                            </a>
+                        </div>
+                    `;
+                    searchResults.style.display = 'block';
+                }
+            }
+            
+            // Event listeners
+            searchBtn.addEventListener('click', performSearch);
+            townSearch.addEventListener('input', performSearch);
+            
+            // Close search results when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!townSearch.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+            
+            // Page-specific tracking
+            if (typeof trackEvent !== 'undefined') {
+                trackEvent('Page', 'view', 'Service Areas');
+            }
+            
+            // Form enhancement
+            const areasForm = document.getElementById('areasQuoteForm');
+            if (areasForm) {
+                areasForm.addEventListener('submit', function(e) {
+                    if (typeof trackEvent !== 'undefined') {
+                        const district = this.querySelector('[name="district"]').value;
+                        const town = this.querySelector('[name="town"]').value;
+                        trackEvent('Service Areas', 'location_quote', `${district} - ${town}`);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
