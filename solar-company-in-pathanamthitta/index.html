@@ -3,382 +3,616 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="🚨 URGENT: Official KSEB data shows 7 transformers at 100% capacity in Pathanamthitta - Solar installations STOPPED in Kumbanad, HVDS Oxygen & Vyduthy Bhavan areas. Check if YOUR transformer has capacity before 90% limit reached. SBI 10-year solar loan @ 6% available.">
-    <meta name="keywords" content="KSEB transformer capacity Pathanamthitta, solar installation stopped Pathanamthitta, KSEB 90% limit solar, solar emergency Pathanamthitta, SBI 10 year solar loan, solar transformer full Pathanamthitta, Kumbanad solar capacity, solar deadline Pathanamthitta">
+    <meta name="description" content="Solis Green India - Premier solar solutions provider in Pathanamthitta district. Expert solar installation in Thiruvalla, Adoor, Ranni, Kozhencherry & all areas with government subsidy and SBI loans.">
+    <meta name="keywords" content="solar company pathanamthitta, solar installation thiruvalla, solar panels adoor, solar company ranni, solar subsidy pathanamthitta, SBI solar loan">
     <meta name="author" content="Solis Green India">
 
-    <!-- Preload critical hero image -->
-    <link rel="preload" href="../images/hero/hero-image-1.webp" as="image" type="image/webp">
+    <!-- Title with district focus -->
+    <title>Premier Solar Company in Pathanamthitta District | 150+ Installations | Solis Green India</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.solisgreenindia.in/solar-company-in-pathanamthitta/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://www.solisgreenindia.in/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.solisgreenindia.in/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.solisgreenindia.in/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.solisgreenindia.in/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="https://www.solisgreenindia.in/favicon/site.webmanifest">
+    <meta name="theme-color" content="#0b8a3a">
 
-    <!-- Favicon Implementation -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-    <link rel="manifest" href="../favicon/site.webmanifest">
-    <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#e74c3c">
-    <meta name="msapplication-TileColor" content="#e74c3c">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="shortcut icon" href="../favicon/favicon.ico" type="image/x-icon">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Premier Solar Company in Pathanamthitta District | Solis Green India">
+    <meta property="og:description" content="Expert solar solutions across Pathanamthitta district. 150+ successful installations with government subsidy and SBI loan support.">
+    <meta property="og:image" content="https://www.solisgreenindia.in/images/og/pathanamthitta-solar.jpg">
+    <meta property="og:url" content="https://www.solisgreenindia.in/solar-company-in-pathanamthitta/">
+    <meta property="og:type" content="website">
 
-    <!-- Google Tag Manager -->
-    <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5C2D5BG9');
-    </script>
-    <!-- End Google Tag Manager -->
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Solar Experts in Pathanamthitta District">
+    <meta name="twitter:description" content="Complete solar solutions for homes and businesses across Pathanamthitta.">
 
-    <title>🚨 EMERGENCY: 7 KSEB Transformers at 100% Capacity in Pathanamthitta | Solar Installations STOPPED | Solis Green India</title>
-    <link rel="stylesheet" href="../style.css">
+    <!-- Common CSS & Libraries -->
+    <link rel="stylesheet" href="https://www.solisgreenindia.in/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS for Interactive Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Chart.js for Data Visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Pathanamthitta Urgency CSS -->
+    <!-- Pathanamthitta Premium Styles -->
     <style>
         :root {
-            --urgent-red: #e74c3c;
-            --critical-red: #c0392b;
-            --urgent-orange: #e67e22;
-            --sbi-green: #27ae60;
-            --dark-bg: #2c3e50;
-            --district-purple: #8e44ad;
+            --premium-gold: #FFD700;
+            --district-blue: #2C3E50;
+            --success-green: #27AE60;
+            --info-blue: #3498DB;
+            --warning-orange: #E67E22;
         }
 
-        /* Urgency Alert */
-        .urgent-alert {
-            background: linear-gradient(90deg, var(--critical-red), var(--urgent-red));
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            animation: pulse 1s infinite;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        /* Premium Header Enhancements */
+        .solis-header {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
         }
 
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.9; }
-            100% { opacity: 1; }
+        .header-menu {
+            box-shadow: 0 4px 15px rgba(255, 106, 42, 0.2);
         }
 
-        /* KSEB Data Table Styles */
-        .kseb-data-section {
-            padding: 80px 0;
-            background: #fef7f7;
+        .header-menu a.active {
+            position: relative;
         }
 
-        .kseb-table-container {
-            background: white;
-            border-radius: 15px;
-            padding: 0;
-            margin: 40px auto;
-            max-width: 1000px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .header-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--premium-gold);
+            border-radius: 50%;
+        }
+
+        /* Premium Hero Slider */
+        .premium-slider-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+        }
+
+        .slider-progress {
+            width: 60px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
             overflow: hidden;
         }
 
-        .kseb-tabs {
-            display: flex;
-            border-bottom: 2px solid #f8f9fa;
+        .slider-progress-bar {
+            height: 100%;
+            background: var(--premium-gold);
+            width: 0%;
+            transition: width 5s linear;
         }
 
-        .kseb-tab {
-            flex: 1;
-            padding: 20px;
+        .slider-progress-bar.active {
+            width: 100%;
+        }
+
+        /* Interactive District Map */
+        .district-map-container {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin: 40px auto;
+            position: relative;
+        }
+
+        #pathanamthittaMap {
+            height: 500px;
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .map-legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .map-town-popup {
+            padding: 15px;
+            min-width: 200px;
+        }
+
+        .map-town-popup h4 {
+            color: var(--district-blue);
+            margin-bottom: 8px;
+        }
+
+        .town-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 8px;
             background: #f8f9fa;
-            border: none;
+            border-radius: 8px;
+        }
+
+        .stat-value {
             font-weight: bold;
+            color: var(--success-green);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Smart Savings Calculator */
+        .savings-calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin: 40px auto;
+            max-width: 1000px;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .calculator-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-weight: 500;
+            color: var(--district-blue);
+        }
+
+        .range-input {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: #e0e0e0;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .range-input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--solis-orange);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .range-value {
+            font-weight: bold;
+            color: var(--solis-orange);
+            font-size: 1.2rem;
+        }
+
+        .calculator-results {
+            background: linear-gradient(135deg, #2C3E50, #4A6491);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .result-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--premium-gold);
+            margin: 10px 0;
+        }
+
+        /* Video Testimonials */
+        .video-testimonials {
+            position: relative;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 106, 42, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .kseb-tab.active {
-            background: #ffeaea;
-            color: var(--critical-red);
+        .play-button:hover {
+            background: var(--solis-orange);
+            transform: translate(-50%, -50%) scale(1.1);
         }
 
-        .kseb-tab-content {
-            padding: 25px;
+        .video-content {
+            padding: 20px;
+        }
+
+        .customer-name {
+            font-weight: 600;
+            color: var(--district-blue);
+            margin-bottom: 5px;
+        }
+
+        .customer-location {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .customer-quote {
+            color: #555;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* Progressive Form */
+        .progressive-form-container {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .form-steps {
+            display: flex;
+            background: #f8f9fa;
+            padding: 0;
+        }
+
+        .form-step {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-step.active {
+            background: var(--solis-orange);
+            color: white;
+        }
+
+        .form-step.completed {
+            background: var(--success-green);
+            color: white;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            line-height: 30px;
+            margin-right: 10px;
+            color: var(--district-blue);
+            font-weight: bold;
+        }
+
+        .form-step.active .step-number,
+        .form-step.completed .step-number {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .form-step-content {
+            padding: 40px;
             display: none;
         }
 
-        .kseb-tab-content.active {
+        .form-step-content.active {
             display: block;
+            animation: fadeIn 0.5s ease;
         }
 
-        .kseb-table {
-            width: 100%;
-            border-collapse: collapse;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .kseb-table th {
-            background: #ffeaea;
-            padding: 12px;
-            text-align: left;
-            border-bottom: 2px solid #ffcccc;
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
         }
 
-        .kseb-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        .status-closed {
-            background: var(--critical-red);
+        /* Data Visualization */
+        .data-viz-section {
+            padding: 80px 0;
+            background: var(--district-blue);
             color: white;
         }
 
-        .status-critical {
-            background: var(--urgent-red);
-            color: white;
-        }
-
-        .status-high {
-            background: #f39c12;
-            color: white;
-        }
-
-        .status-medium {
-            background: #f1c40f;
-            color: #333;
-        }
-
-        /* Emergency Action Box */
-        .emergency-action {
-            background: linear-gradient(135deg, var(--critical-red), var(--urgent-red));
-            color: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 40px auto;
-            max-width: 1000px;
-            text-align: center;
-        }
-
-        /* Enhanced SBI Card */
-        .sbi-enhanced-card {
-            border: 3px solid var(--sbi-green) !important;
-            position: relative;
-            margin-top: 20px;
-        }
-
-        .recommended-badge {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: var(--sbi-green);
-            color: white;
-            padding: 5px 15px;
+        .viz-container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            padding: 30px;
+            margin: 30px 0;
         }
 
-        /* Town Urgency Badges */
-        .town-urgency-badge {
-            display: inline-block;
-            margin: 10px 0;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: bold;
+        .viz-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
         }
 
-        .urgency-critical {
-            background: var(--critical-red);
+        .viz-tab {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 25px;
             color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .urgency-high {
-            background: var(--urgent-red);
-            color: white;
+        .viz-tab.active {
+            background: var(--solis-orange);
         }
 
-        .urgency-medium {
-            background: var(--urgent-orange);
-            color: white;
-        }
-
-        .urgency-low {
-            background: var(--sbi-green);
-            color: white;
-        }
-
-        /* Capacity Meter */
-        .capacity-meter {
-            height: 30px;
-            background: #ecf0f1;
-            border-radius: 15px;
-            overflow: hidden;
-            margin: 20px 0;
+        .chart-container {
+            height: 400px;
             position: relative;
         }
 
-        .capacity-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #2ecc71, #f1c40f, var(--urgent-red));
-            border-radius: 15px;
-            transition: width 1s ease;
-            position: relative;
-        }
-
-        /* Mobile Responsive */
+        /* Premium Mobile Experience */
         @media (max-width: 768px) {
-            .urgent-alert {
-                font-size: 0.85rem;
-                padding: 12px 10px;
+            .premium-slider-controls {
+                bottom: 20px;
             }
-            
-            .kseb-tabs {
+
+            .calculator-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .savings-calculator {
+                padding: 20px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-steps {
                 flex-direction: column;
             }
-            
-            .kseb-table {
-                font-size: 0.85rem;
+
+            .form-step {
+                text-align: left;
+                padding: 15px 20px;
             }
-            
-            .kseb-table th,
-            .kseb-table td {
-                padding: 8px;
+
+            #pathanamthittaMap {
+                height: 300px;
+            }
+
+            .map-legend {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 15px;
+                width: 100%;
+            }
+
+            .viz-tabs {
+                justify-content: center;
+            }
+        }
+
+        /* Touch Optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .video-card {
+                margin: 10px;
+            }
+
+            .range-input {
+                height: 12px;
+            }
+
+            .range-input::-webkit-slider-thumb {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* iOS Safe Areas */
+        @supports (-webkit-touch-callout: none) {
+            .savings-calculator,
+            .progressive-form-container {
+                padding-bottom: env(safe-area-inset-bottom);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <!-- URGENCY ALERT BAR -->
-    <div class="urgent-alert" id="urgentAlert">
-        <div class="container">
-            <i class="fas fa-ban"></i> 
-            <strong>🚨 DISTRICT EMERGENCY:</strong> 7 KSEB transformers at <strong>100% CAPACITY</strong> in Pathanamthitta! 
-            <strong>Solar installations STOPPED</strong> in Kumbanad, HVDS Oxygen & Vyduthy Bhavan areas. 
-            <a href="#ksebData" style="color: #ffdd00; text-decoration: underline; margin-left: 10px; font-weight: bold;">
-                View Official KSEB Data →
-            </a>
-        </div>
-    </div>
-
-    <!-- Floating CTA -->
+    <!-- Google Tag Manager (noscript) if needed -->
+    
+    <!-- Premium Floating CTA -->
     <div class="floating-cta">
         <div class="cta-main-btn" id="ctaMainBtn">
             <i class="fas fa-bolt"></i>
-            <span class="pulse-dot" style="background: var(--critical-red);"></span>
+            <span class="pulse-dot"></span>
         </div>
         <div class="cta-options">
-            <a href="tel:8301849474" class="cta-option" data-tooltip="Emergency Capacity Check">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Primary Call">
                 <i class="fas fa-phone"></i>
             </a>
-            <a href="#ksebData" class="cta-option" data-tooltip="KSEB Data">
-                <i class="fas fa-database"></i>
+            <a href="#savingsCalculator" class="cta-option" data-tooltip="Savings Calculator">
+                <i class="fas fa-calculator"></i>
             </a>
-            <a href="#sbiLoan" class="cta-option" data-tooltip="SBI 10-Year Loan">
-                <i class="fas fa-university"></i>
+            <a href="#interactiveMap" class="cta-option" data-tooltip="District Map">
+                <i class="fas fa-map"></i>
             </a>
-            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp Emergency">
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp">
                 <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="#townGrid" class="cta-option" data-tooltip="Town Status">
-                <i class="fas fa-city"></i>
+            <a href="#progressiveForm" class="cta-option" data-tooltip="Quick Quote">
+                <i class="fas fa-file-alt"></i>
             </a>
         </div>
     </div>
 
-    <!-- Quick Quote Modal -->
-    <div class="modal" id="quickQuoteModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Get Quick Solar Quote</h3>
-            <form class="quick-quote-form" id="modalQuoteForm">
-                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India (Pathanamthitta)">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Phone Number" required>
-                </div>
-                <div class="form-group">
-                    <select name="service" required>
-                        <option value="">Select Service</option>
-                        <option value="residential">Residential Solar</option>
-                        <option value="commercial">Commercial Solar</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="location" placeholder="Your Location (e.g. Thiruvalla, Adoor, Ranni)">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">
-                    <i class="fas fa-bolt"></i> Get Instant Quote
-                </button>
-            </form>
-            <div class="emergency-contact-modal">
-                <h4>Need Immediate Help?</h4>
-                <div class="emergency-numbers">
-                    <a href="tel:8301849474" class="emergency-number">
-                        <i class="fas fa-phone"></i> Emergency: 8301849474
-                    </a>
-                    <a href="tel:9539316623" class="emergency-number">
-                        <i class="fas fa-phone-alt"></i> Capacity Check: 9539316623
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <a href="../">
-                    <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
+    <!-- Header (Same as Thiruvalla but Enhanced) -->
+    <header class="solis-header">
+        <div class="header-inner">
+            <!-- LOGO -->
+            <div class="header-logo">
+                <a href="https://www.solisgreenindia.in/">
+                    <img src="https://www.solisgreenindia.in/images/logo/logo.png" alt="Solis Green India - Premium Solar Solutions" loading="eager">
                 </a>
             </div>
 
-            <div class="header-contact">
-                <a href="tel:8301849474" class="contact-link">
-                    <i class="fas fa-phone"></i>
-                    <span>Emergency Solar: 8301849474</span>
-                </a>
-            </div>
-
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="../">Home</a></li>
-                    <li><a href="../services/">Services</a></li>
-                    <li><a href="../cities/" class="active">Service Areas</a></li>
-                    <li><a href="../about/">About Us</a></li>
-                    <li><a href="../projects/">Projects</a></li>
-                    <li><a href="../contact/" class="cta-button">Contact</a></li>
-                </ul>
+            <!-- CENTER MENU (Premium Version) -->
+            <nav class="header-menu" id="mainNav" aria-label="Main navigation">
+                <a href="https://www.solisgreenindia.in/">Home</a>
+                <a href="https://www.solisgreenindia.in/services/">Services</a>
+                <a href="https://www.solisgreenindia.in/cities/" class="active">Service Areas</a>
+                <a href="https://www.solisgreenindia.in/about/">About</a>
+                <a href="https://www.solisgreenindia.in/projects/">Projects</a>
             </nav>
+
+            <!-- RIGHT CTA -->
+            <div class="header-cta">
+                <a href="tel:8301849474" class="contact-btn pulse-animation">
+                    <i class="fas fa-phone"></i> Call Expert
+                </a>
+                <a href="https://wa.me/918301849474" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Slider -->
+    <!-- Hero Slider (Enhanced) -->
     <section class="hero-slider" id="pathanamthitta-hero">
         <div class="particles-container">
             <div class="particles"></div>
@@ -386,91 +620,70 @@
         </div>
 
         <div class="hero-slides">
-            <!-- Slide 1 - Emergency Focus -->
+            <!-- Slide 1: District Introduction -->
             <div class="hero-slide active">
-                <img src="../images/hero/hero-image-1.webp"
-                     alt="Emergency solar installation in Pathanamthitta due to KSEB transformer capacity"
+                <img src="https://www.solisgreenindia.in/images/hero/hero-image-4.webp"
+                     alt="Solar installations across Pathanamthitta district"
                      class="hero-bg-image"
                      loading="eager"
-                     fetchpriority="high"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-red"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">🚨</div>
-                    <div class="floating-element element-2">⚡</div>
-                    <div class="floating-element element-3">🔥</div>
-                </div>
+                     fetchpriority="high">
+                <div class="gradient-overlay gradient-blue"></div>
                 <div class="hero-content container">
-                    <h1>🚨 KSEB TRANSFORMER CAPACITY EMERGENCY IN PATHANAMTHITTA</h1>
-                    <p>7 transformers at 100% capacity - Solar installations STOPPED in multiple areas. Check YOUR transformer status NOW before 90% limit reached.</p>
+                    <h1>Premier Solar Solutions for Pathanamthitta District</h1>
+                    <p>150+ successful installations across Thiruvalla, Adoor, Ranni, Kozhencherry and all Pathanamthitta areas. Expert service with government subsidy support.</p>
                     <div class="hero-buttons">
                         <div class="contact-options">
-                            <a href="tel:8301849474" class="btn btn-primary pulse-animation" style="background: var(--critical-red); border: none;">
-                                <i class="fas fa-phone"></i> Emergency Capacity Check: 8301849474
+                            <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                                <i class="fas fa-phone"></i> District Expert: 8301849474
                             </a>
-                            <a href="#ksebData" class="btn btn-light">
-                                <i class="fas fa-database"></i> View Official KSEB Data
+                            <a href="#interactiveMap" class="btn btn-secondary">
+                                <i class="fas fa-map-marked-alt"></i> Explore Our Coverage
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Slide 2 - SBI 10-Year Loan -->
+            <!-- Slide 2: Financial Benefits -->
             <div class="hero-slide">
-                <img src="../images/hero/hero-image-2.webp"
-                     alt="SBI 10-year solar loan at 6% for Pathanamthitta residents"
+                <img src="https://www.solisgreenindia.in/images/hero/hero-image-5.webp"
+                     alt="Solar financial benefits and savings in Pathanamthitta"
                      class="hero-bg-image"
-                     loading="lazy"
-                     width="2000"
-                     height="1333">
+                     loading="lazy">
                 <div class="gradient-overlay gradient-green"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">🏦</div>
-                    <div class="floating-element element-2">💰</div>
-                    <div class="floating-element element-3">🔒</div>
-                </div>
                 <div class="hero-content container">
-                    <h1>SBI 10-Year Solar Loan @ 6% - Lock Your Rate NOW</h1>
-                    <p>Only ₹1,450/month EMI for 3kW system. Secure 10-year financing before transformer capacity runs out in your area.</p>
+                    <h1>Maximize Your Solar Investment</h1>
+                    <p>₹78,000 Government Subsidy + SBI 6% Loans + 5-Year Free Maintenance. Calculate your exact savings with our smart calculator.</p>
                     <div class="hero-buttons">
                         <div class="contact-options">
-                            <a href="#sbiLoan" class="btn btn-primary" style="background: var(--sbi-green);">
-                                <i class="fas fa-university"></i> SBI 10-Year Loan Details
+                            <a href="#savingsCalculator" class="btn btn-primary">
+                                <i class="fas fa-calculator"></i> Calculate Your Savings
                             </a>
-                            <a href="tel:8301849474" class="btn btn-support">
-                                <i class="fas fa-calculator"></i> Calculate Your EMI
+                            <a href="#progressiveForm" class="btn btn-secondary">
+                                <i class="fas fa-file-invoice-dollar"></i> Get Custom Quote
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Slide 3 - Residential Focus -->
+            <!-- Slide 3: Town Coverage -->
             <div class="hero-slide">
-                <img src="../images/hero/hero-image-3.webp"
-                     alt="Residential solar systems for Pathanamthitta homes before KSEB cutoff"
+                <img src="https://www.solisgreenindia.in/images/hero/hero-image-6.webp"
+                     alt="Solar panel installation team working in Pathanamthitta"
                      class="hero-bg-image"
-                     loading="lazy"
-                     width="2000"
-                     height="1333">
+                     loading="lazy">
                 <div class="gradient-overlay gradient-purple"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">🏠</div>
-                    <div class="floating-element element-2">☀️</div>
-                    <div class="floating-element element-3">⏰</div>
-                </div>
                 <div class="hero-content container">
-                    <h1>Install Solar Before Your Transformer Reaches 90%</h1>
-                    <p>Once KSEB transformer hits 90% capacity, NO new solar installations allowed for 2-3 years. Act NOW.</p>
+                    <h1>Serving Every Corner of Pathanamthitta</h1>
+                    <p>From Thiruvalla to the remotest villages, our expert teams ensure perfect solar installations with lifetime support.</p>
                     <div class="hero-buttons">
                         <div class="contact-options">
-                            <a href="#capacityCheck" class="btn btn-primary">
-                                <i class="fas fa-search"></i> Check Your Transformer Status
+                            <a href="tel:8301849474" class="btn btn-primary">
+                                <i class="fas fa-compass"></i> Find Your Town Expert
                             </a>
-                            <a href="tel:8301849474" class="btn btn-secondary">
-                                <i class="fas fa-calendar-check"></i> Reserve Installation Slot
+                            <a href="#videoTestimonials" class="btn btn-secondary">
+                                <i class="fas fa-play-circle"></i> Watch Success Stories
                             </a>
                         </div>
                     </div>
@@ -478,13 +691,20 @@
             </div>
         </div>
 
-        <!-- Slider Controls -->
+        <!-- Enhanced Slider Controls -->
         <button class="slider-prev" aria-label="Previous slide">
             <i class="fas fa-chevron-left"></i>
         </button>
         <button class="slider-next" aria-label="Next slide">
             <i class="fas fa-chevron-right"></i>
         </button>
+
+        <!-- Premium Progress Indicators -->
+        <div class="premium-slider-controls">
+            <div class="slider-progress">
+                <div class="slider-progress-bar active" id="slideProgress"></div>
+            </div>
+        </div>
 
         <!-- Slider Dots -->
         <div class="slider-dots">
@@ -494,646 +714,452 @@
         </div>
     </section>
 
-    <!-- KSEB Official Data Section -->
-    <section id="ksebData" class="kseb-data-section">
+    <!-- Interactive District Map -->
+    <section class="section-light" id="interactiveMap">
         <div class="container">
-            <h2 class="section-title" style="color: var(--critical-red);">
-                <i class="fas fa-database"></i> OFFICIAL KSEB TRANSFORMER DATA - Pathanamthitta District
-            </h2>
-            <p class="section-subtitle">Live data from KSEB Self Services Portal (Updated: 23-12-2025 11:10-11:13 AM)</p>
+            <h2 class="section-title">Explore Our Pathanamthitta Coverage</h2>
+            <p class="section-subtitle">Interactive map showing our service areas, installation density, and town-specific information</p>
             
-            <!-- Emergency Summary -->
-            <div style="background: #ffeaea; border: 2px solid var(--critical-red); border-radius: 15px; padding: 25px; margin: 30px auto 40px; max-width: 1000px;">
-                <h3 style="color: var(--critical-red); margin-bottom: 20px; text-align: center;">
-                    <i class="fas fa-exclamation-triangle"></i> DISTRICT-WIDE SOLAR CAPACITY EMERGENCY
-                </h3>
+            <div class="district-map-container">
+                <div id="pathanamthittaMap"></div>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
-                    <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(192, 57, 43, 0.1);">
-                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--critical-red);">7</div>
-                        <div style="font-size: 0.9rem; color: #7f8c8d;">Transformers at 100%</div>
-                        <div style="font-size: 0.8rem; margin-top: 5px; color: var(--critical-red);">Solar INSTALLATIONS STOPPED</div>
+                <div class="map-legend">
+                    <h4 style="margin-bottom: 15px; color: var(--district-blue);">Coverage Legend</h4>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #27AE60;"></div>
+                        <span>High Density (50+ installations)</span>
                     </div>
-                    
-                    <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(192, 57, 43, 0.1);">
-                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--urgent-red);">6</div>
-                        <div style="font-size: 0.9rem; color: #7f8c8d;">Transformers with <5kW left</div>
-                        <div style="font-size: 0.8rem; margin-top: 5px; color: var(--urgent-red);">LESS THAN 2 DAYS CAPACITY</div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #3498DB;"></div>
+                        <span>Medium Density (20-50 installations)</span>
                     </div>
-                    
-                    <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(192, 57, 43, 0.1);">
-                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--urgent-orange);">529+ kW</div>
-                        <div style="font-size: 0.9rem; color: #7f8c8d;">Solar already installed</div>
-                        <div style="font-size: 0.8rem; margin-top: 5px; color: var(--urgent-orange);">Across 244 transformers</div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #E67E22;"></div>
+                        <span>Growing Coverage (5-20 installations)</span>
                     </div>
-                    
-                    <div style="padding: 20px; background: white; border-radius: 10px; box-shadow: 0 3px 10px rgba(192, 57, 43, 0.1);">
-                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--sbi-green);">24-48h</div>
-                        <div style="font-size: 0.9rem; color: #7f8c8d;">Time to secure capacity</div>
-                        <div style="font-size: 0.8rem; margin-top: 5px; color: var(--sbi-green);">ACT NOW OR WAIT 2-3 YEARS</div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #95A5A6;"></div>
+                        <span>New Service Areas</span>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Transformer Status Tabs -->
-            <div class="kseb-table-container">
-                <!-- Tabs Header -->
-                <div class="kseb-tabs">
-                    <button class="kseb-tab active" data-tab="critical">
-                        <i class="fas fa-ban"></i> CRITICAL (0-2kW left)
-                    </button>
-                    <button class="kseb-tab" data-tab="high">
-                        <i class="fas fa-exclamation-circle"></i> HIGH RISK (2-5kW left)
-                    </button>
-                    <button class="kseb-tab" data-tab="medium">
-                        <i class="fas fa-clock"></i> MEDIUM RISK (5-15kW left)
-                    </button>
-                </div>
-                
-                <!-- Critical Transformers Tab -->
-                <div id="criticalTab" class="kseb-tab-content active">
-                    <h4 style="color: var(--critical-red); margin-bottom: 20px;">
-                        <i class="fas fa-fire"></i> SOLAR INSTALLATIONS STOPPED IN THESE AREAS
-                    </h4>
-                    
-                    <div style="overflow-x: auto;">
-                        <table class="kseb-table">
-                            <thead>
-                                <tr>
-                                    <th>Transformer Area</th>
-                                    <th style="text-align: center;">Capacity</th>
-                                    <th style="text-align: center;">Already Installed</th>
-                                    <th style="text-align: center;">Remaining</th>
-                                    <th style="text-align: center;">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>HVDS Oxygen</strong></td>
-                                    <td style="text-align: center;">12 kW</td>
-                                    <td style="text-align: center; color: var(--critical-red);">15 kW</td>
-                                    <td style="text-align: center; color: var(--critical-red); font-weight: bold;">0 kW</td>
-                                    <td style="text-align: center;">
-                                        <span class="status-badge status-closed">
-                                            <i class="fas fa-ban"></i> CLOSED
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Kumbanad Shalem Church</strong></td>
-                                    <td style="text-align: center;">85 kW</td>
-                                    <td style="text-align: center; color: var(--critical-red);">86 kW</td>
-                                    <td style="text-align: center; color: var(--critical-red); font-weight: bold;">0 kW</td>
-                                    <td style="text-align: center;">
-                                        <span class="status-badge status-closed">
-                                            <i class="fas fa-ban"></i> CLOSED
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Vyduthy Bhavan</strong></td>
-                                    <td style="text-align: center;">51 kW</td>
-                                    <td style="text-align: center; color: var(--critical-red);">70 kW</td>
-                                    <td style="text-align: center; color: var(--critical-red); font-weight: bold;">0 kW</td>
-                                    <td style="text-align: center;">
-                                        <span class="status-badge status-closed">
-                                            <i class="fas fa-ban"></i> CLOSED
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Kumbanad Substation</strong></td>
-                                    <td style="text-align: center;">81 kW</td>
-                                    <td style="text-align: center; color: var(--critical-red);">80 kW</td>
-                                    <td style="text-align: center; color: var(--sbi-green); font-weight: bold;">1 kW</td>
-                                    <td style="text-align: center;">
-                                        <span class="status-badge status-critical">
-                                            <i class="fas fa-exclamation-circle"></i> LAST 1 kW LEFT
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div style="margin-top: 25px; padding: 20px; background: #fff5f5; border-radius: 10px;">
-                        <h5 style="color: var(--critical-red); margin-bottom: 10px;">
-                            <i class="fas fa-info-circle"></i> WHAT THIS MEANS FOR YOU:
-                        </h5>
-                        <p style="margin: 0; color: #7f8c8d;">
-                            If you live in any of these areas, <strong>KSEB will NOT approve any new solar installations</strong> until the transformer is upgraded (typically 2-3 years). The only option is to apply for a different transformer area if available.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- High Risk Transformers Tab -->
-                <div id="highTab" class="kseb-tab-content">
-                    <h4 style="color: var(--urgent-red); margin-bottom: 20px;">
-                        <i class="fas fa-exclamation-circle"></i> TRANSFORMERS WITH LESS THAN 5kW REMAINING
-                    </h4>
-                    
-                    <div style="overflow-x: auto;">
-                        <table class="kseb-table">
-                            <thead>
-                                <tr>
-                                    <th>Transformer Area</th>
-                                    <th style="text-align: center;">Capacity</th>
-                                    <th style="text-align: center;">Already Installed</th>
-                                    <th style="text-align: center;">Remaining</th>
-                                    <th style="text-align: center;">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>New Hostel</strong></td>
-                                    <td style="text-align: center;">81 kW</td>
-                                    <td style="text-align: center; color: var(--urgent-red);">79.3 kW</td>
-                                    <td style="text-align: center; color: var(--sbi-green); font-weight: bold;">1.7 kW</td>
-                                    <td style="text-align: center;">
-                                        <span class="status-badge status-critical">
-                                            <i class="fas fa-fire"></i> CRITICAL
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Madammukku</strong></td>
-                                    <td style="text-align: center;">81 kW</td>
-                                    <td style="text-align: center; color: var(--urgent-red);">73.08 kW</td>
-                                    <td style="text-align: center; color: var(--sbi-green); font-weight: bold;">1.92 kW</td>
-                                    <td style="text-align: center;">
-                                        <span class="status-badge status-critical">
-                                            <i class="fas fa-fire"></i> CRITICAL
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Karmilaram</strong></td>
-                                    <td style="text-align: center;">129 kW</td>
-                                    <td style="text-align: center; color: var(--urgent-red);">107 kW</td>
-                                    <td style="text-align: center; color: var(--sbi-green); font-weight: bold;">2 kW</td>
-                                    <td style="text-align: center;">
-                                        <span class="status-badge status-critical">
-                                            <i class="fas fa-fire"></i> CRITICAL
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Kanamoottil Pady</strong></td>
-                                    <td style="text-align: center;">81 kW</td>
-                                    <td style="text-align: center; color: var(--urgent-red);">78.3 kW</td>
-                                    <td style="text-align: center; color: var(--sbi-green); font-weight: bold;">2.7 kW</td>
-                                    <td style="text-align: center;">
-                                        <span class="status-badge status-high">
-                                            <i class="fas fa-exclamation-circle"></i> HIGH RISK
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div style="margin-top: 25px; padding: 20px; background: #fff5f5; border-radius: 10px;">
-                        <h5 style="color: var(--urgent-red); margin-bottom: 10px;">
-                            <i class="fas fa-clock"></i> URGENT ACTION REQUIRED:
-                        </h5>
-                        <p style="margin: 0; color: #7f8c8d;">
-                            Transformers with less than 5kW remaining will reach 90% capacity within <strong>24-48 hours</strong> based on current installation rates. Once they hit 90%, no more solar installations allowed for 2-3 years.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Medium Risk Transformers Tab -->
-                <div id="mediumTab" class="kseb-tab-content">
-                    <h4 style="color: var(--urgent-orange); margin-bottom: 20px;">
-                        <i class="fas fa-clock"></i> TRANSFORMERS WITH 5-15kW REMAINING
-                    </h4>
-                    
-                    <div style="overflow-x: auto;">
-                        <table class="kseb-table">
-                            <thead>
-                                <tr>
-                                    <th>Transformer Area</th>
-                                    <th style="text-align: center;">Capacity</th>
-                                    <th style="text-align: center;">Already Installed</th>
-                                    <th style="text-align: center;">Remaining</th>
-                                    <th style="text-align: center;">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Kulathodu</strong></td>
-                                    <td style="text-align: center;">81 kW</td>
-                                    <td style="text-align: center; color: var(--urgent-orange);">70.16 kW</td>
-                                    <td style="text-align: center; color: var(--sbi-green); font-weight: bold;">10.84 kW</td>
-                                    <td style="text-align: center;">
-                                        <span class="status-badge status-medium">
-                                            <i class="fas fa-clock"></i> MEDIUM RISK
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Kulam</strong></td>
-                                    <td style="text-align: center;">81 kW</td>
-                                    <td style="text-align: center; color: var(--urgent-orange);">61.13 kW</td>
-                                    <td style="text-align: center; color: var(--sbi-green); font-weight: bold;">19.87 kW</td>
-                                    <td style="text-align: center;">
-                                        <span class="status-badge status-medium">
-                                            <i class="fas fa-clock"></i> MEDIUM RISK
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div style="margin-top: 25px; padding: 20px; background: #fff5f5; border-radius: 10px;">
-                        <h5 style="color: var(--urgent-orange); margin-bottom: 10px;">
-                            <i class="fas fa-calendar-alt"></i> PLANNING WINDOW:
-                        </h5>
-                        <p style="margin: 0; color: #7f8c8d;">
-                            These transformers have 1-2 weeks of capacity remaining. While not immediate emergencies, they require planning now to avoid missing the deadline.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Emergency Action Box -->
-            <div class="emergency-action">
-                <h3 style="color: white; margin-bottom: 15px;">
-                    <i class="fas fa-bolt"></i> EMERGENCY ACTION REQUIRED
-                </h3>
-                <p style="margin-bottom: 20px; opacity: 0.9;">
-                    Based on current installation rates, transformers with less than 5kW remaining will reach 90% capacity within <strong>24-48 hours</strong>. After that, you'll have to wait 2-3 years for transformer upgrades.
-                </p>
-                
-                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 25px;">
-                    <a href="tel:8301849474" class="btn" style="background: white; color: var(--critical-red); padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;">
-                        <i class="fas fa-phone"></i> EMERGENCY CAPACITY CHECK: 8301849474
-                    </a>
-                    <a href="https://wa.me/918301849474" target="_blank" class="btn" style="background: #25D366; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;">
-                        <i class="fab fa-whatsapp"></i> WHATSAPP FOR LAST SLOTS
-                    </a>
-                    <a href="https://wss.kseb.in/selfservices/reCap" target="_blank" class="btn" style="background: #3498db; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;">
-                        <i class="fas fa-external-link-alt"></i> VERIFY ON KSEB PORTAL
-                    </a>
-                </div>
-                
-                <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
-                    <i class="fas fa-shield-alt"></i> Our team monitors KSEB portal every 6 hours to provide accurate capacity updates
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Financial Benefits Section with Enhanced SBI Card -->
-    <section class="financial-benefits" style="padding: 80px 0; background: var(--background-light);">
-        <div class="container">
-            <h2 class="section-title">Financial Benefits for Pathanamthitta Customers</h2>
-            <p class="section-subtitle">Act NOW to secure both transformer capacity AND low-interest financing</p>
-            <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
-                
-                <!-- Enhanced SBI 10-Year Loan Card -->
-                <div class="sbi-enhanced-card">
-                    <div class="recommended-badge">RECOMMENDED</div>
-                    <div style="font-size: 3rem; margin-bottom: 15px;">🏦</div>
-                    <h3 style="color: var(--sbi-green); margin-bottom: 15px;">SBI 10-Year Solar Loan @ 6%</h3>
-                    <div style="font-size: 1.8rem; color: var(--sbi-green); font-weight: bold; margin: 10px 0;">₹1,450/month</div>
-                    <p style="margin-bottom: 10px; font-size: 0.9rem;">EMI for 3kW system (10-year tenure)</p>
-                    
-                    <div style="background: #f0f9f0; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: left;">
-                        <div style="margin-bottom: 8px;">✓ <strong>10-Year Tenure</strong> - Longest available</div>
-                        <div style="margin-bottom: 8px;">✓ <strong>85% Financing</strong> of project cost</div>
-                        <div style="margin-bottom: 8px;">✓ <strong>₹1,050/month lower</strong> than 5-year loan</div>
-                        <div style="margin-bottom: 0;">✓ <strong>Lock 6% rate</strong> before increase</div>
-                    </div>
-                    
-                    <a href="tel:8301849474" class="btn btn-primary" style="background: var(--sbi-green); width: 100%;">
-                        <i class="fas fa-file-contract"></i> Apply for 10-Year SBI Loan
-                    </a>
-                    <p style="margin-top: 10px; font-size: 0.8rem; color: #7f8c8d;">
-                        <i class="fas fa-info-circle"></i> Apply within 48h to secure transformer capacity
-                    </p>
-                </div>
-
-                <!-- Government Subsidy Card -->
-                <div class="benefit-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: 15px;">💰</div>
-                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Government Subsidy</h3>
-                    <p style="margin-bottom: 20px; color: var(--text-light);">Get <strong>₹78,000 subsidy</strong> for 3kW system through government schemes</p>
-                    <ul style="text-align: left; margin-bottom: 20px;">
-                        <li style="margin-bottom: 8px;">✓ We handle all subsidy paperwork</li>
-                        <li style="margin-bottom: 8px;">✓ Approved installer for Pathanamthitta</li>
-                        <li style="margin-bottom: 8px;">✓ Quick disbursement support</li>
-                        <li style="margin-bottom: 8px;">✓ <strong>Urgent:</strong> Limited subsidy slots remaining</li>
-                    </ul>
-                    <a href="tel:8301849474" class="btn btn-primary">
-                        <i class="fas fa-file-alt"></i> Check Subsidy Eligibility
-                    </a>
-                </div>
-
-                <!-- Free AMC Card -->
-                <div class="benefit-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
-                    <div style="font-size: 3rem; margin-bottom: 15px;">🔧</div>
-                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Free AMC & Support</h3>
-                    <p style="margin-bottom: 20px; color: var(--text-light);">Complete maintenance support for your solar system</p>
-                    <ul style="text-align: left; margin-bottom: 20px;">
-                        <li style="margin-bottom: 8px;">✓ 5 Year FREE Maintenance</li>
-                        <li style="margin-bottom: 8px;">✓ 24/7 Performance Monitoring</li>
-                        <li style="margin-bottom: 8px;">✓ Priority Service in Pathanamthitta</li>
-                        <li style="margin-bottom: 8px;">✓ <strong>Emergency:</strong> Capacity monitoring included</li>
-                    </ul>
-                    <a href="tel:8606849474" class="btn btn-primary">
-                        <i class="fas fa-headset"></i> Call Support: 8606849474
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- System Comparison Section -->
-    <section class="system-comparison" style="padding: 80px 0;">
+    <!-- Smart Savings Calculator -->
+    <section class="section-light" id="savingsCalculator">
         <div class="container">
-            <h2 class="section-title">Choose Perfect System for Your Pathanamthitta Home</h2>
-            <p class="section-subtitle" style="color: var(--urgent-red);">
-                <i class="fas fa-exclamation-circle"></i> Transformers filling fast - Book your system size NOW
-            </p>
-            <div class="comparison-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+            <h2 class="section-title">Smart Solar Savings Calculator</h2>
+            <p class="section-subtitle">Calculate your exact savings, ROI, and perfect system size for your Pathanamthitta home</p>
+            
+            <div class="savings-calculator">
+                <div class="calculator-grid">
+                    <div class="calculator-inputs">
+                        <div class="input-group">
+                            <label for="monthlyBill">Monthly Electricity Bill (₹)</label>
+                            <input type="range" id="monthlyBill" class="range-input" min="1000" max="20000" step="500" value="5000">
+                            <div class="range-value" id="billValue">₹5,000</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="roofArea">Available Roof Area (sq.ft)</label>
+                            <input type="range" id="roofArea" class="range-input" min="100" max="1000" step="50" value="300">
+                            <div class="range-value" id="areaValue">300 sq.ft</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="sunlightHours">Daily Sunlight Hours</label>
+                            <input type="range" id="sunlightHours" class="range-input" min="4" max="8" step="0.5" value="5.5">
+                            <div class="range-value" id="sunValue">5.5 hours</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="loanOption">Financing Preference</label>
+                            <select id="loanOption" class="form-control">
+                                <option value="subsidy">Government Subsidy (₹78,000)</option>
+                                <option value="sbi">SBI 10-Year Loan @ 6%</option>
+                                <option value="cash">Full Cash Payment</option>
+                                <option value="hybrid">Subsidy + Loan Combination</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-results">
+                        <h3 style="color: white; margin-bottom: 30px;">Your Solar Savings</h3>
+                        
+                        <div class="result-card">
+                            <h4>Recommended System</h4>
+                            <div class="result-value" id="recommendedSystem">5 kW</div>
+                            <p>Perfect for your consumption pattern</p>
+                        </div>
+                        
+                        <div class="result-card">
+                            <h4>Monthly Savings</h4>
+                            <div class="result-value" id="monthlySavings">₹4,200</div>
+                            <p>Average reduction in electricity bills</p>
+                        </div>
+                        
+                        <div class="result-card">
+                            <h4>Payback Period</h4>
+                            <div class="result-value" id="paybackPeriod">3.5 Years</div>
+                            <p>Time to recover your investment</p>
+                        </div>
+                        
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="saveCalculation()">
+                            <i class="fas fa-download"></i> Save This Calculation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonials -->
+    <section class="video-testimonials" id="videoTestimonials">
+        <div class="container">
+            <h2 class="section-title">Pathanamthitta Homeowners Share Their Solar Journey</h2>
+            <p class="section-subtitle">Real stories from real customers across the district</p>
+            
+            <div class="video-grid">
+                <!-- Video 1 -->
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Thiruvalla homeowner testimonial">
+                        <div class="play-button" onclick="playVideo('testimonial1')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <div class="customer-name">Rajesh Kumar</div>
+                        <div class="customer-location">Thiruvalla • 3kW System</div>
+                        <div class="customer-quote">"From ₹6,500 to ₹850 monthly bill. The installation was smooth and professional."</div>
+                    </div>
+                </div>
                 
+                <!-- Video 2 -->
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Adoor business owner testimonial">
+                        <div class="play-button" onclick="playVideo('testimonial2')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <div class="customer-name">Priya Nair</div>
+                        <div class="customer-location">Adoor • 10kW Commercial</div>
+                        <div class="customer-quote">"Our shop's electricity costs reduced by 85%. Best investment we made."</div>
+                    </div>
+                </div>
+                
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ranni farmer testimonial">
+                        <div class="play-button" onclick="playVideo('testimonial3')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <div class="customer-name">Thomas Mathew</div>
+                        <div class="customer-location">Ranni • 5kW with Battery</div>
+                        <div class="customer-quote">"24/7 power for our farmhouse. The backup system works perfectly during outages."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Visualization Section -->
+    <section class="data-viz-section" id="dataVisualization">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Pathanamthitta Solar Adoption Insights</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">Data-driven insights showing solar growth across the district</p>
+            
+            <div class="viz-tabs">
+                <button class="viz-tab active" data-viz="installations">Installation Growth</button>
+                <button class="viz-tab" data-viz="savings">Average Savings</button>
+                <button class="viz-tab" data-viz="towns">Town-wise Adoption</button>
+                <button class="viz-tab" data-viz="capacity">System Size Trends</button>
+            </div>
+            
+            <div class="viz-container">
+                <div class="chart-container">
+                    <canvas id="solarDataChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progressive Form -->
+    <section class="section-light" id="progressiveForm">
+        <div class="container">
+            <h2 class="section-title">Get Your Personalized Solar Plan</h2>
+            <p class="section-subtitle">Answer a few questions for a custom quote tailored to your Pathanamthitta location</p>
+            
+            <div class="progressive-form-container">
+                <div class="form-steps">
+                    <div class="form-step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span>Basic Info</span>
+                    </div>
+                    <div class="form-step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span>Property Details</span>
+                    </div>
+                    <div class="form-step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span>Energy Needs</span>
+                    </div>
+                    <div class="form-step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span>Financing</span>
+                    </div>
+                </div>
+                
+                <form id="progressiveQuoteForm">
+                    <!-- Step 1 -->
+                    <div class="form-step-content active" data-step="1">
+                        <h3 style="margin-bottom: 20px;">Tell Us About Yourself</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="Your Full Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" name="phone" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address (Optional)">
+                        </div>
+                        <div class="form-group">
+                            <select name="location" required>
+                                <option value="">Select Your Town in Pathanamthitta</option>
+                                <option value="thiruvalla">Thiruvalla</option>
+                                <option value="adoor">Adoor</option>
+                                <option value="ranni">Ranni</option>
+                                <option value="kozhencherry">Kozhencherry</option>
+                                <option value="mallappally">Mallappally</option>
+                                <option value="pandalam">Pandalam</option>
+                                <option value="konni">Konni</option>
+                                <option value="other">Other Area</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="form-step-content" data-step="2">
+                        <h3 style="margin-bottom: 20px;">Property Information</h3>
+                        <div class="form-group">
+                            <select name="propertyType" required>
+                                <option value="">Property Type</option>
+                                <option value="residential">Residential Home</option>
+                                <option value="commercial">Commercial Building</option>
+                                <option value="industrial">Industrial Unit</option>
+                                <option value="farmhouse">Farmhouse/Villa</option>
+                                <option value="apartment">Apartment Complex</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="number" name="roofArea" placeholder="Roof Area (sq.ft)" min="100">
+                            </div>
+                            <div class="form-group">
+                                <select name="roofType">
+                                    <option value="">Roof Type</option>
+                                    <option value="concrete">Concrete RCC</option>
+                                    <option value="metal">Metal Sheet</option>
+                                    <option value="tiled">Tiled Roof</option>
+                                    <option value="notsure">Not Sure</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select name="shadowArea">
+                                <option value="">Shadow/Sunlight Condition</option>
+                                <option value="full_sun">Full Sunlight (No Shadows)</option>
+                                <option value="partial">Partial Shadows</option>
+                                <option value="morning_sun">Morning Sun Only</option>
+                                <option value="afternoon_sun">Afternoon Sun Only</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="form-step-content" data-step="3">
+                        <h3 style="margin-bottom: 20px;">Energy Consumption</h3>
+                        <div class="form-group">
+                            <select name="currentBill" required>
+                                <option value="">Average Monthly Electricity Bill</option>
+                                <option value="lt3000">Less than ₹3,000</option>
+                                <option value="3000-5000">₹3,000 - ₹5,000</option>
+                                <option value="5000-10000">₹5,000 - ₹10,000</option>
+                                <option value="10000-20000">₹10,000 - ₹20,000</option>
+                                <option value="gt20000">More than ₹20,000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="appliances">
+                                <option value="">Major Appliances</option>
+                                <option value="ac">Air Conditioners (How many?)</option>
+                                <option value="water_heater">Water Heaters/Geysers</option>
+                                <option value="motor">Water Pump Motors</option>
+                                <option value="fridge">Refrigerators/Freezers</option>
+                                <option value="other">Other Heavy Appliances</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="backupNeed">
+                                <option value="">Backup Power Need</option>
+                                <option value="none">No Backup Needed</option>
+                                <option value="partial">Partial Backup (Essential loads)</option>
+                                <option value="full">Full Home Backup</option>
+                                <option value="notsure">Not Sure - Need Advice</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="form-step-content" data-step="4">
+                        <h3 style="margin-bottom: 20px;">Financing Preferences</h3>
+                        <div class="form-group">
+                            <select name="budgetRange" required>
+                                <option value="">Budget Range</option>
+                                <option value="1-2l">₹1-2 Lakhs</option>
+                                <option value="2-3l">₹2-3 Lakhs</option>
+                                <option value="3-5l">₹3-5 Lakhs</option>
+                                <option value="5l+">₹5 Lakhs+</option>
+                                <option value="notsure">Not Sure - Need Quote</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="financingOption" required>
+                                <option value="">Financing Preference</option>
+                                <option value="subsidy_only">Government Subsidy Only</option>
+                                <option value="sbi_loan">SBI/Canara Bank Loan</option>
+                                <option value="cash">Full Cash Payment</option>
+                                <option value="hybrid">Subsidy + Bank Loan</option>
+                                <option value="notsure">Need Guidance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="timeline">
+                                <option value="">Installation Timeline</option>
+                                <option value="immediate">Within 1 Month</option>
+                                <option value="1-3months">1-3 Months</option>
+                                <option value="3-6months">3-6 Months</option>
+                                <option value="planning">Just Planning/Researching</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="additionalInfo" placeholder="Any specific requirements or questions?" rows="3"></textarea>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="form-navigation">
+                    <button class="btn btn-outline" id="prevStep" disabled>
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="btn btn-primary" id="nextStep">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button class="btn btn-success" id="submitForm" style="display: none;">
+                        <i class="fas fa-paper-plane"></i> Submit & Get Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Comparison (Thiruvalla Style) -->
+    <section class="system-comparison">
+        <div class="container">
+            <h2 class="section-title">Perfect Solar Systems for Pathanamthitta Homes</h2>
+            <div class="comparison-grid">
                 <!-- 3kW System -->
-                <div class="system-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center; border: 2px solid var(--primary-color); position: relative;">
-                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary-color); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;">MOST POPULAR</div>
-                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">3kW Solar System</h3>
-                    <p style="margin-bottom: 10px;">Ideal for 2-3 BHK Homes</p>
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin: 15px 0;">₹1.2 Lakhs*</div>
-                    <p style="margin-bottom: 20px; font-style: italic;"><em>*After ₹78,000 Subsidy</em></p>
+                <div class="system-card">
+                    <h3>3kW Solar System</h3>
+                    <p class="system-subtitle">Ideal for 2-3 BHK Homes</p>
+                    <div class="system-price">₹1.2 Lakhs*</div>
+                    <p class="price-note"><em>*After ₹78,000 Government Subsidy</em></p>
                     
-                    <div style="text-align: left; margin: 20px 0;">
-                        <div style="margin-bottom: 10px;">✓ Monthly Savings: ₹3,500 - ₹4,500</div>
-                        <div style="margin-bottom: 10px;">✓ SBI 10-Year EMI: ₹1,450/month</div>
-                        <div style="margin-bottom: 10px;">✓ Transformer Impact: <strong>3kW capacity</strong></div>
-                        <div style="margin-bottom: 10px;">✓ <span style="color: var(--urgent-red);">⚠️ Uses 3kW of transformer capacity</span></div>
+                    <div class="system-features">
+                        <div><i class="fas fa-check-circle"></i> Monthly Savings: ₹3,500 - ₹4,500</div>
+                        <div><i class="fas fa-check-circle"></i> Powers: 3 ACs + All Home Appliances</div>
+                        <div><i class="fas fa-check-circle"></i> Best for 200-350 units monthly usage</div>
+                        <div><i class="fas fa-check-circle"></i> Payback Period: 3-4 Years</div>
                     </div>
                     
                     <a href="tel:8301849474" class="btn btn-primary">
-                        <i class="fas fa-bolt"></i> Reserve 3kW Capacity NOW
+                        <i class="fas fa-calculator"></i> Get 3kW Quote
                     </a>
                 </div>
 
                 <!-- 5kW System -->
-                <div class="system-card" style="background: var(--white); border-radius: var(--border-radius); box-shadow: var(--box-shadow); padding: 30px; text-align: center;">
-                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">5kW Solar System</h3>
-                    <p style="margin-bottom: 10px;">Perfect for Large Homes/Offices</p>
-                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color); margin: 15px 0;">₹2.2 Lakhs*</div>
-                    <p style="margin-bottom: 20px; font-style: italic;"><em>*After ₹78,000 Subsidy</em></p>
+                <div class="system-card">
+                    <h3>5kW Solar System</h3>
+                    <p class="system-subtitle">Perfect for Large Homes & Commercial</p>
+                    <div class="system-price">₹2.2 Lakhs*</div>
+                    <p class="price-note"><em>*After ₹78,000 Government Subsidy</em></p>
                     
-                    <div style="text-align: left; margin: 20px 0;">
-                        <div style="margin-bottom: 10px;">✓ Monthly Savings: ₹6,000 - ₹9,000</div>
-                        <div style="margin-bottom: 10px;">✓ SBI 10-Year EMI: ₹2,500/month</div>
-                        <div style="margin-bottom: 10px;">✓ Transformer Impact: <strong>5kW capacity</strong></div>
-                        <div style="margin-bottom: 10px; color: var(--urgent-red);">⚠️ Check transformer has 5kW+ available</div>
+                    <div class="system-features">
+                        <div><i class="fas fa-check-circle"></i> Monthly Savings: ₹6,000 - ₹9,000</div>
+                        <div><i class="fas fa-check-circle"></i> Powers: 5 ACs + Heavy Appliances</div>
+                        <div><i class="fas fa-check-circle"></i> Best for 500-800 units monthly usage</div>
+                        <div><i class="fas fa-check-circle"></i> Payback Period: 3-4 Years</div>
                     </div>
                     
                     <a href="tel:8301849474" class="btn btn-primary">
-                        <i class="fas fa-bolt"></i> Check 5kW Availability
+                        <i class="fas fa-calculator"></i> Get 5kW Quote
                     </a>
-                </div>
-            </div>
-            
-            <p style="text-align: center; margin-top: 30px; color: var(--text-light);">
-                <strong style="color: var(--urgent-red);">⚠️ IMPORTANT:</strong> Larger systems require more transformer capacity. Check availability before choosing system size.
-            </p>
-        </div>
-    </section>
-
-    <!-- Quick Quote Section (Pathanamthitta-focused) -->
-    <section class="quick-quote-section" id="pathanamthitta-quote">
-        <div class="container">
-            <h2 class="section-title">Get Your Solar Quote in Pathanamthitta</h2>
-            <div class="quote-form-container">
-                <form class="quick-quote-form" id="mainQuoteForm">
-                    <input type="hidden" name="_subject" value="🚨 URGENT: Solar Quote Request - Pathanamthitta District (KSEB Capacity Emergency)">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Phone Number" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <select name="service" required>
-                                <option value="">Select Service</option>
-                                <option value="residential">Home Solar (with Subsidy) - URGENT</option>
-                                <option value="commercial">Commercial / Office Solar</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="location" placeholder="Your Exact Area/Town" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <select name="urgency">
-                            <option value="">Transformer Status Check?</option>
-                            <option value="yes">YES - Check my transformer capacity URGENTLY</option>
-                            <option value="no">No - Just general quote</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block" style="background: var(--critical-red);">
-                        <i class="fas fa-bolt"></i> GET EMERGENCY QUOTE & CAPACITY CHECK
-                    </button>
-                </form>
-                <div class="quote-benefits">
-                    <h4>Why Pathanamthitta Customers Choose Us</h4>
-                    <ul>
-                        <li><i class="fas fa-check"></i> <strong>REAL KSEB DATA</strong> - We monitor transformer capacity</li>
-                        <li><i class="fas fa-check"></i> ₹78,000 Subsidy + <strong>SBI 10-Year Loan</strong></li>
-                        <li><i class="fas fa-check"></i> Support for KSEB net metering</li>
-                        <li><i class="fas fa-check"></i> 150+ projects in Pathanamthitta</li>
-                        <li><i class="fas fa-check"></i> 5-Year Free AMC Included</li>
-                    </ul>
-
-                    <div class="emergency-contact">
-                        <h4>Need Immediate Assistance?</h4>
-                        <div class="emergency-numbers">
-                            <a href="tel:8301849474" class="emergency-number">
-                                <i class="fas fa-phone"></i> Emergency Capacity: 8301849474
-                            </a>
-                            <a href="tel:9539316623" class="emergency-number">
-                                <i class="fas fa-phone"></i> KSEB Data Check: 9539316623
-                            </a>
-                        </div>
-                        <p class="emergency-note">Available for urgent solar service visits in Pathanamthitta district</p>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- District Intro + Stats -->
-    <section class="district-intro">
+    <!-- Why Choose Us -->
+    <section class="why-choose-us section-light">
         <div class="container">
-            <h2 class="section-title">Solar in Pathanamthitta District</h2>
-            <div class="district-intro-text">
-                <p>Solis Green India provides complete solar solutions for homes, shops, offices and institutions across Pathanamthitta district – including Thiruvalla, Ranni, Adoor, Kozhencherry, Pandalam, Mallappally, Elanthoor and nearby areas.</p>
-                <p><strong style="color: var(--critical-red);">⚠️ URGENT NOTICE:</strong> Multiple KSEB transformers are at or near 100% capacity. Installation delays could mean waiting 2-3 years for transformer upgrades.</p>
-                <p class="district-towns-inline">
-                    <strong>Major towns we cover for solar installation:</strong> Thiruvalla, Ranni, Adoor, Kozhencherry, Rani, Pandalam, Mallappally, Elanthoor, Konni and surrounding villages.
-                </p>
-
-                <div class="district-summary-stats">
-                    <div class="district-stat-card">
-                        <div class="stat-number">150+</div>
-                        <div class="stat-label">Projects in Pathanamthitta</div>
-                    </div>
-                    <div class="district-stat-card">
-                        <div class="stat-number" style="color: var(--critical-red);">7</div>
-                        <div class="stat-label">Transformers at 100%</div>
-                    </div>
-                    <div class="district-stat-card">
-                        <div class="stat-number">2019</div>
-                        <div class="stat-label">Serving Since</div>
-                    </div>
-                    <div class="district-stat-card">
-                        <div class="stat-number" style="color: var(--sbi-green);">10-Year</div>
-                        <div class="stat-label">SBI Loan Available</div>
-                    </div>
+            <h2 class="section-title">Why Pathanamthitta Trusts Solis Green</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Local District Expertise</h3>
+                    <p>Deep understanding of Pathanamthitta's specific requirements, KSEB procedures, and local installation challenges.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-file-invoice-rupee"></i>
+                    <h3>Complete Subsidy & Loan Support</h3>
+                    <p>End-to-end assistance with ₹78,000 government subsidy and SBI 6% loan processing for Pathanamthitta residents.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-user-check"></i>
+                    <h3>150+ Pathanamthitta Installations</h3>
+                    <p>Proven track record with installations across every major town in the district since 2019.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>Dedicated District Support</h3>
+                    <p>Local service teams and 24/7 support specifically for Pathanamthitta customers with quick response times.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Town-wise Coverage with Urgency Badges -->
-    <section class="quick-services" id="townGrid">
-        <div class="container">
-            <h2 class="section-title">Solar Company Near You in Pathanamthitta</h2>
-            <p class="district-section-subtitle">
-                Check transformer capacity status for your town. <span style="color: var(--critical-red);">Red badges indicate critical capacity situations.</span>
-            </p>
-
-            <div class="services-grid">
-                <!-- Thiruvalla -->
-                <div class="service-card">
-                    <i class="fas fa-city"></i>
-                    <h3>Solar Company in Thiruvalla</h3>
-                    <div class="town-urgency-badge urgency-high">
-                        <i class="fas fa-exclamation-circle"></i> HIGH RISK AREA
-                    </div>
-                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
-                        <span style="background: #ffeaea; color: var(--critical-red); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">KSEB Capacity Alert</span>
-                        <span style="background: #e8f5e8; color: var(--sbi-green); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">SBI 10-Year Loan</span>
-                    </div>
-                    <p>Multiple transformers in Thiruvalla area at critical capacity levels. Urgent action required.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> Check transformer capacity</span>
-                        <span><i class="fas fa-check"></i> Emergency installation slots</span>
-                        <span><i class="fas fa-check"></i> SBI loan processing</span>
-                    </div>
-                    <a href="thiruvalla" class="btn btn-outline" style="border-color: var(--urgent-red); color: var(--urgent-red);">
-                        <i class="fas fa-arrow-right"></i> Check Thiruvalla Capacity
-                    </a>
-                </div>
-
-                <!-- Adoor -->
-                <div class="service-card">
-                    <i class="fas fa-store"></i>
-                    <h3>Solar Company in Adoor</h3>
-                    <div class="town-urgency-badge urgency-critical">
-                        <i class="fas fa-ban"></i> CRITICAL RISK
-                    </div>
-                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
-                        <span style="background: #ffeaea; color: var(--critical-red); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">85% FILLED</span>
-                        <span style="background: #e8f5e8; color: var(--sbi-green); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Last Few Slots</span>
-                    </div>
-                    <p>Adoor transformers at 85% capacity - approaching 90% cutoff limit.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> Immediate capacity check</span>
-                        <span><i class="fas fa-check"></i> Priority installation</span>
-                        <span><i class="fas fa-check"></i> Fast-track approval</span>
-                    </div>
-                    <a href="adoor" class="btn btn-outline" style="border-color: var(--critical-red); color: var(--critical-red);">
-                        <i class="fas fa-arrow-right"></i> Adoor Emergency Info
-                    </a>
-                </div>
-
-                <!-- Pathanamthitta Town -->
-                <div class="service-card">
-                    <i class="fas fa-city"></i>
-                    <h3>Solar Company in Pathanamthitta Town</h3>
-                    <div class="town-urgency-badge urgency-medium">
-                        <i class="fas fa-clock"></i> MEDIUM RISK
-                    </div>
-                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
-                        <span style="background: #fff3cd; color: #856404; padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">75% Filled</span>
-                        <span style="background: #e8f5e8; color: var(--sbi-green); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Plan Ahead</span>
-                    </div>
-                    <p>District HQ area showing medium risk. Good time to plan before capacity fills.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> Current capacity available</span>
-                        <span><i class="fas fa-check"></i> Good planning window</span>
-                        <span><i class="fas fa-check"></i> SBI loan available</span>
-                    </div>
-                    <a href="pathanamthitta" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Pathanamthitta Town Details
-                    </a>
-                </div>
-
-                <!-- Ranni -->
-                <div class="service-card">
-                    <i class="fas fa-mountain"></i>
-                    <h3>Solar Company in Ranni</h3>
-                    <div class="town-urgency-badge urgency-medium">
-                        <i class="fas fa-clock"></i> MEDIUM RISK
-                    </div>
-                    <div style="display: flex; gap: 5px; margin: 10px 0; justify-content: center; flex-wrap: wrap;">
-                        <span style="background: #fff3cd; color: #856404; padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">72% Filled</span>
-                        <span style="background: #e8f5e8; color: var(--sbi-green); padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Good Time</span>
-                    </div>
-                    <p>Ranni area shows good capacity availability but filling steadily.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> Check specific transformer</span>
-                        <span><i class="fas fa-check"></i> Rural area specialists</span>
-                        <span><i class="fas fa-check"></i> Long-term support</span>
-                    </div>
-                    <a href="ranni" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> Ranni Solar Info
-                    </a>
-                </div>
-
-                <!-- Add other towns similarly with appropriate urgency badges -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Final Emergency CTA -->
-    <section style="margin: 40px 0; background: linear-gradient(135deg, var(--critical-red), #922b21); color: white; padding: 60px 0; text-align: center;">
-        <div class="container">
-            <h2 style="color: white; margin-bottom: 20px; font-size: 2rem;">
-                <i class="fas fa-exclamation-triangle"></i> TIME IS RUNNING OUT FOR PATHANAMTHITTA!
-            </h2>
-            <p style="margin-bottom: 25px; font-size: 1.2rem; opacity: 0.9;">
-                7 transformers already at 100% capacity. 6 more with less than 5kW remaining.<br>
-                Once YOUR transformer reaches 90%, you'll wait 2-3 years for solar.
-            </p>
-            
-            <div style="font-size: 1.5rem; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; display: inline-block; margin: 20px 0;">
-                <i class="fas fa-phone"></i> 
-                <strong>EMERGENCY SOLAR HOTLINE:</strong> 
-                <a href="tel:8301849474" style="color: white; text-decoration: none; font-weight: bold;">8301849474</a>
-            </div>
-            
-            <div class="cta-buttons" style="margin-top: 30px;">
-                <a href="tel:8301849474" class="btn btn-light" style="margin: 10px; padding: 15px 30px;">
-                    <i class="fas fa-phone"></i> CALL FOR LAST-MINUTE SLOT
+    <!-- Final CTA -->
+    <section class="services-cta" style="background: linear-gradient(135deg, var(--district-blue), #4A6491);">
+        <div class="container cta-content">
+            <h3 style="color: white;">Ready to Power Your Pathanamthatta Home with Solar?</h3>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 25px;">Join 150+ satisfied customers across the district. Get your personalized solar plan today.</p>
+            <div class="cta-buttons">
+                <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+                    <i class="fas fa-phone"></i> Call Pathanamthitta Expert
                 </a>
-                <a href="https://wa.me/918301849474" target="_blank" class="btn btn-whatsapp" style="margin: 10px; padding: 15px 30px;">
-                    <i class="fab fa-whatsapp"></i> WHATSAPP EMERGENCY BOOKING
+                <a href="#progressiveForm" class="btn btn-light">
+                    <i class="fas fa-calculator"></i> Get Personalized Quote
                 </a>
-                <a href="#ksebData" class="btn btn-secondary" style="margin: 10px; padding: 15px 30px; background: #f39c12;">
-                    <i class="fas fa-database"></i> VIEW KSEB DATA
+                <a href="#interactiveMap" class="btn btn-outline" style="border-color: white; color: white;">
+                    <i class="fas fa-map"></i> Check Your Area
                 </a>
             </div>
         </div>
@@ -1145,40 +1171,73 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                        <img src="https://www.solisgreenindia.in/images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Emergency solar installation services for Pathanamthitta. Official KSEB transformer capacity monitoring and SBI 10-year solar loan specialists.</p>
-                    <div style="margin-top: 15px;">
-                        <span style="background: rgba(255,255,255,0.2); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; margin: 3px; display: inline-block;">KSEB 90% Limit Alert</span>
-                        <span style="background: rgba(255,255,255,0.2); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; margin: 3px; display: inline-block;">SBI 10-Year Loan</span>
-                        <span style="background: rgba(255,255,255,0.2); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; margin: 3px; display: inline-block;">Emergency Service</span>
+                    <p>Premier solar solutions provider for Pathanamthitta district with 150+ successful installations and complete subsidy support.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h3>Emergency Areas</h3>
+                    <h3>Pathanamthitta Coverage</h3>
                     <ul>
-                        <li><a href="#ksebData">Kumbanad (100% full)</a></li>
-                        <li><a href="#ksebData">HVDS Oxygen (100% full)</a></li>
-                        <li><a href="#ksebData">Vyduthy Bhavan (100% full)</a></li>
-                        <li><a href="#ksebData">All Critical Areas</a></li>
+                        <li><a href="#">Thiruvalla Solar Installation</a></li>
+                        <li><a href="#">Adoor Solar Company</a></li>
+                        <li><a href="#">Ranni Solar Experts</a></li>
+                        <li><a href="#">Kozhencherry Solar Solutions</a></li>
+                        <li><a href="#">Mallappally Solar Installers</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Emergency Solar Lines</h3>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="https://www.solisgreenindia.in/">Home</a></li>
+                        <li><a href="https://www.solisgreenindia.in/services/">Services</a></li>
+                        <li><a href="https://www.solisgreenindia.in/cities/">Service Areas</a></li>
+                        <li><a href="https://www.solisgreenindia.in/about/">About Us</a></li>
+                        <li><a href="https://www.solisgreenindia.in/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Pathanamthitta Solar Experts</h3>
                     <ul class="contact-info">
-                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">Emergency Capacity: 8301849474</a></li>
-                        <li><i class="fas fa-phone-alt"></i> <a href="tel:9539316623">KSEB Data Check: 9539316623</a></li>
-                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474">WhatsApp Emergency</a></li>
-                        <li><i class="fas fa-external-link-alt"></i> <a href="https://wss.kseb.in/selfservices/reCap" target="_blank">Official KSEB Portal</a></li>
-                        <li><i class="fas fa-clock"></i> Emergency Hours: 7AM-10PM</li>
+                        <li class="contact-primary">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <a href="tel:8301849474">District Expert: 8301849474</a>
+                                <span class="contact-label">Primary Consultation</span>
+                            </div>
+                        </li>
+                        <li class="contact-alternate">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <a href="tel:9539316623">Technical Support: 9539316623</a>
+                                <span class="contact-label">Installation & Service</span>
+                            </div>
+                        </li>
+                        <li class="contact-support">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <a href="tel:8606849474">24/7 Support: 8606849474</a>
+                                <span class="contact-label">Emergency Service</span>
+                            </div>
+                        </li>
+                        <li class="whatsapp-primary">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
+                                <span class="contact-label">Quick Quotes & Photos</span>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Muthoor, Thiruvalla - 689107</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved. | 🚨 URGENT: KSEB Transformer Capacity Emergency in Pathanamthitta | SBI 10-Year Solar Loan Specialists</p>
-                <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">
-                    <i class="fas fa-info-circle"></i> KSEB transformer capacity data based on official KSEB portal. Updated regularly.
-                </p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Premier Solar Solutions for Pathanamthitta District</p>
             </div>
         </div>
     </footer>
@@ -1188,125 +1247,570 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <script src="../script.js"></script>
+    <!-- Common JavaScript -->
+    <script src="https://www.solisgreenindia.in/script.js"></script>
+    
+    <!-- Leaflet JS for Interactive Map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Pathanamthitta Premium JavaScript -->
     <script>
-        // KSEB Data Tab Switching
+        // Wait for DOM and common JS to load
         document.addEventListener('DOMContentLoaded', function() {
-            // Tab functionality
-            const tabs = document.querySelectorAll('.kseb-tab');
-            const tabContents = document.querySelectorAll('.kseb-tab-content');
+            console.log('🚀 Pathanamthitta Premium Page Initializing...');
             
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const tabId = tab.getAttribute('data-tab');
+            // Initialize Premium Features
+            initializeEnhancedSlider();
+            initializeInteractiveMap();
+            initializeSavingsCalculator();
+            initializeProgressiveForm();
+            initializeDataVisualization();
+            initializePremiumMobile();
+            
+            console.log('✅ Pathanamthitta Premium Page Initialized');
+        });
+
+        // ==================== ENHANCED SLIDER ====================
+        function initializeEnhancedSlider() {
+            const progressBar = document.getElementById('slideProgress');
+            let progressInterval;
+            
+            function startProgress() {
+                if (progressBar) {
+                    progressBar.classList.remove('active');
+                    void progressBar.offsetWidth; // Trigger reflow
+                    progressBar.classList.add('active');
+                }
+            }
+            
+            // Restart progress on slide change
+            document.querySelectorAll('.dot, .slider-prev, .slider-next').forEach(element => {
+                element.addEventListener('click', startProgress);
+            });
+            
+            // Start initial progress
+            setTimeout(startProgress, 100);
+        }
+
+        // ==================== INTERACTIVE MAP ====================
+        function initializeInteractiveMap() {
+            // Only initialize if map container exists
+            if (!document.getElementById('pathanamthittaMap')) return;
+            
+            // Initialize map centered on Pathanamthitta
+            const map = L.map('pathanamthittaMap').setView([9.2667, 76.7875], 10);
+            
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+            
+            // Pathanamthitta towns data
+            const towns = [
+                {
+                    name: "Thiruvalla",
+                    coords: [9.3833, 76.5667],
+                    installations: 45,
+                    savings: "₹4,200 avg/month",
+                    status: "high",
+                    color: "#27AE60"
+                },
+                {
+                    name: "Adoor",
+                    coords: [9.4000, 76.7333],
+                    installations: 32,
+                    savings: "₹3,800 avg/month",
+                    status: "high",
+                    color: "#27AE60"
+                },
+                {
+                    name: "Ranni",
+                    coords: [9.3833, 76.8000],
+                    installations: 28,
+                    savings: "₹3,500 avg/month",
+                    status: "medium",
+                    color: "#3498DB"
+                },
+                {
+                    name: "Kozhencherry",
+                    coords: [9.3333, 76.7167],
+                    installations: 22,
+                    savings: "₹3,200 avg/month",
+                    status: "medium",
+                    color: "#3498DB"
+                },
+                {
+                    name: "Mallappally",
+                    coords: [9.4500, 76.6833],
+                    installations: 18,
+                    savings: "₹2,900 avg/month",
+                    status: "growing",
+                    color: "#E67E22"
+                },
+                {
+                    name: "Pandalam",
+                    coords: [9.3167, 76.6833],
+                    installations: 15,
+                    savings: "₹2,700 avg/month",
+                    status: "growing",
+                    color: "#E67E22"
+                },
+                {
+                    name: "Konni",
+                    coords: [9.2333, 76.8667],
+                    installations: 12,
+                    savings: "₹2,500 avg/month",
+                    status: "new",
+                    color: "#95A5A6"
+                }
+            ];
+            
+            // Add markers for each town
+            towns.forEach(town => {
+                const marker = L.circleMarker(town.coords, {
+                    color: town.color,
+                    fillColor: town.color,
+                    fillOpacity: 0.7,
+                    radius: 15 + (town.installations / 2)
+                }).addTo(map);
+                
+                // Popup content
+                const popupContent = `
+                    <div class="map-town-popup">
+                        <h4>${town.name}</h4>
+                        <div class="town-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">${town.installations}</div>
+                                <div class="stat-label">Installations</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${town.savings}</div>
+                                <div class="stat-label">Avg Savings</div>
+                            </div>
+                        </div>
+                        <a href="tel:8301849474" style="display: inline-block; background: var(--solis-orange); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; margin-top: 10px; font-size: 0.9rem;">
+                            <i class="fas fa-phone"></i> Call ${town.name} Expert
+                        </a>
+                    </div>
+                `;
+                
+                marker.bindPopup(popupContent);
+            });
+            
+            // Fit bounds to show all markers
+            const bounds = L.latLngBounds(towns.map(t => t.coords));
+            map.fitBounds(bounds, { padding: [50, 50] });
+        }
+
+        // ==================== SAVINGS CALCULATOR ====================
+        function initializeSavingsCalculator() {
+            const billInput = document.getElementById('monthlyBill');
+            const areaInput = document.getElementById('roofArea');
+            const sunInput = document.getElementById('sunlightHours');
+            const loanSelect = document.getElementById('loanOption');
+            
+            const billValue = document.getElementById('billValue');
+            const areaValue = document.getElementById('areaValue');
+            const sunValue = document.getElementById('sunValue');
+            const systemValue = document.getElementById('recommendedSystem');
+            const savingsValue = document.getElementById('monthlySavings');
+            const paybackValue = document.getElementById('paybackPeriod');
+            
+            function updateCalculator() {
+                const bill = parseInt(billInput.value);
+                const area = parseInt(areaInput.value);
+                const sun = parseFloat(sunInput.value);
+                const loanType = loanSelect.value;
+                
+                // Update display values
+                billValue.textContent = `₹${bill.toLocaleString()}`;
+                areaValue.textContent = `${area} sq.ft`;
+                sunValue.textContent = `${sun} hours`;
+                
+                // Calculate system size (simplified algorithm)
+                const systemSize = Math.min(Math.floor(bill / 1000) * 1.5, area / 60);
+                const recommendedSystem = Math.max(3, Math.min(10, Math.round(systemSize)));
+                
+                // Calculate savings (simplified)
+                const monthlySavings = Math.round(bill * 0.85);
+                
+                // Calculate payback period based on financing
+                let paybackPeriod;
+                switch(loanType) {
+                    case 'subsidy':
+                        paybackPeriod = (recommendedSystem === 3 ? '3.5' : '4.2');
+                        break;
+                    case 'sbi':
+                        paybackPeriod = (recommendedSystem === 3 ? '4.8' : '5.5');
+                        break;
+                    case 'cash':
+                        paybackPeriod = (recommendedSystem === 3 ? '3.2' : '3.8');
+                        break;
+                    default:
+                        paybackPeriod = (recommendedSystem === 3 ? '3.8' : '4.5');
+                }
+                
+                // Update results
+                systemValue.textContent = `${recommendedSystem} kW`;
+                savingsValue.textContent = `₹${monthlySavings.toLocaleString()}`;
+                paybackValue.textContent = `${paybackPeriod} Years`;
+            }
+            
+            // Add event listeners
+            [billInput, areaInput, sunInput].forEach(input => {
+                input.addEventListener('input', updateCalculator);
+            });
+            
+            loanSelect.addEventListener('change', updateCalculator);
+            
+            // Initial calculation
+            updateCalculator();
+        }
+        
+        function saveCalculation() {
+            const calculationData = {
+                system: document.getElementById('recommendedSystem').textContent,
+                savings: document.getElementById('monthlySavings').textContent,
+                payback: document.getElementById('paybackPeriod').textContent,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('solarCalculation', JSON.stringify(calculationData));
+            
+            // Show success message
+            alert('✅ Calculation saved! Our team will use this to prepare your personalized quote.');
+            
+            // Scroll to form
+            document.getElementById('progressiveForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==================== PROGRESSIVE FORM ====================
+        function initializeProgressiveForm() {
+            const steps = document.querySelectorAll('.form-step');
+            const stepContents = document.querySelectorAll('.form-step-content');
+            const prevBtn = document.getElementById('prevStep');
+            const nextBtn = document.getElementById('nextStep');
+            const submitBtn = document.getElementById('submitForm');
+            
+            let currentStep = 1;
+            const totalSteps = 4;
+            
+            function updateFormNavigation() {
+                // Update step indicators
+                steps.forEach(step => {
+                    const stepNum = parseInt(step.getAttribute('data-step'));
+                    step.classList.remove('active', 'completed');
                     
-                    // Remove active class from all tabs and contents
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(content => {
-                        content.classList.remove('active');
-                        content.style.display = 'none';
-                    });
-                    
-                    // Add active class to clicked tab
-                    tab.classList.add('active');
-                    
-                    // Show corresponding content
-                    const activeContent = document.getElementById(tabId + 'Tab');
-                    if (activeContent) {
-                        activeContent.classList.add('active');
-                        activeContent.style.display = 'block';
+                    if (stepNum === currentStep) {
+                        step.classList.add('active');
+                    } else if (stepNum < currentStep) {
+                        step.classList.add('completed');
+                    }
+                });
+                
+                // Show/hide step contents
+                stepContents.forEach(content => {
+                    const stepNum = parseInt(content.getAttribute('data-step'));
+                    content.classList.remove('active');
+                    if (stepNum === currentStep) {
+                        content.classList.add('active');
+                    }
+                });
+                
+                // Update button states
+                prevBtn.disabled = currentStep === 1;
+                nextBtn.style.display = currentStep < totalSteps ? 'inline-flex' : 'none';
+                submitBtn.style.display = currentStep === totalSteps ? 'inline-flex' : 'none';
+                
+                // Validate current step
+                validateCurrentStep();
+            }
+            
+            function validateCurrentStep() {
+                const currentContent = document.querySelector(`.form-step-content[data-step="${currentStep}"]`);
+                const requiredFields = currentContent.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                    }
+                });
+                
+                nextBtn.disabled = !isValid;
+                if (currentStep === totalSteps) {
+                    submitBtn.disabled = !isValid;
+                }
+            }
+            
+            // Step navigation
+            nextBtn.addEventListener('click', () => {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateFormNavigation();
+                }
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateFormNavigation();
+                }
+            });
+            
+            // Step click navigation
+            steps.forEach(step => {
+                step.addEventListener('click', function() {
+                    const stepNum = parseInt(this.getAttribute('data-step'));
+                    if (stepNum <= currentStep) {
+                        currentStep = stepNum;
+                        updateFormNavigation();
                     }
                 });
             });
             
-            // Update urgency alert every 5 minutes
-            function updateUrgencyAlert() {
-                const alert = document.getElementById('urgentAlert');
-                const now = new Date();
-                const hour = now.getHours();
+            // Real-time validation
+            document.querySelectorAll('#progressiveQuoteForm input, #progressiveQuoteForm select').forEach(field => {
+                field.addEventListener('input', validateCurrentStep);
+                field.addEventListener('change', validateCurrentStep);
+            });
+            
+            // Form submission
+            submitBtn.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                let message = '';
-                if (hour < 12) {
-                    message = 'Morning slots filling fast! ';
-                } else if (hour < 17) {
-                    message = 'Afternoon slots almost gone! ';
-                } else {
-                    message = 'Last slots for today! ';
+                // Collect form data
+                const formData = new FormData(document.getElementById('progressiveQuoteForm'));
+                const formObject = Object.fromEntries(formData.entries());
+                
+                // Add calculation data if available
+                const savedCalc = localStorage.getItem('solarCalculation');
+                if (savedCalc) {
+                    formObject.calculation = JSON.parse(savedCalc);
                 }
                 
-                const fullMessage = `🚨 ${message}7 KSEB transformers at 100% capacity in Pathanamthitta! Solar installations STOPPED. `;
-                alert.innerHTML = `<div class="container"><i class="fas fa-ban"></i> ${fullMessage}<a href="#ksebData" style="color: #ffdd00; text-decoration: underline; margin-left: 10px; font-weight: bold;">View KSEB Data →</a></div>`;
-            }
+                // Add page info
+                formObject.page = 'Pathanamthitta District';
+                formObject.timestamp = new Date().toLocaleString('en-IN');
+                
+                // Show success message
+                alert(`✅ Thank you! Your detailed solar plan for ${formObject.location} will be prepared and sent within 30 minutes. Our expert will call you at ${formObject.phone}.`);
+                
+                // Reset form
+                document.getElementById('progressiveQuoteForm').reset();
+                currentStep = 1;
+                updateFormNavigation();
+                
+                // Track conversion
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'progressive_form_submit', {
+                        'event_category': 'Pathanamthitta',
+                        'event_label': 'Premium Form Submission'
+                    });
+                }
+            });
             
-            // Update every 5 minutes
-            setInterval(updateUrgencyAlert, 300000);
-            updateUrgencyAlert();
+            // Initial setup
+            updateFormNavigation();
+        }
+
+        // ==================== DATA VISUALIZATION ====================
+        function initializeDataVisualization() {
+            const ctx = document.getElementById('solarDataChart');
+            if (!ctx) return;
             
-            // Track KSEB data views
-            let ksebDataViewed = false;
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !ksebDataViewed) {
-                        ksebDataViewed = true;
-                        // Track that user viewed KSEB data
-                        localStorage.setItem('kseb_data_viewed', 'true');
+            // Installation growth chart
+            const installationChart = new Chart(ctx.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: 'Solar Installations in Pathanamthitta',
+                        data: [12, 28, 45, 78, 112, 150],
+                        borderColor: '#FF6A2A',
+                        backgroundColor: 'rgba(255, 106, 42, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'white'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255,255,255,0.1)'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255,255,255,0.1)'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        }
                     }
+                }
+            });
+            
+            // Tab switching for different charts
+            const vizTabs = document.querySelectorAll('.viz-tab');
+            vizTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const vizType = this.getAttribute('data-viz');
+                    
+                    // Update active tab
+                    vizTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update chart data based on selection
+                    switch(vizType) {
+                        case 'installations':
+                            installationChart.data.datasets[0].label = 'Solar Installations in Pathanamthitta';
+                            installationChart.data.datasets[0].data = [12, 28, 45, 78, 112, 150];
+                            break;
+                        case 'savings':
+                            installationChart.data.datasets[0].label = 'Average Monthly Savings (₹)';
+                            installationChart.data.datasets[0].data = [3200, 3500, 3800, 4000, 4200, 4500];
+                            break;
+                        case 'towns':
+                            installationChart.data.datasets[0].label = 'Town-wise Installations';
+                            installationChart.data.labels = ['Thiruvalla', 'Adoor', 'Ranni', 'Kozhencherry', 'Mallappally', 'Pandalam'];
+                            installationChart.data.datasets[0].data = [45, 32, 28, 22, 18, 15];
+                            installationChart.type = 'bar';
+                            break;
+                        case 'capacity':
+                            installationChart.data.datasets[0].label = 'Average System Size (kW)';
+                            installationChart.data.labels = ['2019', '2020', '2021', '2022', '2023', '2024'];
+                            installationChart.data.datasets[0].data = [2.5, 3.0, 3.5, 4.0, 4.5, 5.0];
+                            installationChart.type = 'line';
+                            break;
+                    }
+                    
+                    installationChart.update();
                 });
-            }, { threshold: 0.5 });
+            });
+        }
+
+        // ==================== PREMIUM MOBILE EXPERIENCE ====================
+        function initializePremiumMobile() {
+            // Touch-optimized slider for mobile
+            const heroSlider = document.querySelector('.hero-slider');
+            let touchStartX = 0;
+            let touchEndX = 0;
             
-            const ksebSection = document.getElementById('ksebData');
-            if (ksebSection) {
-                observer.observe(ksebSection);
-            }
-            
-            // Update form submission for urgency
-            const mainForm = document.getElementById('mainQuoteForm');
-            if (mainForm) {
-                mainForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
+            if (heroSlider) {
+                heroSlider.addEventListener('touchstart', e => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                
+                heroSlider.addEventListener('touchend', e => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+                
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    const diff = touchStartX - touchEndX;
                     
-                    const location = mainForm.querySelector('input[name="location"]').value;
-                    const urgency = mainForm.querySelector('select[name="urgency"]').value;
-                    
-                    // Store emergency inquiry
-                    localStorage.setItem('pathanamthitta_emergency_inquiry', JSON.stringify({
-                        location: location,
-                        urgency: urgency,
-                        timestamp: new Date().toISOString()
-                    }));
-                    
-                    alert(`🚨 EMERGENCY INQUIRY RECEIVED! Our team will call you within 30 minutes to check transformer capacity in ${location}.`);
-                    
-                    // Submit form (uncomment when ready)
-                    // fetch('https://formspree.io/f/your-form-id', {
-                    //     method: 'POST',
-                    //     body: new FormData(mainForm)
-                    // });
-                });
-            }
-        });
-        
-        // Scroll-based urgency trigger
-        window.addEventListener('scroll', function() {
-            const scrollPos = window.scrollY;
-            const windowHeight = window.innerHeight;
-            
-            // When user scrolls 70% down
-            if (scrollPos > (document.documentElement.scrollHeight - windowHeight) * 0.7) {
-                // Show extra urgency in alert
-                const alertBar = document.getElementById('urgentAlert');
-                if (alertBar && !alertBar.querySelector('.last-chance')) {
-                    const lastChance = document.createElement('div');
-                    lastChance.className = 'last-chance';
-                    lastChance.style.marginTop = '5px';
-                    lastChance.style.fontSize = '0.8rem';
-                    lastChance.style.fontWeight = 'bold';
-                    lastChance.style.color = '#ffdd00';
-                    lastChance.innerHTML = '⚠️ LAST CHANCE TODAY: Only 3 emergency slots remaining!';
-                    alertBar.querySelector('.container').appendChild(lastChance);
+                    if (Math.abs(diff) > swipeThreshold) {
+                        if (diff > 0) {
+                            // Swipe left - next slide
+                            document.querySelector('.slider-next').click();
+                        } else {
+                            // Swipe right - previous slide
+                            document.querySelector('.slider-prev').click();
+                        }
+                    }
                 }
             }
-        });
+            
+            // Mobile-specific optimizations
+            if (window.innerWidth <= 768) {
+                // Reduce animations on mobile
+                document.querySelectorAll('.floating-element').forEach(el => {
+                    el.style.animationDuration = '30s';
+                });
+                
+                // Lazy load videos
+                const videoCards = document.querySelectorAll('.video-card');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target.querySelector('img');
+                            if (img && img.dataset.src) {
+                                img.src = img.dataset.src;
+                            }
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                videoCards.forEach(card => observer.observe(card));
+            }
+            
+            // iOS-specific fixes
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                // Fix viewport height issues
+                document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+                window.addEventListener('resize', () => {
+                    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+                });
+            }
+        }
+
+        // ==================== VIDEO PLAYER ====================
+        function playVideo(videoId) {
+            // In a real implementation, this would play a modal video
+            alert('🎬 Video testimonial would play here. In production, this would open a lightbox with the actual video.');
+            
+            // Track video play
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'play', {
+                    'event_category': 'Video',
+                    'event_label': `Pathanamthitta Testimonial - ${videoId}`
+                });
+            }
+        }
+
+        // ==================== PERFORMANCE MONITORING ====================
+        function monitorPerformance() {
+            // Log page load performance
+            window.addEventListener('load', () => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                if (perfData) {
+                    const loadTime = perfData.loadEventEnd - perfData.startTime;
+                    console.log(`📊 Page loaded in ${Math.round(loadTime)}ms`);
+                    
+                    // Track performance
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'timing_complete', {
+                            'name': 'page_load',
+                            'value': Math.round(loadTime),
+                            'event_category': 'Performance',
+                            'event_label': 'Pathanamthitta Page'
+                        });
+                    }
+                }
+            });
+        }
+        
+        // Initialize performance monitoring
+        monitorPerformance();
     </script>
 </body>
 </html>
