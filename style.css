@@ -1915,3 +1915,413 @@ footer {
     animation: none;
   }
 }
+/* =========================================================
+   SOLIS GREEN INDIA - UNIFIED MOBILE MENU SYSTEM
+   Version: 1.0 | Works with ALL page headers
+   ========================================================= */
+
+class MobileMenuSystem {
+  constructor() {
+    this.isInitialized = false;
+    this.isMenuOpen = false;
+    this.currentPage = this.detectPageType();
+  }
+  
+  // Detect which page type we're on
+  detectPageType() {
+    const path = window.location.pathname;
+    if (path.includes('/solar-company-in-')) return 'district';
+    if (path.includes('/cities/') || path.includes('/town/')) return 'city';
+    if (path === '/' || path.includes('index')) return 'homepage';
+    return 'general';
+  }
+  
+  // Initialize the mobile menu system
+  init() {
+    if (this.isInitialized) return;
+    
+    console.log(`📱 Initializing Mobile Menu for ${this.currentPage} page`);
+    
+    // Create mobile menu structure
+    this.createMobileMenuStructure();
+    
+    // Setup event listeners
+    this.setupEventListeners();
+    
+    // Setup scroll handling
+    this.setupScrollHandling();
+    
+    // Setup touch optimization
+    this.setupTouchOptimization();
+    
+    this.isInitialized = true;
+    console.log('✅ Mobile Menu System Initialized');
+  }
+  
+  // Create the mobile menu HTML structure
+  createMobileMenuStructure() {
+    // Check if mobile menu already exists
+    if (document.getElementById('mobileMenuOverlay')) return;
+    
+    const mobileMenuHTML = `
+      <!-- Mobile Menu Overlay -->
+      <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+      
+      <!-- Mobile Menu Container -->
+      <div class="mobile-menu-container" id="mobileMenuContainer">
+        <!-- Mobile Menu Header -->
+        <div class="mobile-menu-header">
+          <div class="mobile-menu-logo">
+            <img src="/images/logo/logo-white.png" alt="Solis Green India">
+          </div>
+          <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <!-- Mobile Menu Navigation -->
+        <nav class="mobile-menu-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="/" class="${this.currentPage === 'homepage' ? 'active' : ''}">
+              <span>Home</span>
+              <i class="fas fa-chevron-right"></i>
+            </a></li>
+            <li><a href="/services/" class="${window.location.pathname.includes('/services/') ? 'active' : ''}">
+              <span>Our Services</span>
+              <i class="fas fa-chevron-right"></i>
+            </a></li>
+            <li><a href="/cities/" class="${this.currentPage === 'district' || this.currentPage === 'city' ? 'active' : ''}">
+              <span>Service Areas</span>
+              <i class="fas fa-chevron-right"></i>
+            </a></li>
+            <li><a href="/about/" class="${window.location.pathname.includes('/about/') ? 'active' : ''}">
+              <span>About Us</span>
+              <i class="fas fa-chevron-right"></i>
+            </a></li>
+            <li><a href="/projects/" class="${window.location.pathname.includes('/projects/') ? 'active' : ''}">
+              <span>Our Projects</span>
+              <i class="fas fa-chevron-right"></i>
+            </a></li>
+            <li><a href="/contact/" class="${window.location.pathname.includes('/contact/') ? 'active' : ''}">
+              <span>Contact Us</span>
+              <i class="fas fa-chevron-right"></i>
+            </a></li>
+          </ul>
+        </nav>
+        
+        <!-- Mobile Menu Footer -->
+        <div class="mobile-menu-footer">
+          <div class="mobile-contact-info">
+            <div class="mobile-contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:8301849474">Primary: 8301849474</a>
+            </div>
+            <div class="mobile-contact-item">
+              <i class="fas fa-phone-alt"></i>
+              <a href="tel:9539316623">Alternate: 9539316623</a>
+            </div>
+            <div class="mobile-contact-item">
+              <i class="fas fa-headset"></i>
+              <a href="tel:8606849474">Support: 8606849474</a>
+            </div>
+            <div class="mobile-contact-item">
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://wa.me/918301849474" target="_blank">WhatsApp Primary</a>
+            </div>
+          </div>
+          
+          <div class="mobile-social-links">
+            <a href="#" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile Sticky CTA Bar -->
+      <div class="mobile-sticky-cta" id="mobileStickyCTA">
+        <a href="tel:8301849474" class="mobile-cta-btn call">
+          <i class="fas fa-phone"></i>
+          <span>Call Now</span>
+        </a>
+        <a href="https://wa.me/918301849474" class="mobile-cta-btn whatsapp" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a href="#quick-quote" class="mobile-cta-btn quote">
+          <i class="fas fa-file-alt"></i>
+          <span>Get Quote</span>
+        </a>
+      </div>
+      
+      <!-- Mobile Scroll Progress -->
+      <div class="mobile-scroll-progress" id="mobileScrollProgress"></div>
+    `;
+    
+    // Insert mobile menu at the end of body
+    document.body.insertAdjacentHTML('beforeend', mobileMenuHTML);
+    
+    // Update existing hamburger buttons
+    this.updateHamburgerButtons();
+  }
+  
+  // Update existing hamburger buttons to use new system
+  updateHamburgerButtons() {
+    const hamburgerButtons = document.querySelectorAll('.mobile-menu-btn, #mobileMenuBtn');
+    
+    hamburgerButtons.forEach(btn => {
+      // Remove existing click handlers
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+      
+      // Add hamburger animation classes
+      newBtn.classList.add('mobile-menu-toggle');
+      newBtn.setAttribute('aria-label', 'Toggle mobile menu');
+      newBtn.setAttribute('aria-expanded', 'false');
+      
+      // Remove any existing event listeners by replacing
+      newBtn.onclick = null;
+    });
+  }
+  
+  // Setup all event listeners
+  setupEventListeners() {
+    // Toggle mobile menu
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.mobile-menu-toggle') || 
+          e.target.closest('#mobileMenuBtn') ||
+          e.target.closest('.mobile-menu-btn')) {
+        this.toggleMobileMenu();
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      
+      // Close menu
+      if (e.target.closest('#mobileMenuClose') || 
+          e.target.closest('.mobile-menu-overlay') ||
+          e.target.closest('.mobile-menu-nav a')) {
+        this.closeMobileMenu();
+      }
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isMenuOpen) {
+        this.closeMobileMenu();
+      }
+      
+      // Trap focus within mobile menu when open
+      if (e.key === 'Tab' && this.isMenuOpen) {
+        this.trapFocus(e);
+      }
+    });
+    
+    // Window resize handling
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (window.innerWidth > 1024 && this.isMenuOpen) {
+          this.closeMobileMenu();
+        }
+      }, 250);
+    });
+  }
+  
+  // Toggle mobile menu open/close
+  toggleMobileMenu() {
+    this.isMenuOpen ? this.closeMobileMenu() : this.openMobileMenu();
+  }
+  
+  // Open mobile menu
+  openMobileMenu() {
+    if (this.isMenuOpen) return;
+    
+    const overlay = document.getElementById('mobileMenuOverlay');
+    const container = document.getElementById('mobileMenuContainer');
+    const hamburgers = document.querySelectorAll('.mobile-menu-toggle, #mobileMenuBtn, .mobile-menu-btn');
+    
+    // Show menu
+    overlay.classList.add('active');
+    container.classList.add('active');
+    hamburgers.forEach(btn => {
+      btn.classList.add('active');
+      btn.setAttribute('aria-expanded', 'true');
+    });
+    
+    // Disable body scroll
+    document.body.style.overflow = 'hidden';
+    document.body.style.height = '100vh';
+    
+    // Set focus to first menu item for accessibility
+    setTimeout(() => {
+      const firstMenuItem = container.querySelector('a');
+      if (firstMenuItem) firstMenuItem.focus();
+    }, 300);
+    
+    this.isMenuOpen = true;
+    
+    // Track event
+    this.trackEvent('mobile_menu', 'open', this.currentPage);
+  }
+  
+  // Close mobile menu
+  closeMobileMenu() {
+    if (!this.isMenuOpen) return;
+    
+    const overlay = document.getElementById('mobileMenuOverlay');
+    const container = document.getElementById('mobileMenuContainer');
+    const hamburgers = document.querySelectorAll('.mobile-menu-toggle, #mobileMenuBtn, .mobile-menu-btn');
+    
+    // Hide menu
+    overlay.classList.remove('active');
+    container.classList.remove('active');
+    hamburgers.forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    
+    // Enable body scroll
+    document.body.style.overflow = '';
+    document.body.style.height = '';
+    
+    this.isMenuOpen = false;
+    
+    // Track event
+    this.trackEvent('mobile_menu', 'close', this.currentPage);
+  }
+  
+  // Trap focus within mobile menu for accessibility
+  trapFocus(e) {
+    const menu = document.getElementById('mobileMenuContainer');
+    const focusableElements = menu.querySelectorAll(
+      'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    if (e.shiftKey) {
+      // Shift + Tab
+      if (document.activeElement === firstElement) {
+        lastElement.focus();
+        e.preventDefault();
+      }
+    } else {
+      // Tab
+      if (document.activeElement === lastElement) {
+        firstElement.focus();
+        e.preventDefault();
+      }
+    }
+  }
+  
+  // Setup scroll handling for mobile
+  setupScrollHandling() {
+    if (window.innerWidth > 768) return;
+    
+    let lastScrollTop = 0;
+    let scrollTimeout;
+    const stickyCTA = document.getElementById('mobileStickyCTA');
+    const progressBar = document.getElementById('mobileScrollProgress');
+    
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Show/hide sticky CTA based on scroll direction
+      if (stickyCTA) {
+        if (scrollTop > lastScrollTop && scrollTop > 300) {
+          // Scrolling down - hide
+          stickyCTA.classList.remove('show');
+        } else if (scrollTop > 100) {
+          // Scrolling up - show
+          stickyCTA.classList.add('show');
+        }
+      }
+      
+      // Update progress bar
+      if (progressBar) {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+        progressBar.style.width = `${scrollPercent}%`;
+      }
+      
+      lastScrollTop = scrollTop;
+      
+      // Auto-hide sticky CTA after 3 seconds of no scrolling
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        if (stickyCTA && !this.isMenuOpen) {
+          stickyCTA.classList.remove('show');
+        }
+      }, 3000);
+    });
+  }
+  
+  // Setup touch optimization
+  setupTouchOptimization() {
+    if ('ontouchstart' in window) {
+      // Add touch-specific optimizations
+      document.documentElement.classList.add('touch-device');
+      
+      // Improve touch scrolling in menu
+      const menuContainer = document.getElementById('mobileMenuContainer');
+      if (menuContainer) {
+        menuContainer.addEventListener('touchstart', (e) => {
+          if (e.target.tagName === 'A') {
+            // Add visual feedback for touch
+            e.target.classList.add('touch-active');
+            setTimeout(() => {
+              e.target.classList.remove('touch-active');
+            }, 300);
+          }
+        }, { passive: true });
+      }
+    }
+  }
+  
+  // Track events for analytics
+  trackEvent(category, action, label) {
+    // Google Analytics
+    if (typeof gtag !== 'undefined') {
+      gtag('event', action, {
+        event_category: category,
+        event_label: label
+      });
+    }
+    
+    // Console for debugging
+    console.log(`📱 Mobile Menu Event: ${category} - ${action} - ${label}`);
+  }
+  
+  // Public method to check if menu is open
+  isOpen() {
+    return this.isMenuOpen;
+  }
+}
+
+// ==================== GLOBAL INITIALIZATION ====================
+
+// Create global instance
+window.SolisMobileMenu = new MobileMenuSystem();
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    window.SolisMobileMenu.init();
+  });
+} else {
+  window.SolisMobileMenu.init();
+}
+
+// Export for module systems
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = MobileMenuSystem;
+}
