@@ -3,179 +3,572 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solis Green India - Solar projects across Kerala. View our residential and commercial solar installations in Pathanamthitta, Kottayam, Alappuzha and Kollam.">
-    <meta name="keywords" content="solar projects kerala, residential solar projects, commercial solar projects, solis green india projects">
+    
+    <!-- SEO Meta Tags -->
+    <title>Solar Projects Gallery | Solis Green India - 500+ Installations in Kerala</title>
+    <meta name="description" content="View our solar project gallery - 500+ residential, commercial & industrial installations across Pathanamthitta, Kottayam, Alappuzha & Kollam districts.">
+    <meta name="keywords" content="solar projects Kerala, solar installation gallery, solar before after, solar panel pictures, rooftop solar projects">
     <meta name="author" content="Solis Green India">
-
-    <!-- Preload critical hero image -->
-    <link rel="preload" href="../images/hero/hero-image-1.webp" as="image" type="image/webp">
-
+    
+    <!-- OG Tags -->
+    <meta property="og:title" content="Solar Projects Gallery | Solis Green India">
+    <meta property="og:description" content="500+ solar installations across Kerala. View residential, commercial & industrial projects.">
+    <meta property="og:image" content="https://www.solisgreenindia.in/images/projects/hero-projects.webp">
+    <meta property="og:url" content="https://www.solisgreenindia.in/projects/">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="../images/projects/hero-projects.webp" as="image" type="image/webp">
+    
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
-    <!-- End Google Tag Manager -->
-
-    <title>Solar Projects in Kerala | Residential & Commercial | Solis Green India</title>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Mobile Menu Fix CSS (same pattern as other pages) -->
+    
+    <!-- Projects Gallery Specific Styles -->
     <style>
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                z-index: 1000;
-            }
-
-            nav ul.active {
-                display: flex !important;
-            }
-
-            .mobile-menu-btn {
-                display: block !important;
-            }
-        }
-
-        /* Small project-specific tweaks reusing A-style components */
-        .projects-intro {
-            padding: 80px 0 40px;
-        }
-
-        .projects-intro-text {
-            max-width: 800px;
-            margin: 0 auto;
+        /* Projects Hero */
+        .projects-hero {
+            background: linear-gradient(135deg, rgba(31, 41, 51, 0.9), rgba(255, 106, 42, 0.9)),
+                        url('../images/projects/hero-projects.webp') center/cover no-repeat;
+            color: var(--white);
+            padding: 120px 0 80px;
+            margin-top: 80px;
             text-align: center;
-            color: var(--text-light);
+            position: relative;
         }
-
-        .projects-intro-text p {
-            margin-bottom: 10px;
+        
+        .projects-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-
-        .projects-intro-text .project-towns {
-            font-size: 0.95rem;
+        
+        .projects-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
             opacity: 0.9;
         }
-
-        .projects-summary-stats {
-            margin-top: 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-        }
-
-        .projects-stat-card {
+        
+        /* Projects Stats */
+        .projects-stats {
             background: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 20px;
+            padding: 40px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            margin: -40px auto 50px;
+            max-width: 1000px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
             text-align: center;
         }
-
-        .projects-stat-card .stat-number {
-            font-size: 1.8rem;
+        
+        .stat-item {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--solis-orange);
+            display: block;
             margin-bottom: 5px;
         }
-
-        .projects-stat-card .stat-label {
+        
+        .stat-label {
+            color: var(--text-medium);
             font-size: 0.95rem;
-            color: var(--text-light);
         }
-
-        .projects-section-heading {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .projects-section-subtitle {
-            text-align: center;
-            color: var(--text-light);
+        
+        /* Filter Section */
+        .projects-filter {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: var(--radius-md);
             margin-bottom: 40px;
         }
-
-        .project-meta {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .project-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-right: 12px;
-        }
-
-        .project-meta i {
-            color: var(--primary-color);
-            font-size: 0.85rem;
-        }
-
-        .project-capacity {
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 10px;
-        }
-
-        .projects-cta {
-            margin-top: 60px;
-            padding: 40px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: var(--border-radius);
-            text-align: center;
-            color: #fff;
-        }
-
-        .projects-cta h2 {
-            margin-bottom: 10px;
-        }
-
-        .projects-cta p {
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
             margin-bottom: 20px;
-            opacity: 0.95;
         }
-
-        .projects-cta .cta-buttons {
+        
+        .filter-btn {
+            padding: 12px 25px;
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            color: var(--text-medium);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--solis-orange);
+            color: var(--white);
+            border-color: var(--solis-orange);
+        }
+        
+        .location-filter {
             display: flex;
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
-        .projects-cta .cta-buttons .btn {
+        
+        .location-select {
+            padding: 12px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background: var(--white);
+            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
             min-width: 200px;
         }
-
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .project-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .project-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--solis-orange);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-location {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--solis-blue);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .project-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .project-detail {
+            text-align: center;
+        }
+        
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--solis-orange);
+            display: block;
+        }
+        
+        .detail-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        /* Before-After Section */
+        .before-after-section {
+            margin: 80px 0;
+        }
+        
+        .ba-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .ba-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .ba-image-container {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ba-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .ba-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .ba-content {
+            padding: 20px;
+        }
+        
+        /* Project Modal */
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .project-modal.active {
+            display: flex;
+        }
+        
+        .modal-project-content {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.5);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        
+        .modal-project-image {
+            height: 400px;
+            overflow: hidden;
+        }
+        
+        .modal-project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-project-body {
+            padding: 40px;
+        }
+        
+        .modal-project-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .modal-project-specs {
+            background: var(--light-bg);
+            padding: 25px;
+            border-radius: var(--radius-md);
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-label {
+            color: var(--text-medium);
+        }
+        
+        .spec-value {
+            font-weight: 600;
+            color: var(--solis-dark);
+        }
+        
+        /* Testimonials in Projects */
+        .project-testimonials {
+            margin: 80px 0;
+            background: var(--light-bg);
+            padding: 60px 0;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 40px auto 0;
+            position: relative;
+        }
+        
+        .testimonial-slide {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            display: none;
+        }
+        
+        .testimonial-slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .testimonial-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-medium);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .projects-cta {
+            background: linear-gradient(135deg, var(--solis-orange), var(--solis-blue));
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+            border-radius: var(--radius-md);
+            margin: 60px 0;
+        }
+        
+        .projects-cta h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        
+        .projects-cta p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .modal-project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .modal-project-image {
+                height: 300px;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .projects-cta {
-                padding: 30px 20px;
+            .projects-hero {
+                padding: 100px 0 60px;
+                margin-top: 70px;
+            }
+            
+            .projects-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .projects-stats {
+                padding: 25px;
+                margin: -30px auto 40px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .location-filter {
+                flex-direction: column;
+            }
+            
+            .location-select {
+                width: 100%;
+            }
+            
+            .modal-project-body {
+                padding: 25px;
+            }
+            
+            .testimonial-slide {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .projects-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-details {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .ba-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <!-- Floating CTA (same as home/about) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+    <!-- Floating CTA -->
     <div class="floating-cta">
         <div class="cta-main-btn" id="ctaMainBtn">
             <i class="fas fa-comments"></i>
@@ -191,7 +584,7 @@
             <a href="tel:8606849474" class="cta-option" data-tooltip="Support Call">
                 <i class="fas fa-headset"></i>
             </a>
-            <a href="#" class="cta-option" data-tooltip="Quick Quote" id="quickFormBtn">
+            <a href="#projects-quote" class="cta-option" data-tooltip="Get Quote">
                 <i class="fas fa-file-alt"></i>
             </a>
             <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="Primary WhatsApp" target="_blank">
@@ -202,405 +595,541 @@
             </a>
         </div>
     </div>
-
-    <!-- Quick Quote Modal -->
-    <div class="modal" id="quickQuoteModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Get Quick Solar Quote</h3>
-            <form class="quick-quote-form" id="modalQuoteForm">
-                <input type="hidden" name="_subject" value="🔆 Quick Solar Quote - Solis Green India">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Phone Number" required>
-                </div>
-                <div class="form-group">
-                    <select name="service" required>
-                        <option value="">Select Service</option>
-                        <option value="residential">Residential Solar</option>
-                        <option value="commercial">Commercial Solar</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="location" placeholder="Your Location/City">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">
-                    <i class="fas fa-bolt"></i> Get Instant Quote
+    
+    <!-- Unified Header -->
+    <header class="solis-header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="/">
+                    <img src="/images/logo/logo.png" alt="Solis Green Energy Solutions">
+                </a>
+            </div>
+            
+            <nav class="header-menu" id="mainNav">
+                <a href="/">Home</a>
+                <a href="/services/">Services</a>
+                <a href="/cities/">Service Areas</a>
+                <a href="/about/">About</a>
+                <a href="/projects/" class="active">Projects</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+            
+            <div class="header-cta">
+                <a href="tel:8301849474" class="contact-btn">Call Now</a>
+                <a href="https://wa.me/918301849474" target="_blank" class="whatsapp-btn">WhatsApp</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
                 </button>
-            </form>
-            <div class="emergency-contact-modal">
-                <h4>Need Immediate Help?</h4>
-                <div class="emergency-numbers">
-                    <a href="tel:8301849474" class="emergency-number">
-                        <i class="fas fa-phone"></i> Primary: 8301849474
+            </div>
+        </div>
+    </header>
+    
+    <!-- Projects Hero -->
+    <section class="projects-hero">
+        <div class="container">
+            <h1>Our Solar Projects Gallery</h1>
+            <p>500+ successful solar installations across Kerala. Browse residential, commercial & industrial projects with detailed specifications.</p>
+            <div class="hero-buttons">
+                <div class="contact-options">
+                    <a href="#projects-grid" class="btn btn-primary pulse-animation">
+                        <i class="fas fa-images"></i> Browse Projects
                     </a>
-                    <a href="tel:9539316623" class="emergency-number">
-                        <i class="fas fa-phone-alt"></i> Alternate: 9539316623
+                    <a href="#projects-quote" class="btn btn-secondary">
+                        <i class="fas fa-bolt"></i> Get Your Quote
                     </a>
-                    <a href="tel:8606849474" class="emergency-number">
-                        <i class="fas fa-headset"></i> Support: 8606849474
-                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Stats -->
+    <div class="container">
+        <div class="projects-stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Districts Covered</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Customer Satisfaction</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5MW+</span>
+                    <span class="stat-label">Total Capacity Installed</span>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <a href="../">
-                    <img src="../images/logo/logo.png" alt="Solis Green India - Solar Energy Solutions" class="logo-img">
-                </a>
+    
+    <!-- Filter Section -->
+    <section class="container" id="projects-grid">
+        <div class="projects-filter">
+            <h3 class="text-center">Filter Projects</h3>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i> All Projects
+                </button>
+                <button class="filter-btn" data-filter="residential">
+                    <i class="fas fa-home"></i> Residential
+                </button>
+                <button class="filter-btn" data-filter="commercial">
+                    <i class="fas fa-building"></i> Commercial
+                </button>
+                <button class="filter-btn" data-filter="industrial">
+                    <i class="fas fa-industry"></i> Industrial
+                </button>
+                <button class="filter-btn" data-filter="government">
+                    <i class="fas fa-landmark"></i> Government
+                </button>
             </div>
-
-            <div class="header-contact">
-                <a href="tel:8301849474" class="contact-link">
-                    <i class="fas fa-phone"></i>
-                    <span>Primary: 8301849474</span>
-                </a>
-                <a href="tel:9539316623" class="contact-link">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>Alternate: 9539316623</span>
-                </a>
+            
+            <div class="location-filter">
+                <select class="location-select" id="districtFilter">
+                    <option value="all">All Districts</option>
+                    <option value="pathanamthitta">Pathanamthitta</option>
+                    <option value="kottayam">Kottayam</option>
+                    <option value="alappuzha">Alappuzha</option>
+                    <option value="kollam">Kollam</option>
+                </select>
+                
+                <select class="location-select" id="capacityFilter">
+                    <option value="all">All Capacities</option>
+                    <option value="1-3">1-3 kW</option>
+                    <option value="3-5">3-5 kW</option>
+                    <option value="5-10">5-10 kW</option>
+                    <option value="10+">10+ kW</option>
+                </select>
             </div>
-
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="../">Home</a></li>
-                    <li><a href="../services/">Services</a></li>
-                    <li><a href="../cities/">Service Areas</a></li>
-                    <li><a href="../about/">About Us</a></li>
-                    <li><a href="../projects/" class="active">Projects</a></li>
-                    <li><a href="../contact/" class="cta-button">Contact</a></li>
-                </ul>
-            </nav>
         </div>
-    </header>
-
-    <!-- Hero Slider (Style A, 3 slides, using local hero images) -->
-    <section class="hero-slider" id="projects-hero">
-        <div class="particles-container">
-            <div class="particles"></div>
-            <div class="solar-flare"></div>
-        </div>
-
-        <div class="hero-slides">
-            <!-- Slide 1 -->
-            <div class="hero-slide active">
-                <img src="../images/hero/hero-image-1.webp"
-                     alt="Residential rooftop solar panels in Kerala"
-                     class="hero-bg-image"
-                     loading="eager"
-                     fetchpriority="high"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-blue"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">☀️</div>
-                    <div class="floating-element element-2">🏠</div>
-                    <div class="floating-element element-3">⚡</div>
+        
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projectsContainer">
+            <!-- Project 1 - Residential -->
+            <div class="project-card" data-type="residential" data-district="pathanamthitta" data-capacity="3-5" data-project="1">
+                <div class="project-image">
+                    <img src="../images/projects/project1.webp" alt="Residential Solar Installation in Thiruvalla">
+                    <span class="project-badge">Residential</span>
                 </div>
-                <div class="hero-content container">
-                    <h1>Solar Projects Across Kerala</h1>
-                    <p>500+ residential and commercial solar installations powering homes and businesses in South Kerala.</p>
-                    <div class="hero-buttons">
-                        <div class="contact-options">
-                            <a href="residential-projects.html" class="btn btn-primary pulse-animation">
-                                <i class="fas fa-home"></i> View Residential Projects
-                            </a>
-                            <a href="commercial-projects.html" class="btn btn-secondary">
-                                <i class="fas fa-building"></i> View Commercial Projects
-                            </a>
+                <div class="project-content">
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Thiruvalla, Pathanamthitta</span>
+                    </div>
+                    <h3 class="project-title">5 kW Rooftop Solar for 4-BHK Home</h3>
+                    <p>Complete solar system with net metering, reducing electricity bill by 80%. Installed in 3 days with government subsidy.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <span class="detail-value">5 kW</span>
+                            <span class="detail-label">System Size</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">₹2.5L</span>
+                            <span class="detail-label">Investment</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">80%</span>
+                            <span class="detail-label">Bill Saving</span>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Slide 2 -->
-            <div class="hero-slide">
-                <img src="../images/hero/hero-image-2.webp"
-                     alt="Commercial rooftop solar plant in Kerala"
-                     class="hero-bg-image"
-                     loading="lazy"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-green"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">💡</div>
-                    <div class="floating-element element-2">🏢</div>
-                    <div class="floating-element element-3">💰</div>
+            
+            <!-- Project 2 - Commercial -->
+            <div class="project-card" data-type="commercial" data-district="kottayam" data-capacity="10+" data-project="2">
+                <div class="project-image">
+                    <img src="../images/projects/project2.webp" alt="Commercial Solar for Hotel in Kottayam">
+                    <span class="project-badge">Commercial</span>
                 </div>
-                <div class="hero-content container">
-                    <h1>Designed for Maximum Savings</h1>
-                    <p>Optimized solar projects with fast ROI for homes, shops, offices and institutions.</p>
-                    <div class="hero-buttons">
-                        <div class="contact-options">
-                            <a href="../contact/" class="btn btn-primary">
-                                <i class="fas fa-phone"></i> Talk to Project Expert
-                            </a>
-                            <a href="../services/" class="btn btn-support">
-                                <i class="fas fa-bolt"></i> Explore Our Services
-                            </a>
+                <div class="project-content">
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Changanacherry, Kottayam</span>
+                    </div>
+                    <h3 class="project-title">25 kW Solar System for 3-Star Hotel</h3>
+                    <p>Hybrid solar system with battery backup for 24/7 power. Reduces operational costs by 60% with tax benefits.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <span class="detail-value">25 kW</span>
+                            <span class="detail-label">System Size</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">₹12L</span>
+                            <span class="detail-label">Investment</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">60%</span>
+                            <span class="detail-label">Cost Saving</span>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Slide 3 -->
-            <div class="hero-slide">
-                <img src="../images/hero/hero-image-3.webp"
-                     alt="Solar panels with sunset sky"
-                     class="hero-bg-image"
-                     loading="lazy"
-                     width="2000"
-                     height="1333">
-                <div class="gradient-overlay gradient-purple"></div>
-                <div class="floating-elements">
-                    <div class="floating-element element-1">🌱</div>
-                    <div class="floating-element element-2">⭐</div>
-                    <div class="floating-element element-3">🔧</div>
+            
+            <!-- Project 3 - Industrial -->
+            <div class="project-card" data-type="industrial" data-district="alappuzha" data-capacity="10+" data-project="3">
+                <div class="project-image">
+                    <img src="../images/projects/project3.webp" alt="Industrial Solar Plant in Alappuzha">
+                    <span class="project-badge">Industrial</span>
                 </div>
-                <div class="hero-content container">
-                    <h1>Trusted in Towns Across South Kerala</h1>
-                    <p>Projects in Thiruvalla, Ranni, Adoor, Changanacherry, Kottayam, Cherthala, Haripad, Karunagapally and more.</p>
-                    <div class="hero-buttons">
-                        <div class="contact-options">
-                            <a href="../solar-company-in-pathanamthitta/" class="btn btn-primary">
-                                <i class="fas fa-map-marker-alt"></i> View District Coverage
-                            </a>
-                            <a href="../cities/" class="btn btn-secondary">
-                                <i class="fas fa-location-dot"></i> Service Areas
-                            </a>
+                <div class="project-content">
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Cherthala, Alappuzha</span>
+                    </div>
+                    <h3 class="project-title">100 kW Solar Plant for Rubber Factory</h3>
+                    <p>Ground-mounted solar plant providing captive power for manufacturing unit. 4-year ROI with carbon credit benefits.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <span class="detail-value">100 kW</span>
+                            <span class="detail-label">System Size</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">₹45L</span>
+                            <span class="detail-label">Investment</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">4 Years</span>
+                            <span class="detail-label">ROI Period</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 4 - Residential -->
+            <div class="project-card" data-type="residential" data-district="kollam" data-capacity="1-3" data-project="4">
+                <div class="project-image">
+                    <img src="../images/projects/project4.webp" alt="3 kW Solar for Apartment in Kollam">
+                    <span class="project-badge">Residential</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Karunagapally, Kollam</span>
+                    </div>
+                    <h3 class="project-title">3 kW Solar for 2-BHK Apartment</h3>
+                    <p>Compact rooftop system for apartment living. 40% government subsidy utilized for maximum savings.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <span class="detail-value">3 kW</span>
+                            <span class="detail-label">System Size</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">₹1.8L</span>
+                            <span class="detail-label">Investment</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">70%</span>
+                            <span class="detail-label">Bill Saving</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 5 - Government -->
+            <div class="project-card" data-type="government" data-district="pathanamthitta" data-capacity="5-10" data-project="5">
+                <div class="project-image">
+                    <img src="../images/projects/project5.webp" alt="Government School Solar Project">
+                    <span class="project-badge">Government</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Ranni, Pathanamthitta</span>
+                    </div>
+                    <h3 class="project-title">10 kW Solar for Government High School</h3>
+                    <p>Complete solar installation for school with computer lab and fans. 100% subsidy under government scheme.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <span class="detail-value">10 kW</span>
+                            <span class="detail-label">System Size</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">100%</span>
+                            <span class="detail-label">Subsidy</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">Free</span>
+                            <span class="detail-label">Electricity</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 6 - Commercial -->
+            <div class="project-card" data-type="commercial" data-district="alappuzha" data-capacity="5-10" data-project="6">
+                <div class="project-image">
+                    <img src="../images/projects/project6.webp" alt="Hospital Solar System in Alappuzha">
+                    <span class="project-badge">Commercial</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Haripad, Alappuzha</span>
+                    </div>
+                    <h3 class="project-title">15 kW Solar for Private Hospital</h3>
+                    <p>Critical power backup with solar for ICU and operation theater. Ensures uninterrupted power for medical equipment.</p>
+                    <div class="project-details">
+                        <div class="project-detail">
+                            <span class="detail-value">15 kW</span>
+                            <span class="detail-label">System Size</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">24/7</span>
+                            <span class="detail-label">Backup</span>
+                        </div>
+                        <div class="project-detail">
+                            <span class="detail-value">50%</span>
+                            <span class="detail-label">Cost Saving</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Slider Controls -->
-        <button class="slider-prev" aria-label="Previous slide">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="slider-next" aria-label="Next slide">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-
-        <!-- Slider Dots -->
-        <div class="slider-dots">
-            <button class="dot active" data-slide="0" aria-label="Go to slide 1"></button>
-            <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
-            <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
+        
+        <!-- No Results Message -->
+        <div class="text-center" id="noResults" style="display: none;">
+            <i class="fas fa-search" style="font-size: 3rem; color: var(--text-light); margin-bottom: 20px;"></i>
+            <h3>No Projects Found</h3>
+            <p>Try changing your filter criteria or <a href="tel:8301849474">contact us</a> for similar projects.</p>
         </div>
     </section>
-
-    <!-- Intro + Stats -->
-    <section class="projects-intro section-light">
+    
+    <!-- Before-After Section -->
+    <section class="before-after-section section-light">
         <div class="container">
-            <h2 class="section-title">Our Solar Project Portfolio</h2>
-            <div class="projects-intro-text">
-                <p>Since 2019, Solis Green India has delivered reliable solar power solutions for homes, shops, offices and institutions across South Kerala.</p>
-                <p>From small 3 kW home systems in Thiruvalla and Changanacherry to large commercial rooftops in Kottayam, Cherthala and Karunagapally, every project is engineered for long-term performance.</p>
-                <p class="project-towns">
-                    Major project locations include Thiruvalla, Ranni, Adoor, Kozhencherry, Pandalam, Mallappally, Changanacherry, Kottayam, Ettumanoor, Cherthala, Haripad, Mavelikkara, Kayamkulam, Karunagapally, Punalur and more.
-                </p>
-
-                <div class="projects-summary-stats">
-                    <div class="projects-stat-card">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Projects Completed</div>
+            <h2 class="section-title">Solar Transformation Stories</h2>
+            <p class="section-subtitle">See the before and after of our solar installations</p>
+            
+            <div class="ba-grid">
+                <div class="ba-card">
+                    <div class="ba-image-container">
+                        <img src="../images/projects/before1.webp" alt="Before Solar Installation">
+                        <span class="ba-label">Before Solar</span>
                     </div>
-                    <div class="projects-stat-card">
-                        <div class="stat-number">4</div>
-                        <div class="stat-label">Districts in South Kerala</div>
+                    <div class="ba-content">
+                        <h3>Empty Rooftop to Power Generator</h3>
+                        <p>Unused rooftop space converted to 5 kW solar power plant, generating 20 units daily.</p>
                     </div>
-                    <div class="projects-stat-card">
-                        <div class="stat-number">90%</div>
-                        <div class="stat-label">Average Bill Reduction</div>
+                </div>
+                
+                <div class="ba-card">
+                    <div class="ba-image-container">
+                        <img src="../images/projects/after1.webp" alt="After Solar Installation">
+                        <span class="ba-label">After Solar</span>
                     </div>
-                    <div class="projects-stat-card">
-                        <div class="stat-number">5+ Years</div>
-                        <div class="stat-label">Solar Experience</div>
+                    <div class="ba-content">
+                        <h3>Complete Solar Transformation</h3>
+                        <p>Same rooftop now produces clean energy worth ₹3,500 monthly savings.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Project Categories (Option B: Residential + Commercial) -->
-    <section class="quick-services">
+    
+    <!-- Project Testimonials -->
+    <section class="project-testimonials">
         <div class="container">
-            <div class="projects-section-heading">
-                <h2 class="section-title">Browse Projects by Category</h2>
-            </div>
-            <p class="projects-section-subtitle">
-                Choose a category below to see sample installations, locations and system capacities.
-            </p>
-
-            <div class="services-grid">
-                <!-- Residential Projects Card -->
-                <div class="service-card">
-                    <i class="fas fa-home"></i>
-                    <h3>Residential Solar Projects</h3>
-                    <p>Rooftop solar installations for independent houses, villas and apartments with subsidy support.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> 3 kW – 15 kW systems</span>
-                        <span><i class="fas fa-check"></i> Pathanamthitta, Kottayam, Alappuzha</span>
-                        <span><i class="fas fa-check"></i> 40% Government Subsidy</span>
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-subtitle">Real feedback from our solar project customers</p>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-quote">
+                        "Solis Green India installed 5 kW solar at my home in Thiruvalla. They handled everything from subsidy to KSEB approval. My electricity bill reduced from ₹3,500 to ₹700 monthly!"
                     </div>
-                    <a href="residential-projects.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Residential Projects
-                    </a>
-                </div>
-
-                <!-- Commercial Projects Card -->
-                <div class="service-card">
-                    <i class="fas fa-building"></i>
-                    <h3>Commercial Solar Projects</h3>
-                    <p>Solar systems for shops, offices, hotels, hospitals, schools and other commercial establishments.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> 10 kW – 100 kW+</span>
-                        <span><i class="fas fa-check"></i> Shops, Offices & Institutions</span>
-                        <span><i class="fas fa-check"></i> Quick ROI & Tax Benefits</span>
-                    </div>
-                    <a href="commercial-projects.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-right"></i> View Commercial Projects
-                    </a>
-                </div>
-
-                <!-- Custom Project Consulting Card -->
-                <div class="service-card">
-                    <i class="fas fa-solar-panel"></i>
-                    <h3>Plan Your Solar Project</h3>
-                    <p>Get a custom solar design and estimate based on your load, roof space and budget.</p>
-                    <div class="service-features">
-                        <span><i class="fas fa-check"></i> Free Site Survey</span>
-                        <span><i class="fas fa-check"></i> Detailed Savings Report</span>
-                        <span><i class="fas fa-check"></i> 5-Year Free AMC*</span>
-                    </div>
-                    <a href="../contact/" class="btn btn-primary">
-                        <i class="fas fa-phone"></i> Talk to Our Experts
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Sample Projects (using A-style cards/animations) -->
-    <section class="local-testimonials section-light">
-        <div class="container">
-            <h2 class="section-title">Sample Solar Installations in Kerala</h2>
-            <p class="projects-section-subtitle">
-                A quick look at some of our completed projects. More detailed lists are available inside each category page.
-            </p>
-
-            <div class="testimonials-grid">
-                <!-- Project 1 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <div class="project-meta">
-                            <span><i class="fas fa-home"></i> Residential Rooftop</span>
-                            <span><i class="fas fa-location-dot"></i> Thiruvalla, Pathanamthitta</span>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="../images/testimonials/client1.webp" alt="Rajesh Kumar">
                         </div>
-                        <div class="project-capacity">6 kW On-Grid Solar System</div>
-                        <p>"Family home shifted almost 90% of their monthly electricity usage to solar, with excellent performance even in monsoon months."</p>
-                        <div class="testimonial-author">
-                            <strong>Independent Villa</strong>
-                            <span>Premium mono PERC panels, string inverter</span>
+                        <div class="author-info">
+                            <h4>Rajesh Kumar</h4>
+                            <p>Homeowner, Thiruvalla</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <div class="project-meta">
-                            <span><i class="fas fa-building"></i> Commercial Rooftop</span>
-                            <span><i class="fas fa-location-dot"></i> Changanacherry, Kottayam</span>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-quote">
+                        "Our hotel in Changanacherry needed 24/7 power backup. Solis Green installed 25 kW hybrid solar system. We're saving ₹25,000 monthly on electricity with reliable backup."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="../images/testimonials/client2.webp" alt="Priya Menon">
                         </div>
-                        <div class="project-capacity">25 kW Commercial Solar Plant</div>
-                        <p>"Installed on a retail building, this system significantly reduced daytime electricity bills and improved overall profitability."</p>
-                        <div class="testimonial-author">
-                            <strong>Retail & Office Complex</strong>
-                            <span>High-efficiency panels, remote monitoring</span>
+                        <div class="author-info">
+                            <h4>Priya Menon</h4>
+                            <p>Hotel Owner, Changanacherry</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Project 3 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <div class="project-meta">
-                            <span><i class="fas fa-home"></i> Residential Rooftop</span>
-                            <span><i class="fas fa-location-dot"></i> Cherthala, Alappuzha</span>
-                        </div>
-                        <div class="project-capacity">8 kW Hybrid Solar System</div>
-                        <p>"Designed with battery backup for frequent power cuts, providing uninterrupted power and major savings on energy costs."</p>
-                        <div class="testimonial-author">
-                            <strong>Independent House</strong>
-                            <span>Hybrid inverter, backup storage</span>
-                        </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-quote">
+                        "As a school principal, getting 100% subsidy solar was challenging. Solis Green handled all government procedures and installed 10 kW system. Our school now has free electricity!"
                     </div>
-                </div>
-            </div>
-
-            <div class="services-cta">
-                <div class="cta-content">
-                    <h3>Want to See Projects Similar to Your Home or Business?</h3>
-                    <p>Share your load details and location. We’ll show you matching projects from Thiruvalla, Ranni, Adoor, Changanacherry, Kottayam, Cherthala, Haripad and nearby towns.</p>
-                    <div class="cta-buttons">
-                        <a href="residential-projects.html" class="btn btn-primary">
-                            <i class="fas fa-home"></i> View Residential Portfolio
-                        </a>
-                        <a href="commercial-projects.html" class="btn btn-secondary">
-                            <i class="fas fa-building"></i> View Commercial Portfolio
-                        </a>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="../images/testimonials/client3.webp" alt="Suresh Pillai">
+                        </div>
+                        <div class="author-info">
+                            <h4>Suresh Pillai</h4>
+                            <p>School Principal, Ranni</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Projects CTA (bottom) -->
+    
+    <!-- Projects CTA -->
     <section class="projects-cta">
         <div class="container">
-            <h2>Ready to Start Your Solar Project?</h2>
-            <p>Whether you are in Thiruvalla, Pathanamthitta, Kottayam, Alappuzha or Kollam, our team can guide you from site survey to commissioning.</p>
-            <div class="cta-buttons">
-                <a href="tel:8301849474" class="btn btn-primary">
-                    <i class="fas fa-phone"></i> Call: 8301849474
-                </a>
-                <a href="https://wa.me/918301849474" class="btn btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp: 8301849474
-                </a>
-                <a href="../contact/" class="btn btn-secondary">
-                    <i class="fas fa-file-signature"></i> Book Free Site Visit
-                </a>
+            <h2>Want a Similar Solar Project?</h2>
+            <p>Get a free site survey and custom quote for your home, business, or institution.</p>
+            
+            <div class="hero-buttons">
+                <div class="contact-options">
+                    <a href="tel:8301849474" class="btn btn-primary" style="background: rgba(255,255,255,0.2); border-color: white;">
+                        <i class="fas fa-phone"></i> Call: 8301849474
+                    </a>
+                    <a href="#projects-quote" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">
+                        <i class="fas fa-file-alt"></i> Get Project Quote
+                    </a>
+                </div>
+                <div class="whatsapp-options">
+                    <a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Share Your Requirements
+                    </a>
+                </div>
             </div>
-            <p style="margin-top:15px;font-size:0.9rem;opacity:0.9;">
-                For support or maintenance of existing projects, call our 24/7 support line: <strong><a href="tel:8606849474" style="color:#fff;text-decoration:underline;">8606849474</a></strong>
-            </p>
         </div>
     </section>
-
+    
+    <!-- Projects Quote Form -->
+    <section class="quick-quote-section" id="projects-quote">
+        <div class="container">
+            <h2 class="section-title">Get Your Project Quote</h2>
+            <p class="section-subtitle">Tell us about your requirement and get a detailed project proposal</p>
+            
+            <div class="quote-form-container">
+                <form class="quick-quote-form" id="projectsQuoteForm">
+                    <input type="hidden" name="_subject" value="🏗️ Project Quote Request - Solis Green India">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Phone Number" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <select name="project_type" required>
+                                <option value="">Project Type</option>
+                                <option value="residential">Home / Residential</option>
+                                <option value="commercial">Shop / Business</option>
+                                <option value="industrial">Factory / Industry</option>
+                                <option value="institutional">School / Hospital</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="approx_capacity">
+                                <option value="">Approximate Capacity Needed</option>
+                                <option value="1-3">1-3 kW (Small Home)</option>
+                                <option value="3-5">3-5 kW (Medium Home)</option>
+                                <option value="5-10">5-10 kW (Large Home/Business)</option>
+                                <option value="10+">10+ kW (Commercial/Industrial)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" name="location" placeholder="Project Location (Town)" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="timeline">
+                                <option value="">Project Timeline</option>
+                                <option value="immediate">Immediately</option>
+                                <option value="1month">Within 1 Month</option>
+                                <option value="3months">Within 3 Months</option>
+                                <option value="planning">Just Planning Stage</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea name="project_details" placeholder="Project details or specific requirements (optional)" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-project-diagram"></i> Get Detailed Project Proposal
+                    </button>
+                </form>
+                
+                <div class="quote-benefits">
+                    <h4>What You'll Receive</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Detailed project design & layout</li>
+                        <li><i class="fas fa-check"></i> Complete cost breakdown</li>
+                        <li><i class="fas fa-check"></i> Subsidy eligibility & application</li>
+                        <li><i class="fas fa-check"></i> ROI calculation & savings estimate</li>
+                    </ul>
+                    
+                    <div class="emergency-contact">
+                        <h4>Project Consultation Available</h4>
+                        <div class="emergency-numbers">
+                            <a href="tel:8301849474" class="emergency-number">
+                                <i class="fas fa-phone"></i> Technical: 8301849474
+                            </a>
+                            <a href="tel:9539316623" class="emergency-number">
+                                <i class="fas fa-phone-alt"></i> Project: 9539316623
+                            </a>
+                        </div>
+                        <p class="emergency-note">Available for site visits and detailed project discussions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Project Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="modal-project-content">
+            <div class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </div>
+            
+            <div class="modal-project-image">
+                <img id="modalProjectImage" src="" alt="">
+            </div>
+            
+            <div class="modal-project-body">
+                <div id="modalProjectContent">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                        <img src="/images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
                     </div>
-                    <p>Powering Kerala's sustainable future with 5+ years of solar excellence and technical expertise.</p>
+                    <p>Leading solar energy solutions provider with 500+ successful projects across Kerala districts.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -608,102 +1137,391 @@
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h3>Quick Links</h3>
+                    <h3>Project Types</h3>
                     <ul>
-                        <li><a href="../">Home</a></li>
-                        <li><a href="../services/">Services</a></li>
-                        <li><a href="../cities/">Service Areas</a></li>
-                        <li><a href="../about/">About Us</a></li>
-                        <li><a href="../projects/">Projects</a></li>
-                        <li><a href="../contact/">Contact</a></li>
+                        <li><a href="#projects-grid" data-filter="residential">Residential Projects</a></li>
+                        <li><a href="#projects-grid" data-filter="commercial">Commercial Projects</a></li>
+                        <li><a href="#projects-grid" data-filter="industrial">Industrial Projects</a></li>
+                        <li><a href="#projects-grid" data-filter="government">Government Projects</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Service Areas</h3>
+                    <h3>Project Locations</h3>
                     <ul>
-                        <li><a href="../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
-                        <li><a href="../solar-company-in-kottayam/">Kottayam District</a></li>
-                        <li><a href="../solar-company-in-alappuzha/">Alappuzha District</a></li>
-                        <li><a href="../solar-company-in-kollam/">Kollam District</a></li>
+                        <li><a href="#projects-grid" data-district="pathanamthitta">Pathanamthitta Projects</a></li>
+                        <li><a href="#projects-grid" data-district="kottayam">Kottayam Projects</a></li>
+                        <li><a href="#projects-grid" data-district="alappuzha">Alappuzha Projects</a></li>
+                        <li><a href="#projects-grid" data-district="kollam">Kollam Projects</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Contact Our Experts</h3>
+                    <h3>Contact Project Team</h3>
                     <ul class="contact-info">
                         <li class="contact-primary">
                             <i class="fas fa-phone"></i>
                             <div>
                                 <a href="tel:8301849474">Primary: 8301849474</a>
-                                <span class="contact-label">Technical Consultation</span>
+                                <span class="contact-label">Project Consultation</span>
                             </div>
                         </li>
                         <li class="contact-alternate">
                             <i class="fas fa-phone-alt"></i>
                             <div>
                                 <a href="tel:9539316623">Alternate: 9539316623</a>
-                                <span class="contact-label">Project Coordination</span>
+                                <span class="contact-label">Site Survey Team</span>
                             </div>
                         </li>
                         <li class="contact-support">
                             <i class="fas fa-headset"></i>
                             <div>
                                 <a href="tel:8606849474">Support: 8606849474</a>
-                                <span class="contact-label">24/7 Customer Support</span>
-                            </div>
-                        </li>
-                        <li class="whatsapp-primary">
-                            <i class="fab fa-whatsapp"></i>
-                            <div>
-                                <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
-                                <span class="contact-label">Quick Consultation</span>
+                                <span class="contact-label">Project Support</span>
                             </div>
                         </li>
                         <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Muthoor, Thiruvalla - 689107</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Thiruvalla</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Powering Kerala's Sustainable Future</p>
+                <p>&copy; 2024 Solis Green India. All Rights Reserved. | 500+ Solar Projects Across Kerala</p>
             </div>
         </div>
     </footer>
-
+    
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </button>
-
-    <!-- Mobile Menu Fix JavaScript (same pattern as other pages) -->
+    
+    <!-- Load Universal JavaScript -->
+    <script src="/script.js"></script>
+    
+    <!-- Projects Gallery Specific JavaScript -->
     <script>
+        // Project data for modal
+        const projectsData = {
+            1: {
+                title: "5 kW Rooftop Solar for 4-BHK Home",
+                location: "Thiruvalla, Pathanamthitta",
+                type: "Residential",
+                image: "../images/projects/project1-detail.webp",
+                description: "Complete solar power solution for a 4-BHK independent house in Thiruvalla. System includes 15 monocrystalline solar panels, 5 kW hybrid inverter, and net metering setup with KSEB.",
+                specs: {
+                    "System Size": "5 kW",
+                    "Panels Used": "15 x 335W Monocrystalline",
+                    "Inverter Type": "5 kW Hybrid Inverter",
+                    "Daily Generation": "20-25 units",
+                    "Monthly Savings": "₹3,000 - ₹3,500",
+                    "Installation Time": "3 days",
+                    "Government Subsidy": "40% Availed",
+                    "ROI Period": "4-5 years",
+                    "Warranty": "25 years on panels, 5 years on inverter"
+                },
+                features: [
+                    "Complete subsidy assistance",
+                    "Net metering with KSEB",
+                    "Smart monitoring app",
+                    "5-year free maintenance",
+                    "Shadow-free installation"
+                ]
+            },
+            2: {
+                title: "25 kW Solar System for 3-Star Hotel",
+                location: "Changanacherry, Kottayam",
+                type: "Commercial",
+                image: "../images/projects/project2-detail.webp",
+                description: "Large-scale solar installation for a 3-star hotel with 24/7 power requirements. Hybrid system with battery backup ensures uninterrupted power for guest rooms, kitchen, and common areas.",
+                specs: {
+                    "System Size": "25 kW",
+                    "Panels Used": "75 x 335W Monocrystalline",
+                    "Inverter Type": "25 kW Three Phase Hybrid",
+                    "Battery Backup": "30 kWh Lithium-ion",
+                    "Daily Generation": "100-125 units",
+                    "Monthly Savings": "₹25,000 - ₹30,000",
+                    "Installation Time": "7 days",
+                    "Tax Benefits": "Accelerated Depreciation",
+                    "ROI Period": "3-4 years"
+                },
+                features: [
+                    "24/7 power backup",
+                    "Three-phase system",
+                    "Remote monitoring",
+                    "Diesel generator integration",
+                    "Automatic load shifting"
+                ]
+            },
+            3: {
+                title: "100 kW Solar Plant for Rubber Factory",
+                location: "Cherthala, Alappuzha",
+                type: "Industrial",
+                image: "../images/projects/project3-detail.webp",
+                description: "Ground-mounted solar power plant for rubber manufacturing unit. Provides captive power for machinery and reduces dependence on grid electricity significantly.",
+                specs: {
+                    "System Size": "100 kW",
+                    "Panels Used": "300 x 335W Monocrystalline",
+                    "Mounting Type": "Ground-mounted with tracking",
+                    "Daily Generation": "400-450 units",
+                    "Monthly Savings": "₹1,00,000 - ₹1,20,000",
+                    "Installation Time": "15 days",
+                    "Carbon Credits": "Eligible",
+                    "ROI Period": "4 years",
+                    "Payback": "Through electricity savings"
+                },
+                features: [
+                    "Ground-mounted system",
+                    "Single-axis tracking",
+                    "HT connection integration",
+                    "Power factor correction",
+                    "Energy management system"
+                ]
+            }
+        };
+        
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mainNav = document.getElementById('mainNav');
-
-            if (mobileMenuBtn && mainNav) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    mainNav.classList.toggle('active');
-                    this.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const districtFilter = document.getElementById('districtFilter');
+            const capacityFilter = document.getElementById('capacityFilter');
+            const projectCards = document.querySelectorAll('.project-card');
+            const noResults = document.getElementById('noResults');
+            const projectsContainer = document.getElementById('projectsContainer');
+            
+            let activeFilter = 'all';
+            let activeDistrict = 'all';
+            let activeCapacity = 'all';
+            
+            function filterProjects() {
+                let visibleCount = 0;
+                
+                projectCards.forEach(card => {
+                    const type = card.getAttribute('data-type');
+                    const district = card.getAttribute('data-district');
+                    const capacity = card.getAttribute('data-capacity');
+                    
+                    const typeMatch = activeFilter === 'all' || type === activeFilter;
+                    const districtMatch = activeDistrict === 'all' || district === activeDistrict;
+                    const capacityMatch = activeCapacity === 'all' || capacity === activeCapacity;
+                    
+                    if (typeMatch && districtMatch && capacityMatch) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                        
+                        // Add animation
+                        card.style.animation = 'fadeIn 0.5s ease';
+                    } else {
+                        card.style.display = 'none';
+                    }
                 });
-
-                const navLinks = mainNav.querySelectorAll('a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mainNav.classList.remove('active');
-                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                
+                // Show/hide no results message
+                if (visibleCount === 0) {
+                    noResults.style.display = 'block';
+                    projectsContainer.style.minHeight = '300px';
+                } else {
+                    noResults.style.display = 'none';
+                    projectsContainer.style.minHeight = 'auto';
+                }
+                
+                // Track filter usage
+                if (typeof trackEvent !== 'undefined') {
+                    trackEvent('Projects', 'filter_applied', `${activeFilter}-${activeDistrict}-${activeCapacity}`);
+                }
+            }
+            
+            // Filter button click
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    activeFilter = this.getAttribute('data-filter');
+                    filterProjects();
+                });
+            });
+            
+            // District filter change
+            districtFilter.addEventListener('change', function() {
+                activeDistrict = this.value;
+                filterProjects();
+            });
+            
+            // Capacity filter change
+            capacityFilter.addEventListener('change', function() {
+                activeCapacity = this.value;
+                filterProjects();
+            });
+            
+            // Project card click for modal
+            projectCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const projectId = this.getAttribute('data-project');
+                    openProjectModal(projectId);
+                });
+            });
+            
+            // Footer filter links
+            document.querySelectorAll('a[data-filter], a[data-district]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    if (this.hasAttribute('data-filter')) {
+                        const filter = this.getAttribute('data-filter');
+                        filterButtons.forEach(btn => {
+                            btn.classList.remove('active');
+                            if (btn.getAttribute('data-filter') === filter) {
+                                btn.classList.add('active');
+                            }
+                        });
+                        activeFilter = filter;
+                    }
+                    
+                    if (this.hasAttribute('data-district')) {
+                        const district = this.getAttribute('data-district');
+                        districtFilter.value = district;
+                        activeDistrict = district;
+                    }
+                    
+                    filterProjects();
+                    
+                    // Scroll to projects grid
+                    const projectsGrid = document.getElementById('projects-grid');
+                    if (projectsGrid) {
+                        window.scrollTo({
+                            top: projectsGrid.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Testimonial slider
+            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+            let currentSlide = 0;
+            
+            function showTestimonialSlide(index) {
+                testimonialSlides.forEach(slide => slide.classList.remove('active'));
+                testimonialSlides[index].classList.add('active');
+            }
+            
+            if (testimonialSlides.length > 0) {
+                // Auto rotate slides every 5 seconds
+                setInterval(() => {
+                    currentSlide = (currentSlide + 1) % testimonialSlides.length;
+                    showTestimonialSlide(currentSlide);
+                }, 5000);
+                
+                // Manual navigation (optional)
+                testimonialSlides.forEach((slide, index) => {
+                    slide.addEventListener('click', () => {
+                        currentSlide = index;
+                        showTestimonialSlide(currentSlide);
                     });
                 });
-
-                document.addEventListener('click', function(event) {
-                    if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-                        mainNav.classList.remove('active');
-                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+            
+            // Project modal functionality
+            const projectModal = document.getElementById('projectModal');
+            const modalClose = document.getElementById('modalClose');
+            
+            function openProjectModal(projectId) {
+                const project = projectsData[projectId];
+                if (!project) return;
+                
+                // Update modal content
+                document.getElementById('modalProjectImage').src = project.image;
+                document.getElementById('modalProjectImage').alt = project.title;
+                
+                const modalContent = document.getElementById('modalProjectContent');
+                modalContent.innerHTML = `
+                    <h2>${project.title}</h2>
+                    <div class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>${project.location}</span>
+                        <span class="project-badge" style="margin-left: 10px;">${project.type}</span>
+                    </div>
+                    
+                    <p>${project.description}</p>
+                    
+                    <div class="modal-project-grid">
+                        <div>
+                            <h3>Project Features</h3>
+                            <ul style="list-style: none; padding: 0;">
+                                ${project.features.map(feature => `
+                                    <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
+                                        <i class="fas fa-check" style="color: var(--solis-green); margin-top: 3px;"></i>
+                                        <span>${feature}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-project-specs">
+                            <h3>Specifications</h3>
+                            <div class="specs-list">
+                                ${Object.entries(project.specs).map(([key, value]) => `
+                                    <div class="spec-item">
+                                        <span class="spec-label">${key}:</span>
+                                        <span class="spec-value">${value}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            
+                            <div style="margin-top: 30px; text-align: center;">
+                                <a href="tel:8301849474" class="btn btn-primary">
+                                    <i class="fas fa-phone"></i> Get Similar Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Show modal
+                projectModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Track modal view
+                if (typeof trackEvent !== 'undefined') {
+                    trackEvent('Projects', 'modal_view', projectId);
+                }
+            }
+            
+            // Close modal
+            modalClose.addEventListener('click', closeProjectModal);
+            projectModal.addEventListener('click', function(e) {
+                if (e.target === projectModal) {
+                    closeProjectModal();
+                }
+            });
+            
+            function closeProjectModal() {
+                projectModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Close modal on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+                    closeProjectModal();
+                }
+            });
+            
+            // Page-specific tracking
+            if (typeof trackEvent !== 'undefined') {
+                trackEvent('Page', 'view', 'Projects Gallery');
+            }
+            
+            // Form tracking
+            const projectsForm = document.getElementById('projectsQuoteForm');
+            if (projectsForm) {
+                projectsForm.addEventListener('submit', function() {
+                    if (typeof trackEvent !== 'undefined') {
+                        const projectType = this.querySelector('[name="project_type"]').value;
+                        const capacity = this.querySelector('[name="approx_capacity"]').value;
+                        trackEvent('Projects', 'quote_request', `${projectType}-${capacity}`);
                     }
                 });
             }
         });
     </script>
-
-    <script src="../script.js"></script>
 </body>
 </html>
