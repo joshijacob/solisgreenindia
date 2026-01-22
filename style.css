@@ -2368,3 +2368,50 @@ if (typeof module !== 'undefined' && module.exports) {
   line-height: 1;
   margin-bottom: 12px;
 }
+.footer-contact {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-contact-item i {
+  font-size: 18px;
+  color: #ff7a18; /* Solis Orange */
+  min-width: 22px;
+}
+
+.footer-contact-item .label {
+  font-size: 13px;
+  color: #9fb3c8;
+  display: block;
+  line-height: 1.2;
+}
+
+.footer-contact-item a {
+  font-size: 15px;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-contact-item a:hover {
+  color: #ff7a18;
+}
+
+.footer-contact-item.whatsapp i {
+  color: #25d366; /* WhatsApp Green */
+}
+
+/* Mobile friendly */
+@media (max-width: 768px) {
+  .footer-contact {
+    gap: 12px;
+  }
+}
