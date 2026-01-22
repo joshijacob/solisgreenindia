@@ -2362,3 +2362,9 @@ if (typeof module !== 'undefined' && module.exports) {
   color: #ffffff;
   transform: translateY(-2px);
 }
+.feature-item i {
+  color: #ff7a18; /* Solis orange */
+  font-size: 42px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
