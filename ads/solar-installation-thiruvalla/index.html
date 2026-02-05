@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- TITLE -->
-  <title>Solar Installation in Central Kerala | Govt Subsidy Support | Solis Green</titles
+  <title>Solar Installation in Central Kerala | Govt Subsidy Support | Solis Green</title>
 
   <!-- META -->
-  <meta name="description" content="Residential & commercial solar installation in Pathanamthitta, Kottayam, Alappuzha & Kollam. Govt subsidy support, free site survey & expert local installers.">
+  <meta name="description" content="Residential & commercial solar installation in Pathanamthitta, Kottayam, Alappuzha & Kollam. Govt subsidy support, free site survey & expert installation.">
   <meta name="robots" content="noindex, follow">
   <meta name="author" content="Solis Green Energy Solutions">
 
@@ -18,10 +18,8 @@
   <!-- FAVICON -->
   <link rel="icon" href="https://www.solisgreenindia.in/favicon/favicon.ico">
 
-  <!-- COMMON CSS (LOCKED) -->
+  <!-- COMMON CSS -->
   <link rel="stylesheet" href="https://www.solisgreenindia.in/style.css">
-
-  <!-- FONT ICONS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- GOOGLE TAG MANAGER -->
@@ -33,78 +31,87 @@
     })(window,document,'script','dataLayer','GTM-5C2D5BG9');
   </script>
 
-  <!-- PAGE-SPECIFIC (SCOPED & LIGHTWEIGHT) -->
+  <!-- PAGE CSS (LIGHTWEIGHT) -->
   <style>
-    /* Scoped only to ads page */
-    .ads-hero{
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#222}
+    .container{max-width:1100px;margin:auto;padding:0 16px}
+    .hero{
       background:linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.72)),
       url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1400&q=60");
-      background-size:cover;
-      background-position:center;
-      padding:90px 0;
-      color:#fff;
-      text-align:center;
+      background-size:cover;background-position:center;
+      padding:90px 0;color:#fff;text-align:center
     }
-    .ads-hero h1{font-size:36px}
-    .ads-note{font-size:14px;opacity:.9;margin-top:14px}
-    .ads-trust{background:#fff;border-bottom:1px solid #eee;padding:20px 0}
-    .ads-trust-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-      text-align:center;
-      font-size:14px
+    .hero h1{font-size:34px;margin-bottom:10px}
+    .hero p{font-size:16px;line-height:1.5;opacity:.95}
+    .cta{margin-top:22px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{padding:14px 22px;border-radius:6px;font-weight:600;text-decoration:none}
+    .btn-call{background:#ff7a00;color:#fff}
+    .btn-wa{background:#25D366;color:#fff}
+    .note{margin-top:14px;font-size:13px;opacity:.9}
+    .trust{background:#fff;padding:22px 0;border-bottom:1px solid #eee}
+    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center;font-size:14px}
+    .section{padding:50px 0}
+    .section h2{text-align:center;margin-bottom:30px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{border:1px solid #eee;border-radius:8px;padding:20px;text-align:center}
+    .card h3{margin:0 0 8px}
+    .card p{font-size:14px}
+    .areas{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center;font-size:14px}
+    .form-wrap{max-width:520px;margin:auto}
+    form input,form select,form button{
+      width:100%;padding:14px;margin-bottom:12px;border-radius:6px;border:1px solid #ccc
     }
-    .ads-areas{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-      text-align:center
+    form button{background:#ff7a00;color:#fff;border:none;font-size:16px}
+    footer{background:#111;color:#bbb;padding:20px 0;text-align:center;font-size:13px}
+    .sticky{
+      position:fixed;bottom:0;left:0;right:0;
+      background:#fff;border-top:1px solid #ddd;
+      display:flex;z-index:999
     }
+    .sticky a{flex:1;text-align:center;padding:14px;font-weight:600;text-decoration:none}
+    .sticky .call{background:#ff7a00;color:#fff}
+    .sticky .wa{background:#25D366;color:#fff}
     @media(max-width:768px){
-      .ads-hero h1{font-size:26px}
-      .ads-trust-grid,.ads-areas{grid-template-columns:1fr 1fr}
+      .hero h1{font-size:26px}
+      .trust-grid,.grid,.areas{grid-template-columns:1fr 1fr}
     }
   </style>
 </head>
 
 <body>
 
-<!-- GTM (noscript) -->
 <noscript>
   <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
   height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 
 <!-- HERO -->
-<section class="ads-hero">
+<section class="hero">
   <div class="container">
     <h1>Solar Installation in Central Kerala</h1>
     <p>
       Residential & commercial rooftop solar systems with government subsidy support.<br>
-      MNRE approved • KSEB net metering • Trusted local installers
+      MNRE approved • KSEB net-metering • Local expert team
     </p>
 
-    <div class="cta-group" style="margin-top:22px">
-      <a href="tel:8301849474" class="btn btn-primary">
-        <i class="fas fa-phone"></i> Call Now
-      </a>
-      <a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank">
+    <div class="cta">
+      <a href="tel:8301849474" class="btn btn-call"><i class="fas fa-phone"></i> Call Now</a>
+      <a href="https://wa.me/918301849474" class="btn btn-wa" target="_blank">
         <i class="fab fa-whatsapp"></i> WhatsApp Check
       </a>
     </div>
 
-    <div class="ads-note">
-      ⚠️ We undertake <strong>new solar installations & system upgrades only</strong><br>
+    <div class="note">
+      ⚠️ We undertake <strong>new solar installations & system upgrades only</strong>.<br>
       *Subsidy amount depends on system capacity & eligibility
     </div>
   </div>
 </section>
 
 <!-- TRUST -->
-<section class="ads-trust">
+<section class="trust">
   <div class="container">
-    <div class="ads-trust-grid">
+    <div class="trust-grid">
       <div>✔ MNRE Approved</div>
       <div>✔ KSEB Net Metering</div>
       <div>✔ Loan Assistance</div>
@@ -113,22 +120,22 @@
   </div>
 </section>
 
-<!-- SYSTEM TYPES -->
+<!-- SYSTEMS -->
 <section class="section">
   <div class="container">
-    <h2 class="section-title">Solar Systems We Install</h2>
-    <div class="comparison-grid">
-      <div class="system-card">
+    <h2>Solar Systems We Install</h2>
+    <div class="grid">
+      <div class="card">
         <h3>3kW – 5kW</h3>
-        <p>Ideal for residential homes</p>
+        <p>Ideal for homes with moderate electricity usage.</p>
       </div>
-      <div class="system-card">
+      <div class="card">
         <h3>5kW – 10kW</h3>
-        <p>For villas & small businesses</p>
+        <p>Best for large homes, villas & small businesses.</p>
       </div>
-      <div class="system-card">
+      <div class="card">
         <h3>Hybrid Systems</h3>
-        <p>Backup-ready & future expandable</p>
+        <p>Backup-ready systems with future expansion support.</p>
       </div>
     </div>
   </div>
@@ -137,8 +144,8 @@
 <!-- AREAS -->
 <section class="section" style="background:#fafafa">
   <div class="container">
-    <h2 class="section-title">Service Areas</h2>
-    <div class="ads-areas">
+    <h2>Service Areas</h2>
+    <div class="areas">
       <div>Pathanamthitta</div>
       <div>Kottayam</div>
       <div>Alappuzha</div>
@@ -150,8 +157,8 @@
 <!-- FORM -->
 <section class="section">
   <div class="container">
-    <h2 class="section-title">Get Free Site Feasibility Check</h2>
-    <div class="form-wrapper">
+    <h2>Get Free Site Feasibility Check</h2>
+    <div class="form-wrap">
       <form action="https://formsubmit.co/ajax/solisgreenindia@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="source" value="Google Ads – Central Kerala">
@@ -173,30 +180,23 @@
           <option>Not Sure</option>
         </select>
 
-        <button type="submit" class="btn btn-primary btn-block">
-          ⚡ Get Free Solar Quote
-        </button>
+        <button type="submit">⚡ Get Free Solar Quote</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FOOTER (COMMON STYLE) -->
-<footer class="site-footer">
-  <div class="container footer-bottom">
-    © 2026 Solis Green Energy Solutions · Thiruvalla<br>
-    📞 8301849474 · WhatsApp Support Available
-  </div>
+<!-- FOOTER -->
+<footer>
+  © 2026 Solis Green Energy Solutions · Thiruvalla<br>
+  📞 8301849474 · WhatsApp Support Available
 </footer>
 
-<!-- STICKY BAR (COMMON JS SUPPORT) -->
-<div class="sticky-contact-bar">
-  <a href="tel:8301849474">Call</a>
-  <a href="https://wa.me/918301849474" target="_blank">WhatsApp</a>
+<!-- STICKY BAR -->
+<div class="sticky">
+  <a href="tel:8301849474" class="call">Call</a>
+  <a href="https://wa.me/918301849474" class="wa">WhatsApp</a>
 </div>
-
-<!-- COMMON JS (LOCKED) -->
-<script src="https://www.solisgreenindia.in/script.js"></script>
 
 </body>
 </html>
