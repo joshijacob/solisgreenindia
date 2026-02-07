@@ -1,1527 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
-    <title>Solar Projects Gallery | Solis Green India - 500+ Installations in Kerala</title>
-    <meta name="description" content="View our solar project gallery - 500+ residential, commercial & industrial installations across Pathanamthitta, Kottayam, Alappuzha & Kollam districts.">
-    <meta name="keywords" content="solar projects Kerala, solar installation gallery, solar before after, solar panel pictures, rooftop solar projects">
-    <meta name="author" content="Solis Green India">
-    
-    <!-- OG Tags -->
-    <meta property="og:title" content="Solar Projects Gallery | Solis Green India">
-    <meta property="og:description" content="500+ solar installations across Kerala. View residential, commercial & industrial projects.">
-    <meta property="og:image" content="https://www.solisgreenindia.in/images/projects/hero-projects.webp">
-    <meta property="og:url" content="https://www.solisgreenindia.in/projects/">
-    
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="../images/projects/hero-projects.webp" as="image" type="image/webp">
-    
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Projects Gallery Specific Styles -->
-    <style>
-        /* Projects Hero */
-        .projects-hero {
-            background: linear-gradient(135deg, rgba(31, 41, 51, 0.9), rgba(255, 106, 42, 0.9)),
-                        url('../images/projects/hero-projects.webp') center/cover no-repeat;
-            color: var(--white);
-            padding: 120px 0 80px;
-            margin-top: 80px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .projects-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .projects-hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-        
-        /* Projects Stats */
-        .projects-stats {
-            background: var(--white);
-            padding: 40px;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg);
-            margin: -40px auto 50px;
-            max-width: 1000px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            text-align: center;
-        }
-        
-        .stat-item {
-            padding: 20px;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--solis-orange);
-            display: block;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: var(--text-medium);
-            font-size: 0.95rem;
-        }
-        
-        /* Filter Section */
-        .projects-filter {
-            background: var(--light-bg);
-            padding: 30px;
-            border-radius: var(--radius-md);
-            margin-bottom: 40px;
-        }
-        
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        
-        .filter-btn {
-            padding: 12px 25px;
-            background: var(--white);
-            border: 2px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            color: var(--text-medium);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--solis-orange);
-            color: var(--white);
-            border-color: var(--solis-orange);
-        }
-        
-        .location-filter {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .location-select {
-            padding: 12px 20px;
-            border: 2px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            background: var(--white);
-            color: var(--text-dark);
-            font-family: 'Poppins', sans-serif;
-            min-width: 200px;
-        }
-        
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        
-        .project-card {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            position: relative;
-            cursor: pointer;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .project-image {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .project-card:hover .project-image img {
-            transform: scale(1.05);
-        }
-        
-        .project-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--solis-orange);
-            color: var(--white);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 2;
-        }
-        
-        .project-content {
-            padding: 25px;
-        }
-        
-        .project-location {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--solis-blue);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        
-        .project-title {
-            font-size: 1.3rem;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-        
-        .project-details {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .project-detail {
-            text-align: center;
-        }
-        
-        .detail-value {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--solis-orange);
-            display: block;
-        }
-        
-        .detail-label {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-        
-        /* Before-After Section */
-        .before-after-section {
-            margin: 80px 0;
-        }
-        
-        .ba-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .ba-card {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .ba-image-container {
-            height: 200px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .ba-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .ba-label {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: rgba(0,0,0,0.7);
-            color: var(--white);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        
-        .ba-content {
-            padding: 20px;
-        }
-        
-        /* Project Modal */
-        .project-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .project-modal.active {
-            display: flex;
-        }
-        
-        .modal-project-content {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0,0,0,0.5);
-            color: var(--white);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: var(--transition);
-        }
-        
-        .modal-close:hover {
-            background: rgba(0,0,0,0.8);
-        }
-        
-        .modal-project-image {
-            height: 400px;
-            overflow: hidden;
-        }
-        
-        .modal-project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .modal-project-body {
-            padding: 40px;
-        }
-        
-        .modal-project-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-            margin-top: 30px;
-        }
-        
-        .modal-project-specs {
-            background: var(--light-bg);
-            padding: 25px;
-            border-radius: var(--radius-md);
-        }
-        
-        .spec-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .spec-item:last-child {
-            border-bottom: none;
-        }
-        
-        .spec-label {
-            color: var(--text-medium);
-        }
-        
-        .spec-value {
-            font-weight: 600;
-            color: var(--solis-dark);
-        }
-        
-        /* Testimonials in Projects */
-        .project-testimonials {
-            margin: 80px 0;
-            background: var(--light-bg);
-            padding: 60px 0;
-        }
-        
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 40px auto 0;
-            position: relative;
-        }
-        
-        .testimonial-slide {
-            background: var(--white);
-            padding: 40px;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
-            text-align: center;
-            display: none;
-        }
-        
-        .testimonial-slide.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .testimonial-quote {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--text-medium);
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-        
-        .author-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .author-info h4 {
-            color: var(--text-dark);
-            margin-bottom: 5px;
-        }
-        
-        .author-info p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        /* CTA Section */
-        .projects-cta {
-            background: linear-gradient(135deg, var(--solis-orange), var(--solis-blue));
-            color: var(--white);
-            padding: 60px 0;
-            text-align: center;
-            border-radius: var(--radius-md);
-            margin: 60px 0;
-        }
-        
-        .projects-cta h2 {
-            color: var(--white);
-            margin-bottom: 20px;
-        }
-        
-        .projects-cta p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.95;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .modal-project-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .projects-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-            
-            .modal-project-image {
-                height: 300px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .projects-hero {
-                padding: 100px 0 60px;
-                margin-top: 70px;
-            }
-            
-            .projects-hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .projects-stats {
-                padding: 25px;
-                margin: -30px auto 40px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            
-            .filter-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .filter-btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .location-filter {
-                flex-direction: column;
-            }
-            
-            .location-select {
-                width: 100%;
-            }
-            
-            .modal-project-body {
-                padding: 25px;
-            }
-            
-            .testimonial-slide {
-                padding: 25px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .projects-hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .project-details {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .ba-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Solar EPC Projects in Kerala | Rooftop Solar Installations by Solis Green</title>
+  <meta name="description" content="Explore real solar EPC projects executed by Solis Green Energy Solutions across Kerala. Residential & commercial rooftop solar installations with MNRE subsidy, KSEB approvals & 5-year AMC.">
+  <meta name="keywords" content="solar epc projects kerala, rooftop solar installations kerala, solar installation projects, residential solar projects kerala, commercial solar epc">
+  <meta name="author" content="Solis Green Energy Solutions">
+
+  <link rel="canonical" href="https://www.solisgreenindia.in/projects/">
+
+  <!-- FAVICON -->
+  <link rel="icon" href="https://www.solisgreenindia.in/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.solisgreenindia.in/favicon/apple-touch-icon.png">
+
+  <!-- COMMON CSS -->
+  <link rel="stylesheet" href="https://www.solisgreenindia.in/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- GTM -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5C2D5BG9');
+  </script>
+
+  <!-- PAGE HERO STYLE -->
+  <style>
+    .projects-hero{
+      background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
+      url('https://images.unsplash.com/photo-1509391366360-2e959784a276');
+      background-size:cover;
+      background-position:center;
+      padding:150px 0 100px;
+      margin-top:80px;
+      color:#fff;
+      text-align:center;
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    
-    <!-- Floating CTA -->
-    <div class="floating-cta">
-        <div class="cta-main-btn" id="ctaMainBtn">
-            <i class="fas fa-comments"></i>
-            <span class="pulse-dot"></span>
-        </div>
-        <div class="cta-options">
-            <a href="tel:8301849474" class="cta-option" data-tooltip="Primary Call">
-                <i class="fas fa-phone"></i>
-            </a>
-            <a href="tel:9539316623" class="cta-option" data-tooltip="Alternate Call">
-                <i class="fas fa-phone-alt"></i>
-            </a>
-            <a href="tel:8606849474" class="cta-option" data-tooltip="Support Call">
-                <i class="fas fa-headset"></i>
-            </a>
-            <a href="#projects-quote" class="cta-option" data-tooltip="Get Quote">
-                <i class="fas fa-file-alt"></i>
-            </a>
-            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="Primary WhatsApp" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://wa.me/919539316623" class="cta-option" data-tooltip="Alternate WhatsApp" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-        </div>
+
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+
+<!-- HEADER (COMMON) -->
+<header class="solis-header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <a href="https://www.solisgreenindia.in/">
+        <img src="https://www.solisgreenindia.in/images/logo/logo.png" alt="Solis Green Energy Solutions">
+      </a>
     </div>
-    
-    <!-- Unified Header -->
-    <header class="solis-header">
-        <div class="header-inner">
-            <div class="header-logo">
-                <a href="/">
-                    <img src="/images/logo/logo.png" alt="Solis Green Energy Solutions">
-                </a>
-            </div>
-            
-            <nav class="header-menu" id="mainNav">
-                <a href="/">Home</a>
-                <a href="/services/">Services</a>
-                <a href="/cities/">Service Areas</a>
-                <a href="/about/">About</a>
-                <a href="/projects/" class="active">Projects</a>
-                <a href="/contact/">Contact</a>
-            </nav>
-            
-            <div class="header-cta">
-                <a href="tel:8301849474" class="contact-btn">Call Now</a>
-                <a href="https://wa.me/918301849474" target="_blank" class="whatsapp-btn">WhatsApp</a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-    
-    <!-- Projects Hero -->
-    <section class="projects-hero">
-        <div class="container">
-            <h1>Our Solar Projects Gallery</h1>
-            <p>500+ successful solar installations across Kerala. Browse residential, commercial & industrial projects with detailed specifications.</p>
-            <div class="hero-buttons">
-                <div class="contact-options">
-                    <a href="#projects-grid" class="btn btn-primary pulse-animation">
-                        <i class="fas fa-images"></i> Browse Projects
-                    </a>
-                    <a href="#projects-quote" class="btn btn-secondary">
-                        <i class="fas fa-bolt"></i> Get Your Quote
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Projects Stats -->
-    <div class="container">
-        <div class="projects-stats">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">Projects Completed</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">4</span>
-                    <span class="stat-label">Districts Covered</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">95%</span>
-                    <span class="stat-label">Customer Satisfaction</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">5MW+</span>
-                    <span class="stat-label">Total Capacity Installed</span>
-                </div>
-            </div>
-        </div>
+
+    <nav class="header-menu" id="mainNav">
+      <a href="/">Home</a>
+      <a href="/services/">Services</a>
+      <a href="/cities/">Service Areas</a>
+      <a href="/projects/" class="active">Projects</a>
+      <a href="/about/">About</a>
+    </nav>
+
+    <div class="header-cta">
+      <a href="/contact/" class="contact-btn">Contact</a>
+      <a href="https://wa.me/918301849474" class="whatsapp-btn" target="_blank">WhatsApp</a>
+      <button class="mobile-menu-btn">☰</button>
     </div>
-    
-    <!-- Filter Section -->
-    <section class="container" id="projects-grid">
-        <div class="projects-filter">
-            <h3 class="text-center">Filter Projects</h3>
-            
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-th"></i> All Projects
-                </button>
-                <button class="filter-btn" data-filter="residential">
-                    <i class="fas fa-home"></i> Residential
-                </button>
-                <button class="filter-btn" data-filter="commercial">
-                    <i class="fas fa-building"></i> Commercial
-                </button>
-                <button class="filter-btn" data-filter="industrial">
-                    <i class="fas fa-industry"></i> Industrial
-                </button>
-                <button class="filter-btn" data-filter="government">
-                    <i class="fas fa-landmark"></i> Government
-                </button>
-            </div>
-            
-            <div class="location-filter">
-                <select class="location-select" id="districtFilter">
-                    <option value="all">All Districts</option>
-                    <option value="pathanamthitta">Pathanamthitta</option>
-                    <option value="kottayam">Kottayam</option>
-                    <option value="alappuzha">Alappuzha</option>
-                    <option value="kollam">Kollam</option>
-                </select>
-                
-                <select class="location-select" id="capacityFilter">
-                    <option value="all">All Capacities</option>
-                    <option value="1-3">1-3 kW</option>
-                    <option value="3-5">3-5 kW</option>
-                    <option value="5-10">5-10 kW</option>
-                    <option value="10+">10+ kW</option>
-                </select>
-            </div>
-        </div>
-        
-        <!-- Projects Grid -->
-        <div class="projects-grid" id="projectsContainer">
-            <!-- Project 1 - Residential -->
-            <div class="project-card" data-type="residential" data-district="pathanamthitta" data-capacity="3-5" data-project="1">
-                <div class="project-image">
-                    <img src="../images/projects/project1.webp" alt="Residential Solar Installation in Thiruvalla">
-                    <span class="project-badge">Residential</span>
-                </div>
-                <div class="project-content">
-                    <div class="project-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Thiruvalla, Pathanamthitta</span>
-                    </div>
-                    <h3 class="project-title">5 kW Rooftop Solar for 4-BHK Home</h3>
-                    <p>Complete solar system with net metering, reducing electricity bill by 80%. Installed in 3 days with government subsidy.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <span class="detail-value">5 kW</span>
-                            <span class="detail-label">System Size</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">₹2.5L</span>
-                            <span class="detail-label">Investment</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">80%</span>
-                            <span class="detail-label">Bill Saving</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project 2 - Commercial -->
-            <div class="project-card" data-type="commercial" data-district="kottayam" data-capacity="10+" data-project="2">
-                <div class="project-image">
-                    <img src="../images/projects/project2.webp" alt="Commercial Solar for Hotel in Kottayam">
-                    <span class="project-badge">Commercial</span>
-                </div>
-                <div class="project-content">
-                    <div class="project-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Changanacherry, Kottayam</span>
-                    </div>
-                    <h3 class="project-title">25 kW Solar System for 3-Star Hotel</h3>
-                    <p>Hybrid solar system with battery backup for 24/7 power. Reduces operational costs by 60% with tax benefits.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <span class="detail-value">25 kW</span>
-                            <span class="detail-label">System Size</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">₹12L</span>
-                            <span class="detail-label">Investment</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">60%</span>
-                            <span class="detail-label">Cost Saving</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project 3 - Industrial -->
-            <div class="project-card" data-type="industrial" data-district="alappuzha" data-capacity="10+" data-project="3">
-                <div class="project-image">
-                    <img src="../images/projects/project3.webp" alt="Industrial Solar Plant in Alappuzha">
-                    <span class="project-badge">Industrial</span>
-                </div>
-                <div class="project-content">
-                    <div class="project-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Cherthala, Alappuzha</span>
-                    </div>
-                    <h3 class="project-title">100 kW Solar Plant for Rubber Factory</h3>
-                    <p>Ground-mounted solar plant providing captive power for manufacturing unit. 4-year ROI with carbon credit benefits.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <span class="detail-value">100 kW</span>
-                            <span class="detail-label">System Size</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">₹45L</span>
-                            <span class="detail-label">Investment</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">4 Years</span>
-                            <span class="detail-label">ROI Period</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project 4 - Residential -->
-            <div class="project-card" data-type="residential" data-district="kollam" data-capacity="1-3" data-project="4">
-                <div class="project-image">
-                    <img src="../images/projects/project4.webp" alt="3 kW Solar for Apartment in Kollam">
-                    <span class="project-badge">Residential</span>
-                </div>
-                <div class="project-content">
-                    <div class="project-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Karunagapally, Kollam</span>
-                    </div>
-                    <h3 class="project-title">3 kW Solar for 2-BHK Apartment</h3>
-                    <p>Compact rooftop system for apartment living. 40% government subsidy utilized for maximum savings.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <span class="detail-value">3 kW</span>
-                            <span class="detail-label">System Size</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">₹1.8L</span>
-                            <span class="detail-label">Investment</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">70%</span>
-                            <span class="detail-label">Bill Saving</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project 5 - Government -->
-            <div class="project-card" data-type="government" data-district="pathanamthitta" data-capacity="5-10" data-project="5">
-                <div class="project-image">
-                    <img src="../images/projects/project5.webp" alt="Government School Solar Project">
-                    <span class="project-badge">Government</span>
-                </div>
-                <div class="project-content">
-                    <div class="project-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Ranni, Pathanamthitta</span>
-                    </div>
-                    <h3 class="project-title">10 kW Solar for Government High School</h3>
-                    <p>Complete solar installation for school with computer lab and fans. 100% subsidy under government scheme.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <span class="detail-value">10 kW</span>
-                            <span class="detail-label">System Size</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">100%</span>
-                            <span class="detail-label">Subsidy</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">Free</span>
-                            <span class="detail-label">Electricity</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project 6 - Commercial -->
-            <div class="project-card" data-type="commercial" data-district="alappuzha" data-capacity="5-10" data-project="6">
-                <div class="project-image">
-                    <img src="../images/projects/project6.webp" alt="Hospital Solar System in Alappuzha">
-                    <span class="project-badge">Commercial</span>
-                </div>
-                <div class="project-content">
-                    <div class="project-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Haripad, Alappuzha</span>
-                    </div>
-                    <h3 class="project-title">15 kW Solar for Private Hospital</h3>
-                    <p>Critical power backup with solar for ICU and operation theater. Ensures uninterrupted power for medical equipment.</p>
-                    <div class="project-details">
-                        <div class="project-detail">
-                            <span class="detail-value">15 kW</span>
-                            <span class="detail-label">System Size</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">24/7</span>
-                            <span class="detail-label">Backup</span>
-                        </div>
-                        <div class="project-detail">
-                            <span class="detail-value">50%</span>
-                            <span class="detail-label">Cost Saving</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- No Results Message -->
-        <div class="text-center" id="noResults" style="display: none;">
-            <i class="fas fa-search" style="font-size: 3rem; color: var(--text-light); margin-bottom: 20px;"></i>
-            <h3>No Projects Found</h3>
-            <p>Try changing your filter criteria or <a href="tel:8301849474">contact us</a> for similar projects.</p>
-        </div>
-    </section>
-    
-    <!-- Before-After Section -->
-    <section class="before-after-section section-light">
-        <div class="container">
-            <h2 class="section-title">Solar Transformation Stories</h2>
-            <p class="section-subtitle">See the before and after of our solar installations</p>
-            
-            <div class="ba-grid">
-                <div class="ba-card">
-                    <div class="ba-image-container">
-                        <img src="../images/projects/before1.webp" alt="Before Solar Installation">
-                        <span class="ba-label">Before Solar</span>
-                    </div>
-                    <div class="ba-content">
-                        <h3>Empty Rooftop to Power Generator</h3>
-                        <p>Unused rooftop space converted to 5 kW solar power plant, generating 20 units daily.</p>
-                    </div>
-                </div>
-                
-                <div class="ba-card">
-                    <div class="ba-image-container">
-                        <img src="../images/projects/after1.webp" alt="After Solar Installation">
-                        <span class="ba-label">After Solar</span>
-                    </div>
-                    <div class="ba-content">
-                        <h3>Complete Solar Transformation</h3>
-                        <p>Same rooftop now produces clean energy worth ₹3,500 monthly savings.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Project Testimonials -->
-    <section class="project-testimonials">
-        <div class="container">
-            <h2 class="section-title">What Our Clients Say</h2>
-            <p class="section-subtitle">Real feedback from our solar project customers</p>
-            
-            <div class="testimonial-slider">
-                <div class="testimonial-slide active">
-                    <div class="testimonial-quote">
-                        "Solis Green India installed 5 kW solar at my home in Thiruvalla. They handled everything from subsidy to KSEB approval. My electricity bill reduced from ₹3,500 to ₹700 monthly!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <img src="../images/testimonials/client1.webp" alt="Rajesh Kumar">
-                        </div>
-                        <div class="author-info">
-                            <h4>Rajesh Kumar</h4>
-                            <p>Homeowner, Thiruvalla</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-slide">
-                    <div class="testimonial-quote">
-                        "Our hotel in Changanacherry needed 24/7 power backup. Solis Green installed 25 kW hybrid solar system. We're saving ₹25,000 monthly on electricity with reliable backup."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <img src="../images/testimonials/client2.webp" alt="Priya Menon">
-                        </div>
-                        <div class="author-info">
-                            <h4>Priya Menon</h4>
-                            <p>Hotel Owner, Changanacherry</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-slide">
-                    <div class="testimonial-quote">
-                        "As a school principal, getting 100% subsidy solar was challenging. Solis Green handled all government procedures and installed 10 kW system. Our school now has free electricity!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <img src="../images/testimonials/client3.webp" alt="Suresh Pillai">
-                        </div>
-                        <div class="author-info">
-                            <h4>Suresh Pillai</h4>
-                            <p>School Principal, Ranni</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Projects CTA -->
-    <section class="projects-cta">
-        <div class="container">
-            <h2>Want a Similar Solar Project?</h2>
-            <p>Get a free site survey and custom quote for your home, business, or institution.</p>
-            
-            <div class="hero-buttons">
-                <div class="contact-options">
-                    <a href="tel:8301849474" class="btn btn-primary" style="background: rgba(255,255,255,0.2); border-color: white;">
-                        <i class="fas fa-phone"></i> Call: 8301849474
-                    </a>
-                    <a href="#projects-quote" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">
-                        <i class="fas fa-file-alt"></i> Get Project Quote
-                    </a>
-                </div>
-                <div class="whatsapp-options">
-                    <a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Share Your Requirements
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Projects Quote Form -->
-    <section class="quick-quote-section" id="projects-quote">
-        <div class="container">
-            <h2 class="section-title">Get Your Project Quote</h2>
-            <p class="section-subtitle">Tell us about your requirement and get a detailed project proposal</p>
-            
-            <div class="quote-form-container">
-                <form class="quick-quote-form" id="projectsQuoteForm">
-                    <input type="hidden" name="_subject" value="🏗️ Project Quote Request - Solis Green India">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Phone Number" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <select name="project_type" required>
-                                <option value="">Project Type</option>
-                                <option value="residential">Home / Residential</option>
-                                <option value="commercial">Shop / Business</option>
-                                <option value="industrial">Factory / Industry</option>
-                                <option value="institutional">School / Hospital</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <select name="approx_capacity">
-                                <option value="">Approximate Capacity Needed</option>
-                                <option value="1-3">1-3 kW (Small Home)</option>
-                                <option value="3-5">3-5 kW (Medium Home)</option>
-                                <option value="5-10">5-10 kW (Large Home/Business)</option>
-                                <option value="10+">10+ kW (Commercial/Industrial)</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" name="location" placeholder="Project Location (Town)" required>
-                        </div>
-                        <div class="form-group">
-                            <select name="timeline">
-                                <option value="">Project Timeline</option>
-                                <option value="immediate">Immediately</option>
-                                <option value="1month">Within 1 Month</option>
-                                <option value="3months">Within 3 Months</option>
-                                <option value="planning">Just Planning Stage</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea name="project_details" placeholder="Project details or specific requirements (optional)" rows="3"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-project-diagram"></i> Get Detailed Project Proposal
-                    </button>
-                </form>
-                
-                <div class="quote-benefits">
-                    <h4>What You'll Receive</h4>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Detailed project design & layout</li>
-                        <li><i class="fas fa-check"></i> Complete cost breakdown</li>
-                        <li><i class="fas fa-check"></i> Subsidy eligibility & application</li>
-                        <li><i class="fas fa-check"></i> ROI calculation & savings estimate</li>
-                    </ul>
-                    
-                    <div class="emergency-contact">
-                        <h4>Project Consultation Available</h4>
-                        <div class="emergency-numbers">
-                            <a href="tel:8301849474" class="emergency-number">
-                                <i class="fas fa-phone"></i> Technical: 8301849474
-                            </a>
-                            <a href="tel:9539316623" class="emergency-number">
-                                <i class="fas fa-phone-alt"></i> Project: 9539316623
-                            </a>
-                        </div>
-                        <p class="emergency-note">Available for site visits and detailed project discussions</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Project Modal -->
-    <div class="project-modal" id="projectModal">
-        <div class="modal-project-content">
-            <div class="modal-close" id="modalClose">
-                <i class="fas fa-times"></i>
-            </div>
-            
-            <div class="modal-project-image">
-                <img id="modalProjectImage" src="" alt="">
-            </div>
-            
-            <div class="modal-project-body">
-                <div id="modalProjectContent">
-                    <!-- Dynamic content will be loaded here -->
-                </div>
-            </div>
-        </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="projects-hero">
+  <div class="container">
+    <h1>Solar EPC Projects Executed by Solis Green Energy Solutions</h1>
+    <p>
+      Real rooftop solar installations across Kerala. Residential and commercial solar EPC projects
+      with MNRE subsidy, KSEB net-metering approvals, and long-term performance support.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#projects-by-location" class="btn btn-primary">View Projects by Location</a>
+      <a href="tel:8301849474" class="btn btn-whatsapp">Request Free Site Survey</a>
     </div>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <img src="/images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
-                    </div>
-                    <p>Leading solar energy solutions provider with 500+ successful projects across Kerala districts.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Project Types</h3>
-                    <ul>
-                        <li><a href="#projects-grid" data-filter="residential">Residential Projects</a></li>
-                        <li><a href="#projects-grid" data-filter="commercial">Commercial Projects</a></li>
-                        <li><a href="#projects-grid" data-filter="industrial">Industrial Projects</a></li>
-                        <li><a href="#projects-grid" data-filter="government">Government Projects</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Project Locations</h3>
-                    <ul>
-                        <li><a href="#projects-grid" data-district="pathanamthitta">Pathanamthitta Projects</a></li>
-                        <li><a href="#projects-grid" data-district="kottayam">Kottayam Projects</a></li>
-                        <li><a href="#projects-grid" data-district="alappuzha">Alappuzha Projects</a></li>
-                        <li><a href="#projects-grid" data-district="kollam">Kollam Projects</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Project Team</h3>
-                    <ul class="contact-info">
-                        <li class="contact-primary">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <a href="tel:8301849474">Primary: 8301849474</a>
-                                <span class="contact-label">Project Consultation</span>
-                            </div>
-                        </li>
-                        <li class="contact-alternate">
-                            <i class="fas fa-phone-alt"></i>
-                            <div>
-                                <a href="tel:9539316623">Alternate: 9539316623</a>
-                                <span class="contact-label">Site Survey Team</span>
-                            </div>
-                        </li>
-                        <li class="contact-support">
-                            <i class="fas fa-headset"></i>
-                            <div>
-                                <a href="tel:8606849474">Support: 8606849474</a>
-                                <span class="contact-label">Project Support</span>
-                            </div>
-                        </li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Thiruvalla</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved. | 500+ Solar Projects Across Kerala</p>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-    
-    <!-- Load Universal JavaScript -->
-    <script src="/script.js"></script>
-    
-    <!-- Projects Gallery Specific JavaScript -->
-    <script>
-        // Project data for modal
-        const projectsData = {
-            1: {
-                title: "5 kW Rooftop Solar for 4-BHK Home",
-                location: "Thiruvalla, Pathanamthitta",
-                type: "Residential",
-                image: "../images/projects/project1-detail.webp",
-                description: "Complete solar power solution for a 4-BHK independent house in Thiruvalla. System includes 15 monocrystalline solar panels, 5 kW hybrid inverter, and net metering setup with KSEB.",
-                specs: {
-                    "System Size": "5 kW",
-                    "Panels Used": "15 x 335W Monocrystalline",
-                    "Inverter Type": "5 kW Hybrid Inverter",
-                    "Daily Generation": "20-25 units",
-                    "Monthly Savings": "₹3,000 - ₹3,500",
-                    "Installation Time": "3 days",
-                    "Government Subsidy": "40% Availed",
-                    "ROI Period": "4-5 years",
-                    "Warranty": "25 years on panels, 5 years on inverter"
-                },
-                features: [
-                    "Complete subsidy assistance",
-                    "Net metering with KSEB",
-                    "Smart monitoring app",
-                    "5-year free maintenance",
-                    "Shadow-free installation"
-                ]
-            },
-            2: {
-                title: "25 kW Solar System for 3-Star Hotel",
-                location: "Changanacherry, Kottayam",
-                type: "Commercial",
-                image: "../images/projects/project2-detail.webp",
-                description: "Large-scale solar installation for a 3-star hotel with 24/7 power requirements. Hybrid system with battery backup ensures uninterrupted power for guest rooms, kitchen, and common areas.",
-                specs: {
-                    "System Size": "25 kW",
-                    "Panels Used": "75 x 335W Monocrystalline",
-                    "Inverter Type": "25 kW Three Phase Hybrid",
-                    "Battery Backup": "30 kWh Lithium-ion",
-                    "Daily Generation": "100-125 units",
-                    "Monthly Savings": "₹25,000 - ₹30,000",
-                    "Installation Time": "7 days",
-                    "Tax Benefits": "Accelerated Depreciation",
-                    "ROI Period": "3-4 years"
-                },
-                features: [
-                    "24/7 power backup",
-                    "Three-phase system",
-                    "Remote monitoring",
-                    "Diesel generator integration",
-                    "Automatic load shifting"
-                ]
-            },
-            3: {
-                title: "100 kW Solar Plant for Rubber Factory",
-                location: "Cherthala, Alappuzha",
-                type: "Industrial",
-                image: "../images/projects/project3-detail.webp",
-                description: "Ground-mounted solar power plant for rubber manufacturing unit. Provides captive power for machinery and reduces dependence on grid electricity significantly.",
-                specs: {
-                    "System Size": "100 kW",
-                    "Panels Used": "300 x 335W Monocrystalline",
-                    "Mounting Type": "Ground-mounted with tracking",
-                    "Daily Generation": "400-450 units",
-                    "Monthly Savings": "₹1,00,000 - ₹1,20,000",
-                    "Installation Time": "15 days",
-                    "Carbon Credits": "Eligible",
-                    "ROI Period": "4 years",
-                    "Payback": "Through electricity savings"
-                },
-                features: [
-                    "Ground-mounted system",
-                    "Single-axis tracking",
-                    "HT connection integration",
-                    "Power factor correction",
-                    "Energy management system"
-                ]
-            }
-        };
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            // Filter functionality
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const districtFilter = document.getElementById('districtFilter');
-            const capacityFilter = document.getElementById('capacityFilter');
-            const projectCards = document.querySelectorAll('.project-card');
-            const noResults = document.getElementById('noResults');
-            const projectsContainer = document.getElementById('projectsContainer');
-            
-            let activeFilter = 'all';
-            let activeDistrict = 'all';
-            let activeCapacity = 'all';
-            
-            function filterProjects() {
-                let visibleCount = 0;
-                
-                projectCards.forEach(card => {
-                    const type = card.getAttribute('data-type');
-                    const district = card.getAttribute('data-district');
-                    const capacity = card.getAttribute('data-capacity');
-                    
-                    const typeMatch = activeFilter === 'all' || type === activeFilter;
-                    const districtMatch = activeDistrict === 'all' || district === activeDistrict;
-                    const capacityMatch = activeCapacity === 'all' || capacity === activeCapacity;
-                    
-                    if (typeMatch && districtMatch && capacityMatch) {
-                        card.style.display = 'block';
-                        visibleCount++;
-                        
-                        // Add animation
-                        card.style.animation = 'fadeIn 0.5s ease';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                // Show/hide no results message
-                if (visibleCount === 0) {
-                    noResults.style.display = 'block';
-                    projectsContainer.style.minHeight = '300px';
-                } else {
-                    noResults.style.display = 'none';
-                    projectsContainer.style.minHeight = 'auto';
-                }
-                
-                // Track filter usage
-                if (typeof trackEvent !== 'undefined') {
-                    trackEvent('Projects', 'filter_applied', `${activeFilter}-${activeDistrict}-${activeCapacity}`);
-                }
-            }
-            
-            // Filter button click
-            filterButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    filterButtons.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    activeFilter = this.getAttribute('data-filter');
-                    filterProjects();
-                });
-            });
-            
-            // District filter change
-            districtFilter.addEventListener('change', function() {
-                activeDistrict = this.value;
-                filterProjects();
-            });
-            
-            // Capacity filter change
-            capacityFilter.addEventListener('change', function() {
-                activeCapacity = this.value;
-                filterProjects();
-            });
-            
-            // Project card click for modal
-            projectCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const projectId = this.getAttribute('data-project');
-                    openProjectModal(projectId);
-                });
-            });
-            
-            // Footer filter links
-            document.querySelectorAll('a[data-filter], a[data-district]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    if (this.hasAttribute('data-filter')) {
-                        const filter = this.getAttribute('data-filter');
-                        filterButtons.forEach(btn => {
-                            btn.classList.remove('active');
-                            if (btn.getAttribute('data-filter') === filter) {
-                                btn.classList.add('active');
-                            }
-                        });
-                        activeFilter = filter;
-                    }
-                    
-                    if (this.hasAttribute('data-district')) {
-                        const district = this.getAttribute('data-district');
-                        districtFilter.value = district;
-                        activeDistrict = district;
-                    }
-                    
-                    filterProjects();
-                    
-                    // Scroll to projects grid
-                    const projectsGrid = document.getElementById('projects-grid');
-                    if (projectsGrid) {
-                        window.scrollTo({
-                            top: projectsGrid.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Testimonial slider
-            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-            let currentSlide = 0;
-            
-            function showTestimonialSlide(index) {
-                testimonialSlides.forEach(slide => slide.classList.remove('active'));
-                testimonialSlides[index].classList.add('active');
-            }
-            
-            if (testimonialSlides.length > 0) {
-                // Auto rotate slides every 5 seconds
-                setInterval(() => {
-                    currentSlide = (currentSlide + 1) % testimonialSlides.length;
-                    showTestimonialSlide(currentSlide);
-                }, 5000);
-                
-                // Manual navigation (optional)
-                testimonialSlides.forEach((slide, index) => {
-                    slide.addEventListener('click', () => {
-                        currentSlide = index;
-                        showTestimonialSlide(currentSlide);
-                    });
-                });
-            }
-            
-            // Project modal functionality
-            const projectModal = document.getElementById('projectModal');
-            const modalClose = document.getElementById('modalClose');
-            
-            function openProjectModal(projectId) {
-                const project = projectsData[projectId];
-                if (!project) return;
-                
-                // Update modal content
-                document.getElementById('modalProjectImage').src = project.image;
-                document.getElementById('modalProjectImage').alt = project.title;
-                
-                const modalContent = document.getElementById('modalProjectContent');
-                modalContent.innerHTML = `
-                    <h2>${project.title}</h2>
-                    <div class="project-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>${project.location}</span>
-                        <span class="project-badge" style="margin-left: 10px;">${project.type}</span>
-                    </div>
-                    
-                    <p>${project.description}</p>
-                    
-                    <div class="modal-project-grid">
-                        <div>
-                            <h3>Project Features</h3>
-                            <ul style="list-style: none; padding: 0;">
-                                ${project.features.map(feature => `
-                                    <li style="margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;">
-                                        <i class="fas fa-check" style="color: var(--solis-green); margin-top: 3px;"></i>
-                                        <span>${feature}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
-                        </div>
-                        
-                        <div class="modal-project-specs">
-                            <h3>Specifications</h3>
-                            <div class="specs-list">
-                                ${Object.entries(project.specs).map(([key, value]) => `
-                                    <div class="spec-item">
-                                        <span class="spec-label">${key}:</span>
-                                        <span class="spec-value">${value}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            
-                            <div style="margin-top: 30px; text-align: center;">
-                                <a href="tel:8301849474" class="btn btn-primary">
-                                    <i class="fas fa-phone"></i> Get Similar Project
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                // Show modal
-                projectModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Track modal view
-                if (typeof trackEvent !== 'undefined') {
-                    trackEvent('Projects', 'modal_view', projectId);
-                }
-            }
-            
-            // Close modal
-            modalClose.addEventListener('click', closeProjectModal);
-            projectModal.addEventListener('click', function(e) {
-                if (e.target === projectModal) {
-                    closeProjectModal();
-                }
-            });
-            
-            function closeProjectModal() {
-                projectModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-            
-            // Close modal on Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && projectModal.classList.contains('active')) {
-                    closeProjectModal();
-                }
-            });
-            
-            // Page-specific tracking
-            if (typeof trackEvent !== 'undefined') {
-                trackEvent('Page', 'view', 'Projects Gallery');
-            }
-            
-            // Form tracking
-            const projectsForm = document.getElementById('projectsQuoteForm');
-            if (projectsForm) {
-                projectsForm.addEventListener('submit', function() {
-                    if (typeof trackEvent !== 'undefined') {
-                        const projectType = this.querySelector('[name="project_type"]').value;
-                        const capacity = this.querySelector('[name="approx_capacity"]').value;
-                        trackEvent('Projects', 'quote_request', `${projectType}-${capacity}`);
-                    }
-                });
-            }
-        });
-    </script>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="benefits-bar">
+  <div class="container">
+    <div class="benefits-grid">
+      <div class="benefit-item"><i class="fas fa-award"></i><h4>MNRE Empanelled EPC</h4></div>
+      <div class="benefit-item"><i class="fas fa-bolt"></i><h4>KSEB Net-Metering</h4></div>
+      <div class="benefit-item"><i class="fas fa-university"></i><h4>SBI / Canara Loans</h4></div>
+      <div class="benefit-item"><i class="fas fa-tools"></i><h4>5-Year Free AMC</h4></div>
+      <div class="benefit-item"><i class="fas fa-users"></i><h4>500+ Installations</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT CATEGORIES -->
+<section class="section-light">
+  <div class="container">
+    <h2 class="section-title">Solar EPC Project Categories</h2>
+
+    <div class="features-grid">
+      <div class="feature-item">
+        <i class="fas fa-home"></i>
+        <h3>Residential Rooftop Solar</h3>
+        <p>On-grid & hybrid solar systems with MNRE subsidy and KSEB approval.</p>
+      </div>
+
+      <div class="feature-item">
+        <i class="fas fa-building"></i>
+        <h3>Commercial & Institutional Solar</h3>
+        <p>Rooftop solar EPC for offices, shops, schools and hospitals.</p>
+      </div>
+
+      <div class="feature-item">
+        <i class="fas fa-sync"></i>
+        <h3>System Upgrades & Expansion</h3>
+        <p>Inverter upgrades, capacity expansion and performance optimisation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS BY LOCATION -->
+<section id="projects-by-location">
+  <div class="container">
+    <h2 class="section-title">Solar EPC Projects by Location</h2>
+
+    <div class="areas-grid">
+      <a href="/projects/karunagappally/" class="area-card">Karunagappally – Kollam</a>
+      <a href="/projects/thiruvalla/" class="area-card">Thiruvalla – Pathanamthitta</a>
+      <a href="/projects/changanacherry/" class="area-card">Changanacherry – Kottayam</a>
+      <a href="/projects/adoor/" class="area-card">Adoor</a>
+      <a href="/projects/ranni/" class="area-card">Ranni</a>
+      <a href="/projects/kottarakkara/" class="area-card">Kottarakkara</a>
+    </div>
+  </div>
+</section>
+
+<!-- RECENT PROJECTS -->
+<section class="section-light">
+  <div class="container">
+    <h2 class="section-title">Recent Solar Installations</h2>
+
+    <ul class="project-list">
+      <li>
+        <strong>Karunagappally – 3kWp On-Grid (Jan 2026)</strong><br>
+        Enphase IQ8P Micro Inverter | Adani TOPCon DCR | PM Surya Ghar Subsidy Applied
+      </li>
+      <li>
+        <strong>Thiruvalla – 5kWp On-Grid (Dec 2025)</strong><br>
+        High-efficiency rooftop solar with KSEB net-metering
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- EPC PROCESS -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Our Solar EPC Execution Process</h2>
+
+    <ol class="process-list">
+      <li>Free site survey & shadow analysis</li>
+      <li>System design & inverter selection</li>
+      <li>MNRE subsidy documentation</li>
+      <li>KSEB net-metering approval</li>
+      <li>Installation & commissioning</li>
+      <li>Monitoring & 5-year AMC</li>
+    </ol>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="services-cta">
+  <div class="container cta-content">
+    <h3>Install a Similar Solar System at Your Location</h3>
+    <p>Get a free site survey, exact savings estimate & complete subsidy support.</p>
+    <a href="tel:8301849474" class="btn btn-primary">Call Now</a>
+    <a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank">WhatsApp</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-content">
+    <div class="footer-col">
+      <img src="https://www.solisgreenindia.in/images/logo/logo-white.png" class="footer-logo-img">
+      <p>Solar EPC company executing rooftop solar projects across Kerala.</p>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © 2024 Solis Green Energy Solutions
+  </div>
+</footer>
+
+<script src="https://www.solisgreenindia.in/script.js"></script>
 </body>
 </html>
