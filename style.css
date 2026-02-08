@@ -2457,3 +2457,24 @@ if (typeof module !== 'undefined' && module.exports) {
     justify-content: center;
   }
 }
+/* ===== Map Helper Text (My Maps Embed) ===== */
+.map-helper-text {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin: 15px 0 10px;
+  font-weight: 500;
+}
+
+.map-helper-text::before {
+  content: "📍 ";
+  font-size: 15px;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .map-helper-text {
+    font-size: 13px;
+    margin: 12px 0 8px;
+  }
+}
