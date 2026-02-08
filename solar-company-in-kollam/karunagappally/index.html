@@ -20,245 +20,288 @@
 
 <!-- ================= HERO BG ================= -->
 <style>
-.town-hero{
-background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
-url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2070&q=80');
-background-size:cover;
-background-position:center;
-padding:150px 0 100px;
-margin-top:80px;
-color:#fff;
-text-align:center;
+.town-hero {
+  background: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
+  url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2070&q=80');
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0 100px;
+  margin-top: 80px;
+  color: #fff;
+  text-align: center;
+}
+
+.mini-map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.mini-map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none; /* disables interaction on preview */
+}
+
+.mini-map-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: underline;
 }
 </style>
+
 </head>
 
 <body>
 
 <!-- ================= HEADER ================= -->
 <header class="solis-header">
-<div class="header-inner">
-<div class="header-logo">
-<a href="https://www.solisgreenindia.in/">
-<img src="https://www.solisgreenindia.in/images/logo/logo.png" alt="Solis Green Energy Solutions">
-</a>
-</div>
+  <div class="header-inner">
+    <div class="header-logo">
+      <a href="https://www.solisgreenindia.in/">
+        <img src="https://www.solisgreenindia.in/images/logo/logo.png" alt="Solis Green Energy Solutions">
+      </a>
+    </div>
 
-<nav class="header-menu" id="mainNav">
-<a href="/">Home</a>
-<a href="/services/">Services</a>
-<a href="/cities/" class="active">Service Areas</a>
-<a href="/about/">About</a>
-<a href="/projects/">Projects</a>
-</nav>
+    <nav class="header-menu" id="mainNav">
+      <a href="/">Home</a>
+      <a href="/services/">Services</a>
+      <a href="/cities/" class="active">Service Areas</a>
+      <a href="/about/">About</a>
+      <a href="/projects/">Projects</a>
+    </nav>
 
-<div class="header-cta">
-<a href="/contact/" class="contact-btn">Contact</a>
-<a href="https://wa.me/918301849474" class="whatsapp-btn" target="_blank">WhatsApp</a>
-<button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
-</div>
-</div>
+    <div class="header-cta">
+      <a href="/contact/" class="contact-btn">Contact</a>
+      <a href="https://wa.me/918301849474" class="whatsapp-btn" target="_blank">WhatsApp</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </div>
+  </div>
 </header>
 
 <!-- ================= HERO ================= -->
 <section class="town-hero">
-<div class="container">
-<h1>Solar Installation Company in Karunagappally – MNRE Approved Solar EPC</h1>
+  <div class="container">
+    <h1>Solar Installation Company in Karunagappally – MNRE Approved Solar EPC</h1>
 
-<p>
-Install a government-approved rooftop solar system in Karunagappally with
-<strong>Solis Green Energy Solutions</strong>.
-Get up to <strong>₹78,000 MNRE subsidy</strong>, complete KSEB net-metering approvals
-and end-to-end EPC execution.
-</p>
+    <p>
+      Install a government-approved rooftop solar system in Karunagappally with
+      <strong>Solis Green Energy Solutions</strong>.
+      Get up to <strong>₹78,000 MNRE subsidy</strong>, complete KSEB net-metering approvals,
+      and end-to-end EPC execution.
+    </p>
 
-<div class="hero-buttons">
-<a href="tel:8301849474" class="btn btn-primary pulse-animation">
-<i class="fas fa-phone"></i> Free Site Survey
-</a>
-<a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank">
-<i class="fab fa-whatsapp"></i> WhatsApp Consultation
-</a>
-</div>
-</div>
+    <div class="hero-buttons">
+      <a href="tel:8301849474" class="btn btn-primary pulse-animation">
+        <i class="fas fa-phone"></i> Free Site Survey
+      </a>
+      <a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp Consultation
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- ================= EPC TRUST BAR ================= -->
 <section class="benefits-bar">
-<div class="container">
-<div class="benefits-grid">
-<div class="benefit-item"><i class="fas fa-rupee-sign"></i><h4>₹78,000 Subsidy</h4><p>MNRE / PM Surya Ghar</p></div>
-<div class="benefit-item"><i class="fas fa-university"></i><h4>SBI / Canara Loan</h4><p>Easy EMI</p></div>
-<div class="benefit-item"><i class="fas fa-bolt"></i><h4>KSEB Net Metering</h4><p>Approval Included</p></div>
-<div class="benefit-item"><i class="fas fa-tools"></i><h4>5-Year Free AMC</h4><p>For Solis Systems</p></div>
-<div class="benefit-item"><i class="fas fa-users"></i><h4>500+ Installations</h4><p>Across Kerala</p></div>
-</div>
-</div>
+  <div class="container">
+    <div class="benefits-grid">
+      <div class="benefit-item"><i class="fas fa-rupee-sign"></i><h4>₹78,000 Subsidy</h4><p>MNRE / PM Surya Ghar</p></div>
+      <div class="benefit-item"><i class="fas fa-university"></i><h4>SBI / Canara Loan</h4><p>Easy EMI</p></div>
+      <div class="benefit-item"><i class="fas fa-bolt"></i><h4>KSEB Net Metering</h4><p>Approval Included</p></div>
+      <div class="benefit-item"><i class="fas fa-tools"></i><h4>5-Year Free AMC</h4><p>For Solis Systems</p></div>
+      <div class="benefit-item"><i class="fas fa-users"></i><h4>500+ Installations</h4><p>Across Kerala</p></div>
+    </div>
+  </div>
 </section>
 
 <!-- ================= WHY SOLIS EPC ================= -->
 <section class="why-choose-us section-light">
-<div class="container">
-<h2 class="section-title">Why Karunagappally Homeowners Choose Solis Green</h2>
+  <div class="container">
+    <h2 class="section-title">Why Karunagappally Homeowners Choose Solis Green</h2>
 
-<div class="features-grid">
-<div class="feature-item">
-<i class="fas fa-drafting-compass"></i>
-<h3>Complete Solar EPC</h3>
-<p>We manage design, engineering, procurement, installation, KSEB approval and commissioning.</p>
-</div>
+    <div class="features-grid">
+      <div class="feature-item">
+        <i class="fas fa-drafting-compass"></i>
+        <h3>Complete Solar EPC</h3>
+        <p>We manage design, engineering, procurement, installation, KSEB approval and commissioning.</p>
+      </div>
 
-<div class="feature-item">
-<i class="fas fa-file-invoice-rupee"></i>
-<h3>Subsidy & Loan Handling</h3>
-<p>End-to-end MNRE subsidy processing and solar loan assistance through SBI & partner banks.</p>
-</div>
+      <div class="feature-item">
+        <i class="fas fa-file-invoice-rupee"></i>
+        <h3>Subsidy & Loan Handling</h3>
+        <p>End-to-end MNRE subsidy processing and solar loan assistance through SBI & partner banks.</p>
+      </div>
 
-<div class="feature-item">
-<i class="fas fa-user-check"></i>
-<h3>Local Karunagappally Team</h3>
-<p>Installers experienced with coastal conditions, roof types and local transformer limits.</p>
-</div>
+      <div class="feature-item">
+        <i class="fas fa-user-check"></i>
+        <h3>Local Karunagappally Team</h3>
+        <p>Installers experienced with coastal conditions, roof types and local transformer limits.</p>
+      </div>
 
-<div class="feature-item">
-<i class="fas fa-headset"></i>
-<h3>Priority Support</h3>
-<p>Dedicated service & AMC support for solar systems installed by Solis Green.</p>
-</div>
-</div>
-</div>
+      <div class="feature-item">
+        <i class="fas fa-headset"></i>
+        <h3>Priority Support</h3>
+        <p>Dedicated service & AMC support for solar systems installed by Solis Green.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ================= LIVE PROJECT PROOF (PRIORITY) ================= -->
 <section class="section-light">
-<div class="container">
+  <div class="container">
 
-<h2 class="section-title">Recent Solar Installation Near Karunagappally</h2>
+    <h2 class="section-title">Recent Solar Installation Near Karunagappally</h2>
 
-<p class="text-center">
-A recently completed rooftop solar project by Solis Green Energy Solutions,
-executed under the <strong>PM Surya Ghar subsidy scheme</strong>.
-</p>
+    <p class="text-center">
+      A recently completed rooftop solar project by Solis Green Energy Solutions,
+      executed under the <strong>PM Surya Ghar subsidy scheme</strong>.
+    </p>
 
-<div class="districts-grid">
-<div class="district-card">
-<h3>3kWp Residential On-Grid Solar System</h3>
+    <div class="districts-grid">
+      <div class="district-card">
+        <h3>3kWp Residential On-Grid Solar System</h3>
 
-<ul>
-<li><strong>Location:</strong> Near Karunagappally, Kollam</li>
-<li><strong>Inverter:</strong> Enphase IQ8P Micro Inverters</li>
-<li><strong>Panels:</strong> Adani TOPCon DCR Bifacial</li>
-<li><strong>Commissioned:</strong> January 2026</li>
-<li><strong>Subsidy:</strong> PM Surya Ghar Applied</li>
-<li><strong>Expected Savings:</strong> ~₹5,500 / month</li>
-</ul>
+        <ul>
+          <li><strong>Location:</strong> Near Karunagappally, Kollam</li>
+          <li><strong>Inverter:</strong> Enphase IQ8P Micro Inverters</li>
+          <li><strong>Panels:</strong> Adani TOPCon DCR Bifacial</li>
+          <li><strong>Commissioned:</strong> January 2026</li>
+          <li><strong>Subsidy:</strong> PM Surya Ghar Applied</li>
+          <li><strong>Expected Savings:</strong> ~₹5,500 / month</li>
+        </ul>
 
-<p>
-Designed for coastal reliability, maximum generation and long-term performance.
-</p>
+        <p>Designed for coastal reliability, maximum generation and long-term performance.</p>
 
-<!-- ✅ MY MAPS PIN LINK (ADDED) -->
-<a href="https://www.google.com/maps/d/u/1/viewer?mid=1fBa0rIo4UmCF5mluVXcjRCcIrgIIAlw&ll=9.07856,76.549556&z=17"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="btn btn-outline"
-   style="margin-top:15px;">
-📍 View This Project on Map
-</a>
+        <!-- ================= SMALL CLICKABLE MAP PREVIEW ================= -->
+        <div class="mini-map-wrapper">
+          <a href="https://www.google.com/maps/d/u/1/viewer?mid=1fBa0rIo4UmCF5mluVXcjRCcIrgIIAlw&ll=9.07856,76.549556&z=17"
+             target="_blank" rel="noopener noreferrer">
+            <iframe
+              src="https://www.google.com/maps/d/u/1/embed?mid=1fBa0rIo4UmCF5mluVXcjRCcIrgIIAlw&ehbc=2E312F"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="mini-map-overlay">Click to view full map</div>
+          </a>
+        </div>
 
-</div>
-</div>
+        <!-- ADDITIONAL BUTTON CTA -->
+        <a href="https://www.google.com/maps/d/u/1/viewer?mid=1fBa0rIo4UmCF5mluVXcjRCcIrgIIAlw&ll=9.07856,76.549556&z=17"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-outline"
+           style="margin-top:15px;">
+          📍 View This Project on Full Map
+        </a>
 
-</div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- ================= PRICE & SUBSIDY ================= -->
 <section class="section-light">
-<div class="container">
-<h2 class="section-title">Solar System Price in Karunagappally</h2>
+  <div class="container">
+    <h2 class="section-title">Solar System Price in Karunagappally</h2>
 
-<div class="districts-grid">
-<div class="district-card">
-<h3>3kW On-Grid Solar</h3>
-<p>₹1.9 – ₹2.2 Lakhs (before subsidy)</p>
-<p>MNRE subsidy up to ₹78,000</p>
-<a href="tel:8301849474" class="btn btn-outline">Check Final Price</a>
-</div>
+    <div class="districts-grid">
+      <div class="district-card">
+        <h3>3kW On-Grid Solar</h3>
+        <p>₹1.9 – ₹2.2 Lakhs (before subsidy)</p>
+        <p>MNRE subsidy up to ₹78,000</p>
+        <a href="tel:8301849474" class="btn btn-outline">Check Final Price</a>
+      </div>
 
-<div class="district-card">
-<h3>5kW On-Grid Solar</h3>
-<p>₹2.9 – ₹3.3 Lakhs (before subsidy)</p>
-<p>Best for high electricity usage</p>
-<a href="tel:8301849474" class="btn btn-outline">Get Cost Estimate</a>
-</div>
-</div>
-</div>
+      <div class="district-card">
+        <h3>5kW On-Grid Solar</h3>
+        <p>₹2.9 – ₹3.3 Lakhs (before subsidy)</p>
+        <p>Best for high electricity usage</p>
+        <a href="tel:8301849474" class="btn btn-outline">Get Cost Estimate</a>
+      </div>
+    </div>
+  </div>
 </section>
 
+...
 <!-- ================= AREAS SERVED ================= -->
 <section class="local-service-areas section-light">
-<div class="container">
-<h2 class="section-title">Areas We Serve in Karunagappally</h2>
+  <div class="container">
+    <h2 class="section-title">Areas We Serve in Karunagappally</h2>
 
-<div class="areas-grid">
-<div class="area-card">Karunagappally Town</div>
-<div class="area-card">Oachira Road</div>
-<div class="area-card">Chavara</div>
-<div class="area-card">Thevalakkara</div>
-<div class="area-card">Sakthikulangara</div>
-<div class="area-card">Kilikollur</div>
-</div>
-</div>
+    <div class="areas-grid">
+      <div class="area-card">Karunagappally Town</div>
+      <div class="area-card">Oachira Road</div>
+      <div class="area-card">Chavara</div>
+      <div class="area-card">Thevalakkara</div>
+      <div class="area-card">Sakthikulangara</div>
+      <div class="area-card">Kilikollur</div>
+    </div>
+  </div>
 </section>
 
 <!-- ================= INTERNAL LINKS ================= -->
 <section class="nearby-cities">
-<div class="container">
-<h3>Explore More Solar Installations</h3>
-<div class="city-links">
-<a href="/solar-company-in-kollam/">Kollam District</a>
-<a href="/projects/">Our Solar Projects</a>
-<a href="/pm-suryaghar-subsidy-kerala/">PM Surya Ghar Subsidy</a>
-<a href="/solar-installation-cost-kerala/">Solar Installation Cost</a>
-</div>
-</div>
+  <div class="container">
+    <h3>Explore More Solar Installations</h3>
+    <div class="city-links">
+      <a href="/solar-company-in-kollam/">Kollam District</a>
+      <a href="/projects/">Our Solar Projects</a>
+      <a href="/pm-suryaghar-subsidy-kerala/">PM Surya Ghar Subsidy</a>
+      <a href="/solar-installation-cost-kerala/">Solar Installation Cost</a>
+    </div>
+  </div>
 </section>
 
 <!-- ================= FINAL CTA ================= -->
 <section class="services-cta">
-<div class="container cta-content">
-<h3>Book Your Free Solar Site Survey in Karunagappally</h3>
-<p>Get a custom solar plan with subsidy & savings estimate.</p>
+  <div class="container cta-content">
+    <h3>Book Your Free Solar Site Survey in Karunagappally</h3>
+    <p>Get a custom solar plan with subsidy & savings estimate.</p>
 
-<div class="cta-buttons">
-<a href="tel:8301849474" class="btn btn-primary pulse-animation">Call Now</a>
-<a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank">WhatsApp</a>
-</div>
-</div>
+    <div class="cta-buttons">
+      <a href="tel:8301849474" class="btn btn-primary pulse-animation">Call Now</a>
+      <a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank">WhatsApp</a>
+    </div>
+  </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
 <footer>
-<div class="container footer-content">
-<div class="footer-col">
-<img src="https://www.solisgreenindia.in/images/logo/logo-white.png" class="footer-logo-img">
-<p>MNRE empanelled Solar EPC serving Karunagappally & Kollam district.</p>
-</div>
+  <div class="container footer-content">
+    <div class="footer-col">
+      <img src="https://www.solisgreenindia.in/images/logo/logo-white.png"
+           class="footer-logo-img"
+           alt="Solis Green Energy Solutions">
+      <p>MNRE empanelled Solar EPC serving Karunagappally & Kollam district.</p>
+    </div>
 
-<div class="footer-col">
-<h3>Head Office</h3>
-<p>
-Mini Kristal Arcade,<br>
-Muthoor, Thiruvalla – 689107
-</p>
-</div>
-</div>
+    <div class="footer-col">
+      <h3>Head Office</h3>
+      <p>
+        Mini Kristal Arcade,<br>
+        Muthoor, Thiruvalla – 689107
+      </p>
+    </div>
+  </div>
 
-<div class="copyright">
-© 2026 Solis Green Energy Solutions | Solar EPC in Karunagappally
-</div>
+  <div class="copyright">
+    © 2026 Solis Green Energy Solutions | Solar EPC in Karunagappally
+  </div>
 </footer>
 
+<!-- ================= COMMON JS ================= -->
 <script src="https://www.solisgreenindia.in/script.js"></script>
 
 </body>
