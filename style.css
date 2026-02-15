@@ -2478,3 +2478,15 @@ if (typeof module !== 'undefined' && module.exports) {
     margin: 12px 0 8px;
   }
 }
+<style>
+  .town-hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('/images/hero/hero-image-2.webp'); /* Local image */
+    background-size: cover;
+    background-position: center;
+    padding: 150px 0 100px;
+    text-align: center;
+    color: white;
+    margin-top: 80px;
+  }
+</style>
