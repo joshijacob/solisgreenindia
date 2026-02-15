@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- ================= SEO ================= -->
+  <!-- ========== SEO ========== -->
   <title>Solar Projects in Kerala | Rooftop Solar Installations by Solis Green</title>
-  <meta name="description" content="Explore completed rooftop solar projects by Solis Green Energy Solutions across Kerala. Residential on-grid solar installations with MNRE subsidy, PM Surya Ghar scheme & KSEB net metering." />
-  <meta name="keywords" content="solar projects kerala, rooftop solar projects kerala, solar EPC company kerala, solis green projects, residential solar installations kerala" />
-  <meta name="author" content="Solis Green Energy Solutions" />
+  <meta name="description" content="Explore completed rooftop solar projects by Solis Green Energy Solutions across Kerala. Residential on-grid solar installations with MNRE subsidy, PM Surya Ghar scheme & KSEB net metering.">
+  <meta name="keywords" content="solar projects kerala, rooftop solar projects kerala, solar EPC company kerala, solis green projects, residential solar installations kerala">
+  <meta name="author" content="Solis Green Energy Solutions">
+  <link rel="canonical" href="https://www.solisgreenindia.in/projects/">
 
-  <!-- CANONICAL -->
-  <link rel="canonical" href="https://www.solisgreenindia.in/projects/" />
+  <!-- ========== Open Graph / Facebook ========== -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.solisgreenindia.in/projects/">
+  <meta property="og:title" content="Solar Projects in Kerala | Rooftop Solar Installations by Solis Green">
+  <meta property="og:description" content="Explore completed rooftop solar projects by Solis Green Energy Solutions across Kerala.">
+  <meta property="og:image" content="https://www.solisgreenindia.in/images/og-projects.jpg">
 
-  <!-- COMMON CSS & FONTS -->
-  <link rel="stylesheet" href="https://www.solisgreenindia.in/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- ========== Twitter ========== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.solisgreenindia.in/projects/">
+  <meta name="twitter:title" content="Solar Projects in Kerala | Rooftop Solar Installations by Solis Green">
+  <meta name="twitter:description" content="Explore completed rooftop solar projects by Solis Green Energy Solutions across Kerala.">
+  <meta name="twitter:image" content="https://www.solisgreenindia.in/images/og-projects.jpg">
 
-  <!-- GOOGLE TAG MANAGER -->
+  <!-- ========== Favicon ========== -->
+  <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+
+  <!-- ========== Preload Critical Assets ========== -->
+  <link rel="preload" href="/images/hero/projects-hero.webp" as="image" type="image/webp">
+  <link rel="preload" href="/style.css" as="style">
+
+  <!-- ========== Google Tag Manager ========== -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -25,187 +43,429 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-5C2D5BG9');
   </script>
-</head>
 
+  <!-- ========== Common Styles & Fonts ========== -->
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ========== Page‑Specific Styles (minimal) ========== -->
+  <style>
+    /* Hero with background image */
+    .projects-hero {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('/images/hero/projects-hero.webp') center/cover no-repeat;
+      padding: 120px 0 80px;
+      text-align: center;
+      color: var(--white);
+      margin-top: 80px;
+    }
+    .projects-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .projects-hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* EPC points grid */
+    .epc-points {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 40px 0 20px;
+    }
+    .epc-points li {
+      background: var(--white);
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--solis-orange);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .epc-points li i {
+      color: var(--solis-orange);
+      font-size: 1.3rem;
+    }
+
+    /* Filter buttons */
+    .project-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 40px 0 20px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border: 2px solid var(--solis-orange);
+      background: transparent;
+      color: var(--solis-orange);
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--solis-orange);
+      color: white;
+    }
+
+    /* Projects grid (uses existing .projects-grid from common CSS, but we ensure it's defined) */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    /* Project card styling (enhanced) */
+    .project-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .project-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .project-info {
+      padding: 20px;
+    }
+    .project-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: var(--solis-dark);
+    }
+    .project-location {
+      color: var(--solis-orange);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .project-location i {
+      margin-right: 5px;
+    }
+    .project-meta {
+      color: var(--text-medium);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    .project-link {
+      color: var(--solis-orange);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .project-link i {
+      font-size: 0.8rem;
+      transition: transform 0.2s;
+    }
+    .project-card:hover .project-link i {
+      transform: translateX(5px);
+    }
+
+    /* District links */
+    .nearby-cities {
+      background: var(--light-bg);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .nearby-cities h3 {
+      margin-bottom: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .projects-hero h1 { font-size: 2.2rem; }
+      .projects-hero p { font-size: 1rem; }
+    }
+  </style>
+</head>
 <body>
 
-<!-- GTM NOSCRIPT -->
-<noscript>
-  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5C2D5BG9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- ================= HEADER ================= -->
+<!-- ========== HEADER ========== -->
 <header class="solis-header">
   <div class="header-inner">
     <div class="header-logo">
-      <a href="https://www.solisgreenindia.in/">
-        <img src="/images/logo/logo.png" alt="Solis Green Energy Solutions">
-      </a>
+      <a href="/"><img src="/images/logo/logo.png" alt="Solis Green Energy Solutions"></a>
     </div>
-
     <nav class="header-menu" id="mainNav">
       <a href="/">Home</a>
       <a href="/services/">Services</a>
       <a href="/cities/">Service Areas</a>
       <a href="/about/">About</a>
       <a href="/projects/" class="active">Projects</a>
+      <a href="/contact/">Contact</a>
     </nav>
-
     <div class="header-cta">
-      <a href="/contact/" class="contact-btn">Contact</a>
-      <a href="https://wa.me/918301849474" class="whatsapp-btn" target="_blank">WhatsApp</a>
-      <button class="mobile-menu-btn">☰</button>
+      <a href="tel:8301849474" class="contact-btn">Call Now</a>
+      <a href="https://wa.me/918301849474" target="_blank" class="whatsapp-btn">WhatsApp</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu"><i class="fas fa-bars"></i></button>
     </div>
   </div>
 </header>
 
-<main>
-
-<!-- ================= HERO ================= -->
-<section class="town-hero">
+<!-- ========== HERO SECTION ========== -->
+<section class="projects-hero">
   <div class="container">
-    <h1>Rooftop Solar Projects Executed Across Kerala</h1>
-    <p>
-      Verified residential solar installations executed by
-      <strong>Solis Green Energy Solutions</strong>,
-      an MNRE-empanelled Solar EPC company in Kerala.
-    </p>
+    <h1>Our Solar Projects Across Kerala</h1>
+    <p>Real installations. Real results. Explore our portfolio of residential, commercial, and industrial solar systems.</p>
   </div>
 </section>
 
-<!-- ================= EPC INTRO ================= -->
+<!-- ========== EPC INTRO ========== -->
 <section class="section-light">
   <div class="container">
-    <h2 class="section-title">Our Solar EPC Execution Model</h2>
-    <p class="text-center">
-      Solis Green Energy Solutions designs, engineers, procures, installs,
-      and commissions rooftop solar systems with complete responsibility.
-      Every project includes MNRE subsidy support, KSEB net-metering approval,
-      and long-term performance reliability.
-    </p>
+    <h2 class="section-title">Solar EPC Execution Model</h2>
+    <p class="text-center" style="max-width: 800px; margin: 0 auto;">Solis Green Energy Solutions designs, engineers, procures, installs, and commissions rooftop solar systems with complete responsibility. Every project includes MNRE subsidy support, KSEB net‑metering approval, and long‑term performance reliability.</p>
 
     <ul class="epc-points">
-      <li>MNRE & PM Surya Ghar subsidy compliant installations</li>
-      <li>On-grid rooftop solar systems for Kerala homes</li>
-      <li>KSEB transformer capacity & net-metering handled</li>
-      <li>High-efficiency panels & branded inverters only</li>
-      <li>Execution-first approach — not a trading company</li>
+      <li><i class="fas fa-check-circle"></i> MNRE & PM Surya Ghar subsidy compliant</li>
+      <li><i class="fas fa-check-circle"></i> On‑grid rooftop solar for Kerala homes</li>
+      <li><i class="fas fa-check-circle"></i> KSEB transformer & net‑metering handled</li>
+      <li><i class="fas fa-check-circle"></i> High‑efficiency panels & branded inverters</li>
+      <li><i class="fas fa-check-circle"></i> Execution‑first – not a trading company</li>
     </ul>
   </div>
 </section>
 
-<!-- ================= RECENT PROJECTS (SCROLLABLE) ================= -->
-<section class="recent-projects section-light">
-  <div class="container">
-    <h2 class="section-title">Recent Solar Installations</h2>
-    <p class="text-center">
-      Click any project below to view technical details, photos,
-      and installation insights.
-    </p>
+<!-- ========== FILTER BUTTONS ========== -->
+<div class="container">
+  <div class="project-filters">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="residential">Residential</button>
+    <button class="filter-btn" data-filter="commercial">Commercial</button>
+    <button class="filter-btn" data-filter="industrial">Industrial</button>
+  </div>
+</div>
 
-    <div class="projects-scroll-wrapper">
+<!-- ========== PROJECTS GRID ========== -->
+<section class="container">
+  <div class="projects-grid" id="projectsGrid">
+    <!-- Karunagappally (Residential) -->
+    <a href="/projects/karunagappally/" class="project-card" data-category="residential">
+      <img src="/images/projects/karunagappally-5kw.webp" alt="5kW solar installation in Karunagappally" loading="lazy">
+      <div class="project-info">
+        <h3>5kW Residential – Karunagappally</h3>
+        <p class="project-location"><i class="fas fa-map-marker-alt"></i> Kollam District</p>
+        <p class="project-meta">Adani TOPCon · Enphase IQ8P · Subsidy Applied</p>
+        <span class="project-link">View Details <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
 
-      <!-- KARUNAGAPPALLY -->
-      <a href="/projects/karunagappally/" class="project-card">
-        <img src="/images/karunagappally-solar-installation-solis-green-1.jpg"
-             alt="3kWp Solar Installation in Karunagappally by Solis Green">
-        <div class="project-info">
-          <h3>Karunagappally – 3kWp On-Grid</h3>
-          <p>Residential · Jan 2026</p>
-          <p class="project-meta">
-            Enphase IQ8P · Adani TOPCon DCR · Subsidy Applied
-          </p>
-          <span class="project-link">View Project →</span>
-        </div>
-      </a>
+    <!-- Thiruvalla (Residential) -->
+    <a href="/projects/thiruvalla/" class="project-card" data-category="residential">
+      <img src="/images/projects/thiruvalla-3kw.webp" alt="3kW solar installation in Thiruvalla" loading="lazy">
+      <div class="project-info">
+        <h3>3kW Residential – Thiruvalla</h3>
+        <p class="project-location"><i class="fas fa-map-marker-alt"></i> Pathanamthitta District</p>
+        <p class="project-meta">RCC Roof · Net Metering Approved</p>
+        <span class="project-link">View Details <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
 
-      <!-- THIRUVALLA -->
-      <a href="/projects/thiruvalla/" class="project-card">
-        <img src="/images/thiruvalla-solar-installation-solis-green.jpg"
-             alt="5kWp Solar Installation in Thiruvalla by Solis Green">
-        <div class="project-info">
-          <h3>Thiruvalla – 5kWp On-Grid</h3>
-          <p>Residential · Dec 2025</p>
-          <p class="project-meta">
-            KSEB Net-Metering · High-Efficiency Rooftop
-          </p>
-          <span class="project-link">View Project →</span>
-        </div>
-      </a>
+    <!-- Kottayam (Residential) -->
+    <a href="/projects/kottayam/" class="project-card" data-category="residential">
+      <img src="/images/projects/kottayam-3kw.webp" alt="3kW solar installation in Kottayam" loading="lazy">
+      <div class="project-info">
+        <h3>3kW Residential – Kottayam</h3>
+        <p class="project-location"><i class="fas fa-map-marker-alt"></i> Kottayam District</p>
+        <p class="project-meta">₹78,000 Subsidy Received · 5‑year AMC</p>
+        <span class="project-link">View Details <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
 
-    </div>
+    <!-- Adoor (Residential – example) -->
+    <a href="/projects/adoor/" class="project-card" data-category="residential">
+      <img src="/images/projects/adoor-5kw.webp" alt="5kW solar installation in Adoor" loading="lazy">
+      <div class="project-info">
+        <h3>5kW Residential – Adoor</h3>
+        <p class="project-location"><i class="fas fa-map-marker-alt"></i> Pathanamthitta District</p>
+        <p class="project-meta">Hybrid System · Battery Backup</p>
+        <span class="project-link">View Details <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <!-- Commercial example (if available) -->
+    <a href="/projects/commercial-kollam/" class="project-card" data-category="commercial">
+      <img src="/images/projects/commercial-kollam.webp" alt="Commercial solar installation in Kollam" loading="lazy">
+      <div class="project-info">
+        <h3>20kW Commercial – Kollam</h3>
+        <p class="project-location"><i class="fas fa-map-marker-alt"></i> Kollam District</p>
+        <p class="project-meta">Net Metering · High ROI</p>
+        <span class="project-link">View Details <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
   </div>
 </section>
 
-<!-- ================= DISTRICT LINKS ================= -->
+<!-- ========== DISTRICT QUICK LINKS ========== -->
 <section class="nearby-cities">
   <div class="container">
     <h3>Projects by District</h3>
     <div class="city-links">
       <a href="/projects/kollam/">Kollam District</a>
-      <a href="/projects/pattanamthitta/">Pathanamthitta District</a>
+      <a href="/projects/pathanamthitta/">Pathanamthitta District</a>
       <a href="/projects/kottayam/">Kottayam District</a>
       <a href="/projects/alappuzha/">Alappuzha District</a>
     </div>
   </div>
 </section>
 
-<!-- ================= CTA ================= -->
+<!-- ========== CALL TO ACTION ========== -->
 <section class="services-cta">
   <div class="container cta-content">
-    <h3>Planning a Solar Installation?</h3>
-    <p>
-      Get a free site survey and detailed solar execution plan
-      from an experienced EPC team.
-    </p>
+    <h3>Ready to Start Your Solar Journey?</h3>
+    <p>Get a free site survey and detailed solar execution plan from our experienced EPC team.</p>
     <div class="cta-buttons">
-      <a href="tel:8301849474" class="btn btn-primary">Call Solar Expert</a>
-      <a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank">WhatsApp Now</a>
+      <a href="tel:8301849474" class="btn btn-primary"><i class="fas fa-phone"></i> Call Solar Expert</a>
+      <a href="https://wa.me/918301849474" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
     </div>
   </div>
 </section>
 
-</main>
-
-<!-- ================= FOOTER ================= -->
+<!-- ========== FOOTER (Full, consistent with contact page) ========== -->
 <footer>
-  <div class="container footer-content">
-    <div class="footer-col">
-      <img src="/images/logo/logo-white.png" class="footer-logo-img" alt="Solis Green Energy Solutions">
-      <p>
-        Solar EPC company executing rooftop solar projects across Kerala.
-        MNRE empanelled & KSEB authorised.
-      </p>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-col">
+        <img src="/images/logo/logo-white.png" alt="Solis Green Energy Solutions" class="footer-logo-img" loading="lazy">
+        <p>Leading provider of sustainable energy solutions in Kerala, committed to a greener future with local expertise across multiple districts.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/cities/">Service Areas</a></li>
+          <li><a href="/about/">About Us</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Service Areas</h3>
+        <ul>
+          <li><a href="/solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
+          <li><a href="/solar-company-in-kottayam/">Kottayam District</a></li>
+          <li><a href="/solar-company-in-alappuzha/">Alappuzha District</a></li>
+          <li><a href="/solar-company-in-kollam/">Kollam District</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Solis Green India</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-phone"></i> <a href="tel:8301849474">Primary: 8301849474</a></li>
+          <li><i class="fas fa-phone-alt"></i> <a href="tel:9539316623">Alternate: 9539316623</a></li>
+          <li><i class="fas fa-headset"></i> <a href="tel:8606849474">Support: 8606849474</a></li>
+          <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a></li>
+          <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+          <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Muthoor, Thiruvalla - 689107</li>
+        </ul>
+      </div>
     </div>
-
-    <div class="footer-col">
-      <h3>Head Office</h3>
-      <p>
-        Mini Kristal Arcade,<br>
-        Muthoor Junction, Thiruvalla – 689107<br>
-        📞 <a href="tel:8301849474">8301849474</a>
-      </p>
+    <div class="copyright">
+      <p>&copy; 2026 Solis Green India. All Rights Reserved. | Professional Solar Solutions Across Kerala</p>
     </div>
-
-    <div class="footer-col">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/services/">Services</a></li>
-        <li><a href="/cities/">Service Areas</a></li>
-        <li><a href="/contact/">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="copyright">
-    © 2024 Solis Green Energy Solutions
   </div>
 </footer>
 
-<!-- COMMON JS -->
-<script src="https://www.solisgreenindia.in/script.js"></script>
+<!-- ========== BACK TO TOP BUTTON ========== -->
+<button id="backToTop" class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
+<!-- ========== COMMON JAVASCRIPT ========== -->
+<script src="/script.js" defer></script>
+
+<!-- ========== PAGE‑SPECIFIC FILTER SCRIPT ========== -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const filter = this.dataset.filter;
+
+        // Update active button
+        filterButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        // Filter cards
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<!-- ========== SCHEMA MARKUP (ItemList) ========== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "https://www.solisgreenindia.in/projects/karunagappally/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "url": "https://www.solisgreenindia.in/projects/thiruvalla/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "url": "https://www.solisgreenindia.in/projects/kottayam/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "url": "https://www.solisgreenindia.in/projects/adoor/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "url": "https://www.solisgreenindia.in/projects/commercial-kollam/"
+    }
+  ]
+}
+</script>
 </body>
 </html>
