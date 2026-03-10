@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Residential Solar Solutions in Kerala: Save up to 80% on electricity bills with 40% government subsidy and SBI 10-year loan @ 6%. Home solar systems from 1kW to 10kW. Get free quote today.">
+    <meta name="keywords" content="residential solar kerala, home solar system, solar for home, solar panel installation, solar subsidy, SBI solar loan">
+    <meta name="author" content="Solis Green India">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <meta name="theme-color" content="#0b8a3a">
+
+    <title>Residential Solar Solutions | Home Solar Systems Kerala - Solis Green India</title>
+    
+    <!-- Common CSS & Libraries -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Residential Solar System",
+        "description": "Complete home solar solutions with government subsidy and SBI loan.",
+        "brand": {
+            "@type": "Brand",
+            "name": "Solis Green India"
+        },
+        "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "75000",
+            "highPrice": "300000",
+            "priceCurrency": "INR"
+        }
+    }
+    </script>
+
+    <style>
+        :root {
+            --residential-green: #27ae60;
+            --residential-blue: #2980b9;
+            --residential-orange: #f39c12;
+        }
+
+        /* Hero Section */
+        .residential-hero {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            padding: 140px 0 80px;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .residential-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="20" cy="20" r="10" fill="white"/><circle cx="80" cy="80" r="15" fill="white"/><circle cx="50" cy="30" r="8" fill="white"/></svg>') repeat;
+            z-index: 0;
+        }
+        .residential-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .residential-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .residential-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badges {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            padding: 12px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-8px);
+        }
+        .stat-icon {
+            font-size: 2.8rem;
+            color: var(--residential-green);
+            margin-bottom: 15px;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--solis-orange);
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* Package Cards */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        .package-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            position: relative;
+            border: 1px solid #f0f0f0;
+        }
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+        .package-popular {
+            border: 3px solid var(--residential-green);
+        }
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--residential-green);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        .package-header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .package-header h3 {
+            margin: 0 0 10px;
+            font-size: 1.8rem;
+            color: white;
+        }
+        .package-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 15px 0 5px;
+        }
+        .package-price small {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        .package-subsidy {
+            background: rgba(255,255,255,0.2);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .package-features {
+            padding: 25px;
+        }
+        .package-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .package-features li {
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+        }
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--residential-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .package-cta {
+            padding: 0 25px 25px;
+            text-align: center;
+        }
+        .btn-package {
+            background: var(--residential-green);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-package:hover {
+            background: #229954;
+        }
+
+        /* Loan Section */
+        .loan-section {
+            background: linear-gradient(135deg, #e8f4fd, #d6eaf8);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 60px 0;
+        }
+        .loan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .loan-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .loan-card.recommended {
+            border: 3px solid var(--residential-blue);
+        }
+        .emi-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--residential-blue);
+            margin: 15px 0;
+        }
+
+        /* Calculator */
+        .savings-calculator {
+            background: #f8f9fa;
+            border-radius: 30px;
+            padding: 50px;
+            margin: 60px 0;
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .slider-group {
+            margin-bottom: 25px;
+        }
+        .slider-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .slider-with-value {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .slider-with-value input {
+            flex: 1;
+        }
+        .calc-result {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+        .calc-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--residential-green);
+            margin: 15px 0;
+        }
+
+        /* Process */
+        .process-timeline {
+            margin: 50px 0;
+        }
+        .process-step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        .step-number {
+            width: 45px;
+            height: 45px;
+            background: var(--residential-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            text-align: center;
+            padding: 70px 0;
+            border-radius: 30px;
+            margin: 40px 0;
+        }
+        .btn-cta-light {
+            background: white;
+            color: #27ae60;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 10px;
+        }
+        .btn-cta-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 10px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .residential-hero {
+                padding: 100px 0 60px;
+                margin-top: 70px;
+            }
+            .residential-hero h1 {
+                font-size: 2rem;
+            }
+            .residential-hero p {
+                font-size: 1rem;
+            }
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-badge {
+                width: 90%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <div class="cta-main-btn" id="ctaMainBtn">
+            <i class="fas fa-home"></i>
+            <span class="pulse-dot"></span>
+        </div>
+        <div class="cta-options">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Call for Home Solar">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="#calculator" class="cta-option" data-tooltip="Savings Calculator">
+                <i class="fas fa-calculator"></i>
+            </a>
+            <a href="#loan" class="cta-option" data-tooltip="SBI Loan">
+                <i class="fas fa-university"></i>
+            </a>
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#packages" class="cta-option" data-tooltip="Packages">
+                <i class="fas fa-box"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="solis-header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="../">
+                    <img src="../images/logo/logo.png" alt="Solis Green India" loading="eager">
+                </a>
+            </div>
+            <nav class="header-menu" id="mainNav">
+                <a href="../">Home</a>
+                <a href="../services/">Services</a>
+                <a href="../cities/">Service Areas</a>
+                <a href="../about/">About</a>
+                <a href="../projects/">Projects</a>
+            </nav>
+            <div class="header-cta">
+                <a href="tel:8301849474" class="contact-btn pulse-animation">
+                    <i class="fas fa-phone"></i> Call Expert
+                </a>
+                <a href="https://wa.me/918301849474" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="residential-hero">
+        <div class="container">
+            <h1>Residential Solar Solutions for Kerala Homes</h1>
+            <p>Save up to 80% on electricity bills with clean solar energy. Get 40% government subsidy and SBI 10-year loan at 6% interest.</p>
+            <div class="hero-badges">
+                <span class="hero-badge"><i class="fas fa-check-circle"></i> 40% Subsidy</span>
+                <span class="hero-badge"><i class="fas fa-university"></i> SBI 10-Year Loan @6%</span>
+                <span class="hero-badge"><i class="fas fa-bolt"></i> Save ₹4,500/month</span>
+                <span class="hero-badge"><i class="fas fa-shield-alt"></i> 25-Year Warranty</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-home"></i></div>
+                <div class="stat-number">5,000+</div>
+                <div class="stat-label">Homes Powered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
+                <div class="stat-number">₹4,500</div>
+                <div class="stat-label">Avg. Monthly Saving</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-percent"></i></div>
+                <div class="stat-number">40%</div>
+                <div class="stat-label">Subsidy</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-calendar"></i></div>
+                <div class="stat-number">3-4 Yrs</div>
+                <div class="stat-label">Payback Period</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section id="packages" class="container">
+        <h2 class="section-title">Home Solar Packages</h2>
+        <p class="section-subtitle">Choose the perfect system for your home. All prices include 40% subsidy.</p>
+        <div class="packages-grid">
+            <!-- 1kW Package -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h3>1kW System</h3>
+                    <div class="package-price">₹30,000*</div>
+                    <div class="package-subsidy">After ₹30,000 Subsidy</div>
+                </div>
+                <div class="package-features">
+                    <ul>
+                        <li>Ideal for 1-2 BHK homes</li>
+                        <li>Powers lights, fans, TV, fridge</li>
+                        <li>Saves ₹1,500/month</li>
+                        <li>5-year comprehensive warranty</li>
+                        <li>SBI EMI: ₹550/month</li>
+                    </ul>
+                </div>
+                <div class="package-cta">
+                    <a href="tel:8301849474" class="btn-package">Get Quote</a>
+                </div>
+            </div>
+            <!-- 3kW Package - Popular -->
+            <div class="package-card package-popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="package-header">
+                    <h3>3kW System</h3>
+                    <div class="package-price">₹1,32,000*</div>
+                    <div class="package-subsidy">After ₹78,000 Subsidy</div>
+                </div>
+                <div class="package-features">
+                    <ul>
+                        <li>Ideal for 3-4 BHK homes</li>
+                        <li>Powers all home appliances + 2 ACs</li>
+                        <li>Saves ₹4,500/month</li>
+                        <li>10-year comprehensive warranty</li>
+                        <li>SBI EMI: ₹1,450/month</li>
+                    </ul>
+                </div>
+                <div class="package-cta">
+                    <a href="tel:8301849474" class="btn-package">Get Quote</a>
+                </div>
+            </div>
+            <!-- 5kW Package -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h3>5kW System</h3>
+                    <div class="package-price">₹2,72,000*</div>
+                    <div class="package-subsidy">After ₹78,000 Subsidy</div>
+                </div>
+                <div class="package-features">
+                    <ul>
+                        <li>Ideal for villas & large homes</li>
+                        <li>Powers all appliances + 4 ACs</li>
+                        <li>Saves ₹7,500/month</li>
+                        <li>15-year comprehensive warranty</li>
+                        <li>SBI EMI: ₹2,500/month</li>
+                    </ul>
+                </div>
+                <div class="package-cta">
+                    <a href="tel:8301849474" class="btn-package">Get Quote</a>
+                </div>
+            </div>
+        </div>
+        <p class="text-small text-center">*Prices are indicative. Final cost may vary based on roof type and location.</p>
+    </section>
+
+    <!-- Loan Section -->
+    <section id="loan" class="container loan-section">
+        <h2 class="section-title">SBI 10-Year Solar Loan @ 6%</h2>
+        <p class="section-subtitle">Make solar affordable with the lowest EMI in Kerala</p>
+        <div class="loan-grid">
+            <div class="loan-card">
+                <h3>5-Year Loan</h3>
+                <div class="emi-amount">₹2,500</div>
+                <p>per month for 3kW system</p>
+                <div class="loan-features">
+                    <p><i class="fas fa-times" style="color:#e74c3c;"></i> Higher monthly budget</p>
+                </div>
+            </div>
+            <div class="loan-card recommended">
+                <div style="color: var(--residential-blue); font-weight:600;">RECOMMENDED</div>
+                <h3>10-Year Loan</h3>
+                <div class="emi-amount">₹1,450</div>
+                <p>per month for 3kW system</p>
+                <div class="loan-features">
+                    <p><i class="fas fa-check" style="color:#27ae60;"></i> Easy on family budget</p>
+                    <p><i class="fas fa-check" style="color:#27ae60;"></i> Lock 6% rate for 10 years</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" style="margin-top:30px;">
+            <a href="tel:8301849474" class="btn btn-primary" style="background: var(--residential-blue);">Apply for SBI Loan</a>
+        </div>
+    </section>
+
+    <!-- Savings Calculator -->
+    <section id="calculator" class="container savings-calculator">
+        <h2 class="section-title">Solar Savings Calculator</h2>
+        <div class="calc-grid">
+            <div>
+                <div class="slider-group">
+                    <label for="billSlider">Monthly Electricity Bill (₹)</label>
+                    <div class="slider-with-value">
+                        <input type="range" id="billSlider" min="1000" max="20000" step="500" value="5000">
+                        <span class="value" id="billValue">₹5,000</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label for="sizeSlider">System Size (kW)</label>
+                    <div class="slider-with-value">
+                        <input type="range" id="sizeSlider" min="1" max="10" step="0.5" value="3">
+                        <span class="value" id="sizeValue">3 kW</span>
+                    </div>
+                </div>
+            </div>
+            <div class="calc-result">
+                <h3>Your Monthly Savings</h3>
+                <div class="calc-amount" id="savingsAmount">₹4,500</div>
+                <p id="payback">Payback Period: 3.5 years</p>
+                <p id="co2">CO₂ Reduction: 3.2 tons/year</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="container">
+        <h2 class="section-title">Simple Installation Process</h2>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div><strong>Site Survey</strong> – Free consultation and feasibility check.</div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div><strong>System Design</strong> – Custom design for your roof and needs.</div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div><strong>Subsidy & Loan</strong> – We handle all paperwork.</div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div><strong>Installation</strong> – Completed in 2-5 days.</div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <div><strong>Net Meter & Savings</strong> – Start saving from day one.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>How much can I save with solar?</h4>
+                <p>A typical 3kW system saves ₹4,000-5,000 per month, reducing your bill by 80-90%.</p>
+            </div>
+            <div class="faq-item">
+                <h4>What is the payback period?</h4>
+                <p>With subsidy and SBI loan, payback is 3-4 years. After that, electricity is virtually free.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Is the subsidy available for all homes?</h4>
+                <p>Yes, for residential properties in Kerala with a KSEB connection. We handle the application.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How long does installation take?</h4>
+                <p>Typically 2-5 days after approvals. The entire process (loan/subsidy) takes 2-3 weeks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="container cta-section">
+        <h2>Ready to Go Solar?</h2>
+        <p>Join 5,000+ happy homes in Kerala. Get your free quote and site survey today.</p>
+        <div>
+            <a href="tel:8301849474" class="btn-cta-light"><i class="fas fa-phone-alt"></i> Call 8301849474</a>
+            <a href="https://wa.me/918301849474" class="btn-cta-outline"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
+                    </div>
+                    <p>Kerala's trusted residential solar partner. We make solar easy with complete subsidy and loan assistance.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../services/">Services</a></li>
+                        <li><a href="../cities/">Service Areas</a></li>
+                        <li><a href="../about/">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="../solar-subsidy/">Subsidy Guide</a></li>
+                        <li><a href="#">SBI Loan</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474">WhatsApp</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Solis Green India. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Calculator logic
+            const billSlider = document.getElementById('billSlider');
+            const sizeSlider = document.getElementById('sizeSlider');
+            const billValue = document.getElementById('billValue');
+            const sizeValue = document.getElementById('sizeValue');
+            const savingsAmount = document.getElementById('savingsAmount');
+            const paybackEl = document.getElementById('payback');
+
+            function updateCalculator() {
+                let bill = parseInt(billSlider.value);
+                let size = parseFloat(sizeSlider.value);
+                billValue.textContent = '₹' + bill.toLocaleString();
+                sizeValue.textContent = size + ' kW';
+
+                // Approximate savings: ~1.5 times bill for appropriate system size? For simplicity, assume 85% of bill.
+                let savings = Math.round(bill * 0.85);
+                savingsAmount.textContent = '₹' + savings.toLocaleString();
+
+                let systemCost = size * 60000; // rough cost per kW before subsidy
+                let subsidy = 0;
+                if (size <= 1) subsidy = 30000;
+                else if (size <= 2) subsidy = 60000;
+                else subsidy = 78000;
+                let netCost = systemCost - subsidy;
+                let paybackYears = (netCost / (savings * 12)).toFixed(1);
+                paybackEl.textContent = 'Payback Period: ' + paybackYears + ' years';
+            }
+
+            billSlider.addEventListener('input', updateCalculator);
+            sizeSlider.addEventListener('input', updateCalculator);
+            updateCalculator();
+
+            // Floating CTA
+            const ctaMain = document.getElementById('ctaMainBtn');
+            const ctaOptions = document.querySelector('.cta-options');
+            if (ctaMain) {
+                ctaMain.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    ctaOptions.classList.toggle('active');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.floating-cta')) {
+                        ctaOptions.classList.remove('active');
+                    }
+                });
+            }
+
+            // Back to top
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                backToTop.classList.toggle('show', window.scrollY > 300);
+            });
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
