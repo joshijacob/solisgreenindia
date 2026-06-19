@@ -39,6 +39,34 @@ border:1px solid #ddd;
 border-radius:6px;
 }
 </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Ads",
+      "item": "https://www.solisgreenindia.in/ads/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Solar Installation Thiruvalla",
+      "item": "https://www.solisgreenindia.in/ads/solar-installation-thiruvalla/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -69,6 +97,13 @@ border-radius:6px;
 <!-- ================= HERO ================= -->
 <section class="town-hero">
 <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="/ads/">Ads</a></li>
+         <li class="active">Solar Installation Thiruvalla</li>
+      </ol>
+    </nav>
 <h1>Save Up to 90% on KSEB Bills in Thiruvalla</h1>
 <p>
 Install 3kW or 5kW Rooftop Solar with <strong>₹78,000 MNRE Subsidy</strong><br>
@@ -190,7 +225,7 @@ Check My Solar Savings →
 </div>
 
 <p style="text-align:center;margin-top:20px;font-size:0.9rem;">
-⭐⭐⭐⭐⭐ 100+ Google Reviews from Thiruvalla Homeowners
+⭐⭐⭐⭐⭐ 111 Google Reviews from Thiruvalla Homeowners
 </p>
 
 </div>
@@ -214,21 +249,7 @@ WhatsApp Now
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-<div class="container footer-content">
-<div class="footer-col">
-<img src="/images/logo/logo-white.png" class="footer-logo-img">
-<p>
-Mini Kristal Arcade, Muthoor, Thiruvalla – 689107<br>
-📞 8301849474
-</p>
-</div>
-</div>
-
-<div class="copyright">
-© 2026 Solis Green Energy Solutions | Solar Experts in Thiruvalla
-</div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <!-- ================= JS ================= -->
 <script src="/script.js"></script>

@@ -29,6 +29,34 @@ color:#fff;
 text-align:center;
 }
 </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Kollam",
+      "item": "https://www.solisgreenindia.in/solar-company-in-kollam/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Kottarakara",
+      "item": "https://www.solisgreenindia.in/solar-company-in-kollam/kottarakara/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -61,6 +89,13 @@ text-align:center;
 <!-- ================= HERO ================= -->
 <section class="town-hero">
 <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="/solar-company-in-kollam/">Kollam</a></li>
+         <li class="active">Kottarakara</li>
+      </ol>
+    </nav>
 <h1>Solar Company in Kottarakkara – On-Grid, Hybrid & Off-Grid Solar Experts</h1>
 <p>
 Stop rising KSEB electricity bills in Kottarakkara with government-approved rooftop solar systems.
@@ -251,30 +286,9 @@ tree shadows, transformer capacity variations and seasonal power fluctuations.
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-<div class="container footer-content">
-<div class="footer-col">
-<img src="https://www.solisgreenindia.in/images/logo/logo-white.png" class="footer-logo-img">
-<p>MNRE empanelled & KSEB authorised solar installer serving Kottarakkara.</p>
-</div>
+<div id="footer-placeholder"></div>
 
-<div class="footer-col">
-<h3>Head Office</h3>
-<p>
-Mini Kristal Arcade,<br>
-Opp. St George Orthodox Church,<br>
-Muthoor, Thiruvalla – 689107
-</p>
-<p>📞 <a href="tel:8301849474">8301849474</a></p>
-</div>
-</div>
-
-<div class="copyright">
-© 2024 Solis Green Energy Solutions | Solar Experts in Kottarakkara
-</div>
-</footer>
-
-<script src="https://www.solisgreenindia.in/script.js"></script>
+<script src="/script.js"></script>
 
 </body>
 </html>

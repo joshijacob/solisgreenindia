@@ -60,6 +60,34 @@
 }
 </style>
 
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Kollam",
+      "item": "https://www.solisgreenindia.in/solar-company-in-kollam/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Karunagappally",
+      "item": "https://www.solisgreenindia.in/solar-company-in-kollam/karunagappally/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -92,6 +120,13 @@
 <!-- ================= HERO ================= -->
 <section class="town-hero">
   <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="/solar-company-in-kollam/">Kollam</a></li>
+         <li class="active">Karunagappally</li>
+      </ol>
+    </nav>
     <h1>Solar Installation Company in Karunagappally – MNRE Approved Solar EPC</h1>
 
     <p>
@@ -267,8 +302,8 @@
     <div class="city-links">
       <a href="/solar-company-in-kollam/">Kollam District</a>
       <a href="/projects/">Our Solar Projects</a>
-      <a href="/pm-suryaghar-subsidy-kerala/">PM Surya Ghar Subsidy</a>
-      <a href="/solar-installation-cost-kerala/">Solar Installation Cost</a>
+      <a href="/solar-subsidy/">PM Surya Ghar Subsidy</a>
+      <a href="/3kw-solar-system-kerala-price/">Solar Installation Cost</a>
     </div>
   </div>
 </section>
@@ -287,31 +322,10 @@
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-  <div class="container footer-content">
-    <div class="footer-col">
-      <img src="https://www.solisgreenindia.in/images/logo/logo-white.png"
-           class="footer-logo-img"
-           alt="Solis Green Energy Solutions">
-      <p>MNRE empanelled Solar EPC serving Karunagappally & Kollam district.</p>
-    </div>
-
-    <div class="footer-col">
-      <h3>Head Office</h3>
-      <p>
-        Mini Kristal Arcade,<br>
-        Muthoor, Thiruvalla – 689107
-      </p>
-    </div>
-  </div>
-
-  <div class="copyright">
-    © 2026 Solis Green Energy Solutions | Solar EPC in Karunagappally
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <!-- ================= COMMON JS ================= -->
-<script src="https://www.solisgreenindia.in/script.js"></script>
+<script src="/script.js"></script>
 
 </body>
 </html>

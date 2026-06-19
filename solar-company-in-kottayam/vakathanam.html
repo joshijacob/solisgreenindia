@@ -30,6 +30,34 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Kottayam",
+      "item": "https://www.solisgreenindia.in/solar-company-in-kottayam/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Vakathanam",
+      "item": "https://www.solisgreenindia.in/solar-company-in-kottayam/vakathanam.html"
+    }
+  ]
+}
+</script>
 </head>
 <body>
     <div class="floating-cta">
@@ -70,6 +98,13 @@
 
     <section class="hero">
         <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="/solar-company-in-kottayam/">Kottayam</a></li>
+         <li class="active">Vakathanam</li>
+      </ol>
+    </nav>
             <h1>Solar Company in Vakathanam</h1>
             <p>Expert solar panel installation and maintenance services in Vakathanam with 4.8★ Google rating</p>
             <div class="hero-buttons">
@@ -99,7 +134,7 @@
                         <i class="fas fa-star-half-alt"></i>
                         <span>4.8/5</span>
                     </div>
-                    <p>Based on 50+ reviews for Solis Green Energy Solutions</p>
+                    <p>Based on 111 reviews for Solis Green Energy Solutions</p>
                 </div>
             </div>
 
@@ -189,52 +224,7 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
-                    </div>
-                    <p>Leading solar company in Vakathanam and Kottayam district</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Vakathanam Services</h3>
-                    <ul>
-                        <li><a href="../services.html#residential">Residential Solar</a></li>
-                        <li><a href="../services.html#commercial">Commercial Solar</a></li>
-                        <li><a href="../services.html#agricultural">Agricultural Solar</a></li>
-                        <li><a href="../services.html#maintenance">Maintenance</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Nearby Areas</h3>
-                    <ul>
-                        <li><a href="changanacherry.html">Changanacherry</a></li>
-                        <li><a href="kottayam.html">Kottayam</a></li>
-                        <li><a href="pala.html">Pala</a></li>
-                        <li><a href="kanjirapally.html">Kanjirapally</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact in Vakathanam</h3>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Vakathanam, Kerala</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script src="../script.js"></script>
 </body>

@@ -11,6 +11,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Contact",
+      "item": "https://www.solisgreenindia.in/contact/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Locations",
+      "item": "https://www.solisgreenindia.in/contact/locations/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
     <!-- Floating CTA -->
@@ -72,6 +100,13 @@
     <!-- Locations Hero -->
     <section class="locations-hero">
         <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="/contact/">Contact</a></li>
+         <li class="active">Locations</li>
+      </ol>
+    </nav>
             <div class="locations-hero-content">
                 <h1>Our Service Locations</h1>
                 <p>Professional solar installation services available across multiple districts in Kerala</p>
@@ -361,80 +396,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <img src="../../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
-                    </div>
-                    <p>Leading provider of sustainable energy solutions in Kerala, committed to a greener future with local expertise across multiple districts.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="../../">Home</a></li>
-                        <li><a href="../../services">Services</a></li>
-                        <li><a href="../../cities">Service Areas</a></li>
-                        <li><a href="../../projects">Projects</a></li>
-                        <li><a href="../">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Service Areas</h3>
-                    <ul>
-                        <li><a href="../../solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
-                        <li><a href="../../solar-company-in-kottayam/">Kottayam District</a></li>
-                        <li><a href="../../solar-company-in-alappuzha/">Alappuzha District</a></li>
-                        <li><a href="../../solar-company-in-kollam/">Kollam District</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Solis Green India</h3>
-                    <ul class="contact-info">
-                        <li class="contact-primary">
-                            <i class="fas fa-phone"></i> 
-                            <div>
-                                <a href="tel:8301849474">Primary: 8301849474</a>
-                                <span class="contact-label">Main Line</span>
-                            </div>
-                        </li>
-                        <li class="contact-alternate">
-                            <i class="fas fa-phone-alt"></i> 
-                            <div>
-                                <a href="tel:9539316623">Alternate: 9539316623</a>
-                                <span class="contact-label">Emergency/Backup</span>
-                            </div>
-                        </li>
-                        <li class="contact-support">
-                            <i class="fas fa-headset"></i> 
-                            <div>
-                                <a href="tel:8606849474">Support: 8606849474</a>
-                                <span class="contact-label">Customer Support</span>
-                            </div>
-                        </li>
-                        <li class="whatsapp-primary">
-                            <i class="fab fa-whatsapp"></i> 
-                            <div>
-                                <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a>
-                                <span class="contact-label">Primary Chat</span>
-                            </div>
-                        </li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Thiruvalla - 689107</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved. | Professional Solar Solutions Across Kerala</p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top" aria-label="Back to top">

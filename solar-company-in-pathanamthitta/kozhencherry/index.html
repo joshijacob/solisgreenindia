@@ -29,6 +29,34 @@ color:#fff;
 text-align:center;
 }
 </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pathanamthitta",
+      "item": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Kozhencherry",
+      "item": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/kozhencherry/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -61,6 +89,13 @@ text-align:center;
 <!-- ================= HERO ================= -->
 <section class="town-hero">
 <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="/solar-company-in-pathanamthitta/">Pathanamthitta</a></li>
+         <li class="active">Kozhencherry</li>
+      </ol>
+    </nav>
 <h1>Solar Company in Kozhencherry – On-Grid, Hybrid & Off-Grid Solar Experts</h1>
 <p>
 Stop rising KSEB electricity bills in Kozhencherry with government-approved rooftop solar systems.
@@ -251,30 +286,9 @@ tree cover, and transformer availability.
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-<div class="container footer-content">
-<div class="footer-col">
-<img src="https://www.solisgreenindia.in/images/logo/logo-white.png" class="footer-logo-img">
-<p>MNRE empanelled & KSEB authorised solar installer serving Kozhencherry.</p>
-</div>
+<div id="footer-placeholder"></div>
 
-<div class="footer-col">
-<h3>Head Office</h3>
-<p>
-Mini Kristal Arcade,<br>
-Opp. St George Orthodox Church,<br>
-Muthoor, Thiruvalla – 689107
-</p>
-<p>📞 <a href="tel:8301849474">8301849474</a></p>
-</div>
-</div>
-
-<div class="copyright">
-© 2024 Solis Green Energy Solutions | Solar Experts in Kozhencherry
-</div>
-</footer>
-
-<script src="https://www.solisgreenindia.in/script.js"></script>
+<script src="/script.js"></script>
 
 </body>
 </html>

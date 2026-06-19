@@ -12,6 +12,54 @@
   <link rel="stylesheet" href="https://www.solisgreenindia.in/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- LOCAL BUSINESS SCHEMA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Solis Green Energy Solutions - Pathanamthitta",
+    "image": "https://www.solisgreenindia.in/images/logo/logo.png",
+    "telephone": "+91 8301849474",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Mini Kristal Arcade, Muthoor Junction",
+      "addressLocality": "Thiruvalla",
+      "addressRegion": "Kerala",
+      "postalCode": "689107",
+      "addressCountry": "IN"
+    },
+    "areaServed": [
+      "Pathanamthitta", "Adoor", "Ranni", "Konni", "Mallappally", "Kozhencherry", "Thiruvalla"
+    ]
+  }
+  </script>
+
+  <!-- FAQ SCHEMA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do you provide solar installation services in Pathanamthitta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Pathanamthitta is our priority service zone. We offer rapid 24-hour site surveys and full PM Surya Ghar subsidy processing for homes and businesses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much solar subsidy can I get in Pathanamthitta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under the PM Surya Ghar Yojana, you can get up to ₹78,000 for systems 3kW and above. As an MNRE empanelled vendor, we handle the entire application process for you."
+        }
+      }
+    ]
+  }
+  </script>
+  
   <style>
     .priority-badge { background: #f57c00; color: white; padding: 4px 12px; border-radius: 50px; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 10px; }
     .pulse-btn { animation: pulse 2s infinite; }
@@ -21,6 +69,28 @@
     .city-card:hover { border-color: #2e7d32; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
     .city-card i { color: #2e7d32; }
   </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pathanamthitta",
+      "item": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -50,6 +120,12 @@
 
 <section class="town-hero">
   <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li class="active">Pathanamthitta</li>
+      </ol>
+    </nav>
     <div class="priority-badge"><i class="fas fa-bolt"></i> PRIORITY SERVICE ZONE</div>
     <h1>Solar Company in Pathanamthitta District</h1>
     <p class="hero-subtext">
@@ -159,48 +235,9 @@
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-    <div class="container footer-content">
-      <div class="footer-col">
-        <img src="https://www.solisgreenindia.in/images/logo/logo-white.png" class="footer-logo-img" alt="Solis Green Energy Solutions">
-        <p>
-          Trusted solar installation company serving Pathanamthitta district since 2019. 
-          MNRE empanelled & KSEB authorised.
-        </p>
-      </div>
+<div id="footer-placeholder"></div>
 
-      <div class="footer-col">
-        <h3>Thiruvalla Office</h3>
-        <p>
-          Mini Kristal Arcade,<br>
-          Opposite St. George Orthodox Church,<br>
-          Muthoor Junction, MC Road,<br>
-          Thiruvalla, Pathanamthitta,<br>
-          Kerala – 689107
-        </p>
-        <p>
-          📞 <a href="tel:8301849474">8301849474</a><br>
-          💬 <a href="https://wa.me/918301849474" target="_blank">WhatsApp Consultation</a>
-        </p>
-      </div>
-
-      <div class="footer-col">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="https://www.solisgreenindia.in/">Home</a></li>
-          <li><a href="https://www.solisgreenindia.in/solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
-          <li><a href="https://www.solisgreenindia.in/services/">Our Services</a></li>
-          <li><a href="https://www.solisgreenindia.in/contact/">Contact Us</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="copyright">
-      © 2024 Solis Green Energy Solutions. All Rights Reserved. | Solar Experts in Thiruvalla
-    </div>
-  </footer>
-
-<script src="https://www.solisgreenindia.in/script.js"></script>
+<script src="/script.js"></script>
 
 </body>
 </html>

@@ -46,6 +46,34 @@
     }
     .project-card{cursor:pointer;}
   </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Projects",
+      "item": "https://www.solisgreenindia.in/projects/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Kollam",
+      "item": "https://www.solisgreenindia.in/projects/kollam/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -84,6 +112,13 @@
 <!-- ================= HERO ================= -->
 <section class="projects-hero">
   <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="/projects/">Projects</a></li>
+         <li class="active">Kollam</li>
+      </ol>
+    </nav>
     <h1>Solar EPC Projects Executed in Kollam District</h1>
     <p>
       Real rooftop solar installations delivered by Solis Green Energy Solutions.
@@ -199,36 +234,7 @@
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-  <div class="container footer-content">
-    <div class="footer-col">
-      <img src="https://www.solisgreenindia.in/images/logo/logo-white.png" class="footer-logo-img" alt="Solis Green Energy Solutions">
-      <p>Solar EPC company delivering real rooftop solar projects across Kollam district.</p>
-    </div>
-
-    <div class="footer-col">
-      <h3>Office</h3>
-      <p>
-        Mini Kristal Arcade,<br>
-        Muthoor Junction,<br>
-        Thiruvalla – 689107
-      </p>
-    </div>
-
-    <div class="footer-col">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="/projects/">Projects</a></li>
-        <li><a href="/cities/">Service Areas</a></li>
-        <li><a href="/contact/">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="copyright">
-    © 2024 Solis Green Energy Solutions
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <!-- STICKY BAR -->
 <div class="sticky-contact-bar">
@@ -237,7 +243,7 @@
 </div>
 
 <!-- COMMON JS -->
-<script src="https://www.solisgreenindia.in/script.js"></script>
+<script src="/script.js"></script>
 
 </body>
 </html>

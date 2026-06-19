@@ -371,6 +371,28 @@
             }
         }
     </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Solar Subsidy",
+      "item": "https://www.solisgreenindia.in/solar-subsidy/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
     <!-- Floating CTA (same as other pages) -->
@@ -432,6 +454,12 @@
     <!-- Hero Section -->
     <section class="subsidy-hero">
         <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li class="active">Solar Subsidy</li>
+      </ol>
+    </nav>
             <h1>Solar Subsidy in Kerala</h1>
             <p>Get up to ₹78,000 government subsidy on residential solar installations. Direct Benefit Transfer (DBT) to your bank account. We handle all paperwork.</p>
             <div class="subsidy-badges">
@@ -633,54 +661,7 @@
     </section>
 
     <!-- Footer (same as before) -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <img src="../images/logo/logo-white.png" alt="Solis Green India" class="footer-logo-img">
-                    </div>
-                    <p>Your trusted partner for solar solutions in Kerala. We specialize in residential solar with full subsidy assistance.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/918301849474" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="../">Home</a></li>
-                        <li><a href="../services/">Services</a></li>
-                        <li><a href="../cities/">Service Areas</a></li>
-                        <li><a href="../about/">About</a></li>
-                        <li><a href="../contact/">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Subsidy Resources</h3>
-                    <ul>
-                        <li><a href="#">Eligibility Check</a></li>
-                        <li><a href="#">Subsidy Calculator</a></li>
-                        <li><a href="#">Document Checklist</a></li>
-                        <li><a href="#">Application Status</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact</h3>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-phone"></i> <a href="tel:8301849474">8301849474</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Thiruvalla, Kerala</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2024 Solis Green India. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top"><i class="fas fa-chevron-up"></i></button>

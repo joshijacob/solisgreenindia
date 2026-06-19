@@ -27,9 +27,7 @@
 
   <!-- ========== Favicon ========== -->
   <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon/favicon-48x48.png">
 
   <!-- ========== Preload Critical Assets ========== -->
   <link rel="preload" href="/images/hero/projects-hero.webp" as="image" type="image/webp">
@@ -202,6 +200,28 @@
       .projects-hero p { font-size: 1rem; }
     }
   </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Projects",
+      "item": "https://www.solisgreenindia.in/projects/"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -233,6 +253,12 @@
 <!-- ========== HERO SECTION ========== -->
 <section class="projects-hero">
   <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li class="active">Projects</li>
+      </ol>
+    </nav>
     <h1>Our Solar Projects Across Kerala</h1>
     <p>Real installations. Real results. Explore our portfolio of residential, commercial, and industrial solar systems.</p>
   </div>
@@ -290,7 +316,7 @@
     </a>
 
     <!-- Kottayam (Residential) -->
-    <a href="/projects/kottayam/" class="project-card" data-category="residential">
+    <a href="/solar-company-in-kottayam/" class="project-card" data-category="residential">
       <img src="/images/projects/kottayam-3kw.webp" alt="3kW solar installation in Kottayam" loading="lazy">
       <div class="project-info">
         <h3>3kW Residential – Kottayam</h3>
@@ -301,7 +327,7 @@
     </a>
 
     <!-- Adoor (Residential – example) -->
-    <a href="/projects/adoor/" class="project-card" data-category="residential">
+    <a href="/solar-company-in-pathanamthitta/adoor/" class="project-card" data-category="residential">
       <img src="/images/projects/adoor-5kw.webp" alt="5kW solar installation in Adoor" loading="lazy">
       <div class="project-info">
         <h3>5kW Residential – Adoor</h3>
@@ -312,7 +338,7 @@
     </a>
 
     <!-- Commercial example (if available) -->
-    <a href="/projects/commercial-kollam/" class="project-card" data-category="commercial">
+    <a href="/services/commercial-solar/" class="project-card" data-category="commercial">
       <img src="/images/projects/commercial-kollam.webp" alt="Commercial solar installation in Kollam" loading="lazy">
       <div class="project-info">
         <h3>20kW Commercial – Kollam</h3>
@@ -330,9 +356,9 @@
     <h3>Projects by District</h3>
     <div class="city-links">
       <a href="/projects/kollam/">Kollam District</a>
-      <a href="/projects/pathanamthitta/">Pathanamthitta District</a>
-      <a href="/projects/kottayam/">Kottayam District</a>
-      <a href="/projects/alappuzha/">Alappuzha District</a>
+      <a href="/solar-company-in-pathanamthitta/">Pathanamthitta District</a>
+      <a href="/solar-company-in-kottayam/">Kottayam District</a>
+      <a href="/solar-company-in-alappuzha/">Alappuzha District</a>
     </div>
   </div>
 </section>
@@ -350,55 +376,7 @@
 </section>
 
 <!-- ========== FOOTER (Full, consistent with contact page) ========== -->
-<footer>
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-col">
-        <img src="/images/logo/logo-white.png" alt="Solis Green Energy Solutions" class="footer-logo-img" loading="lazy">
-        <p>Leading provider of sustainable energy solutions in Kerala, committed to a greener future with local expertise across multiple districts.</p>
-        <div class="social-links">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/services/">Services</a></li>
-          <li><a href="/cities/">Service Areas</a></li>
-          <li><a href="/about/">About Us</a></li>
-          <li><a href="/projects/">Projects</a></li>
-          <li><a href="/contact/">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Service Areas</h3>
-        <ul>
-          <li><a href="/solar-company-in-pathanamthitta/">Pathanamthitta District</a></li>
-          <li><a href="/solar-company-in-kottayam/">Kottayam District</a></li>
-          <li><a href="/solar-company-in-alappuzha/">Alappuzha District</a></li>
-          <li><a href="/solar-company-in-kollam/">Kollam District</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Contact Solis Green India</h3>
-        <ul class="contact-info">
-          <li><i class="fas fa-phone"></i> <a href="tel:8301849474">Primary: 8301849474</a></li>
-          <li><i class="fas fa-phone-alt"></i> <a href="tel:9539316623">Alternate: 9539316623</a></li>
-          <li><i class="fas fa-headset"></i> <a href="tel:8606849474">Support: 8606849474</a></li>
-          <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/918301849474">WhatsApp: 8301849474</a></li>
-          <li><i class="fas fa-envelope"></i> <a href="mailto:solisgreenindia@gmail.com">solisgreenindia@gmail.com</a></li>
-          <li><i class="fas fa-map-marker-alt"></i> Opposite St. George Orthodox Church, Muthoor, Thiruvalla - 689107</li>
-        </ul>
-      </div>
-    </div>
-    <div class="copyright">
-      <p>&copy; 2026 Solis Green India. All Rights Reserved. | Professional Solar Solutions Across Kerala</p>
-    </div>
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <!-- ========== BACK TO TOP BUTTON ========== -->
 <button id="backToTop" class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>

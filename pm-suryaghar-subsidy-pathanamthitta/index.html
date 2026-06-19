@@ -32,6 +32,28 @@ color:#fff;
 text-align:center;
 }
 </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Pm Suryaghar Subsidy Pathanamthitta",
+      "item": "https://www.solisgreenindia.in/pm-suryaghar-subsidy-pathanamthitta/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -64,6 +86,12 @@ text-align:center;
 <!-- ================= HERO ================= -->
 <section class="subsidy-hero">
 <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li class="active">Pm Suryaghar Subsidy Pathanamthitta</li>
+      </ol>
+    </nav>
 <h1>PM Surya Ghar Solar Subsidy in Pathanamthitta</h1>
 <p>
 Get up to <strong>₹78,000 MNRE subsidy</strong> for rooftop solar systems in Pathanamthitta district.
@@ -258,30 +286,9 @@ Professional coordination with KSEB is critical to avoid delays or rejection.
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-<div class="container footer-content">
-<div class="footer-col">
-<img src="https://www.solisgreenindia.in/images/logo/logo-white.png" class="footer-logo-img">
-<p>MNRE empanelled & KSEB authorised solar installer serving Pathanamthitta district.</p>
-</div>
+<div id="footer-placeholder"></div>
 
-<div class="footer-col">
-<h3>Office</h3>
-<p>
-Mini Kristal Arcade,<br>
-Opp. St George Orthodox Church,<br>
-Muthoor, Thiruvalla – 689107
-</p>
-<p>📞 <a href="tel:8301849474">8301849474</a></p>
-</div>
-</div>
-
-<div class="copyright">
-© 2024 Solis Green Energy Solutions | PM Surya Ghar Subsidy – Pathanamthitta
-</div>
-</footer>
-
-<script src="https://www.solisgreenindia.in/script.js"></script>
+<script src="/script.js"></script>
 </body>
 </html>
 <script type="application/ld+json">

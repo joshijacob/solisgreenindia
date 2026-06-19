@@ -39,6 +39,34 @@
     }
     .project-meta strong{color:#000;}
   </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Projects",
+      "item": "https://www.solisgreenindia.in/projects/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Karunagappally",
+      "item": "https://www.solisgreenindia.in/projects/karunagappally/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -69,6 +97,13 @@
 <!-- HERO -->
 <section class="project-hero">
   <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="/projects/">Projects</a></li>
+         <li class="active">Karunagappally</li>
+      </ol>
+    </nav>
     <h1>3kW On-Grid Solar EPC Project – Karunagappally</h1>
     <p>
       Residential rooftop solar installation executed by
@@ -169,17 +204,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="container footer-content">
-    <div class="footer-col">
-      <img src="/images/logo/logo-white.png" class="footer-logo-img">
-      <p>Solar EPC company executing real rooftop projects across Kerala.</p>
-    </div>
-  </div>
-  <div class="copyright">
-    © 2026 Solis Green Energy Solutions
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <script src="/script.js"></script>
 </body>

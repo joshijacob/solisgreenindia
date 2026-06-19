@@ -30,6 +30,34 @@ color:#fff;
 text-align:center;
 }
 </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Kottayam",
+      "item": "https://www.solisgreenindia.in/solar-company-in-kottayam/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Kanjirappally",
+      "item": "https://www.solisgreenindia.in/solar-company-in-kottayam/kanjirappally/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -62,6 +90,13 @@ text-align:center;
 <!-- ================= HERO ================= -->
 <section class="town-hero">
 <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="/solar-company-in-kottayam/">Kottayam</a></li>
+         <li class="active">Kanjirappally</li>
+      </ol>
+    </nav>
 <h1>Solar Company in Kanjirappally – Home, Commercial & Plantation Solar Experts</h1>
 <p>
 Reduce high KSEB electricity bills in Kanjirappally with government-approved rooftop solar systems.
@@ -243,28 +278,7 @@ Proper solar system design is essential to ensure subsidy approval, safety and l
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-<div class="container footer-content">
-<div class="footer-col">
-<img src="../../images/logo/logo-white.png" class="footer-logo-img">
-<p>MNRE empanelled & KSEB authorised solar installer serving Kanjirappally.</p>
-</div>
-
-<div class="footer-col">
-<h3>Head Office</h3>
-<p>
-Mini Kristal Arcade,<br>
-Opp. St George Orthodox Church,<br>
-Muthoor, Thiruvalla – 689107
-</p>
-<p>📞 <a href="tel:8301849474">8301849474</a></p>
-</div>
-</div>
-
-<div class="copyright">
-© 2024 Solis Green Energy Solutions | Solar Experts in Kanjirappally
-</div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <script src="../../script.js"></script>
 

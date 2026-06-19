@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Keywords Meta -->
+    <meta name="description" content="Looking for the best solar installer in Thiruvalla? Solis Green India offers expert solar panel installation, maintenance, and top-rated solar company services in Thiruvalla. Get subsidy & SBI loan. Call now!">
+    <meta name="keywords" content="best solar installer in thiruvalla, solar installer in thiruvalla, solar panel installation in thiruvalla, solar panel maintenance in thiruvalla, best solar company in thiruvalla, solar panel repair thiruvalla, solar service thiruvalla">
+    <meta name="author" content="Solis Green India">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <meta name="theme-color" content="#0b8a3a">
+
+    <!-- Title with Primary Keywords -->
+    <title>Best Solar Installer in Thiruvalla | Solar Panel Installation & Maintenance | Solis Green India</title>
+    
+    <!-- Common CSS & Libraries -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --thiruvalla-green: #27ae60;
+            --thiruvalla-blue: #2980b9;
+            --thiruvalla-orange: #f39c12;
+        }
+
+        /* Hero Section */
+        .thiruvalla-hero {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            padding: 140px 0 80px;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .thiruvalla-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="20" cy="20" r="10" fill="white"/><circle cx="80" cy="80" r="15" fill="white"/><circle cx="50" cy="30" r="8" fill="white"/></svg>') repeat;
+            z-index: 0;
+        }
+        .thiruvalla-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .thiruvalla-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .thiruvalla-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .keyword-badges {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .keyword-badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            padding: 12px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-8px);
+        }
+        .stat-icon {
+            font-size: 2.8rem;
+            color: var(--thiruvalla-green);
+            margin-bottom: 15px;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--solis-orange);
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* Services Grid (for keywords) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+        .service-card:hover {
+            border-bottom-color: var(--thiruvalla-green);
+            transform: translateY(-5px);
+        }
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--thiruvalla-green);
+            margin-bottom: 15px;
+        }
+        .service-card h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Map */
+        .map-container {
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        #thiruvallaMap {
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .testimonial-card i {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            text-align: center;
+            padding: 70px 0;
+            border-radius: 30px;
+            margin: 40px 0;
+        }
+        .btn-cta-light {
+            background: white;
+            color: #27ae60;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 10px;
+        }
+        .btn-cta-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 10px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .thiruvalla-hero {
+                padding: 100px 0 60px;
+                margin-top: 70px;
+            }
+            .thiruvalla-hero h1 {
+                font-size: 2rem;
+            }
+            .thiruvalla-hero p {
+                font-size: 1rem;
+            }
+            .keyword-badge {
+                width: 90%;
+                text-align: center;
+            }
+        }
+    </style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Solar Installer Thiruvalla",
+      "item": "https://www.solisgreenindia.in/solar-installer-thiruvalla/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <div class="cta-main-btn" id="ctaMainBtn">
+            <i class="fas fa-solar-panel"></i>
+            <span class="pulse-dot"></span>
+        </div>
+        <div class="cta-options">
+            <a href="tel:8301849474" class="cta-option" data-tooltip="Call Thiruvalla Expert">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="#map" class="cta-option" data-tooltip="Service Areas">
+                <i class="fas fa-map"></i>
+            </a>
+            <a href="#testimonials" class="cta-option" data-tooltip="Reviews">
+                <i class="fas fa-star"></i>
+            </a>
+            <a href="https://wa.me/918301849474" class="cta-option" data-tooltip="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#contact" class="cta-option" data-tooltip="Contact">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="solis-header">
+        <div class="header-inner">
+            <div class="header-logo">
+                <a href="../">
+                    <img src="../images/logo/logo.png" alt="Solis Green India" loading="eager">
+                </a>
+            </div>
+            <nav class="header-menu" id="mainNav">
+                <a href="../">Home</a>
+                <a href="../services/">Services</a>
+                <a href="../cities/" class="active">Service Areas</a>
+                <a href="../about/">About</a>
+                <a href="../projects/">Projects</a>
+            </nav>
+            <div class="header-cta">
+                <a href="tel:8301849474" class="contact-btn pulse-animation">
+                    <i class="fas fa-phone"></i> Call Expert
+                </a>
+                <a href="https://wa.me/918301849474" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Keywords -->
+    <section class="thiruvalla-hero">
+        <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li class="active">Solar Installer Thiruvalla</li>
+      </ol>
+    </nav>
+            <h1>Best Solar Installer in Thiruvalla</h1>
+            <p>Your trusted partner for solar panel installation, maintenance, and comprehensive solar solutions in Thiruvalla. Get the best service from the leading solar company in Thiruvalla.</p>
+            <div class="keyword-badges">
+                <span class="keyword-badge"><i class="fas fa-check-circle"></i> Best Solar Installer Thiruvalla</span>
+                <span class="keyword-badge"><i class="fas fa-check-circle"></i> Solar Panel Installation Thiruvalla</span>
+                <span class="keyword-badge"><i class="fas fa-check-circle"></i> Solar Panel Maintenance Thiruvalla</span>
+                <span class="keyword-badge"><i class="fas fa-check-circle"></i> Best Solar Company Thiruvalla</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-solar-panel"></i></div>
+                <div class="stat-number">350+</div>
+                <div class="stat-label">Installations in Thiruvalla</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-tools"></i></div>
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Maintenance Services</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-star"></i></div>
+                <div class="stat-number">4.9</div>
+                <div class="stat-label">Customer Rating</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-calendar"></i></div>
+                <div class="stat-number">8+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Highlight (Keywords) -->
+    <section class="container">
+        <h2 class="section-title">Our Thiruvalla Solar Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-home"></i>
+                <h3>Solar Panel Installation in Thiruvalla</h3>
+                <p>Expert installation for homes and businesses. We are the preferred solar installer in Thiruvalla for quality and reliability.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-wrench"></i>
+                <h3>Solar Panel Maintenance in Thiruvalla</h3>
+                <p>Regular maintenance and cleaning to keep your system efficient. Trusted maintenance services across Thiruvalla.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-trophy"></i>
+                <h3>Best Solar Company in Thiruvalla</h3>
+                <p>Recognized as the best solar company in Thiruvalla for customer satisfaction and technical excellence.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Solar Repair & Support</h3>
+                <p>Quick response for any solar panel issues. We ensure your system runs at peak performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map centered on Thiruvalla -->
+    <section id="map" class="container">
+        <h2 class="section-title">Our Coverage in Thiruvalla</h2>
+        <div class="map-container" id="thiruvallaMap"></div>
+        <p class="text-center">Serving all areas of Thiruvalla including Muthoor, Kuttoor, Kavumbhagom, and more.</p>
+    </section>
+
+    <!-- Testimonials from Thiruvalla -->
+    <section id="testimonials" class="container">
+        <h2 class="section-title">What Thiruvalla Customers Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <p>"The best solar installer in Thiruvalla! They did an excellent job installing my 3kW system. Professional and timely."</p>
+                <div class="testimonial-author">- Rajesh Kumar, Muthoor</div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <p>"I contacted them for solar panel maintenance in Thiruvalla. Quick response and thorough service. Highly recommend."</p>
+                <div class="testimonial-author">- Sreeja Nair, Kuttoor</div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <p>"Without doubt the best solar company in Thiruvalla. They handled everything from subsidy to installation smoothly."</p>
+                <div class="testimonial-author">- Anil George, Kavumbhagom</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us (with keywords) -->
+    <section class="container">
+        <h2 class="section-title">Why We Are the Best Solar Installer in Thiruvalla</h2>
+        <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <li style="background: #f8f9fa; padding: 20px; border-radius: 15px;"><i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i> 8+ years of local experience in Thiruvalla</li>
+            <li style="background: #f8f9fa; padding: 20px; border-radius: 15px;"><i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i> Expert solar panel installation in Thiruvalla</li>
+            <li style="background: #f8f9fa; padding: 20px; border-radius: 15px;"><i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i> Reliable solar panel maintenance in Thiruvalla</li>
+            <li style="background: #f8f9fa; padding: 20px; border-radius: 15px;"><i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i> Rated #1 solar company in Thiruvalla by locals</li>
+            <li style="background: #f8f9fa; padding: 20px; border-radius: 15px;"><i class="fas fa-check-circle" style="color: #27ae60; margin-right: 10px;"></i> Full subsidy & loan assistance</li>
+        </ul>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="container cta-section" id="contact">
+        <h2>Need a Solar Installer in Thiruvalla?</h2>
+        <p>Contact the best solar company in Thiruvalla today for a free consultation and quote.</p>
+        <div>
+            <a href="tel:8301849474" class="btn-cta-light"><i class="fas fa-phone-alt"></i> Call 8301849474</a>
+            <a href="https://wa.me/918301849474" class="btn-cta-outline"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top"><i class="fas fa-chevron-up"></i></button>
+
+    <script src="../script.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Map
+            if (document.getElementById('thiruvallaMap')) {
+                var map = L.map('thiruvallaMap').setView([9.3833, 76.5667], 14);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap'
+                }).addTo(map);
+                L.marker([9.3833, 76.5667]).addTo(map)
+                    .bindPopup('<b>Solis Green India</b><br>Best Solar Installer in Thiruvalla')
+                    .openPopup();
+            }
+
+            // Floating CTA
+            const ctaMain = document.getElementById('ctaMainBtn');
+            const ctaOptions = document.querySelector('.cta-options');
+            if (ctaMain) {
+                ctaMain.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    ctaOptions.classList.toggle('active');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.floating-cta')) {
+                        ctaOptions.classList.remove('active');
+                    }
+                });
+            }
+
+            // Back to top
+            const backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                backToTop.classList.toggle('show', window.scrollY > 300);
+            });
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

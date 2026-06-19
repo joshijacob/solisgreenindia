@@ -89,6 +89,28 @@
     ]
   }
   </script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Kottayam",
+      "item": "https://www.solisgreenindia.in/solar-company-in-kottayam/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -123,6 +145,12 @@
 <!-- ================= HERO ================= -->
 <section class="district-hero">
   <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li class="active">Kottayam</li>
+      </ol>
+    </nav>
     <h1>Solar Installation Company in Kottayam District</h1>
     <p>
       Reduce electricity bills with MNRE-approved rooftop solar systems.
@@ -242,37 +270,7 @@
 </section>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-  <div class="container footer-content">
-    <div class="footer-col">
-      <img src="https://www.solisgreenindia.in/images/logo/logo-white.png" class="footer-logo-img">
-      <p>MNRE empanelled solar company serving Kottayam district.</p>
-    </div>
-
-    <div class="footer-col">
-      <h3>Office</h3>
-      <p>
-        Mini Kristal Arcade,<br>
-        Muthoor Junction,<br>
-        Thiruvalla – 689107
-      </p>
-    </div>
-
-    <div class="footer-col">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/services/">Services</a></li>
-        <li><a href="/cities/">Service Areas</a></li>
-        <li><a href="/contact/">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="copyright">
-    © 2024 Solis Green Energy Solutions
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <!-- Sticky Mobile Bar -->
 <div class="sticky-contact-bar">
@@ -280,6 +278,6 @@
   <a href="https://wa.me/918301849474" target="_blank">WhatsApp</a>
 </div>
 
-<script src="https://www.solisgreenindia.in/script.js"></script>
+<script src="/script.js"></script>
 </body>
 </html>

@@ -26,6 +26,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5C2D5BG9');
 </script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.solisgreenindia.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Projects",
+      "item": "https://www.solisgreenindia.in/projects/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Thiruvalla",
+      "item": "https://www.solisgreenindia.in/projects/thiruvalla/"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -65,6 +93,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <!-- ================= HERO ================= -->
 <section class="town-hero">
   <div class="container">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li><a href="/projects/">Projects</a></li>
+         <li class="active">Thiruvalla</li>
+      </ol>
+    </nav>
     <h1>Residential Solar Project in Thiruvalla – 5kWp On-Grid</h1>
     <p>
       Executed by <strong>Solis Green Energy Solutions</strong>,
@@ -197,7 +232,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     <h3>Related Pages</h3>
     <div class="city-links">
       <a href="/solar-company-in-pathanamthitta/thiruvalla/">Solar Installation in Thiruvalla</a>
-      <a href="/projects/pathanamthitta/">More Projects in Pathanamthitta</a>
+      <a href="/solar-company-in-pathanamthitta/">More Projects in Pathanamthitta</a>
       <a href="/projects/">View All Solar Projects</a>
     </div>
   </div>
@@ -220,31 +255,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer>
-  <div class="container footer-content">
-    <div class="footer-col">
-      <img src="/images/logo/logo-white.png" class="footer-logo-img">
-      <p>
-        Solar EPC company executing rooftop solar projects across Kerala.
-      </p>
-    </div>
+<div id="footer-placeholder"></div>
 
-    <div class="footer-col">
-      <h3>Head Office</h3>
-      <p>
-        Mini Kristal Arcade,<br>
-        Muthoor Junction, Thiruvalla – 689107<br>
-        📞 <a href="tel:8301849474">8301849474</a>
-      </p>
-    </div>
-  </div>
-
-  <div class="copyright">
-    © 2026 Solis Green Energy Solutions
-  </div>
-</footer>
-
-<script src="https://www.solisgreenindia.in/script.js"></script>
+<script src="/script.js"></script>
 
 </body>
 </html>
