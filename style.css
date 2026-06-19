@@ -16,7 +16,7 @@
   
   /* UI COLORS */
   --white: #FFFFFF;
-  --light-bg: #FFF7F2;
+  --light-bg: rgba(255, 247, 242, 0.4);
   --border-color: #E9ECEF;
   --text-dark: #333333;
   --text-medium: #666666;
@@ -33,6 +33,14 @@
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
   --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
   --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+  
+  /* SPATIAL UI */
+  --spatial-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --spatial-border: rgba(255, 255, 255, 0.4);
+  --spatial-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.7), inset 1px 0 1px rgba(255, 255, 255, 0.4);
+  --spatial-hover-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.15), inset 0 2px 2px rgba(255, 255, 255, 0.9), inset 2px 0 2px rgba(255, 255, 255, 0.5);
+  --spatial-blur: blur(24px) saturate(150%);
+  
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 20px;
@@ -55,7 +63,12 @@ body {
   line-height: 1.6;
   color: var(--text-dark);
   overflow-x: hidden;
-  background-color: var(--white);
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(255, 106, 42, 0.08), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(76, 175, 80, 0.08), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(31, 38, 135, 0.05), transparent 50%),
+    linear-gradient(135deg, #fffaf7 0%, #ffe9dc 50%, #e6f9ec 100%);
+  background-attachment: fixed;
 }
 
 .container {
@@ -104,12 +117,15 @@ p {
 
 /* ---------- UNIFIED HEADER (.solis-header) ---------- */
 .solis-header {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--spatial-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
 
 .header-inner {
@@ -202,12 +218,15 @@ p {
 /* ---------- LEGACY HEADER SUPPORT ---------- */
 /* For district pages during transition */
 header:not(.solis-header) {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--spatial-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
 
 header .header-container {
@@ -248,7 +267,8 @@ header .logo-img {
 
 .btn-primary:hover {
   background: var(--solis-orange-hover);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(255, 106, 42, 0.5), 0 0 40px rgba(255, 106, 42, 0.2);
 }
 
 .btn-secondary {
@@ -268,7 +288,8 @@ header .logo-img {
 
 .btn-whatsapp:hover {
   background: #128C7E;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.5), 0 0 40px rgba(37, 211, 102, 0.2);
 }
 
 .btn-outline {
@@ -542,6 +563,43 @@ header .logo-img {
   margin: 0 auto 30px;
 }
 
+/* ---------- HERO GLASS STYLES (Homepage) ---------- */
+.hero-glass-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 150px 0 100px;
+  text-align: center;
+  color: var(--white);
+  margin-top: 80px;
+}
+
+.hero-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-glass-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2;
+}
+
+.hero-content-wrapper {
+  position: relative;
+  z-index: 3;
+}
+
 /* ---------- BENEFITS BAR ---------- */
 .benefits-bar {
   background: var(--light-bg);
@@ -582,11 +640,14 @@ header .logo-img {
 
 /* SERVICE CARD (Homepage, Services pages) */
 .service-card {
-  background: var(--white);
+  background: var(--spatial-bg);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
+  border: 1px solid var(--spatial-border);
   padding: 30px;
   border-radius: var(--radius-md);
   text-align: center;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--spatial-shadow);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -608,8 +669,8 @@ header .logo-img {
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--spatial-hover-shadow);
 }
 
 .service-card i {
@@ -659,17 +720,20 @@ header .logo-img {
 
 /* AREA CARD (City pages) */
 .area-card {
-  background: var(--white);
+  background: var(--spatial-bg);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
+  border: 1px solid var(--spatial-border);
   padding: 20px;
   border-radius: var(--radius-sm);
   text-align: center;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--spatial-shadow);
   transition: var(--transition);
 }
 
 .area-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--spatial-hover-shadow);
 }
 
 .area-card i {
@@ -690,16 +754,20 @@ header .logo-img {
 
 /* DISTRICT CARD (District pages) */
 .district-card {
-  background: var(--white);
+  background: var(--spatial-bg);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
+  border: 1px solid var(--spatial-border);
   padding: 30px;
   border-radius: var(--radius-md);
   text-align: center;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--spatial-shadow);
   transition: var(--transition);
 }
 
 .district-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--spatial-hover-shadow);
 }
 
 .district-icon {
@@ -727,18 +795,21 @@ header .logo-img {
 
 /* SYSTEM CARD (System comparison) */
 .system-card {
-  background: var(--white);
+  background: var(--spatial-bg);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
+  border: 1px solid var(--spatial-border);
   border-radius: var(--radius-md);
   padding: 30px;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--spatial-shadow);
   text-align: center;
   border-top: 5px solid var(--solis-orange);
   transition: var(--transition);
 }
 
 .system-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--spatial-hover-shadow);
 }
 
 .system-card h3 {
@@ -844,10 +915,13 @@ header .logo-img {
 }
 
 .testimonial-card {
-  background: var(--white);
+  background: var(--spatial-bg);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
+  border: 1px solid var(--spatial-border);
   padding: 30px;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--spatial-shadow);
 }
 
 .rating-stars {
@@ -989,10 +1063,13 @@ header .logo-img {
 }
 
 .faq-card {
-  background: var(--white);
+  background: var(--spatial-bg);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
   padding: 25px;
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--spatial-shadow);
+  border: 1px solid var(--spatial-border);
   border-left: 4px solid var(--solis-orange);
 }
 
@@ -1087,17 +1164,20 @@ header .logo-img {
 }
 
 .benefit-card {
-  background: var(--white);
+  background: var(--spatial-bg);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
+  border: 1px solid var(--spatial-border);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--spatial-shadow);
   padding: 30px;
   text-align: center;
   transition: var(--transition);
 }
 
 .benefit-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--spatial-hover-shadow);
 }
 
 /* ---------- DISTRICT INTRO ---------- */
@@ -1130,9 +1210,12 @@ header .logo-img {
 }
 
 .district-stat-card {
-  background: var(--white);
+  background: var(--spatial-bg);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
+  border: 1px solid var(--spatial-border);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--spatial-shadow);
   padding: 20px;
   text-align: center;
 }
@@ -1195,9 +1278,13 @@ header .logo-img {
 
 /* ---------- SIMPLIFIED FOOTER ---------- */
 footer {
-  background: #243447;
+  background: linear-gradient(180deg, rgba(20, 30, 48, 0.95) 0%, rgba(10, 20, 35, 0.98) 100%);
+  backdrop-filter: var(--spatial-blur);
+  -webkit-backdrop-filter: var(--spatial-blur);
   color: var(--white);
   padding: 60px 0 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .footer-content {
@@ -1406,6 +1493,10 @@ footer {
   background: #25D366;
 }
 
+.sticky-quote {
+  background: #2980b9;
+}
+
 /* BACK TO TOP */
 .back-to-top {
   position: fixed;
@@ -1582,6 +1673,33 @@ footer {
   100% {
     box-shadow: 0 0 0 0 rgba(255, 106, 42, 0);
   }
+}
+
+@keyframes spatialFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.01); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes spatialFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+    filter: blur(0);
+  }
+}
+
+.spatial-fade-in {
+  animation: spatialFadeIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes kenBurns {
@@ -1915,416 +2033,7 @@ footer {
     animation: none;
   }
 }
-/* =========================================================
-   SOLIS GREEN INDIA - UNIFIED MOBILE MENU SYSTEM
-   Version: 1.0 | Works with ALL page headers
-   ========================================================= */
 
-class MobileMenuSystem {
-  constructor() {
-    this.isInitialized = false;
-    this.isMenuOpen = false;
-    this.currentPage = this.detectPageType();
-  }
-  
-  // Detect which page type we're on
-  detectPageType() {
-    const path = window.location.pathname;
-    if (path.includes('/solar-company-in-')) return 'district';
-    if (path.includes('/cities/') || path.includes('/town/')) return 'city';
-    if (path === '/' || path.includes('index')) return 'homepage';
-    return 'general';
-  }
-  
-  // Initialize the mobile menu system
-  init() {
-    if (this.isInitialized) return;
-    
-    console.log(`📱 Initializing Mobile Menu for ${this.currentPage} page`);
-    
-    // Create mobile menu structure
-    this.createMobileMenuStructure();
-    
-    // Setup event listeners
-    this.setupEventListeners();
-    
-    // Setup scroll handling
-    this.setupScrollHandling();
-    
-    // Setup touch optimization
-    this.setupTouchOptimization();
-    
-    this.isInitialized = true;
-    console.log('✅ Mobile Menu System Initialized');
-  }
-  
-  // Create the mobile menu HTML structure
-  createMobileMenuStructure() {
-    // Check if mobile menu already exists
-    if (document.getElementById('mobileMenuOverlay')) return;
-    
-    const mobileMenuHTML = `
-      <!-- Mobile Menu Overlay -->
-      <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-      
-      <!-- Mobile Menu Container -->
-      <div class="mobile-menu-container" id="mobileMenuContainer">
-        <!-- Mobile Menu Header -->
-        <div class="mobile-menu-header">
-          <div class="mobile-menu-logo">
-            <img src="/images/logo/logo-white.png" alt="Solis Green India">
-          </div>
-          <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        
-        <!-- Mobile Menu Navigation -->
-        <nav class="mobile-menu-nav" aria-label="Main navigation">
-          <ul>
-            <li><a href="/" class="${this.currentPage === 'homepage' ? 'active' : ''}">
-              <span>Home</span>
-              <i class="fas fa-chevron-right"></i>
-            </a></li>
-            <li><a href="/services/" class="${window.location.pathname.includes('/services/') ? 'active' : ''}">
-              <span>Our Services</span>
-              <i class="fas fa-chevron-right"></i>
-            </a></li>
-            <li><a href="/cities/" class="${this.currentPage === 'district' || this.currentPage === 'city' ? 'active' : ''}">
-              <span>Service Areas</span>
-              <i class="fas fa-chevron-right"></i>
-            </a></li>
-            <li><a href="/about/" class="${window.location.pathname.includes('/about/') ? 'active' : ''}">
-              <span>About Us</span>
-              <i class="fas fa-chevron-right"></i>
-            </a></li>
-            <li><a href="/projects/" class="${window.location.pathname.includes('/projects/') ? 'active' : ''}">
-              <span>Our Projects</span>
-              <i class="fas fa-chevron-right"></i>
-            </a></li>
-            <li><a href="/contact/" class="${window.location.pathname.includes('/contact/') ? 'active' : ''}">
-              <span>Contact Us</span>
-              <i class="fas fa-chevron-right"></i>
-            </a></li>
-          </ul>
-        </nav>
-        
-        <!-- Mobile Menu Footer -->
-        <div class="mobile-menu-footer">
-          <div class="mobile-contact-info">
-            <div class="mobile-contact-item">
-              <i class="fas fa-phone"></i>
-              <a href="tel:8301849474">Primary: 8301849474</a>
-            </div>
-            <div class="mobile-contact-item">
-              <i class="fas fa-phone-alt"></i>
-              <a href="tel:9539316623">Alternate: 9539316623</a>
-            </div>
-            <div class="mobile-contact-item">
-              <i class="fas fa-headset"></i>
-              <a href="tel:8606849474">Support: 8606849474</a>
-            </div>
-            <div class="mobile-contact-item">
-              <i class="fab fa-whatsapp"></i>
-              <a href="https://wa.me/918301849474" target="_blank">WhatsApp Primary</a>
-            </div>
-          </div>
-          
-          <div class="mobile-social-links">
-            <a href="#" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/918301849474" aria-label="WhatsApp" target="_blank">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Mobile Sticky CTA Bar -->
-      <div class="mobile-sticky-cta" id="mobileStickyCTA">
-        <a href="tel:8301849474" class="mobile-cta-btn call">
-          <i class="fas fa-phone"></i>
-          <span>Call Now</span>
-        </a>
-        <a href="https://wa.me/918301849474" class="mobile-cta-btn whatsapp" target="_blank">
-          <i class="fab fa-whatsapp"></i>
-          <span>WhatsApp</span>
-        </a>
-        <a href="#quick-quote" class="mobile-cta-btn quote">
-          <i class="fas fa-file-alt"></i>
-          <span>Get Quote</span>
-        </a>
-      </div>
-      
-      <!-- Mobile Scroll Progress -->
-      <div class="mobile-scroll-progress" id="mobileScrollProgress"></div>
-    `;
-    
-    // Insert mobile menu at the end of body
-    document.body.insertAdjacentHTML('beforeend', mobileMenuHTML);
-    
-    // Update existing hamburger buttons
-    this.updateHamburgerButtons();
-  }
-  
-  // Update existing hamburger buttons to use new system
-  updateHamburgerButtons() {
-    const hamburgerButtons = document.querySelectorAll('.mobile-menu-btn, #mobileMenuBtn');
-    
-    hamburgerButtons.forEach(btn => {
-      // Remove existing click handlers
-      const newBtn = btn.cloneNode(true);
-      btn.parentNode.replaceChild(newBtn, btn);
-      
-      // Add hamburger animation classes
-      newBtn.classList.add('mobile-menu-toggle');
-      newBtn.setAttribute('aria-label', 'Toggle mobile menu');
-      newBtn.setAttribute('aria-expanded', 'false');
-      
-      // Remove any existing event listeners by replacing
-      newBtn.onclick = null;
-    });
-  }
-  
-  // Setup all event listeners
-  setupEventListeners() {
-    // Toggle mobile menu
-    document.addEventListener('click', (e) => {
-      if (e.target.closest('.mobile-menu-toggle') || 
-          e.target.closest('#mobileMenuBtn') ||
-          e.target.closest('.mobile-menu-btn')) {
-        this.toggleMobileMenu();
-        e.preventDefault();
-        e.stopPropagation();
-      }
-      
-      // Close menu
-      if (e.target.closest('#mobileMenuClose') || 
-          e.target.closest('.mobile-menu-overlay') ||
-          e.target.closest('.mobile-menu-nav a')) {
-        this.closeMobileMenu();
-      }
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.isMenuOpen) {
-        this.closeMobileMenu();
-      }
-      
-      // Trap focus within mobile menu when open
-      if (e.key === 'Tab' && this.isMenuOpen) {
-        this.trapFocus(e);
-      }
-    });
-    
-    // Window resize handling
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        if (window.innerWidth > 1024 && this.isMenuOpen) {
-          this.closeMobileMenu();
-        }
-      }, 250);
-    });
-  }
-  
-  // Toggle mobile menu open/close
-  toggleMobileMenu() {
-    this.isMenuOpen ? this.closeMobileMenu() : this.openMobileMenu();
-  }
-  
-  // Open mobile menu
-  openMobileMenu() {
-    if (this.isMenuOpen) return;
-    
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const container = document.getElementById('mobileMenuContainer');
-    const hamburgers = document.querySelectorAll('.mobile-menu-toggle, #mobileMenuBtn, .mobile-menu-btn');
-    
-    // Show menu
-    overlay.classList.add('active');
-    container.classList.add('active');
-    hamburgers.forEach(btn => {
-      btn.classList.add('active');
-      btn.setAttribute('aria-expanded', 'true');
-    });
-    
-    // Disable body scroll
-    document.body.style.overflow = 'hidden';
-    document.body.style.height = '100vh';
-    
-    // Set focus to first menu item for accessibility
-    setTimeout(() => {
-      const firstMenuItem = container.querySelector('a');
-      if (firstMenuItem) firstMenuItem.focus();
-    }, 300);
-    
-    this.isMenuOpen = true;
-    
-    // Track event
-    this.trackEvent('mobile_menu', 'open', this.currentPage);
-  }
-  
-  // Close mobile menu
-  closeMobileMenu() {
-    if (!this.isMenuOpen) return;
-    
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const container = document.getElementById('mobileMenuContainer');
-    const hamburgers = document.querySelectorAll('.mobile-menu-toggle, #mobileMenuBtn, .mobile-menu-btn');
-    
-    // Hide menu
-    overlay.classList.remove('active');
-    container.classList.remove('active');
-    hamburgers.forEach(btn => {
-      btn.classList.remove('active');
-      btn.setAttribute('aria-expanded', 'false');
-    });
-    
-    // Enable body scroll
-    document.body.style.overflow = '';
-    document.body.style.height = '';
-    
-    this.isMenuOpen = false;
-    
-    // Track event
-    this.trackEvent('mobile_menu', 'close', this.currentPage);
-  }
-  
-  // Trap focus within mobile menu for accessibility
-  trapFocus(e) {
-    const menu = document.getElementById('mobileMenuContainer');
-    const focusableElements = menu.querySelectorAll(
-      'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
-    
-    if (e.shiftKey) {
-      // Shift + Tab
-      if (document.activeElement === firstElement) {
-        lastElement.focus();
-        e.preventDefault();
-      }
-    } else {
-      // Tab
-      if (document.activeElement === lastElement) {
-        firstElement.focus();
-        e.preventDefault();
-      }
-    }
-  }
-  
-  // Setup scroll handling for mobile
-  setupScrollHandling() {
-    if (window.innerWidth > 768) return;
-    
-    let lastScrollTop = 0;
-    let scrollTimeout;
-    const stickyCTA = document.getElementById('mobileStickyCTA');
-    const progressBar = document.getElementById('mobileScrollProgress');
-    
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // Show/hide sticky CTA based on scroll direction
-      if (stickyCTA) {
-        if (scrollTop > lastScrollTop && scrollTop > 300) {
-          // Scrolling down - hide
-          stickyCTA.classList.remove('show');
-        } else if (scrollTop > 100) {
-          // Scrolling up - show
-          stickyCTA.classList.add('show');
-        }
-      }
-      
-      // Update progress bar
-      if (progressBar) {
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
-        progressBar.style.width = `${scrollPercent}%`;
-      }
-      
-      lastScrollTop = scrollTop;
-      
-      // Auto-hide sticky CTA after 3 seconds of no scrolling
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        if (stickyCTA && !this.isMenuOpen) {
-          stickyCTA.classList.remove('show');
-        }
-      }, 3000);
-    });
-  }
-  
-  // Setup touch optimization
-  setupTouchOptimization() {
-    if ('ontouchstart' in window) {
-      // Add touch-specific optimizations
-      document.documentElement.classList.add('touch-device');
-      
-      // Improve touch scrolling in menu
-      const menuContainer = document.getElementById('mobileMenuContainer');
-      if (menuContainer) {
-        menuContainer.addEventListener('touchstart', (e) => {
-          if (e.target.tagName === 'A') {
-            // Add visual feedback for touch
-            e.target.classList.add('touch-active');
-            setTimeout(() => {
-              e.target.classList.remove('touch-active');
-            }, 300);
-          }
-        }, { passive: true });
-      }
-    }
-  }
-  
-  // Track events for analytics
-  trackEvent(category, action, label) {
-    // Google Analytics
-    if (typeof gtag !== 'undefined') {
-      gtag('event', action, {
-        event_category: category,
-        event_label: label
-      });
-    }
-    
-    // Console for debugging
-    console.log(`📱 Mobile Menu Event: ${category} - ${action} - ${label}`);
-  }
-  
-  // Public method to check if menu is open
-  isOpen() {
-    return this.isMenuOpen;
-  }
-}
-
-// ==================== GLOBAL INITIALIZATION ====================
-
-// Create global instance
-window.SolisMobileMenu = new MobileMenuSystem();
-
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    window.SolisMobileMenu.init();
-  });
-} else {
-  window.SolisMobileMenu.init();
-}
-
-// Export for module systems
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = MobileMenuSystem;
-}
 /* ================= HOME SERVICE AREAS (PILL STYLE) ================= */
 
 .home-service-areas {
@@ -2368,95 +2077,287 @@ if (typeof module !== 'undefined' && module.exports) {
   line-height: 1;
   margin-bottom: 12px;
 }
+/* ===================================================
+   PREMIUM SITE FOOTER — Spatial UI Design
+   =================================================== */
+
 .site-footer {
-  background: #223447;
-  color: #d9e2ec;
-  padding: 60px 0 25px;
+  position: relative;
+  background: linear-gradient(160deg, #0d1b2a 0%, #112030 50%, #0a1520 100%);
+  color: #c8d8e8;
+  padding: 40px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
 }
 
-.site-footer .container {
-  max-width: 1200px;
-  margin: auto;
+/* Subtle radial glow behind footer */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(255, 106, 42, 0.07) 0%, transparent 70%);
+  pointer-events: none;
 }
 
+/* Top orange glow accent bar */
+.footer-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--solis-orange) 30%, var(--solis-green) 70%, transparent 100%);
+}
+
+/* 4-column grid */
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 0.8fr;
-  gap: 40px;
+  grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+  gap: 50px;
+  padding-bottom: 25px;
 }
 
-.footer-logo {
-  max-width: 40px;
-  margin-bottom: 15px;
+/* --- BRAND COL --- */
+.footer-logo-img {
+  height: 48px;
+  margin-bottom: 18px;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(255, 106, 42, 0.3));
 }
 
-.footer-col h4 {
+.footer-tagline {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: #90a8be;
+  margin-bottom: 24px;
+}
+
+/* Social icons */
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #c8d8e8;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+  background: var(--solis-orange);
+  border-color: var(--solis-orange);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 106, 42, 0.4);
+}
+
+/* --- COLUMN HEADINGS --- */
+.footer-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   color: #ffffff;
-  font-size: 18px;
-  margin-bottom: 15px;
-}
-
-.footer-contact address {
-  font-style: normal;
-  line-height: 1.6;
-}
-
-.footer-cta a {
+  margin-bottom: 22px;
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 12px;
-  color: #ffffff;
+}
+
+.footer-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 106, 42, 0.5), transparent);
+}
+
+/* --- NAV LINKS --- */
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav li {
+  margin-bottom: 8px;
+}
+
+.footer-nav a {
+  color: #90a8be;
   text-decoration: none;
-  font-weight: 600;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
 }
 
-.footer-call i {
-  color: #ff8c1a;
+.footer-nav a i {
+  font-size: 0.65rem;
+  color: var(--solis-orange);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.25s ease;
 }
 
-.footer-whatsapp i {
+.footer-nav a:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.footer-nav a:hover i {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- CONTACT LIST --- */
+.footer-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.footer-contact-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 106, 42, 0.12);
+  border: 1px solid rgba(255, 106, 42, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--solis-orange);
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+.footer-contact-icon.whatsapp-icon {
+  background: rgba(37, 211, 102, 0.1);
+  border-color: rgba(37, 211, 102, 0.2);
   color: #25d366;
 }
 
-.footer-links ul {
-  list-style: none;
-  padding: 0;
+.footer-contact-icon.email-icon {
+  background: rgba(33, 150, 243, 0.1);
+  border-color: rgba(33, 150, 243, 0.2);
+  color: #64b5f6;
 }
 
-.footer-links li {
-  margin-bottom: 10px;
+.footer-contact-icon.location-icon {
+  background: rgba(156, 39, 176, 0.1);
+  border-color: rgba(156, 39, 176, 0.2);
+  color: #ce93d8;
 }
 
-.footer-links a {
-  color: #d9e2ec;
+.contact-label {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #5a7a94;
+  margin-bottom: 2px;
+}
+
+.footer-contact-list a,
+.footer-contact-list span:not(.contact-label) {
+  color: #c8d8e8;
   text-decoration: none;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  transition: color 0.2s;
 }
 
-.footer-links a:hover {
-  color: #ff8c1a;
+.footer-contact-list a:hover {
+  color: var(--solis-orange);
 }
 
+/* --- DIVIDER --- */
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 30%, rgba(255,255,255,0.08) 70%, transparent 100%);
+  margin: 0;
+}
+
+/* --- BOTTOM BAR --- */
 .footer-bottom {
-  margin-top: 40px;
-  padding-top: 15px;
-  text-align: center;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  font-size: 14px;
-  color: #b8c2cc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 0 24px;
+  font-size: 0.82rem;
+  color: #5a7a94;
 }
 
-/* MOBILE FIX */
-@media (max-width: 768px) {
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-right a {
+  color: #5a7a94;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-bottom-right a:hover {
+  color: var(--solis-orange);
+}
+
+.footer-bottom-right span {
+  opacity: 0.4;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .footer-bottom {
+    flex-direction: column;
     text-align: center;
   }
-
-  .footer-cta a {
+  .footer-bottom-right {
     justify-content: center;
   }
 }
+
 /* ===== Map Helper Text (My Maps Embed) ===== */
 .map-helper-text {
   text-align: center;
@@ -2678,7 +2579,7 @@ form button:hover { background: var(--solis-orange-hover); }
 /* ---------- SIMPLE FOOTER ---------- */
 footer {
   background: #1F2933; color: #BDC3C7; padding: 40px 0 20px; text-align: center;
-  margin-bottom: 60px; /* Space for sticky bar */
+  margin-bottom: 0; /* No space needed on desktop for sticky bar */
 }
 footer a { color: #BDC3C7; text-decoration: none; }
 footer a:hover { color: var(--white); }
@@ -2697,7 +2598,6 @@ footer a:hover { color: var(--white); }
   .cta .btn { width: 100%; max-width: 300px; }
   
   .sticky a span { display: inline; } /* Show text on mobile */
-  footer { margin-bottom: 70px; }
 }
 
 @media (max-width: 480px) {
@@ -2706,4 +2606,77 @@ footer a:hover { color: var(--white); }
   .trust-grid { grid-template-columns: 1fr; text-align: left; padding-left: 20px; }
   .trust-grid div::before { content: "✔ "; color: var(--solis-green); margin-right: 5px; }
   .areas-grid { grid-template-columns: 1fr; }
+}
+
+
+/* =========================================
+   UNIFIED SUB-PAGE HERO SIZING
+   ========================================= */
+.hero,
+.town-hero,
+.district-hero,
+.product-hero {
+  padding: 120px 20px 80px !important;
+  min-height: 40vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+@media (max-width: 768px) {
+  .hero,
+  .town-hero,
+  .district-hero,
+  .product-hero {
+    padding: 100px 20px 60px !important;
+    min-height: 30vh !important;
+  }
+}
+
+
+/* =========================================
+   SEO BREADCRUMBS
+   ========================================= */
+.breadcrumb-nav {
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+.breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.breadcrumb li a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.breadcrumb li a:hover {
+  color: var(--secondary-color, #f39c12);
+  text-decoration: underline;
+}
+
+.breadcrumb li + li::before {
+  content: "›";
+  padding: 0 8px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.breadcrumb li.active {
+  color: #fff;
+  font-weight: 600;
 }

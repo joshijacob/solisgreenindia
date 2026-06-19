@@ -15,7 +15,7 @@ Allow: /solar-company-in-pathanamthitta/
 Allow: /solar-company-in-kottayam/
 Allow: /solar-company-in-alappuzha/
 Allow: /solar-company-in-kollam/
-
+Allow: /solar-company-in-thiruvananthapuram/
 # BLOCK SENSITIVE AREAS
 Disallow: /admin/
 Disallow: /private/

@@ -12,9 +12,7 @@
   <link rel="canonical" href="https://www.solisgreenindia.in/">
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon/favicon-48x48.png">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -32,6 +30,7 @@
 
   <!-- CSS (minified version recommended) -->
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -72,13 +71,13 @@
   </header>
 
   <!-- ========== HERO SECTION ========== -->
-  <section class="town-hero" style="position: relative; overflow: hidden; padding: 150px 0 100px; text-align: center; color: white; margin-top: 80px;">
+  <section class="town-hero hero-glass-wrapper">
   <!-- Background image as IMG tag for reliability -->
-  <img src="/images/hero/hero-image-2.webp" alt="Solar Installation in Kerala" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+  <img src="/images/hero/hero-image-2.webp" alt="Solar Installation in Kerala" class="hero-bg-img">
   <!-- Dark overlay -->
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2;"></div>
+  <div class="hero-glass-overlay"></div>
   
-  <div class="container" style="position: relative; z-index: 3;">
+  <div class="container hero-content-wrapper">
     <h1>Residential Solar Installation Company in Kerala</h1>
     <p>Save up to 90% on electricity bills with ₹78,000 government subsidy, KSEB net metering approval & 5‑year free AMC</p>
     <div class="hero-buttons">
@@ -314,50 +313,8 @@
     </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col footer-brand">
-          <img src="/images/logo/logo-white.png" alt="Solis Green Energy Solutions" class="footer-logo" loading="lazy">
-          <p>Solis Green Energy Solutions is a trusted solar EPC company in Kerala, delivering MNRE‑approved on‑grid solar systems with complete subsidy and loan support.</p>
-        </div>
-        <div class="footer-col footer-contact">
-          <h4>Office Address</h4>
-          <address>
-            Mini Kristal Arcade,<br>
-            Opposite St. George Orthodox Church,<br>
-            Muthoor Junction, MC Road,<br>
-            Thiruvalla, Kerala – 689107
-          </address>
-          <div class="footer-cta">
-            <a href="tel:+918301849474" class="footer-call"><i class="fas fa-phone-alt"></i> +91 83018 49474</a>
-            <a href="https://wa.me/918301849474" target="_blank" class="footer-whatsapp"><i class="fab fa-whatsapp"></i> Chat with Solar Expert</a>
-          </div>
-        </div>
-        <div class="footer-col footer-links">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/cities/">Service Areas</a></li>
-            <li><a href="/services/">Services</a></li>
-            <li><a href="/projects/">Projects</a></li>
-            <li><a href="/contact/">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        © 2026 Solis Green Energy Solutions. All Rights Reserved.
-      </div>
-    </div>
-  </footer>
-
-  <!-- Mobile sticky contact bar (hidden on desktop) -->
-  <div class="mobile-sticky-cta" id="mobileStickyCTA">
-    <a href="tel:8301849474" class="mobile-cta-btn call"><i class="fas fa-phone"></i> Call Now</a>
-    <a href="https://wa.me/918301849474" class="mobile-cta-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-    <a href="#quick-quote" class="mobile-cta-btn quote" onclick="document.querySelector('.services-cta').scrollIntoView({behavior:'smooth'});"><i class="fas fa-file-alt"></i> Get Quote</a>
-  </div>
+  <!-- ========== PREMIUM FOOTER ========== -->
+  <div id="footer-placeholder"></div>
 
   <!-- Schema Markup (enriched) -->
   <script type="application/ld+json">
@@ -448,6 +405,27 @@
   </script>
 
   <!-- JavaScript (deferred for speed) -->
-  <script src="/script.js" defer></script>
+  <script src="/script.js?v=2" defer></script>
+
+  <!-- Spatial UI: Scroll Reveal Animation -->
+  <script>
+    (function() {
+      const targets = document.querySelectorAll(
+        '.service-card, .system-card, .district-card, .area-card, .benefit-card, .testimonial-card, .faq-card'
+      );
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('spatial-fade-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      targets.forEach(el => {
+        el.style.opacity = '0';
+        observer.observe(el);
+      });
+    })();
+  </script>
 </body>
 </html>

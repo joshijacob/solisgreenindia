@@ -1081,3 +1081,26 @@ if (typeof window !== 'undefined') {
 }
 
 console.log('🎯 Solis Green India JS Loaded Successfully');
+
+
+// =========================================================
+// FOOTER LOADER
+// =========================================================
+document.addEventListener('DOMContentLoaded', function() {
+  const footerPlaceholder = document.getElementById('footer-placeholder');
+  if (footerPlaceholder) {
+    fetch('/footer.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Footer not found');
+        return response.text();
+      })
+      .then(html => {
+        footerPlaceholder.innerHTML = html;
+        // Re-initialize footer dependent scripts
+        if (typeof initializeStickyContactBar === 'function') {
+          initializeStickyContactBar();
+        }
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  }
+});
