@@ -1,0 +1,38 @@
+[
+  {
+    "town_name": "Pala",
+    "town_slug": "pala",
+    "district_name": "Kottayam",
+    "district_slug": "solar-company-in-kottayam",
+    "pin_code": "686575",
+    "local_description": "rubber plantation installations, premium residential setups, and reliable systems for this major agricultural town",
+    "project_1_title": "5kW Residential System - Pala Town",
+    "project_1_desc": "Premium home solar with battery backup",
+    "project_2_title": "12kW Plantation System - Rubber Estate",
+    "project_2_desc": "Commercial solar for rubber processing",
+    "area_1_title": "Pala Town",
+    "area_1_desc": "Commercial and residential solar solutions",
+    "area_2_title": "Rubber Estates",
+    "area_2_desc": "Agricultural and farm solar systems",
+    "area_3_title": "Meenachil Area",
+    "area_3_desc": "River-side residential installations"
+  },
+  {
+    "town_name": "Chengannur",
+    "town_slug": "chengannur",
+    "district_name": "Pathanamthitta",
+    "district_slug": "solar-company-in-pathanamthitta",
+    "pin_code": "689121",
+    "local_description": "urban residential installations, NRI homes, and robust systems built for this rapidly growing town",
+    "project_1_title": "3kW Residential System - Chengannur Town",
+    "project_1_desc": "Rooftop solar for large family home",
+    "project_2_title": "10kW Commercial Setup - Local Business",
+    "project_2_desc": "Cost-saving system for local retail",
+    "area_1_title": "Chengannur Central",
+    "area_1_desc": "Residential and NRI home solutions",
+    "area_2_title": "MC Road Businesses",
+    "area_2_desc": "Commercial solar setups",
+    "area_3_title": "Outskirts & Villages",
+    "area_3_desc": "Off-grid and hybrid systems"
+  }
+]

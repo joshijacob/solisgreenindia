@@ -1,0 +1,461 @@
+/* =========================================================================
+   PREMIUM RESOURCES HUB (Mockup Style)
+========================================================================= */
+
+/* --- Global Background --- */
+.premium-resources-hub {
+  padding: 80px 0;
+  background-color: #f7f9fc;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+/* --- Header Section --- */
+.prh-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px auto;
+}
+
+.prh-badge {
+  display: inline-flex;
+  align-items: center;
+  color: #0ac05e;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.prh-badge::before, .prh-badge::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background-color: #d1d5db;
+  margin: 0 15px;
+}
+
+.prh-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 15px;
+}
+
+.prh-subtitle {
+  font-size: 1.1rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.prh-sun-icon {
+  margin-top: 20px;
+  color: #f59e0b;
+  font-size: 1.2rem;
+}
+
+/* --- Section Container (The white card) --- */
+.prh-section-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f3f4f6;
+}
+
+/* --- Section Header (Numbered) --- */
+.prh-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.prh-box-header-left {
+  display: flex;
+  align-items: flex-start;
+}
+
+.prh-num-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-right: 15px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.prh-num-1 { background-color: #10b981; }
+.prh-num-2 { background-color: #3b82f6; }
+.prh-num-3 { background-color: #10b981; }
+.prh-num-4 { background-color: #065f46; }
+
+.prh-box-title-area h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 5px;
+}
+
+.prh-box-title-area p {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.prh-view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #10b981;
+  text-decoration: none;
+  background: white;
+  transition: all 0.2s ease;
+}
+.prh-view-all-btn i { margin-left: 6px; }
+.prh-view-all-btn:hover { background: #f9fafb; border-color: #d1d5db; }
+
+
+/* --- Section 1: Vertical Cards --- */
+.prh-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.prh-card {
+  border: 1px solid #f3f4f6;
+  border-radius: 8px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.prh-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+  border-color: #e5e7eb;
+}
+
+.prh-card-icon-top {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.prh-card-icon-top .badge {
+  position: absolute;
+  top: -5px;
+  right: -25px;
+  background: #3b82f6;
+  color: white;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.icon-blue { background: #eff6ff; color: #3b82f6; }
+.icon-green { background: #ecfdf5; color: #10b981; }
+.icon-orange { background: #fff7ed; color: #f97316; }
+.icon-purple { background: #faf5ff; color: #a855f7; }
+
+.prh-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.prh-card p {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.prh-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+}
+.prh-feature-list li {
+  font-size: 0.8rem;
+  color: #4b5563;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+}
+.prh-feature-list li i {
+  color: #8b5cf6; /* Default purple */
+  margin-right: 8px;
+  margin-top: 3px;
+  font-size: 0.85rem;
+}
+.prh-card:nth-child(1) .prh-feature-list li i { color: #3b82f6; } /* Blue */
+.prh-card:nth-child(2) .prh-feature-list li i { color: #10b981; } /* Green */
+.prh-card:nth-child(3) .prh-feature-list li i { color: #f97316; } /* Orange */
+.prh-card:nth-child(4) .prh-feature-list li i { color: #a855f7; } /* Purple */
+
+.prh-btn-solid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: white;
+  transition: opacity 0.2s ease;
+}
+.prh-btn-solid i { margin-right: 8px; }
+.prh-btn-solid:hover { opacity: 0.9; }
+
+.btn-blue { background: #2563eb; }
+.btn-green { background: #059669; }
+.btn-orange { background: #ea580c; }
+.btn-purple { background: #7c3aed; }
+
+
+/* --- Section 2: Govt Resources --- */
+.prh-gov-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.prh-gov-card {
+  border: 1px solid #f3f4f6;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease;
+}
+.prh-gov-card:hover { border-color: #e5e7eb; }
+
+.prh-gov-icon {
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: #374151;
+}
+
+.prh-gov-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.prh-gov-card p {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 15px;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.prh-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.prh-link i { margin-left: 5px; font-size: 0.75rem; }
+.prh-link.green-link { color: #059669; }
+.prh-link.orange-link { color: #ea580c; }
+
+
+/* --- Section 3: Horizontal Solar Calculators --- */
+.prh-calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.prh-calc-card {
+  border: 1px solid #f3f4f6;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease;
+}
+.prh-calc-card:hover { border-color: #e5e7eb; }
+
+.prh-calc-top {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.prh-calc-icon {
+  font-size: 24px;
+  color: #10b981;
+  margin-right: 12px;
+}
+
+.prh-calc-text h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 5px;
+}
+
+.prh-calc-text p {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.prh-calc-btn {
+  background: #059669;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.prh-calc-btn:hover { background: #047857; }
+
+
+/* --- Section 4: Partner Resources --- */
+.prh-partner-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.prh-partner-logo {
+  height: 40px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+.prh-partner-logo img {
+  max-height: 100%;
+  max-width: 120px;
+  object-fit: contain;
+}
+.prh-partner-logo i {
+  font-size: 32px;
+  color: #059669;
+}
+.partner-logo-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ea580c;
+  display: flex;
+  align-items: center;
+}
+
+
+/* --- Security Bar --- */
+.prh-security-bar {
+  border: 1px solid #a7f3d0;
+  background-color: #ecfdf5;
+  border-radius: 8px;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.prh-security-left {
+  display: flex;
+  align-items: center;
+}
+
+.prh-security-icon-large {
+  font-size: 36px;
+  color: #10b981;
+  margin-right: 20px;
+}
+
+.prh-security-text h4 {
+  font-size: 1rem;
+  color: #064e3b;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.prh-security-text p {
+  font-size: 0.85rem;
+  color: #065f46;
+  margin: 0;
+}
+
+.prh-security-right {
+  display: flex;
+  gap: 30px;
+}
+
+.prh-badge-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prh-badge-vertical i {
+  font-size: 20px;
+  color: #10b981;
+  margin-bottom: 5px;
+}
+
+.prh-badge-vertical.badge-blue i { color: #3b82f6; }
+
+.prh-badge-vertical span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1200px) {
+  .prh-calc-grid { grid-template-columns: repeat(3, 1fr); }
+  .prh-gov-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 992px) {
+  .prh-tools-grid { grid-template-columns: repeat(2, 1fr); }
+  .prh-calc-grid { grid-template-columns: repeat(2, 1fr); }
+  .prh-gov-grid { grid-template-columns: repeat(2, 1fr); }
+  .prh-partner-grid { grid-template-columns: repeat(2, 1fr); }
+  .prh-security-bar { flex-direction: column; gap: 20px; text-align: center; }
+  .prh-security-left { flex-direction: column; }
+  .prh-security-icon-large { margin-right: 0; margin-bottom: 10px; }
+  .prh-security-right { width: 100%; justify-content: center; }
+  .prh-box-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+}
+
+@media (max-width: 576px) {
+  .prh-tools-grid, .prh-calc-grid, .prh-gov-grid, .prh-partner-grid { grid-template-columns: 1fr; }
+}

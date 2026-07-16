@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log(`📄 Page Type Detected: ${pageType}`);
   
   // Initialize CORE features (all pages)
-  initializeMobileMenu();
   initializeForms();
   initializeScrollElements();
   initializeStickyContactBar();
@@ -1084,12 +1083,54 @@ console.log('🎯 Solis Green India JS Loaded Successfully');
 
 
 // =========================================================
+// HEADER LOADER
+// =========================================================
+document.addEventListener('DOMContentLoaded', function() {
+  const headerPlaceholder = document.getElementById('header-placeholder');
+  if (headerPlaceholder) {
+    fetch('/header.html', { cache: 'no-cache' })
+      .then(response => {
+        if (!response.ok) throw new Error('Header not found');
+        return response.text();
+      })
+      .then(html => {
+        headerPlaceholder.innerHTML = html;
+        
+        // Initialize header dependent scripts
+        if (typeof initializeMobileMenu === 'function') {
+          initializeMobileMenu();
+        }
+        
+        // Highlight active link based on current path
+        const path = window.location.pathname;
+        let navType = 'home';
+        if (path.includes('/services/') || path.includes('-kerala')) navType = 'services';
+        else if (path.includes('/cities/') || path.includes('solar-company-in') || path.includes('solar-installer-near-me') || path.includes('solar-consultant-')) navType = 'cities';
+        else if (path.includes('/projects/')) navType = 'projects';
+        else if (path.includes('/about/')) navType = 'about';
+        else if (path.includes('/careers/')) navType = 'careers';
+        else if (path.includes('/contact/')) navType = 'contact';
+        else if (path !== '/' && path !== '/index.html' && path !== '') navType = 'services'; // Fallback for various specific service pages
+        
+        const mainNav = document.getElementById('mainNav');
+        if (mainNav) {
+          const links = mainNav.querySelectorAll('a');
+          links.forEach(link => link.classList.remove('active'));
+          const activeLink = mainNav.querySelector(`a[data-nav="${navType}"]`);
+          if (activeLink) activeLink.classList.add('active');
+        }
+      })
+      .catch(err => console.error('Error loading header:', err));
+  }
+});
+
+// =========================================================
 // FOOTER LOADER
 // =========================================================
 document.addEventListener('DOMContentLoaded', function() {
   const footerPlaceholder = document.getElementById('footer-placeholder');
   if (footerPlaceholder) {
-    fetch('/footer.html')
+    fetch('/footer.html', { cache: 'no-cache' })
       .then(response => {
         if (!response.ok) throw new Error('Footer not found');
         return response.text();
@@ -1102,5 +1143,73 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       })
       .catch(err => console.error('Error loading footer:', err));
+  }
+});
+
+// =========================================================
+// PM SURYA GHAR GLOBAL URGENCY BANNER
+// =========================================================
+document.addEventListener('DOMContentLoaded', function() {
+  const path = window.location.pathname;
+  const href = window.location.href;
+  
+  // List of paths where the banner should appear
+  const allowedPaths = [
+    '/',
+    '/index.html',
+    '/3kw-solar-system-kerala-price/',
+    '/3kw-solar-system-kerala-price/index.html',
+    '/5kw-solar-system-kerala-price/',
+    '/5kw-solar-system-kerala-price/index.html',
+    '/pm-surya-ghar-subsidy-kerala/',
+    '/pm-surya-ghar-subsidy-kerala/index.html'
+  ];
+
+  // Check if it's an allowed production path OR if we are testing locally
+  const isAllowed = allowedPaths.includes(path) || 
+                    allowedPaths.includes(path + '/') || 
+                    href.includes('index.html') || 
+                    href.includes('price') || 
+                    href.includes('subsidy');
+
+  if (isAllowed) {
+    // Inject Banner HTML
+    const bannerHTML = `
+      <div id="pm-surya-banner">
+        <p>
+          ⚠️ <strong>URGENT:</strong> PM Surya Ghar Scheme officially closes on <strong>March 31, 2027</strong>. 
+          <span>Time remaining:</span> <span id="pm-timer-display" class="pm-timer-box">Calculating...</span>
+        </p>
+        <a href="https://wa.me/918301849474?text=I%20want%20to%20claim%20the%20PM%20Surya%20Ghar%20Subsidy%20before%20the%20deadline" target="_blank" class="pm-banner-btn">Claim ₹78,000 Subsidy Now</a>
+      </div>
+    `;
+    
+    // Insert at the very top of the body
+    document.body.insertAdjacentHTML('afterbegin', bannerHTML);
+
+    // Countdown Logic
+    const countdownDate = new Date("March 31, 2027 23:59:59").getTime();
+    const timerDisplay = document.getElementById("pm-timer-display");
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance < 0) {
+        timerDisplay.innerHTML = "SCHEME CLOSED";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      timerDisplay.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Run immediately, then every second
+    updateTimer();
+    setInterval(updateTimer, 1000);
   }
 });

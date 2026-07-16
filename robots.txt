@@ -27,4 +27,4 @@ Allow: /css/
 Allow: /js/
 
 # SITEMAP
-Sitemap: https://solisgreenindia.in/sitemap.xml
+Sitemap: https://www.solisgreenindia.in/sitemap.xml

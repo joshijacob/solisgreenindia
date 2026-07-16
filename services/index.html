@@ -17,13 +17,13 @@
     <meta property="og:url" content="https://www.solisgreenindia.in/services/">
     
     <!-- Preload Critical Assets -->
-    <link rel="preload" href="../images/services/hero-services.webp" as="image" type="image/webp">
+    <link rel="preload" href="/images/services/hero-services.webp" as="image" type="image/webp">
     
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=GTM-5C2D5BG9'+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5C2D5BG9');</script>
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -593,32 +593,7 @@
     </div>
     
     <!-- Unified Header -->
-    <header class="solis-header">
-        <div class="header-inner">
-            <div class="header-logo">
-                <a href="/">
-                    <img src="/images/logo/logo.png" alt="Solis Green Energy Solutions">
-                </a>
-            </div>
-            
-            <nav class="header-menu" id="mainNav">
-                <a href="/">Home</a>
-                <a href="/services/" class="active">Services</a>
-                <a href="/cities/">Service Areas</a>
-                <a href="/about/">About</a>
-                <a href="/projects/">Projects</a>
-                <a href="/contact/">Contact</a>
-            </nav>
-            
-            <div class="header-cta">
-                <a href="tel:8301849474" class="contact-btn">Call Now</a>
-                <a href="https://wa.me/918301849474" target="_blank" class="whatsapp-btn">WhatsApp</a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+    <div id="header-placeholder"></div>
     
     <!-- Services Hero Section -->
     <section class="services-hero">
@@ -662,6 +637,9 @@
                 </button>
                 <button class="tab-btn" data-tab="subsidy">
                     <i class="fas fa-hand-holding-usd"></i> Subsidy Support
+                </button>
+                <button class="tab-btn" data-tab="tata-power">
+                    <i class="fas fa-certificate"></i> Tata Power Solar
                 </button>
             </div>
             
@@ -820,6 +798,53 @@
             </div>
             
             <!-- Other tabs content structure similar... -->
+            
+            <!-- Tata Power Solar Tab -->
+            <div class="tab-content" id="tata-power">
+                <div class="service-detail-card">
+                    <div class="service-header" style="background: linear-gradient(135deg, #0b457a, #0088cc);">
+                        <i class="fas fa-solar-panel"></i>
+                        <h2>Tata Power Solar Installations</h2>
+                        <p>Authorized installation partner for Tata Power Solar. Tier-1 quality, 25-year reliability.</p>
+                    </div>
+                    
+                    <div class="service-body">
+                        <h3>India's #1 Solar Brand</h3>
+                        <p>As an authorized installation partner for Tata Power Solar, we bring you the most trusted solar technology in India. Benefit from unmatched durability and comprehensive warranty support directly from the Tata group.</p>
+                        
+                        <div class="service-features-grid">
+                            <div class="feature-check">
+                                <i class="fas fa-check-circle" style="color: #0088cc;"></i>
+                                <div>
+                                    <h4>Unmatched Durability</h4>
+                                    <p>Panels designed to withstand extreme weather conditions.</p>
+                                </div>
+                            </div>
+                            <div class="feature-check">
+                                <i class="fas fa-check-circle" style="color: #0088cc;"></i>
+                                <div>
+                                    <h4>Pan-India Service Network</h4>
+                                    <p>Backed by Tata's robust service infrastructure.</p>
+                                </div>
+                            </div>
+                            <div class="feature-check">
+                                <i class="fas fa-check-circle" style="color: #0088cc;"></i>
+                                <div>
+                                    <h4>High Efficiency</h4>
+                                    <p>Premium modules ensuring maximum power generation.</p>
+                                </div>
+                            </div>
+                            <div class="feature-check">
+                                <i class="fas fa-check-circle" style="color: #0088cc;"></i>
+                                <div>
+                                    <h4>25-Year Brand Warranty</h4>
+                                    <p>Long-term peace of mind guaranteed by Tata.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -1254,7 +1279,7 @@
     </button>
     
     <!-- Load Universal JavaScript -->
-    <script src="/script.js"></script>
+    <script src="/script.js?v=5"></script>
     
     <!-- Services Page Specific JavaScript -->
     <script>

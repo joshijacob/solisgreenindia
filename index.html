@@ -45,30 +45,7 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ========== HEADER ========== -->
-  <header class="solis-header">
-    <div class="header-inner">
-      <div class="header-logo">
-        <a href="/"><img src="/images/logo/logo.png" alt="Solis Green Energy Solutions"></a>
-      </div>
-
-      <!-- Hamburger button for mobile -->
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
-
-      <nav class="header-menu" id="mainNav">
-        <a href="/" class="active">Home</a>
-        <a href="/services/">Services</a>
-        <a href="/cities/">Service Areas</a>
-        <a href="/projects/">Projects</a>
-        <a href="/about/">About</a>
-        <a href="/contact/">Contact</a>
-      </nav>
-
-      <div class="header-cta">
-        <a href="tel:8301849474" class="contact-btn">Call</a>
-        <a href="https://wa.me/918301849474" class="whatsapp-btn" target="_blank">WhatsApp</a>
-      </div>
-    </div>
-  </header>
+  <div id="header-placeholder"></div>
 
   <!-- ========== HERO SECTION ========== -->
   <section class="town-hero hero-glass-wrapper">
@@ -88,14 +65,25 @@
 </section>
 
   <!-- ========== TRUST STRIP ========== -->
-  <section class="benefits-bar">
+  <section class="trust-bar-section">
     <div class="container">
-      <div class="benefits-grid">
-        <div class="benefit-item">₹78,000 Subsidy</div>
-        <div class="benefit-item">KSEB Net Metering</div>
-        <div class="benefit-item">SBI Loan @ 6%</div>
-        <div class="benefit-item">500+ Installations</div>
-        <div class="benefit-item">Since 2019</div>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <i class="fas fa-certificate" style="color: #ea580c;"></i>
+          <span><strong>PM Surya Ghar</strong><br>Empaneled Vendor</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-bolt" style="color: #22c55e;"></i>
+          <span><strong>KSEB Approved</strong><br>Solar Installer</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-handshake" style="color: #3b82f6;"></i>
+          <span><strong>Tata Power</strong><br>Installation Partner</span>
+        </div>
+        <div class="trust-item">
+          <i class="fas fa-medal" style="color: #eab308;"></i>
+          <span><strong>Enphase</strong><br>Gold Installer</span>
+        </div>
       </div>
     </div>
   </section>
@@ -292,24 +280,53 @@
     </div>
   </section>
 
-  <!-- ========== USEFUL LINKS ========== -->
-  <section class="section-light">
-    <div class="container">
-      <h2 class="section-title">Useful Resources</h2>
-      <ul class="useful-links">
-        <li><a href="https://mnre.gov.in/" target="_blank" rel="nofollow noopener">MNRE Official</a></li>
-        <li><a href="https://kseb.in/" target="_blank" rel="nofollow noopener">KSEB Website</a></li>
-        <li><a href="https://wss.kseb.in/selfservices/reCap" target="_blank" rel="nofollow noopener">Check Transformer Capacity</a></li>
-      </ul>
+    <!-- ========== USEFUL RESOURCES CTA ========== -->
+  <section class="section-light" style="padding: 60px 0; background-color: #f7f9fc;">
+    <div class="container" style="text-align: center; max-width: 800px; margin: 0 auto;">
+      <h2 style="font-size: 2rem; color: #111827; margin-bottom: 15px; font-weight: 800;">Planning your solar project?</h2>
+      <p style="font-size: 1.1rem; color: #4b5563; margin-bottom: 30px;">Explore our free Solar Calculators, EMI Estimators, and official KSEB & Government Guidelines.</p>
+      <a href="/useful-resources/" class="btn btn-primary" style="font-size: 1rem; padding: 12px 24px;">Explore Useful Resources <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
     </div>
   </section>
 
-  <!-- ========== FINAL CALL TO ACTION ========== -->
-  <section class="services-cta">
+  <!-- ========== PREMIUM FINAL CALL TO ACTION ========== -->
+  <section class="premium-cta-section">
     <div class="container">
-      <h3>Stop Paying High Electricity Bills</h3>
-      <p>Get a free site survey and custom quote today.</p>
-      <a href="tel:8301849474" class="btn btn-primary btn-large">Call Now: 83018 49474</a>
+      <div class="premium-cta-card">
+        <div class="premium-cta-image">
+          <img src="/images/hero/hero-image-2.webp" alt="Solar Panels on Kerala Home" loading="lazy">
+        </div>
+        <div class="premium-cta-content">
+          <h3>Not sure which system is right for you?</h3>
+          <p>Get a free site survey, subsidy guidance and EMI assistance from Solis Green Energy Solutions.</p>
+          
+          <div class="premium-cta-buttons">
+            <a href="tel:8301849474" class="pcta-btn pcta-btn-orange">
+              <div class="pcta-icon"><i class="fas fa-phone-alt"></i></div>
+              <div class="pcta-text">
+                <span class="pcta-title">Call Now</span>
+                <span class="pcta-sub">83018 49474</span>
+              </div>
+            </a>
+
+            <a href="https://wa.me/918301849474" class="pcta-btn pcta-btn-green" target="_blank">
+              <div class="pcta-icon"><i class="fab fa-whatsapp"></i></div>
+              <div class="pcta-text">
+                <span class="pcta-title">WhatsApp</span>
+                <span class="pcta-sub">Chat with Expert</span>
+              </div>
+            </a>
+
+            <a href="/contact/" class="pcta-btn pcta-btn-white">
+              <div class="pcta-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+              <div class="pcta-text">
+                <span class="pcta-title">Get Free Quote</span>
+                <span class="pcta-sub">Quick Response</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
