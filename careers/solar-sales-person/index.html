@@ -262,19 +262,57 @@
     cursor: pointer;
     font-weight: 600;
 }
-.direct-call-badge {
-    margin-top: 15px;
-    padding: 12px;
-    background: #f1f5f9;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #475569;
+.hr-call-card {
+    margin-top: 22px;
+    padding: 14px 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    transition: all 0.25s ease;
 }
-.direct-call-badge a {
+.hr-call-card:hover {
+    border-color: #0088cc;
+    box-shadow: 0 4px 16px rgba(0, 136, 204, 0.12);
+    transform: translateY(-1px);
+}
+.hr-call-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #eef6fb;
+    color: #0088cc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+}
+.hr-call-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.hr-call-label {
+    font-size: 0.8rem;
+    color: #64748b;
+    font-weight: 500;
+}
+.hr-call-link {
     color: #0b457a;
     font-weight: 700;
+    font-size: 1.05rem;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+.hr-call-link:hover {
+    color: #0088cc;
 }
 </style>
 
@@ -532,8 +570,16 @@
                 <div id="formStatus" style="margin-top: 15px; font-weight: bold; text-align: center;"></div>
             </form>
 
-            <div class="direct-call-badge">
-                <i class="fas fa-phone-alt" style="color: #25D366;"></i> Have questions? Call HR directly at <a href="tel:+918301849474">+91 83018 49474</a>
+            <div class="hr-call-card">
+                <div class="hr-call-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="hr-call-text">
+                    <span class="hr-call-label">Have questions about this role?</span>
+                    <a href="tel:+918301849474" class="hr-call-link">
+                        <i class="fas fa-phone-alt" style="font-size: 0.9rem; color: #25D366;"></i> +91&nbsp;83018&nbsp;49474
+                    </a>
+                </div>
             </div>
         </div>
     </div>
