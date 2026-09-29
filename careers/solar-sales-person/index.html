@@ -239,28 +239,41 @@
 }
 .file-upload-wrapper {
     position: relative;
-    overflow: hidden;
-    display: inline-block;
+    display: block;
     width: 100%;
+    cursor: pointer;
+    margin: 0;
 }
 .file-upload-wrapper input[type=file] {
-    font-size: 100px;
     position: absolute;
-    left: 0;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
     cursor: pointer;
+    z-index: 5;
 }
 .btn-upload {
-    background: white;
+    background: #ffffff;
     border: 2px dashed #0088cc;
     color: #0088cc;
-    padding: 18px;
+    padding: 16px 20px;
     text-align: center;
-    border-radius: 6px;
+    border-radius: 8px;
     width: 100%;
     cursor: pointer;
     font-weight: 600;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.btn-upload:hover,
+.file-upload-wrapper:hover .btn-upload {
+    background: #f0f7fc;
+    border-color: #006699;
 }
 .hr-call-card {
     margin-top: 22px;
@@ -553,11 +566,12 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>Upload Resume (PDF, DOC, Image) <span style="font-weight: normal; color: #777; font-size: 0.85rem;">(Optional)</span></label>
-                    <div class="file-upload-wrapper">
-                        <div class="btn-upload" id="uploadText"><i class="fas fa-cloud-upload-alt"></i> Click to select resume file (optional)</div>
-                        <input type="file" name="attachment" id="resumeFile" accept=".pdf,.doc,.docx,image/*">
-                    </div>
+                    <label for="resumeFile" style="cursor: pointer;">Upload Resume (PDF, DOC, DOCX, Image) <span style="font-weight: normal; color: #777; font-size: 0.85rem;">(Max 10MB)</span></label>
+                    <label class="file-upload-wrapper" for="resumeFile">
+                        <div class="btn-upload" id="uploadText"><i class="fas fa-cloud-upload-alt"></i> Click to select resume file (PDF, DOC, JPG)</div>
+                        <input type="file" name="attachment" id="resumeFile" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+                    </label>
+                    <div id="fileSelectedInfo" style="display: none; margin-top: 8px; font-size: 0.85rem; color: #1e7e34; font-weight: 600;"></div>
                 </div>
                 
                 <div class="form-group">
@@ -594,11 +608,12 @@
 
 <div id="footer-placeholder"></div>
 
-<script src="/script.js?v=6"></script>
+<script src="/script.js?v=7"></script>
 
 <script>
 const fileInput = document.getElementById('resumeFile');
 const uploadText = document.getElementById('uploadText');
+const fileSelectedInfo = document.getElementById('fileSelectedInfo');
 const formNextUrl = document.getElementById('formNextUrl');
 
 // 1. Configure dynamic redirect URL preserving the domain
@@ -607,13 +622,27 @@ if (formNextUrl) {
     formNextUrl.value = currentCleanUrl + '?success=true';
 }
 
-// 2. Handle file selection label update
+// 2. Handle file selection label and size check
 if (fileInput) {
     fileInput.addEventListener('change', function() {
         if (this.files && this.files.length > 0) {
-            uploadText.innerHTML = '<i class="fas fa-check-circle" style="color: #27ae60;"></i> ' + this.files[0].name;
+            const file = this.files[0];
+            const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+            if (file.size > 10 * 1024 * 1024) {
+                alert('The selected file (' + sizeInMB + ' MB) exceeds FormSubmit limit of 10MB. Please select a smaller PDF or image file.');
+                this.value = '';
+                uploadText.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Click to select resume file (PDF, DOC, JPG)';
+                if (fileSelectedInfo) fileSelectedInfo.style.display = 'none';
+                return;
+            }
+            uploadText.innerHTML = '<i class="fas fa-check-circle" style="color: #27ae60;"></i> ' + file.name;
+            if (fileSelectedInfo) {
+                fileSelectedInfo.style.display = 'block';
+                fileSelectedInfo.innerHTML = '<i class="fas fa-paperclip"></i> Ready to attach: <strong>' + file.name + '</strong> (' + sizeInMB + ' MB)';
+            }
         } else {
-            uploadText.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Click to select resume file (optional)';
+            uploadText.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Click to select resume file (PDF, DOC, JPG)';
+            if (fileSelectedInfo) fileSelectedInfo.style.display = 'none';
         }
     });
 }
@@ -623,10 +652,12 @@ const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get('success') === 'true') {
     const saved = JSON.parse(localStorage.getItem('solis_applied_candidate') || '{}');
     const waText = encodeURIComponent(
-        `Hello Solis Green Energy, I have submitted my application and resume for the Solar Sales Person role in Thiruvalla.\n\n` +
+        `Hello Solis Green Energy HR, I have submitted my application for the Solar Sales Person vacancy in Thiruvalla.\n\n` +
         (saved.fullName ? `👤 Name: ${saved.fullName}\n` : '') +
         (saved.mobile ? `📱 Phone: ${saved.mobile}\n` : '') +
-        (saved.location ? `📍 Location: ${saved.location}\n` : '')
+        (saved.location ? `📍 Town: ${saved.location}\n` : '') +
+        (saved.fileName ? `📄 Resume Attached: ${saved.fileName}\n` : '') +
+        `\nKindly confirm receipt of my application.`
     );
     const waLink = `https://wa.me/918301849474?text=${waText}`;
     
@@ -634,14 +665,14 @@ if (urlParams.get('success') === 'true') {
     if (statusDiv) {
         statusDiv.style.display = 'block';
         statusDiv.innerHTML = `
-            <div style="background: #eafaf1; border: 2px solid #27ae60; padding: 18px; border-radius: 10px; margin-top: 15px; text-align: left;">
-                <p style="margin: 0 0 8px 0; font-size: 1.05rem; color: #1e7e34; font-weight: 700;">
+            <div style="background: #eafaf1; border: 2px solid #27ae60; padding: 20px; border-radius: 12px; margin-top: 15px; text-align: left;">
+                <p style="margin: 0 0 8px 0; font-size: 1.1rem; color: #1e7e34; font-weight: 700;">
                     <i class="fas fa-check-circle"></i> Application & Resume Sent Successfully!
                 </p>
-                <p style="margin: 0 0 14px 0; font-size: 0.9rem; color: #333; line-height: 1.4;">
-                    Your details and resume attachment have been emailed directly to Solis HR. Click below to notify HR on WhatsApp for an immediate response:
+                <p style="margin: 0 0 14px 0; font-size: 0.92rem; color: #333; line-height: 1.5;">
+                    Your details and resume attachment have been emailed directly to Solis HR. An automated confirmation email has also been sent to your email address.
                 </p>
-                <a href="${waLink}" target="_blank" class="btn btn-primary" style="background-color: #25D366; border-color: #25D366; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 1rem; padding: 12px 20px; width: 100%; border-radius: 6px;">
+                <a href="${waLink}" target="_blank" class="btn btn-primary" style="background-color: #25D366; border-color: #25D366; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 1rem; padding: 12px 20px; width: 100%; border-radius: 6px; text-decoration: none;">
                     <i class="fab fa-whatsapp fa-lg"></i> Send WhatsApp Confirmation to HR
                 </a>
             </div>
@@ -655,11 +686,23 @@ document.getElementById('applicationForm').addEventListener('submit', function()
     const fullName = document.getElementById('fullName').value.trim();
     const mobile = document.getElementById('mobile').value.trim();
     const location = document.getElementById('candidateLocation').value.trim();
-    localStorage.setItem('solis_applied_candidate', JSON.stringify({ fullName, mobile, location }));
+    const hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
+    const fileName = hasFile ? fileInput.files[0].name : '';
+
+    localStorage.setItem('solis_applied_candidate', JSON.stringify({ 
+        fullName, 
+        mobile, 
+        location,
+        hasFile,
+        fileName
+    }));
 
     const submitBtn = document.getElementById('submitBtn');
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading Resume & Sending...';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting & Uploading Resume...';
+    // Defer disabling slightly so native form multipart POST can begin uninterrupted
+    setTimeout(function() {
+        submitBtn.disabled = true;
+    }, 50);
 });
 </script>
 

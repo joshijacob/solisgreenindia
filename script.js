@@ -195,7 +195,7 @@ function initializeForms() {
     '.town-quote-form, ' +
     '#mainQuoteForm, ' +
     '#modalQuoteForm, ' +
-    'form[action*="formsubmit"]'
+    'form[action*="formsubmit"]:not(#applicationForm):not([enctype="multipart/form-data"])'
   );
   
   if (forms.length === 0) {
