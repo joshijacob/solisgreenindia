@@ -564,14 +564,66 @@ document.getElementById('applicationForm').addEventListener('submit', async (e) 
     const submitBtn = document.getElementById('submitBtn');
     const statusDiv = document.getElementById('formStatus');
     
-    submitBtn.disabled = true;
-    submitBtn.innerText = "Submitting Application...";
-    statusDiv.innerText = "";
+    const fullName = document.getElementById('fullName').value.trim();
+    const mobile = document.getElementById('mobile').value.trim();
+    const email = document.getElementById('email').value.trim() || "Not Provided";
+    const location = document.getElementById('candidateLocation').value.trim();
+    const experience = document.getElementById('experienceLevel').value;
+    const hasVehicle = document.getElementById('hasVehicle').value;
+    const notes = document.getElementById('message').value.trim() || "None";
     
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting Application...';
+    statusDiv.innerText = "";
+
+    const waText = encodeURIComponent(
+        `Hello Solis Green Energy, I would like to apply for the Solar Sales Person role in Thiruvalla.\n\n` +
+        `👤 Name: ${fullName}\n` +
+        `📱 Phone: ${mobile}\n` +
+        `📍 Location: ${location}\n` +
+        `💼 Experience: ${experience}\n` +
+        `🛵 Two-Wheeler: ${hasVehicle}\n` +
+        `📝 Note: ${notes}`
+    );
+    const waLink = `https://wa.me/918301849474?text=${waText}`;
+
+    let emailSent = false;
+    let resumeUrl = "";
+
     try {
-        let resumeUrl = "";
-        
-        // 1. Try uploading resume to Firebase Storage if available
+        // 1. Send Email Notification directly to Solis Admin via FormSubmit
+        const formData = new FormData();
+        formData.append('_subject', `🚨 Solar Job Application: Solar Sales Person - ${fullName}`);
+        formData.append('_cc', 'solisgreenenergysolutions@gmail.com');
+        formData.append('_template', 'table');
+        formData.append('_captcha', 'false');
+        formData.append('Position', 'Solar Sales Person (Thiruvalla)');
+        formData.append('Candidate Name', fullName);
+        formData.append('Mobile / WhatsApp', mobile);
+        formData.append('Email', email);
+        formData.append('Location / Town', location);
+        formData.append('Experience Level', experience);
+        formData.append('Two-Wheeler & License', hasVehicle);
+        formData.append('Notes / Intro', notes);
+
+        if (fileInput.files && fileInput.files.length > 0) {
+            formData.append('attachment', fileInput.files[0]);
+        }
+
+        try {
+            const fsResponse = await fetch('https://formsubmit.co/ajax/solisgreenindia@gmail.com', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (fsResponse.ok) {
+                emailSent = true;
+            }
+        } catch (mailErr) {
+            console.warn("FormSubmit fetch error:", mailErr);
+        }
+
+        // 2. Also try uploading resume to Firebase Storage & Firestore backup
         if (fileInput.files && fileInput.files.length > 0) {
             try {
                 const file = fileInput.files[0];
@@ -581,57 +633,40 @@ document.getElementById('applicationForm').addEventListener('submit', async (e) 
                 await uploadBytes(storageRef, file);
                 resumeUrl = await getDownloadURL(storageRef);
             } catch (storageErr) {
-                console.warn("Storage upload failed, proceeding with application data:", storageErr);
+                console.warn("Firebase Storage skipped:", storageErr.message);
             }
         }
-        
-        const fullName = document.getElementById('fullName').value.trim();
-        const mobile = document.getElementById('mobile').value.trim();
-        const email = document.getElementById('email').value.trim() || "N/A";
-        const location = document.getElementById('candidateLocation').value.trim();
-        const experience = document.getElementById('experienceLevel').value;
-        const hasVehicle = document.getElementById('hasVehicle').value;
-        const notes = document.getElementById('message').value.trim() || "None";
 
-        const waText = encodeURIComponent(
-            `Hello Solis Green Energy, I would like to apply for the Solar Sales Person role in Thiruvalla.\n\n` +
-            `👤 Name: ${fullName}\n` +
-            `📱 Phone: ${mobile}\n` +
-            `📍 Location: ${location}\n` +
-            `💼 Experience: ${experience}\n` +
-            `🛵 Two-Wheeler: ${hasVehicle}\n` +
-            `📝 Note: ${notes}`
-        );
-        const waLink = `https://wa.me/918301849474?text=${waText}`;
-
-        // 2. Save application data to Firestore
-        const applicationData = {
-            fullName: fullName,
-            email: email,
-            mobile: mobile,
-            location: location,
-            experience: experience,
-            hasVehicle: hasVehicle,
-            message: notes,
-            positionAppliedFor: "Solar Sales Person",
-            resumeUrl: resumeUrl,
-            status: "Applied",
-            createdAt: serverTimestamp()
-        };
-        
-        await addDoc(collection(db, "applicants"), applicationData);
+        try {
+            const applicationData = {
+                fullName: fullName,
+                email: email,
+                mobile: mobile,
+                location: location,
+                experience: experience,
+                hasVehicle: hasVehicle,
+                message: notes,
+                positionAppliedFor: "Solar Sales Person",
+                resumeUrl: resumeUrl,
+                status: "Applied",
+                createdAt: serverTimestamp()
+            };
+            await addDoc(collection(db, "applicants"), applicationData);
+        } catch (dbErr) {
+            console.warn("Firestore backup skipped:", dbErr.message);
+        }
         
         statusDiv.style.color = "#27ae60";
         statusDiv.innerHTML = `
-            <div style="background: #eafaf1; border: 1px solid #27ae60; padding: 16px; border-radius: 8px; margin-top: 15px;">
-                <p style="margin: 0 0 10px 0; font-size: 1rem; color: #1e7e34;">
-                    <i class="fas fa-check-circle"></i> <strong>Application Submitted Successfully!</strong>
+            <div style="background: #eafaf1; border: 2px solid #27ae60; padding: 18px; border-radius: 10px; margin-top: 15px; text-align: left;">
+                <p style="margin: 0 0 8px 0; font-size: 1.05rem; color: #1e7e34; font-weight: 700;">
+                    <i class="fas fa-check-circle"></i> Application Submitted Successfully!
                 </p>
-                <p style="margin: 0 0 12px 0; font-size: 0.9rem; color: #333;">
-                    Our hiring team will review your application and contact you soon.
+                <p style="margin: 0 0 14px 0; font-size: 0.9rem; color: #333; line-height: 1.4;">
+                    Your details have been sent to Solis Green Energy Solutions. To speed up your application, click below to confirm via WhatsApp:
                 </p>
-                <a href="${waLink}" target="_blank" class="btn btn-primary" style="background-color: #25D366; border-color: #25D366; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem; padding: 10px 18px;">
-                    <i class="fab fa-whatsapp fa-lg"></i> Notify HR on WhatsApp
+                <a href="${waLink}" target="_blank" class="btn btn-primary" style="background-color: #25D366; border-color: #25D366; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 1rem; padding: 12px 20px; width: 100%; border-radius: 6px;">
+                    <i class="fab fa-whatsapp fa-lg"></i> Confirm on WhatsApp to HR Now
                 </a>
             </div>
         `;
@@ -639,32 +674,14 @@ document.getElementById('applicationForm').addEventListener('submit', async (e) 
         uploadText.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Click to select resume file (optional)';
         
     } catch (error) {
-        console.error("Application submission fallback:", error);
-        const fullName = document.getElementById('fullName').value.trim();
-        const mobile = document.getElementById('mobile').value.trim();
-        const location = document.getElementById('candidateLocation').value.trim();
-        const experience = document.getElementById('experienceLevel').value;
-        const hasVehicle = document.getElementById('hasVehicle').value;
-        const notes = document.getElementById('message').value.trim() || "None";
-
-        const fallbackWaText = encodeURIComponent(
-            `Hello Solis Green Energy, I am applying for the Solar Sales Person role in Thiruvalla.\n\n` +
-            `👤 Name: ${fullName}\n` +
-            `📱 Phone: ${mobile}\n` +
-            `📍 Location: ${location}\n` +
-            `💼 Experience: ${experience}\n` +
-            `🛵 Two-Wheeler: ${hasVehicle}\n` +
-            `📝 Note: ${notes}`
-        );
-        const fallbackWaLink = `https://wa.me/918301849474?text=${fallbackWaText}`;
-
+        console.error("Submission error:", error);
         statusDiv.style.color = "#333";
         statusDiv.innerHTML = `
             <div style="background: #fef9e7; border: 1px solid #f1c40f; padding: 16px; border-radius: 8px; margin-top: 15px;">
                 <p style="margin: 0 0 8px 0; color: #b7791f; font-weight: 600;">
-                    Complete your application directly via WhatsApp:
+                    Send your application details directly via WhatsApp:
                 </p>
-                <a href="${fallbackWaLink}" target="_blank" class="btn btn-primary" style="background-color: #25D366; border-color: #25D366; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; margin-top: 5px;">
+                <a href="${waLink}" target="_blank" class="btn btn-primary" style="background-color: #25D366; border-color: #25D366; display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; margin-top: 5px; width: 100%; justify-content: center;">
                     <i class="fab fa-whatsapp fa-lg"></i> Send Application to HR WhatsApp
                 </a>
             </div>
