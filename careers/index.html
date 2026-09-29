@@ -7,10 +7,17 @@
 <title>Careers | Solis Green Energy Solutions</title>
 
 <meta name="description"
-content="Join Solis Green Energy Solutions and build your career in Kerala's growing renewable energy industry. Apply for engineering, technician, sales and office positions." />
+content="Join Solis Green Energy Solutions and build your career in Kerala's growing renewable energy industry. Actively hiring Solar Sales Person in Thiruvalla (₹20,000/mo + TA + Incentives), Engineers, and Technicians." />
 
 <meta name="author" content="Solis Green Energy Solutions" />
 <link rel="canonical" href="https://www.solisgreenindia.in/careers/" />
+
+<!-- Open Graph / Social Sharing -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Careers at Solis Green Energy Solutions | We're Hiring" />
+<meta property="og:description" content="We are hiring a Solar Sales Person in Thiruvalla (₹20,000/mo + TA + Incentives). Freshers can also apply!" />
+<meta property="og:image" content="https://www.solisgreenindia.in/images/careers/solar-sales-person-hiring.jpg" />
+<meta property="og:url" content="https://www.solisgreenindia.in/careers/" />
 
 <!-- FAVICON -->
 <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
@@ -23,15 +30,169 @@ content="Join Solis Green Energy Solutions and build your career in Kerala's gro
 
 <style>
 .careers-hero {
-  background: linear-gradient(rgba(11, 69, 122, 0.8), rgba(0, 136, 204, 0.7)),
+  background: linear-gradient(rgba(11, 69, 122, 0.85), rgba(0, 136, 204, 0.78)),
   url('https://images.unsplash.com/photo-1508514177221-188b1c77eca2?auto=format&fit=crop&w=2070&q=80');
   background-size: cover;
   background-position: center;
-  padding: 150px 0 100px;
+  padding: 140px 0 90px;
   text-align: center;
   color: #fff;
   margin-top: 80px;
 }
+.hero-hiring-ticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 8px 18px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.hero-hiring-ticker .pulse-dot {
+  width: 10px;
+  height: 10px;
+  background: #ff4757;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+  animation: pulse-dot 1.8s infinite;
+}
+@keyframes pulse-dot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 8px rgba(255, 71, 87, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+}
+
+/* Featured Hiring Spotlight Section */
+.featured-spotlight-section {
+  padding: 60px 0;
+  background: #f4f8fb;
+}
+.featured-hiring-card {
+  background: #ffffff;
+  border: 2px solid #0088cc;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 136, 204, 0.12);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  position: relative;
+}
+@media(max-width: 992px) {
+  .featured-hiring-card {
+    grid-template-columns: 1fr;
+  }
+}
+.spotlight-content {
+  padding: 40px;
+}
+.spotlight-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ff4757;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+.spotlight-title {
+  font-size: 2.1rem;
+  color: #0b457a;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+.spotlight-location {
+  color: #555;
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.spotlight-location i {
+  color: #e74c3c;
+}
+.compensation-ribbon {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 25px;
+}
+.comp-card {
+  background: #eef6fb;
+  border-left: 4px solid #0088cc;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+.comp-card .comp-label {
+  font-size: 0.75rem;
+  color: #555;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.comp-card .comp-val {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #0b457a;
+  margin-top: 2px;
+}
+.ideal-candidate-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+}
+.ideal-candidate-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 10px;
+  font-size: 0.98rem;
+  color: #333;
+  line-height: 1.5;
+}
+.ideal-candidate-list li::before {
+  content: '\f058';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  color: #27ae60;
+  font-size: 1.1rem;
+}
+.spotlight-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.spotlight-poster-pane {
+  background: linear-gradient(135deg, #0b457a, #0088cc);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+.spotlight-poster-img {
+  max-width: 100%;
+  max-height: 440px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s;
+}
+.spotlight-poster-img:hover {
+  transform: scale(1.02);
+}
+
 .icon-card {
     background: white;
     padding: 30px;
@@ -52,30 +213,64 @@ content="Join Solis Green Energy Solutions and build your career in Kerala's gro
     gap: 30px;
     margin-top: 40px;
 }
+
+/* Openings section styling */
 .job-card {
     background: white;
-    border-radius: 10px;
-    padding: 25px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
+    border-radius: 12px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    margin-bottom: 18px;
     border-left: 5px solid var(--primary-blue);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: box-shadow 0.3s;
+    transition: all 0.3s ease;
+}
+.job-card.urgent {
+    border-left-color: #ff4757;
+    background: #fffdfd;
+    box-shadow: 0 6px 18px rgba(255, 71, 87, 0.08);
 }
 .job-card:hover {
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
 }
-.job-info h3 { margin-bottom: 10px; color: var(--primary-dark); }
+.job-info h3 { 
+    margin-bottom: 8px; 
+    color: var(--primary-dark); 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 1.25rem;
+}
+.badge-urgent-sm {
+    background: #ff4757;
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+.badge-salary-highlight {
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
 .job-meta {
     display: flex;
     gap: 15px;
     color: #666;
     font-size: 0.9rem;
     flex-wrap: wrap;
+    margin-top: 6px;
 }
-.job-meta span { display: flex; align-items: center; gap: 5px; }
+.job-meta span { display: flex; align-items: center; gap: 6px; }
 
 .search-bar {
     background: white;
@@ -90,9 +285,14 @@ content="Join Solis Green Energy Solutions and build your career in Kerala's gro
 .search-bar input, .search-bar select {
     padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 6px;
     flex: 1;
     min-width: 200px;
+    font-family: inherit;
+}
+.search-bar input:focus, .search-bar select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
 }
 .gallery-grid {
     display: grid;
@@ -106,8 +306,9 @@ content="Join Solis Green Energy Solutions and build your career in Kerala's gro
     border-radius: 10px;
 }
 
-@media(max-width: 768px) {
-    .job-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+@media(max-width: 860px) {
+    .job-card { flex-direction: column; align-items: flex-start; gap: 18px; }
+    .spotlight-content { padding: 25px; }
 }
 </style>
 
@@ -149,12 +350,86 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <section class="careers-hero">
 <div class="container">
-<h1>Join Our Team</h1>
-<p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem;">Build your career with one of Kerala's growing solar EPC companies. Work on residential, commercial, industrial and Tata Power Solar projects across South Kerala.</p>
-<div class="hero-buttons" style="margin-top: 30px; justify-content: center;">
-<a href="#openings" class="btn btn-primary pulse-animation">View Open Positions</a>
-<a href="https://wa.me/918301849474" class="btn btn-outline" style="color:white; border-color:white;" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp HR</a>
+  <div class="hero-hiring-ticker">
+    <span class="pulse-dot"></span>
+    <span>🚨 Active Opening: Solar Sales Person (Thiruvalla) — ₹20,000/mo + TA + Incentives</span>
+  </div>
+  <h1>Join Our Team at Solis Green Energy</h1>
+  <p style="max-width: 820px; margin: 0 auto; font-size: 1.15rem; line-height: 1.6;">Build an impactful career with one of Kerala's fastest-growing solar EPC providers. Join our authorized Tata Power Solar installations team across South & Central Kerala.</p>
+  <div class="hero-buttons" style="margin-top: 30px; justify-content: center; gap: 15px; display: flex; flex-wrap: wrap;">
+    <a href="#urgent-spotlight" class="btn btn-primary pulse-animation"><i class="fas fa-fire"></i> Solar Sales Opening</a>
+    <a href="#openings" class="btn btn-outline" style="color:white; border-color:white;">View All Positions</a>
+    <a href="https://wa.me/918301849474?text=Hello%20Solis%20Green%20Energy%2C%20I%20am%20interested%20in%20career%20opportunities." class="btn btn-outline" style="color:white; border-color:#25D366; background: rgba(37,211,102,0.2);" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp HR</a>
+  </div>
 </div>
+</section>
+
+<!-- ========================================== -->
+<!-- FEATURED SPOTLIGHT: SOLAR SALES PERSON      -->
+<!-- ========================================== -->
+<section id="urgent-spotlight" class="featured-spotlight-section">
+<div class="container">
+  <div class="featured-hiring-card">
+    
+    <!-- Left Column: Job Details & CTA -->
+    <div class="spotlight-content">
+      <span class="spotlight-badge"><i class="fas fa-fire"></i> We're Hiring — Urgent Requirement</span>
+      <h2 class="spotlight-title">Solar Sales Person</h2>
+      <div class="spotlight-location">
+        <i class="fas fa-map-marker-alt"></i> <strong>Thiruvalla & Surrounding Areas</strong> (Pathanamthitta, Kottayam & Alappuzha borders)
+      </div>
+
+      <div class="compensation-ribbon">
+        <div class="comp-card">
+          <div class="comp-label">Monthly Package</div>
+          <div class="comp-val">₹20,000/-</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-label">Travel Allowance</div>
+          <div class="comp-val">+ Extra</div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-label">Incentives</div>
+          <div class="comp-val">+ Extra</div>
+        </div>
+      </div>
+
+      <h4 style="color: #0b457a; margin-bottom: 12px; font-size: 1.1rem;"><i class="fas fa-check-circle" style="color: #0088cc;"></i> Who Can Apply?</h4>
+      <ul class="ideal-candidate-list">
+        <li><strong>Good communication skills:</strong> Confident interaction with prospective rooftop solar clients.</li>
+        <li><strong>Willingness to travel locally:</strong> Customer visits and rooftop site assessments in and around Thiruvalla.</li>
+        <li><strong>Experience preferred:</strong> Direct sales, retail, banking, or customer interaction experience is an advantage.</li>
+        <li><strong>Target-oriented & self-motivated:</strong> Driven to help homeowners save with green solar power.</li>
+        <li><strong>Freshers can also apply!</strong> Comprehensive product & technical training provided.</li>
+      </ul>
+
+      <div class="spotlight-actions">
+        <a href="https://wa.me/918301849474?text=Hello%20Solis%20Green%20Energy%2C%20I%20am%20interested%20in%20applying%20for%20the%20Solar%20Sales%20Person%20position%20in%20Thiruvalla." 
+           target="_blank" 
+           class="btn btn-primary" 
+           style="background-color: #25D366; border-color: #25D366; padding: 12px 22px; font-size: 1rem;">
+          <i class="fab fa-whatsapp fa-lg"></i> Apply on WhatsApp
+        </a>
+        <a href="/careers/solar-sales-person/" class="btn btn-primary" style="padding: 12px 20px;">
+          View Full Details & Apply Online <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="tel:8301849474" class="btn btn-outline" style="padding: 12px 18px;">
+          <i class="fas fa-phone-alt"></i> Call HR
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Column: Poster Image Preview -->
+    <div class="spotlight-poster-pane">
+      <a href="/images/careers/solar-sales-person-hiring.jpg" target="_blank" title="Click to view full flyer">
+        <img src="/images/careers/solar-sales-person-hiring.jpg" alt="We're Hiring Solar Sales Person Thiruvalla - Solis Green Energy" class="spotlight-poster-img">
+      </a>
+      <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.9;">
+        <i class="fas fa-search-plus"></i> Click poster to enlarge or <a href="/images/careers/solar-sales-person-hiring.jpg" download="Solis-Hiring-Sales-Person.jpg" style="color: #ffd166; font-weight: 600; text-decoration: underline;">download</a>
+      </p>
+    </div>
+
+  </div>
 </div>
 </section>
 
@@ -185,10 +460,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="icon-card"><i class="fas fa-briefcase"></i><h3>Professional Environment</h3><p>Supportive and ethical workplace</p></div>
     <div class="icon-card"><i class="fas fa-level-up-alt"></i><h3>Career Growth</h3><p>Clear paths for advancement</p></div>
     <div class="icon-card"><i class="fas fa-book-reader"></i><h3>Continuous Learning</h3><p>Training and development programs</p></div>
-    <div class="icon-card"><i class="fas fa-gift"></i><h3>Performance Incentives</h3><p>Rewarding excellence</p></div>
+    <div class="icon-card"><i class="fas fa-gift"></i><h3>Performance Incentives</h3><p>Rewarding excellence with high commissions</p></div>
     <div class="icon-card"><i class="fas fa-solar-panel"></i><h3>Latest Technology</h3><p>Work with top tier solar tech</p></div>
     <div class="icon-card"><i class="fas fa-hard-hat"></i><h3>Safety First</h3><p>Highest standards of site safety</p></div>
-    <div class="icon-card"><i class="fas fa-users"></i><h3>Friendly Team</h3><p>Collaborative culture</p></div>
+    <div class="icon-card"><i class="fas fa-users"></i><h3>Friendly Team</h3><p>Collaborative and energetic culture</p></div>
     <div class="icon-card"><i class="fas fa-map-marked-alt"></i><h3>Projects Across Kerala</h3><p>Diverse project locations</p></div>
 </div>
 </div>
@@ -200,11 +475,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 class="section-title text-center">Current Openings</h2>
 
 <div class="search-bar">
-    <input type="text" id="jobSearch" placeholder="Search job titles...">
+    <input type="text" id="jobSearch" placeholder="Search job titles or keywords...">
     <select id="deptFilter">
         <option value="">All Departments</option>
-        <option value="Engineering">Engineering</option>
         <option value="Sales">Sales</option>
+        <option value="Engineering">Engineering</option>
         <option value="Operations">Operations</option>
         <option value="Administration">Administration</option>
     </select>
@@ -218,7 +493,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 
 <div id="jobsList">
-    <div class="text-center" style="padding: 40px;"><i class="fas fa-spinner fa-spin fa-2x"></i><p>Loading open positions...</p></div>
+    <!-- Rendered dynamically via JavaScript with fallback -->
 </div>
 
 </div>
@@ -260,28 +535,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 class="section-title text-center">Frequently Asked Questions</h2>
 <div class="faq-accordion" style="max-width: 800px; margin: 0 auto;">
     <div class="faq-item">
-        <button class="faq-question">Can freshers apply?<i class="fas fa-chevron-down"></i></button>
-        <div class="faq-answer"><p>Yes, we have internship programs and junior roles where we provide full training for passionate candidates.</p></div>
+        <button class="faq-question">Can freshers apply for the Solar Sales Person position?<i class="fas fa-chevron-down"></i></button>
+        <div class="faq-answer"><p><strong>Yes, absolutely!</strong> While sales and customer interaction experience is an advantage, energetic freshers with good communication skills in Malayalam and a hunger to succeed are warmly encouraged to apply. Full technical and sales training is provided.</p></div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">What is the compensation package for the Solar Sales Person?<i class="fas fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>The position offers a guaranteed <strong>₹20,000/- monthly package</strong>. In addition, <strong>Travel Allowance</strong> is provided for client visits, and substantial <strong>Performance Incentives</strong> are awarded on every successful rooftop installation order.</p></div>
     </div>
     <div class="faq-item">
         <button class="faq-question">Is solar experience mandatory?<i class="fas fa-chevron-down"></i></button>
-        <div class="faq-answer"><p>It depends on the role. For senior technical and sales roles, experience is preferred. For other roles, a strong desire to learn is enough.</p></div>
+        <div class="faq-answer"><p>No, not for junior and field sales positions. For senior engineering roles, solar experience is preferred. For sales and field positions, enthusiasm, good communication, and dedication are what matter most.</p></div>
     </div>
     <div class="faq-item">
         <button class="faq-question">Do you provide training?<i class="fas fa-chevron-down"></i></button>
-        <div class="faq-answer"><p>Absolutely. All new hires go through a comprehensive induction and continuous safety and technical training.</p></div>
+        <div class="faq-answer"><p>Yes! Every new team member undergoes structured on-the-job training covering solar technical basics, KSEB net-metering norms, the PM Surya Ghar subsidy process, and customer presentation techniques.</p></div>
     </div>
     <div class="faq-item">
-        <button class="faq-question">Do I need my own vehicle?<i class="fas fa-chevron-down"></i></button>
-        <div class="faq-answer"><p>For field roles (Sales Executive, Site Supervisor), a two-wheeler is mandatory. Travel allowances are provided.</p></div>
+        <button class="faq-question">Do I need my own vehicle for sales roles?<i class="fas fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>Yes, for field sales roles (like Solar Sales Person), a two-wheeler with a valid driving license is preferred for convenient local customer visits. Travel and fuel allowances are provided separately.</p></div>
     </div>
     <div class="faq-item">
-        <button class="faq-question">Which districts do you operate?<i class="fas fa-chevron-down"></i></button>
-        <div class="faq-answer"><p>We operate across central and south Kerala, including Pathanamthitta, Kottayam, Kollam, Alappuzha, and Trivandrum.</p></div>
+        <button class="faq-question">Which districts do you operate in?<i class="fas fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>Our primary operations and installations cover Pathanamthitta (Thiruvalla HQ), Kottayam, Kollam, Alappuzha, and Thiruvananthapuram.</p></div>
     </div>
     <div class="faq-item">
-        <button class="faq-question">How long is the recruitment process?<i class="fas fa-chevron-down"></i></button>
-        <div class="faq-answer"><p>Typically 1-2 weeks from application to offer, involving a telephonic round and a face-to-face interview.</p></div>
+        <button class="faq-question">How can I apply immediately?<i class="fas fa-chevron-down"></i></button>
+        <div class="faq-answer"><p>You can send your details directly to our HR team on WhatsApp at <a href="https://wa.me/918301849474" target="_blank" style="color: #25D366; font-weight: bold;">+91 83018 49474</a> or apply online through the individual job pages.</p></div>
     </div>
 </div>
 </div>
@@ -289,72 +568,253 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <div id="footer-placeholder"></div>
 
-<script src="/script.js?v=5"></script>
+<script src="/script.js?v=6"></script>
 
-<!-- Firebase Client Logic for Careers -->
+<!-- Openings Management & Firestore Integration -->
 <script type="module">
-import { db } from "./js/firebase-config.js";
-import { collection, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+// Standard curated job openings (Guaranteed offline / fast fallback)
+const defaultJobs = [
+    {
+        id: "solar-sales-person",
+        title: "Solar Sales Person",
+        slug: "solar-sales-person",
+        department: "Sales",
+        location: "Thiruvalla & surrounding areas",
+        type: "Full Time",
+        experience: "Freshers & Experienced",
+        salary: "₹20,000/mo + TA + Incentives",
+        isUrgent: true,
+        isActive: true
+    },
+    {
+        id: "sales-executive",
+        title: "Sales Executive",
+        slug: "sales-executive",
+        department: "Sales",
+        location: "Trivandrum / Kollam / Pathanamthitta",
+        type: "Full Time",
+        experience: "1-3 Years",
+        salary: "Fixed Salary + High Incentives",
+        isUrgent: false,
+        isActive: true
+    },
+    {
+        id: "solar-project-engineer",
+        title: "Solar Project Engineer",
+        slug: "solar-project-engineer",
+        department: "Engineering",
+        location: "Kerala (Various Districts)",
+        type: "Full Time",
+        experience: "2-4 Years",
+        salary: "Industry Standard",
+        isUrgent: false,
+        isActive: true
+    },
+    {
+        id: "solar-site-supervisor",
+        title: "Solar Site Supervisor",
+        slug: "solar-site-supervisor",
+        department: "Operations",
+        location: "Kerala (Various Districts)",
+        type: "Full Time",
+        experience: "1-3 Years",
+        salary: "Based on Experience",
+        isUrgent: false,
+        isActive: true
+    },
+    {
+        id: "electrical-technician",
+        title: "Electrical Technician",
+        slug: "electrical-technician",
+        department: "Engineering",
+        location: "Kerala (Various Districts)",
+        type: "Full Time",
+        experience: "1+ Years",
+        salary: "Based on Experience",
+        isUrgent: false,
+        isActive: true
+    },
+    {
+        id: "solar-installation-technician",
+        title: "Solar Installation Technician",
+        slug: "solar-installation-technician",
+        department: "Operations",
+        location: "Kerala (Various Districts)",
+        type: "Full Time",
+        experience: "0-2 Years",
+        salary: "Based on Experience",
+        isUrgent: false,
+        isActive: true
+    },
+    {
+        id: "marketing-executive",
+        title: "Marketing Executive",
+        slug: "marketing-executive",
+        department: "Sales",
+        location: "Thiruvalla",
+        type: "Full Time",
+        experience: "1-2 Years",
+        salary: "Based on Experience",
+        isUrgent: false,
+        isActive: true
+    },
+    {
+        id: "office-administrator",
+        title: "Office Administrator",
+        slug: "office-administrator",
+        department: "Administration",
+        location: "Thiruvalla",
+        type: "Full Time",
+        experience: "1-3 Years",
+        salary: "Based on Experience",
+        isUrgent: false,
+        isActive: true
+    },
+    {
+        id: "customer-support-executive",
+        title: "Customer Support Executive",
+        slug: "customer-support-executive",
+        department: "Administration",
+        location: "Thiruvalla",
+        type: "Full Time",
+        experience: "0-2 Years",
+        salary: "Based on Experience",
+        isUrgent: false,
+        isActive: true
+    },
+    {
+        id: "accounts-assistant",
+        title: "Accounts Assistant",
+        slug: "accounts-assistant",
+        department: "Administration",
+        location: "Thiruvalla",
+        type: "Full Time",
+        experience: "1-3 Years",
+        salary: "Based on Experience",
+        isUrgent: false,
+        isActive: true
+    },
+    {
+        id: "store-keeper",
+        title: "Store Keeper",
+        slug: "store-keeper",
+        department: "Operations",
+        location: "Thiruvalla",
+        type: "Full Time",
+        experience: "1-2 Years",
+        salary: "Based on Experience",
+        isUrgent: false,
+        isActive: true
+    },
+    {
+        id: "internship-program",
+        title: "Solar Internship Program",
+        slug: "internship-program",
+        department: "Engineering",
+        location: "Thiruvalla",
+        type: "Internship",
+        experience: "Fresher / College Students",
+        salary: "Stipend Provided",
+        isUrgent: false,
+        isActive: true
+    }
+];
 
 const jobsList = document.getElementById('jobsList');
 const searchInput = document.getElementById('jobSearch');
 const deptFilter = document.getElementById('deptFilter');
 const typeFilter = document.getElementById('typeFilter');
 
-let allJobs = [];
+let allJobs = [...defaultJobs];
 
-async function fetchJobs() {
+// Render immediately with default data so candidate never sees a loading flicker
+renderJobs();
+
+// Attempt to load dynamic updates from Firestore if available
+async function fetchFirebaseJobs() {
     try {
+        const { db } = await import("./js/firebase-config.js");
+        const { collection, getDocs, query, where, orderBy } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+        
         const q = query(collection(db, "jobs"), where("isActive", "==", true), orderBy("createdAt", "desc"));
         const snapshot = await getDocs(q);
         
-        allJobs = [];
-        snapshot.forEach(doc => {
-            const data = doc.data();
-            data.id = doc.id;
-            allJobs.push(data);
-        });
-        
-        renderJobs();
+        if (!snapshot.empty) {
+            const dynamicJobs = [];
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                data.id = doc.id;
+                dynamicJobs.push(data);
+            });
+            if (dynamicJobs.length > 0) {
+                // Ensure Solar Sales Person stays at the top if present
+                const salesPersonJob = defaultJobs[0];
+                const hasSales = dynamicJobs.some(j => j.slug === 'solar-sales-person');
+                allJobs = hasSales ? dynamicJobs : [salesPersonJob, ...dynamicJobs];
+                renderJobs();
+            }
+        }
     } catch (error) {
-        console.error("Error fetching jobs:", error);
-        jobsList.innerHTML = '<div class="text-center" style="padding: 40px; color: red;">Error loading jobs. Ensure database is configured properly.</div>';
+        console.info("Using curated static job listings (offline / database fallback active):", error.message);
     }
 }
 
 function renderJobs() {
-    const searchTerm = searchInput.value.toLowerCase();
-    const dept = deptFilter.value;
-    const type = typeFilter.value;
+    const searchTerm = (searchInput ? searchInput.value : '').toLowerCase().trim();
+    const dept = deptFilter ? deptFilter.value : '';
+    const type = typeFilter ? typeFilter.value : '';
 
     const filteredJobs = allJobs.filter(job => {
-        const matchesSearch = job.title.toLowerCase().includes(searchTerm);
-        const matchesDept = dept ? job.department === dept : true;
-        const matchesType = type ? job.type === type : true;
+        const matchesSearch = !searchTerm || 
+            job.title.toLowerCase().includes(searchTerm) || 
+            job.location.toLowerCase().includes(searchTerm) ||
+            job.department.toLowerCase().includes(searchTerm);
+        const matchesDept = dept ? job.department.toLowerCase().includes(dept.toLowerCase()) : true;
+        const matchesType = type ? job.type.toLowerCase().includes(type.toLowerCase()) : true;
         return matchesSearch && matchesDept && matchesType;
     });
 
     if (filteredJobs.length === 0) {
-        jobsList.innerHTML = '<div class="text-center" style="padding: 40px;">No open positions found matching your criteria.</div>';
+        jobsList.innerHTML = '<div class="text-center" style="padding: 40px; background: white; border-radius: 8px;"><i class="fas fa-search fa-2x" style="color: #bbb; margin-bottom: 10px;"></i><p>No open positions match your search criteria. Please try different keywords or filters.</p></div>';
         return;
     }
 
     let html = '';
     filteredJobs.forEach(job => {
+        const isUrgent = job.isUrgent || job.slug === 'solar-sales-person';
+        const urgentBadge = isUrgent ? '<span class="badge-urgent-sm"><i class="fas fa-fire"></i> Urgent Opening</span>' : '';
+        const salaryBadge = job.salary ? `<span class="badge-salary-highlight"><i class="fas fa-money-bill-wave"></i> ${job.salary}</span>` : '';
+        const detailUrl = `/careers/${job.slug}/`;
+
         html += `
-            <div class="job-card">
+            <div class="job-card ${isUrgent ? 'urgent' : ''}">
                 <div class="job-info">
-                    <h3>${job.title}</h3>
+                    <h3>
+                        ${job.title}
+                        ${urgentBadge}
+                        ${salaryBadge}
+                    </h3>
                     <div class="job-meta">
-                        <span><i class="fas fa-map-marker-alt"></i> ${job.location}</span>
-                        <span><i class="fas fa-briefcase"></i> ${job.type}</span>
-                        <span><i class="fas fa-building"></i> ${job.department}</span>
-                        <span><i class="fas fa-clock"></i> Exp: ${job.experience}</span>
+                        <span><i class="fas fa-map-marker-alt" style="color: #0088cc;"></i> ${job.location}</span>
+                        <span><i class="fas fa-briefcase" style="color: #0088cc;"></i> ${job.type}</span>
+                        <span><i class="fas fa-building" style="color: #0088cc;"></i> ${job.department}</span>
+                        <span><i class="fas fa-user-clock" style="color: #0088cc;"></i> Exp: ${job.experience}</span>
                     </div>
                 </div>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <a href="tel:8301849474" class="btn btn-outline" style="padding: 10px 15px;"><i class="fas fa-phone-alt"></i> Call</a>
-                    <a href="https://wa.me/918301849474?text=Hello, I am interested in applying for the ${encodeURIComponent(job.title)} position." class="btn btn-primary" target="_blank" style="background-color: #25D366; border-color: #25D366; padding: 10px 15px;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+                    <a href="${detailUrl}" class="btn btn-outline" style="padding: 8px 14px; font-size: 0.9rem;">
+                        View Details
+                    </a>
+                    <a href="tel:8301849474" class="btn btn-outline" style="padding: 8px 12px; font-size: 0.9rem;" title="Call HR">
+                        <i class="fas fa-phone-alt"></i> Call
+                    </a>
+                    <a href="https://wa.me/918301849474?text=Hello%20Solis%20Green%20Energy%2C%20I%20am%20interested%20in%20applying%20for%20the%20${encodeURIComponent(job.title)}%20position." 
+                       class="btn btn-primary" 
+                       target="_blank" 
+                       style="background-color: #25D366; border-color: #25D366; padding: 8px 14px; font-size: 0.9rem;"
+                       title="Apply via WhatsApp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
                 </div>
             </div>
         `;
@@ -363,12 +823,12 @@ function renderJobs() {
     jobsList.innerHTML = html;
 }
 
-searchInput.addEventListener('input', renderJobs);
-deptFilter.addEventListener('change', renderJobs);
-typeFilter.addEventListener('change', renderJobs);
+if (searchInput) searchInput.addEventListener('input', renderJobs);
+if (deptFilter) deptFilter.addEventListener('change', renderJobs);
+if (typeFilter) typeFilter.addEventListener('change', renderJobs);
 
-// Load jobs on page load
-fetchJobs();
+// Initialize Firebase fetch in background
+fetchFirebaseJobs();
 </script>
 
 </body>

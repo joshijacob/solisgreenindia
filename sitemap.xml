@@ -56,9 +56,15 @@
   </url>
   <url>
     <loc>https://www.solisgreenindia.in/careers/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.solisgreenindia.in/careers/solar-sales-person/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.solisgreenindia.in/careers/accounts-assistant/</loc>
@@ -591,6 +597,18 @@
   <url>
     <loc>https://www.solisgreenindia.in/useful-resources/</loc>
     <lastmod>2026-07-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.solisgreenindia.in/tps-kerala-solar-partner/</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.solisgreenindia.in/tata-power-solaroof-kerala/</loc>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

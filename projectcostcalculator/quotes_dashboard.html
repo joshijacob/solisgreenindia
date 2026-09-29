@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solis EPC - Saved Quotes</title>
+    <!-- Auth Check First -->
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="js/firebase-init.js"></script>
+
+    <script src="js/auth.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary premium-nav">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="../images/logo/logo-white.png" alt="Solis Logo" height="30" class="me-2">
+                <span class="fw-bold fs-4">Solis EPC Engine</span>
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-white-50"><i class="fa-solid fa-file-invoice-dollar me-1"></i> Saved Quotes</span>
+                <span class="text-white-50 mx-2">|</span>
+                <a href="admin.html" class="text-white text-decoration-none"><i class="fa-solid fa-database me-1"></i> General Master</a>
+                <span class="text-white-50 mx-2">|</span>
+                <a href="index.html" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-arrow-left"></i> Back to Sales</a>
+                <a href="#" onclick="logout()" class="btn btn-outline-danger border-0 btn-sm text-white ms-2" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4 px-4 pb-5">
+        <div class="row g-4">
+            <!-- Full Width: Quotes Table -->
+            <div class="col-12">
+                <div class="card premium-card">
+                    <div class="card-header bg-white border-bottom pt-3 pb-2 d-flex justify-content-between align-items-center">
+                        <h5 class="fw-bold text-dark mb-0"><i class="fa-solid fa-file-invoice-dollar me-2"></i> Saved Customer Quotes</h5>
+                        <button class="btn btn-sm btn-primary fw-bold" onclick="loadQuotes()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-4">Date</th>
+                                        <th>Customer Name</th>
+                                        <th>Contact</th>
+                                        <th>Capacity</th>
+                                        <th>Sales Executive</th>
+                                        <th class="text-end">Total Price (₹)</th>
+                                        <th class="text-center pe-4">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="quotesTableBody">
+                                    <tr>
+                                        <td colspan="7" class="text-center py-4 text-muted">
+                                            <i class="fa-solid fa-spinner fa-spin me-2"></i> Loading quotes...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quote Details Modal -->
+    <div class="modal fade" id="quoteDetailsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white border-0">
+                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-circle-info me-2"></i>Quote Details</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div id="quoteDetailsContent">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/quotes_dashboard.js"></script>
+</body>
+</html>

@@ -3,6 +3,20 @@ import json
 
 jobs = [
     {
+        "title": "Solar Sales Person",
+        "slug": "solar-sales-person",
+        "department": "Sales",
+        "type": "Full Time",
+        "location": "Thiruvalla & surrounding areas",
+        "experience": "Freshers & Experienced",
+        "qualification": "Any Degree / Plus Two / Diploma",
+        "salary": "₹20,000/- Monthly Package + Travel Allowance + Incentives",
+        "description": "Solis Green Energy Solutions is looking for a motivated Solar Sales Person for Thiruvalla & surrounding areas. Drive rooftop solar awareness and sales with high earnings.",
+        "requirements": "<ul><li>Good communication skills in Malayalam and English.</li><li>Willingness to travel locally within Thiruvalla and nearby areas.</li><li>Sales / customer interaction experience preferred.</li><li>Self-motivated & target-oriented.</li><li><strong>Freshers can also apply!</strong></li></ul>",
+        "responsibilities": "<ul><li>Meet prospective residential and commercial solar clients.</li><li>Explain PM Surya Ghar subsidy benefits (up to ₹78,000) and electricity bill savings.</li><li>Conduct site visits and capture rooftop feasibility information.</li><li>Provide quotations and close solar installation orders.</li><li>Achieve monthly targets and earn attractive incentives.</li></ul>",
+        "benefits": "<ul><li>Fixed Monthly Package: ₹20,000/-</li><li>Travel Allowance (Extra)</li><li>High Performance Incentives (Extra)</li><li>Full On-The-Job Solar Training</li></ul>"
+    },
+    {
         "title": "Solar Project Engineer",
         "slug": "solar-project-engineer",
         "department": "Engineering",

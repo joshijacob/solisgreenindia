@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solis EPC - BOM Templates Master</title>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="js/firebase-init.js"></script>
+
+    <script src="js/auth.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary premium-nav">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="../images/logo/logo-white.png" alt="Solis Logo" height="30" class="me-2">
+                <span class="fw-bold fs-4">Solis EPC Engine</span>
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <a href="admin.html" class="text-white text-decoration-none"><i class="fa-solid fa-database me-1"></i> General Master</a>
+                <span class="text-white-50 mx-2">|</span>
+                <a href="panel_master.html" class="text-white text-decoration-none"><i class="fa-solid fa-boxes-stacked me-1"></i> Panel Master</a>
+                <span class="text-white-50 mx-2">|</span>
+                <a href="inverter_master.html" class="text-white text-decoration-none"><i class="fa-solid fa-plug me-1"></i> Inverter Master</a>
+                <span class="text-white-50 mx-2">|</span>
+                <span class="text-white-50"><i class="fa-solid fa-sitemap me-1"></i> BOM Master</span>
+                <span class="text-white-50 mx-2">|</span>
+                <a href="index.html" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-arrow-left"></i> Back to Sales</a>
+                <a href="#" onclick="logout()" class="btn btn-outline-danger border-0 btn-sm text-white ms-2" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Odoo Style Header Toolbar -->
+    <div class="bg-white border-bottom shadow-sm py-3 mb-4 sticky-top" style="top: 0; z-index: 1000;">
+        <div class="container-fluid px-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h4 class="fw-bold mb-0 text-primary"><i class="fa-solid fa-sitemap me-2"></i> BOM Templates</h4>
+                </div>
+                <div class="col-md-6 text-end">
+                    <button class="btn btn-primary fw-bold" id="btn-create-bom"><i class="fa-solid fa-plus me-1"></i> Create Template</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container-fluid px-4 pb-5">
+        
+        <!-- Tabs -->
+        <ul class="nav nav-pills mb-4 gap-2" id="bomTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-bold px-4" id="ongrid-tab" data-bs-toggle="pill" data-bs-target="#ongrid" type="button" role="tab" aria-controls="ongrid" aria-selected="true">On-Grid</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link fw-bold px-4" id="hybrid-tab" data-bs-toggle="pill" data-bs-target="#hybrid" type="button" role="tab" aria-controls="hybrid" aria-selected="false">Hybrid</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link fw-bold px-4" id="micro-tab" data-bs-toggle="pill" data-bs-target="#micro" type="button" role="tab" aria-controls="micro" aria-selected="false">Micro Inverter</button>
+            </li>
+        </ul>
+
+        <!-- List View -->
+        <div class="card premium-card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th><i class="fa-solid fa-cube me-2 text-secondary"></i>Template Capacity</th>
+                                <th>Profit Margin Base</th>
+                                <th>Components Count</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bom-table-body">
+                            <!-- Injected via JS based on active tab -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Edit BOM Modal -->
+    <div class="modal fade" id="editBomModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-dark text-white border-0">
+                    <h5 class="modal-title fw-bold" id="editBomTitle"><i class="fa-solid fa-pen-to-square me-2"></i> Edit Template</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 bg-light">
+                    <input type="hidden" id="editBomCap">
+                    <div class="row g-3" id="editBomForm">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+                <div class="modal-footer border-0 bg-white">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success fw-bold px-4" id="btn-save-edit-bom"><i class="fa-solid fa-save me-2"></i> Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create BOM Modal -->
+    <div class="modal fade" id="createBomModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white border-0">
+                    <h5 class="modal-title fw-bold"><i class="fa-solid fa-clone me-2"></i> Create New Template</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-muted small">System Type</label>
+                        <select class="form-select fw-bold" id="newBomSysType">
+                            <option value="On-Grid">On-Grid</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="Micro Inverter">Micro Inverter</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted small">New Project Capacity (e.g., 15kW)</label>
+                        <input type="text" class="form-control form-control-lg fw-bold" id="newBomCap" placeholder="15kW" required>
+                    </div>
+                    <button class="btn btn-success w-100 fw-bold py-2" id="btn-save-new-bom">
+                        <i class="fa-solid fa-check me-2"></i> Create Template
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/bom_master.js"></script>
+</body>
+</html>
