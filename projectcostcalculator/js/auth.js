@@ -4,25 +4,35 @@ const VALID_USERS = [
     { email: "joshijacob@gmail.com", password: "Joshi@1985", role: "sales" }
 ];
 
-// Check if we are on the login page
-const isLoginPage = window.location.pathname.endsWith('login.html') || window.location.pathname.endsWith('/login');
+// Cross-tab sync: restore sessionStorage from localStorage if available
+if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
+    sessionStorage.setItem('solis_auth_token', 'true');
+    sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
+    sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
+}
+
+// Check if we are on a login page
+const isLoginPage = window.location.pathname.endsWith('login.html') || 
+                    window.location.pathname.endsWith('/login') || 
+                    window.location.pathname.toLowerCase().includes('/login/');
 
 // Check authentication status
 const isAuthenticated = sessionStorage.getItem('solis_auth_token') === 'true';
 const userRole = sessionStorage.getItem('solis_user_role');
 
 if (!isAuthenticated && !isLoginPage) {
-    // Redirect unauthorized users to login page
-    window.location.href = 'login.html';
-} else if (isAuthenticated && isLoginPage) {
-    // Redirect already logged-in users away from login page
-    window.location.href = 'index.html';
+    // Redirect unauthorized users to central Login page with return target
+    const currentPath = encodeURIComponent(window.location.pathname + window.location.search);
+    window.location.href = '/Login/index.html?redirect=' + currentPath;
+} else if (isAuthenticated && isLoginPage && !window.location.pathname.toLowerCase().includes('/login/index.html')) {
+    // Redirect already logged-in users to index.html or Login hub
+    window.location.href = '/projectcostcalculator/index.html';
 } else if (isAuthenticated) {
     // Authorization Check: Prevent sales from accessing admin/master pages
     const path = window.location.pathname.toLowerCase();
     const isAdminPage = path.includes('admin.html') || path.includes('_master.html');
     if (isAdminPage && userRole !== 'admin') {
-        window.location.href = 'index.html';
+        window.location.href = '/projectcostcalculator/index.html';
     }
 }
 
@@ -39,14 +49,14 @@ async function attemptLogin(email, password) {
         
         sessionStorage.setItem('solis_auth_token', 'true');
         sessionStorage.setItem('solis_user_email', user.email);
+        localStorage.setItem('solis_auth_token', 'true');
+        localStorage.setItem('solis_user_email', user.email);
         
-        if (user.email.toLowerCase() === "solisgreenenergysolutions@gmail.com") {
-            sessionStorage.setItem('solis_user_role', 'admin');
-        } else {
-            sessionStorage.setItem('solis_user_role', 'sales');
-        }
+        const role = (user.email.toLowerCase() === "solisgreenenergysolutions@gmail.com") ? 'admin' : 'sales';
+        sessionStorage.setItem('solis_user_role', role);
+        localStorage.setItem('solis_user_role', role);
         
-        window.location.href = 'index.html';
+        window.location.href = '/projectcostcalculator/index.html';
         return true;
     } catch (error) {
         console.warn("Sign in failed, attempting to register user in Firebase...", error);
@@ -61,8 +71,11 @@ async function attemptLogin(email, password) {
                 sessionStorage.setItem('solis_auth_token', 'true');
                 sessionStorage.setItem('solis_user_email', user.email);
                 sessionStorage.setItem('solis_user_role', isValidUser.role);
+                localStorage.setItem('solis_auth_token', 'true');
+                localStorage.setItem('solis_user_email', user.email);
+                localStorage.setItem('solis_user_role', isValidUser.role);
                 
-                window.location.href = 'index.html';
+                window.location.href = '/projectcostcalculator/index.html';
                 return true;
             } catch (createError) {
                 console.error("Failed to auto-register user in Firebase:", createError);
@@ -79,5 +92,11 @@ function logout() {
     sessionStorage.removeItem('solis_auth_token');
     sessionStorage.removeItem('solis_user_email');
     sessionStorage.removeItem('solis_user_role');
-    window.location.href = 'login.html';
+    localStorage.removeItem('solis_auth_token');
+    localStorage.removeItem('solis_user_email');
+    localStorage.removeItem('solis_user_role');
+    if (typeof authFirebase !== 'undefined') {
+        authFirebase.signOut().catch(() => {});
+    }
+    window.location.href = '/Login/index.html';
 }

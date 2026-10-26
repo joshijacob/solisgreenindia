@@ -1,5 +1,14 @@
 {
   "framework": null,
   "buildCommand": null,
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/login", "destination": "/Login/index.html" },
+    { "source": "/login/", "destination": "/Login/index.html" },
+    { "source": "/Login", "destination": "/Login/index.html" },
+    { "source": "/Login/", "destination": "/Login/index.html" },
+    { "source": "/analytics", "destination": "/analytics/index.html" },
+    { "source": "/analytics/", "destination": "/analytics/index.html" }
+  ]
 }

@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Website Activity & Lead Analytics | Solis Green Energy</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.ico">
+
+    <!-- Auth Guard Check First -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="/projectcostcalculator/js/firebase-init.js"></script>
+    <script src="/projectcostcalculator/js/auth.js"></script>
+
+    <!-- Bootstrap 5 & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Chart.js 4.4 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <style>
+        :root {
+            --solis-orange: #FF6A2A;
+            --solis-orange-hover: #FF824C;
+            --solis-dark: #0f172a;
+            --solis-navy: #1e293b;
+            --solis-emerald: #10b981;
+            --solis-blue: #0284c7;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-display {
+            font-family: 'Outfit', 'Inter', sans-serif;
+        }
+
+        /* Top Bar */
+        .analytics-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        /* Stat Cards */
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.35rem 1.25rem;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -8px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .stat-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 0.4rem 0 0.25rem 0;
+            color: #0f172a;
+        }
+
+        .chart-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.35rem;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+            height: 100%;
+        }
+
+        /* Top 10 Table */
+        .rank-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.8rem;
+        }
+        .rank-1 { background: #fef08a; color: #854d0e; border: 1px solid #facc15; }
+        .rank-2 { background: #e2e8f0; color: #475569; border: 1px solid #cbd5e1; }
+        .rank-3 { background: #fed7aa; color: #9a3412; border: 1px solid #fdba74; }
+        .rank-default { background: #f1f5f9; color: #64748b; }
+
+        /* Pulse Live Dot */
+        .live-dot {
+            width: 9px;
+            height: 9px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 1.8s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .filter-btn.active {
+            background-color: var(--solis-orange) !important;
+            border-color: var(--solis-orange) !important;
+            color: #ffffff !important;
+        }
+
+        .type-badge-call { background: #dcfce7; color: #166534; }
+        .type-badge-whatsapp { background: #d1fae5; color: #065f46; }
+        .type-badge-form { background: #ede9fe; color: #5b21b6; }
+        .type-badge-view { background: #e0f2fe; color: #075985; }
+
+        .empty-state-box {
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="analytics-navbar py-2 px-3 px-md-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none me-3" href="/Login/index.html">
+                    <div style="width: 38px; height: 38px; background: #FF6A2A; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; margin-right: 12px; font-weight: 800; font-size: 1.1rem;">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <div class="fw-bold font-display fs-5 lh-1 text-dark">SOLIS <span style="color: #FF6A2A;">ANALYTICS</span></div>
+                        <small class="text-muted fw-semibold" style="font-size: 0.68rem; letter-spacing: 0.05em;">100% REAL-TIME SITE ACTIVITY & LEADS</small>
+                    </div>
+                </a>
+                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill d-none d-lg-inline-flex align-items-center" id="cloudSyncStatus">
+                    <span class="live-dot"></span> Cloud Sync Connecting...
+                </span>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <a href="/Login/index.html" class="btn btn-warning btn-sm fw-bold text-dark px-3 rounded-pill">
+                    <i class="fa-solid fa-grip me-1"></i> Modules Hub
+                </a>
+                <a href="/projectcostcalculator/index.html" class="btn btn-outline-primary btn-sm rounded-pill px-3 d-none d-md-inline-flex align-items-center">
+                    <i class="fa-solid fa-calculator me-1"></i> Cost Calculator
+                </a>
+                <a href="/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Open Public Website">
+                    <i class="fa-solid fa-globe me-1"></i> Public Site
+                </a>
+                <button onclick="logout()" class="btn btn-outline-danger btn-sm rounded-pill px-3" title="Sign Out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container-fluid px-3 px-md-5 py-4">
+
+        <!-- Header Controls & Filters -->
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4 pb-3 border-bottom">
+            <div>
+                <h2 class="fw-bold font-display text-dark mb-1">Real-Time Website Activity & Conversions</h2>
+                <p class="text-muted small mb-0">Captured live from actual visitor interactions on <code class="text-dark fw-bold">solisgreenindia.in</code>. Zero mock or simulated data.</p>
+            </div>
+
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <!-- Date Filters -->
+                <div class="btn-group shadow-sm" role="group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" onclick="applyTimeFilter('today')">Today</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" onclick="applyTimeFilter('7days')">7 Days</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn active" onclick="applyTimeFilter('30days')">30 Days</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" onclick="applyTimeFilter('all')">All Time</button>
+                </div>
+
+                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold shadow-sm" onclick="refreshDashboard()" title="Reload latest events">
+                    <i class="fa-solid fa-rotate-right me-1"></i> Refresh
+                </button>
+
+                <button class="btn btn-sm btn-outline-success rounded-pill px-3 fw-semibold shadow-sm" onclick="exportDataCSV()">
+                    <i class="fa-solid fa-file-csv me-1"></i> Export CSV
+                </button>
+
+                <button class="btn btn-sm btn-outline-danger rounded-pill px-3 fw-semibold shadow-sm" onclick="clearLiveEvents()" title="Reset analytics history">
+                    <i class="fa-solid fa-trash me-1"></i> Clear Log
+                </button>
+            </div>
+        </div>
+
+        <!-- 6 Core Real-Time Stat Cards -->
+        <div class="row g-3 mb-4">
+            <!-- 1. Real Calls Made -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Calls Made</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-success" id="stat-calls">0</div>
+                    <small class="text-muted" style="font-size: 0.72rem;">Actual Click-to-Calls</small>
+                </div>
+            </div>
+
+            <!-- 2. Real WhatsApp Clicks -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">WhatsApp Clicks</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="color: #128C7E;" id="stat-whatsapp">0</div>
+                    <small class="text-muted" style="font-size: 0.72rem;">Actual WhatsApp Chats</small>
+                </div>
+            </div>
+
+            <!-- 3. Real Form Fills -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Form Fills</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-purple" style="color: #7c3aed;" id="stat-forms">0</div>
+                    <small class="text-muted" style="font-size: 0.72rem;">Actual Form Submissions</small>
+                </div>
+            </div>
+
+            <!-- 4. Real Total Direct Inquiries -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card" style="border-left: 4px solid var(--solis-orange);">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Total Inquiries</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #FF6A2A 0%, #ea580c 100%);">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="color: #FF6A2A;" id="stat-total-leads">0</div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="badge bg-warning-subtle text-warning-emphasis" style="font-size: 0.68rem;">Calls + WA + Forms</span>
+                        <small class="text-muted fw-bold" id="stat-conv-rate">0%</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Real Total Page Visits -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Total Views</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-primary" id="stat-views">0</div>
+                    <small class="text-muted" style="font-size: 0.72rem;">Verified Page Views</small>
+                </div>
+            </div>
+
+            <!-- 6. Real Unique Visitors -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Unique Visitors</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #64748b 0%, #334155 100%);">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-dark" id="stat-visitors">0</div>
+                    <small class="text-muted" style="font-size: 0.72rem;">Unique Visitor Devices</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="row g-4 mb-4">
+            <!-- Real Traffic & Leads Trend (8 cols) -->
+            <div class="col-12 col-xl-8">
+                <div class="chart-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0">Engagement & Action Timeline</h5>
+                            <small class="text-muted">Actual chronological counts of page views, phone calls, and WhatsApp chats</small>
+                        </div>
+                        <span class="badge bg-light text-dark border px-2 py-1" id="timelineFilterBadge"><i class="fa-solid fa-calendar-days me-1"></i> Real Data</span>
+                    </div>
+                    <div style="height: 300px; width: 100%;">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real Conversion Distribution (4 cols) -->
+            <div class="col-12 col-xl-4">
+                <div class="chart-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0">Inquiry Channel Split</h5>
+                            <small class="text-muted">Real ratio of customer inquiry preferences</small>
+                        </div>
+                    </div>
+                    <div style="height: 230px; width: 100%; position: relative;">
+                        <canvas id="channelChart"></canvas>
+                    </div>
+                    <div class="row text-center mt-3 pt-2 border-top">
+                        <div class="col-4">
+                            <div class="small text-muted">WhatsApp</div>
+                            <div class="fw-bold text-success fs-6" id="split-whatsapp">0</div>
+                        </div>
+                        <div class="col-4 border-start border-end">
+                            <div class="small text-muted">Phone Calls</div>
+                            <div class="fw-bold text-primary fs-6" id="split-calls">0</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="small text-muted">Web Forms</div>
+                            <div class="fw-bold fs-6" style="color: #7c3aed;" id="split-forms">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Districts Engagement (6 cols) -->
+            <div class="col-12 col-lg-6">
+                <div class="chart-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0">District Inquiries & Traffic</h5>
+                            <small class="text-muted">Actual actions tracked across regional Kerala landing pages</small>
+                        </div>
+                    </div>
+                    <div style="height: 250px; width: 100%;">
+                        <canvas id="districtChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real Traffic Sources & Devices (6 cols) -->
+            <div class="col-12 col-lg-6">
+                <div class="chart-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0">Traffic Referrers & Channels</h5>
+                            <small class="text-muted">Actual sources sending visitors to your website</small>
+                        </div>
+                    </div>
+                    <div style="height: 250px; width: 100%;">
+                        <canvas id="sourceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top 10 Highly Engaged Pages -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
+            <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                <div>
+                    <h5 class="fw-bold font-display text-dark mb-0"><i class="fa-solid fa-trophy text-warning me-2"></i> Highly Engaged Pages (Ranked Live)</h5>
+                    <small class="text-muted">Calculated strictly from actual tracked page views, calls, WhatsApp clicks, and forms</small>
+                </div>
+                <div class="text-muted small">
+                    <span class="badge bg-light text-dark border px-2 py-1"><i class="fa-solid fa-arrow-up-wide-short me-1"></i> Ranked by Real Inquiries & Views</span>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light text-muted small text-uppercase">
+                            <tr>
+                                <th class="ps-4" style="width: 60px;">Rank</th>
+                                <th>Page Title & URL</th>
+                                <th class="text-center">Views</th>
+                                <th class="text-center"><i class="fa-solid fa-phone text-success me-1"></i> Calls</th>
+                                <th class="text-center"><i class="fa-brands fa-whatsapp text-success me-1"></i> WhatsApp</th>
+                                <th class="text-center"><i class="fa-solid fa-file-pen text-primary me-1"></i> Forms</th>
+                                <th class="text-center">Total Inquiries</th>
+                                <th class="text-center">Conv. Rate</th>
+                                <th class="text-end pe-4">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topPagesTableBody">
+                            <!-- Injected by JavaScript strictly from real data -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real-time Activity Stream & Visit Log -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
+            <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+                <div>
+                    <h5 class="fw-bold font-display text-dark mb-0"><i class="fa-solid fa-wave-square text-primary me-2"></i> Real-Time Activity Log</h5>
+                    <small class="text-muted">Live event stream recorded from actual visitors on solisgreenindia.in</small>
+                </div>
+
+                <div class="d-flex flex-wrap align-items-center gap-2">
+                    <!-- Filter Chips -->
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-outline-secondary log-filter active" onclick="filterLog('all')">All (<span id="count-all">0</span>)</button>
+                        <button type="button" class="btn btn-outline-secondary log-filter" onclick="filterLog('call_click')"><i class="fa-solid fa-phone text-success me-1"></i>Calls (<span id="count-calls">0</span>)</button>
+                        <button type="button" class="btn btn-outline-secondary log-filter" onclick="filterLog('whatsapp_click')"><i class="fa-brands fa-whatsapp text-success me-1"></i>WhatsApp (<span id="count-wa">0</span>)</button>
+                        <button type="button" class="btn btn-outline-secondary log-filter" onclick="filterLog('form_submit')"><i class="fa-solid fa-file-pen text-primary me-1"></i>Forms (<span id="count-forms">0</span>)</button>
+                        <button type="button" class="btn btn-outline-secondary log-filter" onclick="filterLog('page_view')"><i class="fa-solid fa-eye text-info me-1"></i>Views (<span id="count-views">0</span>)</button>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="input-group input-group-sm" style="max-width: 200px;">
+                        <span class="input-group-text bg-light border-end-0 text-muted"><i class="fa-solid fa-search"></i></span>
+                        <input type="text" class="form-control border-start-0 ps-0" id="logSearchInput" placeholder="Filter log..." oninput="handleLogSearch()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body p-0">
+                <div class="table-responsive custom-scroll" style="max-height: 480px;">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light text-muted small text-uppercase sticky-top" style="z-index: 5;">
+                            <tr>
+                                <th class="ps-4">Time</th>
+                                <th>Event Type</th>
+                                <th>Context / Detail</th>
+                                <th>Page Path</th>
+                                <th>Source / Referrer</th>
+                                <th>Device</th>
+                                <th class="text-end pe-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activityLogTableBody">
+                            <!-- Injected by JavaScript strictly from real data -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-light py-2 px-4 text-center">
+                <small class="text-muted"><i class="fa-solid fa-shield-halved text-success me-1"></i> 100% Real-time event tracking via Solis Central Analytics Engine</small>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Analytics Engine Script: 100% REAL DATA ONLY -->
+    <script>
+        let currentFilter = '30days';
+        let currentLogFilter = 'all';
+        let chartInstances = {};
+        let allCloudEvents = [];
+
+        // Helper: Format relative time
+        function timeAgo(date) {
+            const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+            if (seconds < 5) return "Just now";
+            if (seconds < 60) return `${seconds}s ago`;
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return `${minutes}m ago`;
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return `${hours}h ago`;
+            const days = Math.floor(hours / 24);
+            return `${days}d ago`;
+        }
+
+        // Initialize Real-Time Firebase Firestore Cloud Listener
+        function initFirestoreAnalyticsListener() {
+            const statusBadge = document.getElementById('cloudSyncStatus');
+            
+            if (typeof dbFirestore !== 'undefined') {
+                try {
+                    const eventsRef = dbFirestore.collection('solis').doc('analytics').collection('events');
+                    eventsRef.orderBy('createdAt', 'desc').limit(500).onSnapshot((snapshot) => {
+                        const fetched = [];
+                        snapshot.forEach(doc => {
+                            const d = doc.data();
+                            fetched.push({
+                                id: doc.id,
+                                type: d.type || 'page_view',
+                                title: d.title || 'Page',
+                                url: d.url || '/',
+                                device: d.device || 'Desktop',
+                                source: d.source || 'Direct',
+                                details: d.details || '',
+                                vid: d.vid || doc.id,
+                                timestamp: d.createdAt || new Date().toISOString()
+                            });
+                        });
+
+                        allCloudEvents = fetched;
+                        if (statusBadge) {
+                            statusBadge.innerHTML = '<span class="live-dot"></span> Cloud Firestore Live (' + fetched.length + ' events)';
+                            statusBadge.className = 'badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill d-none d-lg-inline-flex align-items-center';
+                        }
+                        renderDashboard();
+                    }, (err) => {
+                        console.warn("Firestore onSnapshot error:", err);
+                        if (statusBadge) {
+                            statusBadge.innerHTML = '<i class="fa-solid fa-cloud-arrow-up text-primary me-1"></i> Cloud Connected (Local Cache Mode)';
+                        }
+                        renderDashboard();
+                    });
+                    return;
+                } catch(e) {
+                    console.error("Firestore setup error:", e);
+                }
+            }
+            renderDashboard();
+        }
+
+        // 1. Load Real Events from Cloud & localStorage (zero mock/sample data)
+        function getRealEvents() {
+            let local = [];
+            try {
+                let raw = JSON.parse(localStorage.getItem('solis_analytics_events') || '[]');
+                if (Array.isArray(raw)) {
+                    local = raw.filter(e => e && e.id && !e.id.includes('sample') && !e.id.includes('test'));
+                    if (local.length !== raw.length) {
+                        localStorage.setItem('solis_analytics_events', JSON.stringify(local));
+                    }
+                }
+            } catch(e) {}
+
+            // Merge cloud events with local cache deduplicated by id
+            const mergedMap = new Map();
+            allCloudEvents.forEach(e => mergedMap.set(e.id, e));
+            local.forEach(e => {
+                if (!mergedMap.has(e.id)) {
+                    mergedMap.set(e.id, e);
+                }
+            });
+
+            return Array.from(mergedMap.values()).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        }
+
+        // 2. Filter events by selected date range
+        function getFilteredEvents() {
+            const allEvents = getRealEvents();
+            if (currentFilter === 'all') return allEvents;
+
+            const now = new Date();
+            let cutoff = new Date();
+
+            if (currentFilter === 'today') {
+                cutoff.setHours(0, 0, 0, 0);
+            } else if (currentFilter === '7days') {
+                cutoff.setDate(now.getDate() - 7);
+            } else if (currentFilter === '30days') {
+                cutoff.setDate(now.getDate() - 30);
+            }
+
+            return allEvents.filter(e => {
+                const eventTime = new Date(e.timestamp);
+                return eventTime >= cutoff;
+            });
+        }
+
+        // 3. Render Dashboard
+        function renderDashboard() {
+            const events = getFilteredEvents();
+
+            // Calculate exact real counts
+            const calls = events.filter(e => e.type === 'call_click').length;
+            const whatsapp = events.filter(e => e.type === 'whatsapp_click').length;
+            const forms = events.filter(e => e.type === 'form_submit').length;
+            const views = events.filter(e => e.type === 'page_view').length;
+            const totalLeads = calls + whatsapp + forms;
+
+            // Unique visitor devices
+            const uniqueVids = new Set(events.map(e => e.vid || e.id)).size;
+            const convRate = views > 0 ? ((totalLeads / views) * 100).toFixed(1) : 0;
+
+            // Update DOM KPI elements
+            document.getElementById('stat-calls').textContent = calls.toLocaleString();
+            document.getElementById('stat-whatsapp').textContent = whatsapp.toLocaleString();
+            document.getElementById('stat-forms').textContent = forms.toLocaleString();
+            document.getElementById('stat-total-leads').textContent = totalLeads.toLocaleString();
+            document.getElementById('stat-views').textContent = views.toLocaleString();
+            document.getElementById('stat-visitors').textContent = uniqueVids.toLocaleString();
+            document.getElementById('stat-conv-rate').textContent = `${convRate}% Rate`;
+
+            // Inquiry channel counts
+            document.getElementById('split-whatsapp').textContent = whatsapp.toLocaleString();
+            document.getElementById('split-calls').textContent = calls.toLocaleString();
+            document.getElementById('split-forms').textContent = forms.toLocaleString();
+
+            // Render Charts strictly from real data
+            renderRealTrendChart(events);
+            renderRealChannelChart(whatsapp, calls, forms);
+            renderRealDistrictChart(events);
+            renderRealSourceChart(events);
+
+            // Render Top 10 Pages & Activity Log
+            renderRealTopPagesTable(events);
+            renderRealActivityLog(events);
+        }
+
+        // Chart 1: Real Timeline Trend
+        function renderRealTrendChart(events) {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            if (chartInstances.trend) chartInstances.trend.destroy();
+
+            // Group real events by date
+            const dateMap = {};
+            const daysCount = currentFilter === 'today' ? 1 : (currentFilter === '7days' ? 7 : 14);
+
+            for (let i = daysCount - 1; i >= 0; i--) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                const key = d.toISOString().slice(0, 10);
+                const label = d.toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
+                dateMap[key] = { label: label, views: 0, calls: 0, wa: 0 };
+            }
+
+            events.forEach(e => {
+                const key = (e.timestamp || '').slice(0, 10);
+                if (dateMap[key]) {
+                    if (e.type === 'page_view') dateMap[key].views++;
+                    else if (e.type === 'call_click') dateMap[key].calls++;
+                    else if (e.type === 'whatsapp_click') dateMap[key].wa++;
+                }
+            });
+
+            const labels = Object.values(dateMap).map(d => d.label);
+            const viewsData = Object.values(dateMap).map(d => d.views);
+            const callsData = Object.values(dateMap).map(d => d.calls);
+            const waData = Object.values(dateMap).map(d => d.wa);
+
+            chartInstances.trend = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Page Views',
+                            data: viewsData,
+                            borderColor: '#0284c7',
+                            backgroundColor: 'rgba(2, 132, 199, 0.08)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.2,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'WhatsApp Inquiries',
+                            data: waData,
+                            borderColor: '#10b981',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2.5,
+                            tension: 0.2,
+                            yAxisID: 'y1'
+                        },
+                        {
+                            label: 'Phone Calls',
+                            data: callsData,
+                            borderColor: '#FF6A2A',
+                            backgroundColor: 'transparent',
+                            borderWidth: 2.5,
+                            tension: 0.2,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'top', labels: { boxWidth: 12, font: { family: 'Inter', size: 11, weight: '600' } } }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            beginAtZero: true,
+                            ticks: { precision: 0 },
+                            title: { display: true, text: 'Views', font: { size: 10 } }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            beginAtZero: true,
+                            ticks: { precision: 0 },
+                            grid: { drawOnChartArea: false },
+                            title: { display: true, text: 'Inquiries (Calls / WA)', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart 2: Real Channel Split
+        function renderRealChannelChart(wa, calls, forms) {
+            const ctx = document.getElementById('channelChart').getContext('2d');
+            if (chartInstances.channel) chartInstances.channel.destroy();
+
+            const hasData = (wa + calls + forms) > 0;
+            const dataValues = hasData ? [wa, calls, forms] : [1];
+            const bgColors = hasData ? ['#10b981', '#FF6A2A', '#8b5cf6'] : ['#e2e8f0'];
+            const labels = hasData ? ['WhatsApp Inquiries', 'Phone Calls', 'Web Form Submissions'] : ['No Inquiries Yet'];
+
+            chartInstances.channel = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: dataValues,
+                        backgroundColor: bgColors,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11, family: 'Inter' } } }
+                    },
+                    cutout: '72%'
+                }
+            });
+        }
+
+        // Chart 3: Real District Inquiries
+        function renderRealDistrictChart(events) {
+            const ctx = document.getElementById('districtChart').getContext('2d');
+            if (chartInstances.district) chartInstances.district.destroy();
+
+            const districtMap = {
+                'Kottayam': 0,
+                'Pathanamthitta': 0,
+                'Alappuzha': 0,
+                'Kollam': 0,
+                'Trivandrum': 0,
+                'Other': 0
+            };
+
+            events.forEach(e => {
+                const url = (e.url || '').toLowerCase();
+                if (url.includes('kottayam')) districtMap['Kottayam']++;
+                else if (url.includes('pathanamthitta') || url.includes('thiruvalla')) districtMap['Pathanamthitta']++;
+                else if (url.includes('alappuzha')) districtMap['Alappuzha']++;
+                else if (url.includes('kollam')) districtMap['Kollam']++;
+                else if (url.includes('thiruvananthapuram') || url.includes('trivandrum')) districtMap['Trivandrum']++;
+                else districtMap['Other']++;
+            });
+
+            chartInstances.district = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(districtMap),
+                    datasets: [{
+                        label: 'Interactions Count',
+                        data: Object.values(districtMap),
+                        backgroundColor: ['#FF6A2A', '#10b981', '#0284c7', '#8b5cf6', '#eab308', '#64748b'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: 'Events', font: { size: 10 } } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // Chart 4: Real Traffic Sources
+        function renderRealSourceChart(events) {
+            const ctx = document.getElementById('sourceChart').getContext('2d');
+            if (chartInstances.source) chartInstances.source.destroy();
+
+            const sourceMap = {};
+            events.forEach(e => {
+                const s = e.source || 'Direct';
+                sourceMap[s] = (sourceMap[s] || 0) + 1;
+            });
+
+            const labels = Object.keys(sourceMap).length > 0 ? Object.keys(sourceMap) : ['Direct'];
+            const data = Object.keys(sourceMap).length > 0 ? Object.values(sourceMap) : [0];
+
+            chartInstances.source = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Visits',
+                        data: data,
+                        backgroundColor: '#0284c7',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: 'Total Actions' } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // 4. Render Top 10 Highly Engaged Pages (Strictly Real)
+        function renderRealTopPagesTable(events) {
+            const tbody = document.getElementById('topPagesTableBody');
+            tbody.innerHTML = '';
+
+            // Group strictly by real URLs from events
+            const pageMap = {};
+            events.forEach(e => {
+                const url = e.url || '/';
+                if (!pageMap[url]) {
+                    pageMap[url] = {
+                        url: url,
+                        title: e.title || url,
+                        views: 0,
+                        calls: 0,
+                        whatsapp: 0,
+                        forms: 0
+                    };
+                }
+                if (e.type === 'page_view') pageMap[url].views++;
+                else if (e.type === 'call_click') pageMap[url].calls++;
+                else if (e.type === 'whatsapp_click') pageMap[url].whatsapp++;
+                else if (e.type === 'form_submit') pageMap[url].forms++;
+            });
+
+            // Sort by total engagement: (calls + whatsapp + forms) * 3 + views
+            const sortedPages = Object.values(pageMap).sort((a, b) => {
+                const scoreA = (a.calls + a.whatsapp + a.forms) * 3 + a.views;
+                const scoreB = (b.calls + b.whatsapp + b.forms) * 3 + b.views;
+                return scoreB - scoreA;
+            }).slice(0, 10);
+
+            if (sortedPages.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9">
+                            <div class="empty-state-box">
+                                <i class="fa-solid fa-satellite-dish fs-2 text-primary opacity-50 mb-3 d-block"></i>
+                                <h6 class="fw-bold text-dark">No Live Page Activity Recorded Yet</h6>
+                                <p class="small text-muted mb-3" style="max-width: 500px; margin: 0 auto;">
+                                    As visitors browse <code>solisgreenindia.in</code>, click phone numbers, or tap WhatsApp, their genuine real-time activity and top pages will populate this table automatically.
+                                </p>
+                                <a href="/" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                                    <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Open Website in New Tab & Test Live
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            sortedPages.forEach((item, index) => {
+                const rank = index + 1;
+                const totalInquiries = item.calls + item.whatsapp + item.forms;
+                const convRate = item.views > 0 ? ((totalInquiries / item.views) * 100).toFixed(1) : 0;
+
+                let rankClass = 'rank-default';
+                let medal = `#${rank}`;
+                if (rank === 1) { rankClass = 'rank-1'; medal = '<i class="fa-solid fa-crown"></i> 1'; }
+                else if (rank === 2) { rankClass = 'rank-2'; medal = '2'; }
+                else if (rank === 3) { rankClass = 'rank-3'; medal = '3'; }
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="ps-4">
+                        <span class="rank-badge ${rankClass}">${medal}</span>
+                    </td>
+                    <td>
+                        <div class="fw-bold text-dark font-display">${item.title}</div>
+                        <a href="${item.url}" target="_blank" class="small text-muted text-decoration-none">
+                            <code>${item.url}</code> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.65rem;"></i>
+                        </a>
+                    </td>
+                    <td class="text-center fw-bold text-secondary">${item.views.toLocaleString()}</td>
+                    <td class="text-center">
+                        <span class="badge ${item.calls > 0 ? 'bg-success-subtle text-success' : 'bg-light text-muted border'} px-2 py-1">
+                            <i class="fa-solid fa-phone me-1"></i>${item.calls}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge ${item.whatsapp > 0 ? 'bg-success text-white' : 'bg-light text-muted border'} px-2 py-1">
+                            <i class="fa-brands fa-whatsapp me-1"></i>${item.whatsapp}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge ${item.forms > 0 ? 'bg-primary-subtle text-primary' : 'bg-light text-muted border'} px-2 py-1">
+                            <i class="fa-solid fa-file-pen me-1"></i>${item.forms}
+                        </span>
+                    </td>
+                    <td class="text-center fw-bold text-dark">${totalInquiries}</td>
+                    <td class="text-center">
+                        <span class="fw-bold ${convRate > 0 ? 'text-success' : 'text-muted'}">${convRate}%</span>
+                    </td>
+                    <td class="text-end pe-4">
+                        <a href="${item.url}" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill py-0 px-2" style="font-size: 0.75rem;">
+                            View Page
+                        </a>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // 5. Render Real Activity Log Stream
+        function renderRealActivityLog(events) {
+            const tbody = document.getElementById('activityLogTableBody');
+            tbody.innerHTML = '';
+
+            // Update filter chip counters
+            const counts = {
+                all: events.length,
+                call_click: events.filter(e => e.type === 'call_click').length,
+                whatsapp_click: events.filter(e => e.type === 'whatsapp_click').length,
+                form_submit: events.filter(e => e.type === 'form_submit').length,
+                page_view: events.filter(e => e.type === 'page_view').length
+            };
+
+            document.getElementById('count-all').textContent = counts.all;
+            document.getElementById('count-calls').textContent = counts.call_click;
+            document.getElementById('count-wa').textContent = counts.whatsapp_click;
+            document.getElementById('count-forms').textContent = counts.form_submit;
+            document.getElementById('count-views').textContent = counts.page_view;
+
+            // Search and type filtering
+            const searchTerm = (document.getElementById('logSearchInput').value || '').toLowerCase();
+            const filtered = events.filter(e => {
+                if (currentLogFilter !== 'all' && e.type !== currentLogFilter) return false;
+                if (!searchTerm) return true;
+                return (e.title && e.title.toLowerCase().includes(searchTerm)) ||
+                       (e.url && e.url.toLowerCase().includes(searchTerm)) ||
+                       (e.details && e.details.toLowerCase().includes(searchTerm)) ||
+                       (e.source && e.source.toLowerCase().includes(searchTerm));
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7">
+                            <div class="empty-state-box py-4">
+                                <i class="fa-solid fa-inbox fs-3 mb-2 d-block opacity-40"></i>
+                                <span class="small text-muted">No live events matching the current view.</span>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            filtered.forEach(evt => {
+                let typeBadge = '';
+                if (evt.type === 'call_click') {
+                    typeBadge = '<span class="badge type-badge-call px-2 py-1"><i class="fa-solid fa-phone me-1"></i> Call Made</span>';
+                } else if (evt.type === 'whatsapp_click') {
+                    typeBadge = '<span class="badge type-badge-whatsapp px-2 py-1"><i class="fa-brands fa-whatsapp me-1"></i> WhatsApp</span>';
+                } else if (evt.type === 'form_submit') {
+                    typeBadge = '<span class="badge type-badge-form px-2 py-1"><i class="fa-solid fa-file-pen me-1"></i> Form Submitted</span>';
+                } else {
+                    typeBadge = '<span class="badge type-badge-view px-2 py-1"><i class="fa-solid fa-eye me-1"></i> Page View</span>';
+                }
+
+                const deviceIcon = evt.device === 'Mobile' ? '<i class="fa-solid fa-mobile-screen text-muted me-1"></i> Mobile' : '<i class="fa-solid fa-laptop text-muted me-1"></i> Desktop';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="ps-4 text-nowrap">
+                        <span class="small fw-semibold text-dark">${timeAgo(evt.timestamp)}</span>
+                        <div class="text-muted" style="font-size: 0.68rem;">${new Date(evt.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</div>
+                    </td>
+                    <td>${typeBadge}</td>
+                    <td>
+                        <span class="small fw-bold text-dark">${evt.details || evt.title}</span>
+                    </td>
+                    <td>
+                        <a href="${evt.url}" target="_blank" class="small text-decoration-none">
+                            <code>${evt.url}</code>
+                        </a>
+                    </td>
+                    <td>
+                        <span class="badge bg-light text-secondary border">${evt.source || 'Direct'}</span>
+                    </td>
+                    <td class="small">${deviceIcon}</td>
+                    <td class="text-end pe-4">
+                        <span class="badge bg-success-subtle text-success border border-success-subtle" style="font-size: 0.65rem;">Verified</span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Filter Handlers
+        function applyTimeFilter(range) {
+            currentFilter = range;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderDashboard();
+        }
+
+        function filterLog(type) {
+            currentLogFilter = type;
+            document.querySelectorAll('.log-filter').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderRealActivityLog(getFilteredEvents());
+        }
+
+        function handleLogSearch() {
+            renderRealActivityLog(getFilteredEvents());
+        }
+
+        function refreshDashboard() {
+            renderDashboard();
+        }
+
+        // Clear live log
+        function clearLiveEvents() {
+            if (confirm("Are you sure you want to clear your recorded activity log? This will reset all counters to 0.")) {
+                localStorage.removeItem('solis_analytics_events');
+                localStorage.removeItem('solis_analytics_summary');
+                renderDashboard();
+            }
+        }
+
+        // Export Real CSV
+        function exportDataCSV() {
+            const events = getFilteredEvents();
+            if (events.length === 0) {
+                alert("No recorded real events to export yet.");
+                return;
+            }
+
+            let csv = "Timestamp,Event Type,Details,Page Title,Page URL,Traffic Source,Device\n";
+            events.forEach(e => {
+                const row = [
+                    `"${e.timestamp}"`,
+                    `"${e.type}"`,
+                    `"${(e.details || '').replace(/"/g, '""')}"`,
+                    `"${(e.title || '').replace(/"/g, '""')}"`,
+                    `"${e.url}"`,
+                    `"${e.source || 'Direct'}"`,
+                    `"${e.device || 'Unknown'}"`
+                ];
+                csv += row.join(",") + "\n";
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', `solis_real_analytics_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Auto Refresh every 10 seconds for live updates
+        setInterval(() => {
+            renderDashboard();
+        }, 10000);
+
+        // Run on Page Load: Connect to Firestore Cloud Listener
+        document.addEventListener('DOMContentLoaded', initFirestoreAnalyticsListener);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

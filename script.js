@@ -1213,3 +1213,143 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(updateTimer, 1000);
   }
 });
+
+// =========================================================
+// 12. SOLIS CENTRAL CLOUD ANALYTICS TRACKER
+// Connects live website actions directly to Firebase Firestore
+// =========================================================
+(function() {
+  const currentPath = window.location.pathname.toLowerCase();
+  // Do not track internal admin, login, or analytics dashboard visits
+  if (currentPath.includes('/login') || currentPath.includes('/analytics') || currentPath.includes('/projectcostcalculator')) {
+    return;
+  }
+
+  // Persistent anonymous visitor ID
+  let visitorId = localStorage.getItem('solis_vid');
+  if (!visitorId) {
+    visitorId = 'v_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 6);
+    localStorage.setItem('solis_vid', visitorId);
+  }
+
+  function getDeviceType() {
+    const width = window.innerWidth;
+    if (width < 768) return 'Mobile';
+    if (width < 1024) return 'Tablet';
+    return 'Desktop';
+  }
+
+  function getTrafficSource() {
+    const ref = document.referrer ? document.referrer.toLowerCase() : '';
+    if (!ref) return 'Direct / Organic';
+    if (ref.includes('google')) return 'Google Search';
+    if (ref.includes('whatsapp') || ref.includes('wa.me')) return 'WhatsApp';
+    if (ref.includes('facebook') || ref.includes('fb.')) return 'Facebook';
+    if (ref.includes('instagram')) return 'Instagram';
+    if (ref.includes('youtube')) return 'YouTube';
+    try {
+      const url = new URL(document.referrer);
+      return url.hostname.replace('www.', '');
+    } catch(e) {
+      return 'Referral';
+    }
+  }
+
+  const FB_FIRESTORE_URL = 'https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/analytics/events?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ';
+
+  window.recordSolisEvent = function(type, details) {
+    try {
+      const cleanTitle = (document.title || 'Solis Solar Kerala').split('|')[0].trim();
+      const pageUrl = window.location.pathname || '/';
+      const timestampIso = new Date().toISOString();
+      const device = getDeviceType();
+      const source = getTrafficSource();
+
+      const eventPayload = {
+        id: 'evt_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
+        vid: visitorId,
+        type: type, // 'page_view', 'call_click', 'whatsapp_click', 'form_submit'
+        title: cleanTitle,
+        url: pageUrl,
+        device: device,
+        source: source,
+        details: details || '',
+        timestamp: timestampIso
+      };
+
+      // 1. Update local storage cache
+      try {
+        const stored = localStorage.getItem('solis_analytics_events');
+        let events = stored ? JSON.parse(stored) : [];
+        if (!Array.isArray(events)) events = [];
+        events.unshift(eventPayload);
+        if (events.length > 500) events = events.slice(0, 500);
+        localStorage.setItem('solis_analytics_events', JSON.stringify(events));
+      } catch(e) {}
+
+      // 2. Stream to Firebase Firestore Cloud Database
+      const firestoreDoc = {
+        fields: {
+          type: { stringValue: type },
+          title: { stringValue: cleanTitle },
+          url: { stringValue: pageUrl },
+          device: { stringValue: device },
+          source: { stringValue: source },
+          details: { stringValue: details || '' },
+          vid: { stringValue: visitorId },
+          createdAt: { stringValue: timestampIso }
+        }
+      };
+
+      fetch(FB_FIRESTORE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(firestoreDoc),
+        keepalive: true
+      }).catch(err => {
+        console.debug("Firestore cloud stream notice:", err);
+      });
+
+    } catch(err) {
+      console.warn("Analytics tracking err:", err);
+    }
+  };
+
+  // 1. Record Page View on Load (with deduplication for fast reloads)
+  const lastViewTime = sessionStorage.getItem('solis_last_view_ts');
+  const now = Date.now();
+  if (!lastViewTime || (now - parseInt(lastViewTime)) > 2000) {
+    sessionStorage.setItem('solis_last_view_ts', now.toString());
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        recordSolisEvent('page_view', 'Page visited');
+      });
+    } else {
+      recordSolisEvent('page_view', 'Page visited');
+    }
+  }
+
+  // 2. Click Delegation for Calls & WhatsApp
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href') || '';
+    if (href.startsWith('tel:')) {
+      const phoneNumber = href.replace('tel:', '').trim();
+      recordSolisEvent('call_click', 'Phone call clicked: ' + (phoneNumber || '+91 83018 49474'));
+    } else if (href.includes('wa.me') || href.includes('whatsapp.com') || link.classList.contains('whatsapp-btn') || link.classList.contains('pm-banner-btn')) {
+      recordSolisEvent('whatsapp_click', 'WhatsApp chat inquiry initiated');
+    }
+  }, true);
+
+  // 3. Form Submit Delegation
+  document.addEventListener('submit', function(e) {
+    const form = e.target;
+    if (!form || form.id === 'login-form' || form.id === 'central-login-form' || form.id === 'addComponentForm') return;
+    const formName = form.id || form.className || 'Solar Quote Inquiry';
+    recordSolisEvent('form_submit', 'Quote Form Submitted: ' + formName);
+  }, true);
+})();
+
+
