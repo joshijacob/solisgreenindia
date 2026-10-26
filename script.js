@@ -1255,6 +1255,44 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(() => {});
   }
 
+  // Google Ads & Campaign ROI Attribution (UTM Parameters & Ad Click IDs)
+  let campaignInfo = {
+    source: '',
+    medium: '',
+    campaign: '',
+    term: '',
+    content: '',
+    gclid: '',
+    fbclid: ''
+  };
+
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get('utm_source');
+    const utmMedium = urlParams.get('utm_medium');
+    const utmCampaign = urlParams.get('utm_campaign');
+    const utmTerm = urlParams.get('utm_term');
+    const utmContent = urlParams.get('utm_content');
+    const gclid = urlParams.get('gclid');
+    const fbclid = urlParams.get('fbclid');
+
+    if (utmSource || utmCampaign || gclid || fbclid) {
+      campaignInfo = {
+        source: utmSource || (gclid ? 'google' : (fbclid ? 'facebook' : '')),
+        medium: utmMedium || (gclid ? 'cpc' : (fbclid ? 'paid_social' : '')),
+        campaign: utmCampaign || (gclid ? 'Google Ads Search' : (fbclid ? 'Meta Ads Campaign' : '')),
+        term: utmTerm || '',
+        content: utmContent || '',
+        gclid: gclid || '',
+        fbclid: fbclid || ''
+      };
+      sessionStorage.setItem('solis_campaign', JSON.stringify(campaignInfo));
+    } else {
+      const cachedCamp = sessionStorage.getItem('solis_campaign');
+      if (cachedCamp) campaignInfo = JSON.parse(cachedCamp);
+    }
+  } catch(e) {}
+
   function getDeviceType() {
     const width = window.innerWidth;
     if (width < 768) return 'Mobile';
@@ -1263,6 +1301,19 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function getTrafficSource() {
+    // 1. Google Ads Detection (gclid or utm_source=google & cpc)
+    if (campaignInfo.gclid || (campaignInfo.source && campaignInfo.source.toLowerCase() === 'google' && (campaignInfo.medium === 'cpc' || campaignInfo.medium === 'ad'))) {
+      return 'Google Ads';
+    }
+    // 2. Meta Ads Detection (fbclid or facebook/instagram cpc)
+    if (campaignInfo.fbclid || ((campaignInfo.source === 'facebook' || campaignInfo.source === 'instagram' || campaignInfo.source === 'meta') && (campaignInfo.medium === 'cpc' || campaignInfo.medium === 'paid_social'))) {
+      return 'Meta Ads';
+    }
+    // 3. Other UTM Source
+    if (campaignInfo.source) {
+      return campaignInfo.source.charAt(0).toUpperCase() + campaignInfo.source.slice(1);
+    }
+    // 4. Referrer Detection
     const ref = document.referrer ? document.referrer.toLowerCase() : '';
     if (!ref) return 'Direct / Organic';
     if (ref.includes('google')) return 'Google Search';
@@ -1276,6 +1327,13 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch(e) {
       return 'Referral';
     }
+  }
+
+  function getCampaignName() {
+    if (campaignInfo.campaign) return campaignInfo.campaign;
+    if (campaignInfo.gclid) return 'Google Ads Campaign';
+    if (campaignInfo.fbclid) return 'Meta Ads Campaign';
+    return 'Organic / Direct';
   }
 
   function getLocationString() {
@@ -1293,6 +1351,62 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   const FB_FIRESTORE_URL = 'https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/analytics/events?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ';
+  const FB_ALERT_CONFIG_URL = 'https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/alert_config?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ';
+
+  // Lead Alert Dispatcher: Instant Telegram Bot Alert for Calls, WhatsApp, Forms
+  function dispatchLeadTelegramAlert(leadData) {
+    try {
+      const cachedCfg = localStorage.getItem('solis_alert_config');
+      let alertCfg = cachedCfg ? JSON.parse(cachedCfg) : null;
+
+      const sendTelegram = (cfg) => {
+        if (!cfg || !cfg.telegramToken || !cfg.telegramChatId || cfg.telegramEnabled === false) return;
+        const msgText = 
+          `🚨 <b>NEW HOT SOLAR LEAD!</b>\n` +
+          `━━━━━━━━━━━━━━━━━━━\n` +
+          `🎯 <b>Action:</b> ${leadData.action}\n` +
+          `📍 <b>Location:</b> ${leadData.location}\n` +
+          `📄 <b>Page:</b> ${leadData.title}\n` +
+          `📢 <b>Source:</b> ${leadData.source} ${leadData.campaign && leadData.campaign !== 'Organic / Direct' ? ' (' + leadData.campaign + ')' : ''}\n` +
+          (leadData.term ? `🔍 <b>Keyword:</b> ${leadData.term}\n` : '') +
+          `ℹ️ <b>Detail:</b> ${leadData.details}\n` +
+          `📱 <b>Device:</b> ${leadData.device}\n` +
+          `⏰ <b>Time:</b> ${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}\n` +
+          `🌐 <b>URL:</b> https://www.solisgreenindia.in${leadData.url}`;
+
+        fetch(`https://api.telegram.org/bot${cfg.telegramToken}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: cfg.telegramChatId,
+            text: msgText,
+            parse_mode: 'HTML'
+          }),
+          keepalive: true
+        }).catch(() => {});
+      };
+
+      if (alertCfg && alertCfg.telegramToken) {
+        sendTelegram(alertCfg);
+      } else {
+        // Query Firestore for configured bot token
+        fetch(FB_ALERT_CONFIG_URL)
+          .then(r => r.json())
+          .then(res => {
+            if (res && res.fields) {
+              const cfg = {
+                telegramToken: res.fields.telegramToken ? res.fields.telegramToken.stringValue : '',
+                telegramChatId: res.fields.telegramChatId ? res.fields.telegramChatId.stringValue : '',
+                telegramEnabled: res.fields.telegramEnabled ? res.fields.telegramEnabled.booleanValue : true
+              };
+              localStorage.setItem('solis_alert_config', JSON.stringify(cfg));
+              sendTelegram(cfg);
+            }
+          })
+          .catch(() => {});
+      }
+    } catch(e) {}
+  }
 
   window.recordSolisEvent = function(type, details) {
     try {
@@ -1301,6 +1415,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const timestampIso = new Date().toISOString();
       const device = getDeviceType();
       const source = getTrafficSource();
+      const campaign = getCampaignName();
       const location = getLocationString();
       const city = (visitorGeo && visitorGeo.city) ? visitorGeo.city : '';
       const region = (visitorGeo && visitorGeo.region) ? visitorGeo.region : 'Kerala';
@@ -1314,6 +1429,11 @@ document.addEventListener('DOMContentLoaded', function() {
         url: pageUrl,
         device: device,
         source: source,
+        campaign: campaign,
+        utm_source: campaignInfo.source || '',
+        utm_medium: campaignInfo.medium || '',
+        utm_term: campaignInfo.term || '',
+        gclid: campaignInfo.gclid || '',
         location: location,
         city: city,
         region: region,
@@ -1340,6 +1460,11 @@ document.addEventListener('DOMContentLoaded', function() {
           url: { stringValue: pageUrl },
           device: { stringValue: device },
           source: { stringValue: source },
+          campaign: { stringValue: campaign },
+          utm_source: { stringValue: campaignInfo.source || '' },
+          utm_medium: { stringValue: campaignInfo.medium || '' },
+          utm_term: { stringValue: campaignInfo.term || '' },
+          gclid: { stringValue: campaignInfo.gclid || '' },
           location: { stringValue: location },
           city: { stringValue: city },
           region: { stringValue: region },
@@ -1358,6 +1483,25 @@ document.addEventListener('DOMContentLoaded', function() {
       }).catch(err => {
         console.debug("Firestore cloud stream notice:", err);
       });
+
+      // 3. Dispatch instant lead alert if this is a high-intent conversion
+      if (type === 'call_click' || type === 'whatsapp_click' || type === 'form_submit') {
+        let actionLabel = 'Phone Call Clicked';
+        if (type === 'whatsapp_click') actionLabel = 'WhatsApp Chat Inquiry';
+        if (type === 'form_submit') actionLabel = 'Quote Form Submitted';
+
+        dispatchLeadTelegramAlert({
+          action: actionLabel,
+          title: cleanTitle,
+          url: pageUrl,
+          location: location,
+          source: source,
+          campaign: campaign,
+          term: campaignInfo.term,
+          device: device,
+          details: details || ''
+        });
+      }
 
     } catch(err) {
       console.warn("Analytics tracking err:", err);

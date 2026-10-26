@@ -188,7 +188,12 @@
             </div>
 
             <div class="d-flex align-items-center gap-2">
-                <a href="/Login/index.html" class="btn btn-warning btn-sm fw-bold text-dark px-3 rounded-pill">
+                <button type="button" class="btn btn-warning btn-sm fw-bold text-dark px-3 rounded-pill d-flex align-items-center gap-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#alertSettingsModal" title="Configure Instant Lead Notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="d-none d-sm-inline">Lead Alerts</span>
+                    <span class="badge bg-success ms-1" style="font-size: 0.65rem;" id="navAlertBadge">Active</span>
+                </button>
+                <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill">
                     <i class="fa-solid fa-grip me-1"></i> Modules Hub
                 </a>
                 <a href="/projectcostcalculator/index.html" class="btn btn-outline-primary btn-sm rounded-pill px-3 d-none d-md-inline-flex align-items-center">
@@ -203,6 +208,9 @@
             </div>
         </div>
     </nav>
+
+    <!-- Floating Real-Time Lead Alert Toast Container -->
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1090; max-width: 420px; pointer-events: none;" id="liveToastContainer"></div>
 
     <!-- Main Container -->
     <div class="container-fluid px-3 px-md-5 py-4">
@@ -440,6 +448,108 @@
             </div>
         </div>
 
+        <!-- Google Ads & Campaign ROI Attribution Section -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" id="campaignAttributionCard">
+            <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                <div class="d-flex align-items-center">
+                    <div style="width: 38px; height: 38px; background: linear-gradient(135deg, #4285F4 0%, #34A853 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; margin-right: 12px; font-size: 1.15rem;">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold font-display text-dark mb-0">Google Ads & Marketing Campaign Attribution</h5>
+                        <small class="text-muted">Direct tracking of paid ad campaigns (Google Ads, Meta), UTM links, keywords, and lead ROI</small>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-1 rounded-pill" id="adCampaignsActiveBadge">
+                        <i class="fa-brands fa-google me-1"></i> Auto-Attribution Active
+                    </span>
+                </div>
+            </div>
+
+            <!-- Mini KPI strip for Campaigns -->
+            <div class="bg-light p-3 border-bottom">
+                <div class="row g-3 text-center">
+                    <div class="col-6 col-md-3">
+                        <div class="bg-white p-3 rounded-3 border h-100">
+                            <div class="text-muted small fw-semibold"><i class="fa-brands fa-google text-primary me-1"></i> Google Ads Leads</div>
+                            <div class="fw-bold fs-4 text-primary mt-1" id="camp-google-leads">0</div>
+                            <small class="text-muted" style="font-size: 0.7rem;">Calls & WhatsApp</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="bg-white p-3 rounded-3 border h-100">
+                            <div class="text-muted small fw-semibold"><i class="fa-brands fa-facebook text-info me-1"></i> Meta / Social Ads Leads</div>
+                            <div class="fw-bold fs-4 text-success mt-1" id="camp-meta-leads">0</div>
+                            <small class="text-muted" style="font-size: 0.7rem;">FB / Insta Campaigns</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="bg-white p-3 rounded-3 border h-100">
+                            <div class="text-muted small fw-semibold"><i class="fa-solid fa-leaf text-success me-1"></i> Organic / Direct Leads</div>
+                            <div class="fw-bold fs-4 text-secondary mt-1" id="camp-organic-leads">0</div>
+                            <small class="text-muted" style="font-size: 0.7rem;">Free Google & Direct</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="bg-white p-3 rounded-3 border h-100">
+                            <div class="text-muted small fw-semibold"><i class="fa-solid fa-coins text-warning me-1"></i> Estimated Cost / Lead</div>
+                            <div class="fw-bold fs-4 text-warning-emphasis mt-1" id="camp-cpl-display">₹0 / lead</div>
+                            <small class="text-muted" style="font-size: 0.7rem;" id="camp-cpl-sub">Enter ad spend below</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light text-muted small text-uppercase">
+                            <tr>
+                                <th class="ps-4">Ad Source / Platform</th>
+                                <th>Campaign Name</th>
+                                <th>Target Keyword / Term</th>
+                                <th class="text-center">Clicks / Views</th>
+                                <th class="text-center"><i class="fa-solid fa-phone text-success me-1"></i> Calls</th>
+                                <th class="text-center"><i class="fa-brands fa-whatsapp text-success me-1"></i> WhatsApp</th>
+                                <th class="text-center"><i class="fa-solid fa-file-pen text-primary me-1"></i> Forms</th>
+                                <th class="text-center">Total Leads</th>
+                                <th class="text-center">Conv. Rate</th>
+                                <th class="text-end pe-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="campaignTableBody">
+                            <!-- Dynamic Rows Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Quick CPL Estimator Footer -->
+            <div class="card-footer bg-white py-3 px-4 border-top">
+                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <div style="width: 28px; height: 28px; background: #e0f2fe; color: #0284c7; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div>
+                            <span class="small fw-bold text-dark">Campaign ROI & Cost Per Lead (CPL) Estimator:</span>
+                            <span class="small text-muted ms-1">Enter your monthly Google / Meta Ads spend to view verified cost per inquiry:</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="input-group input-group-sm" style="max-width: 220px;">
+                            <span class="input-group-text bg-light text-dark fw-bold">₹</span>
+                            <input type="number" class="form-control fw-semibold" id="adSpendInput" placeholder="e.g. 5000" value="5000" oninput="calculateCPL()">
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary fw-semibold rounded-pill px-3 text-nowrap" onclick="calculateCPL()">
+                            <i class="fa-solid fa-bolt me-1"></i> Calculate CPL
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Real-time Activity Stream & Visit Log -->
         <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
             <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
@@ -476,7 +586,7 @@
                                 <th>Context / Detail</th>
                                 <th>Page Path</th>
                                 <th>Visitor Location</th>
-                                <th>Source / Referrer</th>
+                                <th>Campaign & Source</th>
                                 <th>Device</th>
                                 <th class="text-end pe-4">Status</th>
                             </tr>
@@ -494,12 +604,388 @@
 
     </div>
 
+    <!-- Modal: Instant Lead Alert & Notification Settings -->
+    <div class="modal fade" id="alertSettingsModal" tabindex="-1" aria-labelledby="alertSettingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header border-bottom py-3 px-4" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white;">
+                    <div class="d-flex align-items-center gap-2">
+                        <div style="width: 38px; height: 38px; background: #FF6A2A; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-bell text-white"></i>
+                        </div>
+                        <div>
+                            <h5 class="modal-title font-display fw-bold mb-0 text-white" id="alertSettingsModalLabel">Instant Lead Alerts & Notifications</h5>
+                            <small class="text-white-50">Never miss a solar lead: real-time phone alerts, sound chimes, & desktop pings</small>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- Channel 1: Audio Chime -->
+                    <div class="card border rounded-3 p-3 mb-3 bg-light-subtle">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center gap-3">
+                                <div style="width: 40px; height: 40px; background: #dcfce7; color: #166534; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-dark">Real-Time Audio Sound Chime</h6>
+                                    <small class="text-muted">Plays a pleasant double-chime bell whenever a customer clicks Call or WhatsApp</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="testAudioChime()">
+                                    <i class="fa-solid fa-play me-1"></i> Test Chime
+                                </button>
+                                <div class="form-check form-switch fs-5 mb-0 ms-2">
+                                    <input class="form-check-input" type="checkbox" id="audioChimeSwitch" checked>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Channel 2: Desktop Push Notifications -->
+                    <div class="card border rounded-3 p-3 mb-3 bg-light-subtle">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center gap-3">
+                                <div style="width: 40px; height: 40px; background: #e0f2fe; color: #0284c7; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                    <i class="fa-solid fa-desktop"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-dark">Browser Desktop Notifications</h6>
+                                    <small class="text-muted">Shows a popup on your screen with caller's location, page, & ad campaign</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill px-3" onclick="requestAndTestBrowserNotification()">
+                                    <i class="fa-solid fa-bell me-1"></i> Test Popup
+                                </button>
+                                <div class="form-check form-switch fs-5 mb-0 ms-2">
+                                    <input class="form-check-input" type="checkbox" id="browserNotifySwitch" checked>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Channel 3: Telegram Bot Instant Phone Alerts -->
+                    <div class="card border rounded-3 p-3 mb-0" style="border-left: 4px solid #0088cc !important;">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <div style="width: 40px; height: 40px; background: #e0f2fe; color: #0088cc; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                                    <i class="fa-brands fa-telegram"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-dark">Telegram Bot Instant Phone Alert (Direct to Mobile)</h6>
+                                    <small class="text-muted">Sends an instant ping to your phone via Telegram even when you are away from PC</small>
+                                </div>
+                            </div>
+                            <div class="form-check form-switch fs-5 mb-0">
+                                <input class="form-check-input" type="checkbox" id="telegramAlertSwitch" checked>
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-md-7">
+                                <label class="form-label small fw-bold text-dark mb-1">Telegram Bot Token</label>
+                                <input type="text" class="form-control form-control-sm font-monospace" id="telegramBotToken" placeholder="e.g. 7123456789:AAHk12345...">
+                                <small class="text-muted" style="font-size: 0.72rem;">Create in 1 minute via <a href="https://t.me/BotFather" target="_blank" class="fw-bold">@BotFather</a></small>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label small fw-bold text-dark mb-1">Telegram Chat ID / User ID</label>
+                                <input type="text" class="form-control form-control-sm font-monospace" id="telegramChatId" placeholder="e.g. 987654321">
+                                <small class="text-muted" style="font-size: 0.72rem;">Get your ID via <a href="https://t.me/userinfobot" target="_blank" class="fw-bold">@userinfobot</a></small>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 pt-3 border-top d-flex justify-content-between align-items-center">
+                            <div class="small text-muted">
+                                <i class="fa-solid fa-shield-halved text-success me-1"></i> Client-side secure dispatch. Zero server setup required.
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-info rounded-pill px-3" onclick="testTelegramAlert()">
+                                <i class="fa-solid fa-paper-plane me-1"></i> Send Test Message
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="alertSaveSuccessMessage" class="alert alert-success mt-3 py-2 px-3 small d-none">
+                        <i class="fa-solid fa-check-circle me-1"></i> Alert settings saved successfully and synced with cloud!
+                    </div>
+                </div>
+                <div class="modal-footer bg-light py-2 px-4 border-top">
+                    <button type="button" class="btn btn-sm btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-warning fw-bold text-dark rounded-pill px-4" onclick="saveAlertSettings()">
+                        <i class="fa-solid fa-save me-1"></i> Save Alert Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Analytics Engine Script: 100% REAL DATA ONLY -->
     <script>
         let currentFilter = '30days';
         let currentLogFilter = 'all';
         let chartInstances = {};
         let allCloudEvents = [];
+        let seenEventIds = new Set();
+        let isInitialSnapshotLoaded = false;
+        let audioContextInstance = null;
+
+        // Alert Configuration
+        let alertConfig = {
+            audioChime: true,
+            browserNotify: true,
+            telegramEnabled: true,
+            telegramToken: '',
+            telegramChatId: ''
+        };
+
+        // Unlock Web Audio API on first user interaction
+        function getAudioContext() {
+            if (!audioContextInstance) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (AudioCtx) audioContextInstance = new AudioCtx();
+            }
+            if (audioContextInstance && audioContextInstance.state === 'suspended') {
+                audioContextInstance.resume();
+            }
+            return audioContextInstance;
+        }
+        document.addEventListener('click', () => { getAudioContext(); }, { once: true });
+
+        // Synthesize Pleasant Dual-Harmonic Alert Chime
+        function playLeadAlertChime() {
+            try {
+                if (!alertConfig.audioChime) return;
+                const ctx = getAudioContext();
+                if (!ctx) return;
+                const now = ctx.currentTime;
+
+                // Tone 1: D5 (587.33Hz) ramping to A5 (880Hz)
+                const osc1 = ctx.createOscillator();
+                const gain1 = ctx.createGain();
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(587.33, now);
+                osc1.frequency.exponentialRampToValueAtTime(880, now + 0.12);
+                gain1.gain.setValueAtTime(0.3, now);
+                gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+                osc1.connect(gain1);
+                gain1.connect(ctx.destination);
+                osc1.start(now);
+                osc1.stop(now + 0.5);
+
+                // Tone 2: D6 (1174.66Hz) crystalline chime
+                const osc2 = ctx.createOscillator();
+                const gain2 = ctx.createGain();
+                osc2.type = 'triangle';
+                osc2.frequency.setValueAtTime(880, now + 0.18);
+                osc2.frequency.exponentialRampToValueAtTime(1174.66, now + 0.28);
+                gain2.gain.setValueAtTime(0.35, now + 0.18);
+                gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
+                osc2.connect(gain2);
+                gain2.connect(ctx.destination);
+                osc2.start(now + 0.18);
+                osc2.stop(now + 0.9);
+            } catch(e) {
+                console.warn("Audio chime notice:", e);
+            }
+        }
+
+        // Desktop Browser Notification
+        function showBrowserLeadNotification(lead) {
+            try {
+                if (!alertConfig.browserNotify) return;
+                if (!('Notification' in window)) return;
+                if (Notification.permission === 'granted') {
+                    let actionText = 'Phone Call Initiated';
+                    if (lead.type === 'whatsapp_click') actionText = 'WhatsApp Chat Inquiry';
+                    if (lead.type === 'form_submit') actionText = 'Quote Form Submitted';
+
+                    new Notification(`🚨 New Hot Solar Lead!`, {
+                        body: `${actionText} from ${lead.location || lead.city || 'Kerala'}\nCampaign: ${lead.campaign || lead.source || 'Direct'}`,
+                        icon: '/favicon/favicon-32x32.ico'
+                    });
+                }
+            } catch(e) {}
+        }
+
+        // Live Floating Toast Alert in UI
+        function showLiveToast(lead) {
+            const container = document.getElementById('liveToastContainer');
+            if (!container) return;
+
+            let icon = 'fa-phone';
+            let actionName = 'Phone Call Clicked';
+            let badgeBg = 'bg-success';
+            if (lead.type === 'whatsapp_click') {
+                icon = 'fa-whatsapp';
+                actionName = 'WhatsApp Chat Inquiry';
+                badgeBg = 'bg-success';
+            } else if (lead.type === 'form_submit') {
+                icon = 'fa-file-pen';
+                actionName = 'Quote Form Submitted';
+                badgeBg = 'bg-primary';
+            }
+
+            const toastId = 'toast_' + Date.now();
+            const toastEl = document.createElement('div');
+            toastEl.id = toastId;
+            toastEl.className = 'alert alert-light border shadow-lg rounded-4 p-3 mb-2 animate__animated animate__fadeInDown';
+            toastEl.style.cssText = 'border-left: 5px solid #FF6A2A !important; pointer-events: auto; background: #ffffff;';
+            toastEl.innerHTML = `
+                <div class="d-flex align-items-start justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="badge ${badgeBg} rounded-circle p-2">
+                            <i class="fa-solid ${icon} fs-6 text-white"></i>
+                        </span>
+                        <div>
+                            <div class="fw-bold font-display text-dark fs-6">${actionName}</div>
+                            <div class="small text-muted"><i class="fa-solid fa-location-dot text-danger me-1"></i><b>${lead.location || lead.city || 'Kerala, India'}</b></div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-sm" onclick="document.getElementById('${toastId}').remove()"></button>
+                </div>
+                <div class="mt-2 pt-2 border-top d-flex justify-content-between align-items-center small">
+                    <span class="text-truncate me-2"><code>${lead.url || '/'}</code></span>
+                    <span class="badge bg-light text-secondary border text-nowrap">${lead.campaign || lead.source || 'Direct'}</span>
+                </div>
+            `;
+
+            container.appendChild(toastEl);
+            setTimeout(() => {
+                if (document.getElementById(toastId)) document.getElementById(toastId).remove();
+            }, 9000);
+        }
+
+        // Trigger All Configured Real-Time Lead Alerts
+        function triggerLiveLeadAlert(lead) {
+            playLeadAlertChime();
+            showBrowserLeadNotification(lead);
+            showLiveToast(lead);
+        }
+
+        // Load & Save Alert Settings
+        function loadAlertSettings() {
+            try {
+                const stored = localStorage.getItem('solis_alert_config');
+                if (stored) {
+                    alertConfig = Object.assign(alertConfig, JSON.parse(stored));
+                }
+                // Populate input fields in modal
+                document.getElementById('audioChimeSwitch').checked = alertConfig.audioChime !== false;
+                document.getElementById('browserNotifySwitch').checked = alertConfig.browserNotify !== false;
+                document.getElementById('telegramAlertSwitch').checked = alertConfig.telegramEnabled !== false;
+                document.getElementById('telegramBotToken').value = alertConfig.telegramToken || '';
+                document.getElementById('telegramChatId').value = alertConfig.telegramChatId || '';
+
+                const badge = document.getElementById('navAlertBadge');
+                if (badge) {
+                    if (alertConfig.audioChime || alertConfig.browserNotify || alertConfig.telegramEnabled) {
+                        badge.textContent = 'Active';
+                        badge.className = 'badge bg-success ms-1';
+                    } else {
+                        badge.textContent = 'Muted';
+                        badge.className = 'badge bg-secondary ms-1';
+                    }
+                }
+            } catch(e) {}
+        }
+
+        function saveAlertSettings() {
+            try {
+                alertConfig.audioChime = document.getElementById('audioChimeSwitch').checked;
+                alertConfig.browserNotify = document.getElementById('browserNotifySwitch').checked;
+                alertConfig.telegramEnabled = document.getElementById('telegramAlertSwitch').checked;
+                alertConfig.telegramToken = (document.getElementById('telegramBotToken').value || '').trim();
+                alertConfig.telegramChatId = (document.getElementById('telegramChatId').value || '').trim();
+
+                localStorage.setItem('solis_alert_config', JSON.stringify(alertConfig));
+
+                // Sync to Firestore cloud config
+                if (typeof dbFirestore !== 'undefined') {
+                    dbFirestore.collection('solis').doc('alert_config').set({
+                        audioChime: alertConfig.audioChime,
+                        browserNotify: alertConfig.browserNotify,
+                        telegramEnabled: alertConfig.telegramEnabled,
+                        telegramToken: alertConfig.telegramToken,
+                        telegramChatId: alertConfig.telegramChatId,
+                        updatedAt: new Date().toISOString()
+                    }, { merge: true }).catch(() => {});
+                }
+
+                const msg = document.getElementById('alertSaveSuccessMessage');
+                msg.classList.remove('d-none');
+                setTimeout(() => msg.classList.add('d-none'), 3500);
+
+                const badge = document.getElementById('navAlertBadge');
+                if (badge) {
+                    badge.textContent = (alertConfig.audioChime || alertConfig.browserNotify || alertConfig.telegramEnabled) ? 'Active' : 'Muted';
+                    badge.className = 'badge ' + ((alertConfig.audioChime || alertConfig.browserNotify || alertConfig.telegramEnabled) ? 'bg-success' : 'bg-secondary') + ' ms-1';
+                }
+            } catch(e) {
+                alert("Error saving settings: " + e.message);
+            }
+        }
+
+        function testAudioChime() {
+            getAudioContext();
+            playLeadAlertChime();
+        }
+
+        function requestAndTestBrowserNotification() {
+            if (!('Notification' in window)) {
+                alert("This browser does not support desktop notifications.");
+                return;
+            }
+            Notification.requestPermission().then(perm => {
+                if (perm === 'granted') {
+                    new Notification("🚨 Solis Lead Notification Test", {
+                        body: "Desktop notifications are working! You will be alerted when new inquiries arrive.",
+                        icon: "/favicon/favicon-32x32.ico"
+                    });
+                } else {
+                    alert("Notification permission was denied. Please allow notifications in browser site settings.");
+                }
+            });
+        }
+
+        function testTelegramAlert() {
+            const token = (document.getElementById('telegramBotToken').value || '').trim();
+            const chatId = (document.getElementById('telegramChatId').value || '').trim();
+
+            if (!token || !chatId) {
+                alert("Please enter both your Telegram Bot Token and Chat ID first.");
+                return;
+            }
+
+            const testMsg = 
+                `🔔 <b>SOLIS LEAD ALERT TEST</b>\n` +
+                `━━━━━━━━━━━━━━━━━━━\n` +
+                `✅ <b>Status:</b> Telegram Integration Connected Successfully!\n` +
+                `⏰ <b>Time:</b> ${new Date().toLocaleTimeString('en-IN')}\n` +
+                `🎯 <b>Ready:</b> You will receive instant alerts for customer calls, WhatsApp chats, and quote form submissions.`;
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: testMsg,
+                    parse_mode: 'HTML'
+                })
+            })
+            .then(r => r.json())
+            .then(res => {
+                if (res.ok) {
+                    alert("✅ Test message sent! Check your Telegram app now.");
+                } else {
+                    alert("❌ Telegram API Error: " + (res.description || "Invalid token or chat ID"));
+                }
+            })
+            .catch(err => {
+                alert("❌ Network Error connecting to Telegram API: " + err.message);
+            });
+        }
 
         // Helper: Format relative time
         function timeAgo(date) {
@@ -517,6 +1003,7 @@
         // Initialize Real-Time Firebase Firestore Cloud Listener
         function initFirestoreAnalyticsListener() {
             const statusBadge = document.getElementById('cloudSyncStatus');
+            loadAlertSettings();
             
             if (typeof dbFirestore !== 'undefined') {
                 try {
@@ -525,23 +1012,39 @@
                         const fetched = [];
                         snapshot.forEach(doc => {
                             const d = doc.data();
-                            fetched.push({
+                            const eventObj = {
                                 id: doc.id,
                                 type: d.type || 'page_view',
                                 title: d.title || 'Page',
                                 url: d.url || '/',
                                 device: d.device || 'Desktop',
                                 source: d.source || 'Direct',
+                                campaign: d.campaign || '',
+                                utm_source: d.utm_source || '',
+                                utm_medium: d.utm_medium || '',
+                                utm_term: d.utm_term || '',
+                                gclid: d.gclid || '',
                                 location: d.location || (d.city ? (d.city + ', ' + (d.region || 'Kerala')) : 'Kerala, India'),
                                 city: d.city || '',
                                 region: d.region || '',
                                 details: d.details || '',
                                 vid: d.vid || doc.id,
                                 timestamp: d.createdAt || new Date().toISOString()
-                            });
+                            };
+
+                            // Detect brand new incoming leads while dashboard is running
+                            if (isInitialSnapshotLoaded && !seenEventIds.has(doc.id)) {
+                                if (eventObj.type === 'call_click' || eventObj.type === 'whatsapp_click' || eventObj.type === 'form_submit') {
+                                    triggerLiveLeadAlert(eventObj);
+                                }
+                            }
+                            seenEventIds.add(doc.id);
+                            fetched.push(eventObj);
                         });
 
                         allCloudEvents = fetched;
+                        isInitialSnapshotLoaded = true;
+
                         if (statusBadge) {
                             statusBadge.innerHTML = '<span class="live-dot"></span> Cloud Firestore Live (' + fetched.length + ' events)';
                             statusBadge.className = 'badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill d-none d-lg-inline-flex align-items-center';
@@ -643,6 +1146,9 @@
             renderRealChannelChart(whatsapp, calls, forms);
             renderRealDistrictChart(events);
             renderRealSourceChart(events);
+
+            // Render Campaign Attribution
+            renderRealCampaignAttribution(events);
 
             // Render Top 10 Pages & Activity Log
             renderRealTopPagesTable(events);
@@ -870,6 +1376,166 @@
             });
         }
 
+        // Google Ads & Marketing Campaign Attribution Engine
+        let totalCampaignAdLeads = 0;
+
+        function renderRealCampaignAttribution(events) {
+            const tbody = document.getElementById('campaignTableBody');
+            tbody.innerHTML = '';
+
+            // Group by campaign name / ad source
+            const campMap = {};
+            let googleLeads = 0;
+            let metaLeads = 0;
+            let organicLeads = 0;
+            let totalAdLeads = 0;
+
+            events.forEach(e => {
+                let campName = e.campaign;
+                let source = e.source || 'Direct';
+                let term = e.utm_term || '';
+
+                if (!campName || campName === 'Organic / Direct') {
+                    if (source === 'Google Ads' || e.gclid) {
+                        campName = 'Google Ads Search Campaign';
+                    } else if (source === 'Meta Ads') {
+                        campName = 'Meta Social Ads Campaign';
+                    } else {
+                        campName = source + ' (Direct / Organic)';
+                    }
+                }
+
+                const key = campName;
+                if (!campMap[key]) {
+                    campMap[key] = {
+                        name: campName,
+                        source: source,
+                        term: term,
+                        views: 0,
+                        calls: 0,
+                        whatsapp: 0,
+                        forms: 0,
+                        isGoogle: source === 'Google Ads' || Boolean(e.gclid) || campName.toLowerCase().includes('google'),
+                        isMeta: source === 'Meta Ads' || campName.toLowerCase().includes('meta') || campName.toLowerCase().includes('facebook') || campName.toLowerCase().includes('instagram')
+                    };
+                }
+
+                if (e.type === 'page_view') campMap[key].views++;
+                else if (e.type === 'call_click') campMap[key].calls++;
+                else if (e.type === 'whatsapp_click') campMap[key].whatsapp++;
+                else if (e.type === 'form_submit') campMap[key].forms++;
+                if (e.utm_term && !campMap[key].term) campMap[key].term = e.utm_term;
+            });
+
+            const sortedCampaigns = Object.values(campMap).sort((a, b) => {
+                const leadsA = a.calls + a.whatsapp + a.forms;
+                const leadsB = b.calls + b.whatsapp + b.forms;
+                return leadsB - leadsA;
+            });
+
+            sortedCampaigns.forEach(c => {
+                const leads = c.calls + c.whatsapp + c.forms;
+                if (c.isGoogle) {
+                    googleLeads += leads;
+                    totalAdLeads += leads;
+                } else if (c.isMeta) {
+                    metaLeads += leads;
+                    totalAdLeads += leads;
+                } else {
+                    organicLeads += leads;
+                }
+            });
+
+            totalCampaignAdLeads = totalAdLeads > 0 ? totalAdLeads : (googleLeads + metaLeads);
+
+            document.getElementById('camp-google-leads').textContent = googleLeads.toLocaleString();
+            document.getElementById('camp-meta-leads').textContent = metaLeads.toLocaleString();
+            document.getElementById('camp-organic-leads').textContent = organicLeads.toLocaleString();
+
+            calculateCPL();
+
+            if (sortedCampaigns.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="10" class="text-center py-4 text-muted small">
+                            <i class="fa-solid fa-bullseye fs-3 opacity-30 mb-2 d-block"></i>
+                            No paid campaign or UTM visits recorded yet. As ads on Google or Facebook run with <code>?utm_source=...</code> or <code>?gclid=...</code>, leads will attribute here automatically.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            sortedCampaigns.forEach(camp => {
+                const totalLeads = camp.calls + camp.whatsapp + camp.forms;
+                const convRate = camp.views > 0 ? ((totalLeads / camp.views) * 100).toFixed(1) : (totalLeads > 0 ? 100 : 0);
+
+                let sourceBadge = '';
+                if (camp.isGoogle) {
+                    sourceBadge = '<span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1"><i class="fa-brands fa-google me-1"></i> Google Ads</span>';
+                } else if (camp.isMeta) {
+                    sourceBadge = '<span class="badge bg-info-subtle text-info-emphasis border border-info-subtle px-2 py-1"><i class="fa-brands fa-meta me-1"></i> Meta Ads</span>';
+                } else {
+                    sourceBadge = `<span class="badge bg-light text-secondary border px-2 py-1">${camp.source}</span>`;
+                }
+
+                let statusBadge = totalLeads >= 3 
+                    ? '<span class="badge bg-success text-white px-2 py-1">Top Converting</span>'
+                    : (totalLeads > 0 ? '<span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">Active Leads</span>' : '<span class="badge bg-light text-muted border px-2 py-1">Clicks Only</span>');
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="ps-4">${sourceBadge}</td>
+                    <td>
+                        <span class="fw-bold text-dark">${camp.name}</span>
+                    </td>
+                    <td>
+                        ${camp.term ? `<span class="badge bg-light text-dark border"><i class="fa-solid fa-tag me-1 text-primary"></i>${camp.term}</span>` : '<span class="text-muted small">—</span>'}
+                    </td>
+                    <td class="text-center fw-bold text-secondary">${camp.views.toLocaleString()}</td>
+                    <td class="text-center">
+                        <span class="badge ${camp.calls > 0 ? 'bg-success-subtle text-success fw-bold' : 'bg-light text-muted border'} px-2 py-1">
+                            <i class="fa-solid fa-phone me-1"></i>${camp.calls}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge ${camp.whatsapp > 0 ? 'bg-success text-white fw-bold' : 'bg-light text-muted border'} px-2 py-1">
+                            <i class="fa-brands fa-whatsapp me-1"></i>${camp.whatsapp}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge ${camp.forms > 0 ? 'bg-primary-subtle text-primary fw-bold' : 'bg-light text-muted border'} px-2 py-1">
+                            <i class="fa-solid fa-file-pen me-1"></i>${camp.forms}
+                        </span>
+                    </td>
+                    <td class="text-center fw-bold fs-6 text-dark">${totalLeads}</td>
+                    <td class="text-center fw-bold ${convRate > 0 ? 'text-success' : 'text-muted'}">${convRate}%</td>
+                    <td class="text-end pe-4">${statusBadge}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Calculate Cost Per Lead (CPL)
+        function calculateCPL() {
+            const spendInput = document.getElementById('adSpendInput');
+            const cplDisplay = document.getElementById('camp-cpl-display');
+            const cplSub = document.getElementById('camp-cpl-sub');
+            const spend = parseFloat(spendInput ? spendInput.value : 0) || 0;
+
+            if (totalCampaignAdLeads > 0 && spend > 0) {
+                const cpl = Math.round(spend / totalCampaignAdLeads);
+                cplDisplay.textContent = `₹${cpl.toLocaleString()} / lead`;
+                cplSub.textContent = `Based on ₹${spend.toLocaleString()} for ${totalCampaignAdLeads} ad leads`;
+            } else if (spend > 0) {
+                cplDisplay.textContent = `₹${spend.toLocaleString()}`;
+                cplSub.textContent = `Awaiting incoming ad leads`;
+            } else {
+                cplDisplay.textContent = `₹0 / lead`;
+                cplSub.textContent = `Enter ad spend below`;
+            }
+        }
+
         // 4. Render Top 10 Highly Engaged Pages (Strictly Real)
         function renderRealTopPagesTable(events) {
             const tbody = document.getElementById('topPagesTableBody');
@@ -1002,13 +1668,15 @@
                 return (e.title && e.title.toLowerCase().includes(searchTerm)) ||
                        (e.url && e.url.toLowerCase().includes(searchTerm)) ||
                        (e.details && e.details.toLowerCase().includes(searchTerm)) ||
-                       (e.source && e.source.toLowerCase().includes(searchTerm));
+                       (e.source && e.source.toLowerCase().includes(searchTerm)) ||
+                       (e.campaign && e.campaign.toLowerCase().includes(searchTerm)) ||
+                       (e.utm_term && e.utm_term.toLowerCase().includes(searchTerm));
             });
 
             if (filtered.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="7">
+                        <td colspan="8">
                             <div class="empty-state-box py-4">
                                 <i class="fa-solid fa-inbox fs-3 mb-2 d-block opacity-40"></i>
                                 <span class="small text-muted">No live events matching the current view.</span>
@@ -1033,6 +1701,30 @@
 
                 const deviceIcon = evt.device === 'Mobile' ? '<i class="fa-solid fa-mobile-screen text-muted me-1"></i> Mobile' : '<i class="fa-solid fa-laptop text-muted me-1"></i> Desktop';
 
+                // Source & Campaign Presentation
+                let sourceCampaignDisplay = '';
+                if (evt.campaign && evt.campaign !== 'Organic / Direct') {
+                    const isGoogle = (evt.source === 'Google Ads') || (evt.campaign && evt.campaign.toLowerCase().includes('google'));
+                    const isMeta = (evt.source === 'Meta Ads') || (evt.campaign && evt.campaign.toLowerCase().includes('meta'));
+                    const badgeClass = isGoogle ? 'bg-primary-subtle text-primary border border-primary-subtle' : (isMeta ? 'bg-info-subtle text-info-emphasis border border-info-subtle' : 'bg-warning-subtle text-warning-emphasis border border-warning-subtle');
+                    const icon = isGoogle ? '<i class="fa-brands fa-google me-1"></i>' : (isMeta ? '<i class="fa-brands fa-facebook me-1"></i>' : '<i class="fa-solid fa-bullseye me-1"></i>');
+                    
+                    sourceCampaignDisplay = `
+                        <div>
+                            <span class="badge ${badgeClass} px-2 py-1">
+                                ${icon}${evt.campaign}
+                            </span>
+                            ${evt.utm_term ? `<div class="text-muted" style="font-size: 0.68rem;"><i class="fa-solid fa-tag me-1"></i>${evt.utm_term}</div>` : ''}
+                        </div>
+                    `;
+                } else if (evt.source === 'Google Ads') {
+                    sourceCampaignDisplay = '<span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1"><i class="fa-brands fa-google me-1"></i> Google Ads</span>';
+                } else if (evt.source === 'Meta Ads') {
+                    sourceCampaignDisplay = '<span class="badge bg-info-subtle text-info-emphasis border border-info-subtle px-2 py-1"><i class="fa-brands fa-facebook me-1"></i> Meta Ads</span>';
+                } else {
+                    sourceCampaignDisplay = `<span class="badge bg-light text-secondary border">${evt.source || 'Direct'}</span>`;
+                }
+
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td class="ps-4 text-nowrap">
@@ -1052,9 +1744,7 @@
                         <i class="fa-solid fa-location-dot text-danger me-1"></i>
                         <span class="fw-semibold text-dark">${evt.location || evt.city || 'Kerala, India'}</span>
                     </td>
-                    <td>
-                        <span class="badge bg-light text-secondary border">${evt.source || 'Direct'}</span>
-                    </td>
+                    <td>${sourceCampaignDisplay}</td>
                     <td class="small">${deviceIcon}</td>
                     <td class="text-end pe-4">
                         <span class="badge bg-success-subtle text-success border border-success-subtle" style="font-size: 0.65rem;">Verified</span>
@@ -1104,7 +1794,7 @@
                 return;
             }
 
-            let csv = "Timestamp,Event Type,Details,Page Title,Page URL,Traffic Source,Device\n";
+            let csv = "Timestamp,Event Type,Details,Page Title,Page URL,Traffic Source,Campaign,Search Term,Location,Device\n";
             events.forEach(e => {
                 const row = [
                     `"${e.timestamp}"`,
@@ -1113,6 +1803,9 @@
                     `"${(e.title || '').replace(/"/g, '""')}"`,
                     `"${e.url}"`,
                     `"${e.source || 'Direct'}"`,
+                    `"${e.campaign || ''}"`,
+                    `"${e.utm_term || ''}"`,
+                    `"${e.location || ''}"`,
                     `"${e.device || 'Unknown'}"`
                 ];
                 csv += row.join(",") + "\n";
