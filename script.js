@@ -1232,6 +1232,29 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('solis_vid', visitorId);
   }
 
+  // Fast, privacy-friendly IP Geo lookup (City, Region, Country)
+  let visitorGeo = null;
+  try {
+    const cachedGeo = sessionStorage.getItem('solis_geo');
+    if (cachedGeo) visitorGeo = JSON.parse(cachedGeo);
+  } catch(e) {}
+
+  if (!visitorGeo) {
+    fetch('https://ipwho.is/')
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.success !== false) {
+          visitorGeo = {
+            city: data.city || '',
+            region: data.region || '',
+            country: data.country || 'India'
+          };
+          sessionStorage.setItem('solis_geo', JSON.stringify(visitorGeo));
+        }
+      })
+      .catch(() => {});
+  }
+
   function getDeviceType() {
     const width = window.innerWidth;
     if (width < 768) return 'Mobile';
@@ -1255,6 +1278,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  function getLocationString() {
+    if (visitorGeo && (visitorGeo.city || visitorGeo.region)) {
+      return (visitorGeo.city ? visitorGeo.city + ', ' : '') + (visitorGeo.region || visitorGeo.country || 'India');
+    }
+    // Fallback: Infer from page location if district specific
+    const path = (window.location.pathname || '').toLowerCase();
+    if (path.includes('kottayam')) return 'Kottayam, Kerala';
+    if (path.includes('thiruvalla') || path.includes('pathanamthitta')) return 'Thiruvalla, Pathanamthitta';
+    if (path.includes('kollam')) return 'Kollam, Kerala';
+    if (path.includes('alappuzha')) return 'Alappuzha, Kerala';
+    if (path.includes('thiruvananthapuram')) return 'Trivandrum, Kerala';
+    return 'Kerala, India';
+  }
+
   const FB_FIRESTORE_URL = 'https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/analytics/events?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ';
 
   window.recordSolisEvent = function(type, details) {
@@ -1264,6 +1301,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const timestampIso = new Date().toISOString();
       const device = getDeviceType();
       const source = getTrafficSource();
+      const location = getLocationString();
+      const city = (visitorGeo && visitorGeo.city) ? visitorGeo.city : '';
+      const region = (visitorGeo && visitorGeo.region) ? visitorGeo.region : 'Kerala';
+      const country = (visitorGeo && visitorGeo.country) ? visitorGeo.country : 'India';
 
       const eventPayload = {
         id: 'evt_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
@@ -1273,6 +1314,10 @@ document.addEventListener('DOMContentLoaded', function() {
         url: pageUrl,
         device: device,
         source: source,
+        location: location,
+        city: city,
+        region: region,
+        country: country,
         details: details || '',
         timestamp: timestampIso
       };
@@ -1295,6 +1340,10 @@ document.addEventListener('DOMContentLoaded', function() {
           url: { stringValue: pageUrl },
           device: { stringValue: device },
           source: { stringValue: source },
+          location: { stringValue: location },
+          city: { stringValue: city },
+          region: { stringValue: region },
+          country: { stringValue: country },
           details: { stringValue: details || '' },
           vid: { stringValue: visitorId },
           createdAt: { stringValue: timestampIso }

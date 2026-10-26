@@ -475,6 +475,7 @@
                                 <th>Event Type</th>
                                 <th>Context / Detail</th>
                                 <th>Page Path</th>
+                                <th>Visitor Location</th>
                                 <th>Source / Referrer</th>
                                 <th>Device</th>
                                 <th class="text-end pe-4">Status</th>
@@ -531,6 +532,9 @@
                                 url: d.url || '/',
                                 device: d.device || 'Desktop',
                                 source: d.source || 'Direct',
+                                location: d.location || (d.city ? (d.city + ', ' + (d.region || 'Kerala')) : 'Kerala, India'),
+                                city: d.city || '',
+                                region: d.region || '',
                                 details: d.details || '',
                                 vid: d.vid || doc.id,
                                 timestamp: d.createdAt || new Date().toISOString()
@@ -773,37 +777,45 @@
             });
         }
 
-        // Chart 3: Real District Inquiries
+        // Chart 3: Real District & City Inquiries
         function renderRealDistrictChart(events) {
             const ctx = document.getElementById('districtChart').getContext('2d');
             if (chartInstances.district) chartInstances.district.destroy();
 
-            const districtMap = {
-                'Kottayam': 0,
-                'Pathanamthitta': 0,
-                'Alappuzha': 0,
-                'Kollam': 0,
-                'Trivandrum': 0,
-                'Other': 0
-            };
+            const locationMap = {};
 
             events.forEach(e => {
-                const url = (e.url || '').toLowerCase();
-                if (url.includes('kottayam')) districtMap['Kottayam']++;
-                else if (url.includes('pathanamthitta') || url.includes('thiruvalla')) districtMap['Pathanamthitta']++;
-                else if (url.includes('alappuzha')) districtMap['Alappuzha']++;
-                else if (url.includes('kollam')) districtMap['Kollam']++;
-                else if (url.includes('thiruvananthapuram') || url.includes('trivandrum')) districtMap['Trivandrum']++;
-                else districtMap['Other']++;
+                let loc = e.city || '';
+                if (!loc && e.location) {
+                    loc = e.location.split(',')[0].trim();
+                }
+                if (!loc) {
+                    const url = (e.url || '').toLowerCase();
+                    if (url.includes('kottayam')) loc = 'Kottayam';
+                    else if (url.includes('thiruvalla') || url.includes('pathanamthitta')) loc = 'Thiruvalla';
+                    else if (url.includes('kollam')) loc = 'Kollam';
+                    else if (url.includes('alappuzha')) loc = 'Alappuzha';
+                    else if (url.includes('thiruvananthapuram') || url.includes('trivandrum')) loc = 'Trivandrum';
+                    else loc = 'Kerala (General)';
+                }
+                locationMap[loc] = (locationMap[loc] || 0) + 1;
             });
+
+            // Sort top locations
+            const sortedLocs = Object.entries(locationMap)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 6);
+
+            const labels = sortedLocs.length > 0 ? sortedLocs.map(i => i[0]) : ['Kottayam', 'Thiruvalla', 'Kollam', 'Alappuzha'];
+            const data = sortedLocs.length > 0 ? sortedLocs.map(i => i[1]) : [0, 0, 0, 0];
 
             chartInstances.district = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: Object.keys(districtMap),
+                    labels: labels,
                     datasets: [{
-                        label: 'Interactions Count',
-                        data: Object.values(districtMap),
+                        label: 'Real Visitors by Location',
+                        data: data,
                         backgroundColor: ['#FF6A2A', '#10b981', '#0284c7', '#8b5cf6', '#eab308', '#64748b'],
                         borderRadius: 4
                     }]
@@ -813,7 +825,7 @@
                     maintainAspectRatio: false,
                     scales: {
                         x: { grid: { display: false } },
-                        y: { beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: 'Events', font: { size: 10 } } }
+                        y: { beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: 'Visits & Inquiries', font: { size: 10 } } }
                     },
                     plugins: { legend: { display: false } }
                 }
@@ -1035,6 +1047,10 @@
                         <a href="${evt.url}" target="_blank" class="small text-decoration-none">
                             <code>${evt.url}</code>
                         </a>
+                    </td>
+                    <td class="small text-nowrap">
+                        <i class="fa-solid fa-location-dot text-danger me-1"></i>
+                        <span class="fw-semibold text-dark">${evt.location || evt.city || 'Kerala, India'}</span>
                     </td>
                     <td>
                         <span class="badge bg-light text-secondary border">${evt.source || 'Direct'}</span>
