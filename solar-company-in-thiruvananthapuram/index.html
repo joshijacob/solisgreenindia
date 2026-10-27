@@ -101,23 +101,26 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h3>Get Quick Solar Quote for Thiruvananthapuram</h3>
-            <form class="quick-quote-form">
+            <form class="quick-quote-form" id="tvmModalQuoteForm">
                 <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
+                    <input type="text" name="name" placeholder="Your Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" placeholder="Phone Number" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
                 </div>
                 <div class="form-group">
-                    <select required>
+                    <input type="text" name="consumerNumber" placeholder="KSEB Consumer No. (13 digits)*" required pattern="[0-9]{10,13}" title="Please enter 10 to 13 digit KSEB Consumer Number">
+                </div>
+                <div class="form-group">
+                    <select name="service" required>
                         <option value="">Select Service</option>
-                        <option value="residential">Residential Solar</option>
-                        <option value="commercial">Commercial Solar</option>
-                        <option value="industrial">Industrial Solar</option>
+                        <option value="3kW Residential Solar (PM Surya Ghar)">Residential Solar</option>
+                        <option value="Commercial Solar">Commercial Solar</option>
+                        <option value="Industrial Solar">Industrial Solar</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Specific Area in Thiruvananthapuram" required>
+                    <input type="text" name="location" placeholder="Specific Area in Thiruvananthapuram" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">
                     <i class="fas fa-bolt"></i> Get Thiruvananthapuram Quote
@@ -520,33 +523,34 @@
                 </div>
                 <div class="contact-form">
                     <h3>Thiruvananthapuram Solar Quote</h3>
-                    <form class="inquiry-form">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="tel" placeholder="Phone Number" required>
-                        <select required>
+                    <form class="quick-quote-form inquiry-form" id="tvmInquiryForm">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                        <input type="text" name="consumerNumber" placeholder="KSEB Consumer No. (13 digits)*" required pattern="[0-9]{10,13}" title="Please enter 10 to 13 digit KSEB Consumer Number">
+                        <select name="location" required>
                             <option value="">Select Area in Thiruvananthapuram</option>
-                            <option value="kowdiar">Kowdiar</option>
-                            <option value="vellayambalam">Vellayambalam</option>
-                            <option value="statue">Statue</option>
-                            <option value="palayam">Palayam</option>
-                            <option value="technopark">Technopark</option>
-                            <option value="kazhakootam">Kazhakootam</option>
-                            <option value="airport">Trivandrum International Airport</option>
-                            <option value="sreekaryam">Sreekaryam</option>
-                            <option value="kovalam">Kovalam</option>
-                            <option value="shankhumukham">Shankhumukham</option>
-                            <option value="vizhinjam">Vizhinjam</option>
-                            <option value="poonthura">Poonthura</option>
-                            <option value="neyyattinkara">Neyyattinkara</option>
-                            <option value="attingal">Attingal</option>
-                            <option value="nedumangad">Nedumangad</option>
-                            <option value="chirayinkeezhu">Chirayinkeezhu</option>
+                            <option value="Kowdiar, Thiruvananthapuram">Kowdiar</option>
+                            <option value="Vellayambalam, Thiruvananthapuram">Vellayambalam</option>
+                            <option value="Statue, Thiruvananthapuram">Statue</option>
+                            <option value="Palayam, Thiruvananthapuram">Palayam</option>
+                            <option value="Technopark, Thiruvananthapuram">Technopark</option>
+                            <option value="Kazhakootam, Thiruvananthapuram">Kazhakootam</option>
+                            <option value="Airport Area, Thiruvananthapuram">Trivandrum International Airport</option>
+                            <option value="Sreekaryam, Thiruvananthapuram">Sreekaryam</option>
+                            <option value="Kovalam, Thiruvananthapuram">Kovalam</option>
+                            <option value="Shankhumukham, Thiruvananthapuram">Shankhumukham</option>
+                            <option value="Vizhinjam, Thiruvananthapuram">Vizhinjam</option>
+                            <option value="Poonthura, Thiruvananthapuram">Poonthura</option>
+                            <option value="Neyyattinkara, Thiruvananthapuram">Neyyattinkara</option>
+                            <option value="Attingal, Thiruvananthapuram">Attingal</option>
+                            <option value="Nedumangad, Thiruvananthapuram">Nedumangad</option>
+                            <option value="Chirayinkeezhu, Thiruvananthapuram">Chirayinkeezhu</option>
                         </select>
-                        <select required>
+                        <select name="service" required>
                             <option value="">Interested In</option>
-                            <option value="residential">Residential Solar</option>
-                            <option value="commercial">Commercial Solar</option>
-                            <option value="industrial">Industrial Solar</option>
+                            <option value="3kW Residential Solar (PM Surya Ghar)">Residential Solar</option>
+                            <option value="5kW On-Grid Commercial Solar">Commercial Solar</option>
+                            <option value="Industrial Solar Rooftop">Industrial Solar</option>
                         </select>
                         <button type="submit" class="btn btn-primary">Get Trivandrum Quote</button>
                     </form>

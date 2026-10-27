@@ -199,15 +199,18 @@
                 </div>
                 <div class="contact-form">
                     <h3>Mundakayam Service Inquiry</h3>
-                    <form class="contact-form-main">
+                    <form class="quick-quote-form contact-form-main" id="mundakayamQuoteForm">
                         <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
+                            <input type="text" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" placeholder="Phone Number" required>
+                            <input type="tel" name="phone" placeholder="Phone Number" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Location in Mundakayam" required>
+                            <input type="text" name="consumerNumber" placeholder="KSEB Consumer No. (13 digits)*" required pattern="[0-9]{10,13}" title="Please enter 10 to 13 digit KSEB Consumer Number">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="location" value="Mundakayam, Kottayam" placeholder="Location in Mundakayam" required>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">
                             <i class="fas fa-map-marker-alt"></i> Get Mundakayam Quote

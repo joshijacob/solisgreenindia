@@ -472,11 +472,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
                 submitButton.disabled = true;
                 
+                const consInput = this.querySelector('input[name="consumerNumber"], input[placeholder*="KSEB"]');
                 const formData = {
-                    name: this.querySelector('input[type="text"]').value.trim(),
-                    phone: this.querySelector('input[type="tel"]').value.trim(),
-                    area: this.querySelector('select[placeholder*="Area"]').value,
-                    service: this.querySelector('select[placeholder*="Interested"]').value
+                    name: (this.querySelector('input[name="name"], input[type="text"]') || {}).value?.trim() || '',
+                    phone: (this.querySelector('input[name="phone"], input[type="tel"]') || {}).value?.trim() || '',
+                    consumerNumber: (consInput || {}).value?.trim() || '',
+                    area: (this.querySelector('select[name="location"], select') || {}).value || 'Thiruvananthapuram',
+                    service: (this.querySelector('select[name="service"]') || {}).value || 'Residential Solar'
                 };
                 
                 if (validateCapitalForm(formData)) {
@@ -512,14 +514,22 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-    function submitCapitalForm(formData) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                // In real implementation, this would be an API call
-                console.log('Capital city form submitted:', formData);
-                resolve();
-            }, 1000);
-        });
+    async function submitCapitalForm(formData) {
+        try {
+            if (typeof saveLeadToFirestore === 'function') {
+                saveLeadToFirestore({
+                    name: formData.name,
+                    phone: formData.phone,
+                    consumerNumber: formData.consumerNumber || '',
+                    service: formData.service || 'Solar Installation',
+                    location: formData.area || 'Thiruvananthapuram, Kerala',
+                    page: '/solar-company-in-thiruvananthapuram/',
+                    source: 'Trivandrum Inquiry Form'
+                });
+            }
+        } catch (e) {
+            console.warn('Firestore submission error:', e);
+        }
     }
 
     function showCapitalError(message) {

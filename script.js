@@ -232,13 +232,29 @@ function initializeMobileMenu() {
 
 // FORM HANDLING - All form types
 function initializeForms() {
-  // Handle all form variations
+  // Handle all public lead, quote, contact, and inquiry forms across all pages
   const forms = document.querySelectorAll(
     '.quick-quote-form, ' +
     '.town-quote-form, ' +
+    '.contact-form, ' +
+    '.contact-form-main, ' +
+    '.inquiry-form, ' +
+    '.detailed-quote-form, ' +
     '#mainQuoteForm, ' +
     '#modalQuoteForm, ' +
-    'form[action*="formsubmit"]:not(#applicationForm):not([enctype="multipart/form-data"])'
+    '#solarContactForm, ' +
+    '#quoteForm, ' +
+    '#contactPageForm, ' +
+    '#serviceQuoteForm, ' +
+    '#areasQuoteForm, ' +
+    '#mundakayamQuoteForm, ' +
+    '#vakathanamQuoteForm, ' +
+    '#adoorQuoteForm, ' +
+    '#ranniQuoteForm, ' +
+    '#tvmModalQuoteForm, ' +
+    '#tvmInquiryForm, ' +
+    'form[action*="formsubmit"]:not(#applicationForm):not([enctype="multipart/form-data"]), ' +
+    'form:not(#loginForm):not(#login-form):not(#central-login-form):not(#addComponentForm):not(#sales-form):not(#manualLeadForm):not(#applicationForm):not(#jobForm)'
   );
   
   if (forms.length === 0) {
@@ -256,16 +272,33 @@ function initializeForms() {
         return;
       }
       
-      // Get form data
+      // Mark as captured to prevent duplicate handling
+      this.dataset.firestoreCaptured = "true";
+      
+      // Get form data with fallback to direct DOM element inspection
       const formData = new FormData(this);
+      const nameVal = formData.get('name') || formData.get('fullName') || formData.get('fullname') || 
+                      this.querySelector('input[name*="name"], input[placeholder*="Name"]')?.value || '';
+      const phoneVal = formData.get('phone') || formData.get('tel') || formData.get('mobile') || 
+                       this.querySelector('input[type="tel"], input[name*="phone"], input[placeholder*="Phone"]')?.value || '';
+      const consumerVal = formData.get('consumerNumber') || formData.get('consumer_no') || formData.get('consumerNo') || formData.get('kseb_consumer_no') || 
+                          this.querySelector('input[name*="consumer"], input[placeholder*="KSEB"]')?.value || '';
+      const emailVal = formData.get('email') || this.querySelector('input[type="email"], input[name*="email"]')?.value || '';
+      const serviceVal = formData.get('service') || formData.get('projectType') || 
+                         this.querySelector('select[name*="service"], select')?.value || 'Solar Installation';
+      const locationVal = formData.get('location') || formData.get('area') || 
+                          this.querySelector('select[name*="location"], select[name*="area"], input[placeholder*="Location"], input[placeholder*="Area"]')?.value || 
+                          detectLocationFromPage();
+      const messageVal = formData.get('message') || this.querySelector('textarea')?.value || '';
+
       const data = {
-        name: formData.get('name') || formData.get('fullName') || '',
-        phone: formData.get('phone') || '',
-        consumerNumber: formData.get('consumerNumber') || formData.get('consumer_no') || formData.get('consumerNo') || formData.get('kseb_consumer_no') || '',
-        email: formData.get('email') || '',
-        service: formData.get('service') || formData.get('projectType') || 'Solar Installation',
-        location: formData.get('location') || detectLocationFromPage(),
-        message: formData.get('message') || '',
+        name: nameVal.trim() || 'Website Visitor',
+        phone: phoneVal.trim(),
+        consumerNumber: consumerVal.trim(),
+        email: emailVal.trim(),
+        service: serviceVal.trim() || 'Solar Installation',
+        location: locationVal.trim() || detectLocationFromPage(),
+        message: messageVal.trim(),
         page: window.location.pathname,
         timestamp: new Date().toLocaleString('en-IN'),
         source: 'Website Form'
@@ -827,9 +860,9 @@ function validateForm(form) {
   });
 
   // Strict check on Mandatory Fields: Name, Phone, and Consumer Number
-  const nameInput = form.querySelector('input[name="name"], input[name="fullName"]');
-  const phoneInput = form.querySelector('input[name="phone"], input[type="tel"]');
-  const consumerInput = form.querySelector('input[name="consumerNumber"], input[name="consumer_no"], input[name="consumerNo"]');
+  const nameInput = form.querySelector('input[name="name"], input[name="fullName"], input[placeholder*="Name"]');
+  const phoneInput = form.querySelector('input[name="phone"], input[type="tel"], input[placeholder*="Phone"]');
+  const consumerInput = form.querySelector('input[name="consumerNumber"], input[name="consumer_no"], input[name="consumerNo"], input[placeholder*="KSEB"]');
 
   if (nameInput && !nameInput.value.trim()) {
     showFieldError(nameInput, 'Customer Name is required');
@@ -1663,20 +1696,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }, true);
 
-  // 3. Form Submit Delegation with Lead Contact Capture
+  // 3. Form Submit Delegation with Lead Contact Capture & Firestore Persistence
   document.addEventListener('submit', function(e) {
     const form = e.target;
-    if (!form || form.id === 'login-form' || form.id === 'central-login-form' || form.id === 'addComponentForm') return;
+    if (!form || form.id === 'login-form' || form.id === 'central-login-form' || form.id === 'loginForm' || form.id === 'addComponentForm' || form.id === 'manualLeadForm' || form.id === 'sales-form') return;
+    if (form.id === 'applicationForm' || form.id === 'jobForm') return; // Handled by Careers HR
+    
     const formName = form.id || form.className || 'Solar Quote Inquiry';
     try {
-      const phoneInput = form.querySelector('input[type="tel"], input[name="phone"]');
-      const nameInput = form.querySelector('input[name="name"], input[name="fullname"]');
-      const consInput = form.querySelector('input[name="consumerNumber"], input[name="consumer_no"], input[name="consumerNo"]');
+      const phoneInput = form.querySelector('input[type="tel"], input[name*="phone"], input[placeholder*="Phone"]');
+      const nameInput = form.querySelector('input[name*="name"], input[placeholder*="Name"]');
+      const consInput = form.querySelector('input[name*="consumer"], input[placeholder*="KSEB"]');
+      const emailInput = form.querySelector('input[type="email"], input[name*="email"]');
+      const serviceSelect = form.querySelector('select[name*="service"], select');
+      const locInput = form.querySelector('input[name*="location"], select[name*="area"], input[placeholder*="Location"]');
+      
       const leadSnippet = (nameInput && nameInput.value ? nameInput.value.trim() : '') + 
                           (phoneInput && phoneInput.value ? ' (' + phoneInput.value.trim() + ')' : '') +
                           (consInput && consInput.value ? ' [KSEB #' + consInput.value.trim() + ']' : '');
       const details = leadSnippet ? `Quote Lead: ${leadSnippet} - ${formName}` : `Quote Form Submitted: ${formName}`;
       recordSolisEvent('form_submit', details);
+      
+      // Auto-capture lead to Firestore collection (solis/forms/submissions) if not already captured
+      if (!form.dataset.firestoreCaptured && typeof saveLeadToFirestore === 'function') {
+        if (phoneInput && phoneInput.value) {
+          form.dataset.firestoreCaptured = "true";
+          const data = {
+            name: (nameInput && nameInput.value) ? nameInput.value.trim() : 'Website Visitor',
+            phone: phoneInput.value.trim(),
+            consumerNumber: (consInput && consInput.value) ? consInput.value.trim() : '',
+            email: (emailInput && emailInput.value) ? emailInput.value.trim() : '',
+            service: (serviceSelect && serviceSelect.value) ? serviceSelect.value.trim() : 'Solar Installation',
+            location: (locInput && locInput.value) ? locInput.value.trim() : (typeof detectLocationFromPage === 'function' ? detectLocationFromPage() : 'Kerala'),
+            message: form.querySelector('textarea')?.value || '',
+            page: window.location.pathname,
+            source: 'Website Form (Delegated)'
+          };
+          saveLeadToFirestore(data);
+        }
+      }
     } catch (err) {
       recordSolisEvent('form_submit', 'Quote Form Submitted: ' + formName);
     }

@@ -141,16 +141,17 @@
                 </div>
                 <div class="town-quote-form">
                     <h4>Get Your Ranni Price Quote</h4>
-                    <form action="#">
-                        <div class="form-group mb-3"><input type="text" placeholder="Your Name" required></div>
-                        <div class="form-group mb-3"><input type="tel" placeholder="Phone Number" required></div>
+                    <form class="quick-quote-form town-quote-form" id="ranniQuoteForm" action="#">
+                        <div class="form-group mb-3"><input type="text" name="name" placeholder="Your Name" required></div>
+                        <div class="form-group mb-3"><input type="tel" name="phone" placeholder="Phone Number" required></div>
+                        <div class="form-group mb-3"><input type="text" name="consumerNumber" placeholder="KSEB Consumer No. (13 digits)*" required pattern="[0-9]{10,13}" title="Please enter 10 to 13 digit KSEB Consumer Number"></div>
                         <div class="form-group mb-3">
-                            <select required>
-                                <option value="">Select Location</option>
-                                <option>Ranni Town</option>
-                                <option>Chittar / Seethathode</option>
-                                <option>Perunad / Vadasserikkara</option>
-                                <option>Other</option>
+                            <select name="location" required>
+                                <option value="">Select Location in Ranni</option>
+                                <option value="Ranni Town, Pathanamthitta">Ranni Town</option>
+                                <option value="Chittar / Seethathode, Pathanamthitta">Chittar / Seethathode</option>
+                                <option value="Perunad / Vadasserikkara, Pathanamthitta">Perunad / Vadasserikkara</option>
+                                <option value="Ranni Rural, Pathanamthitta">Other</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Send Request</button>

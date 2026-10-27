@@ -132,15 +132,16 @@
                 </div>
                 <div class="town-quote-form">
                     <h4>Adoor Solar Quote</h4>
-                    <form action="#">
-                        <input type="text" placeholder="Name" class="mb-3" required>
-                        <input type="tel" placeholder="Phone" class="mb-3" required>
-                        <select class="mb-3" required>
-                            <option value="">Nearest Hub</option>
-                            <option>Adoor Town</option>
-                            <option>Pandalam</option>
-                            <option>Kodumon</option>
-                            <option>Enadimangalam</option>
+                    <form class="quick-quote-form town-quote-form" id="adoorQuoteForm" action="#">
+                        <input type="text" name="name" placeholder="Your Name" class="mb-3" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" class="mb-3" required>
+                        <input type="text" name="consumerNumber" placeholder="KSEB Consumer No. (13 digits)*" class="mb-3" required pattern="[0-9]{10,13}" title="Please enter 10 to 13 digit KSEB Consumer Number">
+                        <select name="location" class="mb-3" required>
+                            <option value="">Nearest Hub in Adoor</option>
+                            <option value="Adoor Town, Pathanamthitta">Adoor Town</option>
+                            <option value="Pandalam, Pathanamthitta">Pandalam</option>
+                            <option value="Kodumon, Pathanamthitta">Kodumon</option>
+                            <option value="Enadimangalam, Pathanamthitta">Enadimangalam</option>
                         </select>
                         <button type="submit" class="btn btn-primary btn-block">Get Pricing</button>
                     </form>
