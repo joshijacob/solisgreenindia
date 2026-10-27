@@ -8,6 +8,10 @@ const CONFIG = {
   // Form Submission
   FORMSUBMIT_URL: 'https://formsubmit.co/ajax/solisgreenindia@gmail.com',
   WHATSAPP_NUMBER: '918301849474',
+
+  // Meta Pixel Configuration (Facebook & Instagram Ads Tracking)
+  // Set your Meta Pixel ID here (e.g., '123456789012345') or pass via window.SOLIS_META_PIXEL_ID
+  META_PIXEL_ID: window.SOLIS_META_PIXEL_ID || localStorage.getItem('solis_meta_pixel_id') || '',
   
   // Animations & Timing
   SLIDE_INTERVAL_MS: 5000,
@@ -71,7 +75,7 @@ function detectPageType() {
   return 'general';
 }
 
-// Enhanced Tracking
+// Enhanced Tracking with Google Analytics & Meta Pixel Standards
 function trackEvent(category, action, label, value = null) {
   // Google Analytics
   if (typeof gtag !== 'undefined') {
@@ -82,17 +86,55 @@ function trackEvent(category, action, label, value = null) {
     });
   }
   
-  // Facebook Pixel (if exists)
+  // Meta Pixel (Facebook & Instagram)
   if (typeof fbq !== 'undefined') {
-    fbq('trackCustom', action, {
-      category: category,
-      label: label,
-      value: value
-    });
+    if (action === 'form_success' || category === 'Conversion') {
+      fbq('track', 'Lead', {
+        content_name: label || 'Solar Quote Inquiry',
+        content_category: category,
+        value: value || 1.0,
+        currency: 'INR'
+      });
+    } else if (action === 'whatsapp_click' || action === 'phone_call' || category === 'Contact') {
+      fbq('track', 'Contact', {
+        content_name: action === 'whatsapp_click' ? 'WhatsApp Consultation' : 'Phone Call',
+        content_category: label || category
+      });
+    } else {
+      fbq('trackCustom', action, {
+        category: category,
+        label: label,
+        value: value
+      });
+    }
   }
   
   // Console log for debugging
   console.log(`📊 Event: ${category} - ${action} - ${label}`, value || '');
+}
+
+// Meta Pixel Dynamic Engine
+function initializeMetaPixel() {
+  const pixelId = (CONFIG.META_PIXEL_ID || '').trim();
+  if (!pixelId || pixelId === 'YOUR_PIXEL_ID_HERE') {
+    return;
+  }
+  
+  if (window.fbq) return; // Prevent duplicate initialization
+
+  /* Official Meta Pixel Base Code (fbevents.js) */
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', pixelId);
+  fbq('track', 'PageView');
+  console.log('🎯 Meta Pixel Initialized with ID:', pixelId);
 }
 
 // =========================================================
@@ -107,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log(`📄 Page Type Detected: ${pageType}`);
   
   // Initialize CORE features (all pages)
+  initializeMetaPixel();
   initializeForms();
   initializeScrollElements();
   initializeStickyContactBar();
@@ -391,8 +434,20 @@ function initializeTracking() {
     });
   });
   
-  // Track WhatsApp clicks
+  // Contextual Smart WhatsApp Pre-fills & Tracking
   document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+    try {
+      const currentHref = link.getAttribute('href');
+      // If no pre-filled message, inject context-aware Malayalam/English text
+      if (currentHref && !currentHref.includes('text=')) {
+        const contextualMsg = getContextualWhatsAppMessage();
+        const sep = currentHref.includes('?') ? '&' : '?';
+        link.setAttribute('href', `${currentHref}${sep}text=${encodeURIComponent(contextualMsg)}`);
+      }
+    } catch (e) {
+      console.warn('WhatsApp contextual link error:', e);
+    }
+
     link.addEventListener('click', function() {
       trackEvent('Contact', 'whatsapp_click', this.textContent.trim());
     });
