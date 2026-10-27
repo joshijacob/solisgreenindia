@@ -1,7 +1,5 @@
 import { db, auth } from "../js/firebase-config.js";
 import { 
-    signInWithEmailAndPassword, 
-    createUserWithEmailAndPassword,
     signInAnonymously,
     onAuthStateChanged, 
     signOut 
@@ -11,11 +9,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 // DOM Elements
-const loginSection = document.getElementById('login-section');
-const dashboardSection = document.getElementById('dashboard-section');
-const loginForm = document.getElementById('loginForm');
-const loginError = document.getElementById('loginError');
-const logoutBtn = document.getElementById('logoutBtn');
 const dashTabs = document.querySelectorAll('.dash-tab');
 const panels = {
     'jobs-panel': document.getElementById('jobs-panel'),
@@ -24,7 +17,7 @@ const panels = {
 
 // Modals
 const jobModal = document.getElementById('jobModal');
-const closeModals = document.querySelectorAll('.close-modal');
+const closeModals = document.querySelectorAll('.close-modal, .close-modal-btn');
 const jobForm = document.getElementById('jobForm');
 const openCreateJobModalBtn = document.getElementById('openCreateJobModal');
 
@@ -33,93 +26,36 @@ let currentJobs = [];
 let currentApplicants = [];
 
 // ==========================================
-// Authentication
+// Central Authentication & Silent Firebase Sync
 // ==========================================
-const ADMIN_EMAIL = "solisgreenenergysolutions@gmail.com";
-const ADMIN_PASSWORD = "Admin@Solis123";
+function initAdminAuth() {
+    const isAuth = sessionStorage.getItem('solis_auth_token') === 'true' || localStorage.getItem('solis_auth_token') === 'true';
+    if (!isAuth) {
+        const redirect = encodeURIComponent(window.location.pathname + window.location.search);
+        window.location.href = '/Login/index.html?redirect=' + redirect;
+        return;
+    }
 
-function showDashboard() {
-    loginSection.style.display = 'none';
-    dashboardSection.style.display = 'block';
+    // Set user email in navbar badge if present
+    const emailBadge = document.getElementById('userEmailBadge');
+    if (emailBadge) {
+        const email = sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || 'admin@solisgreenindia.in';
+        emailBadge.textContent = email;
+    }
+
+    // Silent anonymous auth in Firebase to satisfy Firestore rules
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            signInAnonymously(auth).catch(err => {
+                console.debug('Silent anonymous auth status:', err.message);
+            });
+        }
+    });
+
+    // Load Dashboard Data Immediately
     loadJobs();
     loadApplicants();
 }
-
-function showLogin() {
-    loginSection.style.display = 'block';
-    dashboardSection.style.display = 'none';
-}
-
-// Check session on load
-if (sessionStorage.getItem('solis_admin_logged_in') === 'true') {
-    showDashboard();
-}
-
-onAuthStateChanged(auth, (user) => {
-    if (user || sessionStorage.getItem('solis_admin_logged_in') === 'true') {
-        showDashboard();
-    } else {
-        showLogin();
-    }
-});
-
-loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('adminEmail').value.trim();
-    const password = document.getElementById('adminPassword').value;
-    const submitBtn = loginForm.querySelector('button[type="submit"]');
-
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Signing in...";
-    }
-    loginError.style.display = 'none';
-
-    const isMatch = (email.toLowerCase() === ADMIN_EMAIL.toLowerCase() && password === ADMIN_PASSWORD);
-
-    try {
-        // Attempt sign in with Firebase
-        await signInWithEmailAndPassword(auth, email, password);
-        sessionStorage.setItem('solis_admin_logged_in', 'true');
-        showDashboard();
-    } catch (error) {
-        console.warn("Firebase Auth error:", error.code, error.message);
-
-        // If credentials match the authorized admin, authenticate and grant access
-        if (isMatch) {
-            try {
-                // Try registering the user in Firebase Auth so future Firebase operations are authenticated
-                await createUserWithEmailAndPassword(auth, email, password);
-            } catch (createErr) {
-                console.info("Firebase user create status:", createErr.code);
-                try {
-                    await signInAnonymously(auth);
-                } catch (anonErr) {
-                    console.info("Anonymous auth fallback:", anonErr.code);
-                }
-            }
-            sessionStorage.setItem('solis_admin_logged_in', 'true');
-            showDashboard();
-            return;
-        }
-
-        loginError.innerText = "Invalid credentials. Please check your email and password.";
-        loginError.style.display = 'block';
-    } finally {
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerText = "Login";
-        }
-    }
-});
-
-logoutBtn.addEventListener('click', async () => {
-    sessionStorage.removeItem('solis_admin_logged_in');
-    try {
-        await signOut(auth);
-    } catch (e) {}
-    showLogin();
-});
 
 // ==========================================
 // Tab Navigation
@@ -129,19 +65,22 @@ dashTabs.forEach(tab => {
         dashTabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         Object.values(panels).forEach(p => p.style.display = 'none');
-        panels[tab.dataset.target].style.display = 'block';
+        const targetPanel = panels[tab.dataset.target];
+        if (targetPanel) targetPanel.style.display = 'block';
     });
 });
 
 // ==========================================
 // Modal Logic
 // ==========================================
-openCreateJobModalBtn.addEventListener('click', () => {
-    jobForm.reset();
-    document.getElementById('jobId').value = '';
-    document.getElementById('jobModalTitle').innerText = 'Create New Job';
-    jobModal.style.display = 'block';
-});
+if (openCreateJobModalBtn) {
+    openCreateJobModalBtn.addEventListener('click', () => {
+        jobForm.reset();
+        document.getElementById('jobId').value = '';
+        document.getElementById('jobModalTitle').innerText = 'Create New Job Posting';
+        jobModal.style.display = 'block';
+    });
+}
 
 closeModals.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -159,6 +98,7 @@ window.addEventListener('click', (e) => {
 // Jobs Management
 // ==========================================
 async function loadJobs() {
+    const tbody = document.getElementById('jobsTableBody');
     try {
         const q = query(collection(db, "jobs"), orderBy("createdAt", "desc"));
         const snapshot = await getDocs(q);
@@ -166,7 +106,7 @@ async function loadJobs() {
         let html = '';
         
         if (snapshot.empty) {
-            html = '<tr><td colspan="5">No jobs found.</td></tr>';
+            html = '<tr><td colspan="5" class="text-center py-4 text-muted"><i class="fa-solid fa-briefcase fs-3 mb-2 d-block opacity-50"></i>No job postings configured yet. Click "Create New Job Posting" above.</td></tr>';
         } else {
             snapshot.forEach(docSnap => {
                 const data = docSnap.data();
@@ -174,52 +114,55 @@ async function loadJobs() {
                 currentJobs.push(data);
                 
                 const statusBadge = data.isActive 
-                    ? `<span class="badge active">Active</span>` 
-                    : `<span class="badge inactive">Inactive</span>`;
+                    ? `<span class="badge-custom active"><i class="fa-solid fa-circle text-success me-1" style="font-size:0.45rem;"></i> Active</span>` 
+                    : `<span class="badge-custom inactive">Inactive</span>`;
                     
                 html += `
                     <tr>
-                        <td><strong>${data.title}</strong><br><small class="text-muted">/${data.slug}/</small></td>
-                        <td>${data.department}</td>
-                        <td>${data.location}</td>
-                        <td>${statusBadge}</td>
                         <td>
-                            <button class="action-btn edit-job" data-id="${data.id}" title="Edit"><i class="fas fa-edit"></i></button>
-                            <button class="action-btn toggle-job" data-id="${data.id}" title="${data.isActive ? 'Disable' : 'Enable'}"><i class="fas ${data.isActive ? 'fa-eye-slash' : 'fa-eye'}"></i></button>
-                            <button class="action-btn delete delete-job" data-id="${data.id}" title="Delete"><i class="fas fa-trash"></i></button>
+                            <strong>${data.title}</strong>
+                            <br><small class="text-muted font-mono" style="font-size:0.75rem;">/careers/${data.slug}/</small>
+                        </td>
+                        <td>${data.department || '-'}</td>
+                        <td>${data.location || 'Kerala'}</td>
+                        <td>${statusBadge}</td>
+                        <td class="text-center text-nowrap">
+                            <button class="action-btn edit-job" data-id="${data.id}" title="Edit Job Posting"><i class="fas fa-edit text-primary"></i></button>
+                            <button class="action-btn toggle-job" data-id="${data.id}" title="${data.isActive ? 'Disable' : 'Enable'}"><i class="fas ${data.isActive ? 'fa-eye-slash text-warning' : 'fa-eye text-success'}"></i></button>
+                            <button class="action-btn delete delete-job" data-id="${data.id}" title="Delete"><i class="fas fa-trash-can text-danger"></i></button>
                         </td>
                     </tr>
                 `;
             });
         }
-        document.getElementById('jobsTableBody').innerHTML = html;
+        tbody.innerHTML = html;
         attachJobActionListeners();
     } catch (error) {
         console.error("Error loading jobs:", error);
-        document.getElementById('jobsTableBody').innerHTML = '<tr><td colspan="5">Error loading jobs. Ensure Firestore rules allow read.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-muted">Error loading jobs. Please check network connection.</td></tr>';
     }
 }
 
 jobForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const saveBtn = document.getElementById('saveJobBtn');
-    saveBtn.innerText = 'Saving...';
+    saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Saving...';
     saveBtn.disabled = true;
 
     const id = document.getElementById('jobId').value;
     const jobData = {
-        title: document.getElementById('jobTitle').value,
-        slug: document.getElementById('jobSlug').value,
-        department: document.getElementById('jobDepartment').value,
-        location: document.getElementById('jobLocation').value,
+        title: document.getElementById('jobTitle').value.trim(),
+        slug: document.getElementById('jobSlug').value.trim(),
+        department: document.getElementById('jobDepartment').value.trim(),
+        location: document.getElementById('jobLocation').value.trim(),
         type: document.getElementById('jobType').value,
-        experience: document.getElementById('jobExperience').value,
-        qualification: document.getElementById('jobQualification').value,
-        salary: document.getElementById('jobSalary').value,
-        description: document.getElementById('jobDescription').value,
-        requirements: document.getElementById('jobRequirements').value,
-        responsibilities: document.getElementById('jobResponsibilities').value,
-        benefits: document.getElementById('jobBenefits').value,
+        experience: document.getElementById('jobExperience').value.trim(),
+        qualification: document.getElementById('jobQualification').value.trim(),
+        salary: document.getElementById('jobSalary').value.trim(),
+        description: document.getElementById('jobDescription').value.trim(),
+        requirements: document.getElementById('jobRequirements').value.trim(),
+        responsibilities: document.getElementById('jobResponsibilities').value.trim(),
+        benefits: document.getElementById('jobBenefits').value.trim(),
         isActive: document.getElementById('jobIsActive').checked,
         updatedAt: serverTimestamp()
     };
@@ -238,7 +181,7 @@ jobForm.addEventListener('submit', async (e) => {
     } catch (error) {
         alert("Error saving job: " + error.message);
     } finally {
-        saveBtn.innerText = 'Save Job';
+        saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Save Job Posting';
         saveBtn.disabled = false;
     }
 });
@@ -250,21 +193,21 @@ function attachJobActionListeners() {
             const job = currentJobs.find(j => j.id === id);
             if (job) {
                 document.getElementById('jobId').value = job.id;
-                document.getElementById('jobTitle').value = job.title;
-                document.getElementById('jobSlug').value = job.slug;
-                document.getElementById('jobDepartment').value = job.department;
-                document.getElementById('jobLocation').value = job.location;
-                document.getElementById('jobType').value = job.type;
-                document.getElementById('jobExperience').value = job.experience;
+                document.getElementById('jobTitle').value = job.title || '';
+                document.getElementById('jobSlug').value = job.slug || '';
+                document.getElementById('jobDepartment').value = job.department || '';
+                document.getElementById('jobLocation').value = job.location || '';
+                document.getElementById('jobType').value = job.type || 'Full Time';
+                document.getElementById('jobExperience').value = job.experience || '';
                 document.getElementById('jobQualification').value = job.qualification || '';
                 document.getElementById('jobSalary').value = job.salary || '';
-                document.getElementById('jobDescription').value = job.description;
-                document.getElementById('jobRequirements').value = job.requirements;
-                document.getElementById('jobResponsibilities').value = job.responsibilities;
-                document.getElementById('jobBenefits').value = job.benefits;
-                document.getElementById('jobIsActive').checked = job.isActive;
+                document.getElementById('jobDescription').value = job.description || '';
+                document.getElementById('jobRequirements').value = job.requirements || '';
+                document.getElementById('jobResponsibilities').value = job.responsibilities || '';
+                document.getElementById('jobBenefits').value = job.benefits || '';
+                document.getElementById('jobIsActive').checked = job.isActive !== false;
                 
-                document.getElementById('jobModalTitle').innerText = 'Edit Job';
+                document.getElementById('jobModalTitle').innerText = 'Edit Job Posting';
                 jobModal.style.display = 'block';
             }
         });
@@ -275,7 +218,8 @@ function attachJobActionListeners() {
             const id = e.currentTarget.dataset.id;
             const job = currentJobs.find(j => j.id === id);
             if (job) {
-                if(confirm(`Are you sure you want to ${job.isActive ? 'disable' : 'enable'} this job?`)) {
+                const action = job.isActive ? 'disable' : 'enable';
+                if (confirm(`Are you sure you want to ${action} this job posting?`)) {
                     await updateDoc(doc(db, "jobs", id), { isActive: !job.isActive });
                     loadJobs();
                 }
@@ -286,7 +230,7 @@ function attachJobActionListeners() {
     document.querySelectorAll('.delete-job').forEach(btn => {
         btn.addEventListener('click', async (e) => {
             const id = e.currentTarget.dataset.id;
-            if(confirm('Are you sure you want to permanently delete this job? This cannot be undone.')) {
+            if (confirm('Are you sure you want to permanently delete this job posting? This cannot be undone.')) {
                 await deleteDoc(doc(db, "jobs", id));
                 loadJobs();
             }
@@ -298,6 +242,7 @@ function attachJobActionListeners() {
 // Applicants Management
 // ==========================================
 async function loadApplicants() {
+    const tbody = document.getElementById('applicantsTableBody');
     try {
         const q = query(collection(db, "applicants"), orderBy("createdAt", "desc"));
         const snapshot = await getDocs(q);
@@ -312,39 +257,43 @@ async function loadApplicants() {
         renderApplicantsTable();
     } catch (error) {
         console.error("Error loading applicants:", error);
-        document.getElementById('applicantsTableBody').innerHTML = '<tr><td colspan="6">Error loading applicants.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">No applicants found yet or loading error.</td></tr>';
     }
 }
 
 function renderApplicantsTable() {
-    const search = document.getElementById('searchApplicant').value.toLowerCase();
+    const search = (document.getElementById('searchApplicant').value || '').toLowerCase();
     const filter = document.getElementById('filterStatus').value;
     
     let filtered = currentApplicants.filter(a => {
-        const matchesSearch = a.fullName.toLowerCase().includes(search) || a.email.toLowerCase().includes(search);
+        const nameMatch = (a.fullName || '').toLowerCase().includes(search);
+        const emailMatch = (a.email || '').toLowerCase().includes(search);
         const matchesFilter = filter ? a.status === filter : true;
-        return matchesSearch && matchesFilter;
+        return (nameMatch || emailMatch) && matchesFilter;
     });
 
     let html = '';
     if (filtered.length === 0) {
-        html = '<tr><td colspan="6">No applicants found.</td></tr>';
+        html = '<tr><td colspan="6" class="text-center py-4 text-muted"><i class="fa-solid fa-inbox fs-3 mb-2 d-block opacity-50"></i>No applicants match the criteria.</td></tr>';
     } else {
         filtered.forEach(a => {
-            const dateStr = a.createdAt ? new Date(a.createdAt.toMillis()).toLocaleDateString() : 'N/A';
+            const dateStr = a.createdAt ? new Date(a.createdAt.toMillis ? a.createdAt.toMillis() : a.createdAt).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }) : 'N/A';
             const statusClass = 'status-' + (a.status ? a.status.toLowerCase() : 'applied');
             
             html += `
                 <tr>
                     <td>
-                        <strong>${a.fullName}</strong><br>
-                        <small><a href="mailto:${a.email}">${a.email}</a> | ${a.mobile}</small>
+                        <strong class="text-dark">${a.fullName || 'Candidate'}</strong><br>
+                        <small class="text-muted">
+                            <a href="mailto:${a.email || ''}" class="text-decoration-none">${a.email || '-'}</a> | 
+                            <a href="tel:${a.mobile || ''}" class="text-decoration-none text-muted">${a.mobile || '-'}</a>
+                        </small>
                     </td>
-                    <td>${a.positionAppliedFor}</td>
-                    <td>${a.experience}</td>
-                    <td>${dateStr}</td>
+                    <td><span class="badge bg-light text-dark border">${a.positionAppliedFor || 'General Application'}</span></td>
+                    <td>${a.experience || '-'}</td>
+                    <td class="small text-muted">${dateStr}</td>
                     <td>
-                        <select class="status-select badge ${statusClass}" data-id="${a.id}">
+                        <select class="status-select ${statusClass}" data-id="${a.id}">
                             <option value="Applied" ${a.status === 'Applied' ? 'selected' : ''}>Applied</option>
                             <option value="Shortlisted" ${a.status === 'Shortlisted' ? 'selected' : ''}>Shortlisted</option>
                             <option value="Interview" ${a.status === 'Interview' ? 'selected' : ''}>Interview</option>
@@ -353,7 +302,7 @@ function renderApplicantsTable() {
                         </select>
                     </td>
                     <td>
-                        ${a.resumeUrl ? `<a href="${a.resumeUrl}" target="_blank" class="btn btn-sm btn-primary" style="padding: 5px 10px; font-size:0.8rem;">View Resume</a>` : 'No Resume'}
+                        ${a.resumeUrl ? `<a href="${a.resumeUrl}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3 py-1" style="font-size:0.75rem;"><i class="fa-solid fa-file-pdf me-1"></i> View Resume</a>` : '<span class="text-muted small">No Resume</span>'}
                     </td>
                 </tr>
             `;
@@ -361,14 +310,13 @@ function renderApplicantsTable() {
     }
     document.getElementById('applicantsTableBody').innerHTML = html;
     
-    // Attach status change listeners
+    // Status update listeners
     document.querySelectorAll('.status-select').forEach(select => {
         select.addEventListener('change', async (e) => {
             const id = e.target.dataset.id;
             const newStatus = e.target.value;
             try {
                 await updateDoc(doc(db, "applicants", id), { status: newStatus });
-                // Update local state and re-render to update badge color
                 const index = currentApplicants.findIndex(x => x.id === id);
                 if (index !== -1) currentApplicants[index].status = newStatus;
                 renderApplicantsTable();
@@ -381,3 +329,6 @@ function renderApplicantsTable() {
 
 document.getElementById('searchApplicant').addEventListener('input', renderApplicantsTable);
 document.getElementById('filterStatus').addEventListener('change', renderApplicantsTable);
+
+// Initialize Auth & Dashboard
+initAdminAuth();

@@ -1,169 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Careers & Hiring Admin | Solis Green Energy Solutions</title>
+    <meta name="robots" content="noindex, nofollow" />
 
-<title>Careers Admin Dashboard | Solis Green Energy Solutions</title>
-<meta name="robots" content="noindex, nofollow" />
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.ico">
 
-<!-- FAVICON -->
-<link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.ico">
+    <!-- Central Solis Admin SSO Guard -->
+    <script>
+        if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
+            sessionStorage.setItem('solis_auth_token', 'true');
+            sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
+            sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
+        }
 
-<link rel="stylesheet" href="/style.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        const isAuth = sessionStorage.getItem('solis_auth_token') === 'true';
+        const userRole = sessionStorage.getItem('solis_user_role') || 'sales';
 
-<style>
-/* Admin Specific Styles */
-body {
-    background-color: #f4f7f6;
-}
-.admin-header {
-    background-color: var(--primary-dark);
-    color: white;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.admin-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-.admin-card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    padding: 30px;
-    margin-bottom: 30px;
-}
-.auth-container {
-    max-width: 400px;
-    margin: 100px auto;
-}
-.dashboard-nav {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-}
-.dash-tab {
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: 600;
-    color: #666;
-    border-bottom: 3px solid transparent;
-}
-.dash-tab.active {
-    color: var(--primary-blue);
-    border-bottom-color: var(--primary-blue);
-}
-.admin-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-.admin-table th, .admin-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}
-.admin-table th {
-    background-color: #f8f9fa;
-    font-weight: 600;
-    color: #333;
-}
-.badge {
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-.badge.active { background: #d4edda; color: #155724; }
-.badge.inactive { background: #f8d7da; color: #721c24; }
-.badge.status-applied { background: #e2e3e5; color: #383d41; }
-.badge.status-shortlisted { background: #cce5ff; color: #004085; }
-.badge.status-interview { background: #fff3cd; color: #856404; }
-.badge.status-selected { background: #d4edda; color: #155724; }
-.badge.status-rejected { background: #f8d7da; color: #721c24; }
+        if (!isAuth) {
+            const redirectTarget = encodeURIComponent(window.location.pathname + window.location.search);
+            window.location.href = '/Login/index.html?redirect=' + redirectTarget;
+        } else if (userRole !== 'admin') {
+            alert('Access restricted to Solis Admin.');
+            window.location.href = '/Login/index.html';
+        } else {
+            sessionStorage.setItem('solis_admin_logged_in', 'true');
+        }
+    </script>
 
-.action-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-    color: #666;
-    font-size: 1.1rem;
-}
-.action-btn:hover { color: var(--primary-blue); }
-.action-btn.delete:hover { color: #dc3545; }
+    <!-- Bootstrap 5 & FontAwesome 6 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
-    overflow-y: auto;
-}
-.modal-content {
-    background: white;
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 30px;
-    border-radius: 10px;
-    position: relative;
-}
-.close-modal {
-    position: absolute;
-    top: 20px; right: 20px;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-</style>
+    <style>
+        :root {
+            --solis-pink: #ec4899;
+            --solis-dark: #0f172a;
+            --slate-bg: #f8fafc;
+            --grid-border: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--slate-bg);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-display {
+            font-family: 'Outfit', 'Inter', sans-serif;
+        }
+
+        /* Top Navbar */
+        .careers-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--grid-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .admin-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--grid-border);
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0;
+        }
+
+        .dash-tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #64748b;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dash-tab:hover {
+            color: #0f172a;
+        }
+
+        .dash-tab.active {
+            color: #be185d;
+            border-bottom-color: #ec4899;
+            background: rgba(236, 72, 153, 0.04);
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
+        .admin-table th {
+            background-color: #f8fafc;
+            font-weight: 700;
+            color: #475569;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .admin-table tbody tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        .badge-custom {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+        .badge-custom.active { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+        .badge-custom.inactive { background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; }
+
+        .status-select {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            cursor: pointer;
+        }
+        .status-applied { background-color: #f1f5f9; color: #475569; }
+        .status-shortlisted { background-color: #e0f2fe; color: #0369a1; border-color: #bae6fd; }
+        .status-interview { background-color: #fef3c7; color: #92400e; border-color: #fde68a; }
+        .status-selected { background-color: #dcfce7; color: #15803d; border-color: #bbf7d0; }
+        .status-rejected { background-color: #fee2e2; color: #b91c1c; border-color: #fecaca; }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            color: #475569;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            margin-right: 4px;
+        }
+        .action-btn:hover { background: #f8fafc; color: #0f172a; border-color: #cbd5e1; }
+        .action-btn.delete:hover { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
+
+        .modal-custom {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(2px);
+            z-index: 1050;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .modal-custom-content {
+            background: white;
+            max-width: 820px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px; right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: color 0.15s ease;
+        }
+        .close-modal:hover { color: #0f172a; }
+    </style>
 </head>
 <body>
 
-<!-- LOGIN SECTION -->
-<div id="login-section" class="auth-container">
-    <div class="admin-card text-center">
-        <img src="/images/logo/logo.png" alt="Solis Logo" style="max-height: 50px; margin-bottom: 20px;">
-        <h2>Admin Login</h2>
-        <p>Careers Dashboard</p>
-        <form id="loginForm" style="margin-top: 20px; text-align: left;">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="adminEmail" class="form-control" placeholder="solisgreenenergysolutions@gmail.com" required>
+    <!-- Unified Central Admin Navbar -->
+    <nav class="careers-navbar py-2 px-3 px-md-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            
+            <!-- Brand & Official Logo -->
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none me-3" href="/Login/index.html">
+                    <img src="/images/logo/logo.png" alt="Solis Green Energy" style="height: 40px; width: auto; margin-right: 12px; object-fit: contain;">
+                    <div>
+                        <div class="fw-bold font-display fs-5 lh-1 text-dark">
+                            SOLIS <span style="color: #ec4899;">HR</span>
+                        </div>
+                        <small class="text-muted fw-semibold" style="font-size: 0.68rem; letter-spacing: 0.05em;">CAREERS & HIRING ADMIN</small>
+                    </div>
+                </a>
+                
+                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill d-none d-lg-inline-flex align-items-center">
+                    <i class="fa-solid fa-circle text-success me-2" style="font-size: 0.45rem;"></i> Central Admin Authenticated
+                </span>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="adminPassword" class="form-control" placeholder="••••••••" required>
+
+            <!-- Navigation Buttons -->
+            <div class="d-flex align-items-center gap-2">
+                <div class="d-none d-md-flex align-items-center bg-light border rounded-pill px-3 py-1 me-2">
+                    <i class="fa-solid fa-user-shield text-danger me-2"></i>
+                    <span class="small fw-semibold text-dark me-2" id="userEmailBadge">solisgreenenergysolutions@gmail.com</span>
+                    <span class="badge bg-danger text-uppercase" style="font-size: 0.65rem;">ADMIN</span>
+                </div>
+
+                <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill" title="Modules Hub">
+                    <i class="fa-solid fa-grip me-1"></i> Modules Hub
+                </a>
+
+                <a href="/leads/index.html" class="btn btn-outline-success btn-sm rounded-pill px-3 fw-semibold d-none d-sm-inline-flex" title="Submitted Quote Forms">
+                    <i class="fa-solid fa-file-excel me-1"></i> Leads Tracker
+                </a>
+
+                <a href="/analytics/index.html" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold d-none d-md-inline-flex" title="Web Analytics">
+                    <i class="fa-solid fa-chart-line me-1"></i> Analytics
+                </a>
+
+                <a href="/careers/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Open Public Careers Portal">
+                    <i class="fa-solid fa-globe me-1"></i> Public Careers
+                </a>
+
+                <button onclick="handleCentralLogout()" class="btn btn-outline-danger btn-sm rounded-pill px-3" title="Sign Out">
+                    <i class="fa-solid fa-right-from-bracket me-1"></i> Sign Out
+                </button>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
-            <p id="loginError" style="color: red; margin-top: 10px; display: none;"></p>
-        </form>
-    </div>
-</div>
+        </div>
+    </nav>
 
-<!-- DASHBOARD SECTION -->
-<div id="dashboard-section" style="display: none;">
-    <div id="header-placeholder"></div>
+    <!-- Main Container -->
+    <div class="container-fluid px-3 px-md-5 py-4">
+        
+        <!-- Welcome Header Banner -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+            <div>
+                <h2 class="fw-bold font-display mb-1 text-dark d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-users-gear text-pink" style="color: #ec4899;"></i> Careers & Hiring Administration
+                </h2>
+                <p class="text-muted mb-0">Publish open solar positions, review incoming job applicants, inspect resumes, and manage hiring pipelines across Kerala.</p>
+            </div>
 
-    <div class="admin-container">
-        <div class="dashboard-nav">
-            <div class="dash-tab active" data-target="jobs-panel">Jobs Management</div>
-            <div class="dash-tab" data-target="applicants-panel">Applicants</div>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-white bg-white border btn-sm rounded-pill px-3 text-muted fw-semibold" onclick="window.location.reload()">
+                    <i class="fa-solid fa-rotate me-1"></i> Refresh
+                </button>
+            </div>
         </div>
 
-        <!-- JOBS PANEL -->
-        <div id="jobs-panel" class="admin-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h3>Job Postings</h3>
-                <button class="btn btn-primary" id="openCreateJobModal"><i class="fas fa-plus"></i> Create New Job</button>
+        <!-- Navigation Tabs -->
+        <div class="dashboard-nav">
+            <div class="dash-tab active" data-target="jobs-panel">
+                <i class="fa-solid fa-briefcase"></i> Job Postings
             </div>
-            <div style="overflow-x: auto;">
+            <div class="dash-tab" data-target="applicants-panel">
+                <i class="fa-solid fa-user-tie"></i> Candidate Applicants
+            </div>
+        </div>
+
+        <!-- PANEL 1: JOBS MANAGEMENT -->
+        <div id="jobs-panel" class="admin-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold font-display mb-0 text-dark">Active Job Openings</h4>
+                <button class="btn btn-primary btn-sm fw-bold px-3 rounded-pill" id="openCreateJobModal">
+                    <i class="fas fa-plus me-1"></i> Create New Job Posting
+                </button>
+            </div>
+            
+            <div class="table-responsive">
                 <table class="admin-table">
                     <thead>
                         <tr>
@@ -171,23 +307,23 @@ body {
                             <th>Department</th>
                             <th>Location</th>
                             <th>Status</th>
-                            <th>Actions</th>
+                            <th class="text-center" style="width: 140px;">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="jobsTableBody">
-                        <tr><td colspan="5">Loading jobs...</td></tr>
+                        <tr><td colspan="5" class="text-center py-4 text-muted"><span class="spinner-border spinner-border-sm me-2"></span>Loading job listings...</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- APPLICANTS PANEL -->
+        <!-- PANEL 2: APPLICANTS PIPELINE -->
         <div id="applicants-panel" class="admin-card" style="display: none;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h3>Applicants</h3>
-                <div>
-                    <input type="text" id="searchApplicant" placeholder="Search name or email..." style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                    <select id="filterStatus" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-left: 10px;">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+                <h4 class="fw-bold font-display mb-0 text-dark">Candidate Resumes & Applications</h4>
+                <div class="d-flex gap-2">
+                    <input type="text" id="searchApplicant" placeholder="Search applicant name or email..." class="form-control form-control-sm" style="max-width: 250px;">
+                    <select id="filterStatus" class="form-select form-select-sm" style="max-width: 160px;">
                         <option value="">All Statuses</option>
                         <option value="Applied">Applied</option>
                         <option value="Shortlisted">Shortlisted</option>
@@ -197,105 +333,128 @@ body {
                     </select>
                 </div>
             </div>
-            <div style="overflow-x: auto;">
+
+            <div class="table-responsive">
                 <table class="admin-table">
                     <thead>
                         <tr>
-                            <th>Applicant</th>
-                            <th>Job Applied For</th>
+                            <th style="min-width: 200px;">Applicant</th>
+                            <th>Position Applied For</th>
                             <th>Experience</th>
                             <th>Date</th>
-                            <th>Status</th>
+                            <th style="min-width: 140px;">Status</th>
                             <th>Resume</th>
                         </tr>
                     </thead>
                     <tbody id="applicantsTableBody">
-                        <tr><td colspan="6">Loading applicants...</td></tr>
+                        <tr><td colspan="6" class="text-center py-4 text-muted"><span class="spinner-border spinner-border-sm me-2"></span>Loading applicant pipeline...</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- JOB MODAL -->
-<div id="jobModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3 id="jobModalTitle">Create New Job</h3>
-        <form id="jobForm" style="margin-top: 20px;">
-            <input type="hidden" id="jobId">
-            <div class="form-row" style="display: flex; gap: 20px; margin-bottom: 15px;">
-                <div style="flex: 1;">
-                    <label>Job Title</label>
-                    <input type="text" id="jobTitle" class="form-control" required>
-                </div>
-                <div style="flex: 1;">
-                    <label>Slug (URL path)</label>
-                    <input type="text" id="jobSlug" class="form-control" placeholder="e.g. solar-project-engineer" required>
-                </div>
-            </div>
-            <div class="form-row" style="display: flex; gap: 20px; margin-bottom: 15px;">
-                <div style="flex: 1;">
-                    <label>Department</label>
-                    <input type="text" id="jobDepartment" class="form-control" required>
-                </div>
-                <div style="flex: 1;">
-                    <label>Location</label>
-                    <input type="text" id="jobLocation" class="form-control" required>
-                </div>
-            </div>
-            <div class="form-row" style="display: flex; gap: 20px; margin-bottom: 15px;">
-                <div style="flex: 1;">
-                    <label>Employment Type</label>
-                    <select id="jobType" class="form-control" required>
-                        <option value="Full Time">Full Time</option>
-                        <option value="Part Time">Part Time</option>
-                        <option value="Contract">Contract</option>
-                        <option value="Internship">Internship</option>
-                    </select>
-                </div>
-                <div style="flex: 1;">
-                    <label>Experience Needed</label>
-                    <input type="text" id="jobExperience" class="form-control" required>
-                </div>
-            </div>
-            <div class="form-row" style="display: flex; gap: 20px; margin-bottom: 15px;">
-                <div style="flex: 1;">
-                    <label>Qualification</label>
-                    <input type="text" id="jobQualification" class="form-control" required>
-                </div>
-                <div style="flex: 1;">
-                    <label>Salary (Optional)</label>
-                    <input type="text" id="jobSalary" class="form-control" placeholder="e.g. Based on experience">
-                </div>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label>Job Description</label>
-                <textarea id="jobDescription" class="form-control" rows="4" required></textarea>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label>Requirements (HTML List format)</label>
-                <textarea id="jobRequirements" class="form-control" rows="4" required><ul><li>Req 1</li></ul></textarea>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label>Responsibilities (HTML List format)</label>
-                <textarea id="jobResponsibilities" class="form-control" rows="4" required><ul><li>Resp 1</li></ul></textarea>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label>Benefits (HTML List format)</label>
-                <textarea id="jobBenefits" class="form-control" rows="3" required><ul><li>Benefit 1</li></ul></textarea>
-            </div>
-            <div style="margin-bottom: 20px;">
-                <label>
-                    <input type="checkbox" id="jobIsActive" checked> Active (Visible on site)
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary" id="saveJobBtn">Save Job</button>
-        </form>
     </div>
-</div>
 
-<script type="module" src="./admin.js"></script>
+    <!-- CREATE / EDIT JOB MODAL -->
+    <div id="jobModal" class="modal-custom">
+        <div class="modal-custom-content">
+            <span class="close-modal">&times;</span>
+            <h4 class="fw-bold font-display mb-3" id="jobModalTitle">Create New Job Posting</h4>
+            <form id="jobForm">
+                <input type="hidden" id="jobId">
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-muted">Job Title</label>
+                        <input type="text" id="jobTitle" class="form-control" placeholder="e.g. Solar Project Engineer" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-muted">Slug (URL path)</label>
+                        <input type="text" id="jobSlug" class="form-control font-mono" placeholder="solar-project-engineer" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-muted">Department</label>
+                        <input type="text" id="jobDepartment" class="form-control" placeholder="e.g. Engineering & EPC" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-muted">Location</label>
+                        <input type="text" id="jobLocation" class="form-control" placeholder="e.g. Pathanamthitta / Central Kerala" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-muted">Employment Type</label>
+                        <select id="jobType" class="form-select" required>
+                            <option value="Full Time">Full Time</option>
+                            <option value="Part Time">Part Time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-muted">Experience Needed</label>
+                        <input type="text" id="jobExperience" class="form-control" placeholder="e.g. 1-3 Years" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-muted">Qualification</label>
+                        <input type="text" id="jobQualification" class="form-control" placeholder="e.g. B.Tech / Diploma in Electrical" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold small text-muted">Salary Range</label>
+                        <input type="text" id="jobSalary" class="form-control" placeholder="e.g. ₹20,000 - ₹35,000 / month">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-bold small text-muted">Job Description</label>
+                        <textarea id="jobDescription" class="form-control" rows="3" placeholder="Brief role description..." required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-bold small text-muted">Requirements (HTML List format: &lt;ul&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;)</label>
+                        <textarea id="jobRequirements" class="form-control font-mono small" rows="3" required><ul><li>Relevant experience in rooftop solar installation</li><li>Valid driver license</li></ul></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-bold small text-muted">Responsibilities (HTML List format)</label>
+                        <textarea id="jobResponsibilities" class="form-control font-mono small" rows="3" required><ul><li>Site survey and system design</li><li>Coordinate with KSEB inspectors</li></ul></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-bold small text-muted">Benefits</label>
+                        <textarea id="jobBenefits" class="form-control font-mono small" rows="2" required><ul><li>Competitive incentive package</li><li>Health insurance</li></ul></textarea>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="jobIsActive" checked>
+                            <label class="form-check-label fw-semibold" for="jobIsActive">
+                                Active & Published (Visible to candidates on website)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 pt-3 border-top">
+                    <button type="button" class="btn btn-outline-secondary close-modal-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary fw-bold px-4" id="saveJobBtn">
+                        <i class="fa-solid fa-floppy-disk me-1"></i> Save Job Posting
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Main Module Script -->
+    <script type="module" src="./admin.js"></script>
+
+    <!-- Central Sign Out Handler -->
+    <script>
+        function handleCentralLogout() {
+            sessionStorage.removeItem('solis_auth_token');
+            sessionStorage.removeItem('solis_user_email');
+            sessionStorage.removeItem('solis_user_role');
+            sessionStorage.removeItem('solis_admin_logged_in');
+            localStorage.removeItem('solis_auth_token');
+            localStorage.removeItem('solis_user_email');
+            localStorage.removeItem('solis_user_role');
+            localStorage.removeItem('solis_admin_logged_in');
+            window.location.href = '/Login/index.html';
+        }
+    </script>
 </body>
 </html>

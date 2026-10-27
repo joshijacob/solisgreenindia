@@ -660,6 +660,11 @@
                     localStorage.setItem('solis_user_email', email);
                     localStorage.setItem('solis_user_role', role);
 
+                    if (role === 'admin') {
+                        sessionStorage.setItem('solis_admin_logged_in', 'true');
+                        localStorage.setItem('solis_admin_logged_in', 'true');
+                    }
+
                     // Check if redirect is requested
                     if (redirectTarget && redirectTarget !== '/Login/index.html') {
                         window.location.href = redirectTarget;
@@ -691,6 +696,8 @@
             localStorage.removeItem('solis_auth_token');
             localStorage.removeItem('solis_user_email');
             localStorage.removeItem('solis_user_role');
+            sessionStorage.removeItem('solis_admin_logged_in');
+            localStorage.removeItem('solis_admin_logged_in');
 
             if (typeof authFirebase !== 'undefined') {
                 authFirebase.signOut().catch(() => {});
