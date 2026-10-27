@@ -3,32 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solis EPC Portal - Central Login & Admin Hub</title>
-    
+    <title>Solis Central Portal | Operational Modules & Admin Data Hub</title>
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.ico">
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="/projectcostcalculator/js/firebase-init.js"></script>
-
-    <!-- Bootstrap 5 & FontAwesome -->
+    <!-- Bootstrap 5 CSS & FontAwesome 6 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Firebase SDK Compat -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="/projectcostcalculator/js/firebase-init.js"></script>
 
     <style>
         :root {
             --solis-orange: #FF6A2A;
             --solis-orange-hover: #FF824C;
-            --solis-orange-light: #fff3ec;
             --solis-dark: #0f172a;
-            --solis-navy: #1e293b;
             --solis-emerald: #10b981;
-            --solis-blue: #0284c7;
+            --grid-border: #e2e8f0;
         }
 
         body {
@@ -38,11 +36,17 @@
             min-height: 100vh;
         }
 
-        h1, h2, h3, h4, h5, .font-display {
+        h1, h2, h3, h4, h5, h6, .font-display {
             font-family: 'Outfit', 'Inter', sans-serif;
         }
 
-        /* Login Screen Styles */
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ================================================= */
+        /* VIEW 1: LOGIN WRAPPER & FORM                      */
+        /* ================================================= */
         .login-wrapper {
             min-height: 100vh;
             display: flex;
@@ -55,14 +59,13 @@
         }
 
         .login-card {
-            max-width: 460px;
+            max-width: 450px;
             width: 100%;
             border-radius: 1.25rem;
             box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.1), 0 0 1px 1px rgba(15, 23, 42, 0.05);
             border: 1px solid rgba(226, 232, 240, 0.8);
             background: #ffffff;
             overflow: hidden;
-            transition: transform 0.3s ease;
         }
 
         .login-header {
@@ -73,16 +76,6 @@
             position: relative;
         }
 
-        .login-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: rgba(0, 0, 0, 0.1);
-        }
-
         .login-header img {
             max-height: 48px;
             margin-bottom: 12px;
@@ -91,27 +84,6 @@
 
         .login-body {
             padding: 2.25rem;
-        }
-
-        .form-control:focus {
-            border-color: var(--solis-orange);
-            box-shadow: 0 0 0 0.25rem rgba(255, 106, 42, 0.2);
-        }
-
-        .password-toggle-btn {
-            border-color: #dee2e6;
-            background-color: #f8f9fa;
-            color: #64748b;
-            cursor: pointer;
-            padding: 0 1.1rem;
-            display: flex;
-            align-items: center;
-            transition: all 0.2s ease;
-        }
-
-        .password-toggle-btn:hover {
-            color: var(--solis-orange) !important;
-            background-color: #f1f5f9;
         }
 
         .btn-solis-primary {
@@ -133,58 +105,193 @@
             color: white;
         }
 
-        /* Hub / Dashboard Screen Styles */
+        /* ================================================= */
+        /* VIEW 2: WELCOME LANDING PAGE (Positive Thought)   */
+        /* ================================================= */
+        .welcome-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: radial-gradient(circle at 15% 20%, rgba(255, 106, 42, 0.12) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+                        #f8fafc;
+        }
+
+        .welcome-card {
+            max-width: 680px;
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(15, 23, 42, 0.05);
+            padding: 2.5rem 2.25rem;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .welcome-logo {
+            height: 52px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(255, 106, 42, 0.15));
+        }
+
+        .thought-card {
+            background: linear-gradient(135deg, #fffbeb 0%, #fff7ed 100%);
+            border: 1px solid #fed7aa;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px -2px rgba(245, 158, 11, 0.08);
+            position: relative;
+        }
+
+        .thought-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ffedd5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        .thought-text {
+            color: #1e293b;
+            font-size: 1.12rem;
+            line-height: 1.55;
+            font-style: italic;
+        }
+
+        .enter-btn-glow {
+            animation: pulse-glow 2s infinite, fadeInUp 0.4s ease-out;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(255, 106, 42, 0.6); }
+            70% { box-shadow: 0 0 0 14px rgba(255, 106, 42, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 106, 42, 0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 1.8s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* ================================================= */
+        /* VIEW 3: DATA HUB - FIT 1 PAGE WITH ZERO SCROLLS   */
+        /* ================================================= */
         .hub-navbar {
             background: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--grid-border);
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            height: 52px;
         }
 
+        /* Desktop: Lock Viewport to 100vh with Zero Scrolling */
+        @media (min-width: 992px) {
+            body.hub-active {
+                height: 100vh;
+                max-height: 100vh;
+                overflow: hidden !important;
+            }
+
+            #hubSection {
+                height: 100vh;
+                max-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden !important;
+            }
+
+            #hubMainContainer {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding-top: 0.65rem !important;
+                padding-bottom: 0.65rem !important;
+                overflow: hidden !important;
+            }
+
+            #modulesGrid {
+                flex: 1;
+                display: flex;
+                flex-wrap: wrap;
+                align-content: space-between;
+            }
+        }
+
+        /* Compact Module Card Design */
         .module-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 1rem;
-            padding: 1.5rem;
+            border-radius: 0.85rem;
+            padding: 0.75rem 0.95rem;
             height: 100%;
             display: flex;
             flex-direction: column;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            justify-content: space-between;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
             text-decoration: none !important;
             color: inherit !important;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
         }
 
         .module-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 28px -10px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(255, 106, 42, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -8px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(255, 106, 42, 0.3);
             border-color: rgba(255, 106, 42, 0.4);
         }
 
-        .module-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 0.85rem;
+        .module-icon-compact {
+            width: 34px;
+            height: 34px;
+            border-radius: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+            font-size: 0.95rem;
             color: white;
-            margin-bottom: 1.25rem;
             flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .module-tag {
-            font-size: 0.72rem;
+        .module-tag-compact {
+            font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
             text-transform: uppercase;
-            padding: 0.25rem 0.6rem;
-            border-radius: 6px;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
             display: inline-block;
         }
 
@@ -198,19 +305,40 @@
             color: #15803d;
         }
 
+        .module-desc {
+            font-size: 0.73rem;
+            line-height: 1.32;
+            color: #64748b;
+            margin-bottom: 0.35rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .module-action-link {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding-top: 0.25rem;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .module-card-disabled {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: not-allowed !important;
             pointer-events: none;
-            filter: grayscale(0.7);
+            filter: grayscale(0.8);
         }
     </style>
 </head>
 <body>
 
-    <!-- ========================================== -->
-    <!-- VIEW 1: LOGIN FORM (Shown when unauthenticated) -->
-    <!-- ========================================== -->
+    <!-- ======================================================== -->
+    <!-- VIEW 1: CENTRAL LOGIN FORM (When Unauthenticated)        -->
+    <!-- ======================================================== -->
     <div id="loginSection" class="login-wrapper">
         <div class="login-card">
             <div class="login-header">
@@ -242,7 +370,7 @@
                         <div class="input-group">
                             <span class="input-group-text bg-light border-end-0 text-muted px-3"><i class="fa-solid fa-lock"></i></span>
                             <input type="password" class="form-control form-control-lg border-start-0 border-end-0 ps-0" id="passwordInput" placeholder="Enter your password" required>
-                            <button class="btn btn-light border border-start-0 text-muted password-toggle-btn" type="button" id="togglePasswordBtn" title="Show password" aria-label="Toggle password visibility">
+                            <button class="btn btn-light border border-start-0 text-muted" type="button" id="togglePasswordBtn" title="Show password">
                                 <i class="fa-solid fa-eye" id="togglePasswordIcon"></i>
                             </button>
                         </div>
@@ -255,7 +383,7 @@
 
                 <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
                     <small class="text-muted"><i class="fa-solid fa-shield-halved text-success me-1"></i> Authorized Staff Only</small>
-                    <a href="/" class="small text-decoration-none text-muted fw-semibold hover-orange">
+                    <a href="/" class="small text-decoration-none text-muted fw-semibold">
                         <i class="fa-solid fa-globe me-1"></i> Public Website
                     </a>
                 </div>
@@ -263,71 +391,140 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- VIEW 2: ADMIN & MODULES HUB (Shown when authenticated) -->
-    <!-- ========================================== -->
+    <!-- ======================================================== -->
+    <!-- VIEW 2: LOGIN LANDING PAGE (Welcome & Positive Thought)  -->
+    <!-- ======================================================== -->
+    <div id="welcomeLandingSection" class="welcome-wrapper d-none">
+        <div class="welcome-card text-center">
+            
+            <!-- Solis Brand Logo -->
+            <div class="mb-3">
+                <img src="/images/logo/logo.png" alt="Solis Green Energy Solutions" class="welcome-logo">
+            </div>
+
+            <div class="d-inline-flex align-items-center bg-white border shadow-sm rounded-pill px-3 py-1 mb-2">
+                <span class="live-dot me-2"></span>
+                <span class="small fw-bold text-dark" id="welcomeUserGreeting">Welcome to Solis Green Energy Solutions</span>
+            </div>
+
+            <h2 class="fw-bold font-display text-dark mb-1">Central Operations & EPC Data Hub</h2>
+            <p class="text-muted small mb-3">Empowering Kerala's rooftop solar transition with real-time intelligence and precision costing.</p>
+
+            <!-- Positive Thought Card -->
+            <div class="thought-card p-3 p-md-4 mx-auto mb-3 text-start">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <div class="thought-icon">
+                        <i class="fa-solid fa-sun text-warning"></i>
+                    </div>
+                    <span class="fw-bold text-uppercase" style="color: #ea580c; letter-spacing: 0.08em; font-size: 0.72rem;">Today's Positive Thought</span>
+                </div>
+                <blockquote class="thought-text mb-2 font-display fs-5 fw-semibold text-dark" id="positiveThoughtText">
+                    "Powering a sustainable tomorrow with every ray of sunshine. Great work begins with clean energy, strong purpose, and collective passion."
+                </blockquote>
+                <div class="text-end text-muted small fst-italic" id="thoughtAuthor">— Solis Energy Daily Wisdom</div>
+            </div>
+
+            <!-- 5-Second Countdown Timer & Visual Progress -->
+            <div id="timerContainer" class="mb-2">
+                <div class="d-flex justify-content-between align-items-center mb-1 px-1">
+                    <small class="text-muted fw-semibold" id="timerStatusLabel">
+                        <i class="fa-solid fa-shield-check me-1 text-success"></i> Synchronizing cloud database...
+                    </small>
+                    <span class="badge bg-light text-primary border fw-bold font-mono" id="countdownBadge">5s</span>
+                </div>
+                <div class="progress" style="height: 5px; border-radius: 6px; background-color: #e2e8f0;">
+                    <div id="countdownProgressBar" class="progress-bar" role="progressbar" style="width: 0%; background: linear-gradient(90deg, #FF6A2A, #10b981); transition: width 0.05s linear;"></div>
+                </div>
+            </div>
+
+            <!-- Enter Button: Appears After Exactly 5 Seconds -->
+            <div id="enterActionContainer" class="mt-3" style="min-height: 54px;">
+                <div id="timerNotice" class="text-muted small py-2">
+                    <i class="fa-solid fa-spinner fa-spin me-2 text-warning"></i> Access button ready in <strong id="secondsRemainingText">5</strong> seconds...
+                </div>
+
+                <button type="button" class="btn btn-solis-primary btn-lg rounded-pill px-5 py-2 shadow-lg fw-bold enter-btn-glow d-none" id="enterHubBtn" onclick="enterDataHub()">
+                    Enter Data Hub <i class="fa-solid fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+
+            <div class="mt-3 pt-2 border-top d-flex justify-content-between align-items-center text-muted small">
+                <span><i class="fa-solid fa-shield-halved text-success me-1"></i> Authorized Admin Session</span>
+                <button type="button" class="btn btn-link btn-sm text-muted text-decoration-none p-0" onclick="enterDataHub()" title="Direct Access">
+                    Skip countdown &rarr;
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- VIEW 3: DATA HUB (Modules Grid - Fit 1 Page With Zero Scrolls) -->
+    <!-- ======================================================== -->
     <div id="hubSection" class="d-none">
         
         <!-- Navigation Bar -->
-        <nav class="hub-navbar py-2 px-3 px-md-4">
-            <div class="container-fluid d-flex justify-content-between align-items-center">
+        <nav class="hub-navbar py-1 px-3 px-md-4">
+            <div class="container-fluid d-flex justify-content-between align-items-center h-100">
                 <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none" href="/Login/index.html">
-                    <img src="/images/logo/logo.png" alt="Solis Green Energy Solutions" style="height: 42px; width: auto; margin-right: 12px; object-fit: contain;">
+                    <img src="/images/logo/logo.png" alt="Solis Green Energy Solutions" style="height: 36px; width: auto; margin-right: 10px; object-fit: contain;">
                     <div>
-                        <div class="fw-bold font-display fs-5 lh-1 text-dark">SOLIS <span style="color: #FF6A2A;">EPC</span></div>
-                        <small class="text-muted fw-semibold" style="font-size: 0.68rem; letter-spacing: 0.05em;">GREEN ENERGY SOLUTIONS</small>
+                        <div class="fw-bold font-display fs-6 lh-1 text-dark">SOLIS <span style="color: #FF6A2A;">EPC</span></div>
+                        <small class="text-muted fw-semibold" style="font-size: 0.62rem; letter-spacing: 0.05em;">DATA HUB & ADMIN CONTROL</small>
                     </div>
                 </a>
 
-                <div class="d-flex align-items-center gap-3">
-                    <div class="d-none d-md-flex align-items-center bg-light border rounded-pill px-3 py-1">
-                        <i class="fa-solid fa-user-circle text-primary me-2 fs-5"></i>
-                        <span class="small fw-semibold text-dark me-2" id="userEmailBadge">user@solisgreenindia.in</span>
-                        <span class="badge bg-primary text-uppercase" id="userRoleBadge" style="font-size: 0.65rem;">ADMIN</span>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="d-none d-md-flex align-items-center bg-light border rounded-pill px-2 py-0">
+                        <i class="fa-solid fa-user-circle text-primary me-2"></i>
+                        <span class="small fw-semibold text-dark me-2" id="userEmailBadge" style="font-size: 0.78rem;">admin@solisgreenindia.in</span>
+                        <span class="badge bg-danger text-uppercase" id="userRoleBadge" style="font-size: 0.6rem;">ADMIN</span>
                     </div>
 
-                    <a href="/" class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Open Public Website">
+                    <a href="/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1" style="font-size: 0.78rem;" title="Open Public Website">
                         <i class="fa-solid fa-globe me-1"></i> Website
                     </a>
 
-                    <button onclick="handleLogout()" class="btn btn-outline-danger btn-sm rounded-pill px-3" title="Sign Out">
+                    <button onclick="handleLogout()" class="btn btn-outline-danger btn-sm rounded-pill px-3 py-1" style="font-size: 0.78rem;" title="Sign Out">
                         <i class="fa-solid fa-right-from-bracket me-1"></i> Sign Out
                     </button>
                 </div>
             </div>
         </nav>
 
-        <!-- Main Hub Content -->
-        <div class="container-fluid px-3 px-md-5 py-4">
-            <!-- Welcome Header -->
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 pb-3 border-bottom gap-3">
-                <div>
-                    <h2 class="fw-bold font-display mb-1 text-dark">Operational Modules & Admin Control</h2>
-                    <p class="text-muted mb-0">Select an application module below to configure costing, manage master databases, or generate client proposals.</p>
+        <!-- Main Hub Container (Compact & Symmetrical) -->
+        <div class="container-fluid px-3 px-md-4" id="hubMainContainer">
+            
+            <!-- Compact Title Strip -->
+            <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
+                <div class="d-flex align-items-center gap-2">
+                    <h5 class="fw-bold font-display mb-0 text-dark">Operational Modules & Data Hub</h5>
+                    <span class="badge bg-light text-muted border d-none d-sm-inline" style="font-size: 0.68rem;">11 Live Tools</span>
                 </div>
-                <div class="d-flex gap-2">
-                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill fw-semibold d-inline-flex align-items-center">
-                        <i class="fa-solid fa-circle text-success me-2" style="font-size: 0.5rem;"></i> Cloud Firebase Connected
+                <div>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 rounded-pill fw-semibold" style="font-size: 0.7rem;">
+                        <span class="live-dot me-1"></span> Cloud Firestore Connected
                     </span>
                 </div>
             </div>
 
-            <!-- Modules Grid -->
-            <div class="row g-4" id="modulesGrid">
+            <!-- Modules Grid: 11 Live Modules + 1 System Monitor Card (Exact 4x3 Grid) -->
+            <div class="row g-2 g-xl-2" id="modulesGrid">
                 
                 <!-- 1. Cost Calculator -->
-                <div class="col-12 col-md-6 col-xl-3">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                     <a href="/projectcostcalculator/index.html" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #FF6A2A 0%, #FF824C 100%);">
-                            <i class="fa-solid fa-calculator"></i>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #FF6A2A 0%, #FF824C 100%);">
+                                    <i class="fa-solid fa-calculator"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Cost Calculator</h6>
+                            </div>
+                            <span class="module-tag-compact" style="background: #fff3ec; color: #c2410c;">Sales</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag" style="background: #fff3ec; color: #c2410c;">Sales & EPC</span>
-                            <span class="badge rounded-pill bg-light text-muted border" style="font-size: 0.68rem;">v2.0</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">Project Cost Calculator</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Interactive 70:30 GST calculation engine, dynamic equipment sizing, purchase landing costing & profit analysis.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-primary fw-bold small">
+                        <p class="module-desc">Interactive 70:30 GST calculation engine, equipment sizing & landing cost.</p>
+                        <div class="module-action-link text-primary">
                             <span>Open Calculator</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
@@ -335,193 +532,223 @@
                 </div>
 
                 <!-- 2. Saved Quotes Dashboard -->
-                <div class="col-12 col-md-6 col-xl-3">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                     <a href="/projectcostcalculator/quotes_dashboard.html" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
-                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
+                                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Quotes & Proposals</h6>
+                            </div>
+                            <span class="module-tag-compact" style="background: #e0f2fe; color: #0369a1;">Proposals</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag" style="background: #e0f2fe; color: #0369a1;">Proposals</span>
-                            <span class="badge rounded-pill bg-light text-muted border" style="font-size: 0.68rem;">Firestore</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">Quotes & Proposals</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Access saved customer estimates, review plant configurations, generate tender sheets, and re-calculate quotes.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-primary fw-bold small">
+                        <p class="module-desc">Access saved estimates, review plant configurations & generate client proposals.</p>
+                        <div class="module-action-link text-primary">
                             <span>View All Quotes</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </a>
                 </div>
 
-                <!-- 3. Website Analytics & Activity Intelligence -->
-                <div class="col-12 col-md-6 col-xl-3">
+                <!-- 3. Submitted Forms Tracker -->
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <a href="/leads/index.html" class="module-card">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #107c41 0%, #15803d 100%);">
+                                    <i class="fa-solid fa-file-excel"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Leads & Forms</h6>
+                            </div>
+                            <span class="module-tag-compact" style="background: #e6f4ea; color: #137333;">Excel Form</span>
+                        </div>
+                        <p class="module-desc">Live Excel tracker for customer submissions & KSEB numbers with 1-click export.</p>
+                        <div class="module-action-link text-success">
+                            <span>Open Leads Tracker</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 4. Website Analytics & Activity Intelligence -->
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                     <a href="/analytics/index.html" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);">
-                            <i class="fa-solid fa-chart-line"></i>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Web Activity</h6>
+                            </div>
+                            <span class="module-tag-compact" style="background: #e0f2fe; color: #0369a1;">Realtime</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag" style="background: #e0f2fe; color: #0369a1;">Intelligence</span>
-                            <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle" style="font-size: 0.68rem;"><i class="fa-solid fa-circle text-success me-1" style="font-size: 0.45rem;"></i> Realtime</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">Web Activity & Leads</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Real-time log of phone calls made, WhatsApp chats, quote form fills, top 10 engaged pages & Kerala district traffic.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-primary fw-bold small">
+                        <p class="module-desc">Real-time log of calls made, WhatsApp chats, page visits & Kerala district traffic.</p>
+                        <div class="module-action-link text-primary">
                             <span>Open Analytics</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </a>
                 </div>
 
-                <!-- 4. Submitted Forms Tracker (Excel View) -->
-                <div class="col-12 col-md-6 col-xl-3">
-                    <a href="/leads/index.html" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #107c41 0%, #15803d 100%);">
-                            <i class="fa-solid fa-file-excel"></i>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag" style="background: #e6f4ea; color: #137333;">Leads & CRM</span>
-                            <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle" style="font-size: 0.68rem;"><i class="fa-solid fa-table me-1"></i> Excel Form</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">Submitted Forms Tracker</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Monitor all website quote submissions, inquiries, and KSEB consumer numbers in a live Excel spreadsheet with instant CSV export.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-success fw-bold small">
-                            <span>Open Excel Tracker</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 5. SEO Command Center & Kerala Local Rankings -->
-                <div class="col-12 col-md-6 col-xl-3">
-                    <a href="/seo/index.html" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                            <i class="fa-solid fa-magnifying-glass-chart"></i>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag" style="background: #ecfdf5; color: #047857;">Growth & SEO</span>
-                            <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle" style="font-size: 0.68rem;">Google Rank</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">SEO Command Center</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Audit on-page health across 60+ pages, Kerala district keyword rankings, competitor strengths, and rich FAQ schema generator.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-primary fw-bold small">
-                            <span>Open SEO Center</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </a>
-                </div>
-
                 <!-- 5. General Master Database -->
-                <div class="col-12 col-md-6 col-xl-3 admin-only-module">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 admin-only-module">
                     <a href="/projectcostcalculator/admin.html" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);">
-                            <i class="fa-solid fa-database"></i>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);">
+                                    <i class="fa-solid fa-database"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">General Master DB</h6>
+                            </div>
+                            <span class="module-tag-compact badge-admin-only">Master</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag badge-admin-only">Admin Master</span>
-                            <span class="badge rounded-pill bg-light text-muted border" style="font-size: 0.68rem;">Pricing</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">General Master DB</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Maintain supply component costs, statutory GST rules (12% vs 18%), service labor rates, and target company margins.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-primary fw-bold small">
+                        <p class="module-desc">Maintain component costs, statutory GST rules, labor rates & company margins.</p>
+                        <div class="module-action-link text-primary">
                             <span>Manage Pricing</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </a>
                 </div>
 
-                <!-- 4. Solar Panel Master -->
-                <div class="col-12 col-md-6 col-xl-3 admin-only-module">
+                <!-- 6. Solar Panel Master -->
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 admin-only-module">
                     <a href="/projectcostcalculator/panel_master.html" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #eab308 0%, #a16207 100%);">
-                            <i class="fa-solid fa-solar-panel"></i>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #eab308 0%, #a16207 100%);">
+                                    <i class="fa-solid fa-solar-panel"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Solar Panel Master</h6>
+                            </div>
+                            <span class="module-tag-compact badge-admin-only">PV Modules</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag badge-admin-only">Admin Master</span>
-                            <span class="badge rounded-pill bg-light text-muted border" style="font-size: 0.68rem;">PV Modules</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">Solar Panel Master</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Configure panel catalog (Tata Power, Waaree, Adani, Deye), wattage capacities, cell technology, and per-watt pricing.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-primary fw-bold small">
+                        <p class="module-desc">Configure PV modules (Tata, Waaree, Adani, Deye), wattage & cell technology.</p>
+                        <div class="module-action-link text-primary">
                             <span>Configure Panels</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </a>
                 </div>
 
-                <!-- 5. Inverter Master -->
-                <div class="col-12 col-md-6 col-xl-3 admin-only-module">
+                <!-- 7. Inverter Master -->
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 admin-only-module">
                     <a href="/projectcostcalculator/inverter_master.html" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
-                            <i class="fa-solid fa-plug"></i>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
+                                    <i class="fa-solid fa-plug"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Inverter Master</h6>
+                            </div>
+                            <span class="module-tag-compact badge-admin-only">Inverters</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag badge-admin-only">Admin Master</span>
-                            <span class="badge rounded-pill bg-light text-muted border" style="font-size: 0.68rem;">Inverters</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">Inverter Master</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Manage single-phase and three-phase inverters, micro-inverters, hybrid units, and distributor purchase rates.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-primary fw-bold small">
+                        <p class="module-desc">Manage 1-phase/3-phase inverters, micro-inverters, hybrid units & purchase rates.</p>
+                        <div class="module-action-link text-primary">
                             <span>Configure Inverters</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </a>
                 </div>
 
-                <!-- 6. BOM Master -->
-                <div class="col-12 col-md-6 col-xl-3 admin-only-module">
+                <!-- 8. BOM Master -->
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 admin-only-module">
                     <a href="/projectcostcalculator/bom_master.html" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">
-                            <i class="fa-solid fa-sitemap"></i>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">
+                                    <i class="fa-solid fa-sitemap"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">BOM Master</h6>
+                            </div>
+                            <span class="module-tag-compact badge-admin-only">Engineering</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag badge-admin-only">Admin Master</span>
-                            <span class="badge rounded-pill bg-light text-muted border" style="font-size: 0.68rem;">Engineering</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">BOM Master</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Define standard Bill of Materials packages and rule formulas for 3kW, 5kW, 10kW & commercial plant configurations.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-primary fw-bold small">
-                            <span>Configure BOM Rules</span>
+                        <p class="module-desc">Define standard Bill of Materials packages and rule formulas for 3kW, 5kW & 10kW.</p>
+                        <div class="module-action-link text-primary">
+                            <span>Configure Rules</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </a>
                 </div>
 
-                <!-- 7. Careers & HR Dashboard -->
-                <div class="col-12 col-md-6 col-xl-3 admin-only-module">
+                <!-- 9. SEO Command Center -->
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <a href="/seo/index.html" class="module-card">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">SEO Command</h6>
+                            </div>
+                            <span class="module-tag-compact" style="background: #ecfdf5; color: #047857;">Google Rank</span>
+                        </div>
+                        <p class="module-desc">Audit on-page health across 60+ pages, Kerala keyword ranks & FAQ schema generator.</p>
+                        <div class="module-action-link text-primary">
+                            <span>Open SEO Center</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 10. Careers & Hiring Admin -->
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 admin-only-module">
                     <a href="/careers/admin/index.html" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
-                            <i class="fa-solid fa-users-gear"></i>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
+                                    <i class="fa-solid fa-users-gear"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Careers & Hiring</h6>
+                            </div>
+                            <span class="module-tag-compact badge-admin-only">Recruitment</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag badge-admin-only">HR & Operations</span>
-                            <span class="badge rounded-pill bg-light text-muted border" style="font-size: 0.68rem;">Recruitment</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">Careers & Hiring Admin</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Review incoming job applicant resumes, manage candidate pipelines, and publish or update open job listings.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-primary fw-bold small">
-                            <span>Open HR Dashboard</span>
+                        <p class="module-desc">Review applicant resumes, manage candidate pipelines & update open job listings.</p>
+                        <div class="module-action-link text-primary">
+                            <span>Open HR Admin</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </a>
                 </div>
 
-                <!-- 8. Solis Website & Landing Pages -->
-                <div class="col-12 col-md-6 col-xl-3">
+                <!-- 11. Public Website Portal -->
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                     <a href="/" target="_blank" class="module-card">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);">
-                            <i class="fa-solid fa-globe"></i>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Public Website</h6>
+                            </div>
+                            <span class="module-tag-compact badge-open-access">Live Web</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="module-tag badge-open-access">Live Web</span>
-                            <span class="badge rounded-pill bg-light text-muted border" style="font-size: 0.68rem;">Public</span>
-                        </div>
-                        <h5 class="fw-bold text-dark font-display mb-2">Public Website Portal</h5>
-                        <p class="text-muted small flex-grow-1 mb-3">Preview the live Solis website, regional district pages, PM Surya Ghar subsidy guides, and contact forms.</p>
-                        <div class="pt-2 border-top d-flex justify-content-between align-items-center text-primary fw-bold small">
+                        <p class="module-desc">Preview live Solis website, regional district pages, PM Surya Ghar guides & forms.</p>
+                        <div class="module-action-link text-primary">
                             <span>View Live Site</span>
                             <i class="fa-solid fa-external-link ms-1"></i>
                         </div>
                     </a>
+                </div>
+
+                <!-- 12. System Cockpit Monitor (Completes 4x3 Grid) -->
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                    <div class="module-card" style="background: #fafafa; border-style: dashed;">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #334155 0%, #0f172a 100%);">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">System Status</h6>
+                            </div>
+                            <span class="module-tag-compact" style="background: #f1f5f9; color: #475569;">v2.4 Active</span>
+                        </div>
+                        <p class="module-desc">Firestore Live &bull; Meta Pixel Active &bull; Form Relay Connected &bull; All nominal.</p>
+                        <div class="module-action-link text-muted">
+                            <span class="text-success"><span class="live-dot me-1"></span> All Systems Operational</span>
+                            <i class="fa-solid fa-check text-success"></i>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -536,17 +763,58 @@
             { email: "joshijacob@gmail.com", password: "Joshi@1985", role: "sales" }
         ];
 
-        // Read query parameters (e.g., ?redirect=...)
+        // Curated Positive Thoughts for Solis Green Energy
+        const POSITIVE_THOUGHTS = [
+            {
+                quote: "Powering a sustainable tomorrow with every ray of sunshine. Great work begins with clean energy, strong purpose, and collective passion.",
+                author: "Solis Daily Inspiration"
+            },
+            {
+                quote: "The sun never asks for anything in return, yet it lights up the whole world. Harness its infinite energy to create lasting value.",
+                author: "Solar Energy Wisdom"
+            },
+            {
+                quote: "Every rooftop solar system we build illuminates clean progress for Kerala's homes, businesses, and future generations.",
+                author: "Solis Engineering Philosophy"
+            },
+            {
+                quote: "Energy is the essence of life. When you direct positive energy toward a noble goal, the results are boundless.",
+                author: "Clean Energy Leadership"
+            },
+            {
+                quote: "Rise like the morning sun: bright, steadfast, and full of positive power to illuminate the day's challenges.",
+                author: "Daily Motivation"
+            },
+            {
+                quote: "True innovation in clean tech is about empowering every community to achieve lasting energy independence.",
+                author: "Solis Core Values"
+            },
+            {
+                quote: "A greener planet is built one rooftop, one solar module, and one committed team at a time.",
+                author: "Team Solis Green"
+            }
+        ];
+
         const urlParams = new URLSearchParams(window.location.search);
         const redirectTarget = urlParams.get('redirect');
+        let timerInterval = null;
+        let countdownTimerSeconds = 5;
+
+        // Pick a positive thought
+        function setPositiveThought() {
+            const dayIndex = new Date().getDate() % POSITIVE_THOUGHTS.length;
+            const thought = POSITIVE_THOUGHTS[dayIndex] || POSITIVE_THOUGHTS[0];
+            document.getElementById('positiveThoughtText').textContent = `"${thought.quote}"`;
+            document.getElementById('thoughtAuthor').textContent = `— ${thought.author}`;
+        }
 
         // Check authentication state
         function checkAuthState() {
-            // Restore from localStorage if sessionStorage is empty (e.g., opened in a new tab)
             if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
                 sessionStorage.setItem('solis_auth_token', 'true');
                 sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
                 sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
+                sessionStorage.setItem('solis_admin_logged_in', localStorage.getItem('solis_admin_logged_in') || 'false');
             }
 
             const isAuth = sessionStorage.getItem('solis_auth_token') === 'true';
@@ -554,39 +822,31 @@
             const userRole = sessionStorage.getItem('solis_user_role') || 'sales';
 
             const loginSection = document.getElementById('loginSection');
+            const welcomeLandingSection = document.getElementById('welcomeLandingSection');
             const hubSection = document.getElementById('hubSection');
             const redirectNotice = document.getElementById('redirect-notice');
 
             if (isAuth) {
-                // If a specific redirect was requested, navigate there immediately
+                // If a specific tool redirect was requested, navigate immediately
                 if (redirectTarget && redirectTarget !== '/Login/index.html' && redirectTarget !== '/login/index.html') {
                     window.location.href = redirectTarget;
                     return;
                 }
 
-                // Otherwise display the Admin Hub
-                loginSection.classList.add('d-none');
-                hubSection.classList.remove('d-none');
-
-                document.getElementById('userEmailBadge').textContent = userEmail;
-                const roleBadge = document.getElementById('userRoleBadge');
-                roleBadge.textContent = userRole.toUpperCase();
-                roleBadge.className = userRole === 'admin' ? 'badge bg-danger text-uppercase' : 'badge bg-primary text-uppercase';
-
-                // Restrict Admin-only modules for sales accounts
-                if (userRole !== 'admin') {
-                    document.querySelectorAll('.admin-only-module').forEach(el => {
-                        el.querySelector('.module-card').classList.add('module-card-disabled');
-                        const tag = el.querySelector('.module-tag');
-                        if (tag) {
-                            tag.textContent = 'Admin Only';
-                            tag.className = 'module-tag bg-secondary text-white';
-                        }
-                    });
+                // If user has already passed the landing screen in this session, or clicked ?view=hub
+                if (sessionStorage.getItem('solis_hub_unlocked') === 'true' || urlParams.get('view') === 'hub') {
+                    showHubView(userEmail, userRole);
+                    return;
                 }
+
+                // Otherwise, show the Login Landing Page (Welcome & Positive Thought)
+                showWelcomeLandingView(userEmail, userRole);
+
             } else {
                 loginSection.classList.remove('d-none');
+                welcomeLandingSection.classList.add('d-none');
                 hubSection.classList.add('d-none');
+                document.body.classList.remove('hub-active');
 
                 if (redirectTarget) {
                     redirectNotice.classList.remove('d-none');
@@ -594,67 +854,154 @@
             }
         }
 
-        // Toggle password visibility
-        const togglePasswordBtn = document.getElementById('togglePasswordBtn');
-        const passwordInput = document.getElementById('passwordInput');
-        const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+        // Show Welcome Landing View with 5-Second Timer
+        function showWelcomeLandingView(userEmail, userRole) {
+            document.getElementById('loginSection').classList.add('d-none');
+            document.getElementById('hubSection').classList.add('d-none');
+            document.body.classList.remove('hub-active');
 
-        if (togglePasswordBtn && passwordInput && togglePasswordIcon) {
-            togglePasswordBtn.addEventListener('click', () => {
-                const isPassword = passwordInput.type === 'password';
-                passwordInput.type = isPassword ? 'text' : 'password';
-                togglePasswordIcon.classList.toggle('fa-eye', !isPassword);
-                togglePasswordIcon.classList.toggle('fa-eye-slash', isPassword);
-                togglePasswordBtn.setAttribute('title', isPassword ? 'Hide password' : 'Show password');
-                passwordInput.focus();
-            });
+            const welcomeSection = document.getElementById('welcomeLandingSection');
+            welcomeSection.classList.remove('d-none');
+
+            document.getElementById('welcomeUserGreeting').textContent = `Welcome, ${userEmail} (${userRole.toUpperCase()})`;
+            setPositiveThought();
+            startCountdownTimer();
         }
 
-        // Handle Login Submission
-        document.getElementById('central-login-form').addEventListener('submit', async (e) => {
+        // 5-Second Countdown Logic
+        function startCountdownTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+
+            countdownTimerSeconds = 5;
+            const totalDurationMs = 5000;
+            const startTime = Date.now();
+
+            const enterHubBtn = document.getElementById('enterHubBtn');
+            const timerNotice = document.getElementById('timerNotice');
+            const countdownBadge = document.getElementById('countdownBadge');
+            const countdownProgressBar = document.getElementById('countdownProgressBar');
+            const secondsRemainingText = document.getElementById('secondsRemainingText');
+
+            enterHubBtn.classList.add('d-none');
+            timerNotice.classList.remove('d-none');
+            countdownBadge.textContent = '5s';
+            countdownProgressBar.style.width = '0%';
+
+            timerInterval = setInterval(() => {
+                const elapsedMs = Date.now() - startTime;
+                const remainingMs = Math.max(0, totalDurationMs - elapsedMs);
+                const remainingSec = Math.ceil(remainingMs / 1000);
+                const progressPct = Math.min(100, (elapsedMs / totalDurationMs) * 100);
+
+                countdownProgressBar.style.width = progressPct + '%';
+                countdownBadge.textContent = remainingSec + 's';
+                secondsRemainingText.textContent = remainingSec;
+
+                if (remainingMs <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    countdownBadge.textContent = 'Ready!';
+                    countdownBadge.className = 'badge bg-success text-white border fw-bold font-mono';
+                    countdownProgressBar.style.width = '100%';
+
+                    // Reveal the "Enter Data Hub" Button
+                    timerNotice.classList.add('d-none');
+                    enterHubBtn.classList.remove('d-none');
+                }
+            }, 50);
+        }
+
+        // Enter Data Hub Click Handler
+        function enterDataHub() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            sessionStorage.setItem('solis_hub_unlocked', 'true');
+            const userEmail = sessionStorage.getItem('solis_user_email') || 'User';
+            const userRole = sessionStorage.getItem('solis_user_role') || 'sales';
+            showHubView(userEmail, userRole);
+        }
+
+        // Display Data Hub View (Compact 1-Page Layout)
+        function showHubView(userEmail, userRole) {
+            document.getElementById('loginSection').classList.add('d-none');
+            document.getElementById('welcomeLandingSection').classList.add('d-none');
+            
+            const hubSection = document.getElementById('hubSection');
+            hubSection.classList.remove('d-none');
+            document.body.classList.add('hub-active');
+
+            document.getElementById('userEmailBadge').textContent = userEmail;
+            const roleBadge = document.getElementById('userRoleBadge');
+            roleBadge.textContent = userRole.toUpperCase();
+            roleBadge.className = userRole === 'admin' ? 'badge bg-danger text-uppercase' : 'badge bg-primary text-uppercase';
+
+            // Restrict Admin-only modules for sales accounts
+            if (userRole !== 'admin') {
+                document.querySelectorAll('.admin-only-module').forEach(el => {
+                    el.querySelector('.module-card').classList.add('module-card-disabled');
+                    const tag = el.querySelector('.module-tag-compact');
+                    if (tag) {
+                        tag.textContent = 'Admin Only';
+                        tag.className = 'module-tag-compact bg-secondary text-white';
+                    }
+                });
+            }
+        }
+
+        // Toggle password visibility
+        document.getElementById('togglePasswordBtn').addEventListener('click', function() {
+            const passwordInput = document.getElementById('passwordInput');
+            const icon = document.getElementById('togglePasswordIcon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.className = 'fa-solid fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                icon.className = 'fa-solid fa-eye';
+            }
+        });
+
+        // Form Submit Login Handler
+        document.getElementById('central-login-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-
-            const btn = document.getElementById('loginSubmitBtn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin me-2"></i> Authenticating...';
-            btn.disabled = true;
-
-            const errorAlert = document.getElementById('login-error');
-            errorAlert.classList.add('d-none');
-
             const email = document.getElementById('emailInput').value.trim();
             const password = document.getElementById('passwordInput').value;
+            const btn = document.getElementById('loginSubmitBtn');
+            const errorAlert = document.getElementById('login-error');
+
+            errorAlert.classList.add('d-none');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Authenticating...';
+            btn.disabled = true;
 
             try {
                 let authenticated = false;
                 let role = 'sales';
 
-                // 1. Check Firebase Auth if available
-                if (typeof authFirebase !== 'undefined') {
+                // Check predefined users
+                const localUser = VALID_USERS.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+                if (localUser) {
+                    authenticated = true;
+                    role = localUser.role;
+                } else if (typeof authFirebase !== 'undefined') {
                     try {
-                        const userCredential = await authFirebase.signInWithEmailAndPassword(email, password);
-                        const user = userCredential.user;
-                        authenticated = true;
-                        role = user.email.toLowerCase() === "solisgreenenergysolutions@gmail.com" ? 'admin' : 'sales';
+                        const userCred = await authFirebase.signInWithEmailAndPassword(email, password);
+                        if (userCred && userCred.user) {
+                            authenticated = true;
+                            role = (email.toLowerCase() === 'solisgreenenergysolutions@gmail.com') ? 'admin' : 'sales';
+                        }
                     } catch (fbErr) {
-                        console.warn("Firebase sign-in failed, trying fallback validation...", fbErr);
-                    }
-                }
-
-                // 2. Fallback to predefined credentials
-                if (!authenticated) {
-                    const match = VALID_USERS.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
-                    if (match) {
-                        authenticated = true;
-                        role = match.role;
+                        console.warn('Firebase login notice:', fbErr);
                     }
                 }
 
                 if (authenticated) {
-                    // Set credentials in session and local storage
                     sessionStorage.setItem('solis_auth_token', 'true');
                     sessionStorage.setItem('solis_user_email', email);
                     sessionStorage.setItem('solis_user_role', role);
+                    sessionStorage.removeItem('solis_hub_unlocked'); // Always show Welcome Landing page upon new login
 
                     localStorage.setItem('solis_auth_token', 'true');
                     localStorage.setItem('solis_user_email', email);
@@ -665,7 +1012,6 @@
                         localStorage.setItem('solis_admin_logged_in', 'true');
                     }
 
-                    // Check if redirect is requested
                     if (redirectTarget && redirectTarget !== '/Login/index.html') {
                         window.location.href = redirectTarget;
                     } else {
@@ -692,18 +1038,18 @@
             sessionStorage.removeItem('solis_auth_token');
             sessionStorage.removeItem('solis_user_email');
             sessionStorage.removeItem('solis_user_role');
+            sessionStorage.removeItem('solis_hub_unlocked');
+            sessionStorage.removeItem('solis_admin_logged_in');
 
             localStorage.removeItem('solis_auth_token');
             localStorage.removeItem('solis_user_email');
             localStorage.removeItem('solis_user_role');
-            sessionStorage.removeItem('solis_admin_logged_in');
             localStorage.removeItem('solis_admin_logged_in');
 
             if (typeof authFirebase !== 'undefined') {
                 authFirebase.signOut().catch(() => {});
             }
 
-            // Remove redirect query param and reload view
             window.history.replaceState({}, document.title, '/Login/index.html');
             checkAuthState();
         }
