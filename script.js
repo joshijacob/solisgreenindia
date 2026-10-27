@@ -1591,12 +1591,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }, true);
 
-  // 3. Form Submit Delegation
+  // 3. Form Submit Delegation with Lead Contact Capture
   document.addEventListener('submit', function(e) {
     const form = e.target;
     if (!form || form.id === 'login-form' || form.id === 'central-login-form' || form.id === 'addComponentForm') return;
     const formName = form.id || form.className || 'Solar Quote Inquiry';
-    recordSolisEvent('form_submit', 'Quote Form Submitted: ' + formName);
+    try {
+      const phoneInput = form.querySelector('input[type="tel"], input[name="phone"]');
+      const nameInput = form.querySelector('input[name="name"], input[name="fullname"]');
+      const leadSnippet = (nameInput && nameInput.value ? nameInput.value.trim() : '') + 
+                          (phoneInput && phoneInput.value ? ' (' + phoneInput.value.trim() + ')' : '');
+      const details = leadSnippet ? `Quote Lead: ${leadSnippet} - ${formName}` : `Quote Form Submitted: ${formName}`;
+      recordSolisEvent('form_submit', details);
+    } catch (err) {
+      recordSolisEvent('form_submit', 'Quote Form Submitted: ' + formName);
+    }
   }, true);
 })();
 
