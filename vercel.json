@@ -3,6 +3,10 @@
   "buildCommand": null,
   "outputDirectory": ".",
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/assets/christmas-offer/:path*", "destination": "/", "permanent": true },
+    { "source": "/assets/christmas-offer", "destination": "/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/login", "destination": "/Login/index.html" },
     { "source": "/login/", "destination": "/Login/index.html" },

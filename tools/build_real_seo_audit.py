@@ -8,8 +8,8 @@ output_json = os.path.join(base_dir, 'seo', 'seo_audit_data.json')
 audit_results = []
 
 for dirpath, dirnames, filenames in os.walk(base_dir):
-    # Exclude internal / non-public dirs
-    if any(p in dirpath for p in ['.git', '.vercel', 'node_modules', 'projectcostcalculator', 'Login', 'analytics', 'seo', 'tools']):
+    # Exclude internal / non-public / admin dirs
+    if any(p in dirpath.replace('\\', '/').lower() for p in ['.git', '.vercel', 'node_modules', 'projectcostcalculator', 'login', 'analytics', 'seo', 'tools', 'scratch', 'careers/admin']):
         continue
 
     for filename in filenames:
@@ -17,6 +17,25 @@ for dirpath, dirnames, filenames in os.walk(base_dir):
             filepath = os.path.join(dirpath, filename)
             rel_dir = os.path.relpath(dirpath, base_dir).replace('\\', '/')
             
+            # Skip component partials (header.html, footer.html, resources-section.html)
+            if filename in ['header.html', 'footer.html', 'resources-section.html']:
+                continue
+
+            try:
+                with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                    html = f.read()
+            except Exception as e:
+                continue
+
+            # Skip partial HTML snippets that are not full documents
+            html_lower = html.lower()
+            if '<!doctype' not in html_lower and '<html' not in html_lower:
+                continue
+
+            # Skip internal admin or private pages flagged with noindex
+            if 'noindex' in html_lower:
+                continue
+
             if rel_dir == '.' and filename == 'index.html':
                 url_path = '/'
             elif filename == 'index.html':
@@ -25,12 +44,6 @@ for dirpath, dirnames, filenames in os.walk(base_dir):
                 url_path = f'/{filename}'
             else:
                 url_path = f'/{rel_dir}/{filename}'
-
-            try:
-                with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
-                    html = f.read()
-            except Exception as e:
-                continue
 
             # 1. Title
             title_match = re.search(r'<title[^>]*>(.*?)</title>', html, re.IGNORECASE | re.DOTALL)

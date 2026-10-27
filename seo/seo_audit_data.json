@@ -1,255 +1,12 @@
 {
   "generatedAt": "2026-10-27T06:28:00Z",
   "summary": {
-    "totalPagesScanned": 112,
-    "averageHealthScore": 74,
+    "totalPagesScanned": 104,
+    "averageHealthScore": 78,
     "optimalPages": 32,
-    "pagesWithIssues": 102
+    "pagesWithIssues": 94
   },
   "pages": [
-    {
-      "url": "/assets/christmas-offer/",
-      "fullUrl": "https://www.solisgreenindia.in/assets/christmas-offer/",
-      "title": "Solis Green Energy",
-      "titleLength": 18,
-      "desc": "",
-      "descLength": 0,
-      "h1": "",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 3,
-      "issues": [
-        "Title is too short (18 chars, min 30)",
-        "Missing meta description",
-        "Missing <h1> heading tag",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 20,
-      "grade": "Needs Work",
-      "category": "core"
-    },
-    {
-      "url": "/footer.html",
-      "fullUrl": "https://www.solisgreenindia.in/footer.html",
-      "title": "",
-      "titleLength": 0,
-      "desc": "",
-      "descLength": 0,
-      "h1": "",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 1,
-      "imagesWithAlt": 1,
-      "missingAlt": 0,
-      "wordCount": 100,
-      "issues": [
-        "Missing <title> tag",
-        "Missing meta description",
-        "Missing <h1> heading tag",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 20,
-      "grade": "Needs Work",
-      "category": "core"
-    },
-    {
-      "url": "/header.html",
-      "fullUrl": "https://www.solisgreenindia.in/header.html",
-      "title": "",
-      "titleLength": 0,
-      "desc": "",
-      "descLength": 0,
-      "h1": "",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 1,
-      "imagesWithAlt": 1,
-      "missingAlt": 0,
-      "wordCount": 13,
-      "issues": [
-        "Missing <title> tag",
-        "Missing meta description",
-        "Missing <h1> heading tag",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 20,
-      "grade": "Needs Work",
-      "category": "core"
-    },
-    {
-      "url": "/resources-section.html",
-      "fullUrl": "https://www.solisgreenindia.in/resources-section.html",
-      "title": "",
-      "titleLength": 0,
-      "desc": "",
-      "descLength": 0,
-      "h1": "",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 479,
-      "issues": [
-        "Missing <title> tag",
-        "Missing meta description",
-        "Missing <h1> heading tag",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 20,
-      "grade": "Needs Work",
-      "category": "core"
-    },
-    {
-      "url": "/careers/admin/",
-      "fullUrl": "https://www.solisgreenindia.in/careers/admin/",
-      "title": "Careers Admin Dashboard | Solis Green Energy Solutions",
-      "titleLength": 54,
-      "desc": "",
-      "descLength": 0,
-      "h1": "",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 1,
-      "imagesWithAlt": 1,
-      "missingAlt": 0,
-      "wordCount": 95,
-      "issues": [
-        "Missing meta description",
-        "Missing <h1> heading tag",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 30,
-      "grade": "Needs Work",
-      "category": "core"
-    },
-    {
-      "url": "/3kw-vs-5kw-solar-system-kerala/",
-      "fullUrl": "https://www.solisgreenindia.in/3kw-vs-5kw-solar-system-kerala/",
-      "title": "Solis Green Energy Solutions",
-      "titleLength": 28,
-      "desc": "",
-      "descLength": 0,
-      "h1": "Content Coming Soon",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 19,
-      "issues": [
-        "Missing meta description",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 45,
-      "grade": "Needs Work",
-      "category": "pricing"
-    },
-    {
-      "url": "/privacy-policy/",
-      "fullUrl": "https://www.solisgreenindia.in/privacy-policy/",
-      "title": "Solis Green Energy Solutions",
-      "titleLength": 28,
-      "desc": "",
-      "descLength": 0,
-      "h1": "Content Coming Soon",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 19,
-      "issues": [
-        "Missing meta description",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 45,
-      "grade": "Needs Work",
-      "category": "core"
-    },
-    {
-      "url": "/solar-company-in-kottayam/pala.html",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/pala.html",
-      "title": "Solis Green Energy Solutions",
-      "titleLength": 28,
-      "desc": "",
-      "descLength": 0,
-      "h1": "Content Coming Soon",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 19,
-      "issues": [
-        "Missing meta description",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 45,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-pathanamthitta/chengannur.html",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/chengannur.html",
-      "title": "Solis Green Energy Solutions",
-      "titleLength": 28,
-      "desc": "",
-      "descLength": 0,
-      "h1": "Content Coming Soon",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 19,
-      "issues": [
-        "Missing meta description",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 45,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
     {
       "url": "/solar-company-in-alappuzha/cherthala/",
       "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/cherthala/",
@@ -713,8 +470,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -744,9 +501,9 @@
       "schemaTypes": [
         "Product",
         "AggregateOffer",
-        "BreadcrumbList",
         "ListItem",
-        "Brand"
+        "Brand",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -774,11 +531,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "Offer",
-        "State",
+        "PostalAddress",
         "Service",
-        "PostalAddress"
+        "LocalBusiness",
+        "State",
+        "Offer"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -806,12 +563,12 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "BreadcrumbList",
-        "Offer",
-        "State",
         "Service",
-        "ListItem"
+        "LocalBusiness",
+        "ListItem",
+        "State",
+        "Offer",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -839,8 +596,8 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -867,8 +624,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -895,8 +652,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1032,10 +789,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "PostalAddress",
-        "LocalBusiness",
         "BreadcrumbList",
-        "ListItem"
+        "LocalBusiness"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1062,10 +819,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "PostalAddress",
-        "LocalBusiness",
         "BreadcrumbList",
-        "ListItem"
+        "LocalBusiness"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1092,13 +849,13 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "Question",
-        "BreadcrumbList",
-        "FAQPage",
         "PostalAddress",
+        "LocalBusiness",
+        "FAQPage",
         "Answer",
-        "ListItem"
+        "Question",
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1125,11 +882,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "BreadcrumbList",
-        "PostalAddress",
         "City",
-        "ListItem"
+        "PostalAddress",
+        "LocalBusiness",
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1145,34 +902,6 @@
       "category": "districts"
     },
     {
-      "url": "/ads/solar-installation-thiruvalla/",
-      "fullUrl": "https://www.solisgreenindia.in/ads/solar-installation-thiruvalla/",
-      "title": "Solar Installation in Thiruvalla | ₹78,000 Subsidy | Solis Green",
-      "titleLength": 64,
-      "desc": "Reduce your KSEB electricity bill in Thiruvalla with 3kW & 5kW rooftop solar systems. Get up to ₹78,000 MNRE subsidy, KSEB net-metering & 5-Year Free AMC. Book free site survey today.",
-      "descLength": 183,
-      "h1": "Save Up to 90% on KSEB Bills in Thiruvalla",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 203,
-      "issues": [
-        "Meta description too long (183 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
       "url": "/pm-suryaghar-subsidy-pathanamthitta/",
       "fullUrl": "https://www.solisgreenindia.in/pm-suryaghar-subsidy-pathanamthitta/",
       "title": "PM Surya Ghar Solar Subsidy in Pathanamthitta | ₹78,000 MNRE Subsidy Guide",
@@ -1184,11 +913,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Question",
-        "BreadcrumbList",
         "FAQPage",
         "Answer",
-        "ListItem"
+        "Question",
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1215,8 +944,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 3,
       "imagesWithAlt": 3,
@@ -1243,8 +972,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1271,8 +1000,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 3,
       "imagesWithAlt": 3,
@@ -1299,8 +1028,8 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1327,8 +1056,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1355,8 +1084,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1383,8 +1112,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1411,8 +1140,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1439,13 +1168,13 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "Question",
-        "BreadcrumbList",
-        "FAQPage",
-        "Answer",
         "PostalAddress",
-        "ListItem"
+        "LocalBusiness",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1472,8 +1201,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1500,8 +1229,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1528,8 +1257,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1556,11 +1285,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Question",
-        "BreadcrumbList",
         "FAQPage",
+        "Question",
         "Answer",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1587,8 +1316,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1615,8 +1344,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1643,8 +1372,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1671,8 +1400,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1699,8 +1428,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1727,8 +1456,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1755,14 +1484,14 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "Question",
-        "BreadcrumbList",
-        "State",
-        "FAQPage",
         "Service",
+        "LocalBusiness",
+        "FAQPage",
+        "Question",
         "Answer",
-        "ListItem"
+        "ListItem",
+        "State",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1789,8 +1518,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1817,8 +1546,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1834,6 +1563,30 @@
       "category": "districts"
     },
     {
+      "url": "/3kw-vs-5kw-solar-system-kerala/",
+      "fullUrl": "https://www.solisgreenindia.in/3kw-vs-5kw-solar-system-kerala/",
+      "title": "3kW vs 5kW Solar System Kerala: Price, Subsidy & ROI Comparison",
+      "titleLength": 63,
+      "desc": "3kW vs 5kW rooftop solar comparison for Kerala homes. Compare KSEB bill savings, PM Surya Ghar subsidy (₹78,000), space needed, and payback period with Solis.",
+      "descLength": 158,
+      "h1": "3kW vs 5kW Solar System in Kerala: Which One Should You Choose?",
+      "canonical": "https://www.solisgreenindia.in/3kw-vs-5kw-solar-system-kerala/",
+      "hasOg": false,
+      "hasSchema": false,
+      "schemaTypes": [],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 174,
+      "issues": [
+        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
+        "No JSON-LD structured data schema detected"
+      ],
+      "score": 80,
+      "grade": "A",
+      "category": "pricing"
+    },
+    {
       "url": "/best-solar-company-in-kerala/",
       "fullUrl": "https://www.solisgreenindia.in/best-solar-company-in-kerala/",
       "title": "Best Solar Company in Kerala | Top MNRE Approved EPC | Solis Green",
@@ -1845,14 +1598,14 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "Question",
-        "BreadcrumbList",
-        "AggregateRating",
-        "FAQPage",
         "PostalAddress",
+        "LocalBusiness",
+        "FAQPage",
+        "Question",
         "Answer",
-        "ListItem"
+        "AggregateRating",
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1878,10 +1631,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1907,10 +1660,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1936,8 +1689,8 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1963,8 +1716,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1979,6 +1732,30 @@
       "category": "districts"
     },
     {
+      "url": "/privacy-policy/",
+      "fullUrl": "https://www.solisgreenindia.in/privacy-policy/",
+      "title": "Privacy Policy | Solis Green Energy Solutions Kerala",
+      "titleLength": 52,
+      "desc": "Privacy Policy for Solis Green Energy Solutions. Learn how we protect your personal information, consultation inquiries, and rooftop solar data.",
+      "descLength": 144,
+      "h1": "Privacy Policy",
+      "canonical": "https://www.solisgreenindia.in/privacy-policy/",
+      "hasOg": false,
+      "hasSchema": false,
+      "schemaTypes": [],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 167,
+      "issues": [
+        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
+        "No JSON-LD structured data schema detected"
+      ],
+      "score": 80,
+      "grade": "A",
+      "category": "core"
+    },
+    {
       "url": "/solar-company-in-pathanamthitta/adoor/",
       "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/adoor/",
       "title": "Solar Installation in Adoor | KSEB Authorized & MNRE Subsidy | Solis Green",
@@ -1990,9 +1767,9 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
         "ListItem",
-        "SolarEnergySystemInstaller"
+        "SolarEnergySystemInstaller",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2018,11 +1795,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
         "City",
         "PostalAddress",
         "ListItem",
-        "SolarEnergySystemInstaller"
+        "SolarEnergySystemInstaller",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2048,14 +1825,14 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "Question",
-        "BreadcrumbList",
-        "AggregateRating",
-        "FAQPage",
         "PostalAddress",
+        "LocalBusiness",
+        "FAQPage",
+        "Question",
         "Answer",
-        "ListItem"
+        "AggregateRating",
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2081,13 +1858,13 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "Question",
-        "BreadcrumbList",
-        "FAQPage",
-        "Answer",
         "PostalAddress",
-        "ListItem"
+        "LocalBusiness",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2113,11 +1890,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "BreadcrumbList",
-        "State",
         "PostalAddress",
-        "ListItem"
+        "LocalBusiness",
+        "ListItem",
+        "State",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2143,18 +1920,18 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "Rating",
-        "LocalBusiness",
-        "BreadcrumbList",
-        "Offer",
-        "AggregateRating",
-        "Review",
         "PostalAddress",
-        "Service",
-        "ListItem",
         "OfferCatalog",
+        "Service",
+        "LocalBusiness",
+        "Review",
+        "Person",
+        "AggregateRating",
+        "ListItem",
+        "Offer",
         "GeoCoordinates",
-        "Person"
+        "Rating",
+        "BreadcrumbList"
       ],
       "imagesTotal": 5,
       "imagesWithAlt": 5,
@@ -2180,12 +1957,12 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "BreadcrumbList",
         "PostalAddress",
-        "ListItem",
+        "LocalBusiness",
         "ContactPage",
-        "GeoCoordinates"
+        "ListItem",
+        "GeoCoordinates",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2211,9 +1988,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
         "ItemList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 5,
       "imagesWithAlt": 5,
@@ -2239,11 +2016,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "BreadcrumbList",
-        "AggregateRating",
         "PostalAddress",
-        "ListItem"
+        "LocalBusiness",
+        "ListItem",
+        "AggregateRating",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2269,13 +2046,13 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "Question",
-        "BreadcrumbList",
-        "FAQPage",
         "PostalAddress",
+        "LocalBusiness",
+        "FAQPage",
         "Answer",
-        "ListItem"
+        "Question",
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2301,11 +2078,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Question",
-        "BreadcrumbList",
         "FAQPage",
+        "Question",
         "Answer",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2330,11 +2107,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Question",
-        "BreadcrumbList",
         "FAQPage",
+        "Question",
         "Answer",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2359,8 +2136,8 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 5,
       "imagesWithAlt": 5,
@@ -2385,10 +2162,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2413,10 +2190,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2441,10 +2218,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2469,10 +2246,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2497,10 +2274,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2525,10 +2302,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2553,10 +2330,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2581,16 +2358,16 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "Place",
+        "PostalAddress",
         "Organization",
         "MonetaryAmount",
-        "BreadcrumbList",
-        "PostalAddress",
-        "ListItem",
-        "JobPosting",
-        "Country",
         "QuantitativeValue",
-        "PropertyValue"
+        "JobPosting",
+        "ListItem",
+        "Country",
+        "PropertyValue",
+        "Place",
+        "BreadcrumbList"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2615,10 +2392,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2643,10 +2420,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Place",
         "JobPosting",
-        "Organization"
+        "PostalAddress",
+        "Organization",
+        "Place"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2671,11 +2448,11 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "BreadcrumbList",
         "PostalAddress",
+        "LocalBusiness",
         "ListItem",
-        "GeoCoordinates"
+        "GeoCoordinates",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2700,9 +2477,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 3,
       "imagesWithAlt": 3,
@@ -2727,11 +2504,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Question",
-        "BreadcrumbList",
         "FAQPage",
+        "Question",
         "Answer",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2756,15 +2533,15 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "BreadcrumbList",
-        "Offer",
-        "PostalAddress",
-        "ListItem",
         "City",
-        "Service",
+        "PostalAddress",
         "OfferCatalog",
-        "GeoCoordinates"
+        "Service",
+        "LocalBusiness",
+        "ListItem",
+        "Offer",
+        "GeoCoordinates",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2789,15 +2566,15 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "BreadcrumbList",
-        "Offer",
-        "PostalAddress",
-        "ListItem",
         "City",
-        "Service",
+        "PostalAddress",
         "OfferCatalog",
-        "GeoCoordinates"
+        "Service",
+        "LocalBusiness",
+        "ListItem",
+        "Offer",
+        "GeoCoordinates",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2822,10 +2599,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "PostalAddress",
-        "LocalBusiness",
         "BreadcrumbList",
-        "ListItem"
+        "LocalBusiness"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2850,11 +2627,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Question",
-        "BreadcrumbList",
         "FAQPage",
+        "Question",
         "Answer",
-        "ListItem"
+        "ListItem",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2879,13 +2656,13 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "Organization",
-        "BreadcrumbList",
-        "State",
-        "WebPage",
         "Service",
-        "ListItem"
+        "Organization",
+        "WebPage",
+        "LocalBusiness",
+        "ListItem",
+        "State",
+        "BreadcrumbList"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2910,13 +2687,13 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "LocalBusiness",
-        "Question",
-        "BreadcrumbList",
-        "FAQPage",
         "WebPage",
+        "LocalBusiness",
+        "FAQPage",
+        "Question",
+        "Answer",
         "ListItem",
-        "Answer"
+        "BreadcrumbList"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2941,9 +2718,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2966,9 +2743,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2991,9 +2768,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -3016,9 +2793,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -3041,9 +2818,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -3066,9 +2843,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -3091,9 +2868,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -3116,9 +2893,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -3141,9 +2918,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -3166,9 +2943,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "WebPage",
-        "BreadcrumbList",
-        "ListItem"
+        "BreadcrumbList"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
