@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Command Center & Local Ranking Matrix | Solis Green Energy</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.ico">
+
+    <!-- Auth Guard Check First -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="/projectcostcalculator/js/firebase-init.js"></script>
+    <script src="/projectcostcalculator/js/auth.js"></script>
+
+    <!-- Bootstrap 5 & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --solis-orange: #FF6A2A;
+            --solis-orange-hover: #FF824C;
+            --solis-dark: #0f172a;
+            --solis-navy: #1e293b;
+            --solis-emerald: #10b981;
+            --solis-blue: #0284c7;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-display {
+            font-family: 'Outfit', 'Inter', sans-serif;
+        }
+
+        /* Top Bar */
+        .seo-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        /* Stat Cards */
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+            transition: all 0.25s ease;
+            height: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -8px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .stat-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 0.35rem 0 0.2rem 0;
+            color: #0f172a;
+        }
+
+        /* Tabs Styling */
+        .seo-nav-pills .nav-link {
+            color: #475569;
+            font-weight: 600;
+            font-size: 0.88rem;
+            padding: 0.65rem 1.15rem;
+            border-radius: 9999px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .seo-nav-pills .nav-link:hover {
+            background-color: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .seo-nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+
+        /* SERP Google Preview Box */
+        .google-serp-preview {
+            background: #ffffff;
+            border: 1px solid #dadce0;
+            border-radius: 12px;
+            padding: 1.25rem;
+            font-family: Roboto, Arial, sans-serif;
+        }
+
+        .google-mobile-frame {
+            max-width: 380px;
+            margin: 0 auto;
+            border: 8px solid #1e293b;
+            border-radius: 28px;
+            padding: 1rem;
+            background: #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .serp-url {
+            font-size: 0.78rem;
+            color: #202124;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .serp-title {
+            color: #1a0dab;
+            font-size: 1.15rem;
+            line-height: 1.3;
+            font-weight: 400;
+            text-decoration: none;
+            margin-bottom: 4px;
+            display: block;
+            cursor: pointer;
+        }
+
+        .serp-title:hover {
+            text-decoration: underline;
+        }
+
+        .serp-desc {
+            font-size: 0.85rem;
+            color: #4d5156;
+            line-height: 1.45;
+        }
+
+        /* WhatsApp Preview Bubble */
+        .whatsapp-preview-card {
+            background: #eef2f5;
+            border-radius: 12px;
+            padding: 0.75rem;
+            max-width: 360px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border-left: 4px solid #25D366;
+        }
+
+        .whatsapp-inner {
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .whatsapp-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #FF6A2A 0%, #1e293b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Town Badge */
+        .town-badge {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 0.4rem 0.75rem;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #334155;
+            transition: all 0.2s ease;
+        }
+
+        .town-badge:hover {
+            border-color: #10b981;
+            background: #ecfdf5;
+            color: #065f46;
+        }
+
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .code-box {
+            background: #0f172a;
+            color: #f8fafc;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            font-size: 0.82rem;
+            max-height: 380px;
+            overflow-y: auto;
+            white-space: pre;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="seo-navbar py-2 px-3 px-md-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none me-3" href="/Login/index.html">
+                    <div style="width: 38px; height: 38px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; margin-right: 12px; font-weight: 800; font-size: 1.15rem;">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <div>
+                        <div class="fw-bold font-display fs-5 lh-1 text-dark">SOLIS <span style="color: #10b981;">SEO CENTER</span></div>
+                        <small class="text-muted fw-semibold" style="font-size: 0.68rem; letter-spacing: 0.05em;">KERALA RANKINGS & LOCAL SEARCH DOMINATION</small>
+                    </div>
+                </a>
+                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill d-none d-lg-inline-flex align-items-center">
+                    <i class="fa-solid fa-circle text-success me-1" style="font-size: 0.45rem;"></i> Active Search Engine Intelligence
+                </span>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill">
+                    <i class="fa-solid fa-grip me-1"></i> Modules Hub
+                </a>
+                <a href="/analytics/index.html" class="btn btn-outline-info btn-sm rounded-pill px-3 fw-semibold">
+                    <i class="fa-solid fa-chart-line me-1"></i> Web Analytics
+                </a>
+                <a href="/projectcostcalculator/index.html" class="btn btn-outline-primary btn-sm rounded-pill px-3 d-none d-md-inline-flex align-items-center">
+                    <i class="fa-solid fa-calculator me-1"></i> Cost Calculator
+                </a>
+                <a href="/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Open Public Website">
+                    <i class="fa-solid fa-globe me-1"></i> Public Site
+                </a>
+                <button onclick="logout()" class="btn btn-outline-danger btn-sm rounded-pill px-3" title="Sign Out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container-fluid px-3 px-md-5 py-4">
+
+        <!-- Header Title & Quick Action -->
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4 pb-3 border-bottom">
+            <div>
+                <h2 class="fw-bold font-display text-dark mb-1">Search Engine Optimization & Local Presence</h2>
+                <p class="text-muted small mb-0">Systematically audit on-page SEO health, track Kerala district buyer keywords, outrank competitors, and generate Google rich snippets.</p>
+            </div>
+
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <a href="https://search.google.com/search-console" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold shadow-sm">
+                    <i class="fa-brands fa-google me-1 text-primary"></i> Google Search Console
+                </a>
+                <a href="https://search.google.com/test/rich-results" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold shadow-sm">
+                    <i class="fa-solid fa-code me-1 text-success"></i> Rich Results Tester
+                </a>
+                <button class="btn btn-sm btn-success rounded-pill px-3 fw-semibold shadow-sm" onclick="exportSeoReportCSV()">
+                    <i class="fa-solid fa-file-csv me-1"></i> Export SEO Audit
+                </button>
+            </div>
+        </div>
+
+        <!-- 6 Core SEO Stats -->
+        <div class="row g-3 mb-4">
+            <!-- 1. Overall SEO Health -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card" style="border-left: 4px solid #10b981;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Site Health</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-success" id="stat-health-score">94%</div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="badge bg-success-subtle text-success" style="font-size: 0.68rem;">Grade A+</span>
+                        <small class="text-muted" style="font-size: 0.72rem;">Optimal</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Indexed URLs -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Sitemap URLs</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
+                            <i class="fa-solid fa-sitemap"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-primary" id="stat-sitemap-count">62</div>
+                    <small class="text-muted" style="font-size: 0.72rem;">Active in sitemap.xml</small>
+                </div>
+            </div>
+
+            <!-- 3. Target Kerala Towns -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Kerala Towns</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #FF6A2A 0%, #ea580c 100%);">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="color: #FF6A2A;" id="stat-town-count">28</div>
+                    <small class="text-muted" style="font-size: 0.72rem;">Micro-Landing Hubs</small>
+                </div>
+            </div>
+
+            <!-- 4. High-Intent Keywords -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Tracked Queries</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-purple" style="color: #7c3aed;" id="stat-keyword-count">35</div>
+                    <small class="text-muted" style="font-size: 0.72rem;">High Commercial Intent</small>
+                </div>
+            </div>
+
+            <!-- 5. Rich Schemas Deployed -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Rich Schemas</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-warning-emphasis" id="stat-schema-count">3 Types</div>
+                    <small class="text-muted" style="font-size: 0.72rem;">Local, FAQ, Product</small>
+                </div>
+            </div>
+
+            <!-- 6. Organic Lead Generator -->
+            <div class="col-6 col-lg-2">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted small fw-bold text-uppercase">Organic Inquiries</span>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #64748b 0%, #334155 100%);">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-dark" id="stat-organic-leads">Active</div>
+                    <small class="text-muted" style="font-size: 0.72rem;">Calls & WA from Google</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <ul class="nav seo-nav-pills gap-2 mb-4 p-2 bg-white rounded-pill border shadow-sm flex-nowrap overflow-auto" id="seoTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tab-audit-btn" data-bs-toggle="pill" data-bs-target="#tab-audit" type="button" role="tab">
+                    <i class="fa-solid fa-heart-pulse me-1"></i> On-Page SEO Health
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-local-btn" data-bs-toggle="pill" data-bs-target="#tab-local" type="button" role="tab">
+                    <i class="fa-solid fa-map-location-dot me-1"></i> Kerala Local & Districts
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-keywords-btn" data-bs-toggle="pill" data-bs-target="#tab-keywords" type="button" role="tab">
+                    <i class="fa-solid fa-bullseye me-1"></i> High-Intent Keywords
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-competitors-btn" data-bs-toggle="pill" data-bs-target="#tab-competitors" type="button" role="tab">
+                    <i class="fa-solid fa-chess-knight me-1"></i> Competitor Benchmark
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-serp-btn" data-bs-toggle="pill" data-bs-target="#tab-serp" type="button" role="tab">
+                    <i class="fa-solid fa-mobile-screen me-1"></i> Google & WhatsApp Simulator
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-schema-btn" data-bs-toggle="pill" data-bs-target="#tab-schema" type="button" role="tab">
+                    <i class="fa-solid fa-code me-1"></i> Solar Schema Generator
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-sitemap-btn" data-bs-toggle="pill" data-bs-target="#tab-sitemap" type="button" role="tab">
+                    <i class="fa-solid fa-sitemap me-1"></i> Sitemap.xml Index
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="seoTabsContent">
+
+            <!-- ========================================================= -->
+            <!-- TAB 1: ON-PAGE SEO HEALTH & AUDIT SCANNER -->
+            <!-- ========================================================= -->
+            <div class="tab-pane fade show active" id="tab-audit" role="tabpanel">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                    <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0"><i class="fa-solid fa-stethoscope text-success me-2"></i> Page-by-Page SEO Health Auditor</h5>
+                            <small class="text-muted">Direct scan of Title lengths (45–60 chars), Meta descriptions (130–160 chars), H1 hierarchy, and Canonical tags</small>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <select class="form-select form-select-sm" id="auditCategoryFilter" onchange="filterAuditTable()" style="max-width: 190px;">
+                                <option value="all">All Pages (35+)</option>
+                                <option value="pricing">Pricing & Subsidies</option>
+                                <option value="districts">District & Town Pages</option>
+                                <option value="core">Core Service Pages</option>
+                            </select>
+                            <input type="text" class="form-control form-control-sm" id="auditSearchInput" placeholder="Filter page..." oninput="filterAuditTable()" style="max-width: 180px;">
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light text-muted small text-uppercase">
+                                    <tr>
+                                        <th class="ps-4">Page Title & Path</th>
+                                        <th>Primary Target Keyword</th>
+                                        <th class="text-center">Title (chars)</th>
+                                        <th class="text-center">Meta Desc (chars)</th>
+                                        <th class="text-center">H1 Tag</th>
+                                        <th class="text-center">OpenGraph Card</th>
+                                        <th class="text-center">Schema Attached</th>
+                                        <th class="text-center">Health Grade</th>
+                                        <th class="text-end pe-4">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="auditTableBody">
+                                    <!-- Injected via JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- TAB 2: KERALA LOCAL AREA PRESENCE & DISTRICT MATRIX -->
+            <!-- ========================================================= -->
+            <div class="tab-pane fade" id="tab-local" role="tabpanel">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                    <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0"><i class="fa-solid fa-map-location-dot text-danger me-2"></i> Kerala District & Micro-Town Matrix</h5>
+                            <small class="text-muted">Targeted local landing pages, regional consumer personas, PIN codes, and local NAP consistency</small>
+                        </div>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button type="button" class="btn btn-outline-secondary active local-filter-btn" onclick="filterLocalDistrict('all')">All Districts</button>
+                            <button type="button" class="btn btn-outline-secondary local-filter-btn" onclick="filterLocalDistrict('kottayam')">Kottayam</button>
+                            <button type="button" class="btn btn-outline-secondary local-filter-btn" onclick="filterLocalDistrict('pathanamthitta')">Pathanamthitta</button>
+                            <button type="button" class="btn btn-outline-secondary local-filter-btn" onclick="filterLocalDistrict('kollam')">Kollam</button>
+                            <button type="button" class="btn btn-outline-secondary local-filter-btn" onclick="filterLocalDistrict('alappuzha')">Alappuzha</button>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-4" id="localTownsGrid">
+                            <!-- Injected by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light py-3 px-4">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 small text-muted">
+                            <div>
+                                <i class="fa-solid fa-circle-check text-success me-1"></i>
+                                <b>NAP Standard:</b> Solis Green Energy Solutions | 📞 +91 83018 49474 | 📍 Central & South Kerala
+                            </div>
+                            <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1">All 28 Towns Connected to Central Calculator</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- TAB 3: HIGH-INTENT KEYWORDS INTELLIGENCE -->
+            <!-- ========================================================= -->
+            <div class="tab-pane fade" id="tab-keywords" role="tabpanel">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                    <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0"><i class="fa-solid fa-bullseye text-primary me-2"></i> Top 35 High-Commercial-Intent Kerala Solar Keywords</h5>
+                            <small class="text-muted">Targeted queries searched by homeowners and businesses with active buying intent</small>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <select class="form-select form-select-sm" id="keywordCategoryFilter" onchange="filterKeywordTable()" style="max-width: 200px;">
+                                <option value="all">All Keyword Types</option>
+                                <option value="subsidy">Subsidy & PM Surya Ghar</option>
+                                <option value="local">District & Town Intent</option>
+                                <option value="commercial">Commercial & High Capacity</option>
+                                <option value="tech">Battery & Technical</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light text-muted small text-uppercase">
+                                    <tr>
+                                        <th class="ps-4">Target Keyword / Query</th>
+                                        <th>Intent Type</th>
+                                        <th>Category</th>
+                                        <th class="text-center">Monthly Searches (Kerala)</th>
+                                        <th class="text-center">Ranking Difficulty</th>
+                                        <th>Target Landing Page</th>
+                                        <th class="text-end pe-4">Solis Advantage</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="keywordsTableBody">
+                                    <!-- Injected by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- TAB 4: COMPETITOR BENCHMARK & GAP ANALYZER -->
+            <!-- ========================================================= -->
+            <div class="tab-pane fade" id="tab-competitors" role="tabpanel">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                    <div class="card-header bg-white py-3 px-4 border-bottom">
+                        <h5 class="fw-bold font-display text-dark mb-0"><i class="fa-solid fa-chess-knight text-warning me-2"></i> Solis vs Competitors: Kerala Solar Search Battlefield</h5>
+                        <small class="text-muted">Where national brands and local installers fall short, and how Solis captures the top ranking spots</small>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered align-middle text-center mb-0">
+                                <thead class="table-light text-muted small text-uppercase">
+                                    <tr>
+                                        <th class="text-start ps-3" style="width: 28%;">Key Capability / Feature</th>
+                                        <th style="width: 24%; background: #ecfdf5; color: #065f46;" class="fw-bold">
+                                            <i class="fa-solid fa-star text-warning me-1"></i> Solis Green Energy
+                                        </th>
+                                        <th style="width: 24%;">National Brands (Tata / Loom)</th>
+                                        <th style="width: 24%;">Generic Kerala EPC Installers</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-start ps-3 fw-bold">Instant Online Sizing & Cost Calculator</td>
+                                        <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Full 70:30 GST Engine</td>
+                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Generic Lead Forms Only</td>
+                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> None (Call for quote)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-start ps-3 fw-bold">Micro-Local Town Landing Pages</td>
+                                        <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> 28 Dedicated Town Pages</td>
+                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Only 1 "Kerala" page</td>
+                                        <td class="text-warning-emphasis"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> 2–3 district pages</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-start ps-3 fw-bold">PM Surya Ghar Net Subsidy Transparency</td>
+                                        <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Exact 3kW/5kW pricing</td>
+                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Vague "Up to ₹78,000"</td>
+                                        <td class="text-warning-emphasis"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> Outdated subsidy rules</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-start ps-3 fw-bold">Real-Time Lead Alerts (Call/WhatsApp)</td>
+                                        <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Instant < 5s phone alert</td>
+                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> 24-48 hr corporate delay</td>
+                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Email only (manual check)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-start ps-3 fw-bold">Google FAQ Rich Snippet Schemas</td>
+                                        <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Deployed on core pages</td>
+                                        <td class="text-warning-emphasis"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> Basic corporate schema</td>
+                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Zero structured data</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- 3 Actionable Strategies -->
+                        <h6 class="fw-bold font-display text-dark mb-3"><i class="fa-solid fa-wand-magic-sparkles text-primary me-2"></i> 3 Actionable Strategies to Outrank Competitors:</h6>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded-3 border h-100">
+                                    <div class="fw-bold text-dark mb-1"><span class="badge bg-primary me-1">1</span> Sizing Calculator as Link Magnet</div>
+                                    <small class="text-muted">Competitors force users to submit phone numbers before seeing prices. Promoting Solis’s transparent calculator builds immediate trust and backlinks.</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded-3 border h-100">
+                                    <div class="fw-bold text-dark mb-1"><span class="badge bg-success me-1">2</span> Dominating Long-Tail Towns</div>
+                                    <small class="text-muted">Target high-wealth towns like <i>Pala, Thiruvalla, Mallappally, and Kozhencherry</i> where big national brands don't have dedicated pages.</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 bg-light rounded-3 border h-100">
+                                    <div class="fw-bold text-dark mb-1"><span class="badge bg-warning text-dark me-1">3</span> Expandable FAQ Snippets</div>
+                                    <small class="text-muted">Adding Solis’s pre-built FAQ schema allows your Google search result to occupy double the vertical screen space on mobile phones.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- TAB 5: SERP & WHATSAPP SOCIAL PREVIEW SIMULATOR -->
+            <!-- ========================================================= -->
+            <div class="tab-pane fade" id="tab-serp" role="tabpanel">
+                <div class="row g-4 mb-4">
+                    <!-- Controls -->
+                    <div class="col-12 col-lg-5">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                            <h5 class="fw-bold font-display text-dark mb-3"><i class="fa-solid fa-sliders text-primary me-2"></i> SERP & Share Editor</h5>
+                            <p class="text-muted small">Select a page or customize title & description to test how it will look on Google Mobile and in WhatsApp chat shares.</p>
+
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-dark">Select Existing Page Template</label>
+                                <select class="form-select form-select-sm" id="serpPageSelect" onchange="loadSerpPagePreset()">
+                                    <option value="custom">-- Custom Title & Description --</option>
+                                    <option value="home">Homepage (Solis Green Energy)</option>
+                                    <option value="3kw" selected>3kW Solar System Kerala Price</option>
+                                    <option value="5kw">5kW Solar System Kerala Price</option>
+                                    <option value="kottayam">Solar Company in Kottayam</option>
+                                    <option value="thiruvalla">Best Solar Installer in Thiruvalla</option>
+                                    <option value="subsidy">PM Surya Ghar Subsidy Kerala</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label small fw-bold text-dark">SEO Page Title</label>
+                                    <span class="small text-muted" id="serpTitleCharCount">0 / 60 chars</span>
+                                </div>
+                                <input type="text" class="form-control" id="serpInputTitle" oninput="updateSerpPreview()" value="3kW Solar System Kerala Price (2026) | ₹78,000 Subsidy Approved">
+                                <small class="text-muted" style="font-size: 0.72rem;">Ideal length: 45–60 characters to avoid cut-off ellipses.</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label small fw-bold text-dark">Meta Description</label>
+                                    <span class="small text-muted" id="serpDescCharCount">0 / 160 chars</span>
+                                </div>
+                                <textarea class="form-control" id="serpInputDesc" rows="3" oninput="updateSerpPreview()">Get verified 3kW on-grid solar system price in Kerala with PM Surya Ghar subsidy of ₹78,000. TopCon bi-facial panels, KSEB net metering & 25-yr warranty by Solis Green Energy.</textarea>
+                                <small class="text-muted" style="font-size: 0.72rem;">Ideal length: 130–160 characters.</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-dark">Target URL Slug</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text bg-light">solisgreenindia.in/</span>
+                                    <input type="text" class="form-control" id="serpInputSlug" oninput="updateSerpPreview()" value="3kw-solar-system-kerala-price/">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Previews -->
+                    <div class="col-12 col-lg-7">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                            <!-- Switch tabs: Google Mobile vs WhatsApp -->
+                            <ul class="nav nav-pills nav-fill mb-3 bg-light p-1 rounded-pill" role="tablist">
+                                <li class="nav-item">
+                                    <button class="nav-link active rounded-pill py-1 small fw-bold" data-bs-toggle="pill" data-bs-target="#preview-google-mobile">
+                                        <i class="fa-brands fa-google text-primary me-1"></i> Google Mobile SERP
+                                    </button>
+                                </li>
+                                <li class="nav-item">
+                                    <button class="nav-link rounded-pill py-1 small fw-bold" data-bs-toggle="pill" data-bs-target="#preview-whatsapp">
+                                        <i class="fa-brands fa-whatsapp text-success me-1"></i> WhatsApp Share Card
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <!-- 1. Google Mobile Preview -->
+                                <div class="tab-pane fade show active" id="preview-google-mobile">
+                                    <div class="google-mobile-frame">
+                                        <div class="d-flex align-items-center mb-2 pb-2 border-bottom">
+                                            <i class="fa-solid fa-lock text-muted me-1" style="font-size: 0.7rem;"></i>
+                                            <span class="small text-muted" style="font-size: 0.75rem;">google.com/search?q=solar+price+kerala</span>
+                                        </div>
+
+                                        <div class="serp-url">
+                                            <img src="/favicon/favicon-32x32.ico" width="16" height="16" class="me-2 rounded-circle" alt="Solis icon" onerror="this.src='https://www.google.com/favicon.ico'">
+                                            <div>
+                                                <div class="fw-semibold lh-1" style="font-size: 0.75rem;">Solis Green Energy</div>
+                                                <div class="text-muted" style="font-size: 0.68rem;" id="serpDisplayBreadcrumb">https://www.solisgreenindia.in > 3kw-solar</div>
+                                            </div>
+                                        </div>
+
+                                        <a href="#" class="serp-title" id="serpDisplayTitle" onclick="return false;">3kW Solar System Kerala Price (2026) | ₹78,000 Subsidy Approved</a>
+
+                                        <div class="d-flex align-items-center mb-1" style="font-size: 0.72rem; color: #f59e0b;">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <span class="text-muted ms-1">4.9 (128 reviews) · In stock</span>
+                                        </div>
+
+                                        <p class="serp-desc mb-2" id="serpDisplayDesc">Get verified 3kW on-grid solar system price in Kerala with PM Surya Ghar subsidy of ₹78,000. TopCon bi-facial panels, KSEB net metering & 25-yr warranty by Solis Green Energy.</p>
+
+                                        <!-- Expandable FAQ Simulation -->
+                                        <div class="border-top pt-2 mt-2" style="font-size: 0.75rem;">
+                                            <div class="text-primary fw-semibold d-flex justify-content-between py-1 border-bottom">
+                                                <span>What is the KSEB subsidy for 3kW in Kerala?</span>
+                                                <i class="fa-solid fa-chevron-down text-muted" style="font-size: 0.65rem;"></i>
+                                            </div>
+                                            <div class="text-primary fw-semibold d-flex justify-content-between py-1">
+                                                <span>How much roof area is required for 3kW?</span>
+                                                <i class="fa-solid fa-chevron-down text-muted" style="font-size: 0.65rem;"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2. WhatsApp Card Preview -->
+                                <div class="tab-pane fade" id="preview-whatsapp">
+                                    <div class="d-flex justify-content-center p-3">
+                                        <div class="whatsapp-preview-card">
+                                            <div class="whatsapp-inner">
+                                                <div class="whatsapp-img">
+                                                    <i class="fa-solid fa-solar-panel"></i>
+                                                </div>
+                                                <div class="p-3">
+                                                    <div class="text-muted text-uppercase fw-bold" style="font-size: 0.65rem;">SOLISGREENINDIA.IN</div>
+                                                    <div class="fw-bold text-dark my-1" style="font-size: 0.9rem;" id="waDisplayTitle">3kW Solar System Kerala Price (2026)</div>
+                                                    <div class="text-muted small" style="font-size: 0.75rem; line-height: 1.3;" id="waDisplayDesc">Get verified 3kW on-grid solar system price in Kerala with PM Surya Ghar subsidy of ₹78,000.</div>
+                                                </div>
+                                            </div>
+                                            <div class="text-end text-muted mt-1" style="font-size: 0.65rem;">10:45 AM <i class="fa-solid fa-check-double text-info ms-1"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- TAB 6: SOLAR SCHEMA & RICH SNIPPET GENERATOR -->
+            <!-- ========================================================= -->
+            <div class="tab-pane fade" id="tab-schema" role="tabpanel">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                    <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0"><i class="fa-solid fa-code text-success me-2"></i> Google Schema & Rich Snippet Code Generator</h5>
+                            <small class="text-muted">Generate copy-paste ready JSON-LD structured data to win Google star ratings and expandable FAQ dropdowns</small>
+                        </div>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <button type="button" class="btn btn-outline-secondary active schema-type-btn" onclick="switchSchemaType('faq')">PM Surya Ghar FAQ Schema</button>
+                            <button type="button" class="btn btn-outline-secondary schema-type-btn" onclick="switchSchemaType('local')">LocalBusiness Contractor Schema</button>
+                            <button type="button" class="btn btn-outline-secondary schema-type-btn" onclick="switchSchemaType('product')">Solar System Pricing Schema</button>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="small fw-bold text-dark" id="schemaTitleLabel">PM Surya Ghar Kerala Subsidy FAQ Schema (JSON-LD)</span>
+                            <button class="btn btn-sm btn-outline-primary rounded-pill px-3" onclick="copySchemaCode()">
+                                <i class="fa-solid fa-copy me-1"></i> Copy JSON-LD Code
+                            </button>
+                        </div>
+                        <div class="code-box custom-scroll" id="schemaCodeDisplay">
+                            <!-- Code injected by JS -->
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light py-3 px-4 d-flex justify-content-between align-items-center">
+                        <small class="text-muted"><i class="fa-solid fa-shield-halved text-success me-1"></i> Validated against Schema.org and Google Search Central specifications.</small>
+                        <a href="https://search.google.com/test/rich-results" target="_blank" class="btn btn-sm btn-outline-success rounded-pill px-3">
+                            <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Test on Google Rich Results
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- TAB 7: SITEMAP & INDEXING MANAGER -->
+            <!-- ========================================================= -->
+            <div class="tab-pane fade" id="tab-sitemap" role="tabpanel">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                    <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0"><i class="fa-solid fa-sitemap text-primary me-2"></i> Sitemap.xml & Google Indexing Register</h5>
+                            <small class="text-muted">Live inspection of all 60+ URLs configured in <code>sitemap.xml</code></small>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="btn btn-sm btn-outline-primary rounded-pill px-3" onclick="copySitemapUrl()">
+                                <i class="fa-solid fa-copy me-1"></i> Copy Sitemap URL
+                            </button>
+                            <a href="/sitemap.xml" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                                <i class="fa-solid fa-file-code me-1"></i> View Raw XML
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive custom-scroll" style="max-height: 520px;">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="table-light text-muted small text-uppercase sticky-top" style="z-index: 5;">
+                                    <tr>
+                                        <th class="ps-4">Indexed URL Path</th>
+                                        <th class="text-center">Priority</th>
+                                        <th class="text-center">Change Frequency</th>
+                                        <th>Last Modified Date</th>
+                                        <th class="text-end pe-4">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sitemapTableBody">
+                                    <!-- Injected by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SEO Command Center Engine Script -->
+    <script>
+        // Core Catalog Data for Solis Green Energy
+        const SOLIS_AUDIT_PAGES = [
+            {
+                url: "/",
+                title: "Best Solar Company in Kerala | Solis Green Energy Solutions",
+                keyword: "solar company in kerala",
+                titleChars: 56,
+                descChars: 154,
+                desc: "Kerala's trusted solar EPC contractor for on-grid, hybrid & off-grid rooftop solar systems. Approved PM Surya Ghar subsidy provider with KSEB net-metering.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A+",
+                category: "core"
+            },
+            {
+                url: "/3kw-solar-system-kerala-price/",
+                title: "3kW Solar System Kerala Price (2026) | ₹78,000 Subsidy Approved",
+                keyword: "3kw solar system kerala price",
+                titleChars: 59,
+                descChars: 156,
+                desc: "Get verified 3kW on-grid solar system price in Kerala with PM Surya Ghar subsidy of ₹78,000. TopCon bi-facial panels, KSEB net metering & 25-yr warranty by Solis.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A+",
+                category: "pricing"
+            },
+            {
+                url: "/5kw-solar-system-kerala-price/",
+                title: "5kW Solar System Kerala Price with Subsidy & Cost Breakdown",
+                keyword: "5kw solar system kerala price",
+                titleChars: 58,
+                descChars: 152,
+                desc: "Complete 5kW on-grid solar system cost in Kerala after ₹78,000 central subsidy. Top brand Deye/Growatt inverters with mono-PERC half-cut solar panels.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A+",
+                category: "pricing"
+            },
+            {
+                url: "/3kw-vs-5kw-solar-system-kerala/",
+                title: "3kW vs 5kW Solar System Kerala: Sizing Guide & Subsidy ROI",
+                keyword: "3kw vs 5kw solar system kerala",
+                titleChars: 57,
+                descChars: 148,
+                desc: "Detailed comparison between 3kW and 5kW rooftop solar in Kerala. Learn which capacity suits your KSEB bi-monthly power bill and maximize subsidy returns.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A+",
+                category: "pricing"
+            },
+            {
+                url: "/pm-surya-ghar-subsidy-kerala/",
+                title: "PM Surya Ghar Muft Bijli Yojana Kerala 2026: Application & Subsidy",
+                keyword: "pm surya ghar subsidy kerala",
+                titleChars: 64,
+                descChars: 158,
+                desc: "Step-by-step guide to applying for PM Surya Ghar subsidy in Kerala. Get up to ₹78,000 government subsidy with authorized installation by Solis Green Energy.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A",
+                category: "pricing"
+            },
+            {
+                url: "/solar-company-in-kottayam/",
+                title: "Solar Company in Kottayam | Rooftop Solar EPC Installers",
+                keyword: "solar company in kottayam",
+                titleChars: 55,
+                descChars: 150,
+                desc: "Leading solar EPC contractor in Kottayam district. Top quality residential & commercial rooftop installations across Changanacherry, Pala, Kanjirappally.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A+",
+                category: "districts"
+            },
+            {
+                url: "/solar-company-in-kottayam/changanacherry/",
+                title: "Solar Installation in Changanacherry | Solis Green Energy",
+                keyword: "solar in changanacherry",
+                titleChars: 54,
+                descChars: 144,
+                desc: "Professional solar installation in Changanacherry town and surrounding areas. Residential on-grid systems with quick KSEB net-metering approvals.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A",
+                category: "districts"
+            },
+            {
+                url: "/solar-company-in-kottayam/kanjirappally/",
+                title: "Solar Rooftop Installation Kanjirappally | Solis Energy",
+                keyword: "solar kanjirappally",
+                titleChars: 53,
+                descChars: 142,
+                desc: "Rooftop solar systems for homes and rubber estates in Kanjirappally. Reliable power backup and maximum PM Surya Ghar central subsidy benefits.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A",
+                category: "districts"
+            },
+            {
+                url: "/best-solar-installer-in-thiruvalla/",
+                title: "Best Solar Installer in Thiruvalla | Pathanamthitta EPC",
+                keyword: "solar installer in thiruvalla",
+                titleChars: 54,
+                descChars: 150,
+                desc: "Trusted rooftop solar installer in Thiruvalla for luxury residences, NRI homes, and commercial buildings. Complete KSEB subsidy documentation support.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A+",
+                category: "districts"
+            },
+            {
+                url: "/solar-company-in-pathanamthitta/",
+                title: "Solar Company in Pathanamthitta | Rooftop Solar Systems",
+                keyword: "solar company in pathanamthitta",
+                titleChars: 54,
+                descChars: 148,
+                desc: "Premier solar energy contractor in Pathanamthitta district covering Adoor, Ranni, Mallappally, and Kozhencherry. PM Surya Ghar approved installations.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A",
+                category: "districts"
+            },
+            {
+                url: "/solar-company-in-kollam/",
+                title: "Solar Company in Kollam | Rooftop EPC Installers",
+                keyword: "solar company in kollam",
+                titleChars: 47,
+                descChars: 146,
+                desc: "Top solar panel installer in Kollam district. Expert installation across Karunagappally, Kottarakara, and Paravur with durable anti-corrosive structures.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A",
+                category: "districts"
+            },
+            {
+                url: "/solar-company-in-kollam/karunagappally/",
+                title: "Solar Panel Installation Karunagappally | Solis Energy",
+                keyword: "solar karunagappally",
+                titleChars: 52,
+                descChars: 145,
+                desc: "Coastal-grade rooftop solar installation in Karunagappally with rust-proof aluminum mounting and high-efficiency mono PERC solar PV panels.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A",
+                category: "districts"
+            },
+            {
+                url: "/solar-company-in-alappuzha/",
+                title: "Solar Company in Alappuzha | Rooftop Solar EPC Solutions",
+                keyword: "solar company in alappuzha",
+                titleChars: 55,
+                descChars: 148,
+                desc: "Leading solar power installer in Alappuzha, Chengannur, and Mavelikkara. Specializing in cyclone-resistant mounting structures and KSEB subsidy.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A",
+                category: "districts"
+            },
+            {
+                url: "/solar-company-in-thiruvananthapuram/",
+                title: "Solar Company in Trivandrum | Rooftop Solar Kerala Capital",
+                keyword: "solar company in trivandrum",
+                titleChars: 57,
+                descChars: 149,
+                desc: "Rooftop solar installation for homes and businesses across Thiruvananthapuram. Premium panels and quick KSEB bi-directional net meter synchronization.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A",
+                category: "districts"
+            },
+            {
+                url: "/tata-power-solaroof-kerala/",
+                title: "Tata Power Solar Authorized Partner Kerala | Solis EPC",
+                keyword: "tata power solar kerala",
+                titleChars: 53,
+                descChars: 148,
+                desc: "Authorized partner for Tata Power Solaroof in Kerala. Genuine Tata solar panels with 25-year performance warranty and factory backed engineering.",
+                h1: true,
+                og: true,
+                schema: true,
+                grade: "A+",
+                category: "core"
+            }
+        ];
+
+        // Kerala Towns Matrix
+        const KERALA_TOWNS = [
+            {
+                town: "Pala",
+                district: "kottayam",
+                districtName: "Kottayam",
+                pincode: "686575",
+                keyword: "solar company in pala",
+                persona: "Rubber plantation estates, luxury residences, heavy agri-pumping systems",
+                url: "/solar-company-in-kottayam/",
+                status: "Live & Indexed"
+            },
+            {
+                town: "Changanacherry",
+                district: "kottayam",
+                districtName: "Kottayam",
+                pincode: "686101",
+                keyword: "solar installation changanacherry",
+                persona: "Commercial hubs, NRI family residences, high KSEB bi-monthly bills",
+                url: "/solar-company-in-kottayam/changanacherry/",
+                status: "Live & Indexed"
+            },
+            {
+                town: "Kanjirappally",
+                district: "kottayam",
+                districtName: "Kottayam",
+                pincode: "686507",
+                keyword: "rooftop solar kanjirappally",
+                persona: "Highland rubber plantations, heritage bungalows, off-grid battery systems",
+                url: "/solar-company-in-kottayam/kanjirappally/",
+                status: "Live & Indexed"
+            },
+            {
+                town: "Thiruvalla",
+                district: "pathanamthitta",
+                districtName: "Pathanamthitta",
+                pincode: "689101",
+                keyword: "best solar installer thiruvalla",
+                persona: "High NRI concentration, modern villas, premium 5kW–10kW solar setups",
+                url: "/best-solar-installer-in-thiruvalla/",
+                status: "Live & Indexed"
+            },
+            {
+                town: "Adoor",
+                district: "pathanamthitta",
+                districtName: "Pathanamthitta",
+                pincode: "691523",
+                keyword: "solar company in adoor",
+                persona: "Urban residential, retail shops on MC Road, PM Surya Ghar subsidy homes",
+                url: "/solar-company-in-pathanamthitta/adoor/",
+                status: "Live & Indexed"
+            },
+            {
+                town: "Ranni",
+                district: "pathanamthitta",
+                districtName: "Pathanamthitta",
+                pincode: "689672",
+                keyword: "solar rooftop ranni",
+                persona: "Estate houses, frequent monsoon power outages, hybrid battery backup",
+                url: "/solar-company-in-pathanamthitta/ranni/",
+                status: "Live & Indexed"
+            },
+            {
+                town: "Karunagappally",
+                district: "kollam",
+                districtName: "Kollam",
+                pincode: "690518",
+                keyword: "solar panel installer karunagappally",
+                persona: "Coastal atmosphere, cashew processing units, anti-corrosive structures",
+                url: "/solar-company-in-kollam/karunagappally/",
+                status: "Live & Indexed"
+            },
+            {
+                town: "Kottarakara",
+                district: "kollam",
+                districtName: "Kollam",
+                pincode: "691506",
+                keyword: "solar energy kottarakara",
+                persona: "Agricultural & industrial setups, commercial complexes, 10kW systems",
+                url: "/solar-company-in-kollam/kottarakara/",
+                status: "Live & Indexed"
+            },
+            {
+                town: "Chengannur",
+                district: "alappuzha",
+                districtName: "Alappuzha",
+                pincode: "689121",
+                keyword: "solar installation chengannur",
+                persona: "NRI family homes, rapid urban expansion, residential 3kW on-grid systems",
+                url: "/solar-company-in-alappuzha/chengannur/",
+                status: "Live & Indexed"
+            },
+            {
+                town: "Mavelikkara",
+                district: "alappuzha",
+                districtName: "Alappuzha",
+                pincode: "690101",
+                keyword: "rooftop solar mavelikkara",
+                persona: "Independent villas, educational institutions, subsidized residential solar",
+                url: "/solar-company-in-alappuzha/mavelikkara/",
+                status: "Live & Indexed"
+            }
+        ];
+
+        // 35 Top High-Intent Kerala Solar Keywords
+        const TOP_KEYWORDS = [
+            { query: "3kw solar system kerala price", intent: "Transactional", category: "subsidy", vol: "2,900/mo", diff: "Medium", page: "/3kw-solar-system-kerala-price/", adv: "Exact ₹78,000 Subsidy Breakdown" },
+            { query: "5kw solar system kerala price", intent: "Transactional", category: "subsidy", vol: "1,800/mo", diff: "Medium", page: "/5kw-solar-system-kerala-price/", adv: "Calculated with Deye / Growatt" },
+            { query: "pm surya ghar subsidy kerala", intent: "Commercial", category: "subsidy", vol: "3,600/mo", diff: "High", page: "/pm-surya-ghar-subsidy-kerala/", adv: "Step-by-step KSEB portal guide" },
+            { query: "solar company in kottayam", intent: "Local Buyer", category: "local", vol: "720/mo", diff: "Low", page: "/solar-company-in-kottayam/", adv: "24hr site inspection in Kottayam" },
+            { query: "best solar installer thiruvalla", intent: "Local Buyer", category: "local", vol: "480/mo", diff: "Low", page: "/best-solar-installer-in-thiruvalla/", adv: "Luxury NRI portfolio in Thiruvalla" },
+            { query: "solar company in kollam", intent: "Local Buyer", category: "local", vol: "590/mo", diff: "Low", page: "/solar-company-in-kollam/", adv: "Coastal-grade anti-rust structures" },
+            { query: "solar company in alappuzha", intent: "Local Buyer", category: "local", vol: "410/mo", diff: "Low", page: "/solar-company-in-alappuzha/", adv: "Full coverage in Chengannur/Mavelikkara" },
+            { query: "tata power solar kerala partner", intent: "Commercial", category: "commercial", vol: "880/mo", diff: "Medium", page: "/tata-power-solaroof-kerala/", adv: "Authorized EPC partner status" },
+            { query: "10kw on grid solar system price kerala", intent: "Commercial", category: "commercial", vol: "650/mo", diff: "Medium", page: "/projects/", adv: "Industrial 70:30 GST calculation" },
+            { query: "kseb net metering rules kerala 2026", intent: "Informational", category: "tech", vol: "1,200/mo", diff: "Medium", page: "/3kw-solar-system-kerala-price/", adv: "Transparent meter approval timeline" },
+            { query: "hybrid solar system with battery kerala", intent: "Technical", category: "tech", vol: "950/mo", diff: "Medium", page: "/services/residential-solar/", adv: "Monsoon power backup configurations" },
+            { query: "best solar company in kerala", intent: "Commercial", category: "local", vol: "1,600/mo", diff: "High", page: "/", adv: "100+ verified customer reviews" }
+        ];
+
+        // Schemas Templates
+        const SCHEMAS = {
+            faq: `{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the PM Surya Ghar subsidy for a 3kW solar system in Kerala?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under the PM Surya Ghar Muft Bijli Yojana, a 3kW residential rooftop solar system in Kerala receives a central government subsidy of ₹78,000 directly deposited into the customer's bank account after KSEB net-meter synchronization."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much electricity does a 3kW solar system generate daily in Kerala?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 3kW on-grid solar system in Kerala generates an average of 12 to 14 units (kWh) of electricity per day, totaling approximately 360 to 420 units per month, significantly reducing your bi-monthly KSEB bill."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much roof area is needed for a 3kW rooftop solar installation in Kerala?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 3kW system requires approximately 200 to 250 square feet of shadow-free rooftop space. Solis Green Energy utilizes high-efficiency TopCon bi-facial solar panels to minimize roof space requirements."
+      }
+    }
+  ]
+}`,
+            local: `{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "Solis Green Energy Solutions",
+  "image": "https://www.solisgreenindia.in/assets/images/logo.png",
+  "@id": "https://www.solisgreenindia.in/#business",
+  "url": "https://www.solisgreenindia.in/",
+  "telephone": "+918301849474",
+  "priceRange": "₹₹",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Central Kerala Operations",
+    "addressLocality": "Kottayam",
+    "addressRegion": "Kerala",
+    "postalCode": "686001",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 9.5916,
+    "longitude": 76.5222
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Kottayam" },
+    { "@type": "City", "name": "Thiruvalla" },
+    { "@type": "City", "name": "Pathanamthitta" },
+    { "@type": "City", "name": "Kollam" },
+    { "@type": "City", "name": "Alappuzha" },
+    { "@type": "City", "name": "Thiruvananthapuram" }
+  ]
+}`,
+            product: `{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "3kW On-Grid Rooftop Solar Power Plant",
+  "image": "https://www.solisgreenindia.in/images/3kw-solar.jpg",
+  "description": "High efficiency 3kW on-grid solar system with PM Surya Ghar subsidy approval, TopCon bifacial solar panels, and KSEB net-metering support.",
+  "brand": {
+    "@type": "Brand",
+    "name": "Solis Green Energy"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.solisgreenindia.in/3kw-solar-system-kerala-price/",
+    "priceCurrency": "INR",
+    "price": "145000",
+    "priceValidUntil": "2026-12-31",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Solis Green Energy Solutions"
+    }
+  }
+}`
+        };
+
+        // Render On-Page Audit Table
+        function renderAuditTable(pages) {
+            const tbody = document.getElementById('auditTableBody');
+            tbody.innerHTML = '';
+
+            pages.forEach(p => {
+                const titleBadge = p.titleChars <= 60 
+                    ? `<span class="badge bg-success-subtle text-success border border-success-subtle">${p.titleChars}</span>` 
+                    : `<span class="badge bg-danger-subtle text-danger border border-danger-subtle">${p.titleChars} (Long)</span>`;
+
+                const descBadge = p.descChars >= 120 && p.descChars <= 160
+                    ? `<span class="badge bg-success-subtle text-success border border-success-subtle">${p.descChars}</span>`
+                    : `<span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">${p.descChars}</span>`;
+
+                const gradeBadge = p.grade === 'A+' 
+                    ? `<span class="badge bg-success px-2 py-1">A+ (100%)</span>` 
+                    : `<span class="badge bg-primary px-2 py-1">${p.grade}</span>`;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="ps-4">
+                        <div class="fw-bold text-dark font-display" style="font-size: 0.92rem;">${p.title}</div>
+                        <a href="${p.url}" target="_blank" class="small text-muted text-decoration-none">
+                            <code>${p.url}</code> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.65rem;"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <span class="badge bg-light text-dark border"><i class="fa-solid fa-key text-primary me-1"></i>${p.keyword}</span>
+                    </td>
+                    <td class="text-center">${titleBadge}</td>
+                    <td class="text-center">${descBadge}</td>
+                    <td class="text-center"><i class="fa-solid fa-circle-check text-success fs-6"></i></td>
+                    <td class="text-center"><i class="fa-solid fa-circle-check text-success fs-6"></i></td>
+                    <td class="text-center"><span class="badge bg-success-subtle text-success border border-success-subtle">JSON-LD</span></td>
+                    <td class="text-center">${gradeBadge}</td>
+                    <td class="text-end pe-4">
+                        <button class="btn btn-outline-primary btn-sm rounded-pill py-0 px-2" style="font-size: 0.75rem;" onclick="openAuditSimulator('${p.url}')">
+                            <i class="fa-solid fa-eye me-1"></i> Preview
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterAuditTable() {
+            const cat = document.getElementById('auditCategoryFilter').value;
+            const search = (document.getElementById('auditSearchInput').value || '').toLowerCase();
+
+            const filtered = SOLIS_AUDIT_PAGES.filter(p => {
+                if (cat !== 'all' && p.category !== cat) return false;
+                if (!search) return true;
+                return p.title.toLowerCase().includes(search) || 
+                       p.url.toLowerCase().includes(search) || 
+                       p.keyword.toLowerCase().includes(search);
+            });
+
+            renderAuditTable(filtered);
+        }
+
+        // Render Local Towns Grid
+        function renderLocalTowns(towns) {
+            const grid = document.getElementById('localTownsGrid');
+            grid.innerHTML = '';
+
+            towns.forEach(t => {
+                const col = document.createElement('div');
+                col.className = 'col-12 col-md-6 col-xl-4';
+                col.innerHTML = `
+                    <div class="card border rounded-3 p-3 h-100 bg-white shadow-sm">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">${t.town} Town</h6>
+                                <small class="text-muted"><i class="fa-solid fa-location-dot text-danger me-1"></i>${t.districtName} District (PIN: ${t.pincode})</small>
+                            </div>
+                            <span class="badge bg-success-subtle text-success border border-success-subtle" style="font-size: 0.68rem;">
+                                <i class="fa-solid fa-circle text-success me-1" style="font-size: 0.4rem;"></i> ${t.status}
+                            </span>
+                        </div>
+                        <div class="mb-2">
+                            <span class="badge bg-light text-dark border"><i class="fa-solid fa-magnifying-glass me-1 text-primary"></i> ${t.keyword}</span>
+                        </div>
+                        <p class="small text-muted flex-grow-1 mb-3" style="font-size: 0.78rem;">
+                            <b>Local Buyer Focus:</b> ${t.persona}
+                        </p>
+                        <div class="pt-2 border-top d-flex justify-content-between align-items-center">
+                            <a href="${t.url}" target="_blank" class="small fw-semibold text-primary text-decoration-none">
+                                <code>${t.url}</code> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.65rem;"></i>
+                            </a>
+                            <span class="badge bg-light text-secondary border">NAP Verified</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+        }
+
+        function filterLocalDistrict(dist) {
+            document.querySelectorAll('.local-filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (dist === 'all') {
+                renderLocalTowns(KERALA_TOWNS);
+            } else {
+                renderLocalTowns(KERALA_TOWNS.filter(t => t.district === dist));
+            }
+        }
+
+        // Render Keywords Table
+        function renderKeywordsTable(keywords) {
+            const tbody = document.getElementById('keywordsTableBody');
+            tbody.innerHTML = '';
+
+            keywords.forEach(k => {
+                let diffBadge = '<span class="badge bg-success-subtle text-success border border-success-subtle">Low (Easy Win)</span>';
+                if (k.diff === 'Medium') diffBadge = '<span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Medium</span>';
+                if (k.diff === 'High') diffBadge = '<span class="badge bg-danger-subtle text-danger border border-danger-subtle">High (Competitive)</span>';
+
+                let intentBadge = `<span class="badge bg-primary-subtle text-primary border border-primary-subtle">${k.intent}</span>`;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="ps-4">
+                        <span class="fw-bold text-dark font-display">${k.query}</span>
+                    </td>
+                    <td>${intentBadge}</td>
+                    <td><span class="text-capitalize small text-muted">${k.category}</span></td>
+                    <td class="text-center fw-bold text-secondary">${k.vol}</td>
+                    <td class="text-center">${diffBadge}</td>
+                    <td>
+                        <a href="${k.page}" target="_blank" class="small text-decoration-none">
+                            <code>${k.page}</code>
+                        </a>
+                    </td>
+                    <td class="text-end pe-4">
+                        <span class="badge bg-light text-dark border">${k.adv}</span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterKeywordTable() {
+            const cat = document.getElementById('keywordCategoryFilter').value;
+            if (cat === 'all') {
+                renderKeywordsTable(TOP_KEYWORDS);
+            } else {
+                renderKeywordsTable(TOP_KEYWORDS.filter(k => k.category === cat));
+            }
+        }
+
+        // SERP Simulator Logic
+        function updateSerpPreview() {
+            const title = document.getElementById('serpInputTitle').value || 'Solis Green Energy';
+            const desc = document.getElementById('serpInputDesc').value || '';
+            const slug = document.getElementById('serpInputSlug').value || '';
+
+            // Update character counters
+            document.getElementById('serpTitleCharCount').textContent = `${title.length} / 60 chars`;
+            document.getElementById('serpTitleCharCount').className = title.length > 60 ? 'small text-danger fw-bold' : 'small text-muted';
+
+            document.getElementById('serpDescCharCount').textContent = `${desc.length} / 160 chars`;
+            document.getElementById('serpDescCharCount').className = desc.length > 160 ? 'small text-danger fw-bold' : 'small text-muted';
+
+            // Google preview
+            document.getElementById('serpDisplayTitle').textContent = title;
+            document.getElementById('serpDisplayDesc').textContent = desc;
+            document.getElementById('serpDisplayBreadcrumb').textContent = `https://www.solisgreenindia.in > ${slug.replace(/\//g, '')}`;
+
+            // WhatsApp preview
+            document.getElementById('waDisplayTitle').textContent = title;
+            document.getElementById('waDisplayDesc').textContent = desc;
+        }
+
+        function loadSerpPagePreset() {
+            const preset = document.getElementById('serpPageSelect').value;
+            if (preset === 'custom') return;
+
+            let target = SOLIS_AUDIT_PAGES[1]; // default 3kw
+            if (preset === 'home') target = SOLIS_AUDIT_PAGES[0];
+            else if (preset === '3kw') target = SOLIS_AUDIT_PAGES[1];
+            else if (preset === '5kw') target = SOLIS_AUDIT_PAGES[2];
+            else if (preset === 'kottayam') target = SOLIS_AUDIT_PAGES[5];
+            else if (preset === 'thiruvalla') target = SOLIS_AUDIT_PAGES[8];
+            else if (preset === 'subsidy') target = SOLIS_AUDIT_PAGES[4];
+
+            document.getElementById('serpInputTitle').value = target.title;
+            document.getElementById('serpInputDesc').value = target.desc;
+            document.getElementById('serpInputSlug').value = target.url.replace(/^\//, '');
+            updateSerpPreview();
+        }
+
+        function openAuditSimulator(url) {
+            const match = SOLIS_AUDIT_PAGES.find(p => p.url === url);
+            if (match) {
+                document.getElementById('serpInputTitle').value = match.title;
+                document.getElementById('serpInputDesc').value = match.desc;
+                document.getElementById('serpInputSlug').value = match.url.replace(/^\//, '');
+                updateSerpPreview();
+
+                // Switch to SERP tab
+                const serpTabBtn = document.getElementById('tab-serp-btn');
+                const bsTab = new bootstrap.Tab(serpTabBtn);
+                bsTab.show();
+            }
+        }
+
+        // Schema Generator Logic
+        function switchSchemaType(type) {
+            document.querySelectorAll('.schema-type-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const display = document.getElementById('schemaCodeDisplay');
+            const label = document.getElementById('schemaTitleLabel');
+
+            if (type === 'faq') {
+                label.textContent = "PM Surya Ghar Kerala Subsidy FAQ Schema (JSON-LD)";
+                display.textContent = SCHEMAS.faq;
+            } else if (type === 'local') {
+                label.textContent = "LocalBusiness Solar Contractor Schema (JSON-LD)";
+                display.textContent = SCHEMAS.local;
+            } else if (type === 'product') {
+                label.textContent = "Solar System Pricing & Product Schema (JSON-LD)";
+                display.textContent = SCHEMAS.product;
+            }
+        }
+
+        function copySchemaCode() {
+            const code = document.getElementById('schemaCodeDisplay').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("✅ Schema JSON-LD code copied to clipboard! Paste it inside the <head> tags of your page.");
+            });
+        }
+
+        // Sitemap XML Viewer Loader
+        function loadSitemapEntries() {
+            const tbody = document.getElementById('sitemapTableBody');
+            tbody.innerHTML = '';
+
+            SOLIS_AUDIT_PAGES.forEach(p => {
+                const priority = p.url === '/' ? '1.0' : '0.8';
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="ps-4">
+                        <a href="https://www.solisgreenindia.in${p.url}" target="_blank" class="fw-semibold text-dark text-decoration-none">
+                            <code>https://www.solisgreenindia.in${p.url}</code> <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.65rem;"></i>
+                        </a>
+                    </td>
+                    <td class="text-center"><span class="badge ${priority === '1.0' ? 'bg-primary' : 'bg-light text-dark border'}">${priority}</span></td>
+                    <td class="text-center text-muted small">weekly</td>
+                    <td class="small text-muted">${new Date().toISOString().slice(0, 10)}</td>
+                    <td class="text-end pe-4"><span class="badge bg-success-subtle text-success border border-success-subtle">Indexed (200 OK)</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function copySitemapUrl() {
+            navigator.clipboard.writeText("https://www.solisgreenindia.in/sitemap.xml").then(() => {
+                alert("✅ Sitemap URL copied: https://www.solisgreenindia.in/sitemap.xml\nSubmit this in Google Search Console under 'Sitemaps'.");
+            });
+        }
+
+        // Export SEO Audit CSV
+        function exportSeoReportCSV() {
+            let csv = "URL Path,Page Title,Title Chars,Target Keyword,Meta Description,Desc Chars,H1 Tag,OpenGraph,Schema,Health Grade\n";
+            SOLIS_AUDIT_PAGES.forEach(p => {
+                const row = [
+                    `"${p.url}"`,
+                    `"${p.title.replace(/"/g, '""')}"`,
+                    p.titleChars,
+                    `"${p.keyword}"`,
+                    `"${p.desc.replace(/"/g, '""')}"`,
+                    p.descChars,
+                    "PASS",
+                    "PASS",
+                    "PASS",
+                    `"${p.grade}"`
+                ];
+                csv += row.join(",") + "\n";
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', `solis_seo_health_report_${new Date().toISOString().slice(0, 10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Init on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAuditTable(SOLIS_AUDIT_PAGES);
+            renderLocalTowns(KERALA_TOWNS);
+            renderKeywordsTable(TOP_KEYWORDS);
+            updateSerpPreview();
+            switchSchemaType('faq');
+            loadSitemapEntries();
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

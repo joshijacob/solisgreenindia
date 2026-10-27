@@ -9,6 +9,8 @@
     { "source": "/Login", "destination": "/Login/index.html" },
     { "source": "/Login/", "destination": "/Login/index.html" },
     { "source": "/analytics", "destination": "/analytics/index.html" },
-    { "source": "/analytics/", "destination": "/analytics/index.html" }
+    { "source": "/analytics/", "destination": "/analytics/index.html" },
+    { "source": "/seo", "destination": "/seo/index.html" },
+    { "source": "/seo/", "destination": "/seo/index.html" }
   ]
 }

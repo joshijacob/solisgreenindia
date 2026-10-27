@@ -1220,8 +1220,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // =========================================================
 (function() {
   const currentPath = window.location.pathname.toLowerCase();
-  // Do not track internal admin, login, or analytics dashboard visits
-  if (currentPath.includes('/login') || currentPath.includes('/analytics') || currentPath.includes('/projectcostcalculator')) {
+  // Do not track internal admin, login, analytics, or seo dashboard visits
+  if (currentPath.includes('/login') || currentPath.includes('/analytics') || currentPath.includes('/seo') || currentPath.includes('/projectcostcalculator')) {
     return;
   }
 
