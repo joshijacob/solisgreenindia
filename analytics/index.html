@@ -730,6 +730,7 @@
         let currentLogFilter = 'all';
         let chartInstances = {};
         let allCloudEvents = [];
+        let allCloudForms = [];
         let seenEventIds = new Set();
         let isInitialSnapshotLoaded = false;
         let audioContextInstance = null;
@@ -1049,7 +1050,8 @@
                         isInitialSnapshotLoaded = true;
 
                         if (statusBadge) {
-                            statusBadge.innerHTML = '<span class="live-dot"></span> Cloud Firestore Live (' + fetched.length + ' events)';
+                            const totalItems = allCloudEvents.length + allCloudForms.length;
+                            statusBadge.innerHTML = '<span class="live-dot"></span> Cloud Firestore Live (' + totalItems + ' records)';
                             statusBadge.className = 'badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill d-none d-lg-inline-flex align-items-center';
                         }
                         renderDashboard();
@@ -1060,7 +1062,39 @@
                         }
                         renderDashboard();
                     });
-                    return;
+                    
+                    // Listen to dedicated Form Submissions Backend Collection (solis/forms/submissions)
+                    const formsRef = dbFirestore.collection('solis').doc('forms').collection('submissions');
+                    formsRef.orderBy('createdAt', 'desc').limit(200).onSnapshot((snapshot) => {
+                        const fetchedForms = [];
+                        snapshot.forEach(doc => {
+                            const d = doc.data();
+                            const formObj = {
+                                id: doc.id,
+                                type: 'form_submit',
+                                title: `Lead: ${d.name || 'Customer'} (${d.phone || 'N/A'})`,
+                                details: `${d.service || 'Solar'} - ${d.location || 'Kerala'} ${d.message ? '("' + d.message + '")' : ''}`,
+                                url: d.page || '/contact/',
+                                device: d.device || 'Mobile',
+                                source: d.source || 'Website Form',
+                                campaign: d.campaign || '',
+                                location: d.location || 'Kerala, India',
+                                timestamp: d.createdAt || new Date().toISOString()
+                            };
+
+                            if (isInitialSnapshotLoaded && !seenEventIds.has(doc.id)) {
+                                triggerLiveLeadAlert(formObj);
+                            }
+                            seenEventIds.add(doc.id);
+                            fetchedForms.push(formObj);
+                        });
+                        allCloudForms = fetchedForms;
+                        renderDashboard();
+                    }, (err) => {
+                        console.debug("Forms listener notice:", err);
+                    });
+
+return;
                 } catch(e) {
                     console.error("Firestore setup error:", e);
                 }
@@ -1084,6 +1118,7 @@
             // Merge cloud events with local cache deduplicated by id
             const mergedMap = new Map();
             allCloudEvents.forEach(e => mergedMap.set(e.id, e));
+            (allCloudForms || []).forEach(f => mergedMap.set(f.id, f));
             local.forEach(e => {
                 if (!mergedMap.has(e.id)) {
                     mergedMap.set(e.id, e);

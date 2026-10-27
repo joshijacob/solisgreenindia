@@ -277,7 +277,12 @@ function initializeForms() {
         // Show loading state
         setButtonLoading(submitBtn, true, originalText);
         
-        // Submit to FormSubmit
+        // 1. Save directly to Cloud Backend Firestore collection (solis/forms/submissions)
+        if (typeof saveLeadToFirestore === 'function') {
+          saveLeadToFirestore(data);
+        }
+        
+        // 2. Relay via FormSubmit email
         const success = await submitToFormSubmit(data, this);
         
         if (success) {
@@ -1406,6 +1411,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   const FB_FIRESTORE_URL = 'https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/analytics/events?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ';
+  const FB_FORMS_URL = 'https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ';
   const FB_ALERT_CONFIG_URL = 'https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/alert_config?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ';
 
   // Lead Alert Dispatcher: Instant Telegram Bot Alert for Calls, WhatsApp, Forms
@@ -1462,6 +1468,40 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     } catch(e) {}
   }
+
+  
+  // Direct Cloud Backend Lead Collection Handler
+  window.saveLeadToFirestore = async function(data) {
+    try {
+      const timestampIso = new Date().toISOString();
+      const doc = {
+        fields: {
+          name: { stringValue: data.name || 'Website Visitor' },
+          phone: { stringValue: data.phone || '' },
+          email: { stringValue: data.email || '' },
+          service: { stringValue: data.service || 'Solar Installation' },
+          location: { stringValue: data.location || detectLocationFromPage() || 'Kerala' },
+          message: { stringValue: data.message || '' },
+          page: { stringValue: data.page || window.location.pathname },
+          status: { stringValue: 'New' },
+          source: { stringValue: data.source || 'Website Form' },
+          createdAt: { stringValue: timestampIso }
+        }
+      };
+      fetch(FB_FORMS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(doc),
+        keepalive: true
+      }).then(() => {
+        console.log('✅ Lead saved to backend collection: solis/forms/submissions');
+      }).catch(err => {
+        console.debug('Firestore backend save notice:', err);
+      });
+    } catch (e) {
+      console.warn('Backend save error:', e);
+    }
+  };
 
   window.recordSolisEvent = function(type, details) {
     try {
