@@ -2,1036 +2,11 @@
   "generatedAt": "2026-10-27T06:28:00Z",
   "summary": {
     "totalPagesScanned": 104,
-    "averageHealthScore": 90,
-    "optimalPages": 69,
-    "pagesWithIssues": 55
+    "averageHealthScore": 98,
+    "optimalPages": 104,
+    "pagesWithIssues": 21
   },
   "pages": [
-    {
-      "url": "/best-solar-installer-in-thiruvalla/",
-      "fullUrl": "https://www.solisgreenindia.in/best-solar-installer-in-thiruvalla/",
-      "title": "Best Solar Installer in Thiruvalla | Solar Panel Installation & Maintenance | Solis Green India",
-      "titleLength": 95,
-      "desc": "Looking for the best solar installer in Thiruvalla? Solis Green India offers expert solar panel installation, maintenance, and top-rated solar company services in Thiruvalla. Get subsidy & SBI loan. Call now!",
-      "descLength": 208,
-      "h1": "Best Solar Installer in Thiruvalla",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 297,
-      "issues": [
-        "Title exceeds Google limit (95 chars, max 60)",
-        "Meta description too long (208 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 65,
-      "grade": "C",
-      "category": "districts"
-    },
-    {
-      "url": "/residential-solar/",
-      "fullUrl": "https://www.solisgreenindia.in/residential-solar/",
-      "title": "Residential Solar Solutions | Home Solar Systems Kerala - Solis Green India",
-      "titleLength": 75,
-      "desc": "Residential Solar Solutions in Kerala: Save up to 80% on electricity bills with 40% government subsidy and SBI 10-year loan @ 6%. Home solar systems from 1kW to 10kW. Get free quote today.",
-      "descLength": 188,
-      "h1": "Residential Solar Solutions for Kerala Homes",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "Product",
-        "AggregateOffer",
-        "Brand",
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 380,
-      "issues": [
-        "Title exceeds Google limit (75 chars, max 60)",
-        "Meta description too long (188 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 65,
-      "grade": "C",
-      "category": "core"
-    },
-    {
-      "url": "/services/residential-solar/",
-      "fullUrl": "https://www.solisgreenindia.in/services/residential-solar/",
-      "title": "🚨 URGENT: Residential Solar Kerala | KSEB Transformer Capacity Alert | SBI 10-Year Loan @ 6% - Solis Green India",
-      "titleLength": 112,
-      "desc": "🚨 URGENT: Residential Solar Installation in Kerala with KSEB Transformer Capacity Alerts. Home Solar Systems with 40% Government Subsidy & SBI 10-Year Loan @ 6%. Save 80% on Electricity Bills. Check transformer capacity NOW before 90% limit reached.",
-      "descLength": 249,
-      "h1": "🚨 Premium Residential Solar Solutions for Kerala Homes",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "Service",
-        "LocalBusiness",
-        "State",
-        "Offer"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 947,
-      "issues": [
-        "Title exceeds Google limit (112 chars, max 60)",
-        "Meta description too long (249 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 65,
-      "grade": "C",
-      "category": "core"
-    },
-    {
-      "url": "/solar-subsidy/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-subsidy/",
-      "title": "Solar Subsidy in Kerala | Up to ₹78,000 Subsidy for Home Solar - Solis Green India",
-      "titleLength": 82,
-      "desc": "Solar Subsidy in Kerala: Get up to ₹78,000 government subsidy on residential solar systems. Check eligibility, calculate subsidy, and apply online with Solis Green India. Direct Benefit Transfer (DBT).",
-      "descLength": 201,
-      "h1": "Solar Subsidy in Kerala",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "Service",
-        "LocalBusiness",
-        "State",
-        "BreadcrumbList",
-        "Offer",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 462,
-      "issues": [
-        "Title exceeds Google limit (82 chars, max 60)",
-        "Meta description too long (201 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 65,
-      "grade": "C",
-      "category": "pricing"
-    },
-    {
-      "url": "/about/",
-      "fullUrl": "https://www.solisgreenindia.in/about/",
-      "title": "About Solis Green India | Leading Solar Company in Kerala Since 2019",
-      "titleLength": 68,
-      "desc": "Learn about Solis Green India - Kerala",
-      "descLength": 38,
-      "h1": "Our Solar Journey in Kerala",
-      "canonical": "",
-      "hasOg": true,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 4,
-      "imagesWithAlt": 4,
-      "missingAlt": 0,
-      "wordCount": 466,
-      "issues": [
-        "Title exceeds Google limit (68 chars, max 60)",
-        "Meta description too short (38 chars, recommended 120-160)",
-        "Missing canonical link tag"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "core"
-    },
-    {
-      "url": "/contact/locations/",
-      "fullUrl": "https://www.solisgreenindia.in/contact/locations/",
-      "title": "Service Locations | Solis Green India | Solar Services Across Kerala",
-      "titleLength": 68,
-      "desc": "Solis Green India Service Locations - Solar installation services across Pathanamthitta, Kottayam, Alappuzha, Kollam districts in Kerala.",
-      "descLength": 137,
-      "h1": "Our Service Locations",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 303,
-      "issues": [
-        "Title exceeds Google limit (68 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "core"
-    },
-    {
-      "url": "/contact/quote.html",
-      "fullUrl": "https://www.solisgreenindia.in/contact/quote.html",
-      "title": "Free Solar Quote | Solis Green India | Customized Solar Solutions Kerala",
-      "titleLength": 72,
-      "desc": "Get Free Solar Quote from Solis Green India. Customized solar solutions with government subsidy for homes and businesses across Kerala.",
-      "descLength": 135,
-      "h1": "Get Your Free Solar Quote",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 238,
-      "issues": [
-        "Title exceeds Google limit (72 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "core"
-    },
-    {
-      "url": "/projects/residential-projects.html",
-      "fullUrl": "https://www.solisgreenindia.in/projects/residential-projects.html",
-      "title": "Residential Solar Projects in Kerala | Solis Green India",
-      "titleLength": 56,
-      "desc": "Residential solar projects by Solis Green India across Pathanamthitta, Kottayam, Alappuzha and Kollam. 1–10 kW home solar installations with Kerala subsidy support.",
-      "descLength": 164,
-      "h1": "Residential Solar Projects Across Kerala",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 3,
-      "imagesWithAlt": 3,
-      "missingAlt": 0,
-      "wordCount": 471,
-      "issues": [
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "core"
-    },
-    {
-      "url": "/services/commercial-solar/",
-      "fullUrl": "https://www.solisgreenindia.in/services/commercial-solar/",
-      "title": "Commercial Solar Kerala | Business Solar Systems with Tax Benefits - Solis Green India",
-      "titleLength": 86,
-      "desc": "Commercial Solar Solutions in Kerala - Business Solar Systems with Tax Benefits. Reduce Operational Costs by 60%",
-      "descLength": 112,
-      "h1": "Commercial Solar Solutions",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "LocalBusiness",
-        "Service"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 495,
-      "issues": [
-        "Title exceeds Google limit (86 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "core"
-    },
-    {
-      "url": "/services/industrial-solar/",
-      "fullUrl": "https://www.solisgreenindia.in/services/industrial-solar/",
-      "title": "Industrial Solar Kerala | Factory Solar Plants & Large-scale Solutions - Solis Green India",
-      "titleLength": 90,
-      "desc": "Industrial Solar Plants in Kerala - Large-scale Solar Solutions for Factories & Industries. Reduce Production Costs by 50%",
-      "descLength": 122,
-      "h1": "Industrial Solar Power Plants",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "LocalBusiness",
-        "Service"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 565,
-      "issues": [
-        "Title exceeds Google limit (90 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "core"
-    },
-    {
-      "url": "/services/solar-maintenance/",
-      "fullUrl": "https://www.solisgreenindia.in/services/solar-maintenance/",
-      "title": "Solar Maintenance Kerala | Professional Solar Cleaning & Repair Services - Solis Green India",
-      "titleLength": 92,
-      "desc": "Solar Maintenance Services in Kerala - Professional Solar System Cleaning, Repair & AMC Services. Keep Your Solar Panels at Peak Performance",
-      "descLength": 140,
-      "h1": "Solar Maintenance Services",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "LocalBusiness",
-        "Service"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 682,
-      "issues": [
-        "Title exceeds Google limit (92 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "core"
-    },
-    {
-      "url": "/solar-company-in-kottayam/mundakayam.html",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/mundakayam.html",
-      "title": "Solar Company in Mundakayam | Solar Panel Installation Mundakayam - Solis Green India",
-      "titleLength": 85,
-      "desc": "Professional solar company in Mundakayam. Solar panel installation, maintenance services. Free consultation: 8301849474. Serving Kottayam district.",
-      "descLength": 147,
-      "h1": "Solar Company in Mundakayam",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "BreadcrumbList",
-        "LocalBusiness",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 170,
-      "issues": [
-        "Title exceeds Google limit (85 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/vakathanam.html",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/vakathanam.html",
-      "title": "Solar Company in Vakathanam | Solar Panel Installation Vakathanam - Solis Green India",
-      "titleLength": 85,
-      "desc": "Professional solar company in Vakathanam. Solar panel installation, maintenance services. Free consultation: 8301849474. Serving Kottayam district.",
-      "descLength": 147,
-      "h1": "Solar Company in Vakathanam",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "BreadcrumbList",
-        "LocalBusiness",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 169,
-      "issues": [
-        "Title exceeds Google limit (85 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/pm-suryaghar-subsidy-pathanamthitta/",
-      "fullUrl": "https://www.solisgreenindia.in/pm-suryaghar-subsidy-pathanamthitta/",
-      "title": "PM Surya Ghar Solar Subsidy in Pathanamthitta | ₹78,000 MNRE Subsidy Guide",
-      "titleLength": 74,
-      "desc": "Complete guide to PM Surya Ghar solar subsidy in Pathanamthitta. Know eligibility, subsidy amount up to ₹78,000, documents required, KSEB net-metering rules & approval process.",
-      "descLength": 176,
-      "h1": "PM Surya Ghar Solar Subsidy in Pathanamthitta",
-      "canonical": "https://www.solisgreenindia.in/pm-suryaghar-subsidy-pathanamthitta/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "Answer",
-        "FAQPage",
-        "BreadcrumbList",
-        "ListItem",
-        "Question"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 368,
-      "issues": [
-        "Title exceeds Google limit (74 chars, max 60)",
-        "Meta description too long (176 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/projects/karunagappally/",
-      "fullUrl": "https://www.solisgreenindia.in/projects/karunagappally/",
-      "title": "3kW Solar Project in Karunagappally | Solis Green Energy Solutions",
-      "titleLength": 66,
-      "desc": "View details of a 3kW on-grid solar EPC project executed by Solis Green Energy Solutions near Karunagappally. Enphase micro inverter, Adani TOPCon panels, PM Surya Ghar subsidy applied.",
-      "descLength": 185,
-      "h1": "3kW On-Grid Solar EPC Project – Karunagappally",
-      "canonical": "https://www.solisgreenindia.in/projects/karunagappally/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 3,
-      "imagesWithAlt": 3,
-      "missingAlt": 0,
-      "wordCount": 156,
-      "issues": [
-        "Title exceeds Google limit (66 chars, max 60)",
-        "Meta description too long (185 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "core"
-    },
-    {
-      "url": "/projects/kollam/",
-      "fullUrl": "https://www.solisgreenindia.in/projects/kollam/",
-      "title": "Solar EPC Projects in Kollam District | Solis Green Energy Solutions",
-      "titleLength": 68,
-      "desc": "Explore real solar EPC projects executed by Solis Green Energy Solutions across Kollam district. Residential & commercial rooftop solar installations with MNRE subsidy and KSEB approvals.",
-      "descLength": 187,
-      "h1": "Solar EPC Projects Executed in Kollam District",
-      "canonical": "https://www.solisgreenindia.in/projects/kollam/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 211,
-      "issues": [
-        "Title exceeds Google limit (68 chars, max 60)",
-        "Meta description too long (187 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/projects/thiruvalla/",
-      "fullUrl": "https://www.solisgreenindia.in/projects/thiruvalla/",
-      "title": "5kWp Solar Project in Thiruvalla | Residential On-Grid Installation | Solis Green",
-      "titleLength": 81,
-      "desc": "5kWp residential on-grid solar project completed in Thiruvalla by Solis Green Energy Solutions. MNRE-compliant rooftop solar installation with KSEB net-metering and long-term EPC support.",
-      "descLength": 187,
-      "h1": "Residential Solar Project in Thiruvalla – 5kWp On-Grid",
-      "canonical": "https://www.solisgreenindia.in/projects/thiruvalla/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 3,
-      "imagesWithAlt": 3,
-      "missingAlt": 0,
-      "wordCount": 186,
-      "issues": [
-        "Title exceeds Google limit (81 chars, max 60)",
-        "Meta description too long (187 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/services/",
-      "fullUrl": "https://www.solisgreenindia.in/services/",
-      "title": "Solar Services in Kerala | Solis Green India - Solar Panel Installation & Maintenance",
-      "titleLength": 85,
-      "desc": "Complete solar services in Kerala: Residential, Commercial & Industrial solar installation, maintenance, subsidy support. 500+ installations across Pathanamthitta, Kottayam, Alappuzha.",
-      "descLength": 184,
-      "h1": "Complete Solar Energy Solutions in Kerala",
-      "canonical": "",
-      "hasOg": true,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 865,
-      "issues": [
-        "Title exceeds Google limit (85 chars, max 60)",
-        "Meta description too long (184 chars, max 160)",
-        "Missing canonical link tag"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "core"
-    },
-    {
-      "url": "/solar-consultant-kerala/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-consultant-kerala/",
-      "title": "Expert Solar Consultant in Kerala | Energy Audits & EPC | Solis Green",
-      "titleLength": 69,
-      "desc": "Hire the top solar consultants in Kerala for commercial and residential projects. We provide 3D shadow analysis, load auditing, ROI calculations, and KSEB feasibility checks.",
-      "descLength": 174,
-      "h1": "Professional Solar Consulting & Energy Audits in Kerala",
-      "canonical": "https://www.solisgreenindia.in/solar-consultant-kerala/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "Answer",
-        "Service",
-        "FAQPage",
-        "LocalBusiness",
-        "State",
-        "BreadcrumbList",
-        "ListItem",
-        "Question"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 369,
-      "issues": [
-        "Title exceeds Google limit (69 chars, max 60)",
-        "Meta description too long (174 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "core"
-    },
-    {
-      "url": "/solar-installation-cost-kottayam/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-installation-cost-kottayam/",
-      "title": "Solar Installation Cost in Kottayam | Price, Subsidy & Savings Guide",
-      "titleLength": 68,
-      "desc": "Solar installation cost in Kottayam explained. Know 1kW, 3kW, 5kW solar prices, MNRE subsidy up to ₹78,000, ROI & savings. Covers Changanacherry, Kanjirappally, Erattupetta & nearby towns.",
-      "descLength": 188,
-      "h1": "Solar Installation Cost in Kottayam",
-      "canonical": "https://www.solisgreenindia.in/solar-installation-cost-kottayam/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 318,
-      "issues": [
-        "Title exceeds Google limit (68 chars, max 60)",
-        "Meta description too long (188 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-installation-cost-pathanamthitta/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-installation-cost-pathanamthitta/",
-      "title": "Solar Installation Cost in Pathanamthitta | Price, Subsidy & Savings Guide",
-      "titleLength": 74,
-      "desc": "Solar installation cost in Pathanamthitta explained. Know 1kW, 3kW, 5kW solar prices, MNRE subsidy up to ₹78,000, ROI & savings. Covers Thiruvalla, Adoor, Ranni, Pandalam & nearby towns.",
-      "descLength": 186,
-      "h1": "Solar Installation Cost in Pathanamthitta",
-      "canonical": "https://www.solisgreenindia.in/solar-installation-cost-pathanamthitta/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 302,
-      "issues": [
-        "Title exceeds Google limit (74 chars, max 60)",
-        "Meta description too long (186 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/3kw-vs-5kw-solar-system-kerala/",
-      "fullUrl": "https://www.solisgreenindia.in/3kw-vs-5kw-solar-system-kerala/",
-      "title": "3kW vs 5kW Solar System Kerala: Price, Subsidy & ROI Comparison",
-      "titleLength": 63,
-      "desc": "3kW vs 5kW rooftop solar comparison for Kerala homes. Compare KSEB bill savings, PM Surya Ghar subsidy (₹78,000), space needed, and payback period with Solis.",
-      "descLength": 158,
-      "h1": "3kW vs 5kW Solar System in Kerala: Which One Should You Choose?",
-      "canonical": "https://www.solisgreenindia.in/3kw-vs-5kw-solar-system-kerala/",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 174,
-      "issues": [
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "pricing"
-    },
-    {
-      "url": "/best-solar-company-in-kerala/",
-      "fullUrl": "https://www.solisgreenindia.in/best-solar-company-in-kerala/",
-      "title": "Best Solar Company in Kerala | Top MNRE Approved EPC | Solis Green",
-      "titleLength": 66,
-      "desc": "Looking for the best solar company in Kerala? Solis Green Energy Solutions is an MNRE-empanelled EPC with 500+ installations, 5-year AMC, and end-to-end KSEB support.",
-      "descLength": 166,
-      "h1": "Voted Among the Best Solar Companies in Kerala",
-      "canonical": "https://www.solisgreenindia.in/best-solar-company-in-kerala/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "Answer",
-        "FAQPage",
-        "AggregateRating",
-        "LocalBusiness",
-        "BreadcrumbList",
-        "ListItem",
-        "Question"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 277,
-      "issues": [
-        "Title exceeds Google limit (66 chars, max 60)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/careers/customer-support-executive/",
-      "fullUrl": "https://www.solisgreenindia.in/careers/customer-support-executive/",
-      "title": "Customer Support Executive | Careers at Solis Green Energy Solutions",
-      "titleLength": 68,
-      "desc": "Apply for the Customer Support Executive position at Solis Green Energy Solutions. Join our Administration team and help build sustainable energy in Kerala.",
-      "descLength": 156,
-      "h1": "Customer Support Executive",
-      "canonical": "https://www.solisgreenindia.in/careers/customer-support-executive/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "JobPosting",
-        "PostalAddress",
-        "Organization",
-        "Place"
-      ],
-      "imagesTotal": 1,
-      "imagesWithAlt": 1,
-      "missingAlt": 0,
-      "wordCount": 141,
-      "issues": [
-        "Title exceeds Google limit (68 chars, max 60)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/careers/solar-installation-technician/",
-      "fullUrl": "https://www.solisgreenindia.in/careers/solar-installation-technician/",
-      "title": "Solar Installation Technician | Careers at Solis Green Energy Solutions",
-      "titleLength": 71,
-      "desc": "Apply for the Solar Installation Technician position at Solis Green Energy Solutions. Join our Operations team and help build sustainable energy in Kerala.",
-      "descLength": 155,
-      "h1": "Solar Installation Technician",
-      "canonical": "https://www.solisgreenindia.in/careers/solar-installation-technician/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "JobPosting",
-        "PostalAddress",
-        "Organization",
-        "Place"
-      ],
-      "imagesTotal": 1,
-      "imagesWithAlt": 1,
-      "missingAlt": 0,
-      "wordCount": 152,
-      "issues": [
-        "Title exceeds Google limit (71 chars, max 60)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/cities/",
-      "fullUrl": "https://www.solisgreenindia.in/cities/",
-      "title": "Solar Service Areas in Kerala | Solis Green India - Pathanamthitta, Kottayam, Alappuzha",
-      "titleLength": 87,
-      "desc": "Solis Green India provides solar installation across Kerala. Service areas include Pathanamthitta, Kottayam, Alappuzha & Kollam districts with local teams.",
-      "descLength": 155,
-      "h1": "Solar Service Areas Across Kerala",
-      "canonical": "",
-      "hasOg": true,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 412,
-      "issues": [
-        "Title exceeds Google limit (87 chars, max 60)",
-        "Missing canonical link tag"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/pm-suryaghar-subsidy-kottayam/",
-      "fullUrl": "https://www.solisgreenindia.in/pm-suryaghar-subsidy-kottayam/",
-      "title": "PM Surya Ghar Solar Subsidy in Kottayam | ₹78,000 MNRE Subsidy Guide",
-      "titleLength": 68,
-      "desc": "Complete guide to PM Surya Ghar solar subsidy in Kottayam. Know eligibility, subsidy amount up to ₹78,000, documents required, approval process & KSEB net-metering rules.",
-      "descLength": 170,
-      "h1": "PM Surya Ghar Solar Subsidy in Kottayam",
-      "canonical": "https://www.solisgreenindia.in/pm-suryaghar-subsidy-kottayam/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 361,
-      "issues": [
-        "Title exceeds Google limit (68 chars, max 60)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "districts"
-    },
-    {
-      "url": "/privacy-policy/",
-      "fullUrl": "https://www.solisgreenindia.in/privacy-policy/",
-      "title": "Privacy Policy | Solis Green Energy Solutions Kerala",
-      "titleLength": 52,
-      "desc": "Privacy Policy for Solis Green Energy Solutions. Learn how we protect your personal information, consultation inquiries, and rooftop solar data.",
-      "descLength": 144,
-      "h1": "Privacy Policy",
-      "canonical": "https://www.solisgreenindia.in/privacy-policy/",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 167,
-      "issues": [
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/solar-installation-kerala/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-installation-kerala/",
-      "title": "Solar Installation in Kerala | MNRE Subsidy & Top EPC | Solis Green",
-      "titleLength": 67,
-      "desc": "Leading solar installation company in Kerala. Get MNRE subsidy up to ₹78,000, PM Surya Ghar support, KSEB net metering, and 5-year free maintenance across all districts.",
-      "descLength": 169,
-      "h1": "Top Rated Solar Installation Company in Kerala",
-      "canonical": "https://www.solisgreenindia.in/solar-installation-kerala/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "Answer",
-        "FAQPage",
-        "LocalBusiness",
-        "BreadcrumbList",
-        "ListItem",
-        "Question"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 276,
-      "issues": [
-        "Title exceeds Google limit (67 chars, max 60)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/tata-power-solar-kerala/",
-      "fullUrl": "https://www.solisgreenindia.in/tata-power-solar-kerala/",
-      "title": "Authorized Tata Power Solar Dealer & Installer in Kerala | Solis Green",
-      "titleLength": 70,
-      "desc": "Get tier-1 Tata Power Solar panels installed by Solis Green Energy Solutions. We are authorized installers providing MNRE subsidy support across Kerala.",
-      "descLength": 152,
-      "h1": "Authorized Tata Power Solar Installer in Kerala",
-      "canonical": "https://www.solisgreenindia.in/tata-power-solar-kerala/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "LocalBusiness",
-        "State",
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 233,
-      "issues": [
-        "Title exceeds Google limit (70 chars, max 60)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/",
-      "fullUrl": "https://www.solisgreenindia.in/",
-      "title": "Residential Solar Installation in Kerala | ₹78,000 Subsidy | Solis Green Energy Solutions",
-      "titleLength": 89,
-      "desc": "Looking for residential solar installation in Kerala? Get ₹78,000 MNRE subsidy, KSEB net metering approval, SBI loan assistance & 5‑year free AMC. Book free site survey today.",
-      "descLength": 175,
-      "h1": "Residential Solar Installation Company in Kerala",
-      "canonical": "https://www.solisgreenindia.in/",
-      "hasOg": true,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "OfferCatalog",
-        "GeoCoordinates",
-        "Service",
-        "Person",
-        "AggregateRating",
-        "Review",
-        "LocalBusiness",
-        "Rating",
-        "BreadcrumbList",
-        "Offer",
-        "ListItem"
-      ],
-      "imagesTotal": 5,
-      "imagesWithAlt": 5,
-      "missingAlt": 0,
-      "wordCount": 374,
-      "issues": [
-        "Title exceeds Google limit (89 chars, max 60)",
-        "Meta description too long (175 chars, max 160)"
-      ],
-      "score": 85,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/contact/contact.html",
-      "fullUrl": "https://www.solisgreenindia.in/contact/contact.html",
-      "title": "Contact Solar Experts Kerala | Solis Green India - 8301849474",
-      "titleLength": 61,
-      "desc": "Contact Solis Green India for solar panel installation, subsidy support & free site survey. Call ☎️ 8301849474 for consultation in Pathanamthitta, Kottayam, Alappuzha, Kollam.",
-      "descLength": 175,
-      "h1": "Contact Our Solar Experts",
-      "canonical": "https://solisgreenindia.in/contact/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "GeoCoordinates",
-        "ContactPage",
-        "LocalBusiness",
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 476,
-      "issues": [
-        "Meta description too long (175 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 85,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/projects/",
-      "fullUrl": "https://www.solisgreenindia.in/projects/",
-      "title": "Solar Projects in Kerala | Rooftop Solar Installations by Solis Green",
-      "titleLength": 69,
-      "desc": "Explore completed rooftop solar projects by Solis Green Energy Solutions across Kerala. Residential on-grid solar installations with MNRE subsidy, PM Surya Ghar scheme & KSEB net metering.",
-      "descLength": 188,
-      "h1": "Our Solar Projects Across Kerala",
-      "canonical": "https://www.solisgreenindia.in/projects/",
-      "hasOg": true,
-      "hasSchema": true,
-      "schemaTypes": [
-        "BreadcrumbList",
-        "ItemList",
-        "ListItem"
-      ],
-      "imagesTotal": 5,
-      "imagesWithAlt": 5,
-      "missingAlt": 0,
-      "wordCount": 188,
-      "issues": [
-        "Title exceeds Google limit (69 chars, max 60)",
-        "Meta description too long (188 chars, max 160)"
-      ],
-      "score": 85,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/solar-company-near-me/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-near-me/",
-      "title": "Best Solar Company Near Me | MNRE Approved EPC | Solis Green",
-      "titleLength": 60,
-      "desc": "Searching for the best solar company near you? Solis Green Energy Solutions is a top-rated MNRE-empanelled EPC in Kerala. We handle PM Surya Ghar subsidies and KSEB approvals.",
-      "descLength": 175,
-      "h1": "Top Rated Solar Company Near You",
-      "canonical": "https://www.solisgreenindia.in/solar-company-near-me/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "AggregateRating",
-        "LocalBusiness",
-        "BreadcrumbList",
-        "ListItem"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 237,
-      "issues": [
-        "Meta description too long (175 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 85,
-      "grade": "A",
-      "category": "core"
-    },
-    {
-      "url": "/solar-consultant-near-me/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-consultant-near-me/",
-      "title": "Expert Solar Consultant Near Me | Energy Audits | Solis Green",
-      "titleLength": 61,
-      "desc": "Looking for an expert solar consultant near you? We provide 3D shadow analysis, ROI calculations, and KSEB feasibility checks for commercial and residential projects in Kerala.",
-      "descLength": 176,
-      "h1": "Expert Solar Consultant Near You",
-      "canonical": "https://www.solisgreenindia.in/solar-consultant-near-me/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "Answer",
-        "FAQPage",
-        "LocalBusiness",
-        "BreadcrumbList",
-        "ListItem",
-        "Question"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 226,
-      "issues": [
-        "Meta description too long (176 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 85,
-      "grade": "A",
-      "category": "core"
-    },
     {
       "url": "/3kw-solar-system-kerala-price/",
       "fullUrl": "https://www.solisgreenindia.in/3kw-solar-system-kerala-price/",
@@ -1044,11 +19,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Answer",
-        "FAQPage",
-        "Question",
+        "ListItem",
         "BreadcrumbList",
-        "ListItem"
+        "Answer",
+        "Question",
+        "FAQPage"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1073,11 +48,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Answer",
-        "FAQPage",
-        "Question",
+        "ListItem",
         "BreadcrumbList",
-        "ListItem"
+        "Answer",
+        "Question",
+        "FAQPage"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1128,10 +103,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "JobPosting",
         "PostalAddress",
-        "Organization",
-        "Place"
+        "JobPosting",
+        "Place",
+        "Organization"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1156,10 +131,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "JobPosting",
         "PostalAddress",
-        "Organization",
-        "Place"
+        "JobPosting",
+        "Place",
+        "Organization"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1184,10 +159,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "JobPosting",
         "PostalAddress",
-        "Organization",
-        "Place"
+        "JobPosting",
+        "Place",
+        "Organization"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1212,10 +187,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "JobPosting",
         "PostalAddress",
-        "Organization",
-        "Place"
+        "JobPosting",
+        "Place",
+        "Organization"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1240,10 +215,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "JobPosting",
         "PostalAddress",
-        "Organization",
-        "Place"
+        "JobPosting",
+        "Place",
+        "Organization"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1268,10 +243,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "JobPosting",
         "PostalAddress",
-        "Organization",
-        "Place"
+        "JobPosting",
+        "Place",
+        "Organization"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1296,10 +271,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "JobPosting",
         "PostalAddress",
-        "Organization",
-        "Place"
+        "JobPosting",
+        "Place",
+        "Organization"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1324,16 +299,16 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "MonetaryAmount",
-        "PostalAddress",
         "QuantitativeValue",
-        "Place",
-        "Country",
-        "JobPosting",
-        "Organization",
         "PropertyValue",
+        "MonetaryAmount",
+        "ListItem",
+        "Country",
+        "Place",
         "BreadcrumbList",
-        "ListItem"
+        "PostalAddress",
+        "JobPosting",
+        "Organization"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1358,10 +333,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "JobPosting",
         "PostalAddress",
-        "Organization",
-        "Place"
+        "JobPosting",
+        "Place",
+        "Organization"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1386,10 +361,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "JobPosting",
         "PostalAddress",
-        "Organization",
-        "Place"
+        "JobPosting",
+        "Place",
+        "Organization"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1414,11 +389,11 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "GeoCoordinates",
         "LocalBusiness",
+        "GeoCoordinates",
+        "ListItem",
         "BreadcrumbList",
-        "ListItem"
+        "PostalAddress"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1443,9 +418,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 3,
       "imagesWithAlt": 3,
@@ -1470,11 +445,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Answer",
-        "FAQPage",
-        "Question",
+        "ListItem",
         "BreadcrumbList",
-        "ListItem"
+        "Answer",
+        "Question",
+        "FAQPage"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1486,6 +461,29 @@
       "score": 90,
       "grade": "A+",
       "category": "pricing"
+    },
+    {
+      "url": "/projects/residential-projects.html",
+      "fullUrl": "https://www.solisgreenindia.in/projects/residential-projects.html",
+      "title": "Residential Solar Projects in Kerala | Solis Green India",
+      "titleLength": 56,
+      "desc": "View photos and case studies of 3kW, 5kW, and 10kW residential rooftop solar installations across Kerala by Solis Green Energy Solutions.",
+      "descLength": 137,
+      "h1": "Residential Solar Projects Across Kerala",
+      "canonical": "https://www.solisgreenindia.in/projects/residential-projects.html",
+      "hasOg": true,
+      "hasSchema": false,
+      "schemaTypes": [],
+      "imagesTotal": 3,
+      "imagesWithAlt": 3,
+      "missingAlt": 0,
+      "wordCount": 471,
+      "issues": [
+        "No JSON-LD structured data schema detected"
+      ],
+      "score": 90,
+      "grade": "A+",
+      "category": "core"
     },
     {
       "url": "/solar-installer-near-me/",
@@ -1500,8 +498,8 @@
       "hasSchema": true,
       "schemaTypes": [
         "PostalAddress",
-        "BreadcrumbList",
         "LocalBusiness",
+        "BreadcrumbList",
         "ListItem"
       ],
       "imagesTotal": 0,
@@ -1527,11 +525,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Answer",
-        "FAQPage",
-        "Question",
+        "ListItem",
         "BreadcrumbList",
-        "ListItem"
+        "Answer",
+        "Question",
+        "FAQPage"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1556,13 +554,13 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "WebPage",
-        "Service",
-        "Organization",
         "LocalBusiness",
-        "State",
+        "ListItem",
         "BreadcrumbList",
-        "ListItem"
+        "Service",
+        "State",
+        "Organization",
+        "WebPage"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1587,13 +585,13 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "WebPage",
-        "Answer",
-        "FAQPage",
-        "Question",
         "LocalBusiness",
+        "ListItem",
         "BreadcrumbList",
-        "ListItem"
+        "Answer",
+        "Question",
+        "FAQPage",
+        "WebPage"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -1603,6 +601,294 @@
         "Meta description too long (197 chars, max 160)"
       ],
       "score": 95,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/",
+      "fullUrl": "https://www.solisgreenindia.in/",
+      "title": "Solar Installation Kerala | ₹78,000 Subsidy | Solis Green",
+      "titleLength": 57,
+      "desc": "Residential rooftop solar installation in Kerala with ₹78,000 PM Surya Ghar subsidy, KSEB net metering & 5-year free AMC by Solis Green Energy.",
+      "descLength": 143,
+      "h1": "Residential Solar Installation Company in Kerala",
+      "canonical": "https://www.solisgreenindia.in/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "Review",
+        "LocalBusiness",
+        "Offer",
+        "GeoCoordinates",
+        "ListItem",
+        "AggregateRating",
+        "Rating",
+        "BreadcrumbList",
+        "Service",
+        "OfferCatalog",
+        "Person",
+        "PostalAddress"
+      ],
+      "imagesTotal": 5,
+      "imagesWithAlt": 5,
+      "missingAlt": 0,
+      "wordCount": 370,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/3kw-vs-5kw-solar-system-kerala/",
+      "fullUrl": "https://www.solisgreenindia.in/3kw-vs-5kw-solar-system-kerala/",
+      "title": "3kW vs 5kW Solar System Kerala: Price, Subsidy & ROI Comparison",
+      "titleLength": 63,
+      "desc": "3kW vs 5kW rooftop solar comparison for Kerala homes. Compare KSEB bill savings, PM Surya Ghar subsidy (₹78,000), space needed, and payback period with Solis.",
+      "descLength": 158,
+      "h1": "3kW vs 5kW Solar System in Kerala: Which One Should You Choose?",
+      "canonical": "https://www.solisgreenindia.in/3kw-vs-5kw-solar-system-kerala/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "Article",
+        "Organization"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 174,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "pricing"
+    },
+    {
+      "url": "/about/",
+      "fullUrl": "https://www.solisgreenindia.in/about/",
+      "title": "About Solis Green India | Leading Solar Company in Kerala",
+      "titleLength": 57,
+      "desc": "About Solis Green India: 500+ residential & commercial rooftop solar installations across Kerala. 5+ years experience. Local engineering teams.",
+      "descLength": 143,
+      "h1": "Our Solar Journey in Kerala",
+      "canonical": "https://www.solisgreenindia.in/about/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 4,
+      "imagesWithAlt": 4,
+      "missingAlt": 0,
+      "wordCount": 464,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/best-solar-company-in-kerala/",
+      "fullUrl": "https://www.solisgreenindia.in/best-solar-company-in-kerala/",
+      "title": "Best Solar Company in Kerala | Solis Green India",
+      "titleLength": 48,
+      "desc": "Why Solis Green India is rated among the best solar companies in Kerala: 500+ installations, transparent 70:30 GST pricing & 5-year free AMC.",
+      "descLength": 141,
+      "h1": "Voted Among the Best Solar Companies in Kerala",
+      "canonical": "https://www.solisgreenindia.in/best-solar-company-in-kerala/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "LocalBusiness",
+        "ListItem",
+        "AggregateRating",
+        "BreadcrumbList",
+        "Answer",
+        "Question",
+        "PostalAddress",
+        "FAQPage"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 274,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/best-solar-installer-in-thiruvalla/",
+      "fullUrl": "https://www.solisgreenindia.in/best-solar-installer-in-thiruvalla/",
+      "title": "Best Solar Installer in Thiruvalla | Solis Green India",
+      "titleLength": 54,
+      "desc": "Top solar installer in Thiruvalla by Solis Green India. Rooftop solar panel installation, PM Surya Ghar subsidy & KSEB approval. Call 8301849474.",
+      "descLength": 145,
+      "h1": "Best Solar Installer in Thiruvalla",
+      "canonical": "https://www.solisgreenindia.in/best-solar-installer-in-thiruvalla/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 293,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/careers/customer-support-executive/",
+      "fullUrl": "https://www.solisgreenindia.in/careers/customer-support-executive/",
+      "title": "Customer Support Executive Career | Solis Green India",
+      "titleLength": 53,
+      "desc": "Career opportunity for Customer Support Executive at Solis Green Energy Solutions, Thiruvalla. Competitive salary, incentives, and growth.",
+      "descLength": 138,
+      "h1": "Customer Support Executive",
+      "canonical": "https://www.solisgreenindia.in/careers/customer-support-executive/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "JobPosting",
+        "Place",
+        "Organization"
+      ],
+      "imagesTotal": 1,
+      "imagesWithAlt": 1,
+      "missingAlt": 0,
+      "wordCount": 139,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/careers/solar-installation-technician/",
+      "fullUrl": "https://www.solisgreenindia.in/careers/solar-installation-technician/",
+      "title": "Solar Installation Technician Job | Solis Green India",
+      "titleLength": 53,
+      "desc": "Hiring Solar Installation Technicians & Electricians at Solis Green Energy Solutions, Thiruvalla. Join Kerala",
+      "descLength": 109,
+      "h1": "Solar Installation Technician",
+      "canonical": "https://www.solisgreenindia.in/careers/solar-installation-technician/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "JobPosting",
+        "Place",
+        "Organization"
+      ],
+      "imagesTotal": 1,
+      "imagesWithAlt": 1,
+      "missingAlt": 0,
+      "wordCount": 150,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/cities/",
+      "fullUrl": "https://www.solisgreenindia.in/cities/",
+      "title": "Solar Installation Across Kerala Cities | Solis Green",
+      "titleLength": 53,
+      "desc": "Explore rooftop solar installation coverage across Kottayam, Pathanamthitta, Alappuzha, Kollam, and Thiruvananthapuram by Solis Green India.",
+      "descLength": 140,
+      "h1": "Solar Service Areas Across Kerala",
+      "canonical": "https://www.solisgreenindia.in/cities/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 408,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/contact/contact.html",
+      "fullUrl": "https://www.solisgreenindia.in/contact/contact.html",
+      "title": "Contact Solis Green India | Solar Engineers Kerala",
+      "titleLength": 50,
+      "desc": "Contact Solis Green Energy Solutions in Muthoor, Thiruvalla. Call +91 8301849474 or WhatsApp our engineers for free solar consultation.",
+      "descLength": 135,
+      "h1": "Contact Our Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/contact/contact.html",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "ContactPage",
+        "LocalBusiness",
+        "GeoCoordinates",
+        "ListItem",
+        "BreadcrumbList",
+        "PostalAddress"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 475,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/contact/locations/",
+      "fullUrl": "https://www.solisgreenindia.in/contact/locations/",
+      "title": "Solar Service Locations in Kerala | Solis Green India",
+      "titleLength": 53,
+      "desc": "Find Solis Green Energy service locations across Pathanamthitta, Kottayam, Alappuzha, Kollam, and Trivandrum. Fast local site surveys.",
+      "descLength": 134,
+      "h1": "Our Service Locations",
+      "canonical": "https://www.solisgreenindia.in/contact/locations/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 302,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/contact/quote.html",
+      "fullUrl": "https://www.solisgreenindia.in/contact/quote.html",
+      "title": "Get Free Solar Quote in Kerala | Solis Green India",
+      "titleLength": 50,
+      "desc": "Request a free rooftop solar quote in Kerala. Get custom system sizing, PM Surya Ghar subsidy calculations, and estimated payback period.",
+      "descLength": 137,
+      "h1": "Get Your Free Solar Quote",
+      "canonical": "https://www.solisgreenindia.in/contact/quote.html",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 237,
+      "issues": [],
+      "score": 100,
       "grade": "A+",
       "category": "core"
     },
@@ -1618,9 +904,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -1643,9 +929,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -1668,9 +954,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -1693,9 +979,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -1718,9 +1004,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -1743,9 +1029,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -1768,9 +1054,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -1793,9 +1079,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -1818,9 +1104,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -1843,9 +1129,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "ListItem",
         "BreadcrumbList",
-        "WebPage",
-        "ListItem"
+        "WebPage"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -1855,6 +1141,327 @@
       "score": 100,
       "grade": "A+",
       "category": "pricing"
+    },
+    {
+      "url": "/pm-suryaghar-subsidy-kottayam/",
+      "fullUrl": "https://www.solisgreenindia.in/pm-suryaghar-subsidy-kottayam/",
+      "title": "PM Surya Ghar Subsidy Kottayam | Solis Green India",
+      "titleLength": 50,
+      "desc": "PM Surya Ghar rooftop solar subsidy guide for Kottayam district. Claim up to ₹78,000 DBT subsidy with Solis Green Energy Solutions.",
+      "descLength": 131,
+      "h1": "PM Surya Ghar Solar Subsidy in Kottayam",
+      "canonical": "https://www.solisgreenindia.in/pm-suryaghar-subsidy-kottayam/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 358,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/pm-suryaghar-subsidy-pathanamthitta/",
+      "fullUrl": "https://www.solisgreenindia.in/pm-suryaghar-subsidy-pathanamthitta/",
+      "title": "PM Surya Ghar Subsidy Pathanamthitta | Solis Green",
+      "titleLength": 50,
+      "desc": "Complete PM Surya Ghar solar subsidy guide for Pathanamthitta. Get ₹78,000 MNRE subsidy, eligibility criteria & KSEB approval support.",
+      "descLength": 134,
+      "h1": "PM Surya Ghar Solar Subsidy in Pathanamthitta",
+      "canonical": "https://www.solisgreenindia.in/pm-suryaghar-subsidy-pathanamthitta/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "ListItem",
+        "BreadcrumbList",
+        "Answer",
+        "Question",
+        "FAQPage"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 364,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/privacy-policy/",
+      "fullUrl": "https://www.solisgreenindia.in/privacy-policy/",
+      "title": "Privacy Policy | Solis Green Energy Solutions Kerala",
+      "titleLength": 52,
+      "desc": "Privacy Policy for Solis Green Energy Solutions. Learn how we protect your personal information, consultation inquiries, and rooftop solar data.",
+      "descLength": 144,
+      "h1": "Privacy Policy",
+      "canonical": "https://www.solisgreenindia.in/privacy-policy/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "WebPage"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 167,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/projects/",
+      "fullUrl": "https://www.solisgreenindia.in/projects/",
+      "title": "Solar Projects Portfolio Kerala | Solis Green India",
+      "titleLength": 51,
+      "desc": "Explore rooftop solar installation projects across Kerala completed by Solis Green Energy Solutions. 500+ residential and commercial systems.",
+      "descLength": 141,
+      "h1": "Our Solar Projects Across Kerala",
+      "canonical": "https://www.solisgreenindia.in/projects/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "ItemList",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 5,
+      "imagesWithAlt": 5,
+      "missingAlt": 0,
+      "wordCount": 185,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/projects/karunagappally/",
+      "fullUrl": "https://www.solisgreenindia.in/projects/karunagappally/",
+      "title": "Solar Project in Karunagappally | Solis Green India",
+      "titleLength": 51,
+      "desc": "3kW on-grid rooftop solar installation in Karunagappally, Kollam with PM Surya Ghar subsidy and KSEB net-metering. Solis Green Energy.",
+      "descLength": 134,
+      "h1": "3kW On-Grid Solar EPC Project – Karunagappally",
+      "canonical": "https://www.solisgreenindia.in/projects/karunagappally/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 3,
+      "imagesWithAlt": 3,
+      "missingAlt": 0,
+      "wordCount": 154,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/projects/kollam/",
+      "fullUrl": "https://www.solisgreenindia.in/projects/kollam/",
+      "title": "Solar Projects in Kollam District | Solis Green India",
+      "titleLength": 53,
+      "desc": "Residential and commercial rooftop solar installations across Kollam district with KSEB net-metering and government subsidies by Solis Green.",
+      "descLength": 141,
+      "h1": "Solar EPC Projects Executed in Kollam District",
+      "canonical": "https://www.solisgreenindia.in/projects/kollam/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 209,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/projects/thiruvalla/",
+      "fullUrl": "https://www.solisgreenindia.in/projects/thiruvalla/",
+      "title": "Solar Projects in Thiruvalla | Solis Green India",
+      "titleLength": 48,
+      "desc": "Rooftop solar installations in Thiruvalla, Muthoor, and surrounding Central Travancore NRI villas by Solis Green Energy Solutions.",
+      "descLength": 130,
+      "h1": "Residential Solar Project in Thiruvalla – 5kWp On-Grid",
+      "canonical": "https://www.solisgreenindia.in/projects/thiruvalla/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 3,
+      "imagesWithAlt": 3,
+      "missingAlt": 0,
+      "wordCount": 183,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/residential-solar/",
+      "fullUrl": "https://www.solisgreenindia.in/residential-solar/",
+      "title": "Residential Solar Systems Kerala | Solis Green India",
+      "titleLength": 52,
+      "desc": "Residential solar systems in Kerala: Save up to 80% on bills with PM Surya Ghar subsidy & SBI 6% loan. 1kW to 10kW rooftop plants. Free quote today.",
+      "descLength": 148,
+      "h1": "Residential Solar Solutions for Kerala Homes",
+      "canonical": "https://www.solisgreenindia.in/residential-solar/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "Brand",
+        "AggregateOffer",
+        "ListItem",
+        "BreadcrumbList",
+        "Product"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 377,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/services/",
+      "fullUrl": "https://www.solisgreenindia.in/services/",
+      "title": "Solar Energy Services in Kerala | Solis Green India",
+      "titleLength": 51,
+      "desc": "Comprehensive solar services in Kerala: Residential rooftop solar, commercial EPC, solar net metering, maintenance & KSEB approvals. Call 8301849474.",
+      "descLength": 149,
+      "h1": "Complete Solar Energy Solutions in Kerala",
+      "canonical": "https://www.solisgreenindia.in/services/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 862,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/services/commercial-solar/",
+      "fullUrl": "https://www.solisgreenindia.in/services/commercial-solar/",
+      "title": "Commercial Solar Systems Kerala | Solis Green India",
+      "titleLength": 51,
+      "desc": "Commercial & industrial solar systems in Kerala with accelerated tax depreciation & KSEB HT/LT net-metering. Solis Green Energy Solutions.",
+      "descLength": 138,
+      "h1": "Commercial Solar Solutions",
+      "canonical": "https://www.solisgreenindia.in/services/commercial-solar/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "Service",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 490,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/services/industrial-solar/",
+      "fullUrl": "https://www.solisgreenindia.in/services/industrial-solar/",
+      "title": "Industrial Solar Power Plants Kerala | Solis Green India",
+      "titleLength": 56,
+      "desc": "High-capacity industrial rooftop solar power plants in Kerala. Cut manufacturing power costs with turnkey EPC execution by Solis Green Energy.",
+      "descLength": 142,
+      "h1": "Industrial Solar Power Plants",
+      "canonical": "https://www.solisgreenindia.in/services/industrial-solar/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "Service",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 562,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/services/residential-solar/",
+      "fullUrl": "https://www.solisgreenindia.in/services/residential-solar/",
+      "title": "Residential Solar in Kerala | Subsidy & Loans | Solis Green",
+      "titleLength": 59,
+      "desc": "Residential rooftop solar in Kerala with ₹78,000 PM Surya Ghar subsidy, KSEB net-metering & SBI 10-year loan support. Free survey: 8301849474.",
+      "descLength": 142,
+      "h1": "🚨 Premium Residential Solar Solutions for Kerala Homes",
+      "canonical": "https://www.solisgreenindia.in/services/residential-solar/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "LocalBusiness",
+        "Offer",
+        "Service",
+        "State",
+        "PostalAddress"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 940,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/services/solar-maintenance/",
+      "fullUrl": "https://www.solisgreenindia.in/services/solar-maintenance/",
+      "title": "Solar Panel AMC & Maintenance Kerala | Solis Green India",
+      "titleLength": 56,
+      "desc": "Professional solar panel cleaning, inverter diagnostics, and preventive AMC maintenance across Kerala by certified technicians. Call 8301849474.",
+      "descLength": 144,
+      "h1": "Solar Maintenance Services",
+      "canonical": "https://www.solisgreenindia.in/services/solar-maintenance/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "Service",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 679,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
     },
     {
       "url": "/solar-company-in-alappuzha/",
@@ -2084,13 +1691,13 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Answer",
-        "FAQPage",
         "LocalBusiness",
-        "BreadcrumbList",
         "ListItem",
-        "Question"
+        "BreadcrumbList",
+        "Answer",
+        "Question",
+        "PostalAddress",
+        "FAQPage"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2233,15 +1840,15 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "City",
-        "PostalAddress",
-        "OfferCatalog",
-        "GeoCoordinates",
-        "Service",
         "LocalBusiness",
-        "BreadcrumbList",
+        "City",
         "Offer",
-        "ListItem"
+        "GeoCoordinates",
+        "ListItem",
+        "BreadcrumbList",
+        "Service",
+        "OfferCatalog",
+        "PostalAddress"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2264,15 +1871,15 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "City",
-        "PostalAddress",
-        "OfferCatalog",
-        "GeoCoordinates",
-        "Service",
         "LocalBusiness",
-        "BreadcrumbList",
+        "City",
         "Offer",
-        "ListItem"
+        "GeoCoordinates",
+        "ListItem",
+        "BreadcrumbList",
+        "Service",
+        "OfferCatalog",
+        "PostalAddress"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2295,11 +1902,11 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "Answer",
-        "FAQPage",
-        "Question",
+        "ListItem",
         "BreadcrumbList",
-        "ListItem"
+        "Answer",
+        "Question",
+        "FAQPage"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2479,6 +2086,32 @@
       "category": "districts"
     },
     {
+      "url": "/solar-company-in-kottayam/mundakayam.html",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/mundakayam.html",
+      "title": "Solar Company in Mundakayam | Solis Green India",
+      "titleLength": 47,
+      "desc": "Professional solar company in Mundakayam, Kottayam. Solar panel installation, PM Surya Ghar subsidy & maintenance. Free survey: 8301849474.",
+      "descLength": 139,
+      "h1": "Solar Company in Mundakayam",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/mundakayam.html",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 166,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
       "url": "/solar-company-in-kottayam/pala/",
       "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/pala/",
       "title": "Solar Company in Pala | Solis Green India",
@@ -2527,6 +2160,32 @@
       "category": "districts"
     },
     {
+      "url": "/solar-company-in-kottayam/vakathanam.html",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/vakathanam.html",
+      "title": "Solar Company in Vakathanam | Solis Green India",
+      "titleLength": 47,
+      "desc": "Solar panel installation in Vakathanam, Kottayam by Solis Green India. PM Surya Ghar subsidy, KSEB net-metering & 5-year AMC. Call 8301849474.",
+      "descLength": 142,
+      "h1": "Solar Company in Vakathanam",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/vakathanam.html",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 165,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
       "url": "/solar-company-in-pathanamthitta/",
       "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/",
       "title": "Solar Company in Pathanamthitta District | Solis Green India",
@@ -2538,13 +2197,13 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Answer",
-        "FAQPage",
         "LocalBusiness",
-        "BreadcrumbList",
         "ListItem",
-        "Question"
+        "BreadcrumbList",
+        "Answer",
+        "Question",
+        "PostalAddress",
+        "FAQPage"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2567,8 +2226,8 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "BreadcrumbList",
         "SolarEnergySystemInstaller",
+        "BreadcrumbList",
         "ListItem"
       ],
       "imagesTotal": 0,
@@ -2713,10 +2372,10 @@
       "hasSchema": true,
       "schemaTypes": [
         "City",
-        "PostalAddress",
+        "ListItem",
         "SolarEnergySystemInstaller",
         "BreadcrumbList",
-        "ListItem"
+        "PostalAddress"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2763,14 +2422,14 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Answer",
-        "FAQPage",
-        "AggregateRating",
         "LocalBusiness",
-        "BreadcrumbList",
         "ListItem",
-        "Question"
+        "AggregateRating",
+        "BreadcrumbList",
+        "Answer",
+        "Question",
+        "PostalAddress",
+        "FAQPage"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2793,11 +2452,11 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "City",
-        "PostalAddress",
         "LocalBusiness",
+        "City",
+        "ListItem",
         "BreadcrumbList",
-        "ListItem"
+        "PostalAddress"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2807,6 +2466,224 @@
       "score": 100,
       "grade": "A+",
       "category": "districts"
+    },
+    {
+      "url": "/solar-company-near-me/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-near-me/",
+      "title": "Solar Company Near Me in Kerala | Solis Green India",
+      "titleLength": 51,
+      "desc": "Looking for a trusted solar company near you in Kerala? Solis Green India provides rooftop solar, ₹78,000 subsidy & 25-year panel warranty.",
+      "descLength": 139,
+      "h1": "Top Rated Solar Company Near You",
+      "canonical": "https://www.solisgreenindia.in/solar-company-near-me/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "LocalBusiness",
+        "ListItem",
+        "AggregateRating",
+        "BreadcrumbList",
+        "PostalAddress"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 236,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/solar-consultant-kerala/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-consultant-kerala/",
+      "title": "Solar Energy Consultant in Kerala | Solis Green India",
+      "titleLength": 53,
+      "desc": "Expert solar energy consulting in Kerala. Feasibility analysis, KSEB transformer capacity checks & PM Surya Ghar assistance by Solis Green.",
+      "descLength": 139,
+      "h1": "Professional Solar Consulting & Energy Audits in Kerala",
+      "canonical": "https://www.solisgreenindia.in/solar-consultant-kerala/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "LocalBusiness",
+        "ListItem",
+        "BreadcrumbList",
+        "Service",
+        "State",
+        "Answer",
+        "Question",
+        "FAQPage"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 367,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/solar-consultant-near-me/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-consultant-near-me/",
+      "title": "Solar Consultant Near Me in Kerala | Solis Green India",
+      "titleLength": 54,
+      "desc": "Certified rooftop solar consultants near you in Kerala. Free site inspection, shade analysis, and KSEB net-metering paperwork support.",
+      "descLength": 134,
+      "h1": "Expert Solar Consultant Near You",
+      "canonical": "https://www.solisgreenindia.in/solar-consultant-near-me/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "LocalBusiness",
+        "ListItem",
+        "BreadcrumbList",
+        "Answer",
+        "Question",
+        "PostalAddress",
+        "FAQPage"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 226,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/solar-installation-cost-kottayam/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-installation-cost-kottayam/",
+      "title": "Solar Installation Cost in Kottayam | Solis Green India",
+      "titleLength": 55,
+      "desc": "Detailed 3kW, 5kW, and 10kW solar system price guide for Kottayam homes. Net pricing after ₹78,000 PM Surya Ghar subsidy and EMI options.",
+      "descLength": 137,
+      "h1": "Solar Installation Cost in Kottayam",
+      "canonical": "https://www.solisgreenindia.in/solar-installation-cost-kottayam/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 317,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-installation-cost-pathanamthitta/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-installation-cost-pathanamthitta/",
+      "title": "Solar Installation Cost Pathanamthitta | Solis Green",
+      "titleLength": 52,
+      "desc": "Rooftop solar installation costs in Pathanamthitta after ₹78,000 central subsidy. Compare 3kW and 5kW system pricing with Solis Green Energy.",
+      "descLength": 141,
+      "h1": "Solar Installation Cost in Pathanamthitta",
+      "canonical": "https://www.solisgreenindia.in/solar-installation-cost-pathanamthitta/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 299,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-installation-kerala/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-installation-kerala/",
+      "title": "Solar Installation in Kerala | Solis Green India",
+      "titleLength": 48,
+      "desc": "Rooftop solar panel installation in Kerala with ₹78,000 PM Surya Ghar subsidy, tier-1 panels, and seamless KSEB net metering. Call 8301849474.",
+      "descLength": 142,
+      "h1": "Top Rated Solar Installation Company in Kerala",
+      "canonical": "https://www.solisgreenindia.in/solar-installation-kerala/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "LocalBusiness",
+        "ListItem",
+        "BreadcrumbList",
+        "Answer",
+        "Question",
+        "PostalAddress",
+        "FAQPage"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 273,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
+    },
+    {
+      "url": "/solar-subsidy/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-subsidy/",
+      "title": "Solar Subsidy in Kerala | ₹78,000 Scheme | Solis Green",
+      "titleLength": 54,
+      "desc": "Solar subsidy in Kerala: Claim up to ₹78,000 MNRE subsidy under PM Surya Ghar. Check eligibility, net-metering & apply with Solis Green Energy.",
+      "descLength": 143,
+      "h1": "Solar Subsidy in Kerala",
+      "canonical": "https://www.solisgreenindia.in/solar-subsidy/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "LocalBusiness",
+        "Offer",
+        "ListItem",
+        "BreadcrumbList",
+        "Service",
+        "State"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 456,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "pricing"
+    },
+    {
+      "url": "/tata-power-solar-kerala/",
+      "fullUrl": "https://www.solisgreenindia.in/tata-power-solar-kerala/",
+      "title": "Tata Solar vs Solis Green Kerala | Honest Comparison",
+      "titleLength": 52,
+      "desc": "Compare Tata Power Solar with Solis Green Energy in Kerala: Component specs, 70:30 GST pricing, warranty terms, and local service response times.",
+      "descLength": 145,
+      "h1": "Authorized Tata Power Solar Installer in Kerala",
+      "canonical": "https://www.solisgreenindia.in/tata-power-solar-kerala/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "LocalBusiness",
+        "ListItem",
+        "BreadcrumbList",
+        "State",
+        "PostalAddress"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 231,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
     },
     {
       "url": "/useful-resources/",
