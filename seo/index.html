@@ -401,7 +401,7 @@
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="tab-competitors-btn" data-bs-toggle="pill" data-bs-target="#tab-competitors" type="button" role="tab">
-                    <i class="fa-solid fa-chess-knight me-1"></i> Competitor Benchmark
+                    <i class="fa-solid fa-map-location-dot me-1"></i> Competitors & Map Pack
                 </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -575,82 +575,230 @@
             <!-- ========================================================= -->
             <!-- TAB 4: COMPETITOR BENCHMARK & GAP ANALYZER -->
             <!-- ========================================================= -->
+            <!-- ========================================================= -->
+            <!-- TAB 4: LOCATION-BASED COMPETITOR INTELLIGENCE & MAP PACK -->
+            <!-- ========================================================= -->
             <div class="tab-pane fade" id="tab-competitors" role="tabpanel">
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
-                    <div class="card-header bg-white py-3 px-4 border-bottom">
-                        <h5 class="fw-bold font-display text-dark mb-0"><i class="fa-solid fa-chess-knight text-warning me-2"></i> Solis vs Competitors: Kerala Solar Search Battlefield</h5>
-                        <small class="text-muted">Where national brands and local installers fall short, and how Solis captures the top ranking spots</small>
+                    <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0">
+                                <i class="fa-solid fa-chess-knight text-warning me-2"></i> Solis vs Surrounding Competitors: Hyper-Local Battleground
+                            </h5>
+                            <small class="text-muted">Real solar installers operating around Solis in your chosen Kerala locations, their market strength, Google review footprint, and how Solis captures the market.</small>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill small">
+                                <i class="fa-solid fa-location-crosshairs me-1"></i> Muthoor, Thiruvalla HQ Base
+                            </span>
+                        </div>
                     </div>
                     <div class="card-body p-4">
-                        <div class="table-responsive mb-4">
-                            <table class="table table-bordered align-middle text-center mb-0">
-                                <thead class="table-light text-muted small text-uppercase">
-                                    <tr>
-                                        <th class="text-start ps-3" style="width: 28%;">Key Capability / Feature</th>
-                                        <th style="width: 24%; background: #ecfdf5; color: #065f46;" class="fw-bold">
-                                            <i class="fa-solid fa-star text-warning me-1"></i> Solis Green Energy
-                                        </th>
-                                        <th style="width: 24%;">National Brands (Tata / Loom)</th>
-                                        <th style="width: 24%;">Generic Kerala EPC Installers</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-start ps-3 fw-bold">Instant Online Sizing & Cost Calculator</td>
-                                        <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Full 70:30 GST Engine</td>
-                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Generic Lead Forms Only</td>
-                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> None (Call for quote)</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start ps-3 fw-bold">Micro-Local Town Landing Pages</td>
-                                        <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> 33 Dedicated Town Hubs</td>
-                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Only 1 "Kerala" page</td>
-                                        <td class="text-warning-emphasis"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> 2–3 district pages</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start ps-3 fw-bold">PM Surya Ghar Net Subsidy Transparency</td>
-                                        <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Exact 3kW/5kW pricing</td>
-                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Vague "Up to ₹78,000"</td>
-                                        <td class="text-warning-emphasis"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> Outdated subsidy rules</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start ps-3 fw-bold">Real-Time Lead Alerts (Call/WhatsApp)</td>
-                                        <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Instant < 5s phone alert</td>
-                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> 24-48 hr corporate delay</td>
-                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Email only (manual check)</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-start ps-3 fw-bold">Google FAQ Rich Snippet Schemas</td>
-                                        <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Deployed on core pages</td>
-                                        <td class="text-warning-emphasis"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> Basic corporate schema</td>
-                                        <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Zero structured data</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                        <!-- Location Selector Pills -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-dark small text-uppercase mb-2">
+                                <i class="fa-solid fa-filter me-1 text-primary"></i> Filter by Target Location / District:
+                            </label>
+                            <div class="d-flex flex-wrap gap-2" id="competitorLocationPills">
+                                <button class="btn btn-sm btn-dark rounded-pill px-3 py-1 comp-loc-btn active" onclick="filterCompetitorLocation('all', this)">
+                                    <i class="fa-solid fa-globe me-1"></i> All Locations (Central & South Kerala)
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 comp-loc-btn" onclick="filterCompetitorLocation('thiruvalla', this)">
+                                    <i class="fa-solid fa-location-dot text-danger me-1"></i> Thiruvalla & Pathanamthitta (Solis HQ)
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 comp-loc-btn" onclick="filterCompetitorLocation('kottayam', this)">
+                                    <i class="fa-solid fa-location-dot text-danger me-1"></i> Kottayam & Changanassery
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 comp-loc-btn" onclick="filterCompetitorLocation('kollam', this)">
+                                    <i class="fa-solid fa-location-dot text-danger me-1"></i> Kollam & Karunagappally
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 comp-loc-btn" onclick="filterCompetitorLocation('alappuzha', this)">
+                                    <i class="fa-solid fa-location-dot text-danger me-1"></i> Alappuzha & Coastal Belt
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 comp-loc-btn" onclick="filterCompetitorLocation('kochi', this)">
+                                    <i class="fa-solid fa-location-dot text-danger me-1"></i> Ernakulam / Kochi (Metro EPCs)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Location Intelligence Briefing Banner -->
+                        <div class="card border rounded-3 p-3 p-md-4 mb-4" id="locationBriefingCard" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-left: 4px solid #FF6A2A !important;">
+                            <!-- Filled dynamically by JS -->
+                        </div>
+
+                        <!-- "Surrounding Me" Google Local 3-Pack Radar & Live Query Sandbox -->
+                        <div class="row g-3 mb-4">
+                            <!-- Left: Google 3-Pack Factor Checklist -->
+                            <div class="col-12 col-lg-7">
+                                <div class="card border rounded-3 p-3 h-100 bg-white shadow-sm">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold text-dark font-display mb-0">
+                                            <i class="fa-brands fa-google text-danger me-2"></i> "Surrounding Me" Google Map Pack (3-Pack) Radar
+                                        </h6>
+                                        <span class="badge bg-success-subtle text-success border border-success-subtle">Top 3 Visibility</span>
+                                    </div>
+                                    <p class="small text-muted mb-3" style="font-size: 0.8rem;">
+                                        When a homeowner in Kerala searches <code>"solar installation near me"</code> or <code>"solar company in [town]"</code>, Google displays the <b>Top 3 Map Pack</b> above standard organic links. Here is how Solis captures those spots:
+                                    </p>
+                                    <div class="row g-2 small">
+                                        <div class="col-12 col-md-6">
+                                            <div class="p-2 border rounded bg-light">
+                                                <div class="fw-bold text-dark"><i class="fa-solid fa-bullseye text-primary me-1"></i> 1. Proximity Advantage</div>
+                                                <div class="text-muted" style="font-size: 0.75rem;">Solis's Muthoor (Thiruvalla) HQ gives 0km physical proximity rank across Thiruvalla, Chengannur & Changanassery.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="p-2 border rounded bg-light">
+                                                <div class="fw-bold text-dark"><i class="fa-solid fa-star text-warning me-1"></i> 2. Keyword-Rich Reviews</div>
+                                                <div class="text-muted" style="font-size: 0.75rem;">Ask happy customers to mention their town in reviews (e.g., <i>"Installed 3kW in Pala / Muthoor"</i>).</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="p-2 border rounded bg-light">
+                                                <div class="fw-bold text-dark"><i class="fa-solid fa-code text-success me-1"></i> 3. Local Schema Markup</div>
+                                                <div class="text-muted" style="font-size: 0.75rem;">All 33 Solis location pages are wired with <code>LocalBusiness</code> schema pointing to Google Maps.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="p-2 border rounded bg-light">
+                                                <div class="fw-bold text-dark"><i class="fa-solid fa-calculator text-danger me-1"></i> 4. 70:30 GST Calculator</div>
+                                                <div class="text-muted" style="font-size: 0.75rem;">Competitors hide prices. Solis's transparent pricing generates 3x higher click-through-rates.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Live Query Sandbox -->
+                            <div class="col-12 col-lg-5">
+                                <div class="card border rounded-3 p-3 h-100 bg-white shadow-sm">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold text-dark font-display mb-0">
+                                            <i class="fa-solid fa-magnifying-glass-location text-primary me-2"></i> Live Search Query Tester
+                                        </h6>
+                                        <span class="badge bg-light text-muted border">Instant SERP</span>
+                                    </div>
+                                    <p class="small text-muted mb-2" style="font-size: 0.8rem;">
+                                        Test how Solis and competitors rank right now on live Google Search & Google Maps:
+                                    </p>
+                                    <div class="mb-2">
+                                        <label class="form-label small fw-bold text-muted mb-1">Preset Local Keyword:</label>
+                                        <select class="form-select form-select-sm" id="localQueryPresetSelect" onchange="updateCustomQueryInput()">
+                                            <option value="solar installation in Thiruvalla">solar installation in Thiruvalla</option>
+                                            <option value="solar company in Kottayam">solar company in Kottayam</option>
+                                            <option value="solar rooftop Pathanamthitta">solar rooftop Pathanamthitta</option>
+                                            <option value="3kw solar system price Kerala">3kw solar system price Kerala</option>
+                                            <option value="solar installation near Muthoor">solar installation near Muthoor</option>
+                                            <option value="best solar company in Kollam">best solar company in Kollam</option>
+                                            <option value="PM Surya Ghar subsidy installer Kerala">PM Surya Ghar subsidy installer Kerala</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-sm" id="localQueryCustomInput" value="solar installation in Thiruvalla">
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-primary rounded-pill flex-grow-1" onclick="launchLiveSearch('google')">
+                                            <i class="fa-brands fa-google me-1"></i> Google Search
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger rounded-pill flex-grow-1" onclick="launchLiveSearch('maps')">
+                                            <i class="fa-solid fa-map-location-dot me-1"></i> Google Maps 3-Pack
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Surrounding Competitors Grid -->
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="fw-bold font-display text-dark mb-0">
+                                <i class="fa-solid fa-id-card-clip text-primary me-2"></i> Identified Local Competitors & Ground Strength (<span id="competitorsCountLabel">8</span>)
+                            </h6>
+                            <small class="text-muted">Direct ground analysis of installers operating in this sector</small>
+                        </div>
+
+                        <div class="row g-3 mb-4" id="competitorsCardsGrid">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+
+                        <!-- Capability Comparison Table -->
+                        <div class="card border rounded-3 overflow-hidden mb-4 shadow-sm">
+                            <div class="card-header bg-light py-2 px-3 border-bottom">
+                                <h6 class="fw-bold font-display text-dark mb-0" style="font-size: 0.9rem;">
+                                    <i class="fa-solid fa-scale-balanced text-primary me-2"></i> Strategic Capability Matrix: Solis vs Competitors
+                                </h6>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered align-middle text-center mb-0" style="font-size: 0.85rem;">
+                                    <thead class="table-light text-muted small text-uppercase">
+                                        <tr>
+                                            <th class="text-start ps-3" style="width: 28%;">Key Capability / Feature</th>
+                                            <th style="width: 24%; background: #ecfdf5; color: #065f46;" class="fw-bold">
+                                                <i class="fa-solid fa-star text-warning me-1"></i> Solis Green Energy
+                                            </th>
+                                            <th style="width: 24%;">National Brands (Tata / Loom)</th>
+                                            <th style="width: 24%;">Generic Kerala EPC Installers</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-start ps-3 fw-bold">Instant Online Sizing & Cost Calculator</td>
+                                            <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Full 70:30 GST Engine</td>
+                                            <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Generic Lead Forms Only</td>
+                                            <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> None (Call for quote)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start ps-3 fw-bold">Micro-Local Town Landing Pages</td>
+                                            <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> 33 Dedicated Town Hubs</td>
+                                            <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Only 1 "Kerala" page</td>
+                                            <td class="text-warning-emphasis"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> 2–3 district pages</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start ps-3 fw-bold">PM Surya Ghar Net Subsidy Transparency</td>
+                                            <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Exact 3kW/5kW pricing</td>
+                                            <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Vague "Up to ₹78,000"</td>
+                                            <td class="text-warning-emphasis"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> Outdated subsidy rules</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start ps-3 fw-bold">Real-Time Lead Alerts (Call/WhatsApp)</td>
+                                            <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Instant < 5s phone alert</td>
+                                            <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> 24-48 hr corporate delay</td>
+                                            <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Email only (manual check)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start ps-3 fw-bold">Google FAQ Rich Snippet Schemas</td>
+                                            <td class="bg-success-subtle text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Deployed on core pages</td>
+                                            <td class="text-warning-emphasis"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> Basic corporate schema</td>
+                                            <td class="text-muted"><i class="fa-solid fa-circle-xmark text-danger me-1"></i> Zero structured data</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         <!-- 3 Actionable Strategies -->
-                        <h6 class="fw-bold font-display text-dark mb-3"><i class="fa-solid fa-wand-magic-sparkles text-primary me-2"></i> 3 Actionable Strategies to Outrank Competitors:</h6>
+                        <h6 class="fw-bold font-display text-dark mb-3"><i class="fa-solid fa-wand-magic-sparkles text-primary me-2"></i> 3 Tactical Action Items to Outrank Them Locally:</h6>
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <div class="p-3 bg-light rounded-3 border h-100">
                                     <div class="fw-bold text-dark mb-1"><span class="badge bg-primary me-1">1</span> Sizing Calculator as Link Magnet</div>
-                                    <small class="text-muted">Competitors force users to submit phone numbers before seeing prices. Promoting Solis’s transparent calculator builds immediate trust and backlinks.</small>
+                                    <small class="text-muted">Competitors force users to submit phone numbers before seeing prices. Promoting Solis’s transparent calculator builds immediate trust and captures high-intent buyers.</small>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="p-3 bg-light rounded-3 border h-100">
                                     <div class="fw-bold text-dark mb-1"><span class="badge bg-success me-1">2</span> Dominating Long-Tail Towns</div>
-                                    <small class="text-muted">Target high-wealth towns like <i>Pala, Thiruvalla, Mallappally, and Kozhencherry</i> where big national brands don't have dedicated pages.</small>
+                                    <small class="text-muted">Target high-wealth towns like <i>Pala, Thiruvalla, Mallappally, and Kozhencherry</i> where big national brands don't have dedicated pages or local addresses.</small>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="p-3 bg-light rounded-3 border h-100">
-                                    <div class="fw-bold text-dark mb-1"><span class="badge bg-warning text-dark me-1">3</span> Expandable FAQ Snippets</div>
-                                    <small class="text-muted">Adding Solis’s pre-built FAQ schema allows your Google search result to occupy double the vertical screen space on mobile phones.</small>
+                                    <div class="fw-bold text-dark mb-1"><span class="badge bg-warning text-dark me-1">3</span> Google Review Keyword Strategy</div>
+                                    <small class="text-muted">Prompt every satisfied customer to specify their town name in their Google review. Google's algorithm directly ranks listings with matching locality terms.</small>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -1667,12 +1815,402 @@
             }, 1000);
         }
 
+        // =========================================================================
+        // LOCAL COMPETITOR INTELLIGENCE & MAP PACK ENGINE
+        // =========================================================================
+        const LOCAL_COMPETITORS_DATA = [
+            {
+                name: "Sekhmet Energy India Pvt Ltd",
+                locationId: "thiruvalla",
+                locationName: "Thiruvalla & Pathanamthitta",
+                area: "Muthoor / Thiruvalla Belt",
+                type: "Regional Solar EPC",
+                googleRating: "4.7",
+                reviewsCount: "115+ reviews",
+                mapPackRank: "Top 3 in Thiruvalla",
+                focus: "Residential Rooftops & NRI Villas",
+                strengths: [
+                    "High brand visibility among NRI residential villa owners in Thiruvalla",
+                    "Experienced with KSEB net metering and MNRE subsidy documentation",
+                    "Active word-of-mouth throughout Pathanamthitta district"
+                ],
+                weaknesses: [
+                    "No upfront pricing or instant cost calculator (forces lead capture form)",
+                    "Lacks hyper-local pages for small towns (Pala, Kozhencherry, Ranni)",
+                    "No transparent 70:30 GST calculation breakdown online"
+                ],
+                solisAdvantage: "Solis is based directly in Muthoor, Thiruvalla. Promote Solis's instant 70:30 GST calculator to NRI homeowners who prefer transparent self-service numbers before speaking to sales reps.",
+                searchQuery: "solar installation in Thiruvalla",
+                mapsQuery: "solar company Thiruvalla"
+            },
+            {
+                name: "FGE Solar",
+                locationId: "thiruvalla",
+                locationName: "Pathanamthitta & Thiruvalla",
+                area: "Pathanamthitta, Adoor & Ranni",
+                type: "Empanelled Installer",
+                googleRating: "4.5",
+                reviewsCount: "48+ reviews",
+                mapPackRank: "Top 5 in Pathanamthitta",
+                focus: "PM Surya Ghar Subsidies & Domestic Rooftops",
+                strengths: [
+                    "Active handling of PM Surya Ghar subsidy registrations",
+                    "Covers rural pockets like Ranni, Konni, and Adoor",
+                    "Established presence for domestic grid-tied setups"
+                ],
+                weaknesses: [
+                    "Slow website with minimal on-page SEO & no structured FAQ schemas",
+                    "No instant WhatsApp quote integration or live cost calculation",
+                    "Relies heavily on traditional local shop referrals"
+                ],
+                solisAdvantage: "Solis delivers instant < 5-second WhatsApp/phone callback response and has dedicated high-ranking landing pages for Ranni, Adoor, and Pathanamthitta.",
+                searchQuery: "solar installation Pathanamthitta",
+                mapsQuery: "solar installer Pathanamthitta"
+            },
+            {
+                name: "Sunsenz Solar (Moopens Energy)",
+                locationId: "kottayam",
+                locationName: "Kottayam & Changanassery",
+                area: "Kottayam, Pala & Central Kerala",
+                type: "Prominent Kerala EPC",
+                googleRating: "4.8",
+                reviewsCount: "160+ reviews",
+                mapPackRank: "Top 3 in Kottayam",
+                focus: "Custom Rooftop & Commercial Projects",
+                strengths: [
+                    "High Google review volume with strong photo proof across Kottayam",
+                    "Strong engineering branding for residential villas",
+                    "Covers KSEB approvals end-to-end smoothly"
+                ],
+                weaknesses: [
+                    "Premium pricing structure without publicly visible pricing",
+                    "Inquiry form requires extensive personal info before giving cost estimates",
+                    "No interactive 3kW / 5kW net subsidy breakdown tool"
+                ],
+                solisAdvantage: "Outrank them on high-intent transactional search terms (like '3kW solar price Kottayam' and '5kW subsidy Kerala') where price-conscious buyers want direct answers.",
+                searchQuery: "solar company in Kottayam",
+                mapsQuery: "solar installation Kottayam"
+            },
+            {
+                name: "Kondaas Automation Pvt Ltd",
+                locationId: "kottayam",
+                locationName: "Kottayam & Central Kerala",
+                area: "Kottayam & State-wide",
+                type: "Statewide Industrial/Residential EPC",
+                googleRating: "4.6",
+                reviewsCount: "320+ reviews",
+                mapPackRank: "Top 5 in Central Kerala",
+                focus: "Large Residential & Institutional Solar",
+                strengths: [
+                    "Massive brand scale across South India with MNRE empanelment",
+                    "Promotes 25-year tier-1 panel warranties heavily",
+                    "Strong financial tie-ups for solar bank loans"
+                ],
+                weaknesses: [
+                    "Large corporate overhead leads to slower personalized customer service for single homes",
+                    "Generic single-page Kerala presence; misses local towns like Pala, Ettumanoor, Changanassery",
+                    "Long ticketing response times for post-installation maintenance"
+                ],
+                solisAdvantage: "Solis offers same-day local site visits in Kottayam/Changanassery and dedicated local engineer support without corporate call center bureaucracy.",
+                searchQuery: "rooftop solar Kottayam",
+                mapsQuery: "solar rooftop Kottayam"
+            },
+            {
+                name: "Tata Power Solar Authorized Dealers",
+                locationId: "kottayam",
+                locationName: "Kottayam & Thiruvalla",
+                area: "Kottayam Town & Thiruvalla Main Road",
+                type: "National Brand Authorized Dealer",
+                googleRating: "4.3",
+                reviewsCount: "35+ reviews",
+                mapPackRank: "Mid-Pack (Dealers vary)",
+                focus: "Brand-conscious Residential Homeowners",
+                strengths: [
+                    "Massive nationwide consumer trust under the Tata brand name",
+                    "Easy access to national solar loan schemes and TV ad awareness"
+                ],
+                weaknesses: [
+                    "Higher retail equipment markup due to multi-tier franchise margins",
+                    "Physical execution is subcontracted to local freelance electricians",
+                    "Franchise websites are static corporate templates with zero local Kerala customization"
+                ],
+                solisAdvantage: "Solis provides direct EPC execution with in-house engineers, saving the customer franchise margins while matching or exceeding Tier-1 component specs.",
+                searchQuery: "Tata power solar dealer Kottayam",
+                mapsQuery: "Tata solar Kottayam"
+            },
+            {
+                name: "Illumine Energy & Mitra Power",
+                locationId: "kollam",
+                locationName: "Kollam & Karunagappally",
+                area: "Kollam & South Kerala Corridor",
+                type: "Regional EPC Contractor",
+                googleRating: "4.6",
+                reviewsCount: "85+ reviews",
+                mapPackRank: "Top 3 in Kollam",
+                focus: "Commercial & Medium Residential",
+                strengths: [
+                    "Established presence in Kollam city and southern coastal corridor",
+                    "Experienced with ANERT tenders and commercial KSEB net-metering"
+                ],
+                weaknesses: [
+                    "Weak presence in northern towns bordering Pathanamthitta (Adoor, Karunagappally)",
+                    "No micro-town landing pages or rich snippet schemas for subsidy queries"
+                ],
+                solisAdvantage: "Solis captures North Kollam / Karunagappally searches with dedicated district landing pages and rapid Muthoor-based engineering dispatch.",
+                searchQuery: "solar installation in Kollam",
+                mapsQuery: "solar company Kollam"
+            },
+            {
+                name: "Sunsenz & Local Coastal Installers",
+                locationId: "alappuzha",
+                locationName: "Alappuzha & Kayamkulam",
+                area: "Alappuzha, Cherthala & Kayamkulam",
+                type: "District Specialist",
+                googleRating: "4.5",
+                reviewsCount: "50+ reviews",
+                mapPackRank: "Top 3 in Alappuzha",
+                focus: "Coastal Residential & Resorts",
+                strengths: [
+                    "Familiarity with coastal humidity & roof mounting challenges",
+                    "Active in Kayamkulam and central Alappuzha"
+                ],
+                weaknesses: [
+                    "Rarely specify anodized aluminum vs hot-dip GI corrosion specs online",
+                    "Minimal digital search presence; relies on roadside signboards"
+                ],
+                solisAdvantage: "Solis highlights superior anti-corrosion anodized aluminum structures and provides clear online sizing tailored to coastal Kerala conditions.",
+                searchQuery: "solar company Alappuzha",
+                mapsQuery: "solar installation Alappuzha"
+            },
+            {
+                name: "El Sol Power Solutions",
+                locationId: "kochi",
+                locationName: "Ernakulam / Kochi & Statewide",
+                area: "Kochi Metro & Kerala-wide",
+                type: "Statewide EPC Major",
+                googleRating: "4.7",
+                reviewsCount: "250+ reviews",
+                mapPackRank: "Top 3 in Kochi",
+                focus: "High-Volume Residential & Commercial (8000+ installs)",
+                strengths: [
+                    "Huge installation track record with state government awards",
+                    "Dedicated maintenance fleet and app-based monitoring setup"
+                ],
+                weaknesses: [
+                    "Headquartered in Kochi; less responsive to rural Central Travancore requests",
+                    "Fixed standard packages without custom flexibility for traditional Kerala hip/sloped tile roofs"
+                ],
+                solisAdvantage: "Solis specializes in Kerala tiled and sloped roof custom mounting, offering local agility that Kochi-centric companies cannot match.",
+                searchQuery: "solar installation Kochi",
+                mapsQuery: "solar company Ernakulam"
+            }
+        ];
+
+        const LOCATION_BRIEFINGS = {
+            all: {
+                title: "Executive Overview: Central & South Kerala Battleground",
+                proximity: "Muthoor, Thiruvalla HQ Base",
+                pagesCount: "33 Local Town Pages Live",
+                profile: "High-density NRI villa belt, middle-class residential (3kW–5kW), and local businesses.",
+                topCompetitors: "Sekhmet Energy, Sunsenz Solar, Kondaas, FGE Solar, El Sol",
+                solisAction: "Leverage Solis's Muthoor HQ proximity advantage and instant 70:30 GST online calculator to capture leads before competitors can even dispatch sales reps."
+            },
+            thiruvalla: {
+                title: "Thiruvalla & Pathanamthitta (Solis Home Turf)",
+                proximity: "0 km (HQ at Muthoor, Thiruvalla)",
+                pagesCount: "9 Dedicated Town Pages (Thiruvalla, Muthoor, Ranni, Adoor, Konni, etc.)",
+                profile: "Very high NRI concentration, premium villas, independent houses with large sloped rooftops.",
+                topCompetitors: "Sekhmet Energy (Thiruvalla), FGE Solar (Pathanamthitta/Adoor), Feritron (Perumthuruthy)",
+                solisAction: "Dominate Google Maps Top 3 pack through customer review acquisition with town name mentions. Use the calculator link in WhatsApp outreach to NRI family circles."
+            },
+            kottayam: {
+                title: "Kottayam & Changanassery Belt",
+                proximity: "18 km from Solis Muthoor HQ (30 mins drive)",
+                pagesCount: "11 Dedicated Town Pages (Kottayam, Pala, Changanassery, Ettumanoor, etc.)",
+                profile: "Affluent residential homeowners, educational institutions, plantation estates, rubber processing units.",
+                topCompetitors: "Sunsenz Solar, Kondaas Automation, Tata Power Solar Dealers, CJS Haritha",
+                solisAction: "Target searchers looking for transparent pricing on '3kW solar Kottayam' where Sunsenz and Kondaas force offline inquiry calls."
+            },
+            kollam: {
+                title: "Kollam & Karunagappally Corridor",
+                proximity: "45 km from Solis Muthoor HQ (Main MC Road & NH)",
+                pagesCount: "5 Dedicated Town Pages (Kollam, Karunagappally, Kottarakkara, etc.)",
+                profile: "Coastal villas, cashew processing units, middle-income domestic rooftops.",
+                topCompetitors: "Illumine Energy, Mitra Power Solutions, local ANERT dealers",
+                solisAction: "Highlight rapid engineering dispatch from Muthoor along MC Road and promote typhoon-resistant mounting structures."
+            },
+            alappuzha: {
+                title: "Alappuzha & Coastal Belt",
+                proximity: "35 km from Solis Muthoor HQ",
+                pagesCount: "4 Dedicated Town Pages (Alappuzha, Kayamkulam, Cherthala, etc.)",
+                profile: "High corrosion coastal areas, resorts, homestays, domestic rooftops.",
+                topCompetitors: "Sunsenz Solar, local ANERT empannelled dealers",
+                solisAction: "Promote anodized aluminum anti-corrosion mounting and PM Surya Ghar net subsidy transparency."
+            },
+            kochi: {
+                title: "Ernakulam / Kochi Metro & Statewide EPCs",
+                proximity: "90 km from Solis Muthoor HQ",
+                pagesCount: "Metro & Commercial Landing Pages",
+                profile: "Urban apartments, high-capacity commercial rooftops, industrial setups.",
+                topCompetitors: "El Sol Power Solutions, Kondaas Automation, Tata Power Solar",
+                solisAction: "Win Central Travancore homeowners away from Kochi-based EPCs by emphasizing local proximity and rapid post-installation service."
+            }
+        };
+
+        function renderCompetitors(locationId) {
+            const grid = document.getElementById('competitorsCardsGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const filtered = locationId === 'all' 
+                ? LOCAL_COMPETITORS_DATA 
+                : LOCAL_COMPETITORS_DATA.filter(c => c.locationId === locationId);
+
+            document.getElementById('competitorsCountLabel').textContent = filtered.length;
+
+            filtered.forEach(c => {
+                const col = document.createElement('div');
+                col.className = 'col-12 col-md-6 col-xl-6';
+
+                let strengthsHtml = c.strengths.map(s => `<li class="small text-muted mb-1"><i class="fa-solid fa-check text-success me-1"></i> ${s}</li>`).join('');
+                let weaknessesHtml = c.weaknesses.map(w => `<li class="small text-muted mb-1"><i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> ${w}</li>`).join('');
+
+                col.innerHTML = `
+                    <div class="card border rounded-3 p-3 p-md-4 h-100 bg-white shadow-sm d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <h6 class="fw-bold font-display text-dark mb-1 fs-6">${c.name}</h6>
+                                <div class="d-flex flex-wrap gap-1 align-items-center">
+                                    <span class="badge bg-light text-dark border" style="font-size: 0.68rem;">
+                                        <i class="fa-solid fa-location-dot text-danger me-1"></i> ${c.area}
+                                    </span>
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle" style="font-size: 0.68rem;">
+                                        ${c.type}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle" style="font-size: 0.72rem;">
+                                    <i class="fa-solid fa-star text-warning me-1"></i> ${c.googleRating} (${c.reviewsCount})
+                                </span>
+                                <div class="text-muted small mt-1" style="font-size: 0.68rem;">${c.mapPackRank}</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 pt-2 border-top">
+                            <small class="text-muted fw-bold text-uppercase d-block" style="font-size: 0.68rem;">Target Focus</small>
+                            <span class="small text-dark fw-semibold">${c.focus}</span>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-12 col-sm-6">
+                                <small class="text-muted fw-bold text-uppercase d-block mb-1" style="font-size: 0.68rem;">Their Strengths</small>
+                                <ul class="list-unstyled mb-0">
+                                    ${strengthsHtml}
+                                </ul>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <small class="text-muted fw-bold text-uppercase d-block mb-1" style="font-size: 0.68rem;">Vulnerabilities / Gaps</small>
+                                <ul class="list-unstyled mb-0">
+                                    ${weaknessesHtml}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Solis Winning Edge -->
+                        <div class="p-2 px-3 rounded-2 mb-3 flex-grow-1" style="background: #f0fdf4; border: 1px dashed #86efac;">
+                            <div class="fw-bold text-success small mb-1">
+                                <i class="fa-solid fa-trophy text-warning me-1"></i> How Solis Wins Against Them:
+                            </div>
+                            <div class="small text-dark" style="font-size: 0.78rem;">
+                                ${c.solisAdvantage}
+                            </div>
+                        </div>
+
+                        <!-- 1-Click Live Verification Links -->
+                        <div class="pt-2 border-top d-flex gap-2">
+                            <a href="https://www.google.com/search?q=${encodeURIComponent(c.searchQuery)}" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill flex-grow-1 py-1" style="font-size: 0.72rem;">
+                                <i class="fa-brands fa-google text-primary me-1"></i> Live Google SERP
+                            </a>
+                            <a href="https://www.google.com/maps/search/${encodeURIComponent(c.mapsQuery)}" target="_blank" class="btn btn-outline-danger btn-sm rounded-pill flex-grow-1 py-1" style="font-size: 0.72rem;">
+                                <i class="fa-solid fa-map-location-dot me-1"></i> Google Maps Pack
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+        }
+
+        function filterCompetitorLocation(locId, btnEl) {
+            document.querySelectorAll('.comp-loc-btn').forEach(b => {
+                b.classList.remove('btn-dark', 'active');
+                b.classList.add('btn-outline-secondary');
+            });
+            if (btnEl) {
+                btnEl.classList.remove('btn-outline-secondary');
+                btnEl.classList.add('btn-dark', 'active');
+            }
+
+            // Render Briefing
+            const briefing = LOCATION_BRIEFINGS[locId] || LOCATION_BRIEFINGS.all;
+            const briefCard = document.getElementById('locationBriefingCard');
+            if (briefCard) {
+                briefCard.innerHTML = `
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start gap-2 mb-3">
+                        <div>
+                            <span class="badge bg-danger-subtle text-danger border border-danger-subtle mb-1">Active Battlefield</span>
+                            <h5 class="fw-bold font-display text-dark mb-0">${briefing.title}</h5>
+                        </div>
+                        <span class="badge bg-white text-dark border px-3 py-2">
+                            <i class="fa-solid fa-compass text-primary me-1"></i> ${briefing.proximity}
+                        </span>
+                    </div>
+                    <div class="row g-3 small">
+                        <div class="col-12 col-md-4">
+                            <div class="fw-bold text-muted text-uppercase" style="font-size: 0.68rem;">Solis Landing Pages</div>
+                            <div class="fw-bold text-dark fs-6 text-success">${briefing.pagesCount}</div>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="fw-bold text-muted text-uppercase" style="font-size: 0.68rem;">Customer Profile & Housing</div>
+                            <div class="text-secondary">${briefing.profile}</div>
+                        </div>
+                    </div>
+                    <div class="mt-2 pt-2 border-top">
+                        <span class="fw-bold text-dark small"><i class="fa-solid fa-crosshairs text-danger me-1"></i> Local Battlefield Playbook:</span>
+                        <span class="small text-muted ms-1">${briefing.solisAction}</span>
+                    </div>
+                `;
+            }
+
+            // Render Competitors Grid
+            renderCompetitors(locId);
+        }
+
+        function updateCustomQueryInput() {
+            const sel = document.getElementById('localQueryPresetSelect');
+            const inp = document.getElementById('localQueryCustomInput');
+            if (sel && inp) {
+                inp.value = sel.value;
+            }
+        }
+
+        function launchLiveSearch(engine) {
+            const query = (document.getElementById('localQueryCustomInput')?.value || 'solar installation in Thiruvalla').trim();
+            if (engine === 'maps') {
+                window.open(`https://www.google.com/maps/search/${encodeURIComponent(query)}`, '_blank');
+            } else {
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+            }
+        }
+
         // Initialize Everything on Load
         document.addEventListener('DOMContentLoaded', () => {
             loadRealAuditData();
             loadRealSitemapXml();
             initFirestoreOrganicSync();
             renderKeywordsTable(TOP_KEYWORDS);
+            filterCompetitorLocation('all', null);
             switchSchemaType('faq');
         });
     </script>
