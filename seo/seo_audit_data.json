@@ -2,462 +2,11 @@
   "generatedAt": "2026-10-27T06:28:00Z",
   "summary": {
     "totalPagesScanned": 104,
-    "averageHealthScore": 78,
-    "optimalPages": 32,
-    "pagesWithIssues": 94
+    "averageHealthScore": 90,
+    "optimalPages": 69,
+    "pagesWithIssues": 55
   },
   "pages": [
-    {
-      "url": "/solar-company-in-alappuzha/cherthala/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/cherthala/",
-      "title": "Solar Company in Cherthala | Aroor, Thuravoor, Kanjikuzhy | Solis Green India",
-      "titleLength": 77,
-      "desc": "Solar company in Cherthala – Solis Green India. Solar panel installation in Cherthala, Aroor, Thuravoor, Kanjikuzhy, Thanneermukkom. Government subsidy & SBI loans available.",
-      "descLength": 174,
-      "h1": "Solar Company in Cherthala",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 345,
-      "issues": [
-        "Title exceeds Google limit (77 chars, max 60)",
-        "Meta description too long (174 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 55,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-alappuzha/haripad/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/haripad/",
-      "title": "Solar Company in Haripad | Kayamkulam, Thrikkunnapuzha, Pallippad | Solis Green India",
-      "titleLength": 85,
-      "desc": "Solar company in Haripad – Solis Green India. Solar panel installation in Haripad, Kayamkulam, Thrikkunnapuzha, Pallippad, Karuvatta. Government subsidy & SBI loans available.",
-      "descLength": 175,
-      "h1": "Solar Company in Haripad",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 348,
-      "issues": [
-        "Title exceeds Google limit (85 chars, max 60)",
-        "Meta description too long (175 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 55,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-alappuzha/kayamkulam/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/kayamkulam/",
-      "title": "Solar Company in Kayamkulam | Haripad, Thrikkunnapuzha, Krishnapuram | Solis Green India",
-      "titleLength": 88,
-      "desc": "Solar company in Kayamkulam – Solis Green India. Solar panel installation in Kayamkulam, Haripad, Thrikkunnapuzha, Krishnapuram, Cheppad. Government subsidy & SBI loans available.",
-      "descLength": 179,
-      "h1": "Solar Company in Kayamkulam",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 353,
-      "issues": [
-        "Title exceeds Google limit (88 chars, max 60)",
-        "Meta description too long (179 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 55,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-alappuzha/kuttanad/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/kuttanad/",
-      "title": "Solar Company in Kuttanad | Rice Bowl of Kerala, Backwaters, Houseboats | Solis Green India",
-      "titleLength": 91,
-      "desc": "Solar company in Kuttanad – Solis Green India. Solar panel installation in Kuttanad, Kayal areas, Paddy fields, Houseboats, Backwater regions. Government subsidy & SBI loans available.",
-      "descLength": 184,
-      "h1": "Solar Company in Kuttanad",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 368,
-      "issues": [
-        "Title exceeds Google limit (91 chars, max 60)",
-        "Meta description too long (184 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 55,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kollam/chadayamangalam/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/chadayamangalam/",
-      "title": "Solar Company in Chadayamangalam | Kottarakkara, Kollam | Solis Green India",
-      "titleLength": 75,
-      "desc": "Solar company in Chadayamangalam, Kollam - Solis Green India. Professional solar panel installation services in Chadayamangalam, Kottarakkara, Kollam district. Government subsidy & SBI loans available.",
-      "descLength": 201,
-      "h1": "Solar Company in Chadayamangalam, Kollam",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 460,
-      "issues": [
-        "Title exceeds Google limit (75 chars, max 60)",
-        "Meta description too long (201 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 55,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/kottayam-town/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/kottayam-town/",
-      "title": "Solar Company in Kottayam Town | Nagampadam, Kodimatha, Collectorate | Solis Green India",
-      "titleLength": 88,
-      "desc": "Solar company in Kottayam Town – Solis Green India. Solar panel installation in Kottayam Town, Nagampadam, Kodimatha, Collectorate, Medical College, Bypass Road areas. Government subsidy & SBI loans available.",
-      "descLength": 209,
-      "h1": "Solar Company in Kottayam Town",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 366,
-      "issues": [
-        "Title exceeds Google limit (88 chars, max 60)",
-        "Meta description too long (209 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 55,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/kumarakom/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/kumarakom/",
-      "title": "Solar Company in Kumarakom | Backwaters, Houseboats, Vembanad Lake | Solis Green India",
-      "titleLength": 86,
-      "desc": "Solar company in Kumarakom – Solis Green India. Solar panel installation in Kumarakom, Backwaters, Houseboats, Vembanad Lake, Aymanam. Government subsidy & SBI loans available.",
-      "descLength": 176,
-      "h1": "Solar Company in Kumarakom",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 357,
-      "issues": [
-        "Title exceeds Google limit (86 chars, max 60)",
-        "Meta description too long (176 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 55,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/kuravilangad/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/kuravilangad/",
-      "title": "Solar Company in Kuravilangad | Bharananganam, Pala, Kaduthuruthy | Solis Green India",
-      "titleLength": 85,
-      "desc": "Solar company in Kuravilangad – Solis Green India. Solar panel installation in Kuravilangad, Bharananganam, Pala, Kaduthuruthy, Marangattupilly. Government subsidy & SBI loans available.",
-      "descLength": 186,
-      "h1": "Solar Company in Kuravilangad",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 366,
-      "issues": [
-        "Title exceeds Google limit (85 chars, max 60)",
-        "Meta description too long (186 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 55,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/pala/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/pala/",
-      "title": "Solar Company in Pala | Bharananganam, Erattupetta, Kaduthuruthy | Solis Green India",
-      "titleLength": 84,
-      "desc": "Solar company in Pala – Solis Green India. Solar panel installation in Pala, Bharananganam, Erattupetta, Kaduthuruthy, Ramapuram, Kuravilangad. Government subsidy & SBI loans available.",
-      "descLength": 185,
-      "h1": "Solar Company in Pala",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 343,
-      "issues": [
-        "Title exceeds Google limit (84 chars, max 60)",
-        "Meta description too long (185 chars, max 160)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 55,
-      "grade": "Needs Work",
-      "category": "districts"
-    },
-    {
-      "url": "/useful-resources/",
-      "fullUrl": "https://www.solisgreenindia.in/useful-resources/",
-      "title": "Useful Resources & Solar Calculators | Solis Green Energy Solutions",
-      "titleLength": 67,
-      "desc": "Calculate your solar savings, EMI, and roof area. Find official KSEB guidelines, PM Surya Ghar subsidy details, and solar finance tools.",
-      "descLength": 136,
-      "h1": "",
-      "canonical": "https://www.solisgreenindia.in/useful-resources/",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 569,
-      "issues": [
-        "Title exceeds Google limit (67 chars, max 60)",
-        "Missing <h1> heading tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 55,
-      "grade": "Needs Work",
-      "category": "core"
-    },
-    {
-      "url": "/solar-company-in-alappuzha/ambalapuzha/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/ambalapuzha/",
-      "title": "Solar Company in Ambalapuzha | Punnapra, Aroor, Thuravoor | Solis Green India",
-      "titleLength": 77,
-      "desc": "Solar company in Ambalapuzha – Solis Green India. Solar panel installation in Ambalapuzha, Punnapra, Aroor, Thuravoor, Purakkad. Government subsidy & SBI loans available.",
-      "descLength": 170,
-      "h1": "Solar Company in Ambalapuzha",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 362,
-      "issues": [
-        "Title exceeds Google limit (77 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 60,
-      "grade": "C",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kollam/anchal/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/anchal/",
-      "title": "Solar Company in Anchal | Punalur, Kadakkal, Pathanapuram | Solis Green India",
-      "titleLength": 77,
-      "desc": "Solar company in Anchal – Solis Green India. Solar panel installation in Anchal, Punalur, Kadakkal, Pathanapuram, Kottarakkara. Government subsidy & SBI loans available.",
-      "descLength": 169,
-      "h1": "Solar Company in Anchal",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 359,
-      "issues": [
-        "Title exceeds Google limit (77 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 60,
-      "grade": "C",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/ettumanoor/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/ettumanoor/",
-      "title": "Solar Company in Ettumanoor | Kottayam, Vaikom, Pala, Athirampuzha | Solis Green India",
-      "titleLength": 86,
-      "desc": "Solar company in Ettumanoor – Solis Green India. Solar panel installation in Ettumanoor, Kottayam, Vaikom, Pala, Athirampuzha. Government subsidy & SBI loans available.",
-      "descLength": 168,
-      "h1": "Solar Company in Ettumanoor",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 371,
-      "issues": [
-        "Title exceeds Google limit (86 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 60,
-      "grade": "C",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/vaikom/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/vaikom/",
-      "title": "Solar Company in Vaikom | Ettumanoor, Kaduthuruthy, Kallara | Solis Green India",
-      "titleLength": 79,
-      "desc": "Solar company in Vaikom – Solis Green India. Solar panel installation in Vaikom, Ettumanoor, Kaduthuruthy, Kallara, Thalayazham. Government subsidy & SBI loans available.",
-      "descLength": 170,
-      "h1": "Solar Company in Vaikom",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 368,
-      "issues": [
-        "Title exceeds Google limit (79 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 60,
-      "grade": "C",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-pathanamthitta/elanthoor/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/elanthoor/",
-      "title": "Solar Company in Elanthoor | Mallappally, Kottangal, Pulikeezhu | Solis Green India",
-      "titleLength": 83,
-      "desc": "Solar company in Elanthoor – Solis Green India. Solar panel installation in Elanthoor, Mallappally, Kottangal, Pulikeezhu. Government subsidy & SBI loans available.",
-      "descLength": 164,
-      "h1": "Solar Company in Elanthoor",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 330,
-      "issues": [
-        "Title exceeds Google limit (83 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 60,
-      "grade": "C",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-pathanamthitta/konni/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/konni/",
-      "title": "Solar Company in Konni | Pathanamthitta, Adoor, Kozhencherry | Solis Green India",
-      "titleLength": 80,
-      "desc": "Solar company in Konni – Solis Green India. Solar panel installation in Konni, Pathanamthitta, Adoor, Kozhencherry, Kalleli. Government subsidy & SBI loans available.",
-      "descLength": 166,
-      "h1": "Solar Company in Konni",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 368,
-      "issues": [
-        "Title exceeds Google limit (80 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 60,
-      "grade": "C",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-pathanamthitta/pandalam/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/pandalam/",
-      "title": "Solar Company in Pandalam | Konni, Adoor, Kulanada | Solis Green India",
-      "titleLength": 70,
-      "desc": "Solar company in Pandalam – Solis Green India. Solar panel installation in Pandalam, Konni, Adoor, Kulanada, Kozhencherry. Government subsidy & SBI loans available.",
-      "descLength": 164,
-      "h1": "Solar Company in Pandalam",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": false,
-      "schemaTypes": [],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 332,
-      "issues": [
-        "Title exceeds Google limit (70 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing",
-        "No JSON-LD structured data schema detected"
-      ],
-      "score": 60,
-      "grade": "C",
-      "category": "districts"
-    },
     {
       "url": "/best-solar-installer-in-thiruvalla/",
       "fullUrl": "https://www.solisgreenindia.in/best-solar-installer-in-thiruvalla/",
@@ -470,8 +19,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -501,9 +50,9 @@
       "schemaTypes": [
         "Product",
         "AggregateOffer",
-        "ListItem",
         "Brand",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -565,10 +114,10 @@
       "schemaTypes": [
         "Service",
         "LocalBusiness",
-        "ListItem",
         "State",
+        "BreadcrumbList",
         "Offer",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -596,8 +145,8 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -624,8 +173,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -652,8 +201,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -705,8 +254,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Service",
-        "LocalBusiness"
+        "LocalBusiness",
+        "Service"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -733,8 +282,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Service",
-        "LocalBusiness"
+        "LocalBusiness",
+        "Service"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -761,8 +310,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Service",
-        "LocalBusiness"
+        "LocalBusiness",
+        "Service"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -789,10 +338,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
         "PostalAddress",
         "BreadcrumbList",
-        "LocalBusiness"
+        "LocalBusiness",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -819,10 +368,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
         "PostalAddress",
         "BreadcrumbList",
-        "LocalBusiness"
+        "LocalBusiness",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -830,70 +379,6 @@
       "wordCount": 169,
       "issues": [
         "Title exceeds Google limit (85 chars, max 60)",
-        "Missing canonical link tag",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-pathanamthitta/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/",
-      "title": "#1 Solar Company in Pathanamthitta District | MNRE Subsidy | Solis Green",
-      "titleLength": 72,
-      "desc": "Solis Green: Pathanamthitta",
-      "descLength": 27,
-      "h1": "Solar Company in Pathanamthitta District",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "LocalBusiness",
-        "FAQPage",
-        "Answer",
-        "Question",
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 215,
-      "issues": [
-        "Title exceeds Google limit (72 chars, max 60)",
-        "Meta description too short (27 chars, recommended 120-160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 70,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-thiruvananthapuram/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-thiruvananthapuram/",
-      "title": "Solar Company in Thiruvananthapuram | Solar Panels Installation | Solis Green India",
-      "titleLength": 83,
-      "desc": "Solar company in Thiruvananthapuram - Residential & commercial solar panel installation services in capital city and surrounding areas",
-      "descLength": 134,
-      "h1": "Solar Energy Solutions in Thiruvananthapuram",
-      "canonical": "",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "City",
-        "PostalAddress",
-        "LocalBusiness",
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 426,
-      "issues": [
-        "Title exceeds Google limit (83 chars, max 60)",
         "Missing canonical link tag",
         "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
       ],
@@ -913,11 +398,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "FAQPage",
         "Answer",
-        "Question",
+        "FAQPage",
+        "BreadcrumbList",
         "ListItem",
-        "BreadcrumbList"
+        "Question"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -944,8 +429,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 3,
       "imagesWithAlt": 3,
@@ -972,8 +457,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1000,8 +485,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 3,
       "imagesWithAlt": 3,
@@ -1028,8 +513,8 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1045,434 +530,6 @@
       "category": "core"
     },
     {
-      "url": "/solar-company-in-alappuzha/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/",
-      "title": "Solar Company in Alappuzha District | MNRE Subsidy & SBI Solar Loan | Solis Green",
-      "titleLength": 81,
-      "desc": "Professional solar installation services across Alappuzha district. Get MNRE subsidy, SBI solar loans, KSEB net metering approval and free site survey for homes & businesses.",
-      "descLength": 174,
-      "h1": "Solar Company in Alappuzha District – Rooftop Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 138,
-      "issues": [
-        "Title exceeds Google limit (81 chars, max 60)",
-        "Meta description too long (174 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-alappuzha/alappuzha/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/alappuzha/",
-      "title": "Solar Installation in Alappuzha | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 81,
-      "desc": "Reduce KSEB electricity bills in Alappuzha with on-grid, hybrid & off-grid solar systems. Get MNRE subsidy up to ₹78,000, SBI / Canara / Union Bank solar loans & 5-year free AMC. Serving Alappuzha town, Mullakkal, Kanjiramchira, Punnamada & nearby areas.",
-      "descLength": 254,
-      "h1": "Solar Company in Alappuzha – On-Grid, Hybrid & Off-Grid Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/alappuzha-town/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 392,
-      "issues": [
-        "Title exceeds Google limit (81 chars, max 60)",
-        "Meta description too long (254 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-alappuzha/chengannur/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/chengannur/",
-      "title": "Solar Installation in Chengannur | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 82,
-      "desc": "Reduce KSEB electricity bills in Chengannur with on-grid, hybrid & off-grid solar systems. Get MNRE subsidy up to ₹78,000, SBI / Canara / Union Bank solar loans & 5-year free AMC. Serving Chengannur town, Mulakkuzha, Ala, Cheriyanad & nearby areas.",
-      "descLength": 248,
-      "h1": "Solar Company in Chengannur – On-Grid, Hybrid & Off-Grid Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/chengannur/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 411,
-      "issues": [
-        "Title exceeds Google limit (82 chars, max 60)",
-        "Meta description too long (248 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-alappuzha/mavelikkara/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/mavelikkara/",
-      "title": "Solar Installation in Mavelikkara | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 83,
-      "desc": "Reduce KSEB electricity bills in Mavelikkara with on-grid, hybrid & off-grid solar systems. Get MNRE subsidy up to ₹78,000, SBI / Canara / Union Bank solar loans & 5-year free AMC. Serving Mavelikkara town, Kayamkulam Road, Kandiyoor, Bharanikavu & nearby areas.",
-      "descLength": 262,
-      "h1": "Solar Company in Mavelikkara – On-Grid, Hybrid & Off-Grid Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/mavelikkara/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 404,
-      "issues": [
-        "Title exceeds Google limit (83 chars, max 60)",
-        "Meta description too long (262 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kollam/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/",
-      "title": "Solar Installation Company in Kollam District | Residential & Commercial Solar EPC | Solis Green Energy Solutions",
-      "titleLength": 113,
-      "desc": "Professional residential and commercial solar installation company in Kollam district. MNRE subsidy support, KSEB net-metering approvals, corrosion-safe RCC rooftop systems and structured EPC execution across Kollam.",
-      "descLength": 216,
-      "h1": "Solar Installation Company in Kollam District",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "LocalBusiness",
-        "FAQPage",
-        "Question",
-        "Answer",
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 191,
-      "issues": [
-        "Title exceeds Google limit (113 chars, max 60)",
-        "Meta description too long (216 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kollam/karunagappally/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/karunagappally/",
-      "title": "Solar Installation in Karunagappally | ₹78,000 Subsidy | Solis Green EPC",
-      "titleLength": 72,
-      "desc": "Solar installation company in Karunagappally. Solis Green Energy Solutions is an MNRE empanelled Solar EPC providing rooftop solar installation with ₹78,000 subsidy, SBI loans & KSEB approvals.",
-      "descLength": 193,
-      "h1": "Solar Installation Company in Karunagappally – MNRE Approved Solar EPC",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/karunagappally/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 307,
-      "issues": [
-        "Title exceeds Google limit (72 chars, max 60)",
-        "Meta description too long (193 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kollam/kollam/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/kollam/",
-      "title": "Solar Installation in Kollam | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 78,
-      "desc": "Reduce KSEB electricity bills in Kollam with on-grid, hybrid & off-grid solar systems. Get MNRE subsidy up to ₹78,000, SBI / Canara / Union Bank solar loans & 5-year free AMC. Serving Kollam town, Asramam, Kadappakada, Thekkumbhagam & nearby areas.",
-      "descLength": 248,
-      "h1": "Solar Company in Kollam – On-Grid, Hybrid & Off-Grid Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/kollam-town/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 385,
-      "issues": [
-        "Title exceeds Google limit (78 chars, max 60)",
-        "Meta description too long (248 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kollam/kottarakara/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/kottarakara/",
-      "title": "Solar Installation in Kottarakkara | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 84,
-      "desc": "Reduce KSEB electricity bills in Kottarakkara with on-grid, hybrid & off-grid solar systems. Get MNRE subsidy up to ₹78,000, SBI / Canara / Union Bank solar loans & 5-year free AMC. Serving Kottarakkara town, Ezhukone, Pooyappally & nearby areas.",
-      "descLength": 246,
-      "h1": "Solar Company in Kottarakkara – On-Grid, Hybrid & Off-Grid Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/kottarakkara/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 377,
-      "issues": [
-        "Title exceeds Google limit (84 chars, max 60)",
-        "Meta description too long (246 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/",
-      "title": "Solar Company in Kottayam District | MNRE Subsidy + SBI Loan | Solis Green",
-      "titleLength": 74,
-      "desc": "Trusted solar installation company in Kottayam district. Get MNRE subsidy, SBI solar loan, KSEB net metering & free site survey. Serving Changanacherry, Pala, Kanjirappally & nearby towns.",
-      "descLength": 188,
-      "h1": "Solar Installation Company in Kottayam District",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "FAQPage",
-        "Question",
-        "Answer",
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 287,
-      "issues": [
-        "Title exceeds Google limit (74 chars, max 60)",
-        "Meta description too long (188 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/changanacherry/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/changanacherry/",
-      "title": "Solar Installation in Changanacherry | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 86,
-      "desc": "Reduce KSEB electricity bills in Changanacherry with on-grid, hybrid & off-grid solar systems. Get MNRE subsidy up to ₹78,000, SBI / Canara / Union Bank solar loans & 5-year free AMC. Serving Kurisummoodu, Vazhappally, Nalukodi, Paippad & nearby areas.",
-      "descLength": 252,
-      "h1": "Solar Company in Changanacherry – On-Grid, Hybrid & Off-Grid Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/changanacherry/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 471,
-      "issues": [
-        "Title exceeds Google limit (86 chars, max 60)",
-        "Meta description too long (252 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/erattupetta/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/erattupetta/",
-      "title": "Solar Installation in Erattupetta | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 83,
-      "desc": "Solar installation in Erattupetta for homes, shops & high-consumption buildings. Get up to ₹78,000 MNRE subsidy, SBI/Canara solar loans & 5-year free AMC. Serving Erattupetta town, Teekoy Road, Moonnilavu Road & nearby areas.",
-      "descLength": 225,
-      "h1": "Solar Company in Erattupetta – Trusted Rooftop Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/erattupetta/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 362,
-      "issues": [
-        "Title exceeds Google limit (83 chars, max 60)",
-        "Meta description too long (225 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kottayam/kanjirappally/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/kanjirappally/",
-      "title": "Solar Installation in Kanjirappally | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 85,
-      "desc": "Solar installation in Kanjirappally for homes, shops & plantation areas. Get up to ₹78,000 MNRE subsidy, SBI/Canara solar loans & 5-year free AMC. Serving Kanjirappally town, Mundakayam Road, Erumely Road & nearby areas.",
-      "descLength": 220,
-      "h1": "Solar Company in Kanjirappally – Home, Commercial & Plantation Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/kanjirappally/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 364,
-      "issues": [
-        "Title exceeds Google limit (85 chars, max 60)",
-        "Meta description too long (220 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-pathanamthitta/kozhencherry/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/kozhencherry/",
-      "title": "Solar Installation in Kozhencherry | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 84,
-      "desc": "Reduce KSEB electricity bills in Kozhencherry with on-grid, hybrid & off-grid solar systems. Get MNRE subsidy up to ₹78,000, SBI / Canara / Union Bank solar loans & 5-year free AMC. Serving Kozhencherry town, Aranmula, Thekkemala, Cherukolpuzha & nearby areas.",
-      "descLength": 260,
-      "h1": "Solar Company in Kozhencherry – On-Grid, Hybrid & Off-Grid Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/kozhencherry/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 390,
-      "issues": [
-        "Title exceeds Google limit (84 chars, max 60)",
-        "Meta description too long (260 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-pathanamthitta/mallappally/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/mallappally/",
-      "title": "Solar Installation in Mallappally | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 83,
-      "desc": "Reduce KSEB electricity bills in Mallappally with on-grid, hybrid & off-grid solar systems. Get MNRE subsidy up to ₹78,000, SBI / Canara / Union Bank solar loans & 5-year free AMC. Serving Mallappally town, Kunnamthanam, Anicadu, Perumpetty & nearby areas.",
-      "descLength": 256,
-      "h1": "Solar Company in Mallappally – On-Grid, Hybrid & Off-Grid Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/mallappally/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 417,
-      "issues": [
-        "Title exceeds Google limit (83 chars, max 60)",
-        "Meta description too long (256 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-pathanamthitta/thiruvalla/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/thiruvalla/",
-      "title": "Solar Installation in Thiruvalla | ₹78,000 Subsidy + 5-Year Free AMC | Solis Green",
-      "titleLength": 82,
-      "desc": "Stop high KSEB bills! Solis Green offers complete solar solutions in Thiruvalla with ₹78,000 subsidy, SBI loans, and 5-year free maintenance. Serving Muthoor, Kavumbhagom, Niranam & all areas.",
-      "descLength": 192,
-      "h1": "Solar Company in Thiruvalla – On-Grid Solar Panel Installation Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/thiruvalla/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 799,
-      "issues": [
-        "Title exceeds Google limit (82 chars, max 60)",
-        "Meta description too long (192 chars, max 160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 75,
-      "grade": "B",
-      "category": "districts"
-    },
-    {
       "url": "/solar-consultant-kerala/",
       "fullUrl": "https://www.solisgreenindia.in/solar-consultant-kerala/",
       "title": "Expert Solar Consultant in Kerala | Energy Audits & EPC | Solis Green",
@@ -1484,14 +541,14 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "Service",
-        "LocalBusiness",
-        "FAQPage",
-        "Question",
         "Answer",
-        "ListItem",
+        "Service",
+        "FAQPage",
+        "LocalBusiness",
         "State",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem",
+        "Question"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1518,8 +575,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1546,8 +603,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1599,13 +656,13 @@
       "hasSchema": true,
       "schemaTypes": [
         "PostalAddress",
-        "LocalBusiness",
-        "FAQPage",
-        "Question",
         "Answer",
+        "FAQPage",
         "AggregateRating",
+        "LocalBusiness",
+        "BreadcrumbList",
         "ListItem",
-        "BreadcrumbList"
+        "Question"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1689,8 +746,8 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1716,8 +773,8 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1756,97 +813,6 @@
       "category": "core"
     },
     {
-      "url": "/solar-company-in-pathanamthitta/adoor/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/adoor/",
-      "title": "Solar Installation in Adoor | KSEB Authorized & MNRE Subsidy | Solis Green",
-      "titleLength": 74,
-      "desc": "Top-rated solar company in Adoor. Get ₹78,000 MNRE subsidy for on-grid systems. Serving Adoor Town, Pandalam, Kodumon & Enadimangalam. 5-year free maintenance.",
-      "descLength": 159,
-      "h1": "Solar Company in Adoor: The Trusted Choice for Southern Pathanamthitta",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/adoor/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "ListItem",
-        "SolarEnergySystemInstaller",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 178,
-      "issues": [
-        "Title exceeds Google limit (74 chars, max 60)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-pathanamthitta/ranni/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/ranni/",
-      "title": "Solar Installation in Ranni | Forest & Plantation Experts | Solis Green",
-      "titleLength": 71,
-      "desc": "Expert solar company in Ranni, Chittar, and Seethathode. Specialized in high-range plantation solar, KSEB subsidy (₹78,000), and 5-year free maintenance.",
-      "descLength": 153,
-      "h1": "Solar Company in Ranni: High-Range & Plantation Specialists",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/ranni/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "City",
-        "PostalAddress",
-        "ListItem",
-        "SolarEnergySystemInstaller",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 308,
-      "issues": [
-        "Title exceeds Google limit (71 chars, max 60)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-thiruvalla/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-thiruvalla/",
-      "title": "#1 Solar Company in Thiruvalla | MNRE Subsidy & EPC | Solis Green",
-      "titleLength": 65,
-      "desc": "Solis Green is Thiruvalla",
-      "descLength": 25,
-      "h1": "The Most Trusted Solar Company in Thiruvalla",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-thiruvalla/",
-      "hasOg": false,
-      "hasSchema": true,
-      "schemaTypes": [
-        "PostalAddress",
-        "LocalBusiness",
-        "FAQPage",
-        "Question",
-        "Answer",
-        "AggregateRating",
-        "ListItem",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 285,
-      "issues": [
-        "Meta description too short (25 chars, recommended 120-160)",
-        "Incomplete OpenGraph tags for WhatsApp/Facebook sharing"
-      ],
-      "score": 80,
-      "grade": "A",
-      "category": "districts"
-    },
-    {
       "url": "/solar-installation-kerala/",
       "fullUrl": "https://www.solisgreenindia.in/solar-installation-kerala/",
       "title": "Solar Installation in Kerala | MNRE Subsidy & Top EPC | Solis Green",
@@ -1859,12 +825,12 @@
       "hasSchema": true,
       "schemaTypes": [
         "PostalAddress",
-        "LocalBusiness",
-        "FAQPage",
-        "Question",
         "Answer",
+        "FAQPage",
+        "LocalBusiness",
+        "BreadcrumbList",
         "ListItem",
-        "BreadcrumbList"
+        "Question"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1892,9 +858,9 @@
       "schemaTypes": [
         "PostalAddress",
         "LocalBusiness",
-        "ListItem",
         "State",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1922,16 +888,16 @@
       "schemaTypes": [
         "PostalAddress",
         "OfferCatalog",
+        "GeoCoordinates",
         "Service",
-        "LocalBusiness",
-        "Review",
         "Person",
         "AggregateRating",
-        "ListItem",
-        "Offer",
-        "GeoCoordinates",
+        "Review",
+        "LocalBusiness",
         "Rating",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "Offer",
+        "ListItem"
       ],
       "imagesTotal": 5,
       "imagesWithAlt": 5,
@@ -1958,11 +924,11 @@
       "hasSchema": true,
       "schemaTypes": [
         "PostalAddress",
-        "LocalBusiness",
-        "ContactPage",
-        "ListItem",
         "GeoCoordinates",
-        "BreadcrumbList"
+        "ContactPage",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -1988,9 +954,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "BreadcrumbList",
         "ItemList",
-        "ListItem",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 5,
       "imagesWithAlt": 5,
@@ -2017,10 +983,10 @@
       "hasSchema": true,
       "schemaTypes": [
         "PostalAddress",
-        "LocalBusiness",
-        "ListItem",
         "AggregateRating",
-        "BreadcrumbList"
+        "LocalBusiness",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2047,12 +1013,12 @@
       "hasSchema": true,
       "schemaTypes": [
         "PostalAddress",
-        "LocalBusiness",
-        "FAQPage",
         "Answer",
-        "Question",
+        "FAQPage",
+        "LocalBusiness",
+        "BreadcrumbList",
         "ListItem",
-        "BreadcrumbList"
+        "Question"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2078,11 +1044,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
+        "Answer",
         "FAQPage",
         "Question",
-        "Answer",
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2107,11 +1073,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
+        "Answer",
         "FAQPage",
         "Question",
-        "Answer",
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2136,8 +1102,8 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 5,
       "imagesWithAlt": 5,
@@ -2358,16 +1324,16 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "PostalAddress",
-        "Organization",
         "MonetaryAmount",
+        "PostalAddress",
         "QuantitativeValue",
-        "JobPosting",
-        "ListItem",
-        "Country",
-        "PropertyValue",
         "Place",
-        "BreadcrumbList"
+        "Country",
+        "JobPosting",
+        "Organization",
+        "PropertyValue",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2449,10 +1415,10 @@
       "hasSchema": true,
       "schemaTypes": [
         "PostalAddress",
-        "LocalBusiness",
-        "ListItem",
         "GeoCoordinates",
-        "BreadcrumbList"
+        "LocalBusiness",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2477,9 +1443,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 3,
       "imagesWithAlt": 3,
@@ -2504,11 +1470,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
+        "Answer",
         "FAQPage",
         "Question",
-        "Answer",
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2522,72 +1488,6 @@
       "category": "pricing"
     },
     {
-      "url": "/solar-company-in-kollam/paravur/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/paravur/",
-      "title": "Best Solar Company in Paravur | On‑Grid, Hybrid & Off‑Grid Solar Experts",
-      "titleLength": 72,
-      "desc": "Looking for a solar company in Paravur? Get ₹78,000 MNRE subsidy, expert installation for on‑grid & hybrid systems. Free site survey. Call 8301849474.",
-      "descLength": 150,
-      "h1": "Best Solar Company in Paravur – On‑Grid, Hybrid & Off‑Grid Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/paravur/",
-      "hasOg": true,
-      "hasSchema": true,
-      "schemaTypes": [
-        "City",
-        "PostalAddress",
-        "OfferCatalog",
-        "Service",
-        "LocalBusiness",
-        "ListItem",
-        "Offer",
-        "GeoCoordinates",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 585,
-      "issues": [
-        "Title exceeds Google limit (72 chars, max 60)"
-      ],
-      "score": 90,
-      "grade": "A+",
-      "category": "districts"
-    },
-    {
-      "url": "/solar-company-in-kollam/punalur/",
-      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/punalur/",
-      "title": "Best Solar Company in Punalur | On‑Grid, Hybrid & Off‑Grid Solar Experts",
-      "titleLength": 72,
-      "desc": "Looking for a solar company in Punalur? Get ₹78,000 MNRE subsidy, expert installation for on‑grid & hybrid systems. Free site survey. Call 8301849474.",
-      "descLength": 150,
-      "h1": "Best Solar Company in Punalur – On‑Grid, Hybrid & Off‑Grid Solar Experts",
-      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/punalur/",
-      "hasOg": true,
-      "hasSchema": true,
-      "schemaTypes": [
-        "City",
-        "PostalAddress",
-        "OfferCatalog",
-        "Service",
-        "LocalBusiness",
-        "ListItem",
-        "Offer",
-        "GeoCoordinates",
-        "BreadcrumbList"
-      ],
-      "imagesTotal": 0,
-      "imagesWithAlt": 0,
-      "missingAlt": 0,
-      "wordCount": 577,
-      "issues": [
-        "Title exceeds Google limit (72 chars, max 60)"
-      ],
-      "score": 90,
-      "grade": "A+",
-      "category": "districts"
-    },
-    {
       "url": "/solar-installer-near-me/",
       "fullUrl": "https://www.solisgreenindia.in/solar-installer-near-me/",
       "title": "Top Solar Installer Near Me | Fast & Safe Setup | Solis Green",
@@ -2599,10 +1499,10 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
         "PostalAddress",
         "BreadcrumbList",
-        "LocalBusiness"
+        "LocalBusiness",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2627,11 +1527,11 @@
       "hasOg": false,
       "hasSchema": true,
       "schemaTypes": [
+        "Answer",
         "FAQPage",
         "Question",
-        "Answer",
-        "ListItem",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2656,13 +1556,13 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
+        "WebPage",
         "Service",
         "Organization",
-        "WebPage",
         "LocalBusiness",
-        "ListItem",
         "State",
-        "BreadcrumbList"
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 0,
       "imagesWithAlt": 0,
@@ -2688,12 +1588,12 @@
       "hasSchema": true,
       "schemaTypes": [
         "WebPage",
-        "LocalBusiness",
+        "Answer",
         "FAQPage",
         "Question",
-        "Answer",
-        "ListItem",
-        "BreadcrumbList"
+        "LocalBusiness",
+        "BreadcrumbList",
+        "ListItem"
       ],
       "imagesTotal": 1,
       "imagesWithAlt": 1,
@@ -2718,9 +1618,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2743,9 +1643,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2768,9 +1668,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2793,9 +1693,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2818,9 +1718,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2843,9 +1743,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2868,9 +1768,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2893,9 +1793,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2918,9 +1818,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2943,9 +1843,9 @@
       "hasOg": true,
       "hasSchema": true,
       "schemaTypes": [
-        "ListItem",
+        "BreadcrumbList",
         "WebPage",
-        "BreadcrumbList"
+        "ListItem"
       ],
       "imagesTotal": 4,
       "imagesWithAlt": 4,
@@ -2955,6 +1855,981 @@
       "score": 100,
       "grade": "A+",
       "category": "pricing"
+    },
+    {
+      "url": "/solar-company-in-alappuzha/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/",
+      "title": "Solar Company in Alappuzha District | Solis Green India",
+      "titleLength": 55,
+      "desc": "Solar company in Alappuzha District by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 145,
+      "h1": "Solar Company in Alappuzha District – Rooftop Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 134,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-alappuzha/alappuzha/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/alappuzha/",
+      "title": "Solar Company in Alappuzha | Solis Green India",
+      "titleLength": 46,
+      "desc": "Solar company in Alappuzha by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 136,
+      "h1": "Solar Company in Alappuzha – On-Grid, Hybrid & Off-Grid Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/alappuzha/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 388,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-alappuzha/ambalapuzha/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/ambalapuzha/",
+      "title": "Solar Company in Ambalapuzha | Solis Green India",
+      "titleLength": 48,
+      "desc": "Solar company in Ambalapuzha by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 138,
+      "h1": "Solar Company in Ambalapuzha",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/ambalapuzha/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 359,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-alappuzha/chengannur/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/chengannur/",
+      "title": "Solar Company in Chengannur | Solis Green India",
+      "titleLength": 47,
+      "desc": "Solar company in Chengannur by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 137,
+      "h1": "Solar Company in Chengannur – On-Grid, Hybrid & Off-Grid Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/chengannur/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 407,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-alappuzha/cherthala/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/cherthala/",
+      "title": "Solar Company in Cherthala | Solis Green India",
+      "titleLength": 46,
+      "desc": "Solar company in Cherthala by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 136,
+      "h1": "Solar Company in Cherthala",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/cherthala/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 342,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-alappuzha/haripad/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/haripad/",
+      "title": "Solar Company in Haripad | Solis Green India",
+      "titleLength": 44,
+      "desc": "Solar company in Haripad by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 134,
+      "h1": "Solar Company in Haripad",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/haripad/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 345,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-alappuzha/kayamkulam/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/kayamkulam/",
+      "title": "Solar Company in Kayamkulam | Solis Green India",
+      "titleLength": 47,
+      "desc": "Solar company in Kayamkulam by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 137,
+      "h1": "Solar Company in Kayamkulam",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/kayamkulam/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 350,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-alappuzha/kuttanad/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/kuttanad/",
+      "title": "Solar Company in Kuttanad | Solis Green India",
+      "titleLength": 45,
+      "desc": "Solar company in Kuttanad by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 135,
+      "h1": "Solar Company in Kuttanad",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/kuttanad/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 362,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-alappuzha/mavelikkara/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-alappuzha/mavelikkara/",
+      "title": "Solar Company in Mavelikkara | Solis Green India",
+      "titleLength": 48,
+      "desc": "Solar company in Mavelikkara by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 138,
+      "h1": "Solar Company in Mavelikkara – On-Grid, Hybrid & Off-Grid Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-alappuzha/mavelikkara/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 400,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kollam/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/",
+      "title": "Solar Company in Kollam District | Solis Green India",
+      "titleLength": 52,
+      "desc": "Solar company in Kollam District by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 142,
+      "h1": "Solar Installation Company in Kollam District",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "Answer",
+        "FAQPage",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "ListItem",
+        "Question"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 185,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kollam/anchal/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/anchal/",
+      "title": "Solar Company in Anchal | Solis Green India",
+      "titleLength": 43,
+      "desc": "Solar company in Anchal by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 133,
+      "h1": "Solar Company in Anchal",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/anchal/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 356,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kollam/chadayamangalam/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/chadayamangalam/",
+      "title": "Solar Company in Chadayamangalam | Solis Green India",
+      "titleLength": 52,
+      "desc": "Solar company in Chadayamangalam by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 142,
+      "h1": "Solar Company in Chadayamangalam, Kollam",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/chadayamangalam/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 458,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kollam/karunagappally/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/karunagappally/",
+      "title": "Solar Company in Karunagappally | Solis Green India",
+      "titleLength": 51,
+      "desc": "Solar company in Karunagappally by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 141,
+      "h1": "Solar Installation Company in Karunagappally – MNRE Approved Solar EPC",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/karunagappally/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 305,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kollam/kollam/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/kollam/",
+      "title": "Solar Company in Kollam | Solis Green India",
+      "titleLength": 43,
+      "desc": "Solar company in Kollam by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 133,
+      "h1": "Solar Company in Kollam – On-Grid, Hybrid & Off-Grid Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/kollam/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 381,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kollam/kottarakara/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/kottarakara/",
+      "title": "Solar Company in Kottarakkara | Solis Green India",
+      "titleLength": 49,
+      "desc": "Solar company in Kottarakkara by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 139,
+      "h1": "Solar Company in Kottarakkara – On-Grid, Hybrid & Off-Grid Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/kottarakara/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 373,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kollam/paravur/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/paravur/",
+      "title": "Solar Company in Paravur | Solis Green India",
+      "titleLength": 44,
+      "desc": "Solar company in Paravur by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 134,
+      "h1": "Best Solar Company in Paravur – On‑Grid, Hybrid & Off‑Grid Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/paravur/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "City",
+        "PostalAddress",
+        "OfferCatalog",
+        "GeoCoordinates",
+        "Service",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "Offer",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 582,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kollam/punalur/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kollam/punalur/",
+      "title": "Solar Company in Punalur | Solis Green India",
+      "titleLength": 44,
+      "desc": "Solar company in Punalur by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 134,
+      "h1": "Best Solar Company in Punalur – On‑Grid, Hybrid & Off‑Grid Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kollam/punalur/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "City",
+        "PostalAddress",
+        "OfferCatalog",
+        "GeoCoordinates",
+        "Service",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "Offer",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 574,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kottayam/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/",
+      "title": "Solar Company in Kottayam District | Solis Green India",
+      "titleLength": 54,
+      "desc": "Solar company in Kottayam District by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 144,
+      "h1": "Solar Installation Company in Kottayam District",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "Answer",
+        "FAQPage",
+        "Question",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 284,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kottayam/changanacherry/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/changanacherry/",
+      "title": "Solar Company in Changanacherry | Solis Green India",
+      "titleLength": 51,
+      "desc": "Solar company in Changanacherry by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 141,
+      "h1": "Solar Company in Changanacherry – On-Grid, Hybrid & Off-Grid Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/changanacherry/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 467,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kottayam/erattupetta/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/erattupetta/",
+      "title": "Solar Company in Erattupetta | Solis Green India",
+      "titleLength": 48,
+      "desc": "Solar company in Erattupetta by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 138,
+      "h1": "Solar Company in Erattupetta – Trusted Rooftop Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/erattupetta/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 358,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kottayam/ettumanoor/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/ettumanoor/",
+      "title": "Solar Company in Ettumanoor | Solis Green India",
+      "titleLength": 47,
+      "desc": "Solar company in Ettumanoor by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 137,
+      "h1": "Solar Company in Ettumanoor",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/ettumanoor/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 367,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kottayam/kanjirappally/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/kanjirappally/",
+      "title": "Solar Company in Kanjirappally | Solis Green India",
+      "titleLength": 50,
+      "desc": "Solar company in Kanjirappally by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 140,
+      "h1": "Solar Company in Kanjirappally – Home, Commercial & Plantation Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/kanjirappally/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 360,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kottayam/kottayam-town/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/kottayam-town/",
+      "title": "Solar Company in Kottayam Town | Solis Green India",
+      "titleLength": 50,
+      "desc": "Solar company in Kottayam Town by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 140,
+      "h1": "Solar Company in Kottayam Town",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/kottayam-town/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 363,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kottayam/kumarakom/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/kumarakom/",
+      "title": "Solar Company in Kumarakom | Solis Green India",
+      "titleLength": 46,
+      "desc": "Solar company in Kumarakom by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 136,
+      "h1": "Solar Company in Kumarakom",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/kumarakom/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 353,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kottayam/kuravilangad/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/kuravilangad/",
+      "title": "Solar Company in Kuravilangad | Solis Green India",
+      "titleLength": 49,
+      "desc": "Solar company in Kuravilangad by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 139,
+      "h1": "Solar Company in Kuravilangad",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/kuravilangad/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 363,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kottayam/pala/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/pala/",
+      "title": "Solar Company in Pala | Solis Green India",
+      "titleLength": 41,
+      "desc": "Solar company in Pala by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 131,
+      "h1": "Solar Company in Pala",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/pala/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 340,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-kottayam/vaikom/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-kottayam/vaikom/",
+      "title": "Solar Company in Vaikom | Solis Green India",
+      "titleLength": 43,
+      "desc": "Solar company in Vaikom by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 133,
+      "h1": "Solar Company in Vaikom",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-kottayam/vaikom/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 365,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-pathanamthitta/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/",
+      "title": "Solar Company in Pathanamthitta District | Solis Green India",
+      "titleLength": 60,
+      "desc": "Solar company in Pathanamthitta District by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 150,
+      "h1": "Solar Company in Pathanamthitta District",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "Answer",
+        "FAQPage",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "ListItem",
+        "Question"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 213,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-pathanamthitta/adoor/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/adoor/",
+      "title": "Solar Company in Adoor | Solis Green India",
+      "titleLength": 42,
+      "desc": "Solar company in Adoor by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 132,
+      "h1": "Solar Company in Adoor: The Trusted Choice for Southern Pathanamthitta",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/adoor/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "SolarEnergySystemInstaller",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 175,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-pathanamthitta/elanthoor/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/elanthoor/",
+      "title": "Solar Company in Elanthoor | Solis Green India",
+      "titleLength": 46,
+      "desc": "Solar company in Elanthoor by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 136,
+      "h1": "Solar Company in Elanthoor",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/elanthoor/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 327,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-pathanamthitta/konni/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/konni/",
+      "title": "Solar Company in Konni | Solis Green India",
+      "titleLength": 42,
+      "desc": "Solar company in Konni by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 132,
+      "h1": "Solar Company in Konni",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/konni/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 365,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-pathanamthitta/kozhencherry/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/kozhencherry/",
+      "title": "Solar Company in Kozhencherry | Solis Green India",
+      "titleLength": 49,
+      "desc": "Solar company in Kozhencherry by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 139,
+      "h1": "Solar Company in Kozhencherry – On-Grid, Hybrid & Off-Grid Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/kozhencherry/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 386,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-pathanamthitta/mallappally/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/mallappally/",
+      "title": "Solar Company in Mallappally | Solis Green India",
+      "titleLength": 48,
+      "desc": "Solar company in Mallappally by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 138,
+      "h1": "Solar Company in Mallappally – On-Grid, Hybrid & Off-Grid Solar Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/mallappally/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 413,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-pathanamthitta/pandalam/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/pandalam/",
+      "title": "Solar Company in Pandalam | Solis Green India",
+      "titleLength": 45,
+      "desc": "Solar company in Pandalam by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 135,
+      "h1": "Solar Company in Pandalam",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/pandalam/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "LocalBusiness"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 329,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-pathanamthitta/ranni/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/ranni/",
+      "title": "Solar Company in Ranni | Solis Green India",
+      "titleLength": 42,
+      "desc": "Solar company in Ranni by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 132,
+      "h1": "Solar Company in Ranni: High-Range & Plantation Specialists",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/ranni/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "City",
+        "PostalAddress",
+        "SolarEnergySystemInstaller",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 306,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-pathanamthitta/thiruvalla/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/thiruvalla/",
+      "title": "Solar Company in Thiruvalla | Solis Green India",
+      "titleLength": 47,
+      "desc": "Solar company in Thiruvalla by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 137,
+      "h1": "Solar Company in Thiruvalla – On-Grid Solar Panel Installation Experts",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-pathanamthitta/thiruvalla/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 795,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-thiruvalla/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-thiruvalla/",
+      "title": "Solar Company in Thiruvalla | Solis Green India",
+      "titleLength": 47,
+      "desc": "Solar company in Thiruvalla by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 137,
+      "h1": "The Most Trusted Solar Company in Thiruvalla",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-thiruvalla/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "PostalAddress",
+        "Answer",
+        "FAQPage",
+        "AggregateRating",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "ListItem",
+        "Question"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 282,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/solar-company-in-thiruvananthapuram/",
+      "fullUrl": "https://www.solisgreenindia.in/solar-company-in-thiruvananthapuram/",
+      "title": "Solar Company in Thiruvananthapuram | Solis Green India",
+      "titleLength": 55,
+      "desc": "Solar company in Thiruvananthapuram by Solis Green India. Rooftop solar installation, PM Surya Ghar subsidy & KSEB net metering. Call 8301849474.",
+      "descLength": 145,
+      "h1": "Solar Energy Solutions in Thiruvananthapuram",
+      "canonical": "https://www.solisgreenindia.in/solar-company-in-thiruvananthapuram/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "City",
+        "PostalAddress",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 423,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "districts"
+    },
+    {
+      "url": "/useful-resources/",
+      "fullUrl": "https://www.solisgreenindia.in/useful-resources/",
+      "title": "Useful Resources & Solar Tools | Solis Green Energy",
+      "titleLength": 51,
+      "desc": "Calculate your solar savings, EMI, and roof area. Find official KSEB guidelines, PM Surya Ghar subsidy details, and solar finance tools.",
+      "descLength": 136,
+      "h1": "Useful Resources & Solar Tools",
+      "canonical": "https://www.solisgreenindia.in/useful-resources/",
+      "hasOg": true,
+      "hasSchema": true,
+      "schemaTypes": [
+        "WebPage"
+      ],
+      "imagesTotal": 0,
+      "imagesWithAlt": 0,
+      "missingAlt": 0,
+      "wordCount": 570,
+      "issues": [],
+      "score": 100,
+      "grade": "A+",
+      "category": "core"
     }
   ]
 }
