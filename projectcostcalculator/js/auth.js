@@ -9,6 +9,8 @@ if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getIte
     sessionStorage.setItem('solis_auth_token', 'true');
     sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
     sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
+    sessionStorage.setItem('solis_user_name', localStorage.getItem('solis_user_name') || '');
+    sessionStorage.setItem('solis_user_permissions', localStorage.getItem('solis_user_permissions') || '{}');
 }
 
 // Check if we are on a login page
@@ -19,6 +21,8 @@ const isLoginPage = window.location.pathname.endsWith('login.html') ||
 // Check authentication status
 const isAuthenticated = sessionStorage.getItem('solis_auth_token') === 'true';
 const userRole = sessionStorage.getItem('solis_user_role');
+const userEmail = (sessionStorage.getItem('solis_user_email') || '').toLowerCase();
+const isSuperAdmin = (userEmail === 'solisgreenenergysolutions@gmail.com');
 
 if (!isAuthenticated && !isLoginPage) {
     // Redirect unauthorized users to central Login page with return target
@@ -28,11 +32,18 @@ if (!isAuthenticated && !isLoginPage) {
     // Redirect already logged-in users to index.html or Login hub
     window.location.href = '/projectcostcalculator/index.html';
 } else if (isAuthenticated) {
-    // Authorization Check: Prevent sales from accessing admin/master pages
     const path = window.location.pathname.toLowerCase();
+    
+    // Protect User Management module: Super Admin only
+    if (path.includes('/users/') && !isSuperAdmin) {
+        alert("Access Denied: Only Super Admin (solisgreenenergysolutions@gmail.com) can access User Management.");
+        window.location.href = '/Login/index.html';
+    }
+
+    // Authorization Check: Prevent unauthorized users from accessing admin/master pages
     const isAdminPage = path.includes('admin.html') || path.includes('_master.html');
-    if (isAdminPage && userRole !== 'admin') {
-        window.location.href = '/projectcostcalculator/index.html';
+    if (isAdminPage && !isSuperAdmin && userRole !== 'admin') {
+        window.location.href = '/Login/index.html';
     }
 }
 

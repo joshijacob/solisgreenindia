@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management & Role Access Control | Solis EPC Admin</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.ico">
+
+    <!-- Firebase SDK Compat -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="/projectcostcalculator/js/firebase-init.js"></script>
+
+    <!-- Bootstrap 5 & FontAwesome 6 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --solis-orange: #FF6A2A;
+            --solis-orange-hover: #FF824C;
+            --solis-dark: #0f172a;
+            --solis-purple: #6366f1;
+            --grid-border: #e2e8f0;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-display {
+            font-family: 'Outfit', 'Inter', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Top Navbar */
+        .admin-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--grid-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            height: 56px;
+        }
+
+        /* Metric Cards */
+        .metric-card {
+            background: #ffffff;
+            border: 1px solid var(--grid-border);
+            border-radius: 0.85rem;
+            padding: 1.15rem 1.25rem;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .metric-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        /* Table View */
+        .table-card {
+            background: #ffffff;
+            border: 1px solid var(--grid-border);
+            border-radius: 0.85rem;
+            box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+            overflow: hidden;
+        }
+
+        .table-header-custom th {
+            background: #f8fafc;
+            color: #475569;
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.85rem 1rem;
+            border-bottom: 2px solid var(--grid-border);
+        }
+
+        .user-row td {
+            padding: 0.95rem 1rem;
+            vertical-align: middle;
+            font-size: 0.88rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .user-row:hover {
+            background-color: #fafbfd;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        .perm-badge {
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 2px;
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+
+        .perm-badge.active {
+            background: #ecfdf5;
+            color: #047857;
+            border-color: #a7f3d0;
+        }
+
+        .perm-badge.admin-perm {
+            background: #fff7ed;
+            color: #c2410c;
+            border-color: #fed7aa;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 1.8s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .btn-solis-orange {
+            background: linear-gradient(135deg, var(--solis-orange) 0%, var(--solis-orange-hover) 100%);
+            border: none;
+            color: white;
+            font-weight: 600;
+        }
+
+        .btn-solis-orange:hover {
+            background: linear-gradient(135deg, #e65618 0%, var(--solis-orange) 100%);
+            color: white;
+        }
+
+        .permission-checkbox-card {
+            border: 1px solid var(--grid-border);
+            border-radius: 0.65rem;
+            padding: 0.65rem 0.85rem;
+            background: #ffffff;
+            transition: all 0.15s ease;
+        }
+
+        .permission-checkbox-card:hover {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Access Denied Banner for Non-Super Admins -->
+    <div id="unauthorizedOverlay" class="d-none position-fixed top-0 start-0 w-100 h-100 bg-white d-flex align-items-center justify-content-center" style="z-index: 9999;">
+        <div class="text-center p-4" style="max-width: 500px;">
+            <div class="mb-3">
+                <i class="fa-solid fa-shield-halved text-danger" style="font-size: 4rem;"></i>
+            </div>
+            <h3 class="fw-bold font-display text-dark mb-2">Super Admin Access Required</h3>
+            <p class="text-muted mb-4">
+                The User Management & Role Access Control module is restricted exclusively to the Solis Super Admin (<strong>solisgreenenergysolutions@gmail.com</strong>).
+            </p>
+            <a href="/Login/index.html" class="btn btn-solis-orange rounded-pill px-4 py-2 fw-bold">
+                <i class="fa-solid fa-arrow-left me-2"></i> Return to Modules Hub
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="admin-navbar py-1 px-3 px-md-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center h-100">
+            <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none" href="/Login/index.html">
+                <img src="/images/logo/logo.png" alt="Solis Logo" style="height: 38px; width: auto; margin-right: 12px; object-fit: contain;">
+                <div>
+                    <div class="fw-bold font-display fs-6 lh-1 text-dark">SOLIS <span style="color: #FF6A2A;">EPC</span></div>
+                    <small class="text-muted fw-semibold" style="font-size: 0.62rem; letter-spacing: 0.05em;">USER MANAGEMENT & ACCESS CONTROL</small>
+                </div>
+            </a>
+
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill fw-semibold d-none d-md-inline-block">
+                    <span class="live-dot me-1"></span> Firestore Security Synced
+                </span>
+
+                <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill" title="Return to Modules Hub">
+                    <i class="fa-solid fa-grip me-1"></i> Modules Hub
+                </a>
+
+                <a href="/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1 d-none d-sm-inline-block" title="Open Public Website">
+                    <i class="fa-solid fa-globe me-1"></i> Website
+                </a>
+
+                <button onclick="handleLogout()" class="btn btn-outline-danger btn-sm rounded-pill px-3 py-1" title="Sign Out">
+                    <i class="fa-solid fa-right-from-bracket me-1"></i> Sign Out
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container-fluid px-3 px-md-4 py-4" id="mainAppContainer">
+        
+        <!-- Header Banner -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+            <div>
+                <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="badge bg-warning text-dark fw-bold px-2 py-1"><i class="fa-solid fa-crown me-1"></i> SUPER ADMIN CONTROL</span>
+                    <span class="badge bg-light text-muted border">Live Auth Guard</span>
+                </div>
+                <h3 class="fw-bold font-display text-dark mb-0">User Management & Card Role Permissions</h3>
+                <p class="text-muted small mb-0">Create team accounts, assign roles, and precisely control which Data Hub cards each user can access. Unauthorized users cannot access the Data Hub.</p>
+            </div>
+            
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-3" onclick="loadUsersFromCloud(true)">
+                    <i class="fa-solid fa-rotate me-1"></i> Refresh
+                </button>
+                <button type="button" class="btn btn-solis-orange rounded-pill px-4 shadow-sm" onclick="openAddUserModal()">
+                    <i class="fa-solid fa-user-plus me-2"></i> Add New User
+                </button>
+            </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="metric-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="text-muted small fw-semibold text-uppercase">Total Registered Users</div>
+                            <h2 class="fw-bold font-display text-dark mt-1 mb-0" id="statTotalUsers">0</h2>
+                            <small class="text-muted">In Solis Access Registry</small>
+                        </div>
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="metric-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="text-muted small fw-semibold text-uppercase">Active Authorized</div>
+                            <h2 class="fw-bold font-display text-success mt-1 mb-0" id="statActiveUsers">0</h2>
+                            <small class="text-muted">Permitted to login</small>
+                        </div>
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="metric-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="text-muted small fw-semibold text-uppercase">Admin & Leadership</div>
+                            <h2 class="fw-bold font-display text-primary mt-1 mb-0" id="statAdminUsers">0</h2>
+                            <small class="text-muted">Master DB & Config Access</small>
+                        </div>
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="metric-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="text-muted small fw-semibold text-uppercase">Sales & Operations</div>
+                            <h2 class="fw-bold font-display text-warning mt-1 mb-0" id="statSalesUsers">0</h2>
+                            <small class="text-muted">Role-Restricted Cards</small>
+                        </div>
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                            <i class="fa-solid fa-user-tag"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Super Admin Security Notice Box -->
+        <div class="alert alert-warning border-warning-subtle d-flex align-items-start gap-3 rounded-3 mb-4 shadow-sm">
+            <div class="fs-4 text-warning flex-shrink-0 mt-1">
+                <i class="fa-solid fa-shield-cat"></i>
+            </div>
+            <div>
+                <strong class="text-dark">Super Admin Policy & Gateway Enforcement:</strong>
+                <p class="mb-0 small text-dark opacity-90">
+                    <strong>solisgreenenergysolutions@gmail.com</strong> is permanently hardcoded as the Super Admin with immutable full access. 
+                    Any user <strong>not explicitly listed below</strong> or marked as <strong>Inactive</strong> is strictly blocked from authenticating to the Solis Data Hub.
+                </p>
+            </div>
+        </div>
+
+        <!-- Search, Filter & Action Toolbar -->
+        <div class="card border-0 shadow-sm rounded-3 mb-4">
+            <div class="card-body p-3">
+                <div class="row g-2 align-items-center">
+                    <div class="col-12 col-md-5">
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+                            <input type="text" id="searchInput" class="form-control bg-light border-start-0" placeholder="Search by name, email, or role..." oninput="filterUsers()">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <select id="roleFilter" class="form-select bg-light" onchange="filterUsers()">
+                            <option value="all">All Roles</option>
+                            <option value="super_admin">Super Admin</option>
+                            <option value="admin">Admin</option>
+                            <option value="sales">Sales & Estimator</option>
+                            <option value="engineering">Engineering</option>
+                            <option value="operations">Operations & HR</option>
+                            <option value="custom">Custom Permissions</option>
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-2">
+                        <select id="statusFilter" class="form-select bg-light" onchange="filterUsers()">
+                            <option value="all">All Statuses</option>
+                            <option value="active">Active Only</option>
+                            <option value="inactive">Inactive / Suspended</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-2 text-md-end text-muted small">
+                        Showing <strong id="visibleUsersCount">0</strong> users
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Table -->
+        <div class="table-card">
+            <div class="table-responsive">
+                <table class="table mb-0 align-middle">
+                    <thead class="table-header-custom">
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>Team Member & Email</th>
+                            <th>Assigned Role</th>
+                            <th>Account Status</th>
+                            <th>Permitted Cards / Modules</th>
+                            <th>Created / Last Active</th>
+                            <th class="text-end" style="min-width: 140px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <tr>
+                            <td colspan="7" class="text-center py-5 text-muted">
+                                <div class="spinner-border text-primary spinner-border-sm me-2"></div>
+                                Loading Solis user directory from Cloud Firestore...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODAL: ADD / EDIT USER                                  -->
+    <!-- ======================================================== -->
+    <div class="modal fade" id="userFormModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 1rem;">
+                <div class="modal-header border-bottom py-3 px-4" style="background: #f8fafc;">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%); width: 36px; height: 36px; font-size: 1rem;">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h5 class="modal-title fw-bold font-display mb-0" id="userModalTitle">Add New Team User</h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form id="userForm" onsubmit="handleSaveUser(event)">
+                    <input type="hidden" id="userIdInput">
+                    
+                    <div class="modal-body p-4">
+                        
+                        <!-- Alert Banner inside modal -->
+                        <div id="modalAlert" class="alert alert-danger d-none py-2 small"></div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label small fw-bold text-dark">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" id="userNameInput" class="form-control" placeholder="e.g. Rajesh Kumar" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label small fw-bold text-dark">Email Address (Login Username) <span class="text-danger">*</span></label>
+                                <input type="email" id="userEmailInput" class="form-control" placeholder="user@solisgreenindia.in" required>
+                                <small class="text-muted" style="font-size: 0.75rem;">Must be unique. Used for authentication.</small>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label small fw-bold text-dark">Password <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="password" id="userPasswordInput" class="form-control" placeholder="Enter secure password" required>
+                                    <button class="btn btn-outline-secondary" type="button" onclick="toggleModalPassword()" title="Toggle visibility">
+                                        <i class="fa-solid fa-eye" id="modalPasswordToggleIcon"></i>
+                                    </button>
+                                    <button class="btn btn-outline-primary" type="button" onclick="generateRandomPassword()" title="Generate Random Password">
+                                        <i class="fa-solid fa-key"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3">
+                                <label class="form-label small fw-bold text-dark">Role Preset <span class="text-danger">*</span></label>
+                                <select id="userRoleSelect" class="form-select" onchange="applyRolePreset(this.value)" required>
+                                    <option value="sales">Sales & Estimator</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="engineering">Technical / BOM</option>
+                                    <option value="operations">Operations & HR</option>
+                                    <option value="viewer">Viewer (Read Only)</option>
+                                    <option value="super_admin">Super Admin</option>
+                                    <option value="custom">Custom Access</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12 col-md-3">
+                                <label class="form-label small fw-bold text-dark">Account Status <span class="text-danger">*</span></label>
+                                <select id="userStatusSelect" class="form-select" required>
+                                    <option value="active">Active (Can Login)</option>
+                                    <option value="inactive">Suspended / Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Card Module Access Control Matrix -->
+                        <div class="mt-4 pt-3 border-top">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <h6 class="fw-bold font-display text-dark mb-0">Data Hub Card Permissions</h6>
+                                    <small class="text-muted">Check or uncheck individual cards to grant or revoke access for this user.</small>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0" onclick="toggleAllPermissions(true)">Select All</button>
+                                    <span class="text-muted">&bull;</span>
+                                    <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 text-secondary" onclick="toggleAllPermissions(false)">Deselect All</button>
+                                </div>
+                            </div>
+
+                            <div class="row g-2" id="permissionsGrid">
+                                
+                                <!-- 1. Cost Calculator -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_cost_calculator" value="cost_calculator">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_cost_calculator">
+                                                <i class="fa-solid fa-calculator text-warning me-1"></i> Cost Calculator
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">70:30 GST calculation engine</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2. Saved Quotes Dashboard -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_quotes_proposals" value="quotes_proposals">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_quotes_proposals">
+                                                <i class="fa-solid fa-file-invoice-dollar text-primary me-1"></i> Quotes & Proposals
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">View & manage customer estimates</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 3. Submitted Forms Tracker -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_leads_tracker" value="leads_tracker">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_leads_tracker">
+                                                <i class="fa-solid fa-file-excel text-success me-1"></i> Leads & Forms Tracker
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Excel tracker & KSEB numbers</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 4. Website Analytics -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_analytics" value="analytics">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_analytics">
+                                                <i class="fa-solid fa-chart-line text-info me-1"></i> Web Activity & Analytics
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Live visitor calls & chats</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5. General Master DB -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_general_master" value="general_master">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_general_master">
+                                                <i class="fa-solid fa-database text-primary me-1"></i> General Master DB
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Component pricing & GST rules</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 6. Solar Panel Master -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_panel_master" value="panel_master">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_panel_master">
+                                                <i class="fa-solid fa-solar-panel text-warning me-1"></i> Solar Panel Master
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Configure PV catalog & wattages</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 7. Inverter Master -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_inverter_master" value="inverter_master">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_inverter_master">
+                                                <i class="fa-solid fa-plug text-purple me-1"></i> Inverter Master
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Manage inverters & micro-units</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 8. BOM Master -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_bom_master" value="bom_master">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_bom_master">
+                                                <i class="fa-solid fa-sitemap text-success me-1"></i> BOM Master
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Bill of materials rule formulas</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 9. SEO Command Center -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_seo_center" value="seo_center">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_seo_center">
+                                                <i class="fa-solid fa-magnifying-glass-chart text-success me-1"></i> SEO Command
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Kerala rankings & page health</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 10. Careers & Hiring Admin -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_careers_admin" value="careers_admin">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_careers_admin">
+                                                <i class="fa-solid fa-users-gear text-danger me-1"></i> Careers & Hiring
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">HR resumes & candidate pipeline</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 11. Public Website Portal -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_public_website" value="public_website">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_public_website">
+                                                <i class="fa-solid fa-globe text-primary me-1"></i> Public Website Portal
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Preview live customer web portal</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 12. User Management (Super Admin Exclusive) -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card" style="background: #faf5ff; border-color: #e9d5ff;">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_user_management" value="user_management">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_user_management">
+                                                <i class="fa-solid fa-crown text-warning me-1"></i> User Management
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Super Admin permission control</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer border-top py-3 px-4">
+                        <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-solis-orange rounded-pill px-4" id="saveUserSubmitBtn">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Save User Permissions
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ========================================================
+        // CONSTANTS & INITIAL DATA
+        // ========================================================
+        const SUPER_ADMIN_EMAIL = "solisgreenenergysolutions@gmail.com";
+        const FB_REST_USER_MGMT = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/userManagement?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
+
+        const DEFAULT_PERMISSIONS = {
+            cost_calculator: false,
+            quotes_proposals: false,
+            leads_tracker: false,
+            analytics: false,
+            general_master: false,
+            panel_master: false,
+            inverter_master: false,
+            bom_master: false,
+            seo_center: false,
+            careers_admin: false,
+            public_website: true,
+            user_management: false
+        };
+
+        const ROLE_PRESET_MAP = {
+            super_admin: {
+                label: "Super Admin",
+                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true, general_master: true, panel_master: true, inverter_master: true, bom_master: true, seo_center: true, careers_admin: true, public_website: true, user_management: true }
+            },
+            admin: {
+                label: "Admin",
+                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true, general_master: true, panel_master: true, inverter_master: true, bom_master: true, seo_center: true, careers_admin: true, public_website: true, user_management: false }
+            },
+            sales: {
+                label: "Sales & Estimator",
+                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true, general_master: false, panel_master: false, inverter_master: false, bom_master: false, seo_center: true, careers_admin: false, public_website: true, user_management: false }
+            },
+            engineering: {
+                label: "Technical / BOM",
+                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: false, analytics: false, general_master: true, panel_master: true, inverter_master: true, bom_master: true, seo_center: false, careers_admin: false, public_website: true, user_management: false }
+            },
+            operations: {
+                label: "Operations & HR",
+                perms: { cost_calculator: false, quotes_proposals: false, leads_tracker: true, analytics: true, general_master: false, panel_master: false, inverter_master: false, bom_master: false, seo_center: false, careers_admin: true, public_website: true, user_management: false }
+            },
+            viewer: {
+                label: "Viewer (Read Only)",
+                perms: { cost_calculator: false, quotes_proposals: false, leads_tracker: false, analytics: true, general_master: false, panel_master: false, inverter_master: false, bom_master: false, seo_center: true, careers_admin: false, public_website: true, user_management: false }
+            },
+            custom: {
+                label: "Custom Access",
+                perms: null
+            }
+        };
+
+        let currentUsers = [];
+        let userModalInstance = null;
+
+        // ========================================================
+        // AUTHENTICATION & SUPER ADMIN GUARD
+        // ========================================================
+        function verifySuperAdminAuth() {
+            if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
+                sessionStorage.setItem('solis_auth_token', 'true');
+                sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
+                sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
+            }
+
+            const isAuth = sessionStorage.getItem('solis_auth_token') === 'true';
+            const userEmail = (sessionStorage.getItem('solis_user_email') || '').toLowerCase().trim();
+
+            if (!isAuth) {
+                window.location.href = '/Login/index.html?redirect=' + encodeURIComponent('/users/index.html');
+                return false;
+            }
+
+            // Only Super Admin can access User Management
+            if (userEmail !== SUPER_ADMIN_EMAIL.toLowerCase()) {
+                document.getElementById('unauthorizedOverlay').classList.remove('d-none');
+                return false;
+            }
+
+            return true;
+        }
+
+        // ========================================================
+        // LOAD USERS FROM CLOUD FIRESTORE
+        // ========================================================
+        async function loadUsersFromCloud(manualRefresh = false) {
+            const tableBody = document.getElementById('usersTableBody');
+            if (manualRefresh) {
+                tableBody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted"><div class="spinner-border spinner-border-sm me-2"></div>Syncing with Cloud Firestore...</td></tr>`;
+            }
+
+            try {
+                // First try local cache for instantaneous rendering
+                const localData = localStorage.getItem('solis_users_db');
+                if (localData && !manualRefresh) {
+                    try {
+                        currentUsers = JSON.parse(localData);
+                        renderUsersTable();
+                    } catch (e) {}
+                }
+
+                // Fetch latest live document from Firestore REST API
+                const resp = await fetch(FB_REST_USER_MGMT);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data && data.fields && data.fields.usersJson && data.fields.usersJson.stringValue) {
+                        currentUsers = JSON.parse(data.fields.usersJson.stringValue);
+                        // Ensure Super Admin is always present
+                        ensureSuperAdminPresence();
+                        localStorage.setItem('solis_users_db', JSON.stringify(currentUsers));
+                        renderUsersTable();
+                        return;
+                    }
+                }
+
+                // If document does not exist yet or empty, initialize
+                ensureSuperAdminPresence();
+                await syncUsersToCloud();
+                renderUsersTable();
+
+            } catch (err) {
+                console.warn("Firestore fetch warning:", err);
+                ensureSuperAdminPresence();
+                renderUsersTable();
+            }
+        }
+
+        // Ensure permanent Super Admin is always anchored in the array
+        function ensureSuperAdminPresence() {
+            let superAdmin = currentUsers.find(u => u.email.toLowerCase() === SUPER_ADMIN_EMAIL.toLowerCase());
+            if (!superAdmin) {
+                superAdmin = {
+                    id: 'usr_superadmin',
+                    email: SUPER_ADMIN_EMAIL,
+                    name: 'Solis Super Admin',
+                    password: 'Admin@1985',
+                    role: 'super_admin',
+                    roleLabel: 'Super Admin',
+                    status: 'active',
+                    isPermanent: true,
+                    createdAt: '2026-10-27T10:00:00Z',
+                    lastLogin: '2026-10-27T21:50:00Z',
+                    permissions: { ...ROLE_PRESET_MAP.super_admin.perms }
+                };
+                currentUsers.unshift(superAdmin);
+            } else {
+                superAdmin.role = 'super_admin';
+                superAdmin.roleLabel = 'Super Admin';
+                superAdmin.status = 'active';
+                superAdmin.isPermanent = true;
+                superAdmin.permissions = { ...ROLE_PRESET_MAP.super_admin.perms };
+            }
+        }
+
+        // Push current user array to Firestore
+        async function syncUsersToCloud() {
+            try {
+                ensureSuperAdminPresence();
+                localStorage.setItem('solis_users_db', JSON.stringify(currentUsers));
+
+                const payload = {
+                    fields: {
+                        systemName: { stringValue: 'Solis User Management System' },
+                        lastUpdated: { stringValue: new Date().toISOString() },
+                        usersJson: { stringValue: JSON.stringify(currentUsers) }
+                    }
+                };
+
+                const res = await fetch(FB_REST_USER_MGMT, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!res.ok) {
+                    console.error("Firestore sync returned non-OK:", res.status);
+                }
+            } catch (e) {
+                console.error("Failed to sync users to Firestore:", e);
+            }
+        }
+
+        // ========================================================
+        // RENDER USERS TABLE & METRICS
+        // ========================================================
+        function renderUsersTable() {
+            const tableBody = document.getElementById('usersTableBody');
+            const searchVal = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+            const roleFilter = document.getElementById('roleFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            // Compute statistics
+            let totalUsers = currentUsers.length;
+            let activeCount = currentUsers.filter(u => u.status === 'active').length;
+            let adminCount = currentUsers.filter(u => u.role === 'admin' || u.role === 'super_admin').length;
+            let salesCount = currentUsers.filter(u => u.role !== 'admin' && u.role !== 'super_admin').length;
+
+            document.getElementById('statTotalUsers').textContent = totalUsers;
+            document.getElementById('statActiveUsers').textContent = activeCount;
+            document.getElementById('statAdminUsers').textContent = adminCount;
+            document.getElementById('statSalesUsers').textContent = salesCount;
+
+            // Filter users
+            const filtered = currentUsers.filter(u => {
+                const matchSearch = !searchVal || 
+                    u.name.toLowerCase().includes(searchVal) || 
+                    u.email.toLowerCase().includes(searchVal) || 
+                    (u.roleLabel || u.role).toLowerCase().includes(searchVal);
+                
+                const matchRole = roleFilter === 'all' || u.role === roleFilter;
+                const matchStatus = statusFilter === 'all' || u.status === statusFilter;
+
+                return matchSearch && matchRole && matchStatus;
+            });
+
+            document.getElementById('visibleUsersCount').textContent = filtered.length;
+
+            if (filtered.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-5 text-muted">
+                            <i class="fa-solid fa-user-slash fs-3 mb-2 d-block text-secondary"></i>
+                            No users matched your search criteria.
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            const avatarGradients = [
+                'linear-gradient(135deg, #FF6A2A, #FF824C)',
+                'linear-gradient(135deg, #0284c7, #0369a1)',
+                'linear-gradient(135deg, #10b981, #047857)',
+                'linear-gradient(135deg, #8b5cf6, #6d28d9)',
+                'linear-gradient(135deg, #ec4899, #be185d)',
+                'linear-gradient(135deg, #f59e0b, #d97706)'
+            ];
+
+            let html = '';
+            filtered.forEach((u, idx) => {
+                const isSuperAdmin = u.email.toLowerCase() === SUPER_ADMIN_EMAIL.toLowerCase();
+                const initials = (u.name || u.email).split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                const gradient = avatarGradients[idx % avatarGradients.length];
+
+                // Permitted count
+                const permKeys = Object.keys(u.permissions || {});
+                const allowedCount = permKeys.filter(k => u.permissions[k] === true).length;
+                const totalPerms = permKeys.length || 12;
+
+                // Role badge styling
+                let roleBadgeHtml = '';
+                if (isSuperAdmin) {
+                    roleBadgeHtml = `<span class="badge bg-warning text-dark fw-bold"><i class="fa-solid fa-crown me-1"></i> SUPER ADMIN</span>`;
+                } else if (u.role === 'admin') {
+                    roleBadgeHtml = `<span class="badge bg-danger fw-bold"><i class="fa-solid fa-shield me-1"></i> ADMIN</span>`;
+                } else if (u.role === 'sales') {
+                    roleBadgeHtml = `<span class="badge bg-primary fw-bold">SALES & ESTIMATOR</span>`;
+                } else if (u.role === 'engineering') {
+                    roleBadgeHtml = `<span class="badge bg-success fw-bold">ENGINEERING</span>`;
+                } else if (u.role === 'operations') {
+                    roleBadgeHtml = `<span class="badge bg-info text-dark fw-bold">OPERATIONS & HR</span>`;
+                } else {
+                    roleBadgeHtml = `<span class="badge bg-secondary fw-bold text-uppercase">${u.roleLabel || u.role}</span>`;
+                }
+
+                // Status badge
+                let statusBadgeHtml = '';
+                if (u.status === 'active') {
+                    statusBadgeHtml = `<span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1"><span class="live-dot me-1"></span> Active</span>`;
+                } else {
+                    statusBadgeHtml = `<span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1"><i class="fa-solid fa-ban me-1"></i> Inactive</span>`;
+                }
+
+                // Formatted date
+                const dateStr = u.createdAt ? new Date(u.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+
+                html += `
+                    <tr class="user-row">
+                        <td class="text-muted fw-bold">${idx + 1}</td>
+                        <td>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="user-avatar shadow-sm" style="background: ${gradient};">
+                                    ${initials}
+                                </div>
+                                <div>
+                                    <div class="fw-bold text-dark mb-0">${escapeHtml(u.name)}</div>
+                                    <div class="text-muted small font-mono" style="font-size: 0.8rem;">${escapeHtml(u.email)}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${roleBadgeHtml}</td>
+                        <td>${statusBadgeHtml}</td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge ${allowedCount === totalPerms ? 'bg-success' : 'bg-light text-dark border'} fw-bold font-mono">
+                                    ${allowedCount} / ${totalPerms} Cards
+                                </span>
+                                ${isSuperAdmin ? '<small class="text-muted fst-italic">Full Cockpit</small>' : ''}
+                            </div>
+                        </td>
+                        <td class="text-muted small">${dateStr}</td>
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-outline-primary" onclick="openEditUserModal('${u.id}')" title="Edit Role & Card Permissions">
+                                    <i class="fa-solid fa-user-pen"></i> Edit
+                                </button>
+                                
+                                ${isSuperAdmin ? `
+                                    <button type="button" class="btn btn-outline-secondary disabled" title="Super Admin cannot be modified or suspended">
+                                        <i class="fa-solid fa-lock"></i>
+                                    </button>
+                                ` : `
+                                    <button type="button" class="btn btn-outline-${u.status === 'active' ? 'warning' : 'success'}" onclick="toggleUserStatus('${u.id}')" title="${u.status === 'active' ? 'Suspend Access' : 'Activate User'}">
+                                        <i class="fa-solid fa-${u.status === 'active' ? 'pause' : 'play'}"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="deleteUser('${u.id}')" title="Delete User">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                `}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tableBody.innerHTML = html;
+        }
+
+        function filterUsers() {
+            renderUsersTable();
+        }
+
+        // ========================================================
+        // MODAL MANAGEMENT & ROLE PRESETS
+        // ========================================================
+        function openAddUserModal() {
+            document.getElementById('userForm').reset();
+            document.getElementById('userIdInput').value = '';
+            document.getElementById('userModalTitle').textContent = 'Add New Team User';
+            document.getElementById('userEmailInput').disabled = false;
+            document.getElementById('modalAlert').classList.add('d-none');
+            
+            // Set defaults
+            document.getElementById('userRoleSelect').value = 'sales';
+            document.getElementById('userStatusSelect').value = 'active';
+            applyRolePreset('sales');
+
+            userModalInstance = new bootstrap.Modal(document.getElementById('userFormModal'));
+            userModalInstance.show();
+        }
+
+        function openEditUserModal(userId) {
+            const user = currentUsers.find(u => u.id === userId);
+            if (!user) return;
+
+            document.getElementById('modalAlert').classList.add('d-none');
+            document.getElementById('userIdInput').value = user.id;
+            document.getElementById('userModalTitle').textContent = `Edit User: ${user.name}`;
+            document.getElementById('userNameInput').value = user.name || '';
+            document.getElementById('userEmailInput').value = user.email || '';
+            document.getElementById('userPasswordInput').value = user.password || '';
+            document.getElementById('userRoleSelect').value = user.role || 'custom';
+            document.getElementById('userStatusSelect').value = user.status || 'active';
+
+            const isSuperAdmin = user.email.toLowerCase() === SUPER_ADMIN_EMAIL.toLowerCase();
+            document.getElementById('userEmailInput').disabled = isSuperAdmin;
+            document.getElementById('userRoleSelect').disabled = isSuperAdmin;
+            document.getElementById('userStatusSelect').disabled = isSuperAdmin;
+
+            // Populate checkboxes
+            const perms = user.permissions || {};
+            document.querySelectorAll('.perm-switch').forEach(sw => {
+                sw.checked = perms[sw.value] === true;
+                sw.disabled = isSuperAdmin;
+            });
+
+            userModalInstance = new bootstrap.Modal(document.getElementById('userFormModal'));
+            userModalInstance.show();
+        }
+
+        function applyRolePreset(role) {
+            const preset = ROLE_PRESET_MAP[role];
+            if (!preset || !preset.perms) return;
+
+            document.querySelectorAll('.perm-switch').forEach(sw => {
+                if (preset.perms[sw.value] !== undefined) {
+                    sw.checked = preset.perms[sw.value] === true;
+                }
+            });
+        }
+
+        function toggleAllPermissions(check) {
+            document.querySelectorAll('.perm-switch').forEach(sw => {
+                if (!sw.disabled) sw.checked = check;
+            });
+            document.getElementById('userRoleSelect').value = 'custom';
+        }
+
+        function toggleModalPassword() {
+            const input = document.getElementById('userPasswordInput');
+            const icon = document.getElementById('modalPasswordToggleIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fa-solid fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fa-solid fa-eye';
+            }
+        }
+
+        function generateRandomPassword() {
+            const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$%&*";
+            let pwd = "";
+            for (let i = 0; i < 10; i++) {
+                pwd += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('userPasswordInput').value = pwd;
+            document.getElementById('userPasswordInput').type = 'text';
+            document.getElementById('modalPasswordToggleIcon').className = 'fa-solid fa-eye-slash';
+        }
+
+        // ========================================================
+        // SAVE USER (ADD / EDIT)
+        // ========================================================
+        async function handleSaveUser(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('saveUserSubmitBtn');
+            const alertBox = document.getElementById('modalAlert');
+            alertBox.classList.add('d-none');
+
+            const userId = document.getElementById('userIdInput').value.trim();
+            const name = document.getElementById('userNameInput').value.trim();
+            const email = document.getElementById('userEmailInput').value.trim().toLowerCase();
+            const password = document.getElementById('userPasswordInput').value.trim();
+            const role = document.getElementById('userRoleSelect').value;
+            const status = document.getElementById('userStatusSelect').value;
+
+            if (!name || !email || !password) {
+                alertBox.textContent = "Please fill in all mandatory fields.";
+                alertBox.classList.remove('d-none');
+                return;
+            }
+
+            // Check duplicate email
+            const existingUser = currentUsers.find(u => u.email.toLowerCase() === email && u.id !== userId);
+            if (existingUser) {
+                alertBox.textContent = `A user with email "${email}" already exists. Please use a distinct email address.`;
+                alertBox.classList.remove('d-none');
+                return;
+            }
+
+            // Collect permissions
+            const permissions = {};
+            document.querySelectorAll('.perm-switch').forEach(sw => {
+                permissions[sw.value] = sw.checked;
+            });
+
+            // If super admin email, enforce all true
+            if (email === SUPER_ADMIN_EMAIL.toLowerCase()) {
+                Object.keys(ROLE_PRESET_MAP.super_admin.perms).forEach(k => {
+                    permissions[k] = true;
+                });
+            }
+
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving to Cloud...';
+            submitBtn.disabled = true;
+
+            try {
+                if (userId) {
+                    // Edit existing
+                    const idx = currentUsers.findIndex(u => u.id === userId);
+                    if (idx !== -1) {
+                        currentUsers[idx].name = name;
+                        currentUsers[idx].password = password;
+                        if (currentUsers[idx].email.toLowerCase() !== SUPER_ADMIN_EMAIL.toLowerCase()) {
+                            currentUsers[idx].email = email;
+                            currentUsers[idx].role = role;
+                            currentUsers[idx].roleLabel = (ROLE_PRESET_MAP[role] && ROLE_PRESET_MAP[role].label) || role;
+                            currentUsers[idx].status = status;
+                            currentUsers[idx].permissions = permissions;
+                        }
+                        currentUsers[idx].updatedAt = new Date().toISOString();
+                    }
+                } else {
+                    // Create new
+                    const newId = 'usr_' + Date.now();
+                    const newUser = {
+                        id: newId,
+                        email: email,
+                        name: name,
+                        password: password,
+                        role: role,
+                        roleLabel: (ROLE_PRESET_MAP[role] && ROLE_PRESET_MAP[role].label) || role,
+                        status: status,
+                        isPermanent: false,
+                        createdAt: new Date().toISOString(),
+                        permissions: permissions
+                    };
+                    currentUsers.push(newUser);
+                }
+
+                await syncUsersToCloud();
+                renderUsersTable();
+                userModalInstance.hide();
+
+            } catch (err) {
+                console.error("Save User Error:", err);
+                alertBox.textContent = "Failed to save user. Please check your cloud network connection.";
+                alertBox.classList.remove('d-none');
+            } finally {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        // ========================================================
+        // TOGGLE STATUS & DELETE USER
+        // ========================================================
+        async function toggleUserStatus(userId) {
+            const user = currentUsers.find(u => u.id === userId);
+            if (!user) return;
+
+            if (user.email.toLowerCase() === SUPER_ADMIN_EMAIL.toLowerCase()) {
+                alert("Super Admin account status cannot be modified.");
+                return;
+            }
+
+            const newStatus = user.status === 'active' ? 'inactive' : 'active';
+            const confirmMsg = newStatus === 'inactive' ? 
+                `Are you sure you want to suspend access for ${user.name} (${user.email})? They will NOT be able to log into the Data Hub.` :
+                `Activate login access for ${user.name} (${user.email})?`;
+
+            if (confirm(confirmMsg)) {
+                user.status = newStatus;
+                user.updatedAt = new Date().toISOString();
+                await syncUsersToCloud();
+                renderUsersTable();
+            }
+        }
+
+        async function deleteUser(userId) {
+            const user = currentUsers.find(u => u.id === userId);
+            if (!user) return;
+
+            if (user.email.toLowerCase() === SUPER_ADMIN_EMAIL.toLowerCase()) {
+                alert("Permanent Super Admin cannot be deleted.");
+                return;
+            }
+
+            if (confirm(`Permanently remove ${user.name} (${user.email}) from Solis User Management? They will be immediately blocked from all Data Hub access.`)) {
+                currentUsers = currentUsers.filter(u => u.id !== userId);
+                await syncUsersToCloud();
+                renderUsersTable();
+            }
+        }
+
+        // ========================================================
+        // LOGOUT & ESCAPE UTILITY
+        // ========================================================
+        function handleLogout() {
+            sessionStorage.clear();
+            localStorage.removeItem('solis_auth_token');
+            localStorage.removeItem('solis_user_email');
+            localStorage.removeItem('solis_user_role');
+            localStorage.removeItem('solis_admin_logged_in');
+            if (typeof authFirebase !== 'undefined') {
+                authFirebase.signOut().catch(() => {});
+            }
+            window.location.href = '/Login/index.html';
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Initialize on load
+        if (verifySuperAdminAuth()) {
+            loadUsersFromCloud();
+        }
+    </script>
+</body>
+</html>

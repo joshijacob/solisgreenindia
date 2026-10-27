@@ -508,11 +508,11 @@
                 </div>
             </div>
 
-            <!-- Modules Grid: 11 Live Modules + 1 System Monitor Card (Exact 4x3 Grid) -->
+            <!-- Modules Grid: 11 Live Modules + 1 User Management Card (Exact 4x3 Grid) -->
             <div class="row g-2 g-xl-2" id="modulesGrid">
                 
                 <!-- 1. Cost Calculator -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="cost_calculator">
                     <a href="/projectcostcalculator/index.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -532,7 +532,7 @@
                 </div>
 
                 <!-- 2. Saved Quotes Dashboard -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="quotes_proposals">
                     <a href="/projectcostcalculator/quotes_dashboard.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -552,7 +552,7 @@
                 </div>
 
                 <!-- 3. Submitted Forms Tracker -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="leads_tracker">
                     <a href="/leads/index.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -572,7 +572,7 @@
                 </div>
 
                 <!-- 4. Website Analytics & Activity Intelligence -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="analytics">
                     <a href="/analytics/index.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -592,7 +592,7 @@
                 </div>
 
                 <!-- 5. General Master Database -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 admin-only-module">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="general_master">
                     <a href="/projectcostcalculator/admin.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -612,7 +612,7 @@
                 </div>
 
                 <!-- 6. Solar Panel Master -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 admin-only-module">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="panel_master">
                     <a href="/projectcostcalculator/panel_master.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -632,7 +632,7 @@
                 </div>
 
                 <!-- 7. Inverter Master -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 admin-only-module">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="inverter_master">
                     <a href="/projectcostcalculator/inverter_master.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -652,7 +652,7 @@
                 </div>
 
                 <!-- 8. BOM Master -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 admin-only-module">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="bom_master">
                     <a href="/projectcostcalculator/bom_master.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -672,7 +672,7 @@
                 </div>
 
                 <!-- 9. SEO Command Center -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="seo_center">
                     <a href="/seo/index.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -692,7 +692,7 @@
                 </div>
 
                 <!-- 10. Careers & Hiring Admin -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 admin-only-module">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="careers_admin">
                     <a href="/careers/admin/index.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -712,7 +712,7 @@
                 </div>
 
                 <!-- 11. Public Website Portal -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="public_website">
                     <a href="/" target="_blank" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -731,24 +731,24 @@
                     </a>
                 </div>
 
-                <!-- 12. System Cockpit Monitor (Completes 4x3 Grid) -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                    <div class="module-card" style="background: #fafafa; border-style: dashed;">
+                <!-- 12. User Management Card (Super Admin Exclusive) -->
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="user_management">
+                    <a href="/users/index.html" class="module-card" id="userManagementHubCard">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
-                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #334155 0%, #0f172a 100%);">
-                                    <i class="fa-solid fa-shield-halved"></i>
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);">
+                                    <i class="fa-solid fa-users-gear"></i>
                                 </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">System Status</h6>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">User Management</h6>
                             </div>
-                            <span class="module-tag-compact" style="background: #f1f5f9; color: #475569;">v2.4 Active</span>
+                            <span class="module-tag-compact" style="background: #ede9fe; color: #5b21b6;">Super Admin</span>
                         </div>
-                        <p class="module-desc">Firestore Live &bull; Meta Pixel Active &bull; Form Relay Connected &bull; All nominal.</p>
-                        <div class="module-action-link text-muted">
-                            <span class="text-success"><span class="live-dot me-1"></span> All Systems Operational</span>
-                            <i class="fa-solid fa-check text-success"></i>
+                        <p class="module-desc">Create team users, assign roles & control access permissions to Data Hub modules.</p>
+                        <div class="module-action-link text-primary">
+                            <span>Manage Access</span>
+                            <i class="fa-solid fa-arrow-right"></i>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
             </div>
@@ -757,11 +757,65 @@
 
     <!-- Scripts -->
     <script>
-        // Predefined fallback users
-        const VALID_USERS = [
-            { email: "solisgreenenergysolutions@gmail.com", password: "Admin@1985", role: "admin" },
-            { email: "joshijacob@gmail.com", password: "Joshi@1985", role: "sales" }
+        // ========================================================
+        // USER AUTH & GATEWAY ENFORCEMENT
+        // ========================================================
+        const SUPER_ADMIN_EMAIL = "solisgreenenergysolutions@gmail.com";
+        const FB_REST_USER_MGMT = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/userManagement?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
+
+        // Permanent fallback users
+        const HARDCODED_FALLBACK_USERS = [
+            { 
+                email: "solisgreenenergysolutions@gmail.com", 
+                password: "Admin@1985", 
+                role: "super_admin", 
+                name: "Solis Super Admin",
+                status: "active",
+                permissions: {
+                    cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true,
+                    general_master: true, panel_master: true, inverter_master: true, bom_master: true,
+                    seo_center: true, careers_admin: true, public_website: true, user_management: true
+                }
+            },
+            { 
+                email: "joshijacob@gmail.com", 
+                password: "Joshi@1985", 
+                role: "sales", 
+                name: "Joshi Jacob",
+                status: "active",
+                permissions: {
+                    cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true,
+                    general_master: false, panel_master: false, inverter_master: false, bom_master: false,
+                    seo_center: true, careers_admin: false, public_website: true, user_management: false
+                }
+            }
         ];
+
+        // Fetch live registered users from Firestore or cache
+        async function getRegisteredUsers() {
+            try {
+                const resp = await fetch(FB_REST_USER_MGMT);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data && data.fields && data.fields.usersJson && data.fields.usersJson.stringValue) {
+                        const users = JSON.parse(data.fields.usersJson.stringValue);
+                        localStorage.setItem('solis_users_db', JSON.stringify(users));
+                        return users;
+                    }
+                }
+            } catch (err) {
+                console.warn("Notice: Firestore user sync offline, using local cache:", err);
+            }
+
+            // Fallback to local storage or hardcoded defaults
+            const localData = localStorage.getItem('solis_users_db');
+            if (localData) {
+                try {
+                    return JSON.parse(localData);
+                } catch (e) {}
+            }
+            return HARDCODED_FALLBACK_USERS;
+        }
 
         // Curated Positive Thoughts for Solis Green Energy
         const POSITIVE_THOUGHTS = [
@@ -814,6 +868,7 @@
                 sessionStorage.setItem('solis_auth_token', 'true');
                 sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
                 sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
+                sessionStorage.setItem('solis_user_permissions', localStorage.getItem('solis_user_permissions') || '{}');
                 sessionStorage.setItem('solis_admin_logged_in', localStorage.getItem('solis_admin_logged_in') || 'false');
             }
 
@@ -923,7 +978,7 @@
             showHubView(userEmail, userRole);
         }
 
-        // Display Data Hub View (Compact 1-Page Layout)
+        // Display Data Hub View (Compact 1-Page Layout with Dynamic Permission Gatekeeping)
         function showHubView(userEmail, userRole) {
             document.getElementById('loginSection').classList.add('d-none');
             document.getElementById('welcomeLandingSection').classList.add('d-none');
@@ -932,22 +987,73 @@
             hubSection.classList.remove('d-none');
             document.body.classList.add('hub-active');
 
+            // Set user profile in navbar
             document.getElementById('userEmailBadge').textContent = userEmail;
             const roleBadge = document.getElementById('userRoleBadge');
-            roleBadge.textContent = userRole.toUpperCase();
-            roleBadge.className = userRole === 'admin' ? 'badge bg-danger text-uppercase' : 'badge bg-primary text-uppercase';
+            const isSuperAdmin = (userEmail.toLowerCase() === SUPER_ADMIN_EMAIL.toLowerCase());
 
-            // Restrict Admin-only modules for sales accounts
-            if (userRole !== 'admin') {
-                document.querySelectorAll('.admin-only-module').forEach(el => {
-                    el.querySelector('.module-card').classList.add('module-card-disabled');
-                    const tag = el.querySelector('.module-tag-compact');
+            if (isSuperAdmin) {
+                roleBadge.innerHTML = '<i class="fa-solid fa-crown me-1"></i> SUPER ADMIN';
+                roleBadge.className = 'badge bg-warning text-dark fw-bold text-uppercase';
+            } else if (userRole === 'admin') {
+                roleBadge.textContent = 'ADMIN';
+                roleBadge.className = 'badge bg-danger text-uppercase';
+            } else {
+                roleBadge.textContent = (userRole || 'SALES').toUpperCase();
+                roleBadge.className = 'badge bg-primary text-uppercase';
+            }
+
+            // Retrieve saved granular card permissions
+            let userPerms = {};
+            try {
+                userPerms = JSON.parse(sessionStorage.getItem('solis_user_permissions') || '{}');
+            } catch (e) {
+                userPerms = {};
+            }
+
+            // Apply card permissions across all 12 modules
+            document.querySelectorAll('#modulesGrid > div[data-module]').forEach(col => {
+                const moduleId = col.getAttribute('data-module');
+                const card = col.querySelector('.module-card');
+                const tag = col.querySelector('.module-tag-compact');
+                const actionLink = col.querySelector('.module-action-link');
+
+                // Super admin always has full access to all cards
+                let isAllowed = isSuperAdmin;
+                if (!isSuperAdmin) {
+                    // For user_management card: exclusively for Super Admin
+                    if (moduleId === 'user_management') {
+                        isAllowed = false;
+                    } else if (userPerms && typeof userPerms[moduleId] === 'boolean') {
+                        isAllowed = userPerms[moduleId];
+                    } else if (userRole === 'admin') {
+                        // Admin default access
+                        isAllowed = (moduleId !== 'user_management');
+                    } else {
+                        // Sales default access
+                        isAllowed = ['cost_calculator', 'quotes_proposals', 'leads_tracker', 'analytics', 'seo_center', 'public_website'].includes(moduleId);
+                    }
+                }
+
+                if (!isAllowed) {
+                    card.classList.add('module-card-disabled');
+                    card.style.pointerEvents = 'none';
+                    card.style.opacity = '0.45';
+                    card.style.filter = 'grayscale(0.85)';
                     if (tag) {
-                        tag.textContent = 'Admin Only';
+                        tag.innerHTML = '<i class="fa-solid fa-lock me-1"></i> Locked';
                         tag.className = 'module-tag-compact bg-secondary text-white';
                     }
-                });
-            }
+                    if (actionLink) {
+                        actionLink.innerHTML = '<span class="text-secondary small fw-bold"><i class="fa-solid fa-ban me-1"></i> No Access</span><i class="fa-solid fa-lock text-secondary"></i>';
+                    }
+                } else {
+                    card.classList.remove('module-card-disabled');
+                    card.style.pointerEvents = '';
+                    card.style.opacity = '';
+                    card.style.filter = '';
+                }
+            });
         }
 
         // Toggle password visibility
@@ -963,7 +1069,7 @@
             }
         });
 
-        // Form Submit Login Handler
+        // Form Submit Login Handler with Strict User Management Gateway
         document.getElementById('central-login-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = document.getElementById('emailInput').value.trim();
@@ -973,41 +1079,87 @@
 
             errorAlert.classList.add('d-none');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Authenticating...';
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Checking Access Authority...';
             btn.disabled = true;
 
             try {
+                const normalizedEmail = email.toLowerCase();
+                const isSuperAdmin = (normalizedEmail === SUPER_ADMIN_EMAIL.toLowerCase());
+
+                // Fetch registered users from User Management module
+                const registeredUsers = await getRegisteredUsers();
+                const userRecord = registeredUsers.find(u => u.email.toLowerCase() === normalizedEmail);
+
+                // GATEWAY CHECK 1: Must be in User Management module (or Super Admin)
+                if (!isSuperAdmin && !userRecord) {
+                    throw new Error("Access Denied: Your account is not registered in Solis User Management. Only team members authorized by the Super Admin can access the Data Hub.");
+                }
+
+                // GATEWAY CHECK 2: If found, must be Active
+                if (!isSuperAdmin && userRecord && userRecord.status !== 'active') {
+                    throw new Error("Access Denied: Your account has been suspended or deactivated. Please contact the Super Admin.");
+                }
+
+                // PASSWORD & AUTHENTICATION CHECK
                 let authenticated = false;
                 let role = 'sales';
+                let userName = email;
+                let permissions = {};
 
-                // Check predefined users
-                const localUser = VALID_USERS.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
-                if (localUser) {
-                    authenticated = true;
-                    role = localUser.role;
-                } else if (typeof authFirebase !== 'undefined') {
-                    try {
-                        const userCred = await authFirebase.signInWithEmailAndPassword(email, password);
-                        if (userCred && userCred.user) {
-                            authenticated = true;
-                            role = (email.toLowerCase() === 'solisgreenenergysolutions@gmail.com') ? 'admin' : 'sales';
-                        }
-                    } catch (fbErr) {
-                        console.warn('Firebase login notice:', fbErr);
+                if (isSuperAdmin) {
+                    if (password === 'Admin@1985') {
+                        authenticated = true;
+                        role = 'super_admin';
+                        userName = 'Solis Super Admin';
+                        permissions = (userRecord && userRecord.permissions) || {
+                            cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true,
+                            general_master: true, panel_master: true, inverter_master: true, bom_master: true,
+                            seo_center: true, careers_admin: true, public_website: true, user_management: true
+                        };
+                    } else if (typeof authFirebase !== 'undefined') {
+                        try {
+                            const userCred = await authFirebase.signInWithEmailAndPassword(email, password);
+                            if (userCred && userCred.user) {
+                                authenticated = true;
+                                role = 'super_admin';
+                                userName = 'Solis Super Admin';
+                            }
+                        } catch (e) {}
+                    }
+                } else if (userRecord) {
+                    if (userRecord.password && userRecord.password === password) {
+                        authenticated = true;
+                        role = userRecord.role || 'sales';
+                        userName = userRecord.name || userRecord.email;
+                        permissions = userRecord.permissions || {};
+                    } else if (typeof authFirebase !== 'undefined') {
+                        try {
+                            const userCred = await authFirebase.signInWithEmailAndPassword(email, password);
+                            if (userCred && userCred.user) {
+                                authenticated = true;
+                                role = userRecord.role || 'sales';
+                                userName = userRecord.name || userRecord.email;
+                                permissions = userRecord.permissions || {};
+                            }
+                        } catch (e) {}
                     }
                 }
 
                 if (authenticated) {
                     sessionStorage.setItem('solis_auth_token', 'true');
                     sessionStorage.setItem('solis_user_email', email);
+                    sessionStorage.setItem('solis_user_name', userName);
                     sessionStorage.setItem('solis_user_role', role);
-                    sessionStorage.removeItem('solis_hub_unlocked'); // Always show Welcome Landing page upon new login
+                    sessionStorage.setItem('solis_user_permissions', JSON.stringify(permissions));
+                    sessionStorage.removeItem('solis_hub_unlocked'); // Show Welcome Landing page on fresh login
 
                     localStorage.setItem('solis_auth_token', 'true');
                     localStorage.setItem('solis_user_email', email);
+                    localStorage.setItem('solis_user_name', userName);
                     localStorage.setItem('solis_user_role', role);
+                    localStorage.setItem('solis_user_permissions', JSON.stringify(permissions));
 
-                    if (role === 'admin') {
+                    if (role === 'admin' || role === 'super_admin') {
                         sessionStorage.setItem('solis_admin_logged_in', 'true');
                         localStorage.setItem('solis_admin_logged_in', 'true');
                     }
@@ -1018,14 +1170,15 @@
                         checkAuthState();
                     }
                 } else {
-                    errorAlert.querySelector('span').textContent = 'Invalid email or password. Please check your credentials.';
+                    errorAlert.querySelector('span').textContent = 'Invalid password. Please check your credentials.';
                     errorAlert.classList.remove('d-none');
                     document.getElementById('passwordInput').value = '';
                     document.getElementById('passwordInput').focus();
                 }
+
             } catch (err) {
-                console.error("Login Error:", err);
-                errorAlert.querySelector('span').textContent = err.message || 'An error occurred during sign-in.';
+                console.error("Login Authority Error:", err);
+                errorAlert.querySelector('span').textContent = err.message || 'An error occurred during authentication.';
                 errorAlert.classList.remove('d-none');
             } finally {
                 btn.innerHTML = originalText;
@@ -1040,11 +1193,15 @@
             sessionStorage.removeItem('solis_user_role');
             sessionStorage.removeItem('solis_hub_unlocked');
             sessionStorage.removeItem('solis_admin_logged_in');
+            sessionStorage.removeItem('solis_user_permissions');
+            sessionStorage.removeItem('solis_user_name');
 
             localStorage.removeItem('solis_auth_token');
             localStorage.removeItem('solis_user_email');
             localStorage.removeItem('solis_user_role');
             localStorage.removeItem('solis_admin_logged_in');
+            localStorage.removeItem('solis_user_permissions');
+            localStorage.removeItem('solis_user_name');
 
             if (typeof authFirebase !== 'undefined') {
                 authFirebase.signOut().catch(() => {});
