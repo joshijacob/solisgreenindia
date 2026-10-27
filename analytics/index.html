@@ -1069,11 +1069,13 @@
                         const fetchedForms = [];
                         snapshot.forEach(doc => {
                             const d = doc.data();
+                            const consumerBadge = d.consumerNumber ? ` | KSEB #${d.consumerNumber}` : '';
                             const formObj = {
                                 id: doc.id,
                                 type: 'form_submit',
-                                title: `Lead: ${d.name || 'Customer'} (${d.phone || 'N/A'})`,
-                                details: `${d.service || 'Solar'} - ${d.location || 'Kerala'} ${d.message ? '("' + d.message + '")' : ''}`,
+                                title: `Lead: ${d.name || 'Customer'} (${d.phone || 'N/A'})${consumerBadge}`,
+                                details: `${d.consumerNumber ? 'KSEB #' + d.consumerNumber + ' • ' : ''}${d.service || 'Solar'} - ${d.location || 'Kerala'}${d.message ? ' ("' + d.message + '")' : ''}`,
+                                consumerNumber: d.consumerNumber || '',
                                 url: d.page || '/contact/',
                                 device: d.device || 'Mobile',
                                 source: d.source || 'Website Form',

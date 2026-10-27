@@ -259,10 +259,11 @@ function initializeForms() {
       // Get form data
       const formData = new FormData(this);
       const data = {
-        name: formData.get('name') || '',
+        name: formData.get('name') || formData.get('fullName') || '',
         phone: formData.get('phone') || '',
+        consumerNumber: formData.get('consumerNumber') || formData.get('consumer_no') || formData.get('consumerNo') || formData.get('kseb_consumer_no') || '',
         email: formData.get('email') || '',
-        service: formData.get('service') || 'Not specified',
+        service: formData.get('service') || formData.get('projectType') || 'Solar Installation',
         location: formData.get('location') || detectLocationFromPage(),
         message: formData.get('message') || '',
         page: window.location.pathname,
@@ -816,7 +817,7 @@ function handleFormSuccess(submitBtn, originalText, form, data) {
   }, 3000);
 }
 
-// Form Validation
+// Form Validation - Mandatory: Customer Name, Contact Number, KSEB Consumer Number
 function validateForm(form) {
   let isValid = true;
   form.querySelectorAll('[required]').forEach(field => {
@@ -824,6 +825,31 @@ function validateForm(form) {
       isValid = false;
     }
   });
+
+  // Strict check on Mandatory Fields: Name, Phone, and Consumer Number
+  const nameInput = form.querySelector('input[name="name"], input[name="fullName"]');
+  const phoneInput = form.querySelector('input[name="phone"], input[type="tel"]');
+  const consumerInput = form.querySelector('input[name="consumerNumber"], input[name="consumer_no"], input[name="consumerNo"]');
+
+  if (nameInput && !nameInput.value.trim()) {
+    showFieldError(nameInput, 'Customer Name is required');
+    isValid = false;
+  }
+  if (phoneInput) {
+    const cleanPhone = phoneInput.value.replace(/\D/g, '');
+    if (!cleanPhone || cleanPhone.length < 10) {
+      showFieldError(phoneInput, 'Valid 10-digit Contact Number is required');
+      isValid = false;
+    }
+  }
+  if (consumerInput) {
+    const cleanCons = consumerInput.value.replace(/\D/g, '');
+    if (!cleanCons || cleanCons.length < 10 || cleanCons.length > 13) {
+      showFieldError(consumerInput, 'KSEB Consumer Number is mandatory (10-13 digits)');
+      isValid = false;
+    }
+  }
+
   return isValid;
 }
 
@@ -836,7 +862,7 @@ function validateField(field) {
 
   if (field.hasAttribute('required') && !value) {
     isValid = false;
-    errorMessage = 'This field is required';
+    errorMessage = 'This field is mandatory';
   } else if (field.type === 'email' && value) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(value)) {
@@ -848,7 +874,13 @@ function validateField(field) {
     const cleanPhone = value.replace(/\D/g, '');
     if (!phoneRegex.test(cleanPhone)) {
       isValid = false;
-      errorMessage = 'Please enter a valid 10-digit phone number';
+      errorMessage = 'Please enter a valid 10-digit contact number';
+    }
+  } else if ((field.name === 'consumerNumber' || field.name === 'consumer_no') && value) {
+    const cleanConsumer = value.replace(/\D/g, '');
+    if (cleanConsumer.length < 10 || cleanConsumer.length > 13) {
+      isValid = false;
+      errorMessage = 'Please enter a valid 10 to 13 digit KSEB Consumer Number';
     }
   }
 
@@ -857,7 +889,6 @@ function validateField(field) {
   } else if (value) {
     markFieldSuccess(field);
   }
-
   return isValid;
 }
 
@@ -1478,6 +1509,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fields: {
           name: { stringValue: data.name || 'Website Visitor' },
           phone: { stringValue: data.phone || '' },
+          consumerNumber: { stringValue: data.consumerNumber || '' },
           email: { stringValue: data.email || '' },
           service: { stringValue: data.service || 'Solar Installation' },
           location: { stringValue: data.location || detectLocationFromPage() || 'Kerala' },
@@ -1639,8 +1671,10 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
       const phoneInput = form.querySelector('input[type="tel"], input[name="phone"]');
       const nameInput = form.querySelector('input[name="name"], input[name="fullname"]');
+      const consInput = form.querySelector('input[name="consumerNumber"], input[name="consumer_no"], input[name="consumerNo"]');
       const leadSnippet = (nameInput && nameInput.value ? nameInput.value.trim() : '') + 
-                          (phoneInput && phoneInput.value ? ' (' + phoneInput.value.trim() + ')' : '');
+                          (phoneInput && phoneInput.value ? ' (' + phoneInput.value.trim() + ')' : '') +
+                          (consInput && consInput.value ? ' [KSEB #' + consInput.value.trim() + ']' : '');
       const details = leadSnippet ? `Quote Lead: ${leadSnippet} - ${formName}` : `Quote Form Submitted: ${formName}`;
       recordSolisEvent('form_submit', details);
     } catch (err) {
