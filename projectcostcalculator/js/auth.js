@@ -103,11 +103,23 @@ function logout() {
     sessionStorage.removeItem('solis_auth_token');
     sessionStorage.removeItem('solis_user_email');
     sessionStorage.removeItem('solis_user_role');
+    sessionStorage.removeItem('solis_user_name');
+    sessionStorage.removeItem('solis_user_permissions');
+    sessionStorage.removeItem('solis_admin_logged_in');
     localStorage.removeItem('solis_auth_token');
     localStorage.removeItem('solis_user_email');
     localStorage.removeItem('solis_user_role');
+    localStorage.removeItem('solis_user_name');
+    localStorage.removeItem('solis_user_permissions');
+    localStorage.removeItem('solis_admin_logged_in');
     if (typeof authFirebase !== 'undefined') {
         authFirebase.signOut().catch(() => {});
     }
     window.location.href = '/Login/index.html';
 }
+
+function handleLogout() {
+    logout();
+}
+window.handleLogout = handleLogout;
+window.logout = logout;

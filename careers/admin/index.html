@@ -206,55 +206,63 @@
         }
         .close-modal:hover { color: #0f172a; }
     </style>
+<style>
+        /* Unified Admin Navbar (Solis Standard Design) */
+        .admin-navbar {
+            background: #ffffff !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            height: 56px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 1.8s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+</style>
 </head>
 <body>
 
     <!-- Unified Central Admin Navbar -->
-    <nav class="careers-navbar py-2 px-3 px-md-4">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-            
-            <!-- Brand & Official Logo -->
-            <div class="d-flex align-items-center">
-                <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none me-3" href="/Login/index.html">
-                    <img src="/images/logo/logo.png" alt="Solis Green Energy" style="height: 40px; width: auto; margin-right: 12px; object-fit: contain;">
-                    <div>
-                        <div class="fw-bold font-display fs-5 lh-1 text-dark">
-                            SOLIS <span style="color: #ec4899;">HR</span>
-                        </div>
-                        <small class="text-muted fw-semibold" style="font-size: 0.68rem; letter-spacing: 0.05em;">CAREERS & HIRING ADMIN</small>
-                    </div>
-                </a>
-                
-                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill d-none d-lg-inline-flex align-items-center">
-                    <i class="fa-solid fa-circle text-success me-2" style="font-size: 0.45rem;"></i> Central Admin Authenticated
-                </span>
-            </div>
-
-            <!-- Navigation Buttons -->
-            <div class="d-flex align-items-center gap-2">
-                <div class="d-none d-md-flex align-items-center bg-light border rounded-pill px-3 py-1 me-2">
-                    <i class="fa-solid fa-user-shield text-danger me-2"></i>
-                    <span class="small fw-semibold text-dark me-2" id="userEmailBadge">solisgreenenergysolutions@gmail.com</span>
-                    <span class="badge bg-danger text-uppercase" style="font-size: 0.65rem;">ADMIN</span>
+        <!-- Unified Admin Top Navigation Bar -->
+    <nav class="admin-navbar py-1 px-3 px-md-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center h-100">
+            <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none" href="/Login/index.html">
+                <img src="/images/logo/logo.png" alt="Solis Logo" style="height: 38px; width: auto; margin-right: 12px; object-fit: contain;">
+                <div>
+                    <div class="fw-bold font-display fs-6 lh-1 text-dark">SOLIS <span style="color: #FF6A2A;">EPC</span></div>
+                    <small class="text-muted fw-semibold" style="font-size: 0.62rem; letter-spacing: 0.05em;">CAREERS & HIRING ADMIN</small>
                 </div>
+            </a>
 
-                <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill" title="Modules Hub">
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill fw-semibold d-none d-md-inline-block">
+                    <span class="live-dot me-1"></span> Firestore Security Synced
+                </span>
+
+                <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill" title="Return to Modules Hub">
                     <i class="fa-solid fa-grip me-1"></i> Modules Hub
                 </a>
 
-                <a href="/leads/index.html" class="btn btn-outline-success btn-sm rounded-pill px-3 fw-semibold d-none d-sm-inline-flex" title="Submitted Quote Forms">
-                    <i class="fa-solid fa-file-excel me-1"></i> Leads Tracker
+                <a href="/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1 d-none d-sm-inline-block" title="Open Public Website">
+                    <i class="fa-solid fa-globe me-1"></i> Website
                 </a>
 
-                <a href="/analytics/index.html" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold d-none d-md-inline-flex" title="Web Analytics">
-                    <i class="fa-solid fa-chart-line me-1"></i> Analytics
-                </a>
-
-                <a href="/careers/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Open Public Careers Portal">
-                    <i class="fa-solid fa-globe me-1"></i> Public Careers
-                </a>
-
-                <button onclick="handleCentralLogout()" class="btn btn-outline-danger btn-sm rounded-pill px-3" title="Sign Out">
+                <button onclick="handleLogout()" class="btn btn-outline-danger btn-sm rounded-pill px-3 py-1" title="Sign Out">
                     <i class="fa-solid fa-right-from-bracket me-1"></i> Sign Out
                 </button>
             </div>
@@ -456,5 +464,25 @@
             window.location.href = '/Login/index.html';
         }
     </script>
+
+    <script>
+        function handleLogout() {
+            if (typeof logout === 'function') {
+                logout();
+            } else {
+                sessionStorage.clear();
+                localStorage.removeItem('solis_auth_token');
+                localStorage.removeItem('solis_user_email');
+                localStorage.removeItem('solis_user_role');
+                localStorage.removeItem('solis_user_permissions');
+                localStorage.removeItem('solis_admin_logged_in');
+                if (typeof authFirebase !== 'undefined') {
+                    authFirebase.signOut().catch(() => {});
+                }
+                window.location.href = '/Login/index.html';
+            }
+        }
+    </script>
+        
 </body>
 </html>

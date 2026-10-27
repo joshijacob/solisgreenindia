@@ -333,6 +333,34 @@
             filter: grayscale(0.8);
         }
     </style>
+<style>
+        /* Unified Admin Navbar (Solis Standard Design) */
+        .admin-navbar {
+            background: #ffffff !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            height: 56px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 1.8s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+</style>
 </head>
 <body>
 
@@ -464,33 +492,36 @@
     <div id="hubSection" class="d-none">
         
         <!-- Navigation Bar -->
-        <nav class="hub-navbar py-1 px-3 px-md-4">
-            <div class="container-fluid d-flex justify-content-between align-items-center h-100">
-                <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none" href="/Login/index.html">
-                    <img src="/images/logo/logo.png" alt="Solis Green Energy Solutions" style="height: 36px; width: auto; margin-right: 10px; object-fit: contain;">
-                    <div>
-                        <div class="fw-bold font-display fs-6 lh-1 text-dark">SOLIS <span style="color: #FF6A2A;">EPC</span></div>
-                        <small class="text-muted fw-semibold" style="font-size: 0.62rem; letter-spacing: 0.05em;">DATA HUB & ADMIN CONTROL</small>
-                    </div>
+            <!-- Unified Admin Top Navigation Bar -->
+    <nav class="admin-navbar py-1 px-3 px-md-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center h-100">
+            <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none" href="/Login/index.html">
+                <img src="/images/logo/logo.png" alt="Solis Logo" style="height: 38px; width: auto; margin-right: 12px; object-fit: contain;">
+                <div>
+                    <div class="fw-bold font-display fs-6 lh-1 text-dark">SOLIS <span style="color: #FF6A2A;">EPC</span></div>
+                    <small class="text-muted fw-semibold" style="font-size: 0.62rem; letter-spacing: 0.05em;">CENTRAL OPERATIONS & DATA HUB</small>
+                </div>
+            </a>
+
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill fw-semibold d-none d-md-inline-block">
+                    <span class="live-dot me-1"></span> Firestore Security Synced
+                </span>
+
+                <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill" title="Return to Modules Hub">
+                    <i class="fa-solid fa-grip me-1"></i> Modules Hub
                 </a>
 
-                <div class="d-flex align-items-center gap-2">
-                    <div class="d-none d-md-flex align-items-center bg-light border rounded-pill px-2 py-0">
-                        <i class="fa-solid fa-user-circle text-primary me-2"></i>
-                        <span class="small fw-semibold text-dark me-2" id="userEmailBadge" style="font-size: 0.78rem;">admin@solisgreenindia.in</span>
-                        <span class="badge bg-danger text-uppercase" id="userRoleBadge" style="font-size: 0.6rem;">ADMIN</span>
-                    </div>
+                <a href="/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1 d-none d-sm-inline-block" title="Open Public Website">
+                    <i class="fa-solid fa-globe me-1"></i> Website
+                </a>
 
-                    <a href="/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1" style="font-size: 0.78rem;" title="Open Public Website">
-                        <i class="fa-solid fa-globe me-1"></i> Website
-                    </a>
-
-                    <button onclick="handleLogout()" class="btn btn-outline-danger btn-sm rounded-pill px-3 py-1" style="font-size: 0.78rem;" title="Sign Out">
-                        <i class="fa-solid fa-right-from-bracket me-1"></i> Sign Out
-                    </button>
-                </div>
+                <button onclick="handleLogout()" class="btn btn-outline-danger btn-sm rounded-pill px-3 py-1" title="Sign Out">
+                    <i class="fa-solid fa-right-from-bracket me-1"></i> Sign Out
+                </button>
             </div>
-        </nav>
+        </div>
+    </nav>
 
         <!-- Main Hub Container (Compact & Symmetrical) -->
         <div class="container-fluid px-3 px-md-4" id="hubMainContainer">
@@ -988,11 +1019,11 @@
             document.body.classList.add('hub-active');
 
             // Set user profile in navbar
-            document.getElementById('userEmailBadge').textContent = userEmail;
+            const emailBadge = document.getElementById('userEmailBadge'); if (emailBadge) emailBadge.textContent = userEmail;
             const roleBadge = document.getElementById('userRoleBadge');
             const isSuperAdmin = (userEmail.toLowerCase() === SUPER_ADMIN_EMAIL.toLowerCase());
 
-            if (isSuperAdmin) {
+            if (roleBadge && isSuperAdmin) {
                 roleBadge.innerHTML = '<i class="fa-solid fa-crown me-1"></i> SUPER ADMIN';
                 roleBadge.className = 'badge bg-warning text-dark fw-bold text-uppercase';
             } else if (userRole === 'admin') {
