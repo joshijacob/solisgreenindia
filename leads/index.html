@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submitted Forms & Leads Tracker (Excel View) | Solis Green Energy</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.ico">
+
+    <!-- Auth Guard Check First -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="/projectcostcalculator/js/firebase-init.js"></script>
+    <script src="/projectcostcalculator/js/auth.js"></script>
+
+    <!-- Bootstrap 5 & FontAwesome 6 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --excel-green: #107c41;
+            --excel-green-dark: #0b552c;
+            --excel-green-light: #e6f4ea;
+            --solis-orange: #FF6A2A;
+            --solis-dark: #0f172a;
+            --slate-bg: #f8fafc;
+            --grid-border: #e2e8f0;
+        }
+
+        body {
+            background-color: var(--slate-bg);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-display {
+            font-family: 'Outfit', 'Inter', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Top Navbar */
+        .leads-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--grid-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        /* Summary Stat Cards */
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid var(--grid-border);
+            border-radius: 0.85rem;
+            padding: 1.15rem 1.25rem;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.08);
+            border-color: #cbd5e1;
+        }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        /* Excel-like Table Styling */
+        .excel-container {
+            background: #ffffff;
+            border: 1px solid var(--grid-border);
+            border-radius: 0.85rem;
+            box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+            overflow: hidden;
+        }
+
+        .excel-toolbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--grid-border);
+            padding: 1rem 1.25rem;
+        }
+
+        .excel-table {
+            margin-bottom: 0;
+            font-size: 0.875rem;
+        }
+
+        .excel-table thead th {
+            background: #f1f5f9;
+            color: #334155;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.75rem 0.85rem;
+            border-bottom: 2px solid #cbd5e1;
+            white-space: nowrap;
+            vertical-align: middle;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .excel-table tbody td {
+            padding: 0.75rem 0.85rem;
+            vertical-align: middle;
+            border-bottom: 1px solid var(--grid-border);
+            border-right: 1px solid #f1f5f9;
+            transition: background-color 0.15s ease;
+        }
+
+        .excel-table tbody tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        .excel-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Consumer Number Pill */
+        .kseb-badge {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            padding: 0.2rem 0.55rem;
+            border-radius: 0.375rem;
+            font-size: 0.82rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            letter-spacing: 0.03em;
+        }
+
+        .kseb-badge .copy-btn {
+            background: none;
+            border: none;
+            color: #b45309;
+            cursor: pointer;
+            padding: 0;
+            font-size: 0.75rem;
+            transition: color 0.15s ease;
+        }
+
+        .kseb-badge .copy-btn:hover {
+            color: #78350f;
+        }
+
+        /* Status Select Styling */
+        .status-select {
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            border: 1px solid #cbd5e1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: auto;
+            min-width: 125px;
+        }
+
+        .status-select.status-new {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            border-color: #bae6fd;
+        }
+
+        .status-select.status-contacted {
+            background-color: #fef3c7;
+            color: #92400e;
+            border-color: #fde68a;
+        }
+
+        .status-select.status-survey {
+            background-color: #f3e8ff;
+            color: #6b21a8;
+            border-color: #e9d5ff;
+        }
+
+        .status-select.status-proposal {
+            background-color: #ffedd5;
+            color: #c2410c;
+            border-color: #fed7aa;
+        }
+
+        .status-select.status-won {
+            background-color: #dcfce7;
+            color: #15803d;
+            border-color: #bbf7d0;
+        }
+
+        .status-select.status-lost {
+            background-color: #f1f5f9;
+            color: #475569;
+            border-color: #e2e8f0;
+        }
+
+        /* Action Buttons */
+        .action-icon-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            color: #475569;
+            transition: all 0.15s ease;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .action-icon-btn:hover {
+            background: #f8fafc;
+            color: #0f172a;
+            border-color: #cbd5e1;
+        }
+
+        .action-icon-btn.btn-wa:hover {
+            background: #25D366;
+            color: white;
+            border-color: #25D366;
+        }
+
+        .action-icon-btn.btn-call:hover {
+            background: #0284c7;
+            color: white;
+            border-color: #0284c7;
+        }
+
+        /* Pulse Animation */
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            display: inline-block;
+            margin-right: 6px;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 1.8s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Custom Scrollbar */
+        .table-responsive::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .table-responsive::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .badge-excel {
+            background: #107c41;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="leads-navbar py-2 px-3 px-md-4">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            
+            <!-- Left: Solis Official Logo & Brand -->
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none me-3" href="/Login/index.html">
+                    <img src="/images/logo/logo.png" alt="Solis Green Energy" style="height: 42px; width: auto; margin-right: 12px; object-fit: contain;">
+                    <div>
+                        <div class="fw-bold font-display fs-5 lh-1 text-dark">
+                            SOLIS <span style="color: #107c41;">LEADS</span>
+                        </div>
+                        <small class="text-muted fw-semibold" style="font-size: 0.68rem; letter-spacing: 0.05em;">SUBMITTED FORMS TRACKER & CRM</small>
+                    </div>
+                </a>
+                
+                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill d-none d-lg-inline-flex align-items-center" id="cloudSyncBadge">
+                    <span class="live-dot"></span> Cloud Firestore Live (<span id="liveCountText">0</span> Submissions)
+                </span>
+            </div>
+
+            <!-- Right: Action Buttons & Navigation -->
+            <div class="d-flex align-items-center gap-2">
+                <button type="button" class="btn btn-outline-success btn-sm fw-bold px-3 rounded-pill d-flex align-items-center gap-1 shadow-sm" onclick="exportToCSV()" title="Export leads to Excel CSV">
+                    <i class="fa-solid fa-file-excel"></i>
+                    <span class="d-none d-sm-inline">Export to Excel</span>
+                </button>
+
+                <button type="button" class="btn btn-success btn-sm fw-bold px-3 rounded-pill d-flex align-items-center gap-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#newLeadModal" title="Add manual walk-in or customer lead">
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="d-none d-sm-inline">Add Lead</span>
+                </button>
+
+                <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill" title="Return to Modules Hub">
+                    <i class="fa-solid fa-grip me-1"></i> Modules Hub
+                </a>
+
+                <a href="/analytics/index.html" class="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold d-none d-md-inline-flex" title="View Web Traffic Analytics">
+                    <i class="fa-solid fa-chart-line me-1"></i> Analytics
+                </a>
+
+                <a href="/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill px-3" title="Open Public Website">
+                    <i class="fa-solid fa-globe me-1"></i> Public Site
+                </a>
+
+                <button onclick="logout()" class="btn btn-outline-danger btn-sm rounded-pill px-3" title="Sign Out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container-fluid px-3 px-md-5 py-4">
+
+        <!-- Header Title Banner -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+            <div>
+                <h2 class="fw-bold font-display mb-1 text-dark d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-file-excel text-success"></i> Submitted Forms & Inquiries Tracker
+                </h2>
+                <p class="text-muted mb-0">Live spreadsheet view of customer quote requests, KSEB consumer numbers, and solar installation inquiries across Kerala.</p>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-white bg-white border btn-sm rounded-pill px-3 text-muted fw-semibold" onclick="fetchLeadsData(true)">
+                    <i class="fa-solid fa-rotate me-1" id="refreshIcon"></i> Refresh
+                </button>
+                <span class="text-muted small">Auto-syncing via Firestore</span>
+            </div>
+        </div>
+
+        <!-- 5 KPI Summary Cards -->
+        <div class="row g-3 mb-4">
+            
+            <!-- Card 1: Total Submissions -->
+            <div class="col-12 col-sm-6 col-xl">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-muted small fw-semibold text-uppercase">Total Inquiries</span>
+                            <h3 class="fw-bold font-display mb-0 mt-1" id="statTotalSubmissions">0</h3>
+                        </div>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #107c41 0%, #15803d 100%);">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                    </div>
+                    <small class="text-muted mt-2 d-block">Website Quote Fills</small>
+                </div>
+            </div>
+
+            <!-- Card 2: New Leads -->
+            <div class="col-12 col-sm-6 col-xl">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-muted small fw-semibold text-uppercase">New / Uncontacted</span>
+                            <h3 class="fw-bold font-display mb-0 mt-1 text-primary" id="statNewLeads">0</h3>
+                        </div>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                        </div>
+                    </div>
+                    <small class="text-primary mt-2 d-block fw-semibold">Action Required</small>
+                </div>
+            </div>
+
+            <!-- Card 3: In Follow-Up / Survey Scheduled -->
+            <div class="col-12 col-sm-6 col-xl">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-muted small fw-semibold text-uppercase">Survey Booked</span>
+                            <h3 class="fw-bold font-display mb-0 mt-1" style="color: #7c3aed;" id="statSurveyScheduled">0</h3>
+                        </div>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                    </div>
+                    <small class="text-muted mt-2 d-block">Site Visit Scheduled</small>
+                </div>
+            </div>
+
+            <!-- Card 4: Won / Closed -->
+            <div class="col-12 col-sm-6 col-xl">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-muted small fw-semibold text-uppercase">Won / Closed</span>
+                            <h3 class="fw-bold font-display mb-0 mt-1 text-success" id="statWonLeads">0</h3>
+                        </div>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                    </div>
+                    <small class="text-success mt-2 d-block fw-semibold">Conversion</small>
+                </div>
+            </div>
+
+            <!-- Card 5: KSEB Consumer Numbers Captured -->
+            <div class="col-12 col-sm-6 col-xl">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-muted small fw-semibold text-uppercase">KSEB Numbers</span>
+                            <h3 class="fw-bold font-display mb-0 mt-1 text-warning" style="color: #b45309 !important;" id="statKsebNumbers">0</h3>
+                        </div>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                    </div>
+                    <small class="text-muted mt-2 d-block">Ready for PM Surya Ghar</small>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Excel Spreadsheet Container -->
+        <div class="excel-container">
+            
+            <!-- Excel Toolbar: Filter & Search Controls -->
+            <div class="excel-toolbar">
+                <div class="row g-2 align-items-center">
+                    
+                    <!-- Search Input -->
+                    <div class="col-12 col-md-4 col-lg-3">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text bg-light border-end-0 text-muted"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input type="text" class="form-control border-start-0" id="tableSearchInput" placeholder="Search name, phone, KSEB no..." oninput="applyFilters()">
+                        </div>
+                    </div>
+
+                    <!-- Status Filter -->
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <select class="form-select form-select-sm" id="statusFilter" onchange="applyFilters()">
+                            <option value="all">All Statuses</option>
+                            <option value="New">New</option>
+                            <option value="Contacted">Contacted</option>
+                            <option value="Survey Scheduled">Survey Scheduled</option>
+                            <option value="Proposal Sent">Proposal Sent</option>
+                            <option value="Won">Won / Installed</option>
+                            <option value="Lost">Lost / Archived</option>
+                        </select>
+                    </div>
+
+                    <!-- Kerala District Filter -->
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <select class="form-select form-select-sm" id="districtFilter" onchange="applyFilters()">
+                            <option value="all">All Districts</option>
+                            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                            <option value="Kollam">Kollam</option>
+                            <option value="Pathanamthitta">Pathanamthitta</option>
+                            <option value="Alappuzha">Alappuzha</option>
+                            <option value="Kottayam">Kottayam</option>
+                            <option value="Idukki">Idukki</option>
+                            <option value="Ernakulam">Ernakulam</option>
+                            <option value="Thrissur">Thrissur</option>
+                            <option value="Palakkad">Palakkad</option>
+                            <option value="Malappuram">Malappuram</option>
+                            <option value="Kozhikode">Kozhikode</option>
+                            <option value="Wayanad">Wayanad</option>
+                            <option value="Kannur">Kannur</option>
+                            <option value="Kasaragod">Kasaragod</option>
+                        </select>
+                    </div>
+
+                    <!-- Date Filter -->
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <select class="form-select form-select-sm" id="dateFilter" onchange="applyFilters()">
+                            <option value="all">All Dates</option>
+                            <option value="today">Today</option>
+                            <option value="7days">Last 7 Days</option>
+                            <option value="30days">Last 30 Days</option>
+                        </select>
+                    </div>
+
+                    <!-- KSEB Only Checkbox -->
+                    <div class="col-6 col-sm-4 col-md-auto d-flex align-items-center">
+                        <div class="form-check form-check-sm mb-0">
+                            <input class="form-check-input" type="checkbox" id="ksebOnlyCheck" onchange="applyFilters()">
+                            <label class="form-check-label small fw-semibold text-muted" for="ksebOnlyCheck">
+                                Only with KSEB No.
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Results Count Badge -->
+                    <div class="col-12 col-md-auto ms-auto text-end">
+                        <span class="text-muted small">Showing <strong class="text-dark" id="filteredCount">0</strong> of <strong class="text-dark" id="totalCount">0</strong> leads</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Excel Table View -->
+            <div class="table-responsive" style="max-height: 680px; overflow-y: auto;">
+                <table class="table table-hover excel-table" id="leadsTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 45px;" class="text-center">#</th>
+                            <th style="width: 140px;">Date & Time</th>
+                            <th style="min-width: 180px;">Customer Name</th>
+                            <th style="min-width: 160px;">Contact Number</th>
+                            <th style="min-width: 175px;">KSEB Consumer No.</th>
+                            <th style="min-width: 150px;">Service</th>
+                            <th style="min-width: 140px;">District / Area</th>
+                            <th style="min-width: 140px;">Source Page</th>
+                            <th style="min-width: 150px;">Status</th>
+                            <th style="width: 100px;" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadsTableBody">
+                        <tr>
+                            <td colspan="10" class="text-center py-5 text-muted">
+                                <div class="spinner-border spinner-border-sm text-success me-2" role="status"></div>
+                                Loading submissions from Firestore...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Table Footer -->
+            <div class="p-3 bg-light border-top d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 small text-muted">
+                <div>
+                    <i class="fa-solid fa-shield-halved text-success me-1"></i> Form data saved securely in Google Cloud Firestore • Instant 1-click status updates
+                </div>
+                <div>
+                    <button class="btn btn-link btn-sm text-decoration-none text-muted p-0" onclick="exportToCSV()">
+                        <i class="fa-solid fa-download me-1"></i> Download .CSV Spreadsheet
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODAL 1: VIEW & EDIT LEAD DETAILS -->
+    <!-- ======================================================== -->
+    <div class="modal fade" id="leadDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header border-bottom pb-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="stat-icon" style="width: 36px; height: 36px; font-size: 1rem; background: var(--excel-green);">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <h5 class="modal-title fw-bold mb-0" id="modalCustomerName">Customer Details</h5>
+                            <small class="text-muted" id="modalDateBadge">Submission Info</small>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body p-4">
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Customer Name</label>
+                            <div class="form-control bg-light fw-bold" id="detailName">-</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Contact Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-phone"></i></span>
+                                <input type="text" class="form-control bg-light fw-bold" id="detailPhone" readonly>
+                                <a href="#" id="detailCallLink" class="btn btn-outline-primary" title="Call Customer"><i class="fa-solid fa-phone"></i></a>
+                                <a href="#" id="detailWaLink" target="_blank" class="btn btn-success" title="WhatsApp Customer"><i class="fa-brands fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">KSEB Consumer Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-warning" style="color: #b45309 !important;"><i class="fa-solid fa-bolt"></i></span>
+                                <input type="text" class="form-control bg-light font-mono fw-bold" id="detailConsumerNumber" readonly>
+                                <button class="btn btn-outline-warning" type="button" onclick="copyConsumerNumberFromModal()" title="Copy KSEB Number">
+                                    <i class="fa-solid fa-copy me-1"></i> Copy
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Email Address</label>
+                            <div class="form-control bg-light" id="detailEmail">-</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Service Requested</label>
+                            <div class="form-control bg-light fw-semibold" id="detailService">-</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">District / Location</label>
+                            <div class="form-control bg-light" id="detailLocation">-</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Origin Page</label>
+                            <div class="form-control bg-light small" id="detailPage">-</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Lead Status</label>
+                            <select class="form-select fw-bold" id="modalStatusSelect" onchange="updateModalLeadStatus()">
+                                <option value="New">New</option>
+                                <option value="Contacted">Contacted</option>
+                                <option value="Survey Scheduled">Survey Scheduled</option>
+                                <option value="Proposal Sent">Proposal Sent</option>
+                                <option value="Won">Won / Installed</option>
+                                <option value="Lost">Lost / Archived</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label text-muted small fw-bold">Customer Message / Inquiry Notes</label>
+                            <div class="form-control bg-light p-3" id="detailMessage" style="min-height: 80px; white-space: pre-wrap;">-</div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label text-muted small fw-bold">Internal Staff Notes</label>
+                            <textarea class="form-control" id="detailStaffNotes" rows="3" placeholder="Add follow-up notes, survey date, quotation amount, etc."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer bg-light border-top">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success fw-bold px-4" onclick="saveLeadNotesFromModal()">
+                        <i class="fa-solid fa-floppy-disk me-1"></i> Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODAL 2: ADD MANUAL IN-PERSON / WALK-IN LEAD -->
+    <!-- ======================================================== -->
+    <div class="modal fade" id="newLeadModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header border-bottom pb-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="stat-icon" style="width: 36px; height: 36px; font-size: 1rem; background: var(--excel-green);">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <div>
+                            <h5 class="modal-title fw-bold mb-0">Record New Customer Lead</h5>
+                            <small class="text-muted">Enter manual or in-person walk-in customer details</small>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <form id="manualLeadForm" onsubmit="handleManualLeadSubmit(event)">
+                    <div class="modal-body p-4">
+                        <div class="row g-3">
+                            
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Customer Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="newLeadName" placeholder="e.g. Rajesh Kumar" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Contact Number <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" id="newLeadPhone" placeholder="e.g. +91 98470 12345" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">KSEB Consumer Number <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control font-mono" id="newLeadConsumerNo" placeholder="10-13 digits e.g. 1146204004161" required>
+                                <small class="text-muted" style="font-size: 0.72rem;">Found on electricity bill for PM Surya Ghar subsidy</small>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Customer Email</label>
+                                <input type="email" class="form-control" id="newLeadEmail" placeholder="e.g. rajesh@example.com">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Service Requested</label>
+                                <select class="form-select" id="newLeadService">
+                                    <option value="3kW Rooftop Solar (PM Surya Ghar)">3kW Rooftop Solar (PM Surya Ghar)</option>
+                                    <option value="5kW On-Grid Solar">5kW On-Grid Solar</option>
+                                    <option value="10kW Commercial Solar">10kW Commercial Solar</option>
+                                    <option value="Microinverter Solar System">Microinverter Solar System</option>
+                                    <option value="Solar Battery Storage / Hybrid">Solar Battery Storage / Hybrid</option>
+                                    <option value="Solar Maintenance & AMC">Solar Maintenance & AMC</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Kerala District</label>
+                                <select class="form-select" id="newLeadDistrict">
+                                    <option value="Pathanamthitta">Pathanamthitta</option>
+                                    <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                                    <option value="Kollam">Kollam</option>
+                                    <option value="Alappuzha">Alappuzha</option>
+                                    <option value="Kottayam">Kottayam</option>
+                                    <option value="Idukki">Idukki</option>
+                                    <option value="Ernakulam">Ernakulam</option>
+                                    <option value="Thrissur">Thrissur</option>
+                                    <option value="Palakkad">Palakkad</option>
+                                    <option value="Malappuram">Malappuram</option>
+                                    <option value="Kozhikode">Kozhikode</option>
+                                    <option value="Wayanad">Wayanad</option>
+                                    <option value="Kannur">Kannur</option>
+                                    <option value="Kasaragod">Kasaragod</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-bold small">Customer Message / Note</label>
+                                <textarea class="form-control" id="newLeadMessage" rows="2" placeholder="Inquiry notes, roof type, monthly bill..."></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer bg-light border-top">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success fw-bold px-4" id="saveLeadBtn">
+                            <i class="fa-solid fa-check me-1"></i> Save Lead to Tracker
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Leads Application Script -->
+    <script>
+        const FB_REST_URL = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
+        
+        let allLeads = [];
+        let filteredLeads = [];
+        let activeModalLead = null;
+        let unsubscribeFirestore = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initLeadsListener();
+        });
+
+        // Initialize Firestore Real-Time Listener with REST Fallback
+        function initLeadsListener() {
+            try {
+                if (typeof db !== 'undefined' && db) {
+                    const submissionsRef = db.collection('solis').doc('forms').collection('submissions').orderBy('createdAt', 'desc');
+                    
+                    unsubscribeFirestore = submissionsRef.onSnapshot((snapshot) => {
+                        const items = [];
+                        snapshot.forEach((doc) => {
+                            const data = doc.data();
+                            items.push({
+                                id: doc.id,
+                                name: data.name || 'Website Visitor',
+                                phone: data.phone || '',
+                                consumerNumber: data.consumerNumber || '',
+                                email: data.email || '',
+                                service: data.service || 'Solar Installation',
+                                location: data.location || 'Kerala',
+                                message: data.message || '',
+                                staffNotes: data.staffNotes || '',
+                                page: data.page || '/',
+                                source: data.source || 'Website Form',
+                                status: data.status || 'New',
+                                createdAt: data.createdAt || new Date().toISOString()
+                            });
+                        });
+                        
+                        allLeads = items;
+                        updateStats();
+                        applyFilters();
+                        document.getElementById('cloudSyncBadge').classList.remove('bg-danger-subtle', 'text-danger');
+                        document.getElementById('cloudSyncBadge').classList.add('bg-success-subtle', 'text-success');
+                    }, (err) => {
+                        console.warn('Real-time listener notice, falling back to REST:', err);
+                        fetchLeadsData();
+                    });
+                } else {
+                    fetchLeadsData();
+                }
+            } catch (err) {
+                console.warn('Init error, using REST fallback:', err);
+                fetchLeadsData();
+            }
+        }
+
+        // Fallback REST fetcher
+        async function fetchLeadsData(isManual = false) {
+            const refreshIcon = document.getElementById('refreshIcon');
+            if (refreshIcon) refreshIcon.classList.add('fa-spin');
+
+            try {
+                const response = await fetch(FB_REST_URL);
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const data = await response.json();
+                
+                const items = [];
+                if (data.documents && Array.isArray(data.documents)) {
+                    data.documents.forEach(doc => {
+                        const f = doc.fields || {};
+                        const docId = doc.name ? doc.name.split('/').pop() : Math.random().toString();
+                        items.push({
+                            id: docId,
+                            name: f.name ? f.name.stringValue : 'Website Visitor',
+                            phone: f.phone ? f.phone.stringValue : '',
+                            consumerNumber: f.consumerNumber ? f.consumerNumber.stringValue : '',
+                            email: f.email ? f.email.stringValue : '',
+                            service: f.service ? f.service.stringValue : 'Solar Installation',
+                            location: f.location ? f.location.stringValue : 'Kerala',
+                            message: f.message ? f.message.stringValue : '',
+                            staffNotes: f.staffNotes ? f.staffNotes.stringValue : '',
+                            page: f.page ? f.page.stringValue : '/',
+                            source: f.source ? f.source.stringValue : 'Website Form',
+                            status: f.status ? f.status.stringValue : 'New',
+                            createdAt: f.createdAt ? f.createdAt.stringValue : new Date().toISOString()
+                        });
+                    });
+                }
+
+                // Sort newest first
+                items.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                allLeads = items;
+                updateStats();
+                applyFilters();
+            } catch (error) {
+                console.error('Error fetching leads:', error);
+                document.getElementById('leadsTableBody').innerHTML = `
+                    <tr>
+                        <td colspan="10" class="text-center py-5 text-danger">
+                            <i class="fa-solid fa-triangle-exclamation fs-3 mb-2 d-block"></i>
+                            Could not load form submissions. Please check internet connection.
+                        </td>
+                    </tr>
+                `;
+            } finally {
+                if (refreshIcon) refreshIcon.classList.remove('fa-spin');
+            }
+        }
+
+        // Update top KPI statistics
+        function updateStats() {
+            const total = allLeads.length;
+            const newCount = allLeads.filter(l => (l.status || 'New').toLowerCase() === 'new').length;
+            const surveyCount = allLeads.filter(l => (l.status || '').toLowerCase().includes('survey')).length;
+            const wonCount = allLeads.filter(l => (l.status || '').toLowerCase().includes('won')).length;
+            const ksebCount = allLeads.filter(l => l.consumerNumber && l.consumerNumber.trim().length >= 8).length;
+
+            document.getElementById('statTotalSubmissions').textContent = total;
+            document.getElementById('statNewLeads').textContent = newCount;
+            document.getElementById('statSurveyScheduled').textContent = surveyCount;
+            document.getElementById('statWonLeads').textContent = wonCount;
+            document.getElementById('statKsebNumbers').textContent = ksebCount;
+            
+            document.getElementById('liveCountText').textContent = total;
+            document.getElementById('totalCount').textContent = total;
+        }
+
+        // Filter and Search Leads
+        function applyFilters() {
+            const searchQuery = (document.getElementById('tableSearchInput').value || '').trim().toLowerCase();
+            const statusVal = document.getElementById('statusFilter').value;
+            const districtVal = document.getElementById('districtFilter').value;
+            const dateVal = document.getElementById('dateFilter').value;
+            const ksebOnly = document.getElementById('ksebOnlyCheck').checked;
+
+            const now = new Date();
+
+            filteredLeads = allLeads.filter(lead => {
+                // Search query
+                if (searchQuery) {
+                    const matchName = (lead.name || '').toLowerCase().includes(searchQuery);
+                    const matchPhone = (lead.phone || '').toLowerCase().includes(searchQuery);
+                    const matchKseb = (lead.consumerNumber || '').toLowerCase().includes(searchQuery);
+                    const matchEmail = (lead.email || '').toLowerCase().includes(searchQuery);
+                    const matchLoc = (lead.location || '').toLowerCase().includes(searchQuery);
+                    const matchService = (lead.service || '').toLowerCase().includes(searchQuery);
+                    if (!matchName && !matchPhone && !matchKseb && !matchEmail && !matchLoc && !matchService) {
+                        return false;
+                    }
+                }
+
+                // Status
+                if (statusVal !== 'all') {
+                    if ((lead.status || 'New').toLowerCase() !== statusVal.toLowerCase()) {
+                        return false;
+                    }
+                }
+
+                // District
+                if (districtVal !== 'all') {
+                    if (!(lead.location || '').toLowerCase().includes(districtVal.toLowerCase())) {
+                        return false;
+                    }
+                }
+
+                // KSEB only
+                if (ksebOnly) {
+                    if (!lead.consumerNumber || lead.consumerNumber.trim().length < 5) {
+                        return false;
+                    }
+                }
+
+                // Date filter
+                if (dateVal !== 'all') {
+                    const leadDate = new Date(lead.createdAt);
+                    if (dateVal === 'today') {
+                        if (leadDate.toDateString() !== now.toDateString()) return false;
+                    } else if (dateVal === '7days') {
+                        const sevenDaysAgo = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000));
+                        if (leadDate < sevenDaysAgo) return false;
+                    } else if (dateVal === '30days') {
+                        const thirtyDaysAgo = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000));
+                        if (leadDate < thirtyDaysAgo) return false;
+                    }
+                }
+
+                return true;
+            });
+
+            document.getElementById('filteredCount').textContent = filteredLeads.length;
+            renderTable();
+        }
+
+        // Render Excel Table
+        function renderTable() {
+            const tbody = document.getElementById('leadsTableBody');
+            if (filteredLeads.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="10" class="text-center py-5 text-muted">
+                            <i class="fa-solid fa-inbox fs-3 mb-2 d-block opacity-50"></i>
+                            No submissions match the selected filters.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            let html = '';
+            filteredLeads.forEach((lead, index) => {
+                const rowNum = index + 1;
+                const formattedDate = formatLeadDateTime(lead.createdAt);
+                const safeName = escapeHtml(lead.name || 'Anonymous');
+                const rawPhone = (lead.phone || '').trim();
+                const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
+                const waPhone = cleanPhone.startsWith('91') ? cleanPhone : (cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone);
+                const waText = encodeURIComponent(`Hello ${safeName}, thank you for contacting Solis Green Energy regarding your solar installation inquiry. How can we assist you with your subsidy & solar plan?`);
+                const ksebNo = escapeHtml(lead.consumerNumber || '');
+                const service = escapeHtml(lead.service || 'Solar Installation');
+                const location = escapeHtml(lead.location || 'Kerala');
+                const page = escapeHtml(lead.page || '/');
+                const status = lead.status || 'New';
+
+                // Status dropdown class
+                let statusClass = 'status-new';
+                const sLow = status.toLowerCase();
+                if (sLow.includes('contact')) statusClass = 'status-contacted';
+                else if (sLow.includes('survey')) statusClass = 'status-survey';
+                else if (sLow.includes('proposal')) statusClass = 'status-proposal';
+                else if (sLow.includes('won')) statusClass = 'status-won';
+                else if (sLow.includes('lost')) statusClass = 'status-lost';
+
+                html += `
+                    <tr data-lead-id="${lead.id}">
+                        <td class="text-center text-muted fw-bold">${rowNum}</td>
+                        <td class="text-nowrap small text-muted" title="${lead.createdAt}">
+                            ${formattedDate}
+                        </td>
+                        <td>
+                            <strong class="text-dark d-block">${safeName}</strong>
+                            ${lead.email ? `<small class="text-muted d-block" style="font-size: 0.72rem;">${escapeHtml(lead.email)}</small>` : ''}
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="fw-semibold font-mono small">${escapeHtml(rawPhone) || '-'}</span>
+                                ${rawPhone ? `
+                                    <a href="tel:${rawPhone}" class="action-icon-btn btn-call ms-1" title="Call ${safeName}">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </a>
+                                    <a href="https://wa.me/${waPhone}?text=${waText}" target="_blank" class="action-icon-btn btn-wa" title="WhatsApp Chat">
+                                        <i class="fa-brands fa-whatsapp text-success"></i>
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </td>
+                        <td>
+                            ${ksebNo ? `
+                                <span class="kseb-badge" title="Click to copy KSEB Consumer Number">
+                                    <i class="fa-solid fa-bolt text-warning"></i>
+                                    <span>${ksebNo}</span>
+                                    <button class="copy-btn" onclick="copyToClipboard('${ksebNo}', this)" title="Copy Number">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+                                </span>
+                            ` : `<span class="text-muted small fst-italic">Not provided</span>`}
+                        </td>
+                        <td class="small">
+                            <span class="badge bg-light text-dark border fw-semibold">${service}</span>
+                        </td>
+                        <td class="small text-muted">
+                            <i class="fa-solid fa-location-dot text-danger me-1" style="font-size: 0.75rem;"></i>
+                            ${location}
+                        </td>
+                        <td class="small text-muted font-mono" style="font-size: 0.75rem;" title="${page}">
+                            ${truncateString(page, 22)}
+                        </td>
+                        <td>
+                            <select class="form-select form-select-sm status-select ${statusClass}" onchange="changeLeadStatus('${lead.id}', this.value, this)">
+                                <option value="New" ${status === 'New' ? 'selected' : ''}>New</option>
+                                <option value="Contacted" ${status === 'Contacted' ? 'selected' : ''}>Contacted</option>
+                                <option value="Survey Scheduled" ${status === 'Survey Scheduled' ? 'selected' : ''}>Survey Scheduled</option>
+                                <option value="Proposal Sent" ${status === 'Proposal Sent' ? 'selected' : ''}>Proposal Sent</option>
+                                <option value="Won" ${status === 'Won' ? 'selected' : ''}>Won / Installed</option>
+                                <option value="Lost" ${status === 'Lost' ? 'selected' : ''}>Lost / Closed</option>
+                            </select>
+                        </td>
+                        <td class="text-center">
+                            <button class="action-icon-btn text-primary" onclick="openLeadModal('${lead.id}')" title="View Full Details & Notes">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+        // Format Date / Time
+        function formatLeadDateTime(isoStr) {
+            if (!isoStr) return '-';
+            try {
+                const d = new Date(isoStr);
+                if (isNaN(d.getTime())) return isoStr;
+                const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                const day = d.getDate().toString().padStart(2, '0');
+                const month = months[d.getMonth()];
+                const year = d.getFullYear();
+                let hours = d.getHours();
+                const minutes = d.getMinutes().toString().padStart(2, '0');
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12;
+                hours = hours ? hours : 12;
+                return `${day} ${month} ${year}, ${hours}:${minutes} ${ampm}`;
+            } catch (e) {
+                return isoStr;
+            }
+        }
+
+        // 1-Click Copy to Clipboard
+        function copyToClipboard(text, btnElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = btnElement.querySelector('i');
+                if (icon) {
+                    icon.className = 'fa-solid fa-check text-success';
+                    setTimeout(() => {
+                        icon.className = 'fa-regular fa-copy';
+                    }, 1500);
+                }
+            }).catch(err => {
+                console.warn('Copy failed:', err);
+            });
+        }
+
+        function copyConsumerNumberFromModal() {
+            const val = document.getElementById('detailConsumerNumber').value;
+            if (val) {
+                navigator.clipboard.writeText(val);
+                alert('KSEB Consumer Number copied to clipboard: ' + val);
+            }
+        }
+
+        // Update Lead Status directly to Firestore
+        async function changeLeadStatus(leadId, newStatus, selectElement) {
+            try {
+                // Update local memory
+                const lead = allLeads.find(l => l.id === leadId);
+                if (lead) lead.status = newStatus;
+
+                // Update visual dropdown style
+                if (selectElement) {
+                    selectElement.className = 'form-select form-select-sm status-select';
+                    const sLow = newStatus.toLowerCase();
+                    if (sLow.includes('contact')) selectElement.classList.add('status-contacted');
+                    else if (sLow.includes('survey')) selectElement.classList.add('status-survey');
+                    else if (sLow.includes('proposal')) selectElement.classList.add('status-proposal');
+                    else if (sLow.includes('won')) selectElement.classList.add('status-won');
+                    else if (sLow.includes('lost')) selectElement.classList.add('status-lost');
+                    else selectElement.classList.add('status-new');
+                }
+
+                updateStats();
+
+                // 1. Try Firebase SDK
+                if (typeof db !== 'undefined' && db) {
+                    await db.collection('solis').doc('forms').collection('submissions').doc(leadId).update({
+                        status: newStatus
+                    });
+                } else {
+                    // 2. Fallback to Firestore REST PATCH
+                    const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${leadId}?updateMask.fieldPaths=status&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
+                    await fetch(patchUrl, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fields: {
+                                status: { stringValue: newStatus }
+                            }
+                        })
+                    });
+                }
+            } catch (err) {
+                console.error('Failed to update status in Firestore:', err);
+            }
+        }
+
+        // Open Detail Modal
+        function openLeadModal(leadId) {
+            const lead = allLeads.find(l => l.id === leadId);
+            if (!lead) return;
+            activeModalLead = lead;
+
+            document.getElementById('modalCustomerName').textContent = lead.name || 'Customer Details';
+            document.getElementById('modalDateBadge').textContent = 'Submitted on: ' + formatLeadDateTime(lead.createdAt);
+            document.getElementById('detailName').textContent = lead.name || '-';
+            document.getElementById('detailPhone').value = lead.phone || '';
+            document.getElementById('detailConsumerNumber').value = lead.consumerNumber || 'Not provided';
+            document.getElementById('detailEmail').textContent = lead.email || 'None provided';
+            document.getElementById('detailService').textContent = lead.service || 'Solar Installation';
+            document.getElementById('detailLocation').textContent = lead.location || 'Kerala';
+            document.getElementById('detailPage').textContent = lead.page || '/';
+            document.getElementById('detailMessage').textContent = lead.message || 'No customer notes.';
+            document.getElementById('detailStaffNotes').value = lead.staffNotes || '';
+            document.getElementById('modalStatusSelect').value = lead.status || 'New';
+
+            // Links
+            const cleanPhone = (lead.phone || '').replace(/[^0-9]/g, '');
+            const waPhone = cleanPhone.startsWith('91') ? cleanPhone : (cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone);
+            const waText = encodeURIComponent(`Hello ${lead.name || ''}, thank you for contacting Solis Green Energy regarding your solar installation inquiry.`);
+            
+            document.getElementById('detailCallLink').href = `tel:${cleanPhone}`;
+            document.getElementById('detailWaLink').href = `https://wa.me/${waPhone}?text=${waText}`;
+
+            const modal = new bootstrap.Modal(document.getElementById('leadDetailModal'));
+            modal.show();
+        }
+
+        function updateModalLeadStatus() {
+            if (!activeModalLead) return;
+            const newStatus = document.getElementById('modalStatusSelect').value;
+            changeLeadStatus(activeModalLead.id, newStatus, null);
+        }
+
+        async function saveLeadNotesFromModal() {
+            if (!activeModalLead) return;
+            const newNotes = document.getElementById('detailStaffNotes').value;
+            const newStatus = document.getElementById('modalStatusSelect').value;
+
+            try {
+                activeModalLead.staffNotes = newNotes;
+                activeModalLead.status = newStatus;
+
+                if (typeof db !== 'undefined' && db) {
+                    await db.collection('solis').doc('forms').collection('submissions').doc(activeModalLead.id).update({
+                        staffNotes: newNotes,
+                        status: newStatus
+                    });
+                } else {
+                    const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${activeModalLead.id}?updateMask.fieldPaths=staffNotes&updateMask.fieldPaths=status&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
+                    await fetch(patchUrl, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fields: {
+                                staffNotes: { stringValue: newNotes },
+                                status: { stringValue: newStatus }
+                            }
+                        })
+                    });
+                }
+
+                bootstrap.Modal.getInstance(document.getElementById('leadDetailModal')).hide();
+                applyFilters();
+            } catch (err) {
+                alert('Error saving notes: ' + err.message);
+            }
+        }
+
+        // Add Manual Lead
+        async function handleManualLeadSubmit(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('saveLeadBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Saving...';
+
+            const name = document.getElementById('newLeadName').value.trim();
+            const phone = document.getElementById('newLeadPhone').value.trim();
+            const consumerNumber = document.getElementById('newLeadConsumerNo').value.trim();
+            const email = document.getElementById('newLeadEmail').value.trim();
+            const service = document.getElementById('newLeadService').value;
+            const district = document.getElementById('newLeadDistrict').value;
+            const message = document.getElementById('newLeadMessage').value.trim();
+            const timestampIso = new Date().toISOString();
+
+            try {
+                const leadData = {
+                    name,
+                    phone,
+                    consumerNumber,
+                    email,
+                    service,
+                    location: `${district}, Kerala`,
+                    message,
+                    staffNotes: 'Manual walk-in / office entry',
+                    page: '/leads/manual-entry',
+                    source: 'Office / Walk-In',
+                    status: 'New',
+                    createdAt: timestampIso
+                };
+
+                if (typeof db !== 'undefined' && db) {
+                    await db.collection('solis').doc('forms').collection('submissions').add(leadData);
+                } else {
+                    await fetch(FB_REST_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fields: {
+                                name: { stringValue: leadData.name },
+                                phone: { stringValue: leadData.phone },
+                                consumerNumber: { stringValue: leadData.consumerNumber },
+                                email: { stringValue: leadData.email },
+                                service: { stringValue: leadData.service },
+                                location: { stringValue: leadData.location },
+                                message: { stringValue: leadData.message },
+                                staffNotes: { stringValue: leadData.staffNotes },
+                                page: { stringValue: leadData.page },
+                                source: { stringValue: leadData.source },
+                                status: { stringValue: leadData.status },
+                                createdAt: { stringValue: leadData.createdAt }
+                            }
+                        })
+                    });
+                }
+
+                // Close modal and reset form
+                document.getElementById('manualLeadForm').reset();
+                bootstrap.Modal.getInstance(document.getElementById('newLeadModal')).hide();
+                fetchLeadsData(true);
+            } catch (err) {
+                alert('Failed to save lead: ' + err.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fa-solid fa-check me-1"></i> Save Lead to Tracker';
+            }
+        }
+
+        // Export to CSV with UTF-8 BOM for Microsoft Excel
+        function exportToCSV() {
+            if (!filteredLeads || filteredLeads.length === 0) {
+                alert('No leads available to export with current filters.');
+                return;
+            }
+
+            const headers = [
+                "ID",
+                "Date & Time",
+                "Customer Name",
+                "Contact Number",
+                "KSEB Consumer Number",
+                "Email Address",
+                "Service Requested",
+                "District / Location",
+                "Traffic Source",
+                "Origin Page",
+                "Lead Status",
+                "Customer Note",
+                "Staff Notes"
+            ];
+
+            const rows = filteredLeads.map((lead, idx) => [
+                idx + 1,
+                formatLeadDateTime(lead.createdAt),
+                cleanCsv(lead.name),
+                cleanCsv(lead.phone),
+                cleanCsv(lead.consumerNumber),
+                cleanCsv(lead.email),
+                cleanCsv(lead.service),
+                cleanCsv(lead.location),
+                cleanCsv(lead.source),
+                cleanCsv(lead.page),
+                cleanCsv(lead.status),
+                cleanCsv(lead.message),
+                cleanCsv(lead.staffNotes)
+            ]);
+
+            let csvContent = "\uFEFF"; // UTF-8 BOM so Excel opens with proper encoding
+            csvContent += headers.map(h => `"${h}"`).join(",") + "\r\n";
+            rows.forEach(row => {
+                csvContent += row.map(col => `"${col}"`).join(",") + "\r\n";
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            const dateStr = new Date().toISOString().slice(0, 10);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `Solis_Green_Leads_${dateStr}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function cleanCsv(val) {
+            if (!val) return '';
+            return String(val).replace(/"/g, '""').replace(/\r\n|\r|\n/g, ' ');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function truncateString(str, num) {
+            if (!str) return '';
+            if (str.length <= num) return str;
+            return str.slice(0, num) + '...';
+        }
+    </script>
+</body>
+</html>
