@@ -163,11 +163,9 @@ async function loadQuotes() {
                         <button class="btn btn-sm btn-outline-primary px-2 py-1 ms-1" onclick="viewQuote('${doc.id}')" title="View Proposal & Breakdown">
                             <i class="fa-solid fa-eye"></i>
                         </button>
-                        ${sessionStorage.getItem('solis_user_role') === 'admin' ? `
                         <button class="btn btn-sm btn-outline-danger px-2 py-1 ms-1" onclick="deleteQuote('${doc.id}')" title="Delete Quote">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-                        ` : ''}
                     </td>
                 </tr>
             `;
@@ -226,9 +224,12 @@ function viewQuote(id) {
                 <span class="text-muted small">Generated on ${dateStr}</span>
                 ${quote.parentQuoteId ? `<div class="small text-muted mt-1"><i class="fa-solid fa-code-branch text-primary me-1"></i> Revision of earlier quote (Doc: ${quote.parentQuoteId})</div>` : ''}
             </div>
-            <div>
+            <div class="d-flex align-items-center gap-2">
                 <button type="button" class="btn btn-sm btn-success rounded-pill fw-bold px-3 shadow-sm" onclick="bootstrap.Modal.getInstance(document.getElementById('quoteDetailsModal')).hide(); reviseQuote('${quote.id}');">
                     <i class="fa-solid fa-arrows-rotate me-1"></i> Re-calculate as ${nextRevLabel}
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger rounded-pill fw-bold px-3" onclick="deleteQuote('${quote.id}')" title="Delete this quote">
+                    <i class="fa-solid fa-trash me-1"></i> Delete Quote
                 </button>
             </div>
         </div>
@@ -313,16 +314,31 @@ function viewQuote(id) {
 }
 
 async function deleteQuote(id) {
-    if (confirm("Are you sure you want to permanently delete this quote?")) {
+    const quote = quotesCache.find(q => q.id === id);
+    const custName = quote?.parameters?.customerName || 'this quote';
+    const capacity = quote?.parameters?.capacity || '';
+    const capInfo = capacity ? ` (${capacity})` : '';
+
+    if (confirm(`Are you sure you want to permanently delete the quote for "${custName}"${capInfo}?`)) {
         try {
+            // Close details modal if open
+            const modalEl = document.getElementById('quoteDetailsModal');
+            if (modalEl) {
+                const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                if (modalInstance) modalInstance.hide();
+            }
+
             await dbFirestore.collection('solis-quotes').doc(id).delete();
-            loadQuotes(); // Refresh table
+            console.log("Successfully deleted quote ID:", id);
+            await loadQuotes(); // Refresh table
         } catch (error) {
             console.error("Error deleting quote:", error);
             alert("Failed to delete quote: " + error.message);
         }
     }
 }
+window.deleteQuote = deleteQuote;
+window.viewQuote = viewQuote;
 
 function reviseQuote(id) {
     const quote = quotesCache.find(q => q.id === id);
