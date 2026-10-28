@@ -512,6 +512,15 @@ function initApp() {
     window.handlePanelBrandChange();
     window.handleInverterBrandChange();
 
+    // Auto-populate Sales Executive Name from session/local storage
+    const salesExecInput = document.getElementById('salesExecutive');
+    if (salesExecInput && !salesExecInput.value) {
+        const storedName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name');
+        const storedEmail = sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email');
+        const defaultName = storedName || (typeof window.resolveSalesExecutiveName === 'function' ? window.resolveSalesExecutiveName(storedEmail) : 'Sales Executive');
+        salesExecInput.value = defaultName;
+    }
+
     // --- Quote Revision & Edit Loader Logic ---
     const quoteMode = sessionStorage.getItem('solis_quote_mode'); // 'revise' or 'edit'
     const editQuoteId = sessionStorage.getItem('solis_edit_quote_id');
@@ -527,6 +536,9 @@ function initApp() {
         try {
             const p = JSON.parse(editQuoteParamsStr);
 
+            if (p.salesExecutive && document.getElementById('salesExecutive')) {
+                document.getElementById('salesExecutive').value = p.salesExecutive;
+            }
             if (p.customerName) document.getElementById('customerName').value = p.customerName;
             if (p.contactNumber) document.getElementById('contactNumber').value = p.contactNumber;
             if (p.district) document.getElementById('district').value = p.district;
@@ -727,7 +739,8 @@ function initApp() {
             dealerCommission: document.getElementById('dealerCommission').value,
             targetProfit: document.getElementById('targetProfit').value,
             netMeterScope: document.getElementById('netMeterScope').value,
-            ksebScope: document.getElementById('ksebScope').value
+            ksebScope: document.getElementById('ksebScope').value,
+            salesExecutive: document.getElementById('salesExecutive')?.value?.trim() || sessionStorage.getItem('solis_user_name') || 'Sales Executive'
         };
 
         try {
@@ -814,6 +827,17 @@ function initApp() {
                 currency: 'INR',
                 minimumFractionDigits: 0
             }).format(val);
+
+            // Populate Meta Summary Strip
+            if (document.getElementById('res-customer-name')) {
+                document.getElementById('res-customer-name').innerText = params.customerName || 'N/A';
+            }
+            if (document.getElementById('res-customer-contact')) {
+                document.getElementById('res-customer-contact').innerText = params.contactNumber ? `(Ph: ${params.contactNumber})` : '';
+            }
+            if (document.getElementById('res-sales-exec')) {
+                document.getElementById('res-sales-exec').innerText = params.salesExecutive || 'Sales Executive';
+            }
 
             // Populate Result Screen
             document.getElementById('res-capacity').innerText = `${result.acCapacityKw} kW`;

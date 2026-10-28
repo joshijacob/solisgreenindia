@@ -123,13 +123,19 @@ async function saveQuoteToFirebase(quoteData, quoteId = null) {
         const revNum = typeof quoteData.revision === 'number' ? quoteData.revision : (parseInt(quoteData.revision) || 0);
         const revLabel = quoteData.revisionLabel || (revNum > 0 ? `Rev-${String(revNum).padStart(2, '0')}` : 'Rev-00');
 
+        const loggedEmail = sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || 'Unknown';
+        const loggedName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name') || '';
+        const execName = quoteData.parameters?.salesExecutive || quoteData.salesExecutive || loggedName || (typeof window.resolveSalesExecutiveName === 'function' ? window.resolveSalesExecutiveName(loggedEmail) : 'Sales Executive');
+
         const enrichedData = {
             ...quoteData,
             revision: revNum,
             revisionLabel: revLabel,
             updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-            createdByEmail: sessionStorage.getItem('solis_user_email') || 'Unknown',
-            createdByRole: sessionStorage.getItem('solis_user_role') || 'Unknown'
+            createdByEmail: loggedEmail,
+            createdByName: execName,
+            salesExecutive: execName,
+            createdByRole: sessionStorage.getItem('solis_user_role') || localStorage.getItem('solis_user_role') || 'Unknown'
         };
 
         if (quoteId) {

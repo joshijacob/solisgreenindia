@@ -9,7 +9,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="js/db.js?v=20261028_clean_v1"></script>
+    <script src="js/db.js?v=20261028_clean_v2"></script>
     <script src="js/firebase-init.js"></script>
 
     <script src="js/auth.js"></script>
@@ -217,7 +217,7 @@
                                         <option value="Three Phase">Three Phase</option>
                                     </select>
                                 </div>
-                                <div class="col-md-3 mt-3">
+                                <div class="col-md-4 mt-3">
                                     <label class="form-label fw-bold small text-muted">District</label>
                                     <select class="form-select form-select-lg" id="district" required>
                                         <option value="">Select...</option>
@@ -228,25 +228,32 @@
                                         <option>Others</option>
                                     </select>
                                 </div>
-                                <div class="col-md-3 mt-3">
+                                <div class="col-md-4 mt-3">
                                     <label class="form-label fw-bold small text-muted">Net Meter Scope</label>
                                     <select class="form-select form-select-lg" id="netMeterScope" required>
                                         <option value="Solis">Solis</option>
                                         <option value="KSEB">KSEB</option>
                                     </select>
                                 </div>
-                                <div class="col-md-3 mt-3">
+                                <div class="col-md-4 mt-3">
                                     <label class="form-label fw-bold small text-muted">KSEB Payment Scope</label>
                                     <select class="form-select form-select-lg" id="ksebScope" required>
                                         <option value="Solis">Solis</option>
                                         <option value="Customer">Customer</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6 mt-3">
+                                <div class="col-md-4 mt-3">
+                                    <label class="form-label fw-bold small text-muted">Sales Executive Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="fa-solid fa-user-tie text-primary"></i></span>
+                                        <input type="text" class="form-control form-control-lg fw-semibold" id="salesExecutive" placeholder="Sales Executive Name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mt-3">
                                     <label class="form-label fw-bold small text-muted">Customer Name</label>
                                     <input type="text" class="form-control form-control-lg" id="customerName" placeholder="Enter customer name" required>
                                 </div>
-                                <div class="col-md-6 mt-3">
+                                <div class="col-md-4 mt-3">
                                     <label class="form-label fw-bold small text-muted">Contact Number</label>
                                     <input type="tel" class="form-control form-control-lg" id="contactNumber" placeholder="Enter contact number" required>
                                 </div>
@@ -286,6 +293,17 @@
                         <!-- DC/AC Ratio Alert -->
                         <div id="ratio-alert" class="alert mb-4 text-center fw-bold d-none">
                             <i class="fa-solid fa-info-circle me-2"></i> <span id="ratio-text"></span>
+                        </div>
+
+                        <!-- Customer & Sales Executive Meta Summary -->
+                        <div class="alert alert-light border shadow-sm p-3 mb-4 rounded-3 d-flex flex-wrap justify-content-between align-items-center gap-2" id="res-meta-strip">
+                            <div>
+                                <i class="fa-solid fa-user text-primary me-2"></i><strong>Customer:</strong> <span id="res-customer-name" class="fw-bold text-dark ms-1">--</span>
+                                <span class="text-muted ms-2 small" id="res-customer-contact"></span>
+                            </div>
+                            <div class="small">
+                                <i class="fa-solid fa-user-tie text-success me-1"></i><strong>Sales Executive:</strong> <span id="res-sales-exec" class="badge bg-primary-subtle text-primary border border-primary-subtle ms-1 fw-bold fs-6">--</span>
+                            </div>
                         </div>
 
                         
@@ -376,8 +394,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/engine_v2.js?v=20261028_clean_v1"></script>
-    <script src="js/app_v2.js?v=20261028_clean_v1"></script>
+    <script src="js/engine_v2.js?v=20261028_clean_v2"></script>
+    <script src="js/app_v2.js?v=20261028_clean_v2"></script>
     <script>
         // Hide Admin UI elements for Sales users
         if (sessionStorage.getItem('solis_user_role') !== 'admin') {

@@ -1,8 +1,39 @@
 // Valid users for the internal tool
 const VALID_USERS = [
-    { email: "solisgreenenergysolutions@gmail.com", password: "Admin@1985", role: "admin" },
-    { email: "joshijacob@gmail.com", password: "Joshi@1985", role: "sales" }
+    { email: "solisgreenenergysolutions@gmail.com", password: "Admin@1985", role: "admin", name: "Solis Super Admin" },
+    { email: "joshijacob@gmail.com", password: "Joshi@1985", role: "sales", name: "Joshi Jacob" }
 ];
+
+// Resolves a human-friendly Sales Executive Name from email or custom value
+function resolveSalesExecutiveName(email, fallbackName = '') {
+    if (fallbackName && fallbackName.trim() && !fallbackName.includes('@')) {
+        return fallbackName.trim();
+    }
+    if (!email) return 'Sales Executive';
+    const norm = email.toLowerCase().trim();
+    
+    // 1. Direct match from VALID_USERS
+    const known = VALID_USERS.find(u => u.email.toLowerCase() === norm);
+    if (known && known.name) return known.name;
+    
+    // 2. Direct match from User Management database (solis_users_db)
+    try {
+        const dbUsers = JSON.parse(localStorage.getItem('solis_users_db') || '[]');
+        const matched = dbUsers.find(u => u.email && u.email.toLowerCase() === norm);
+        if (matched && matched.name) return matched.name;
+    } catch(e) {}
+    
+    // 3. Known admin/solis aliases
+    if (norm === 'solisgreenenergysolutions@gmail.com' || norm.includes('solisgreenenergy')) {
+        return 'Solis Super Admin';
+    }
+    if (norm.includes('admin')) return 'Solis Admin';
+    
+    // 4. Clean format from email prefix
+    const prefix = norm.split('@')[0];
+    return prefix.split(/[._-]/).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+}
+window.resolveSalesExecutiveName = resolveSalesExecutiveName;
 
 // Cross-tab sync: restore sessionStorage from localStorage if available
 if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
@@ -11,6 +42,15 @@ if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getIte
     sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
     sessionStorage.setItem('solis_user_name', localStorage.getItem('solis_user_name') || '');
     sessionStorage.setItem('solis_user_permissions', localStorage.getItem('solis_user_permissions') || '{}');
+}
+
+// Auto-fill user name if missing but email is present
+const currentEmail = sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email');
+let currentName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name');
+if ((!currentName || currentName.includes('@')) && currentEmail) {
+    currentName = resolveSalesExecutiveName(currentEmail);
+    sessionStorage.setItem('solis_user_name', currentName);
+    localStorage.setItem('solis_user_name', currentName);
 }
 
 // Check if we are on a login page
@@ -72,8 +112,11 @@ async function attemptLogin(email, password) {
         localStorage.setItem('solis_user_email', user.email);
         
         const role = (user.email.toLowerCase() === "solisgreenenergysolutions@gmail.com") ? 'admin' : 'sales';
+        const userName = resolveSalesExecutiveName(user.email, user.displayName);
         sessionStorage.setItem('solis_user_role', role);
+        sessionStorage.setItem('solis_user_name', userName);
         localStorage.setItem('solis_user_role', role);
+        localStorage.setItem('solis_user_name', userName);
         
         window.location.href = '/projectcostcalculator/index.html';
         return true;
@@ -90,9 +133,11 @@ async function attemptLogin(email, password) {
                 sessionStorage.setItem('solis_auth_token', 'true');
                 sessionStorage.setItem('solis_user_email', user.email);
                 sessionStorage.setItem('solis_user_role', isValidUser.role);
+                sessionStorage.setItem('solis_user_name', isValidUser.name || resolveSalesExecutiveName(user.email));
                 localStorage.setItem('solis_auth_token', 'true');
                 localStorage.setItem('solis_user_email', user.email);
                 localStorage.setItem('solis_user_role', isValidUser.role);
+                localStorage.setItem('solis_user_name', isValidUser.name || resolveSalesExecutiveName(user.email));
                 
                 window.location.href = '/projectcostcalculator/index.html';
                 return true;

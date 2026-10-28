@@ -1,3 +1,44 @@
+// Helper to resolve clean Sales Executive display name (never showing raw email)
+function getSalesExecutiveDisplayName(data) {
+    if (!data) return 'Sales Executive';
+    
+    // 1. Direct salesExecutive field (clean name, not email)
+    if (data.salesExecutive && typeof data.salesExecutive === 'string' && !data.salesExecutive.includes('@')) {
+        return data.salesExecutive.trim();
+    }
+    // 2. Direct createdByName field
+    if (data.createdByName && typeof data.createdByName === 'string' && !data.createdByName.includes('@')) {
+        return data.createdByName.trim();
+    }
+    // 3. From parameters object
+    if (data.parameters?.salesExecutive && typeof data.parameters.salesExecutive === 'string' && !data.parameters.salesExecutive.includes('@')) {
+        return data.parameters.salesExecutive.trim();
+    }
+
+    // 4. Resolve from createdByEmail or userEmail
+    const email = data.createdByEmail || data.userEmail || '';
+    if (typeof window.resolveSalesExecutiveName === 'function') {
+        return window.resolveSalesExecutiveName(email);
+    }
+    
+    const norm = email.toLowerCase().trim();
+    if (norm === 'solisgreenenergysolutions@gmail.com' || norm.includes('solisgreenenergy')) return 'Solis Super Admin';
+    if (norm === 'joshijacob@gmail.com') return 'Joshi Jacob';
+    
+    try {
+        const dbUsers = JSON.parse(localStorage.getItem('solis_users_db') || '[]');
+        const matched = dbUsers.find(u => u.email && u.email.toLowerCase() === norm);
+        if (matched && matched.name) return matched.name;
+    } catch(e) {}
+    
+    if (norm) {
+        const prefix = norm.split('@')[0];
+        return prefix.split(/[._-]/).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+    }
+    return 'Sales Executive';
+}
+window.getSalesExecutiveDisplayName = getSalesExecutiveDisplayName;
+
 // js/quotes_dashboard.js
 
 let quotesCache = [];
@@ -76,7 +117,7 @@ async function loadQuotes() {
             const customerName = data.parameters?.customerName || 'N/A';
             const contact = data.parameters?.contactNumber || 'N/A';
             const capacity = data.parameters?.capacity || 'N/A';
-            const exec = data.createdByEmail || 'Unknown';
+            const execName = getSalesExecutiveDisplayName(data);
             
             const total = new Intl.NumberFormat('en-IN', {
                 style: 'currency',
@@ -105,7 +146,12 @@ async function loadQuotes() {
                         ${revBadgeHtml}
                         ${data.parentQuoteId ? `<div class="text-muted font-mono" style="font-size: 0.65rem;" title="Child of earlier quote"><i class="fa-solid fa-code-branch me-1"></i>Chld</div>` : ''}
                     </td>
-                    <td class="small text-muted">${exec}</td>
+                    <td class="small fw-semibold text-dark">
+                        <div class="d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-user-tie text-primary opacity-75"></i>
+                            <span>${execName}</span>
+                        </div>
+                    </td>
                     <td class="text-end fw-bold text-success">${total}</td>
                     <td class="text-center pe-4">
                         <button class="btn btn-sm btn-outline-success fw-bold px-2 py-1" onclick="reviseQuote('${doc.id}')" title="Re-calculate with Today's Live Rates & Save as New Revision (${isRevZero ? 'Rev-01' : 'Rev-' + String(revNum + 1).padStart(2, '0')})">
@@ -189,8 +235,9 @@ function viewQuote(id) {
 
         <div class="row g-3">
             <div class="col-md-6">
-                <h6 class="text-muted fw-bold small text-uppercase mb-1">Customer Details</h6>
+                <h6 class="text-muted fw-bold small text-uppercase mb-1">Customer & Representative</h6>
                 <div class="p-3 bg-light rounded">
+                    <strong>Sales Executive:</strong> <span class="fw-bold text-primary"><i class="fa-solid fa-user-tie me-1"></i>${getSalesExecutiveDisplayName(quote)}</span><br>
                     <strong>Name:</strong> ${p.customerName || 'N/A'}<br>
                     <strong>Contact:</strong> ${p.contactNumber || 'N/A'}<br>
                     <strong>District:</strong> ${p.district || 'N/A'}<br>
@@ -296,6 +343,9 @@ function reviseQuote(id) {
     sessionStorage.setItem('solis_next_rev', String(nextRev));
     sessionStorage.setItem('solis_next_rev_label', nextRevLabel);
     sessionStorage.setItem('solis_customer_name', custName);
+    if (!quote.parameters.salesExecutive) {
+        quote.parameters.salesExecutive = getSalesExecutiveDisplayName(quote);
+    }
     sessionStorage.setItem('solis_edit_quote_params', JSON.stringify(quote.parameters));
 
     // Clear in-place edit ID so this NEVER overwrites the old quote
