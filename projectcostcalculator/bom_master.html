@@ -3,19 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solis EPC - BOM Templates Master</title>
+    <title>BOM & EPC Engineering Master | Solis Green Energy</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.ico">
+
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="js/firebase-init.js"></script>
-
     <script src="js/auth.js"></script>
+
+    <!-- Bootstrap 5 & FontAwesome 6 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-<style>
+
+    <style>
+        :root {
+            --solis-orange: #FF6A2A;
+            --solis-orange-hover: #FF824C;
+            --solis-dark: #0f172a;
+            --grid-border: #e2e8f0;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #1e293b;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-display {
+            font-family: 'Outfit', 'Inter', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
         /* Unified Admin Navbar (Solis Standard Design) */
         .admin-navbar {
             background: #ffffff !important;
@@ -42,19 +70,46 @@
             70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
-</style>
+
+        /* Tab Pills Styling */
+        .master-tabs .nav-link {
+            color: #475569;
+            font-weight: 600;
+            padding: 0.65rem 1.25rem;
+            border-radius: 50rem;
+            transition: all 0.2s ease;
+        }
+
+        .master-tabs .nav-link:hover {
+            color: var(--solis-orange);
+            background-color: #fff7ed;
+        }
+
+        .master-tabs .nav-link.active {
+            background: linear-gradient(135deg, var(--solis-orange) 0%, var(--solis-orange-hover) 100%) !important;
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(255, 106, 42, 0.3);
+        }
+
+        .metric-card {
+            background: #ffffff;
+            border: 1px solid var(--grid-border);
+            border-radius: 0.75rem;
+            padding: 0.95rem 1.15rem;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+        }
+    </style>
 </head>
 <body class="bg-light">
 
-    <!-- Top Navigation -->
-        <!-- Unified Admin Top Navigation Bar -->
+    <!-- Unified Admin Top Navigation Bar (Identical to Solis Standard) -->
     <nav class="admin-navbar py-1 px-3 px-md-4">
         <div class="container-fluid d-flex justify-content-between align-items-center h-100">
             <a class="navbar-brand d-flex align-items-center text-dark text-decoration-none" href="/Login/index.html">
                 <img src="/images/logo/logo.png" alt="Solis Logo" style="height: 38px; width: auto; margin-right: 12px; object-fit: contain;">
                 <div>
                     <div class="fw-bold font-display fs-6 lh-1 text-dark">SOLIS <span style="color: #FF6A2A;">EPC</span></div>
-                    <small class="text-muted fw-semibold" style="font-size: 0.62rem; letter-spacing: 0.05em;">BILL OF MATERIALS RULE ENGINE</small>
+                    <small class="text-muted fw-semibold" style="font-size: 0.62rem; letter-spacing: 0.05em;">BOM & EPC ENGINEERING MASTER</small>
                 </div>
             </a>
 
@@ -78,74 +133,292 @@
         </div>
     </nav>
 
-    <!-- Master Databases Sub-Navigation Bar -->
-    <div class="bg-white border-bottom py-2 px-4 shadow-sm mb-3">
-        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
-            <div class="d-flex align-items-center gap-2">
-                <span class="small fw-bold text-muted text-uppercase me-1"><i class="fa-solid fa-layer-group me-1"></i> Master Tables:</span>
-                <a href="admin.html" class="btn btn-sm btn-outline-secondary rounded-pill px-3"><i class="fa-solid fa-database me-1"></i> General Master</a>
-                <a href="panel_master.html" class="btn btn-sm btn-outline-secondary rounded-pill px-3"><i class="fa-solid fa-solar-panel me-1"></i> Panels</a>
-                <a href="inverter_master.html" class="btn btn-sm btn-outline-secondary rounded-pill px-3"><i class="fa-solid fa-plug me-1"></i> Inverters</a>
-                <a href="bom_master.html" class="btn btn-sm btn-primary rounded-pill px-3 fw-bold"><i class="fa-solid fa-sitemap me-1"></i> BOM Rules</a>
-            </div>
-            <div>
-                <a href="index.html" class="btn btn-sm btn-outline-primary rounded-pill px-3"><i class="fa-solid fa-calculator me-1"></i> Open Calculator</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Odoo Style Header Toolbar -->
-    <div class="bg-white border-bottom shadow-sm py-3 mb-4 sticky-top" style="top: 0; z-index: 1000;">
-        <div class="container-fluid px-4">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h4 class="fw-bold mb-0 text-primary"><i class="fa-solid fa-sitemap me-2"></i> BOM Templates</h4>
-                </div>
-                <div class="col-md-6 text-end">
-                    <button class="btn btn-primary fw-bold" id="btn-create-bom"><i class="fa-solid fa-plus me-1"></i> Create Template</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Main Container -->
-    <div class="container-fluid px-4 pb-5">
-        
-        <!-- Tabs -->
-        <ul class="nav nav-pills mb-4 gap-2" id="bomTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active fw-bold px-4" id="ongrid-tab" data-bs-toggle="pill" data-bs-target="#ongrid" type="button" role="tab" aria-controls="ongrid" aria-selected="true">On-Grid</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link fw-bold px-4" id="hybrid-tab" data-bs-toggle="pill" data-bs-target="#hybrid" type="button" role="tab" aria-controls="hybrid" aria-selected="false">Hybrid</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link fw-bold px-4" id="micro-tab" data-bs-toggle="pill" data-bs-target="#micro" type="button" role="tab" aria-controls="micro" aria-selected="false">Micro Inverter</button>
-            </li>
-        </ul>
+    <div class="container-fluid px-3 px-md-4 py-4">
 
-        <!-- List View -->
-        <div class="card premium-card">
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th><i class="fa-solid fa-cube me-2 text-secondary"></i>Template Capacity</th>
-                                <th>Profit Margin Base</th>
-                                <th>Components Count</th>
-                                <th class="text-end">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bom-table-body">
-                            <!-- Injected via JS based on active tab -->
-                        </tbody>
-                    </table>
-                </div>
+        <!-- Top Header & Primary Tab Navigation -->
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
+            <div>
+                <h3 class="fw-bold font-display text-dark mb-1">
+                    <i class="fa-solid fa-sitemap text-primary me-2"></i>BOM & Engineering Master Control
+                </h3>
+                <p class="text-muted small mb-0">Unified configuration workspace for Bill of Materials rules, solar PV panels, inverters & statutory 70:30 GST pricing.</p>
+            </div>
+
+            <div>
+                <a href="/projectcostcalculator/index.html" class="btn btn-primary rounded-pill px-4 shadow-sm fw-bold">
+                    <i class="fa-solid fa-calculator me-2"></i> Open Cost Calculator
+                </a>
             </div>
         </div>
 
+        <!-- 4 Master Navigation Tabs -->
+        <div class="card border-0 shadow-sm rounded-pill p-1 mb-4 bg-white">
+            <ul class="nav nav-pills master-tabs d-flex justify-content-between flex-wrap m-0" id="mainMasterTabs" role="tablist">
+                <li class="nav-item flex-fill text-center" role="presentation">
+                    <button class="nav-link w-100 active" id="tab-btn-bom-rules" data-bs-toggle="pill" data-bs-target="#tab-pane-bom-rules" type="button" role="tab">
+                        <i class="fa-solid fa-sitemap me-2"></i> 1. BOM Rules & Packages
+                    </button>
+                </li>
+                <li class="nav-item flex-fill text-center" role="presentation">
+                    <button class="nav-link w-100" id="tab-btn-panels" data-bs-toggle="pill" data-bs-target="#tab-pane-panels" type="button" role="tab">
+                        <i class="fa-solid fa-solar-panel me-2"></i> 2. Solar Panels Master
+                    </button>
+                </li>
+                <li class="nav-item flex-fill text-center" role="presentation">
+                    <button class="nav-link w-100" id="tab-btn-inverters" data-bs-toggle="pill" data-bs-target="#tab-pane-inverters" type="button" role="tab">
+                        <i class="fa-solid fa-plug me-2"></i> 3. Inverters Master
+                    </button>
+                </li>
+                <li class="nav-item flex-fill text-center" role="presentation">
+                    <button class="nav-link w-100" id="tab-btn-general" data-bs-toggle="pill" data-bs-target="#tab-pane-general" type="button" role="tab">
+                        <i class="fa-solid fa-database me-2"></i> 4. General Supply & GST Pricing
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Tab Content Areas -->
+        <div class="tab-content" id="masterTabsContent">
+
+            <!-- ======================================================== -->
+            <!-- TAB 1: BOM RULES & PACKAGES                              -->
+            <!-- ======================================================== -->
+            <div class="tab-pane fade show active" id="tab-pane-bom-rules" role="tabpanel">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
+                    <!-- System Type Filter Pills -->
+                    <ul class="nav nav-pills gap-2 m-0" id="bomTypePills">
+                        <li class="nav-item"><button class="nav-link active rounded-pill px-3 py-1 fw-bold" data-type="On-Grid">On-Grid</button></li>
+                        <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 fw-bold" data-type="Hybrid">Hybrid</button></li>
+                        <li class="nav-item"><button class="nav-link rounded-pill px-3 py-1 fw-bold" data-type="Micro Inverter">Micro Inverter</button></li>
+                    </ul>
+
+                    <div>
+                        <button class="btn btn-success btn-sm rounded-pill px-3 fw-bold shadow-sm" id="btn-create-bom-modal">
+                            <i class="fa-solid fa-plus me-1"></i> Create Capacity Template
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th><i class="fa-solid fa-cube me-2 text-secondary"></i>Template Capacity</th>
+                                    <th>Profit Margin Base</th>
+                                    <th>Components Defined</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bom-table-body">
+                                <tr><td colspan="4" class="text-center py-4 text-muted">Loading BOM templates...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- TAB 2: SOLAR PANELS MASTER                               -->
+            <!-- ======================================================== -->
+            <div class="tab-pane fade" id="tab-pane-panels" role="tabpanel">
+                
+                <!-- Stat Strip -->
+                <div class="row g-2 mb-3">
+                    <div class="col-6 col-md-3">
+                        <div class="metric-card">
+                            <small class="text-muted fw-bold d-block text-uppercase">Total PV Modules</small>
+                            <h4 class="fw-bold font-display text-dark mb-0" id="stat-total-panels">0</h4>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="metric-card">
+                            <small class="text-muted fw-bold d-block text-uppercase">Active Catalog</small>
+                            <h4 class="fw-bold font-display text-success mb-0" id="stat-active-panels">0</h4>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="metric-card">
+                            <small class="text-muted fw-bold d-block text-uppercase">DCR Subsidy Certified</small>
+                            <h4 class="fw-bold font-display text-primary mb-0" id="stat-dcr-panels">0</h4>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 text-end d-flex align-items-center justify-content-end">
+                        <button class="btn btn-warning text-dark btn-sm rounded-pill px-4 fw-bold shadow-sm" id="btn-create-panel-modal">
+                            <i class="fa-solid fa-plus me-1"></i> Add New Panel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search & Filters -->
+                <div class="card border-0 shadow-sm rounded-3 p-3 mb-3 bg-white">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-12 col-md-6">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text bg-light"><i class="fa-solid fa-search"></i></span>
+                                <input type="text" id="panel-search-bar" class="form-control" placeholder="Search by brand, model ID, technology, wattage...">
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <select id="panel-filter-brand" class="form-select form-select-sm">
+                                <option value="all">All Brands</option>
+                                <option value="Adani">Adani</option>
+                                <option value="Waaree">Waaree</option>
+                                <option value="Tata Power">Tata Power</option>
+                                <option value="Emmvee">Emmvee</option>
+                                <option value="Premier Energies">Premier Energies</option>
+                            </select>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <select id="panel-filter-cert" class="form-select form-select-sm">
+                                <option value="all">All Certifications</option>
+                                <option value="DCR">DCR Certified</option>
+                                <option value="NDCR">Non-DCR</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panels Table -->
+                <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 40px;">#</th>
+                                    <th>Brand & Model ID</th>
+                                    <th>Wattage</th>
+                                    <th>Technology & Cert</th>
+                                    <th class="text-end">Base Rate (₹/W)</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="panel-table-body">
+                                <tr><td colspan="7" class="text-center py-4 text-muted">Loading Solar Panels catalog...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- TAB 3: INVERTERS MASTER                                  -->
+            <!-- ======================================================== -->
+            <div class="tab-pane fade" id="tab-pane-inverters" role="tabpanel">
+                
+                <!-- Stat Strip -->
+                <div class="row g-2 mb-3">
+                    <div class="col-6 col-md-3">
+                        <div class="metric-card">
+                            <small class="text-muted fw-bold d-block text-uppercase">Total Inverters</small>
+                            <h4 class="fw-bold font-display text-dark mb-0" id="stat-total-inverters">0</h4>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="metric-card">
+                            <small class="text-muted fw-bold d-block text-uppercase">Active Models</small>
+                            <h4 class="fw-bold font-display text-success mb-0" id="stat-active-inverters">0</h4>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="metric-card">
+                            <small class="text-muted fw-bold d-block text-uppercase">Single Phase Units</small>
+                            <h4 class="fw-bold font-display text-primary mb-0" id="stat-single-phase-inverters">0</h4>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 text-end d-flex align-items-center justify-content-end">
+                        <button class="btn btn-primary btn-sm rounded-pill px-4 fw-bold shadow-sm" id="btn-create-inverter-modal">
+                            <i class="fa-solid fa-plus me-1"></i> Add New Inverter
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search & Filters -->
+                <div class="card border-0 shadow-sm rounded-3 p-3 mb-3 bg-white">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-12 col-md-6">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text bg-light"><i class="fa-solid fa-search"></i></span>
+                                <input type="text" id="inverter-search-bar" class="form-control" placeholder="Search by brand, capacity, phase, or type...">
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <select id="inverter-filter-brand" class="form-select form-select-sm">
+                                <option value="all">All Brands</option>
+                                <option value="Solis">Solis</option>
+                                <option value="Deye">Deye</option>
+                                <option value="Growatt">Growatt</option>
+                                <option value="GoodWe">GoodWe</option>
+                                <option value="Sungrow">Sungrow</option>
+                                <option value="Sofar">Sofar</option>
+                                <option value="Ksolare">Ksolare</option>
+                                <option value="Enphase">Enphase</option>
+                            </select>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <select id="inverter-filter-phase" class="form-select form-select-sm">
+                                <option value="all">All Phases</option>
+                                <option value="Single Phase">Single Phase</option>
+                                <option value="Three Phase">Three Phase</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inverters Table -->
+                <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 40px;">#</th>
+                                    <th>Brand & Model ID</th>
+                                    <th>Rated Capacity</th>
+                                    <th>Phase & Inverter Type</th>
+                                    <th class="text-end">Base Unit Price (₹)</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inverter-table-body">
+                                <tr><td colspan="7" class="text-center py-4 text-muted">Loading Inverters catalog...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- TAB 4: GENERAL SUPPLY & 70:30 GST PRICING                -->
+            <!-- ======================================================== -->
+            <div class="tab-pane fade" id="tab-pane-general" role="tabpanel">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h5 class="fw-bold text-dark mb-0"><i class="fa-solid fa-database text-primary me-2"></i>General Pricing & 70:30 GST Framework</h5>
+                        <small class="text-muted">Statutory GST rules: 70% Capital Goods @ 5% GST + 30% Construction/Services @ 18% GST (8.9% Effective).</small>
+                    </div>
+                    <div>
+                        <button class="btn btn-success btn-sm rounded-pill px-4 fw-bold shadow-sm" id="btn-save-master-general">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Save Master Pricing
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Master Accordion -->
+                <div class="accordion" id="generalMasterAccordion">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+        </div>
+
     </div>
+
+    <!-- ======================================================== -->
+    <!-- MODALS                                                   -->
+    <!-- ======================================================== -->
 
     <!-- Edit BOM Modal -->
     <div class="modal fade" id="editBomModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
@@ -157,13 +430,13 @@
                 </div>
                 <div class="modal-body p-4 bg-light">
                     <input type="hidden" id="editBomCap">
-                    <div class="row g-3" id="editBomForm">
+                    <div class="row g-2" id="editBomForm">
                         <!-- Injected via JS -->
                     </div>
                 </div>
                 <div class="modal-footer border-0 bg-white">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-success fw-bold px-4" id="btn-save-edit-bom"><i class="fa-solid fa-save me-2"></i> Save Changes</button>
+                    <button type="button" class="btn btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success fw-bold px-4 rounded-pill" id="btn-save-edit-bom"><i class="fa-solid fa-save me-2"></i> Save Changes</button>
                 </div>
             </div>
         </div>
@@ -187,10 +460,10 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label fw-bold text-muted small">New Project Capacity (e.g., 15kW)</label>
+                        <label class="form-label fw-bold text-muted small">Project Capacity (e.g., 12kW, 15kW)</label>
                         <input type="text" class="form-control form-control-lg fw-bold" id="newBomCap" placeholder="15kW" required>
                     </div>
-                    <button class="btn btn-success w-100 fw-bold py-2" id="btn-save-new-bom">
+                    <button class="btn btn-success w-100 fw-bold py-2 rounded-pill" id="btn-save-new-bom">
                         <i class="fa-solid fa-check me-2"></i> Create Template
                     </button>
                 </div>
@@ -198,9 +471,149 @@
         </div>
     </div>
 
+    <!-- Add / Edit Panel Modal -->
+    <div class="modal fade" id="panelModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-warning text-dark border-0">
+                    <h5 class="modal-title fw-bold" id="panelModalTitle"><i class="fa-solid fa-solar-panel me-2"></i> Add Solar Panel</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="panel-form">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Model SKU / ID *</label>
+                                <input type="text" id="p-id" class="form-control font-mono" placeholder="PAN-AD-TOP-605" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Brand *</label>
+                                <input type="text" id="p-brand" class="form-control" placeholder="Adani / Waaree / Tata" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Technology *</label>
+                                <select id="p-tech" class="form-select">
+                                    <option value="TOPCon">TOPCon</option>
+                                    <option value="Mono PERC">Mono PERC</option>
+                                    <option value="Bifacial">Bifacial</option>
+                                    <option value="Polycrystalline">Polycrystalline</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Certification *</label>
+                                <select id="p-cert" class="form-select">
+                                    <option value="DCR">DCR Certified (Subsidy)</option>
+                                    <option value="NDCR">Non-DCR</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Wattage (Wp) *</label>
+                                <input type="number" id="p-wattage" class="form-control font-mono" placeholder="550" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Base Rate (₹ per Watt) *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">₹</span>
+                                    <input type="number" step="0.01" id="p-price" class="form-control font-mono" placeholder="20.00" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Status *</label>
+                                <select id="p-status" class="form-select">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Supplier / Distributor</label>
+                                <input type="text" id="p-supplier" class="form-control" placeholder="Direct Distributor">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Product Warranty (Years)</label>
+                                <input type="number" id="p-warranty" class="form-control" value="12">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-warning fw-bold px-4 rounded-pill" id="btn-save-panel"><i class="fa-solid fa-save me-1"></i> Save Panel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add / Edit Inverter Modal -->
+    <div class="modal fade" id="inverterModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white border-0">
+                    <h5 class="modal-title fw-bold" id="inverterModalTitle"><i class="fa-solid fa-plug me-2"></i> Add Solar Inverter</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="inverter-form">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Inverter SKU / ID *</label>
+                                <input type="text" id="inv-id" class="form-control font-mono" placeholder="INV-SOL-5K-1P" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Brand *</label>
+                                <input type="text" id="inv-brand" class="form-control" placeholder="Solis / Deye / Growatt" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Rated Capacity *</label>
+                                <input type="text" id="inv-capacity" class="form-control font-mono" placeholder="5kW" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Grid Phase *</label>
+                                <select id="inv-phase" class="form-select">
+                                    <option value="Single Phase">Single Phase</option>
+                                    <option value="Three Phase">Three Phase</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Inverter Type *</label>
+                                <select id="inv-type" class="form-select">
+                                    <option value="On-Grid">On-Grid</option>
+                                    <option value="Hybrid">Hybrid</option>
+                                    <option value="Micro Inverter">Micro Inverter</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Base Purchase Cost (₹) *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">₹</span>
+                                    <input type="number" step="any" id="inv-price" class="form-control font-mono" placeholder="35000" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Status *</label>
+                                <select id="inv-status" class="form-select">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Warranty (Years)</label>
+                                <input type="number" id="inv-warranty" class="form-control" value="5">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary fw-bold px-4 rounded-pill" id="btn-save-inverter"><i class="fa-solid fa-save me-1"></i> Save Inverter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/db.js"></script>
-    <script src="js/bom_master.js"></script>
+    <script src="js/unified_bom_master.js"></script>
 
     <script>
         function handleLogout() {
@@ -220,6 +633,5 @@
             }
         }
     </script>
-        
 </body>
 </html>

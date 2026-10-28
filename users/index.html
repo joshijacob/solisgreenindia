@@ -486,7 +486,7 @@
                         <div class="mt-4 pt-3 border-top">
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <div>
-                                    <h6 class="fw-bold font-display text-dark mb-0">Data Hub Card Permissions</h6>
+                                    <h6 class="fw-bold font-display text-dark mb-0">Data Hub Card Permissions (9 Operational Modules)</h6>
                                     <small class="text-muted">Check or uncheck individual cards to grant or revoke access for this user.</small>
                                 </div>
                                 <div class="d-flex gap-2">
@@ -537,7 +537,20 @@
                                     </div>
                                 </div>
 
-                                <!-- 4. Website Analytics -->
+                                <!-- 4. Unified BOM & Engineering Master -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card" style="border-color: #a7f3d0; background: #f0fdf4;">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_bom_master" value="bom_master">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_bom_master">
+                                                <i class="fa-solid fa-sitemap text-success me-1"></i> BOM & Engineering Master
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">BOM rules, panels, inverters & 70:30 GST</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5. Website Analytics -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="permission-checkbox-card">
                                         <div class="form-check form-switch m-0">
@@ -550,59 +563,7 @@
                                     </div>
                                 </div>
 
-                                <!-- 5. General Master DB -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="permission-checkbox-card">
-                                        <div class="form-check form-switch m-0">
-                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_general_master" value="general_master">
-                                            <label class="form-check-label small fw-bold text-dark" for="perm_general_master">
-                                                <i class="fa-solid fa-database text-primary me-1"></i> General Master DB
-                                            </label>
-                                            <div class="text-muted" style="font-size: 0.72rem;">Component pricing & GST rules</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 6. Solar Panel Master -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="permission-checkbox-card">
-                                        <div class="form-check form-switch m-0">
-                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_panel_master" value="panel_master">
-                                            <label class="form-check-label small fw-bold text-dark" for="perm_panel_master">
-                                                <i class="fa-solid fa-solar-panel text-warning me-1"></i> Solar Panel Master
-                                            </label>
-                                            <div class="text-muted" style="font-size: 0.72rem;">Configure PV catalog & wattages</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 7. Inverter Master -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="permission-checkbox-card">
-                                        <div class="form-check form-switch m-0">
-                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_inverter_master" value="inverter_master">
-                                            <label class="form-check-label small fw-bold text-dark" for="perm_inverter_master">
-                                                <i class="fa-solid fa-plug text-purple me-1"></i> Inverter Master
-                                            </label>
-                                            <div class="text-muted" style="font-size: 0.72rem;">Manage inverters & micro-units</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 8. BOM Master -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="permission-checkbox-card">
-                                        <div class="form-check form-switch m-0">
-                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_bom_master" value="bom_master">
-                                            <label class="form-check-label small fw-bold text-dark" for="perm_bom_master">
-                                                <i class="fa-solid fa-sitemap text-success me-1"></i> BOM Master
-                                            </label>
-                                            <div class="text-muted" style="font-size: 0.72rem;">Bill of materials rule formulas</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 9. SEO Command Center -->
+                                <!-- 6. SEO Command Center -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="permission-checkbox-card">
                                         <div class="form-check form-switch m-0">
@@ -615,7 +576,20 @@
                                     </div>
                                 </div>
 
-                                <!-- 10. Careers & Hiring Admin -->
+                                <!-- 7. User Management (Super Admin Exclusive) -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="permission-checkbox-card" style="background: #faf5ff; border-color: #e9d5ff;">
+                                        <div class="form-check form-switch m-0">
+                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_user_management" value="user_management">
+                                            <label class="form-check-label small fw-bold text-dark" for="perm_user_management">
+                                                <i class="fa-solid fa-crown text-warning me-1"></i> User Management
+                                            </label>
+                                            <div class="text-muted" style="font-size: 0.72rem;">Super Admin permission control</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 8. Careers & Hiring Admin -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="permission-checkbox-card">
                                         <div class="form-check form-switch m-0">
@@ -628,7 +602,7 @@
                                     </div>
                                 </div>
 
-                                <!-- 11. Public Website Portal -->
+                                <!-- 9. Public Website Portal -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="permission-checkbox-card">
                                         <div class="form-check form-switch m-0">
@@ -637,19 +611,6 @@
                                                 <i class="fa-solid fa-globe text-primary me-1"></i> Public Website Portal
                                             </label>
                                             <div class="text-muted" style="font-size: 0.72rem;">Preview live customer web portal</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 12. User Management (Super Admin Exclusive) -->
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="permission-checkbox-card" style="background: #faf5ff; border-color: #e9d5ff;">
-                                        <div class="form-check form-switch m-0">
-                                            <input class="form-check-input perm-switch" type="checkbox" id="perm_user_management" value="user_management">
-                                            <label class="form-check-label small fw-bold text-dark" for="perm_user_management">
-                                                <i class="fa-solid fa-crown text-warning me-1"></i> User Management
-                                            </label>
-                                            <div class="text-muted" style="font-size: 0.72rem;">Super Admin permission control</div>
                                         </div>
                                     </div>
                                 </div>
@@ -684,41 +645,38 @@
             cost_calculator: false,
             quotes_proposals: false,
             leads_tracker: false,
-            analytics: false,
-            general_master: false,
-            panel_master: false,
-            inverter_master: false,
             bom_master: false,
+            analytics: false,
             seo_center: false,
+            user_management: false,
             careers_admin: false,
-            public_website: true,
-            user_management: false
+            public_website: true
         };
 
         const ROLE_PRESET_MAP = {
             super_admin: {
                 label: "Super Admin",
-                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true, general_master: true, panel_master: true, inverter_master: true, bom_master: true, seo_center: true, careers_admin: true, public_website: true, user_management: true }
+                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: true, bom_master: true, analytics: true, seo_center: true, user_management: true, careers_admin: true, public_website: true }
             },
             admin: {
                 label: "Admin",
-                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true, general_master: true, panel_master: true, inverter_master: true, bom_master: true, seo_center: true, careers_admin: true, public_website: true, user_management: false }
+                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: true, bom_master: true, analytics: true, seo_center: true, user_management: false, careers_admin: true, public_website: true }
             },
             sales: {
                 label: "Sales & Estimator",
-                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true, general_master: false, panel_master: false, inverter_master: false, bom_master: false, seo_center: true, careers_admin: false, public_website: true, user_management: false }
+                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: true, bom_master: false, analytics: true, seo_center: true, user_management: false, careers_admin: false, public_website: true }
             },
             engineering: {
                 label: "Technical / BOM",
-                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: false, analytics: false, general_master: true, panel_master: true, inverter_master: true, bom_master: true, seo_center: false, careers_admin: false, public_website: true, user_management: false }
+                perms: { cost_calculator: true, quotes_proposals: true, leads_tracker: false, bom_master: true, analytics: false, seo_center: false, user_management: false, careers_admin: false, public_website: true }
             },
             operations: {
                 label: "Operations & HR",
-                perms: { cost_calculator: false, quotes_proposals: false, leads_tracker: true, analytics: true, general_master: false, panel_master: false, inverter_master: false, bom_master: false, seo_center: false, careers_admin: true, public_website: true, user_management: false }
+                perms: { cost_calculator: false, quotes_proposals: false, leads_tracker: true, bom_master: false, analytics: true, seo_center: false, user_management: false, careers_admin: true, public_website: true }
             },
             viewer: {
                 label: "Viewer (Read Only)",
-                perms: { cost_calculator: false, quotes_proposals: false, leads_tracker: false, analytics: true, general_master: false, panel_master: false, inverter_master: false, bom_master: false, seo_center: true, careers_admin: false, public_website: true, user_management: false }
+                perms: { cost_calculator: false, quotes_proposals: false, leads_tracker: false, bom_master: false, analytics: true, seo_center: true, user_management: false, careers_admin: false, public_website: true }
             },
             custom: {
                 label: "Custom Access",
@@ -803,6 +761,17 @@
 
         // Ensure permanent Super Admin is always anchored in the array
         function ensureSuperAdminPresence() {
+            // Normalize any legacy permissions (combine 4 engineering masters into bom_master)
+            currentUsers.forEach(u => {
+                if (u.permissions) {
+                    if (u.permissions.general_master || u.permissions.panel_master || u.permissions.inverter_master || u.permissions.bom_master) {
+                        u.permissions.bom_master = true;
+                    }
+                    delete u.permissions.general_master;
+                    delete u.permissions.panel_master;
+                    delete u.permissions.inverter_master;
+                }
+            });
             let superAdmin = currentUsers.find(u => u.email.toLowerCase() === SUPER_ADMIN_EMAIL.toLowerCase());
             if (!superAdmin) {
                 superAdmin = {
@@ -920,7 +889,7 @@
                 // Permitted count
                 const permKeys = Object.keys(u.permissions || {});
                 const allowedCount = permKeys.filter(k => u.permissions[k] === true).length;
-                const totalPerms = permKeys.length || 12;
+                const totalPerms = 9;
 
                 // Role badge styling
                 let roleBadgeHtml = '';

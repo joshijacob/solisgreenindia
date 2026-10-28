@@ -220,30 +220,35 @@ function calculateProjectCost(params) {
     // Final Selling Base
     const sellingBase = totalBase + marginAmount;
 
-    // Composite GST (70% @ 5%, 30% @ 18%) calculated on Selling Base
+    // Composite GST (70% Capital Goods @ 5% GST, 30% Services @ 18% GST) calculated on Selling Base
     const supplyBase = sellingBase * 0.70;
-    const supplyGst = supplyBase * 0.05;
+    const supplyGst = supplyBase * 0.05; // 5% GST on 70% Capital Goods
     
     const serviceBase = sellingBase * 0.30;
-    const serviceGst = serviceBase * 0.18;
+    const serviceGst = serviceBase * 0.18; // 18% GST on 30% Construction/Services
     
     const totalGst = supplyGst + serviceGst;
 
     const compositeBOM = {
         supply: {
-            name: 'Solar Power Generating System (Supply @ 70%)',
+            name: 'Solar Power Generating System (Capital Goods 70% @ 5% GST)',
             base: supplyBase,
             gst: supplyGst,
+            gstRate: '5%',
+            ratio: '70%',
             landing: supplyBase + supplyGst,
             icon: '<i class="fa-solid fa-solar-panel text-primary me-2"></i>'
         },
         service: {
-            name: 'Construction of Solar Power Generating System (Service @ 30%)',
+            name: 'Construction & Commissioning (Services 30% @ 18% GST)',
             base: serviceBase,
             gst: serviceGst,
+            gstRate: '18%',
+            ratio: '30%',
             landing: serviceBase + serviceGst,
             icon: '<i class="fa-solid fa-helmet-safety text-warning me-2"></i>'
-        }
+        },
+        effectiveRate: '8.9%'
     };
 
     return {

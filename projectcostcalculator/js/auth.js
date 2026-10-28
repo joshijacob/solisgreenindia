@@ -42,8 +42,16 @@ if (!isAuthenticated && !isLoginPage) {
 
     // Authorization Check: Prevent unauthorized users from accessing admin/master pages
     const isAdminPage = path.includes('admin.html') || path.includes('_master.html');
-    if (isAdminPage && !isSuperAdmin && userRole !== 'admin') {
-        window.location.href = '/Login/index.html';
+    if (isAdminPage) {
+        let userPerms = {};
+        try {
+            userPerms = JSON.parse(sessionStorage.getItem('solis_user_permissions') || '{}');
+        } catch(e) {}
+
+        const canAccessMaster = isSuperAdmin || userRole === 'admin' || userRole === 'engineering' || userPerms['bom_master'] === true;
+        if (!canAccessMaster) {
+            window.location.href = '/Login/index.html';
+        }
     }
 }
 

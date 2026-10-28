@@ -172,7 +172,7 @@ function viewQuote(id) {
                             <td class="text-end fw-bold">${fmt(s.totalBase || 0)}</td>
                         </tr>
                         <tr>
-                            <td>Total GST</td>
+                            <td>Total GST <small class="text-muted">(70% Goods @ 5% + 30% Services @ 18% &bull; 8.9% Eff.)</small></td>
                             <td class="text-end text-danger">${fmt(s.totalGst || 0)}</td>
                         </tr>
                         <tr class="table-success">

@@ -530,7 +530,7 @@
             <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
                 <div class="d-flex align-items-center gap-2">
                     <h5 class="fw-bold font-display mb-0 text-dark">Operational Modules & Data Hub</h5>
-                    <span class="badge bg-light text-muted border d-none d-sm-inline" style="font-size: 0.68rem;">11 Live Tools</span>
+                    <span class="badge bg-light text-muted border d-none d-sm-inline" style="font-size: 0.68rem;">9 Live Modules</span>
                 </div>
                 <div>
                     <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 rounded-pill fw-semibold" style="font-size: 0.7rem;">
@@ -540,10 +540,13 @@
             </div>
 
             <!-- Modules Grid: 11 Live Modules + 1 User Management Card (Exact 4x3 Grid) -->
-            <div class="row g-2 g-xl-2" id="modulesGrid">
+                        <!-- Modules Grid: 9 Live Modules in Exact 3x3 Cockpit Grid -->
+            <div class="row g-2 g-xl-3" id="modulesGrid">
                 
+                <!-- ROW 1: SALES & LEAD PIPELINE -->
+
                 <!-- 1. Cost Calculator -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="cost_calculator">
+                <div class="col-12 col-md-6 col-lg-4" data-module="cost_calculator">
                     <a href="/projectcostcalculator/index.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -552,9 +555,9 @@
                                 </div>
                                 <h6 class="fw-bold font-display text-dark mb-0 fs-6">Cost Calculator</h6>
                             </div>
-                            <span class="module-tag-compact" style="background: #fff3ec; color: #c2410c;">Sales</span>
+                            <span class="module-tag-compact" style="background: #fff3ec; color: #c2410c;">Sales Engine</span>
                         </div>
-                        <p class="module-desc">Interactive 70:30 GST calculation engine, equipment sizing & landing cost.</p>
+                        <p class="module-desc">Dynamic 70:30 composite GST engine (5% Goods / 18% Services), equipment sizing & landing cost.</p>
                         <div class="module-action-link text-primary">
                             <span>Open Calculator</span>
                             <i class="fa-solid fa-arrow-right"></i>
@@ -563,7 +566,7 @@
                 </div>
 
                 <!-- 2. Saved Quotes Dashboard -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="quotes_proposals">
+                <div class="col-12 col-md-6 col-lg-4" data-module="quotes_proposals">
                     <a href="/projectcostcalculator/quotes_dashboard.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
@@ -574,7 +577,7 @@
                             </div>
                             <span class="module-tag-compact" style="background: #e0f2fe; color: #0369a1;">Proposals</span>
                         </div>
-                        <p class="module-desc">Access saved estimates, review plant configurations & generate client proposals.</p>
+                        <p class="module-desc">Access saved estimates, review plant configurations & generate customer proposals.</p>
                         <div class="module-action-link text-primary">
                             <span>View All Quotes</span>
                             <i class="fa-solid fa-arrow-right"></i>
@@ -583,18 +586,18 @@
                 </div>
 
                 <!-- 3. Submitted Forms Tracker -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="leads_tracker">
+                <div class="col-12 col-md-6 col-lg-4" data-module="leads_tracker">
                     <a href="/leads/index.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
                                 <div class="module-icon-compact" style="background: linear-gradient(135deg, #107c41 0%, #15803d 100%);">
                                     <i class="fa-solid fa-file-excel"></i>
                                 </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Leads & Forms</h6>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Leads & Forms Tracker</h6>
                             </div>
                             <span class="module-tag-compact" style="background: #e6f4ea; color: #137333;">Excel Form</span>
                         </div>
-                        <p class="module-desc">Live Excel tracker for customer submissions & KSEB numbers with 1-click export.</p>
+                        <p class="module-desc">Live Excel tracker for customer submissions & KSEB numbers with instant 1-click export.</p>
                         <div class="module-action-link text-success">
                             <span>Open Leads Tracker</span>
                             <i class="fa-solid fa-arrow-right"></i>
@@ -602,15 +605,37 @@
                     </a>
                 </div>
 
-                <!-- 4. Website Analytics & Activity Intelligence -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="analytics">
+                <!-- ROW 2: ENGINEERING & GROWTH INTELLIGENCE -->
+
+                <!-- 4. Unified BOM & Engineering Master -->
+                <div class="col-12 col-md-6 col-lg-4" data-module="bom_master">
+                    <a href="/projectcostcalculator/bom_master.html" class="module-card">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">
+                                    <i class="fa-solid fa-sitemap"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">BOM & Engineering Master</h6>
+                            </div>
+                            <span class="module-tag-compact" style="background: #ecfdf5; color: #047857;">Engineering</span>
+                        </div>
+                        <p class="module-desc">Unified master catalog for BOM rules, solar PV panels, inverters, BOS supply & 70:30 GST pricing.</p>
+                        <div class="module-action-link text-success">
+                            <span>Configure BOM Master</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 5. Website Analytics & Activity Intelligence -->
+                <div class="col-12 col-md-6 col-lg-4" data-module="analytics">
                     <a href="/analytics/index.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
                                 <div class="module-icon-compact" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);">
                                     <i class="fa-solid fa-chart-line"></i>
                                 </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Web Activity</h6>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Web Activity & Analytics</h6>
                             </div>
                             <span class="module-tag-compact" style="background: #e0f2fe; color: #0369a1;">Realtime</span>
                         </div>
@@ -622,95 +647,15 @@
                     </a>
                 </div>
 
-                <!-- 5. General Master Database -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="general_master">
-                    <a href="/projectcostcalculator/admin.html" class="module-card">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);">
-                                    <i class="fa-solid fa-database"></i>
-                                </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">General Master DB</h6>
-                            </div>
-                            <span class="module-tag-compact badge-admin-only">Master</span>
-                        </div>
-                        <p class="module-desc">Maintain component costs, statutory GST rules, labor rates & company margins.</p>
-                        <div class="module-action-link text-primary">
-                            <span>Manage Pricing</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 6. Solar Panel Master -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="panel_master">
-                    <a href="/projectcostcalculator/panel_master.html" class="module-card">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #eab308 0%, #a16207 100%);">
-                                    <i class="fa-solid fa-solar-panel"></i>
-                                </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Solar Panel Master</h6>
-                            </div>
-                            <span class="module-tag-compact badge-admin-only">PV Modules</span>
-                        </div>
-                        <p class="module-desc">Configure PV modules (Tata, Waaree, Adani, Deye), wattage & cell technology.</p>
-                        <div class="module-action-link text-primary">
-                            <span>Configure Panels</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 7. Inverter Master -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="inverter_master">
-                    <a href="/projectcostcalculator/inverter_master.html" class="module-card">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
-                                    <i class="fa-solid fa-plug"></i>
-                                </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Inverter Master</h6>
-                            </div>
-                            <span class="module-tag-compact badge-admin-only">Inverters</span>
-                        </div>
-                        <p class="module-desc">Manage 1-phase/3-phase inverters, micro-inverters, hybrid units & purchase rates.</p>
-                        <div class="module-action-link text-primary">
-                            <span>Configure Inverters</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 8. BOM Master -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="bom_master">
-                    <a href="/projectcostcalculator/bom_master.html" class="module-card">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">
-                                    <i class="fa-solid fa-sitemap"></i>
-                                </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">BOM Master</h6>
-                            </div>
-                            <span class="module-tag-compact badge-admin-only">Engineering</span>
-                        </div>
-                        <p class="module-desc">Define standard Bill of Materials packages and rule formulas for 3kW, 5kW & 10kW.</p>
-                        <div class="module-action-link text-primary">
-                            <span>Configure Rules</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 9. SEO Command Center -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="seo_center">
+                <!-- 6. SEO Command Center -->
+                <div class="col-12 col-md-6 col-lg-4" data-module="seo_center">
                     <a href="/seo/index.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
                                 <div class="module-icon-compact" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
                                     <i class="fa-solid fa-magnifying-glass-chart"></i>
                                 </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">SEO Command</h6>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">SEO Command Center</h6>
                             </div>
                             <span class="module-tag-compact" style="background: #ecfdf5; color: #047857;">Google Rank</span>
                         </div>
@@ -722,15 +667,37 @@
                     </a>
                 </div>
 
-                <!-- 10. Careers & Hiring Admin -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="careers_admin">
+                <!-- ROW 3: GOVERNANCE, RECRUITMENT & PUBLIC PORTAL -->
+
+                <!-- 7. User Management -->
+                <div class="col-12 col-md-6 col-lg-4" data-module="user_management">
+                    <a href="/users/index.html" class="module-card" id="userManagementHubCard">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);">
+                                    <i class="fa-solid fa-users-gear"></i>
+                                </div>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">User Management</h6>
+                            </div>
+                            <span class="module-tag-compact" style="background: #ede9fe; color: #5b21b6;">Super Admin</span>
+                        </div>
+                        <p class="module-desc">Create team users, assign roles & control access permissions across the Data Hub.</p>
+                        <div class="module-action-link text-primary">
+                            <span>Manage Access</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 8. Careers & Hiring Admin -->
+                <div class="col-12 col-md-6 col-lg-4" data-module="careers_admin">
                     <a href="/careers/admin/index.html" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
                                 <div class="module-icon-compact" style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);">
                                     <i class="fa-solid fa-users-gear"></i>
                                 </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Careers & Hiring</h6>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Careers & Hiring Admin</h6>
                             </div>
                             <span class="module-tag-compact badge-admin-only">Recruitment</span>
                         </div>
@@ -742,15 +709,15 @@
                     </a>
                 </div>
 
-                <!-- 11. Public Website Portal -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="public_website">
+                <!-- 9. Public Website Portal -->
+                <div class="col-12 col-md-6 col-lg-4" data-module="public_website">
                     <a href="/" target="_blank" class="module-card">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <div class="d-flex align-items-center gap-2">
                                 <div class="module-icon-compact" style="background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);">
                                     <i class="fa-solid fa-globe"></i>
                                 </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Public Website</h6>
+                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">Public Website Portal</h6>
                             </div>
                             <span class="module-tag-compact badge-open-access">Live Web</span>
                         </div>
@@ -758,26 +725,6 @@
                         <div class="module-action-link text-primary">
                             <span>View Live Site</span>
                             <i class="fa-solid fa-external-link ms-1"></i>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 12. User Management Card (Super Admin Exclusive) -->
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3" data-module="user_management">
-                    <a href="/users/index.html" class="module-card" id="userManagementHubCard">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <div class="d-flex align-items-center gap-2">
-                                <div class="module-icon-compact" style="background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);">
-                                    <i class="fa-solid fa-users-gear"></i>
-                                </div>
-                                <h6 class="fw-bold font-display text-dark mb-0 fs-6">User Management</h6>
-                            </div>
-                            <span class="module-tag-compact" style="background: #ede9fe; color: #5b21b6;">Super Admin</span>
-                        </div>
-                        <p class="module-desc">Create team users, assign roles & control access permissions to Data Hub modules.</p>
-                        <div class="module-action-link text-primary">
-                            <span>Manage Access</span>
-                            <i class="fa-solid fa-arrow-right"></i>
                         </div>
                     </a>
                 </div>
@@ -804,7 +751,7 @@
                 status: "active",
                 permissions: {
                     cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true,
-                    general_master: true, panel_master: true, inverter_master: true, bom_master: true,
+                    bom_master: true,
                     seo_center: true, careers_admin: true, public_website: true, user_management: true
                 }
             },
@@ -816,7 +763,7 @@
                 status: "active",
                 permissions: {
                     cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true,
-                    general_master: false, panel_master: false, inverter_master: false, bom_master: false,
+                    bom_master: false,
                     seo_center: true, careers_admin: false, public_website: true, user_management: false
                 }
             }
@@ -1038,6 +985,9 @@
             let userPerms = {};
             try {
                 userPerms = JSON.parse(sessionStorage.getItem('solis_user_permissions') || '{}');
+                if (userPerms.general_master || userPerms.panel_master || userPerms.inverter_master) {
+                    userPerms.bom_master = true;
+                }
             } catch (e) {
                 userPerms = {};
             }
@@ -1144,7 +1094,7 @@
                         userName = 'Solis Super Admin';
                         permissions = (userRecord && userRecord.permissions) || {
                             cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true,
-                            general_master: true, panel_master: true, inverter_master: true, bom_master: true,
+                            bom_master: true,
                             seo_center: true, careers_admin: true, public_website: true, user_management: true
                         };
                     } else if (typeof authFirebase !== 'undefined') {

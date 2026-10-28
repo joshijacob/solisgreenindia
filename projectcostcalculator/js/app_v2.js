@@ -436,9 +436,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             for (const key in result.compositeBOM) {
                 const item = result.compositeBOM[key];
+                if (!item || typeof item !== 'object' || !item.name) continue;
                 rowsHtml += `
                 <tr>
-                    <td class="fw-medium">${item.icon} ${item.name}</td>
+                    <td class="fw-medium">${item.icon || ''} ${item.name}</td>
                     <td class="text-end fw-bold">${fmt(item.base)}</td>
                     <td class="text-end text-danger">${fmt(item.gst)}</td>
                     <td class="text-end fw-bold">${fmt(item.landing)}</td>
