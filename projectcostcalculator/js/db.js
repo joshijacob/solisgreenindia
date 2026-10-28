@@ -23,86 +23,1299 @@ const DEFAULT_MASTER_DATA = {
     },
     // New ERP Array-based Product Master for Panels
     panelProducts: [
-        { id: "PAN-AD-TOP-DCR-605", brand: "Adani", technology: "TOPCon", certification: "DCR", wattage: 605, price: 20, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-TOP-DCR-610", brand: "Adani", technology: "TOPCon", certification: "DCR", wattage: 610, price: 20, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-TOP-DCR-615", brand: "Adani", technology: "TOPCon", certification: "DCR", wattage: 615, price: 20, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-TOP-DCR-620", brand: "Adani", technology: "TOPCon", certification: "DCR", wattage: 620, price: 27.5, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-TOP-DCR-625", brand: "Adani", technology: "TOPCon", certification: "DCR", wattage: 625, price: 20, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-TOP-DCR-630", brand: "Adani", technology: "TOPCon", certification: "DCR", wattage: 630, price: 20, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        
-        { id: "PAN-AD-TOP-NDCR-605", brand: "Adani", technology: "TOPCon", certification: "NDCR", wattage: 605, price: 18, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-TOP-NDCR-610", brand: "Adani", technology: "TOPCon", certification: "NDCR", wattage: 610, price: 18, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-TOP-NDCR-615", brand: "Adani", technology: "TOPCon", certification: "NDCR", wattage: 615, price: 18, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-TOP-NDCR-620", brand: "Adani", technology: "TOPCon", certification: "NDCR", wattage: 620, price: 18, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-TOP-NDCR-625", brand: "Adani", technology: "TOPCon", certification: "NDCR", wattage: 625, price: 18, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-TOP-NDCR-630", brand: "Adani", technology: "TOPCon", certification: "NDCR", wattage: 630, price: 18, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        
-        { id: "PAN-AD-BIF-NDCR-540", brand: "Adani", technology: "Bifacial", certification: "NDCR", wattage: 540, price: 19, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-BIF-NDCR-545", brand: "Adani", technology: "Bifacial", certification: "NDCR", wattage: 545, price: 19, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-BIF-NDCR-550", brand: "Adani", technology: "Bifacial", certification: "NDCR", wattage: 550, price: 19, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-AD-BIF-NDCR-555", brand: "Adani", technology: "Bifacial", certification: "NDCR", wattage: 555, price: 19, gst: 12, supplier: "Adani Solar Direct", warranty: 12, weight: 28, length: 2278, width: 1134, status: "Active" },
-
-        { id: "PAN-WA-MONO-NDCR-540", brand: "Waaree", technology: "Mono PERC", certification: "NDCR", wattage: 540, price: 19, gst: 12, supplier: "Waaree Energies", warranty: 12, weight: 27, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-EM-MONO-NDCR-540", brand: "Emmvee", technology: "Mono PERC", certification: "NDCR", wattage: 540, price: 18, gst: 12, supplier: "Emmvee Photovoltaic", warranty: 12, weight: 27, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-PR-MONO-NDCR-540", brand: "Premier Energies", technology: "Mono PERC", certification: "NDCR", wattage: 540, price: 19.5, gst: 12, supplier: "Premier Energies", warranty: 12, weight: 27, length: 2278, width: 1134, status: "Active" },
-        { id: "PAN-TP-MONO-NDCR-540", brand: "Tata Power", technology: "Mono PERC", certification: "NDCR", wattage: 540, price: 22, gst: 12, supplier: "Tata Power Solar", warranty: 12, weight: 27, length: 2278, width: 1134, status: "Active" },
-    ],
-    // New ERP Array-based Product Master for Inverters
+    {
+        "id": "PAN-AD-TOP-DCR-605",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 605,
+        "price": 20,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-DCR-610",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 610,
+        "price": 20,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-DCR-615",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 615,
+        "price": 20,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-DCR-620",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 620,
+        "price": 27.5,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-DCR-625",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 625,
+        "price": 20,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-DCR-630",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 630,
+        "price": 20,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-NDCR-605",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 605,
+        "price": 18,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-NDCR-610",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 610,
+        "price": 18,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-NDCR-615",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 615,
+        "price": 18,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-NDCR-620",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 620,
+        "price": 18,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-NDCR-625",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 625,
+        "price": 18,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-TOP-NDCR-630",
+        "brand": "Adani",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 630,
+        "price": 18,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-BIF-NDCR-540",
+        "brand": "Adani",
+        "technology": "Bifacial",
+        "certification": "NDCR",
+        "wattage": 540,
+        "price": 19,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-BIF-NDCR-545",
+        "brand": "Adani",
+        "technology": "Bifacial",
+        "certification": "NDCR",
+        "wattage": 545,
+        "price": 19,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-BIF-NDCR-550",
+        "brand": "Adani",
+        "technology": "Bifacial",
+        "certification": "NDCR",
+        "wattage": 550,
+        "price": 19,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-BIF-NDCR-555",
+        "brand": "Adani",
+        "technology": "Bifacial",
+        "certification": "NDCR",
+        "wattage": 555,
+        "price": 19,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-MONO-NDCR-540",
+        "brand": "Adani",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 540,
+        "price": 18.5,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-MONO-NDCR-545",
+        "brand": "Adani",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 545,
+        "price": 18.5,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-AD-MONO-DCR-540",
+        "brand": "Adani",
+        "technology": "Mono PERC",
+        "certification": "DCR",
+        "wattage": 540,
+        "price": 21,
+        "gst": 12,
+        "supplier": "Adani Solar Direct",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-MONO-NDCR-540",
+        "brand": "Waaree",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 540,
+        "price": 19,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-MONO-NDCR-545",
+        "brand": "Waaree",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 545,
+        "price": 19,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-MONO-NDCR-550",
+        "brand": "Waaree",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 550,
+        "price": 19.5,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-MONO-DCR-540",
+        "brand": "Waaree",
+        "technology": "Mono PERC",
+        "certification": "DCR",
+        "wattage": 540,
+        "price": 21.5,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-MONO-DCR-545",
+        "brand": "Waaree",
+        "technology": "Mono PERC",
+        "certification": "DCR",
+        "wattage": 545,
+        "price": 21.5,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-TOP-DCR-580",
+        "brand": "Waaree",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 580,
+        "price": 22.5,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-TOP-DCR-585",
+        "brand": "Waaree",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 585,
+        "price": 22.5,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-TOP-NDCR-580",
+        "brand": "Waaree",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 580,
+        "price": 19.5,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-TOP-NDCR-590",
+        "brand": "Waaree",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 590,
+        "price": 20,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-BIF-NDCR-540",
+        "brand": "Waaree",
+        "technology": "Bifacial",
+        "certification": "NDCR",
+        "wattage": 540,
+        "price": 19.5,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-WA-BIF-NDCR-545",
+        "brand": "Waaree",
+        "technology": "Bifacial",
+        "certification": "NDCR",
+        "wattage": 545,
+        "price": 19.5,
+        "gst": 12,
+        "supplier": "Waaree Energies",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-TP-MONO-NDCR-540",
+        "brand": "Tata Power",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 540,
+        "price": 22,
+        "gst": 12,
+        "supplier": "Tata Power Solar",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-TP-MONO-NDCR-545",
+        "brand": "Tata Power",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 545,
+        "price": 22,
+        "gst": 12,
+        "supplier": "Tata Power Solar",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-TP-MONO-DCR-540",
+        "brand": "Tata Power",
+        "technology": "Mono PERC",
+        "certification": "DCR",
+        "wattage": 540,
+        "price": 24.5,
+        "gst": 12,
+        "supplier": "Tata Power Solar",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-TP-MONO-DCR-545",
+        "brand": "Tata Power",
+        "technology": "Mono PERC",
+        "certification": "DCR",
+        "wattage": 545,
+        "price": 24.5,
+        "gst": 12,
+        "supplier": "Tata Power Solar",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-TP-TOP-DCR-550",
+        "brand": "Tata Power",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 550,
+        "price": 25.5,
+        "gst": 12,
+        "supplier": "Tata Power Solar",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-TP-TOP-DCR-580",
+        "brand": "Tata Power",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 580,
+        "price": 26,
+        "gst": 12,
+        "supplier": "Tata Power Solar",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-TP-TOP-NDCR-580",
+        "brand": "Tata Power",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 580,
+        "price": 22,
+        "gst": 12,
+        "supplier": "Tata Power Solar",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-TP-BIF-NDCR-540",
+        "brand": "Tata Power",
+        "technology": "Bifacial",
+        "certification": "NDCR",
+        "wattage": 540,
+        "price": 22.5,
+        "gst": 12,
+        "supplier": "Tata Power Solar",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-PR-MONO-NDCR-540",
+        "brand": "Premier Energies",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 540,
+        "price": 19.5,
+        "gst": 12,
+        "supplier": "Premier Energies",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-PR-MONO-NDCR-545",
+        "brand": "Premier Energies",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 545,
+        "price": 19.5,
+        "gst": 12,
+        "supplier": "Premier Energies",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-PR-MONO-DCR-540",
+        "brand": "Premier Energies",
+        "technology": "Mono PERC",
+        "certification": "DCR",
+        "wattage": 540,
+        "price": 21.5,
+        "gst": 12,
+        "supplier": "Premier Energies",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-PR-TOP-DCR-580",
+        "brand": "Premier Energies",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 580,
+        "price": 22.5,
+        "gst": 12,
+        "supplier": "Premier Energies",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-PR-TOP-NDCR-580",
+        "brand": "Premier Energies",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 580,
+        "price": 19.5,
+        "gst": 12,
+        "supplier": "Premier Energies",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-PR-BIF-NDCR-540",
+        "brand": "Premier Energies",
+        "technology": "Bifacial",
+        "certification": "NDCR",
+        "wattage": 540,
+        "price": 20,
+        "gst": 12,
+        "supplier": "Premier Energies",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-EM-MONO-NDCR-540",
+        "brand": "Emmvee",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 540,
+        "price": 18,
+        "gst": 12,
+        "supplier": "Emmvee Photovoltaic",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-EM-MONO-NDCR-545",
+        "brand": "Emmvee",
+        "technology": "Mono PERC",
+        "certification": "NDCR",
+        "wattage": 545,
+        "price": 18.5,
+        "gst": 12,
+        "supplier": "Emmvee Photovoltaic",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-EM-MONO-DCR-540",
+        "brand": "Emmvee",
+        "technology": "Mono PERC",
+        "certification": "DCR",
+        "wattage": 540,
+        "price": 20.5,
+        "gst": 12,
+        "supplier": "Emmvee Photovoltaic",
+        "warranty": 12,
+        "weight": 27,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-EM-TOP-DCR-580",
+        "brand": "Emmvee",
+        "technology": "TOPCon",
+        "certification": "DCR",
+        "wattage": 580,
+        "price": 22,
+        "gst": 12,
+        "supplier": "Emmvee Photovoltaic",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-EM-TOP-NDCR-580",
+        "brand": "Emmvee",
+        "technology": "TOPCon",
+        "certification": "NDCR",
+        "wattage": 580,
+        "price": 19,
+        "gst": 12,
+        "supplier": "Emmvee Photovoltaic",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    },
+    {
+        "id": "PAN-EM-BIF-NDCR-540",
+        "brand": "Emmvee",
+        "technology": "Bifacial",
+        "certification": "NDCR",
+        "wattage": 540,
+        "price": 19,
+        "gst": 12,
+        "supplier": "Emmvee Photovoltaic",
+        "warranty": 12,
+        "weight": 28,
+        "length": 2278,
+        "width": 1134,
+        "status": "Active"
+    }
+],
     inverterProducts: [
-        // Solis
-        { id: "INV-SOL-3K-1P", brand: "Solis", capacity: "3kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-SOL-5K-1P", brand: "Solis", capacity: "5kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-SOL-5K-3P", brand: "Solis", capacity: "5kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-SOL-8K-3P", brand: "Solis", capacity: "8kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-SOL-10K-3P", brand: "Solis", capacity: "10kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-SOL-15K-3P", brand: "Solis", capacity: "15kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-
-        // Deye
-        { id: "INV-DEY-3K-1P", brand: "Deye", capacity: "3kW", phase: "Single Phase", type: "On-Grid", price: 16500, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-DEY-5K-1P", brand: "Deye", capacity: "5kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-DEY-5K-3P", brand: "Deye", capacity: "5kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-DEY-8K-3P", brand: "Deye", capacity: "8kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-DEY-10K-3P", brand: "Deye", capacity: "10kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-
-        // Growatt
-        { id: "INV-GRO-3K-1P", brand: "Growatt", capacity: "3kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-GRO-5K-1P", brand: "Growatt", capacity: "5kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-GRO-5K-3P", brand: "Growatt", capacity: "5kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-GRO-8K-3P", brand: "Growatt", capacity: "8kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-GRO-10K-3P", brand: "Growatt", capacity: "10kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-GRO-15K-3P", brand: "Growatt", capacity: "15kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-
-        // GoodWe
-        { id: "INV-GWE-3K-1P", brand: "GoodWe", capacity: "3kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-GWE-5K-1P", brand: "GoodWe", capacity: "5kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-GWE-5K-3P", brand: "GoodWe", capacity: "5kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-GWE-8K-3P", brand: "GoodWe", capacity: "8kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-GWE-10K-3P", brand: "GoodWe", capacity: "10kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-
-        // Sungrow
-        { id: "INV-SUN-5K-1P", brand: "Sungrow", capacity: "5kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-SUN-5K-3P", brand: "Sungrow", capacity: "5kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-SUN-10K-3P", brand: "Sungrow", capacity: "10kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-
-        // Sofar
-        { id: "INV-SOF-3K-1P", brand: "Sofar", capacity: "3kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-SOF-5K-1P", brand: "Sofar", capacity: "5kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-SOF-5K-3P", brand: "Sofar", capacity: "5kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-SOF-10K-3P", brand: "Sofar", capacity: "10kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        
-        // Ksolare
-        { id: "INV-KSO-3K-1P", brand: "Ksolare", capacity: "3kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-KSO-5K-1P", brand: "Ksolare", capacity: "5kW", phase: "Single Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-KSO-5K-3P", brand: "Ksolare", capacity: "5kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-KSO-10K-3P", brand: "Ksolare", capacity: "10kW", phase: "Three Phase", type: "On-Grid", price: 0, gst: 18, supplier: "", warranty: 5, status: "Active" },
-    
-        // Hybrid (Battery Backup)
-        { id: "INV-DEY-HYB-5K-1P", brand: "Deye", capacity: "5kW", phase: "Single Phase", type: "Hybrid", price: 85000, gst: 18, supplier: "", warranty: 5, status: "Active" },
-        { id: "INV-DEY-HYB-8K-3P", brand: "Deye", capacity: "8kW", phase: "Three Phase", type: "Hybrid", price: 135000, gst: 18, supplier: "", warranty: 5, status: "Active" },
-
-        // Micro Inverter
-        { id: "INV-ENP-IQ8-MICRO", brand: "Enphase", capacity: "Micro", phase: "Single Phase", type: "Micro Inverter", price: 12000, gst: 18, supplier: "", warranty: 10, status: "Active" }
-    ],
+    {
+        "id": "INV-SOL-3K-1P",
+        "brand": "Solis",
+        "capacity": "3kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOL-5K-1P",
+        "brand": "Solis",
+        "capacity": "5kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOL-5K-3P",
+        "brand": "Solis",
+        "capacity": "5kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOL-8K-3P",
+        "brand": "Solis",
+        "capacity": "8kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOL-10K-3P",
+        "brand": "Solis",
+        "capacity": "10kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOL-15K-3P",
+        "brand": "Solis",
+        "capacity": "15kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-DEY-3K-1P",
+        "brand": "Deye",
+        "capacity": "3kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 16500,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-DEY-5K-1P",
+        "brand": "Deye",
+        "capacity": "5kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-DEY-5K-3P",
+        "brand": "Deye",
+        "capacity": "5kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-DEY-8K-3P",
+        "brand": "Deye",
+        "capacity": "8kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-DEY-10K-3P",
+        "brand": "Deye",
+        "capacity": "10kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-DEY-15K-3P",
+        "brand": "Deye",
+        "capacity": "15kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GRO-3K-1P",
+        "brand": "Growatt",
+        "capacity": "3kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GRO-5K-1P",
+        "brand": "Growatt",
+        "capacity": "5kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GRO-5K-3P",
+        "brand": "Growatt",
+        "capacity": "5kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GRO-8K-3P",
+        "brand": "Growatt",
+        "capacity": "8kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GRO-10K-3P",
+        "brand": "Growatt",
+        "capacity": "10kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GRO-15K-3P",
+        "brand": "Growatt",
+        "capacity": "15kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GWE-3K-1P",
+        "brand": "GoodWe",
+        "capacity": "3kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GWE-5K-1P",
+        "brand": "GoodWe",
+        "capacity": "5kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GWE-5K-3P",
+        "brand": "GoodWe",
+        "capacity": "5kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GWE-8K-3P",
+        "brand": "GoodWe",
+        "capacity": "8kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GWE-10K-3P",
+        "brand": "GoodWe",
+        "capacity": "10kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-GWE-15K-3P",
+        "brand": "GoodWe",
+        "capacity": "15kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SUN-3K-1P",
+        "brand": "Sungrow",
+        "capacity": "3kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SUN-5K-1P",
+        "brand": "Sungrow",
+        "capacity": "5kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SUN-5K-3P",
+        "brand": "Sungrow",
+        "capacity": "5kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SUN-8K-3P",
+        "brand": "Sungrow",
+        "capacity": "8kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SUN-10K-3P",
+        "brand": "Sungrow",
+        "capacity": "10kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOF-3K-1P",
+        "brand": "Sofar",
+        "capacity": "3kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOF-5K-1P",
+        "brand": "Sofar",
+        "capacity": "5kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOF-5K-3P",
+        "brand": "Sofar",
+        "capacity": "5kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOF-8K-3P",
+        "brand": "Sofar",
+        "capacity": "8kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOF-10K-3P",
+        "brand": "Sofar",
+        "capacity": "10kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-KSO-3K-1P",
+        "brand": "Ksolare",
+        "capacity": "3kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-KSO-5K-1P",
+        "brand": "Ksolare",
+        "capacity": "5kW",
+        "phase": "Single Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-KSO-5K-3P",
+        "brand": "Ksolare",
+        "capacity": "5kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-KSO-8K-3P",
+        "brand": "Ksolare",
+        "capacity": "8kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-KSO-10K-3P",
+        "brand": "Ksolare",
+        "capacity": "10kW",
+        "phase": "Three Phase",
+        "type": "On-Grid",
+        "price": 0,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-DEY-HYB-5K-1P",
+        "brand": "Deye",
+        "capacity": "5kW",
+        "phase": "Single Phase",
+        "type": "Hybrid",
+        "price": 85000,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-DEY-HYB-8K-3P",
+        "brand": "Deye",
+        "capacity": "8kW",
+        "phase": "Three Phase",
+        "type": "Hybrid",
+        "price": 135000,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOL-HYB-5K-1P",
+        "brand": "Solis",
+        "capacity": "5kW",
+        "phase": "Single Phase",
+        "type": "Hybrid",
+        "price": 88000,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-SOL-HYB-8K-3P",
+        "brand": "Solis",
+        "capacity": "8kW",
+        "phase": "Three Phase",
+        "type": "Hybrid",
+        "price": 138000,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 5,
+        "status": "Active"
+    },
+    {
+        "id": "INV-ENP-IQ8-MICRO",
+        "brand": "Enphase",
+        "capacity": "Micro",
+        "phase": "Single Phase",
+        "type": "Micro Inverter",
+        "price": 12000,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 10,
+        "status": "Active"
+    },
+    {
+        "id": "INV-HOY-1200-MICRO",
+        "brand": "Hoymiles",
+        "capacity": "Micro",
+        "phase": "Single Phase",
+        "type": "Micro Inverter",
+        "price": 11000,
+        "gst": 18,
+        "supplier": "",
+        "warranty": 10,
+        "status": "Active"
+    }
+],
     batteryProducts: [
         { id: "BAT-LITH-5KWH", brand: "Loom Solar", type: "Lithium-ion", capacity: "5kWh", price: 110000, gst: 18, status: "Active" },
         { id: "BAT-TUB-150AH", brand: "Luminous", type: "Tubular Lead-Acid", capacity: "150Ah", price: 14000, gst: 28, status: "Active" }
@@ -248,49 +1461,73 @@ const DEFAULT_BOM_TEMPLATES = {
         }
     }
 };
-
 // Data Access Methods (with guaranteed safe fallbacks)
-const getMasterData = () => {
+function getMasterData() {
     try {
-        const raw = localStorage.getItem('solis-master-data');
-        if (raw) {
-            const parsed = JSON.parse(raw);
-            if (parsed && Array.isArray(parsed.panelProducts) && Array.isArray(parsed.inverterProducts) && parsed.supply) {
-                return parsed;
+        if (typeof localStorage !== 'undefined') {
+            const raw = localStorage.getItem('solis-master-data');
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed && Array.isArray(parsed.panelProducts) && parsed.panelProducts.length > 0 && Array.isArray(parsed.inverterProducts) && parsed.inverterProducts.length > 0 && parsed.supply) {
+                    const existingBrands = new Set(parsed.panelProducts.map(p => p.brand));
+                    const requiredBrands = ['Adani', 'Waaree', 'Tata Power', 'Premier Energies', 'Emmvee'];
+                    const missingRequired = requiredBrands.some(b => !existingBrands.has(b));
+                    if (!missingRequired) {
+                        return parsed;
+                    }
+                }
             }
         }
     } catch (e) {
-        console.warn("getMasterData parse fallback:", e);
+        console.warn('getMasterData parse fallback:', e);
     }
-    try { localStorage.setItem('solis-master-data', JSON.stringify(DEFAULT_MASTER_DATA)); } catch(e){}
+    try { 
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('solis-master-data', JSON.stringify(DEFAULT_MASTER_DATA)); 
+        }
+    } catch(e){}
     return DEFAULT_MASTER_DATA;
-};
+}
 
-const saveMasterData = (data) => {
-    try { localStorage.setItem('solis-master-data', JSON.stringify(data)); } catch(e){}
+function saveMasterData(data) {
+    try { 
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('solis-master-data', JSON.stringify(data)); 
+        }
+    } catch(e){}
     if (typeof pushMasterToFirebase === 'function') pushMasterToFirebase(data);
-};
+}
 
-const getBOMTemplates = () => {
+function getBOMTemplates() {
     try {
-        const raw = localStorage.getItem('solis-bom-templates');
-        if (raw) {
-            const parsed = JSON.parse(raw);
-            if (parsed && parsed['On-Grid'] && parsed['On-Grid']['3kW']) {
-                return parsed;
+        if (typeof localStorage !== 'undefined') {
+            const raw = localStorage.getItem('solis-bom-templates');
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed && parsed['On-Grid'] && parsed['On-Grid']['3kW']) {
+                    return parsed;
+                }
             }
         }
     } catch (e) {
-        console.warn("getBOMTemplates parse fallback:", e);
+        console.warn('getBOMTemplates parse fallback:', e);
     }
-    try { localStorage.setItem('solis-bom-templates', JSON.stringify(DEFAULT_BOM_TEMPLATES)); } catch(e){}
+    try { 
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('solis-bom-templates', JSON.stringify(DEFAULT_BOM_TEMPLATES)); 
+        }
+    } catch(e){}
     return DEFAULT_BOM_TEMPLATES;
-};
+}
 
-const saveBOMTemplates = (data) => {
-    try { localStorage.setItem('solis-bom-templates', JSON.stringify(data)); } catch(e){}
+function saveBOMTemplates(data) {
+    try { 
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('solis-bom-templates', JSON.stringify(data)); 
+        }
+    } catch(e){}
     if (typeof pushBOMToFirebase === 'function') pushBOMToFirebase(data);
-};
+}
 
 // Global window exposure
 if (typeof window !== 'undefined') {
@@ -303,70 +1540,44 @@ if (typeof window !== 'undefined') {
 }
 
 // Reset logic for ERP Module
-let storedData = localStorage.getItem('solis-master-data');
-let needsReset = false;
-if (storedData) {
-    try {
-        const parsed = JSON.parse(storedData);
-        // Force reset if new arrays are missing or old objects are present
-        if (parsed.panels !== undefined || parsed.panelProducts === undefined) {
-            needsReset = true;
-        }
-        if (parsed.inverters !== undefined || parsed.inverterProducts === undefined) {
-            needsReset = true;
-        }
-        // Force reset for detailed BOM schema
-        if (parsed.materials !== undefined || !parsed.supply || !parsed.profitMargins || !parsed.profitMargins['On-Grid']) {
-            needsReset = true;
-        }
-    } catch(e) { needsReset = true; }
-} else {
-    needsReset = true;
-}
-
-if (needsReset) {
-    localStorage.setItem('solis-master-data', JSON.stringify(DEFAULT_MASTER_DATA));
-}
-
-let bomData = localStorage.getItem('solis-bom-templates');
-let needsBomReset = !bomData;
-if (bomData) {
-    try {
-        const parsed = JSON.parse(bomData);
-        if (!parsed['On-Grid'] || !parsed['On-Grid']['3kW']) {
-            needsBomReset = true; // Force reset if empty or old schema is found
-        }
-    } catch(e) { needsBomReset = true; }
-}
-
-if (needsBomReset) {
-    localStorage.setItem('solis-bom-templates', JSON.stringify(DEFAULT_BOM_TEMPLATES));
-}
-
-// Hotfix: Automatically update Deye 3kW price to 16500 if it's currently 0
 try {
-    let currentDb = JSON.parse(localStorage.getItem('solis-master-data'));
-    if (currentDb) {
-        let changed = false;
-        
-        if (currentDb.inverterProducts) {
-            let deye3k = currentDb.inverterProducts.find(i => i.id === 'INV-DEY-3K-1P');
-            if (deye3k && deye3k.price === 0) {
-                deye3k.price = 16500;
-                changed = true;
+    if (typeof localStorage !== 'undefined') {
+        let storedData = localStorage.getItem('solis-master-data');
+        let needsReset = false;
+        if (storedData) {
+            const parsed = JSON.parse(storedData);
+            if (!Array.isArray(parsed.panelProducts) || parsed.panelProducts.length < 10) {
+                needsReset = true;
+            } else {
+                const brands = new Set(parsed.panelProducts.map(p => p.brand));
+                if (!brands.has('Waaree') || !brands.has('Tata Power') || !brands.has('Adani') || !brands.has('Premier Energies') || !brands.has('Emmvee')) {
+                    needsReset = true;
+                }
+            }
+            if (!Array.isArray(parsed.inverterProducts) || parsed.inverterProducts.length < 10) {
+                needsReset = true;
+            }
+            if (!parsed.supply || !parsed.profitMargins || !parsed.profitMargins['On-Grid']) {
+                needsReset = true;
+            }
+        } else {
+            needsReset = true;
+        }
+
+        if (needsReset) {
+            localStorage.setItem('solis-master-data', JSON.stringify(DEFAULT_MASTER_DATA));
+        }
+
+        let bomData = localStorage.getItem('solis-bom-templates');
+        let needsBomReset = !bomData;
+        if (bomData) {
+            const parsed = JSON.parse(bomData);
+            if (!parsed['On-Grid'] || !parsed['On-Grid']['3kW']) {
+                needsBomReset = true;
             }
         }
-        
-        if (currentDb.panelProducts) {
-            let adani620 = currentDb.panelProducts.find(p => p.id === 'PAN-AD-TOP-DCR-620');
-            if (adani620 && adani620.price === 20) {
-                adani620.price = 27.5;
-                changed = true;
-            }
-        }
-        
-        if (changed) {
-            localStorage.setItem('solis-master-data', JSON.stringify(currentDb));
+        if (needsBomReset) {
+            localStorage.setItem('solis-bom-templates', JSON.stringify(DEFAULT_BOM_TEMPLATES));
         }
     }
 } catch(e) {}
