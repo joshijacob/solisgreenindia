@@ -348,7 +348,7 @@ window.handleCapacityChange = function() {
     if (typeof window.updateFeasibilityStatus === 'function') window.updateFeasibilityStatus();
 };
 
-window.verifyKsebFeasibility = function() {
+window.verifyKsebFeasibility = function(event) {
     const input = document.getElementById('ksebConsumerNo');
     const val = input ? input.value.trim() : '';
     const note = document.getElementById('feasibilityNote');
@@ -356,17 +356,27 @@ window.verifyKsebFeasibility = function() {
     if (val) {
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(val).catch(() => {});
+        } else {
+            try {
+                const ta = document.createElement('textarea');
+                ta.value = val;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.focus();
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+            } catch(e) {}
         }
         if (note) {
-            note.innerHTML = `<span class="text-success fw-bold"><i class="fa-solid fa-check me-1"></i> Consumer No. (${val}) copied to clipboard! Opening KSEB reCap portal...</span>`;
+            note.innerHTML = `<span class="text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Copied (${val}) to clipboard! Paste it on KSEB portal to check balance.</span>`;
         }
     } else {
         if (note) {
-            note.innerHTML = `<span class="text-warning fw-bold"><i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Opening KSEB reCap portal...</span>`;
+            note.innerHTML = `<span class="text-primary fw-bold"><i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Opening KSEB reCap portal...</span>`;
         }
     }
-
-    window.open('https://wss.kseb.in/selfservices/reCap', '_blank', 'noopener,noreferrer');
 };
 
 window.updateFeasibilityStatus = function() {
