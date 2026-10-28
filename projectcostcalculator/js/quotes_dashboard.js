@@ -95,7 +95,10 @@ async function loadQuotes() {
             html += `
                 <tr>
                     <td class="ps-4 text-muted small">${dateStr}</td>
-                    <td class="fw-bold">${customerName}</td>
+                    <td class="fw-bold">
+                        ${customerName}
+                        ${data.parameters?.ksebConsumerNo ? `<div class="text-muted font-mono" style="font-size: 0.68rem;" title="KSEB Consumer No"><i class="fa-solid fa-bolt text-warning me-1"></i>${data.parameters.ksebConsumerNo}</div>` : ''}
+                    </td>
                     <td>${contact}</td>
                     <td><span class="badge bg-primary">${capacity}</span></td>
                     <td class="text-center">
@@ -191,6 +194,8 @@ function viewQuote(id) {
                     <strong>Name:</strong> ${p.customerName || 'N/A'}<br>
                     <strong>Contact:</strong> ${p.contactNumber || 'N/A'}<br>
                     <strong>District:</strong> ${p.district || 'N/A'}<br>
+                    <strong>KSEB Consumer No:</strong> ${p.ksebConsumerNo ? `<span class="font-mono fw-bold text-dark">${p.ksebConsumerNo}</span>` : 'N/A'}<br>
+                    <strong>KSEB Feasibility:</strong> <span class="badge ${p.ksebFeasibilityStatus === 'Approved' ? 'bg-success' : (p.ksebFeasibilityStatus === 'Transformer Overloaded' ? 'bg-danger' : 'bg-secondary')}">${p.ksebFeasibilityStatus || 'Not Checked'}</span> ${p.dtrBalanceCap ? `(${p.dtrBalanceCap} kW balance)` : ''}<br>
                     <strong>Notes:</strong> ${p.specialNotes || 'None'}
                 </div>
             </div>

@@ -9,7 +9,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="js/db.js?v=20261028_cascade_v4"></script>
+    <script src="js/db.js?v=20261028_kseb_v1"></script>
     <script src="js/firebase-init.js"></script>
 
     <script src="js/auth.js"></script>
@@ -250,6 +250,53 @@
                                     <label class="form-label fw-bold small text-muted">Contact Number</label>
                                     <input type="tel" class="form-control form-control-lg" id="contactNumber" placeholder="Enter contact number" required>
                                 </div>
+
+                                <!-- KSEB Grid Feasibility & Transformer Sizing (reCap) Section -->
+                                <div class="col-12 mt-4 pt-3 border-top">
+                                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="badge bg-warning text-dark p-2 rounded-circle" style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center;"><i class="fa-solid fa-bolt"></i></span>
+                                            <div>
+                                                <h6 class="fw-bold mb-0 text-dark">KSEB Feasibility & Transformer Sizing (reCap)</h6>
+                                                <small class="text-muted">Verify local Distribution Transformer (DTR) solar capacity before finalizing proposal</small>
+                                            </div>
+                                        </div>
+                                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 small fw-semibold">
+                                            KERC 90% DTR Rule
+                                        </span>
+                                    </div>
+                                    <div class="row g-3 p-3 bg-light rounded-3 border">
+                                        <div class="col-md-4">
+                                            <label class="form-label fw-bold small text-muted">13-Digit KSEB Consumer Number</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form-control-lg font-mono" id="ksebConsumerNo" maxlength="13" placeholder="e.g. 1145230018492">
+                                                <button type="button" class="btn btn-outline-primary fw-bold" id="verifyKsebBtn" onclick="verifyKsebFeasibility()" title="Copy consumer number & open KSEB reCap portal">
+                                                    <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Verify
+                                                </button>
+                                            </div>
+                                            <small class="text-muted" style="font-size: 0.72rem;">Click Verify to copy & open KSEB reCap portal</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label fw-bold small text-muted">DTR Available Solar Balance</label>
+                                            <div class="input-group">
+                                                <input type="number" step="0.01" class="form-control form-control-lg" id="dtrBalanceCap" placeholder="e.g. 18.5" oninput="updateFeasibilityStatus()">
+                                                <span class="input-group-text bg-white text-muted fw-bold">kW</span>
+                                            </div>
+                                            <small class="text-muted" style="font-size: 0.72rem;">From KSEB reCap "Balance Capacity"</small>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label fw-bold small text-muted">Feasibility Verification Status</label>
+                                            <select class="form-select form-select-lg fw-semibold" id="ksebFeasibilityStatus">
+                                                <option value="Not Checked" class="text-muted">⚪ Not Checked</option>
+                                                <option value="Approved" class="text-success" selected>🟢 Feasible (Balance Available)</option>
+                                                <option value="Transformer Overloaded" class="text-danger">🔴 Transformer Overloaded (&gt;90%)</option>
+                                                <option value="Application Pending" class="text-warning">🟡 In Application Queue</option>
+                                            </select>
+                                            <small id="feasibilityNote" class="text-muted d-block" style="font-size: 0.72rem;">Auto-checks plant capacity against DTR balance</small>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-12 mt-3">
                                     <label class="form-label fw-bold small text-muted">Special Requirements (Optional)</label>
                                     <textarea class="form-control" id="specialNotes" rows="2" placeholder="Any specific notes for the admin/engineering team..."></textarea>
@@ -284,6 +331,21 @@
                         <!-- DC/AC Ratio Alert -->
                         <div id="ratio-alert" class="alert mb-4 text-center fw-bold d-none">
                             <i class="fa-solid fa-info-circle me-2"></i> <span id="ratio-text"></span>
+                        </div>
+
+                        <!-- KSEB Feasibility Summary Strip -->
+                        <div class="alert alert-light border shadow-sm p-3 mb-4 rounded-3 d-flex flex-wrap justify-content-between align-items-center gap-2" id="res-kseb-strip">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-bolt text-warning fs-5"></i>
+                                <div>
+                                    <strong class="text-dark">KSEB Feasibility Status:</strong>
+                                    <span id="res-kseb-status-badge" class="badge bg-success ms-1">Approved</span>
+                                    <span class="text-muted ms-2 small" id="res-kseb-consumer-info"></span>
+                                </div>
+                            </div>
+                            <div class="text-muted small" id="res-kseb-balance-info">
+                                DTR Available Balance: <strong class="text-dark font-mono" id="res-dtr-balance">--</strong>
+                            </div>
                         </div>
                         
                         <div class="row g-4 mb-4">
@@ -373,8 +435,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/engine_v2.js?v=20261028_cascade_v4"></script>
-    <script src="js/app_v2.js?v=20261028_cascade_v4"></script>
+    <script src="js/engine_v2.js?v=20261028_kseb_v1"></script>
+    <script src="js/app_v2.js?v=20261028_kseb_v1"></script>
     <script>
         // Hide Admin UI elements for Sales users
         if (sessionStorage.getItem('solis_user_role') !== 'admin') {

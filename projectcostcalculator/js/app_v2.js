@@ -345,6 +345,59 @@ window.handleCapacityChange = function() {
         }
     }
     window.updateRecommendedPanels();
+    if (typeof window.updateFeasibilityStatus === 'function') window.updateFeasibilityStatus();
+};
+
+window.verifyKsebFeasibility = function() {
+    const input = document.getElementById('ksebConsumerNo');
+    const val = input ? input.value.trim() : '';
+    const note = document.getElementById('feasibilityNote');
+
+    if (val) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(val).catch(() => {});
+        }
+        if (note) {
+            note.innerHTML = `<span class="text-success fw-bold"><i class="fa-solid fa-check me-1"></i> Consumer No. (${val}) copied to clipboard! Opening KSEB reCap portal...</span>`;
+        }
+    } else {
+        if (note) {
+            note.innerHTML = `<span class="text-warning fw-bold"><i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Opening KSEB reCap portal...</span>`;
+        }
+    }
+
+    window.open('https://wss.kseb.in/selfservices/reCap', '_blank', 'noopener,noreferrer');
+};
+
+window.updateFeasibilityStatus = function() {
+    const capSelect = document.getElementById('capacity');
+    const balanceInput = document.getElementById('dtrBalanceCap');
+    const statusSelect = document.getElementById('ksebFeasibilityStatus');
+    const note = document.getElementById('feasibilityNote');
+    if (!balanceInput || !statusSelect) return;
+
+    const plantCapKw = parseFloat((capSelect?.value || '3').replace('kW', '')) || 3;
+    const balanceVal = parseFloat(balanceInput.value);
+
+    if (isNaN(balanceVal)) {
+        if (statusSelect.value === 'Approved' || statusSelect.value === 'Transformer Overloaded') {
+            statusSelect.value = 'Not Checked';
+        }
+        if (note) note.innerHTML = 'Auto-checks plant capacity against DTR balance';
+        return;
+    }
+
+    if (balanceVal >= plantCapKw) {
+        statusSelect.value = 'Approved';
+        if (note) {
+            note.innerHTML = `<span class="text-success fw-bold"><i class="fa-solid fa-circle-check me-1"></i> Approved: ${plantCapKw}kW plant is within ${balanceVal}kW available DTR balance!</span>`;
+        }
+    } else {
+        statusSelect.value = 'Transformer Overloaded';
+        if (note) {
+            note.innerHTML = `<span class="text-danger fw-bold"><i class="fa-solid fa-triangle-exclamation me-1"></i> Overloaded: Plant (${plantCapKw}kW) exceeds available balance (${balanceVal}kW). KSEB enhancement needed.</span>`;
+        }
+    }
 };
 
 window.handleSystemTypeChange = function() {
@@ -565,6 +618,13 @@ function initApp() {
             if (p.targetProfit !== undefined) document.getElementById('targetProfit').value = p.targetProfit;
             if (p.phase) document.getElementById('phase').value = p.phase;
 
+            if (p.ksebConsumerNo && document.getElementById('ksebConsumerNo')) document.getElementById('ksebConsumerNo').value = p.ksebConsumerNo;
+            if (p.dtrBalanceCap !== undefined && p.dtrBalanceCap !== null && document.getElementById('dtrBalanceCap')) document.getElementById('dtrBalanceCap').value = p.dtrBalanceCap;
+            if (p.ksebFeasibilityStatus && document.getElementById('ksebFeasibilityStatus')) {
+                document.getElementById('ksebFeasibilityStatus').value = p.ksebFeasibilityStatus;
+            }
+            if (typeof window.updateFeasibilityStatus === 'function') window.updateFeasibilityStatus();
+
             // Inverter cascading reload
             if (p.inverterProduct && invBrandSelect) {
                 invBrandSelect.value = p.inverterProduct.brand;
@@ -727,7 +787,10 @@ function initApp() {
             dealerCommission: document.getElementById('dealerCommission').value,
             targetProfit: document.getElementById('targetProfit').value,
             netMeterScope: document.getElementById('netMeterScope').value,
-            ksebScope: document.getElementById('ksebScope').value
+            ksebScope: document.getElementById('ksebScope').value,
+            ksebConsumerNo: document.getElementById('ksebConsumerNo')?.value?.trim() || '',
+            dtrBalanceCap: document.getElementById('dtrBalanceCap')?.value ? parseFloat(document.getElementById('dtrBalanceCap').value) : null,
+            ksebFeasibilityStatus: document.getElementById('ksebFeasibilityStatus')?.value || 'Not Checked'
         };
 
         try {
@@ -814,6 +877,27 @@ function initApp() {
                 currency: 'INR',
                 minimumFractionDigits: 0
             }).format(val);
+
+            // Populate KSEB Feasibility Strip
+            const ksebStatusBadge = document.getElementById('res-kseb-status-badge');
+            const ksebConsumerInfo = document.getElementById('res-kseb-consumer-info');
+            const dtrBalanceSpan = document.getElementById('res-dtr-balance');
+
+            const feasStatus = params.ksebFeasibilityStatus || 'Not Checked';
+            if (ksebStatusBadge) {
+                ksebStatusBadge.innerText = feasStatus;
+                ksebStatusBadge.className = 'badge ms-1 ' + (
+                    feasStatus === 'Approved' ? 'bg-success' :
+                    feasStatus === 'Transformer Overloaded' ? 'bg-danger' :
+                    feasStatus === 'Application Pending' ? 'bg-warning text-dark' : 'bg-secondary'
+                );
+            }
+            if (ksebConsumerInfo) {
+                ksebConsumerInfo.innerText = params.ksebConsumerNo ? `(Consumer: ${params.ksebConsumerNo})` : '';
+            }
+            if (dtrBalanceSpan) {
+                dtrBalanceSpan.innerText = (params.dtrBalanceCap !== null && params.dtrBalanceCap !== undefined) ? `${params.dtrBalanceCap} kW` : 'Not recorded';
+            }
 
             // Populate Result Screen
             document.getElementById('res-capacity').innerText = `${result.acCapacityKw} kW`;
