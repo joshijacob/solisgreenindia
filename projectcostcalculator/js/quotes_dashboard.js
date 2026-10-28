@@ -128,6 +128,7 @@ async function loadQuotes() {
             const revNum = (typeof data.revision === 'number') ? data.revision : (parseInt(data.revision) || 0);
             const revLabel = data.revisionLabel || (revNum > 0 ? `Rev-${String(revNum).padStart(2, '0')}` : 'Rev-00');
             const isRevZero = revNum === 0;
+            const nextRevLabel = isRevZero ? 'Rev-01' : `Rev-${String(revNum + 1).padStart(2, '0')}`;
 
             const revBadgeHtml = isRevZero
                 ? `<span class="badge bg-secondary-subtle text-secondary border font-mono">Rev-00</span>`
@@ -153,19 +154,45 @@ async function loadQuotes() {
                         </div>
                     </td>
                     <td class="text-end fw-bold text-success">${total}</td>
-                    <td class="text-center pe-4">
-                        <button class="btn btn-sm btn-outline-success fw-bold px-2 py-1" onclick="reviseQuote('${doc.id}')" title="Re-calculate with Today's Live Rates & Save as New Revision (${isRevZero ? 'Rev-01' : 'Rev-' + String(revNum + 1).padStart(2, '0')})">
-                            <i class="fa-solid fa-arrows-rotate me-1"></i> Revise
-                        </button>
-                        <button class="btn btn-sm btn-outline-secondary px-2 py-1 ms-1" onclick="loadQuoteForEditing('${doc.id}')" title="Quick Edit Customer Info (In-Place)">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-primary px-2 py-1 ms-1" onclick="viewQuote('${doc.id}')" title="View Proposal & Breakdown">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                        <button class="btn btn-sm btn-outline-danger px-2 py-1 ms-1" onclick="deleteQuote('${doc.id}')" title="Delete Quote">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
+                    <td class="text-center pe-3">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-light border rounded-circle shadow-sm p-0 d-inline-flex align-items-center justify-content-center"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    data-bs-popper-config='{"strategy":"fixed"}'
+                                    aria-expanded="false"
+                                    style="width: 32px; height: 32px;"
+                                    title="Quote Actions">
+                                <i class="fa-solid fa-ellipsis-vertical text-secondary"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 py-1 rounded-3" style="font-size: 0.85rem; min-width: 195px; z-index: 1060;">
+                                <li>
+                                    <a class="dropdown-item py-2 d-flex align-items-center" href="javascript:void(0)" onclick="viewQuote('${doc.id}')">
+                                        <i class="fa-solid fa-eye text-primary me-2" style="width: 18px;"></i>
+                                        <span>View Proposal</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2 d-flex align-items-center" href="javascript:void(0)" onclick="reviseQuote('${doc.id}')">
+                                        <i class="fa-solid fa-arrows-rotate text-success me-2" style="width: 18px;"></i>
+                                        <span>Revise Quote <small class="text-muted ms-1">(${nextRevLabel})</small></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2 d-flex align-items-center" href="javascript:void(0)" onclick="loadQuoteForEditing('${doc.id}')">
+                                        <i class="fa-solid fa-pen-to-square text-secondary me-2" style="width: 18px;"></i>
+                                        <span>Quick Edit Info</span>
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider my-1"></li>
+                                <li>
+                                    <a class="dropdown-item py-2 d-flex align-items-center text-danger fw-semibold" href="javascript:void(0)" onclick="deleteQuote('${doc.id}')">
+                                        <i class="fa-solid fa-trash me-2" style="width: 18px;"></i>
+                                        <span>Delete Quote</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
             `;
