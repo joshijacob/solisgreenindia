@@ -194,8 +194,8 @@ function viewQuote(id) {
                     <strong>Name:</strong> ${p.customerName || 'N/A'}<br>
                     <strong>Contact:</strong> ${p.contactNumber || 'N/A'}<br>
                     <strong>District:</strong> ${p.district || 'N/A'}<br>
-                    <strong>KSEB Consumer No:</strong> ${p.ksebConsumerNo ? `<span class="font-mono fw-bold text-dark">${p.ksebConsumerNo}</span>` : 'N/A'}<br>
-                    <strong>KSEB Feasibility:</strong> <span class="badge ${p.ksebFeasibilityStatus === 'Approved' ? 'bg-success' : (p.ksebFeasibilityStatus === 'Transformer Overloaded' ? 'bg-danger' : 'bg-secondary')}">${p.ksebFeasibilityStatus || 'Not Checked'}</span> ${p.dtrBalanceCap ? `(${p.dtrBalanceCap} kW balance)` : ''}<br>
+                    ${p.ksebConsumerNo ? `<strong>KSEB Consumer No:</strong> <span class="font-mono fw-bold text-dark">${p.ksebConsumerNo}</span><br>` : ''}
+                    ${p.ksebFeasibilityStatus && p.ksebFeasibilityStatus !== 'Not Checked' ? `<strong>KSEB Feasibility:</strong> <span class="badge ${p.ksebFeasibilityStatus === 'Approved' ? 'bg-success' : (p.ksebFeasibilityStatus === 'Transformer Overloaded' ? 'bg-danger' : 'bg-secondary')}">${p.ksebFeasibilityStatus}</span> ${p.dtrBalanceCap ? `(${p.dtrBalanceCap} kW balance)` : ''}<br>` : ''}
                     <strong>Notes:</strong> ${p.specialNotes || 'None'}
                 </div>
             </div>
