@@ -117,23 +117,28 @@ async function pushBOMToFirebase(data) {
 
 async function saveQuoteToFirebase(quoteData, quoteId = null) {
     try {
+        const revNum = typeof quoteData.revision === 'number' ? quoteData.revision : (parseInt(quoteData.revision) || 0);
+        const revLabel = quoteData.revisionLabel || (revNum > 0 ? `Rev-${String(revNum).padStart(2, '0')}` : 'Rev-00');
+
         const enrichedData = {
             ...quoteData,
+            revision: revNum,
+            revisionLabel: revLabel,
             updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
             createdByEmail: sessionStorage.getItem('solis_user_email') || 'Unknown',
             createdByRole: sessionStorage.getItem('solis_user_role') || 'Unknown'
         };
 
         if (quoteId) {
-            // Update existing
+            // Update existing in-place (Edit mode)
             await dbFirestore.collection('solis-quotes').doc(quoteId).update(enrichedData);
             console.log("Quote updated with ID:", quoteId);
             return quoteId;
         } else {
-            // Create new
+            // Create brand new quote or new revision (Rev-01, Rev-02)
             enrichedData.createdAt = firebase.firestore.FieldValue.serverTimestamp();
             const docRef = await dbFirestore.collection('solis-quotes').add(enrichedData);
-            console.log("Quote saved with ID:", docRef.id);
+            console.log("New quote/revision saved with ID:", docRef.id, "Revision:", revLabel);
             return docRef.id;
         }
     } catch (e) {

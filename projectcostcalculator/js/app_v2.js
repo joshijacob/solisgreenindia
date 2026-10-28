@@ -232,11 +232,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
     
-    // --- Edit Quote Loader Logic ---
+    // --- Quote Revision & Edit Loader Logic ---
+    const quoteMode = sessionStorage.getItem('solis_quote_mode'); // 'revise' or 'edit'
     const editQuoteId = sessionStorage.getItem('solis_edit_quote_id');
+    const parentQuoteId = sessionStorage.getItem('solis_parent_quote_id');
+    const rootQuoteId = sessionStorage.getItem('solis_root_quote_id') || parentQuoteId;
+    const parentRevNum = parseInt(sessionStorage.getItem('solis_parent_rev') || '0', 10);
+    const nextRevNum = parseInt(sessionStorage.getItem('solis_next_rev') || '1', 10);
+    const nextRevLabel = sessionStorage.getItem('solis_next_rev_label') || `Rev-${String(nextRevNum).padStart(2, '0')}`;
+    const custName = sessionStorage.getItem('solis_customer_name') || 'Customer';
     const editQuoteParamsStr = sessionStorage.getItem('solis_edit_quote_params');
     
-    if (editQuoteId && editQuoteParamsStr) {
+    if ((quoteMode === 'revise' || editQuoteId) && editQuoteParamsStr) {
         try {
             const p = JSON.parse(editQuoteParamsStr);
             
@@ -291,30 +298,71 @@ document.addEventListener('DOMContentLoaded', async () => {
                 wattSelect.dispatchEvent(new Event('change'));
             }
 
-            // Update UI for Edit Mode
             const submitBtn = document.getElementById('submitQuoteBtn');
             const cancelBtn = document.getElementById('cancelEditBtn');
-            if(submitBtn) submitBtn.innerHTML = '<i class="fa-solid fa-pen-to-square me-2"></i> UPDATE PROJECT';
-            if(cancelBtn) {
-                cancelBtn.classList.remove('d-none');
-                cancelBtn.addEventListener('click', () => {
-                    sessionStorage.removeItem('solis_edit_quote_id');
-                    sessionStorage.removeItem('solis_edit_quote_params');
-                    window.location.reload();
-                });
-            }
-            
-            // Add a visual indicator to the top of the page
-            const container = document.querySelector('.container.mt-5');
-            if (container) {
-                const editBanner = document.createElement('div');
-                editBanner.className = 'alert alert-warning text-center fw-bold shadow-sm mb-4';
-                editBanner.innerHTML = `<i class="fa-solid fa-pen-to-square me-2"></i> EDIT MODE ACTIVE: You are currently modifying an existing saved quote. Click 'Update Project' to save changes over the original quote.`;
-                container.insertBefore(editBanner, container.firstChild);
+            const container = document.querySelector('.container.mt-5') || document.querySelector('#sales-form')?.parentElement;
+
+            if (quoteMode === 'revise') {
+                // UI for Revision Mode (e.g. Rev-01)
+                if (submitBtn) {
+                    submitBtn.innerHTML = `<i class="fa-solid fa-arrows-rotate me-2"></i> RE-CALCULATE & SAVE ${nextRevLabel}`;
+                    submitBtn.className = 'btn btn-success btn-lg w-100 fw-bold shadow-sm';
+                }
+                if (cancelBtn) cancelBtn.classList.add('d-none');
+
+                if (container) {
+                    const revBanner = document.createElement('div');
+                    revBanner.className = 'alert alert-success border-success-subtle shadow-sm mb-4 rounded-3 p-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2';
+                    revBanner.innerHTML = `
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <span class="badge bg-success fw-bold font-mono px-2 py-1">${nextRevLabel} ACTIVE</span>
+                                <h6 class="fw-bold mb-0 text-dark">Re-calculating Quote for ${custName}</h6>
+                            </div>
+                            <p class="mb-0 small text-dark opacity-90">
+                                <i class="fa-solid fa-shield-halved text-success me-1"></i> Original quote <strong>(Rev-${String(parentRevNum).padStart(2, '0')})</strong> remains locked with its original rates. This calculation will be saved as <strong>${nextRevLabel}</strong> using today's live equipment prices.
+                            </p>
+                        </div>
+                        <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3 text-nowrap" id="cancelRevisionModeBtn">
+                            <i class="fa-solid fa-xmark me-1"></i> Cancel Revision
+                        </button>
+                    `;
+                    container.insertBefore(revBanner, container.firstChild);
+                    document.getElementById('cancelRevisionModeBtn')?.addEventListener('click', () => {
+                        sessionStorage.removeItem('solis_quote_mode');
+                        sessionStorage.removeItem('solis_parent_quote_id');
+                        sessionStorage.removeItem('solis_root_quote_id');
+                        sessionStorage.removeItem('solis_parent_rev');
+                        sessionStorage.removeItem('solis_next_rev');
+                        sessionStorage.removeItem('solis_next_rev_label');
+                        sessionStorage.removeItem('solis_customer_name');
+                        sessionStorage.removeItem('solis_edit_quote_params');
+                        window.location.reload();
+                    });
+                }
+            } else {
+                // UI for In-Place Edit Mode
+                if (submitBtn) submitBtn.innerHTML = '<i class="fa-solid fa-pen-to-square me-2"></i> UPDATE PROJECT';
+                if (cancelBtn) {
+                    cancelBtn.classList.remove('d-none');
+                    cancelBtn.addEventListener('click', () => {
+                        sessionStorage.removeItem('solis_quote_mode');
+                        sessionStorage.removeItem('solis_edit_quote_id');
+                        sessionStorage.removeItem('solis_edit_quote_params');
+                        window.location.reload();
+                    });
+                }
+                
+                if (container) {
+                    const editBanner = document.createElement('div');
+                    editBanner.className = 'alert alert-warning text-center fw-bold shadow-sm mb-4';
+                    editBanner.innerHTML = `<i class="fa-solid fa-pen-to-square me-2"></i> EDIT MODE ACTIVE: You are currently modifying an existing saved quote. Click 'Update Project' to save changes over the original quote.`;
+                    container.insertBefore(editBanner, container.firstChild);
+                }
             }
             
         } catch (e) {
-            console.error("Error loading quote for edit:", e);
+            console.error("Error loading quote for edit/revision:", e);
         }
     }
     
@@ -394,20 +442,78 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Run the Rule Engine
             const result = calculateProjectCost(params);
             
-            // Save to Firebase (fire and forget)
+            // Save to Firebase (Revision Control & In-Place Edit)
             if (typeof saveQuoteToFirebase === 'function') {
-                saveQuoteToFirebase({
-                    parameters: params,
-                    summary: {
-                        totalBase: result.totalBase,
-                        totalGst: result.totalGst,
-                        totalLanding: result.totalLanding,
-                        acCapacityKw: result.acCapacityKw,
-                        dcCapacityKw: result.dcCapacityKw
-                    },
-                    detailedBOM: result.detailedBOM,
-                    compositeBOM: result.compositeBOM
-                }, typeof editQuoteId !== 'undefined' ? editQuoteId : null);
+                if (quoteMode === 'revise') {
+                    // Save as brand new document with incremented revision (Rev-01, Rev-02)
+                    saveQuoteToFirebase({
+                        parameters: params,
+                        revision: nextRevNum,
+                        revisionLabel: nextRevLabel,
+                        parentQuoteId: parentQuoteId,
+                        rootQuoteId: rootQuoteId,
+                        summary: {
+                            totalBase: result.totalBase,
+                            totalGst: result.totalGst,
+                            totalLanding: result.totalLanding,
+                            acCapacityKw: result.acCapacityKw,
+                            dcCapacityKw: result.dcCapacityKw
+                        },
+                        detailedBOM: result.detailedBOM,
+                        compositeBOM: result.compositeBOM
+                    }, null); // null means ADD NEW DOCUMENT in Firestore (Original is never overwritten)
+
+                    // Clean up session storage
+                    sessionStorage.removeItem('solis_quote_mode');
+                    sessionStorage.removeItem('solis_parent_quote_id');
+                    sessionStorage.removeItem('solis_root_quote_id');
+                    sessionStorage.removeItem('solis_parent_rev');
+                    sessionStorage.removeItem('solis_next_rev');
+                    sessionStorage.removeItem('solis_next_rev_label');
+                    sessionStorage.removeItem('solis_customer_name');
+                    sessionStorage.removeItem('solis_edit_quote_params');
+
+                    // Display success notification above result
+                    const revAlert = document.getElementById('revisionSuccessAlert');
+                    if (revAlert) {
+                        revAlert.innerHTML = `<i class="fa-solid fa-circle-check text-success me-2"></i> Successfully generated new revision: <strong class="badge bg-success font-mono fs-6 mx-1">${nextRevLabel}</strong>! Original quote (Rev-${String(parentRevNum).padStart(2, '0')}) remains permanently locked. <a href="quotes_dashboard.html" class="btn btn-sm btn-outline-success rounded-pill px-3 ms-2 fw-bold">View in Quotes Dashboard &rarr;</a>`;
+                        revAlert.classList.remove('d-none');
+                    }
+                } else if (quoteMode === 'edit' && editQuoteId) {
+                    // In-place edit of existing quote
+                    saveQuoteToFirebase({
+                        parameters: params,
+                        summary: {
+                            totalBase: result.totalBase,
+                            totalGst: result.totalGst,
+                            totalLanding: result.totalLanding,
+                            acCapacityKw: result.acCapacityKw,
+                            dcCapacityKw: result.dcCapacityKw
+                        },
+                        detailedBOM: result.detailedBOM,
+                        compositeBOM: result.compositeBOM
+                    }, editQuoteId);
+
+                    sessionStorage.removeItem('solis_quote_mode');
+                    sessionStorage.removeItem('solis_edit_quote_id');
+                    sessionStorage.removeItem('solis_edit_quote_params');
+                } else {
+                    // Standard brand new quote (Rev-00)
+                    saveQuoteToFirebase({
+                        parameters: params,
+                        revision: 0,
+                        revisionLabel: 'Rev-00',
+                        summary: {
+                            totalBase: result.totalBase,
+                            totalGst: result.totalGst,
+                            totalLanding: result.totalLanding,
+                            acCapacityKw: result.acCapacityKw,
+                            dcCapacityKw: result.dcCapacityKw
+                        },
+                        detailedBOM: result.detailedBOM,
+                        compositeBOM: result.compositeBOM
+                    }, null);
+                }
             }
 
             // Format currency

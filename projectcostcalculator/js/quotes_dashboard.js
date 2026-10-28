@@ -84,23 +84,38 @@ async function loadQuotes() {
                 minimumFractionDigits: 0
             }).format(data.summary?.totalLanding || 0);
 
+            const revNum = (typeof data.revision === 'number') ? data.revision : (parseInt(data.revision) || 0);
+            const revLabel = data.revisionLabel || (revNum > 0 ? `Rev-${String(revNum).padStart(2, '0')}` : 'Rev-00');
+            const isRevZero = revNum === 0;
+
+            const revBadgeHtml = isRevZero
+                ? `<span class="badge bg-secondary-subtle text-secondary border font-mono">Rev-00</span>`
+                : `<span class="badge bg-success-subtle text-success border border-success-subtle fw-bold font-mono">${revLabel}</span>`;
+
             html += `
                 <tr>
                     <td class="ps-4 text-muted small">${dateStr}</td>
                     <td class="fw-bold">${customerName}</td>
                     <td>${contact}</td>
                     <td><span class="badge bg-primary">${capacity}</span></td>
+                    <td class="text-center">
+                        ${revBadgeHtml}
+                        ${data.parentQuoteId ? `<div class="text-muted font-mono" style="font-size: 0.65rem;" title="Child of earlier quote"><i class="fa-solid fa-code-branch me-1"></i>Chld</div>` : ''}
+                    </td>
                     <td class="small text-muted">${exec}</td>
                     <td class="text-end fw-bold text-success">${total}</td>
                     <td class="text-center pe-4">
-                        <button class="btn btn-sm btn-outline-warning" onclick="loadQuoteForEditing('${doc.id}')" title="Edit Quote">
+                        <button class="btn btn-sm btn-outline-success fw-bold px-2 py-1" onclick="reviseQuote('${doc.id}')" title="Re-calculate with Today's Live Rates & Save as New Revision (${isRevZero ? 'Rev-01' : 'Rev-' + String(revNum + 1).padStart(2, '0')})">
+                            <i class="fa-solid fa-arrows-rotate me-1"></i> Revise
+                        </button>
+                        <button class="btn btn-sm btn-outline-secondary px-2 py-1 ms-1" onclick="loadQuoteForEditing('${doc.id}')" title="Quick Edit Customer Info (In-Place)">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <button class="btn btn-sm btn-outline-primary ms-1" onclick="viewQuote('${doc.id}')" title="View Details">
+                        <button class="btn btn-sm btn-outline-primary px-2 py-1 ms-1" onclick="viewQuote('${doc.id}')" title="View Proposal & Breakdown">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                         ${sessionStorage.getItem('solis_user_role') === 'admin' ? `
-                        <button class="btn btn-sm btn-outline-danger ms-1" onclick="deleteQuote('${doc.id}')" title="Delete Quote">
+                        <button class="btn btn-sm btn-outline-danger px-2 py-1 ms-1" onclick="deleteQuote('${doc.id}')" title="Delete Quote">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                         ` : ''}
@@ -112,7 +127,7 @@ async function loadQuotes() {
         if (visibleCount === 0) {
             tbody.innerHTML = `
                 <tr>
-                    <td colspan="7" class="text-center py-4 text-muted">
+                    <td colspan="8" class="text-center py-4 text-muted">
                         You have not saved any quotes yet.
                     </td>
                 </tr>
@@ -124,7 +139,7 @@ async function loadQuotes() {
         console.error("Error loading quotes:", error);
         tbody.innerHTML = `
             <tr>
-                <td colspan="7" class="text-center py-4 text-danger fw-bold">
+                <td colspan="8" class="text-center py-4 text-danger fw-bold">
                     <i class="fa-solid fa-triangle-exclamation me-2"></i> Error loading quotes: ${error.message || error}
                 </td>
             </tr>
@@ -143,7 +158,32 @@ function viewQuote(id) {
     
     const fmt = (val) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0 }).format(val);
 
+    const revNum = (typeof quote.revision === 'number') ? quote.revision : (parseInt(quote.revision) || 0);
+    const revLabel = quote.revisionLabel || (revNum > 0 ? `Rev-${String(revNum).padStart(2, '0')}` : 'Rev-00');
+    const isRevZero = revNum === 0;
+    const nextRevLabel = `Rev-${String(revNum + 1).padStart(2, '0')}`;
+
+    let dateStr = 'Just now';
+    if (quote.createdAt) {
+        if (typeof quote.createdAt.toDate === 'function') dateStr = quote.createdAt.toDate().toLocaleString();
+        else if (typeof quote.createdAt.toMillis === 'function') dateStr = new Date(quote.createdAt.toMillis()).toLocaleString();
+        else dateStr = new Date(quote.createdAt).toLocaleString();
+    }
+
     modalBody.innerHTML = `
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center bg-light p-3 rounded border mb-3 gap-2">
+            <div>
+                <span class="badge ${isRevZero ? 'bg-secondary' : 'bg-success'} fs-6 font-mono me-2">${revLabel}</span>
+                <span class="text-muted small">Generated on ${dateStr}</span>
+                ${quote.parentQuoteId ? `<div class="small text-muted mt-1"><i class="fa-solid fa-code-branch text-primary me-1"></i> Revision of earlier quote (Doc: ${quote.parentQuoteId})</div>` : ''}
+            </div>
+            <div>
+                <button type="button" class="btn btn-sm btn-success rounded-pill fw-bold px-3 shadow-sm" onclick="bootstrap.Modal.getInstance(document.getElementById('quoteDetailsModal')).hide(); reviseQuote('${quote.id}');">
+                    <i class="fa-solid fa-arrows-rotate me-1"></i> Re-calculate as ${nextRevLabel}
+                </button>
+            </div>
+        </div>
+
         <div class="row g-3">
             <div class="col-md-6">
                 <h6 class="text-muted fw-bold small text-uppercase mb-1">Customer Details</h6>
@@ -232,6 +272,33 @@ async function deleteQuote(id) {
     }
 }
 
+function reviseQuote(id) {
+    const quote = quotesCache.find(q => q.id === id);
+    if (!quote || !quote.parameters) {
+        alert("Cannot revise this quote: Parameter data is missing.");
+        return;
+    }
+
+    const currentRev = (typeof quote.revision === 'number') ? quote.revision : (parseInt(quote.revision) || 0);
+    const nextRev = currentRev + 1;
+    const nextRevLabel = `Rev-${String(nextRev).padStart(2, '0')}`;
+    const custName = quote.parameters.customerName || 'Customer';
+
+    sessionStorage.setItem('solis_quote_mode', 'revise');
+    sessionStorage.setItem('solis_parent_quote_id', id);
+    sessionStorage.setItem('solis_root_quote_id', quote.rootQuoteId || id);
+    sessionStorage.setItem('solis_parent_rev', String(currentRev));
+    sessionStorage.setItem('solis_next_rev', String(nextRev));
+    sessionStorage.setItem('solis_next_rev_label', nextRevLabel);
+    sessionStorage.setItem('solis_customer_name', custName);
+    sessionStorage.setItem('solis_edit_quote_params', JSON.stringify(quote.parameters));
+
+    // Clear in-place edit ID so this NEVER overwrites the old quote
+    sessionStorage.removeItem('solis_edit_quote_id');
+
+    window.location.href = 'index.html';
+}
+
 function loadQuoteForEditing(id) {
     const quote = quotesCache.find(q => q.id === id);
     if (!quote || !quote.parameters) {
@@ -239,10 +306,15 @@ function loadQuoteForEditing(id) {
         return;
     }
     
-    // Store quote ID and parameters in session storage
+    sessionStorage.setItem('solis_quote_mode', 'edit');
     sessionStorage.setItem('solis_edit_quote_id', id);
     sessionStorage.setItem('solis_edit_quote_params', JSON.stringify(quote.parameters));
+    sessionStorage.removeItem('solis_parent_quote_id');
+    sessionStorage.removeItem('solis_next_rev');
+    sessionStorage.removeItem('solis_next_rev_label');
     
-    // Redirect to index page
     window.location.href = 'index.html';
 }
+
+window.reviseQuote = reviseQuote;
+window.loadQuoteForEditing = loadQuoteForEditing;
