@@ -1,7 +1,8 @@
 // Valid users for the internal tool
 const VALID_USERS = [
     { email: "solisgreenenergysolutions@gmail.com", password: "Admin@1985", role: "admin", name: "Solis Super Admin" },
-    { email: "joshijacob@gmail.com", password: "Joshi@1985", role: "sales", name: "Joshi Jacob" }
+    { email: "joshijacob@gmail.com", password: "Joshi@1985", role: "sales", name: "Joshi Jacob" },
+    { email: "sales2solisgreenenergy@gmail.com", password: "User@1985", role: "sales", name: "Kannan Deepu" }
 ];
 
 // Resolves a human-friendly Sales Executive Name from email or custom value
@@ -80,17 +81,44 @@ if (!isAuthenticated && !isLoginPage) {
         window.location.href = '/Login/index.html';
     }
 
-    // Authorization Check: Prevent unauthorized users from accessing admin/master pages
-    const isAdminPage = path.includes('admin.html') || path.includes('_master.html');
-    if (isAdminPage) {
-        let userPerms = {};
-        try {
-            userPerms = JSON.parse(sessionStorage.getItem('solis_user_permissions') || '{}');
-        } catch(e) {}
+    // Authorization Check: Prevent unauthorized users from accessing modules they have no rights for
+    let userPerms = {};
+    let hasGranular = false;
+    try {
+        userPerms = JSON.parse(sessionStorage.getItem('solis_user_permissions') || '{}');
+        if (userPerms && typeof userPerms === 'object' && Object.keys(userPerms).length > 0) {
+            hasGranular = true;
+        }
+    } catch(e) {}
 
-        const canAccessMaster = isSuperAdmin || userRole === 'admin' || userRole === 'engineering' || userPerms['bom_master'] === true;
-        if (!canAccessMaster) {
-            window.location.href = '/Login/index.html';
+    if (!isSuperAdmin) {
+        const routePermMap = [
+            { pattern: 'bom_master.html', key: 'bom_master' },
+            { pattern: 'quotes_dashboard.html', key: 'quotes_proposals' },
+            { pattern: '/leads/', key: 'leads_tracker' },
+            { pattern: '/analytics/', key: 'analytics' },
+            { pattern: '/seo/', key: 'seo_center' },
+            { pattern: '/careers/admin/', key: 'careers_admin' },
+            { pattern: '/users/', key: 'user_management' }
+        ];
+
+        for (const rule of routePermMap) {
+            if (path.includes(rule.pattern)) {
+                let allowed = false;
+                if (hasGranular) {
+                    allowed = (userPerms[rule.key] === true);
+                } else if (userRole === 'admin') {
+                    allowed = (rule.key !== 'user_management');
+                } else {
+                    allowed = ['cost_calculator', 'quotes_proposals', 'public_website'].includes(rule.key);
+                }
+
+                if (!allowed) {
+                    alert(`Access Restricted: You do not have permission to access this module (${rule.key.replace('_', ' ').toUpperCase()}). Please contact your Super Admin.`);
+                    window.location.href = '/Login/index.html';
+                    break;
+                }
+            }
         }
     }
 }
@@ -176,3 +204,53 @@ function handleLogout() {
 }
 window.handleLogout = handleLogout;
 window.logout = logout;
+
+
+// Updates menu bar user information across all application pages
+function updateNavbarUserInfo() {
+    if (typeof document === 'undefined') return;
+    const email = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase();
+    const isSuperAdmin = (email === 'solisgreenenergysolutions@gmail.com');
+    const storedName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name');
+    const name = isSuperAdmin ? 'Solis Super Admin' : (storedName || resolveSalesExecutiveName(email));
+    const role = sessionStorage.getItem('solis_user_role') || localStorage.getItem('solis_user_role') || 'sales';
+
+    document.querySelectorAll('.nav-user-name').forEach(el => {
+        el.textContent = name;
+    });
+
+    document.querySelectorAll('.nav-user-role').forEach(el => {
+        if (isSuperAdmin) {
+            el.innerHTML = '<i class="fa-solid fa-crown me-1 text-warning"></i> SUPER ADMIN';
+            el.className = 'badge bg-warning-subtle text-dark border border-warning-subtle fw-bold text-uppercase nav-user-role';
+        } else if (role === 'admin') {
+            el.textContent = 'ADMIN';
+            el.className = 'badge bg-danger-subtle text-danger border border-danger-subtle text-uppercase nav-user-role';
+        } else if (role === 'engineering') {
+            el.textContent = 'ENGINEERING';
+            el.className = 'badge bg-info-subtle text-info border border-info-subtle text-uppercase nav-user-role';
+        } else {
+            el.textContent = 'SALES EXECUTIVE';
+            el.className = 'badge bg-primary-subtle text-primary border border-primary-subtle text-uppercase nav-user-role';
+        }
+    });
+
+    document.querySelectorAll('.nav-user-avatar').forEach(el => {
+        if (isSuperAdmin) {
+            el.innerHTML = '<i class="fa-solid fa-crown text-warning"></i>';
+            el.className = 'nav-user-avatar bg-dark text-warning rounded-circle d-flex align-items-center justify-content-center';
+        } else {
+            el.innerHTML = '<i class="fa-solid fa-user text-white"></i>';
+            el.className = 'nav-user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center';
+        }
+    });
+}
+window.updateNavbarUserInfo = updateNavbarUserInfo;
+
+if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateNavbarUserInfo);
+    } else {
+        updateNavbarUserInfo();
+    }
+}

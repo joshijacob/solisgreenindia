@@ -508,6 +508,17 @@
                     <span class="live-dot me-1"></span> Firestore Security Synced
                 </span>
 
+                <!-- Logged In User Profile Pill -->
+                <div class="d-flex align-items-center gap-2 px-2 py-1 bg-light border rounded-pill shadow-sm nav-user-badge" id="navUserBadge" title="Active session">
+                    <div class="nav-user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; font-size: 0.8rem;">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="d-flex flex-column text-start lh-1 me-1">
+                        <span class="fw-bold text-dark nav-user-name" id="userEmailBadge" style="font-size: 0.82rem;">User</span>
+                        <span class="text-muted text-uppercase nav-user-role" id="userRoleBadge" style="font-size: 0.62rem; letter-spacing: 0.04em;">Role</span>
+                    </div>
+                </div>
+
                 <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill" title="Return to Modules Hub">
                     <i class="fa-solid fa-grip me-1"></i> Modules Hub
                 </a>
@@ -530,7 +541,7 @@
             <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
                 <div class="d-flex align-items-center gap-2">
                     <h5 class="fw-bold font-display mb-0 text-dark">Operational Modules & Data Hub</h5>
-                    <span class="badge bg-light text-muted border d-none d-sm-inline" style="font-size: 0.68rem;">9 Live Modules</span>
+                    <span class="badge bg-light text-muted border d-none d-sm-inline" style="font-size: 0.68rem;" id="modulesCountBadge">9 Live Modules</span>
                 </div>
                 <div>
                     <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 rounded-pill fw-semibold" style="font-size: 0.7rem;">
@@ -766,6 +777,24 @@
                     bom_master: false,
                     seo_center: true, careers_admin: false, public_website: true, user_management: false
                 }
+            },
+            { 
+                email: "sales2solisgreenenergy@gmail.com", 
+                password: "User@1985", 
+                role: "sales", 
+                name: "Kannan Deepu",
+                status: "active",
+                permissions: {
+                    cost_calculator: true,
+                    quotes_proposals: true,
+                    leads_tracker: false,
+                    bom_master: false,
+                    analytics: false,
+                    seo_center: false,
+                    user_management: false,
+                    careers_admin: false,
+                    public_website: true
+                }
             }
         ];
 
@@ -896,7 +925,8 @@
             const welcomeSection = document.getElementById('welcomeLandingSection');
             welcomeSection.classList.remove('d-none');
 
-            document.getElementById('welcomeUserGreeting').textContent = `Welcome, ${userEmail} (${userRole.toUpperCase()})`;
+            const welcomeName = sessionStorage.getItem('solis_user_name') || userEmail;
+            document.getElementById('welcomeUserGreeting').textContent = `Welcome, ${welcomeName} (${userRole.toUpperCase()})`;
             setPositiveThought();
             startCountdownTimer();
         }
@@ -965,26 +995,50 @@
             hubSection.classList.remove('d-none');
             document.body.classList.add('hub-active');
 
-            // Set user profile in navbar
-            const emailBadge = document.getElementById('userEmailBadge'); if (emailBadge) emailBadge.textContent = userEmail;
-            const roleBadge = document.getElementById('userRoleBadge');
             const isSuperAdmin = (userEmail.toLowerCase() === SUPER_ADMIN_EMAIL.toLowerCase());
+            const storedName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name');
+            const displayName = isSuperAdmin ? 'Solis Super Admin' : (storedName || userEmail);
 
-            if (roleBadge && isSuperAdmin) {
-                roleBadge.innerHTML = '<i class="fa-solid fa-crown me-1"></i> SUPER ADMIN';
-                roleBadge.className = 'badge bg-warning text-dark fw-bold text-uppercase';
-            } else if (userRole === 'admin') {
-                roleBadge.textContent = 'ADMIN';
-                roleBadge.className = 'badge bg-danger text-uppercase';
-            } else {
-                roleBadge.textContent = (userRole || 'SALES').toUpperCase();
-                roleBadge.className = 'badge bg-primary text-uppercase';
+            // Set user profile in menu bar
+            const emailBadge = document.getElementById('userEmailBadge') || document.querySelector('.nav-user-name');
+            if (emailBadge) emailBadge.textContent = displayName;
+
+            const roleBadge = document.getElementById('userRoleBadge') || document.querySelector('.nav-user-role');
+            if (roleBadge) {
+                if (isSuperAdmin) {
+                    roleBadge.innerHTML = '<i class="fa-solid fa-crown me-1 text-warning"></i> SUPER ADMIN';
+                    roleBadge.className = 'badge bg-warning-subtle text-dark border border-warning-subtle fw-bold text-uppercase';
+                } else if (userRole === 'admin') {
+                    roleBadge.textContent = 'ADMIN';
+                    roleBadge.className = 'badge bg-danger-subtle text-danger border border-danger-subtle text-uppercase';
+                } else if (userRole === 'engineering') {
+                    roleBadge.textContent = 'ENGINEERING';
+                    roleBadge.className = 'badge bg-info-subtle text-info border border-info-subtle text-uppercase';
+                } else {
+                    roleBadge.textContent = 'SALES EXECUTIVE';
+                    roleBadge.className = 'badge bg-primary-subtle text-primary border border-primary-subtle text-uppercase';
+                }
+            }
+
+            const avatarBadge = document.querySelector('.nav-user-avatar');
+            if (avatarBadge) {
+                if (isSuperAdmin) {
+                    avatarBadge.innerHTML = '<i class="fa-solid fa-crown text-warning"></i>';
+                    avatarBadge.className = 'nav-user-avatar bg-dark text-warning rounded-circle d-flex align-items-center justify-content-center';
+                } else {
+                    avatarBadge.innerHTML = '<i class="fa-solid fa-user text-white"></i>';
+                    avatarBadge.className = 'nav-user-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center';
+                }
             }
 
             // Retrieve saved granular card permissions
             let userPerms = {};
+            let hasGranularPerms = false;
             try {
                 userPerms = JSON.parse(sessionStorage.getItem('solis_user_permissions') || '{}');
+                if (userPerms && typeof userPerms === 'object' && Object.keys(userPerms).length > 0) {
+                    hasGranularPerms = true;
+                }
                 if (userPerms.general_master || userPerms.panel_master || userPerms.inverter_master) {
                     userPerms.bom_master = true;
                 }
@@ -992,49 +1046,51 @@
                 userPerms = {};
             }
 
-            // Apply card permissions across all 12 modules
+            let visibleModulesCount = 0;
+
+            // Apply card permissions across all modules: SHOW ONLY PERMITTED CARDS
             document.querySelectorAll('#modulesGrid > div[data-module]').forEach(col => {
                 const moduleId = col.getAttribute('data-module');
                 const card = col.querySelector('.module-card');
-                const tag = col.querySelector('.module-tag-compact');
-                const actionLink = col.querySelector('.module-action-link');
 
-                // Super admin always has full access to all cards
+                // Super admin always has full access to all 9 cards
                 let isAllowed = isSuperAdmin;
                 if (!isSuperAdmin) {
-                    // For user_management card: exclusively for Super Admin
                     if (moduleId === 'user_management') {
                         isAllowed = false;
-                    } else if (userPerms && typeof userPerms[moduleId] === 'boolean') {
-                        isAllowed = userPerms[moduleId];
+                    } else if (hasGranularPerms) {
+                        // Strict check: if user has assigned rights (e.g. Kannan has 3 cards), show ONLY those assigned cards!
+                        isAllowed = (userPerms[moduleId] === true);
                     } else if (userRole === 'admin') {
-                        // Admin default access
                         isAllowed = (moduleId !== 'user_management');
                     } else {
-                        // Sales default access
-                        isAllowed = ['cost_calculator', 'quotes_proposals', 'leads_tracker', 'analytics', 'seo_center', 'public_website'].includes(moduleId);
+                        // Fallback default for unconfigured sales reps
+                        isAllowed = ['cost_calculator', 'quotes_proposals', 'public_website'].includes(moduleId);
                     }
                 }
 
                 if (!isAllowed) {
-                    card.classList.add('module-card-disabled');
-                    card.style.pointerEvents = 'none';
-                    card.style.opacity = '0.45';
-                    card.style.filter = 'grayscale(0.85)';
-                    if (tag) {
-                        tag.innerHTML = '<i class="fa-solid fa-lock me-1"></i> Locked';
-                        tag.className = 'module-tag-compact bg-secondary text-white';
-                    }
-                    if (actionLink) {
-                        actionLink.innerHTML = '<span class="text-secondary small fw-bold"><i class="fa-solid fa-ban me-1"></i> No Access</span><i class="fa-solid fa-lock text-secondary"></i>';
-                    }
+                    // Completely hide unauthorized card from screen
+                    col.classList.add('d-none');
+                    col.style.display = 'none';
                 } else {
-                    card.classList.remove('module-card-disabled');
-                    card.style.pointerEvents = '';
-                    card.style.opacity = '';
-                    card.style.filter = '';
+                    visibleModulesCount++;
+                    col.classList.remove('d-none');
+                    col.style.display = '';
+                    if (card) {
+                        card.classList.remove('module-card-disabled');
+                        card.style.pointerEvents = '';
+                        card.style.opacity = '';
+                        card.style.filter = '';
+                    }
                 }
             });
+
+            // Update live modules counter badge
+            const countBadge = document.getElementById('modulesCountBadge');
+            if (countBadge) {
+                countBadge.textContent = `${visibleModulesCount} Active Module${visibleModulesCount === 1 ? '' : 's'}`;
+            }
         }
 
         // Toggle password visibility
