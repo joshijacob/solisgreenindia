@@ -564,6 +564,7 @@ function initApp() {
     window.handleSystemTypeChange();
     window.handlePanelBrandChange();
     window.handleInverterBrandChange();
+    if (typeof window.updateFeasibilityStatus === 'function') window.updateFeasibilityStatus();
 
     // --- Quote Revision & Edit Loader Logic ---
     const quoteMode = sessionStorage.getItem('solis_quote_mode'); // 'revise' or 'edit'
