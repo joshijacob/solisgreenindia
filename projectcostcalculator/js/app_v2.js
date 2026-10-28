@@ -421,7 +421,7 @@ window.handleSystemTypeChange = function() {
     window.handleCapacityChange();
 };
 
-function initApp() {
+async function initApp() {
     const form = document.getElementById('sales-form');
     if (!form) return;
 
@@ -512,14 +512,10 @@ function initApp() {
     window.handlePanelBrandChange();
     window.handleInverterBrandChange();
 
-    // Auto-populate Sales Executive Name from session/local storage
-    const salesExecInput = document.getElementById('salesExecutive');
-    if (salesExecInput && !salesExecInput.value) {
-        const storedName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name');
-        const storedEmail = sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email');
-        const defaultName = storedName || (typeof window.resolveSalesExecutiveName === 'function' ? window.resolveSalesExecutiveName(storedEmail) : 'Sales Executive');
-        salesExecInput.value = defaultName;
-    }
+    // Initialize Role-Aware Sales Executive Control:
+    // Sales Executive: auto-populated from login identity and locked/readonly.
+    // Admin / Non-Sales: activated dropdown to select any Sales Executive.
+    await setupSalesExecutiveControl();
 
     // --- Quote Revision & Edit Loader Logic ---
     const quoteMode = sessionStorage.getItem('solis_quote_mode'); // 'revise' or 'edit'
@@ -537,7 +533,22 @@ function initApp() {
             const p = JSON.parse(editQuoteParamsStr);
 
             if (p.salesExecutive && document.getElementById('salesExecutive')) {
-                document.getElementById('salesExecutive').value = p.salesExecutive;
+                const execEl = document.getElementById('salesExecutive');
+                if (execEl.tagName === 'SELECT') {
+                    let match = Array.from(execEl.options).find(o => o.value.toLowerCase() === p.salesExecutive.toLowerCase());
+                    if (match) {
+                        execEl.value = match.value;
+                    } else {
+                        const opt = document.createElement('option');
+                        opt.value = p.salesExecutive;
+                        opt.textContent = `${p.salesExecutive} (Original)`;
+                        execEl.appendChild(opt);
+                        execEl.value = p.salesExecutive;
+                    }
+                } else {
+                    // For sales user, retain their login identity or set if empty
+                    if (!execEl.value) execEl.value = p.salesExecutive;
+                }
             }
             if (p.customerName) document.getElementById('customerName').value = p.customerName;
             if (p.contactNumber) document.getElementById('contactNumber').value = p.contactNumber;
@@ -721,6 +732,15 @@ function initApp() {
         const batteryProduct = batteryId && db.batteryProducts ? db.batteryProducts.find(b => b.id === batteryId) : null;
         const manualInverterQty = document.getElementById('manualInverterQty').value;
 
+        const salesExecEl = document.getElementById('salesExecutive');
+        const salesExecVal = salesExecEl ? salesExecEl.value.trim() : (sessionStorage.getItem('solis_user_name') || '');
+        if (!salesExecVal) {
+            errorAlert.innerText = "Please select or enter a Sales Executive Name.";
+            errorAlert.classList.remove('d-none');
+            salesExecEl?.focus();
+            return;
+        }
+
         const params = {
             systemType: systemType,
             batteryProduct: batteryProduct,
@@ -740,7 +760,7 @@ function initApp() {
             targetProfit: document.getElementById('targetProfit').value,
             netMeterScope: document.getElementById('netMeterScope').value,
             ksebScope: document.getElementById('ksebScope').value,
-            salesExecutive: document.getElementById('salesExecutive')?.value?.trim() || sessionStorage.getItem('solis_user_name') || 'Sales Executive'
+            salesExecutive: salesExecVal
         };
 
         try {
@@ -959,3 +979,212 @@ if (document.readyState === 'loading') {
 } else {
     initApp();
 }
+
+
+// ============================================================================
+// ROLE-AWARE SALES EXECUTIVE CONTROL IMPLEMENTATION
+// - Sales Executive (role: 'sales'): Auto-filled from login identity and locked (readonly).
+// - Admin / Leadership (role: 'admin' / 'super_admin'): Activated dropdown to choose
+//   a Sales Executive from Firestore / team database.
+// ============================================================================
+async function setupSalesExecutiveControl() {
+    const execInput = document.getElementById('salesExecutive');
+    const badgeEl = document.getElementById('salesExecRoleBadge');
+    const helpEl = document.getElementById('salesExecHelpText');
+    if (!execInput) return;
+
+    const role = (sessionStorage.getItem('solis_user_role') || localStorage.getItem('solis_user_role') || 'sales').toLowerCase();
+    const storedEmail = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase();
+    let storedName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name') || '';
+
+    if (!storedName || storedName.includes('@')) {
+        storedName = (typeof window.resolveSalesExecutiveName === 'function')
+            ? window.resolveSalesExecutiveName(storedEmail)
+            : 'Sales Executive';
+        sessionStorage.setItem('solis_user_name', storedName);
+    }
+
+    const isSalesUser = (role === 'sales' || role === 'sales_executive');
+
+    if (isSalesUser) {
+        // --- CASE 1: LOGGED-IN SALES EXECUTIVE ---
+        // Automatically show name as per login, locked/readonly
+        execInput.value = storedName;
+        execInput.readOnly = true;
+        execInput.classList.add('bg-light');
+        execInput.style.cursor = 'not-allowed';
+        execInput.title = `Auto-assigned to your login identity: ${storedName}`;
+
+        if (badgeEl) {
+            badgeEl.className = 'badge rounded-pill bg-success-subtle text-success border border-success-subtle';
+            badgeEl.innerHTML = '<i class="fa-solid fa-user-check me-1"></i>Logged in';
+        }
+        if (helpEl) {
+            helpEl.innerHTML = `<i class="fa-solid fa-lock text-muted me-1"></i>Auto-assigned to your account (${storedName})`;
+        }
+    } else {
+        // --- CASE 2: ADMIN / SUPER ADMIN / LEADERSHIP / NON-SALES ---
+        // Activate dropdown to choose a Sales Executive
+        if (badgeEl) {
+            badgeEl.className = 'badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle';
+            badgeEl.innerHTML = '<i class="fa-solid fa-users-gear me-1"></i>Admin: Choose Rep';
+        }
+        if (helpEl) {
+            helpEl.innerHTML = 'Select the Sales Executive who owns or is credited for this proposal.';
+        }
+
+        // Replace the input with a select dropdown
+        const select = document.createElement('select');
+        select.id = 'salesExecutive';
+        select.name = 'salesExecutive';
+        select.className = 'form-select form-select-lg fw-semibold';
+        select.required = true;
+        select.innerHTML = '<option value="" disabled selected>-- Choose Sales Executive --</option>';
+
+        execInput.replaceWith(select);
+
+        // Populate options from team database and Firestore
+        await populateSalesExecutiveDropdown(select);
+
+        // Handle custom representative creation on the fly
+        select.addEventListener('change', function() {
+            if (this.value === '__custom__') {
+                const customName = prompt('Enter Sales Executive Name:');
+                if (customName && customName.trim()) {
+                    const cleanName = customName.trim();
+                    let match = Array.from(this.options).find(o => o.value.toLowerCase() === cleanName.toLowerCase());
+                    if (!match) {
+                        const opt = document.createElement('option');
+                        opt.value = cleanName;
+                        opt.textContent = `${cleanName} (Custom)`;
+                        this.appendChild(opt);
+                        opt.selected = true;
+                    } else {
+                        match.selected = true;
+                    }
+                } else {
+                    this.value = '';
+                }
+            }
+        });
+    }
+}
+
+async function populateSalesExecutiveDropdown(selectEl) {
+    if (!selectEl) return;
+
+    const candidates = new Map(); // key (lowercase) -> { name, role, isSales }
+
+    // 1. Known team members from VALID_USERS (in auth.js)
+    if (typeof VALID_USERS !== 'undefined' && Array.isArray(VALID_USERS)) {
+        VALID_USERS.forEach(u => {
+            if (u.name) {
+                candidates.set(u.name.toLowerCase(), {
+                    name: u.name,
+                    role: u.role || 'sales',
+                    isSales: (u.role === 'sales')
+                });
+            }
+        });
+    }
+
+    // 2. Users from localStorage cache (solis_users_db)
+    try {
+        const localDb = JSON.parse(localStorage.getItem('solis_users_db') || '[]');
+        if (Array.isArray(localDb)) {
+            localDb.forEach(u => {
+                if (u.name && u.status !== 'inactive') {
+                    const isSales = (u.role === 'sales' || u.role === 'sales_executive');
+                    candidates.set(u.name.toLowerCase(), {
+                        name: u.name,
+                        role: u.role || 'sales',
+                        isSales: isSales
+                    });
+                }
+            });
+        }
+    } catch(e) {}
+
+    // Ensure our core team reps are always present
+    if (!candidates.has('joshi jacob')) {
+        candidates.set('joshi jacob', { name: 'Joshi Jacob', role: 'sales', isSales: true });
+    }
+    if (!candidates.has('kannan deepu')) {
+        candidates.set('kannan deepu', { name: 'Kannan Deepu', role: 'sales', isSales: true });
+    }
+    if (!candidates.has('solis super admin')) {
+        candidates.set('solis super admin', { name: 'Solis Super Admin', role: 'super_admin', isSales: false });
+    }
+
+    renderOptions();
+
+    // 3. Asynchronous sync with Cloud Firestore REST API in case new users were registered
+    try {
+        const FB_USER_URL = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/userManagement?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
+        fetch(FB_USER_URL).then(r => r.json()).then(data => {
+            if (data && data.fields && data.fields.usersJson && data.fields.usersJson.stringValue) {
+                const cloudUsers = JSON.parse(data.fields.usersJson.stringValue);
+                let addedAny = false;
+                cloudUsers.forEach(u => {
+                    if (u.name && u.status !== 'inactive') {
+                        const key = u.name.toLowerCase();
+                        if (!candidates.has(key)) {
+                            const isSales = (u.role === 'sales' || u.role === 'sales_executive');
+                            candidates.set(key, {
+                                name: u.name,
+                                role: u.role || 'sales',
+                                isSales: isSales
+                            });
+                            addedAny = true;
+                        }
+                    }
+                });
+                if (addedAny) {
+                    renderOptions();
+                }
+            }
+        }).catch(() => {});
+    } catch(e) {}
+
+    function renderOptions() {
+        const currentVal = selectEl.value;
+        selectEl.innerHTML = '<option value="" disabled selected>-- Choose Sales Executive --</option>';
+
+        const salesGroup = document.createElement('optgroup');
+        salesGroup.label = 'Sales Executives';
+
+        const adminGroup = document.createElement('optgroup');
+        adminGroup.label = 'Management / Direct';
+
+        const otherGroup = document.createElement('optgroup');
+        otherGroup.label = 'Other';
+
+        Array.from(candidates.values()).forEach(u => {
+            const opt = document.createElement('option');
+            opt.value = u.name;
+            opt.textContent = u.name;
+            if (u.isSales) {
+                salesGroup.appendChild(opt);
+            } else if (u.role === 'super_admin' || u.role === 'admin') {
+                opt.textContent = `${u.name} (Direct Admin)`;
+                adminGroup.appendChild(opt);
+            } else {
+                otherGroup.appendChild(opt);
+            }
+        });
+
+        if (salesGroup.children.length > 0) selectEl.appendChild(salesGroup);
+        if (adminGroup.children.length > 0) selectEl.appendChild(adminGroup);
+        if (otherGroup.children.length > 0) selectEl.appendChild(otherGroup);
+
+        const customOpt = document.createElement('option');
+        customOpt.value = '__custom__';
+        customOpt.textContent = '+ Enter Other / Custom Name...';
+        selectEl.appendChild(customOpt);
+
+        if (currentVal && Array.from(selectEl.options).some(o => o.value === currentVal)) {
+            selectEl.value = currentVal;
+        }
+    }
+}
+window.setupSalesExecutiveControl = setupSalesExecutiveControl;
