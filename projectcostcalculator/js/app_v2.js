@@ -1,10 +1,57 @@
 // app_v2.js - Sales Dashboard Interactions & Robust Cascading Engine
 
-// Global variables accessible across module
-let db = null;
-let activePanels = [];
-let activeInverters = [];
-let boms = null;
+// Helper to retrieve master data safely and immediately
+function getSafeMasterData() {
+    if (typeof getMasterData === 'function') {
+        try {
+            const d = getMasterData();
+            if (d && d.panelProducts && d.panelProducts.length > 0) return d;
+        } catch(e) {}
+    }
+    if (typeof DEFAULT_MASTER_DATA !== 'undefined' && DEFAULT_MASTER_DATA.panelProducts) {
+        return DEFAULT_MASTER_DATA;
+    }
+    return null;
+}
+
+function getSafeBOMTemplates() {
+    if (typeof getBOMTemplates === 'function') {
+        try {
+            const b = getBOMTemplates();
+            if (b && b['On-Grid']) return b;
+        } catch(e) {}
+    }
+    if (typeof DEFAULT_BOM_TEMPLATES !== 'undefined') {
+        return DEFAULT_BOM_TEMPLATES;
+    }
+    return null;
+}
+
+// Global variables accessible across module - initialized immediately from safe source
+let db = getSafeMasterData();
+let activePanels = (db && db.panelProducts ? db.panelProducts : []).filter(p => !p.status || p.status.toLowerCase() === 'active');
+if (activePanels.length === 0 && typeof DEFAULT_MASTER_DATA !== 'undefined') {
+    activePanels = DEFAULT_MASTER_DATA.panelProducts;
+}
+
+let activeInverters = (db && db.inverterProducts ? db.inverterProducts : []).filter(p => !p.status || p.status.toLowerCase() === 'active');
+if (activeInverters.length === 0 && typeof DEFAULT_MASTER_DATA !== 'undefined') {
+    activeInverters = DEFAULT_MASTER_DATA.inverterProducts;
+}
+
+let boms = getSafeBOMTemplates();
+
+// Refresh active arrays helper
+function refreshActiveCatalogs() {
+    db = getSafeMasterData();
+    if (db && db.panelProducts && db.panelProducts.length > 0) {
+        activePanels = db.panelProducts.filter(p => !p.status || p.status.toLowerCase() === 'active');
+    }
+    if (db && db.inverterProducts && db.inverterProducts.length > 0) {
+        activeInverters = db.inverterProducts.filter(p => !p.status || p.status.toLowerCase() === 'active');
+    }
+    boms = getSafeBOMTemplates();
+}
 
 // --- Cascading Functions (Attached to window for both inline onchange and listener execution) ---
 
@@ -13,37 +60,47 @@ window.handlePanelBrandChange = function() {
     const techSelect = document.getElementById('panelTech');
     const certSelect = document.getElementById('panelCert');
     const wattSelect = document.getElementById('panelWatt');
-    if (!brandSelect || !techSelect) return;
+    if (!brandSelect || !techSelect || !certSelect || !wattSelect) return;
+
+    // Never disable dropdowns - keep them interactive at all times
+    techSelect.disabled = false;
+    certSelect.disabled = false;
+    wattSelect.disabled = false;
+
+    if (!activePanels || activePanels.length === 0) {
+        refreshActiveCatalogs();
+    }
 
     const brand = brandSelect.value;
+    const prevTech = techSelect.value;
     techSelect.innerHTML = '<option value="">Select...</option>';
-    certSelect.innerHTML = '<option value="">Select...</option>';
-    wattSelect.innerHTML = '<option value="">Select...</option>';
-    techSelect.disabled = true;
-    certSelect.disabled = true;
-    wattSelect.disabled = true;
 
     if (!brand) {
-        window.updateRecommendedPanels();
+        ['TOPCon', 'Bifacial', 'Mono PERC'].forEach(t => techSelect.add(new Option(t, t)));
+        if (prevTech && Array.from(techSelect.options).some(o => o.value === prevTech)) {
+            techSelect.value = prevTech;
+        } else {
+            techSelect.selectedIndex = 1;
+        }
+        window.handlePanelTechChange();
         return;
     }
 
     const brandPanels = activePanels.filter(p => p.brand === brand);
-    const techs = [...new Set(brandPanels.map(p => p.technology).filter(Boolean))];
+    let techs = [...new Set(brandPanels.map(p => p.technology).filter(Boolean))];
     if (techs.length === 0) {
-        ['TOPCon', 'Mono PERC', 'Bifacial'].forEach(t => techSelect.add(new Option(t, t)));
-    } else {
-        techs.forEach(t => techSelect.add(new Option(t, t)));
+        techs = ['TOPCon', 'Bifacial', 'Mono PERC'];
     }
-    techSelect.disabled = false;
+    techs.forEach(t => techSelect.add(new Option(t, t)));
 
-    // Auto-select first technology and immediately cascade to certification
-    if (techSelect.options.length > 1) {
+    // Retain previous tech if available in new brand, otherwise auto-select first
+    if (prevTech && Array.from(techSelect.options).some(o => o.value === prevTech)) {
+        techSelect.value = prevTech;
+    } else if (techSelect.options.length > 1) {
         techSelect.selectedIndex = 1;
-        window.handlePanelTechChange();
-    } else {
-        window.updateRecommendedPanels();
     }
+
+    window.handlePanelTechChange();
 };
 
 window.handlePanelTechChange = function() {
@@ -51,37 +108,47 @@ window.handlePanelTechChange = function() {
     const techSelect = document.getElementById('panelTech');
     const certSelect = document.getElementById('panelCert');
     const wattSelect = document.getElementById('panelWatt');
-    if (!brandSelect || !techSelect || !certSelect) return;
+    if (!brandSelect || !techSelect || !certSelect || !wattSelect) return;
+
+    certSelect.disabled = false;
+    wattSelect.disabled = false;
+
+    if (!activePanels || activePanels.length === 0) {
+        refreshActiveCatalogs();
+    }
 
     const brand = brandSelect.value;
     const tech = techSelect.value;
+    const prevCert = certSelect.value;
     certSelect.innerHTML = '<option value="">Select...</option>';
-    wattSelect.innerHTML = '<option value="">Select...</option>';
-    certSelect.disabled = true;
-    wattSelect.disabled = true;
 
     if (!brand || !tech) {
-        window.updateRecommendedPanels();
+        ['NDCR', 'DCR'].forEach(c => certSelect.add(new Option(c, c)));
+        if (prevCert && Array.from(certSelect.options).some(o => o.value === prevCert)) {
+            certSelect.value = prevCert;
+        } else {
+            certSelect.selectedIndex = 1;
+        }
+        window.handlePanelCertChange();
         return;
     }
 
     const techPanels = activePanels.filter(p => p.brand === brand && p.technology === tech);
-    const certs = [...new Set(techPanels.map(p => p.certification).filter(Boolean))];
+    let certs = [...new Set(techPanels.map(p => p.certification).filter(Boolean))];
     if (certs.length === 0) {
-        ['NDCR', 'DCR'].forEach(c => certSelect.add(new Option(c, c)));
-    } else {
-        certs.forEach(c => certSelect.add(new Option(c, c)));
+        certs = ['NDCR', 'DCR'];
     }
-    certSelect.disabled = false;
+    certs.forEach(c => certSelect.add(new Option(c, c)));
 
-    // Auto-select NDCR if present, otherwise first available certification
-    if (certSelect.options.length > 1) {
-        const ndcrIndex = Array.from(certSelect.options).findIndex(o => o.value === 'NDCR');
-        certSelect.selectedIndex = ndcrIndex !== -1 ? ndcrIndex : 1;
-        window.handlePanelCertChange();
+    // Auto-select NDCR if present, otherwise retain or pick first available certification
+    if (prevCert && Array.from(certSelect.options).some(o => o.value === prevCert)) {
+        certSelect.value = prevCert;
     } else {
-        window.updateRecommendedPanels();
+        const ndcrIndex = Array.from(certSelect.options).findIndex(o => o.value === 'NDCR');
+        certSelect.selectedIndex = ndcrIndex !== -1 ? ndcrIndex : (certSelect.options.length > 1 ? 1 : 0);
     }
+
+    window.handlePanelCertChange();
 };
 
 window.handlePanelCertChange = function() {
@@ -91,28 +158,43 @@ window.handlePanelCertChange = function() {
     const wattSelect = document.getElementById('panelWatt');
     if (!brandSelect || !techSelect || !certSelect || !wattSelect) return;
 
+    wattSelect.disabled = false;
+
+    if (!activePanels || activePanels.length === 0) {
+        refreshActiveCatalogs();
+    }
+
     const brand = brandSelect.value;
     const tech = techSelect.value;
     const cert = certSelect.value;
+    const prevWatt = wattSelect.value;
     wattSelect.innerHTML = '<option value="">Select...</option>';
-    wattSelect.disabled = true;
 
     if (!brand || !tech || !cert) {
+        [540, 550, 580, 605, 610, 615, 620, 625].forEach(w => wattSelect.add(new Option(w + 'W', w)));
+        if (prevWatt && Array.from(wattSelect.options).some(o => o.value === prevWatt)) {
+            wattSelect.value = prevWatt;
+        } else {
+            wattSelect.selectedIndex = 1;
+        }
         window.updateRecommendedPanels();
         return;
     }
 
     const certPanels = activePanels.filter(p => p.brand === brand && p.technology === tech && p.certification === cert);
-    const watts = [...new Set(certPanels.map(p => p.wattage).filter(Boolean))].sort((a,b) => a - b);
+    let watts = [...new Set(certPanels.map(p => p.wattage).filter(Boolean))].sort((a,b) => a - b);
     if (watts.length === 0) {
-        [540, 545, 550].forEach(w => wattSelect.add(new Option(w + 'W', w)));
-    } else {
-        watts.forEach(w => wattSelect.add(new Option(w + 'W', w)));
+        watts = [...new Set(activePanels.filter(p => p.brand === brand).map(p => p.wattage).filter(Boolean))].sort((a,b) => a - b);
     }
-    wattSelect.disabled = false;
+    if (watts.length === 0) {
+        watts = [540, 550, 580, 605, 610, 615, 620, 625];
+    }
+    watts.forEach(w => wattSelect.add(new Option(w + 'W', w)));
 
-    // Auto-select first wattage
-    if (wattSelect.options.length > 1) {
+    // Retain previous watt if exists, otherwise first wattage
+    if (prevWatt && Array.from(wattSelect.options).some(o => o.value === String(prevWatt))) {
+        wattSelect.value = prevWatt;
+    } else if (wattSelect.options.length > 1) {
         wattSelect.selectedIndex = 1;
     }
     window.updateRecommendedPanels();
@@ -149,29 +231,37 @@ window.handleInverterBrandChange = function() {
     const invPhaseSelect = document.getElementById('inverterPhase');
     const systemTypeSelect = document.getElementById('systemType');
     const capacitySelect = document.getElementById('capacity');
-    if (!invBrandSelect || !invCapSelect) return;
+    if (!invBrandSelect || !invCapSelect || !invPhaseSelect) return;
+
+    invCapSelect.disabled = false;
+    invPhaseSelect.disabled = false;
+
+    if (!activeInverters || activeInverters.length === 0) {
+        refreshActiveCatalogs();
+    }
 
     const brand = invBrandSelect.value;
+    const prevCap = invCapSelect.value;
     invCapSelect.innerHTML = '<option value="">Select...</option>';
     invPhaseSelect.innerHTML = '<option value="">Select...</option>';
-    invCapSelect.disabled = true;
-    invPhaseSelect.disabled = true;
 
-    if (!brand) return;
+    if (!brand) {
+        ['3kW', '5kW', '8kW', '10kW'].forEach(c => invCapSelect.add(new Option(c, c)));
+        ['Single Phase', 'Three Phase'].forEach(ph => invPhaseSelect.add(new Option(ph, ph)));
+        return;
+    }
 
     const sysType = systemTypeSelect ? systemTypeSelect.value : 'On-Grid';
     const matching = activeInverters.filter(p => p.brand === brand && (p.type === sysType || (!p.type && sysType === 'On-Grid')));
-    const caps = [...new Set(matching.map(p => p.capacity).filter(Boolean))].sort((a,b) => parseFloat(a) - parseFloat(b));
+    let caps = [...new Set(matching.map(p => p.capacity).filter(Boolean))].sort((a,b) => parseFloat(a) - parseFloat(b));
 
     if (caps.length === 0) {
-        ['3kW', '5kW', '8kW', '10kW'].forEach(c => invCapSelect.add(new Option(c, c)));
-    } else {
-        caps.forEach(c => invCapSelect.add(new Option(c, c)));
+        caps = ['3kW', '5kW', '8kW', '10kW'];
     }
-    invCapSelect.disabled = false;
+    caps.forEach(c => invCapSelect.add(new Option(c, c)));
 
     // Auto-select: match Project Capacity if exists, otherwise first option
-    const projCap = capacitySelect ? capacitySelect.value : '';
+    const projCap = capacitySelect ? capacitySelect.value : prevCap;
     const matchingCapOpt = Array.from(invCapSelect.options).find(o => o.value === projCap);
     if (matchingCapOpt) {
         invCapSelect.value = projCap;
@@ -188,23 +278,35 @@ window.handleInverterCapChange = function() {
     const systemTypeSelect = document.getElementById('systemType');
     if (!invBrandSelect || !invCapSelect || !invPhaseSelect) return;
 
+    invPhaseSelect.disabled = false;
+
+    if (!activeInverters || activeInverters.length === 0) {
+        refreshActiveCatalogs();
+    }
+
     const brand = invBrandSelect.value;
     const cap = invCapSelect.value;
+    const prevPhase = invPhaseSelect.value;
     invPhaseSelect.innerHTML = '<option value="">Select...</option>';
-    invPhaseSelect.disabled = true;
 
-    if (!brand || !cap) return;
+    if (!brand || !cap) {
+        ['Single Phase', 'Three Phase'].forEach(ph => invPhaseSelect.add(new Option(ph, ph)));
+        if (prevPhase && Array.from(invPhaseSelect.options).some(o => o.value === prevPhase)) {
+            invPhaseSelect.value = prevPhase;
+        } else {
+            invPhaseSelect.selectedIndex = 1;
+        }
+        return;
+    }
 
     const sysType = systemTypeSelect ? systemTypeSelect.value : 'On-Grid';
     const matching = activeInverters.filter(p => p.brand === brand && p.capacity === cap && (p.type === sysType || (!p.type && sysType === 'On-Grid')));
-    const phases = [...new Set(matching.map(p => p.phase).filter(Boolean))];
+    let phases = [...new Set(matching.map(p => p.phase).filter(Boolean))];
 
     if (phases.length === 0) {
-        ['Single Phase', 'Three Phase'].forEach(ph => invPhaseSelect.add(new Option(ph, ph)));
-    } else {
-        phases.forEach(ph => invPhaseSelect.add(new Option(ph, ph)));
+        phases = ['Single Phase', 'Three Phase'];
     }
-    invPhaseSelect.disabled = false;
+    phases.forEach(ph => invPhaseSelect.add(new Option(ph, ph)));
 
     // Auto-select default phase: Single Phase for <= 5kW, Three Phase for > 5kW
     const capKw = parseFloat(cap.replace('kW', '')) || 3;
@@ -355,12 +457,15 @@ function initApp() {
 
     // Populate Panel Brands
     if (brandSelect) {
+        const prevBrand = brandSelect.value;
         const brands = [...new Set(activePanels.map(p => p.brand).filter(Boolean))];
-        brandSelect.innerHTML = '<option value="">Select...</option>';
-        if (brands.length === 0) {
-            ['Adani', 'Waaree', 'Tata Power', 'Premier Energies', 'Emmvee'].forEach(b => brandSelect.add(new Option(b, b)));
+        brandSelect.innerHTML = '';
+        const listToUse = brands.length > 0 ? brands : ['Adani', 'Waaree', 'Tata Power', 'Premier Energies', 'Emmvee'];
+        listToUse.forEach(b => brandSelect.add(new Option(b, b)));
+        if (prevBrand && listToUse.includes(prevBrand)) {
+            brandSelect.value = prevBrand;
         } else {
-            brands.forEach(b => brandSelect.add(new Option(b, b)));
+            brandSelect.value = 'Adani';
         }
     }
 
@@ -397,8 +502,15 @@ function initApp() {
     if (invCapSelect) invCapSelect.addEventListener('change', window.handleInverterCapChange);
     if (invPhaseSelect) invPhaseSelect.addEventListener('change', window.handleInverterPhaseChange);
 
-    // Initial Trigger on load
+    // Initial Trigger on load - ensure ALL dropdowns are active and cascaded
+    if (brandSelect && !brandSelect.value) brandSelect.value = 'Adani';
+    if (systemTypeSelect && !systemTypeSelect.value) systemTypeSelect.value = 'On-Grid';
+    if (capacitySelect && !capacitySelect.value) capacitySelect.value = '3kW';
+    if (invBrandSelect && !invBrandSelect.value) invBrandSelect.value = 'Solis';
+
     window.handleSystemTypeChange();
+    window.handlePanelBrandChange();
+    window.handleInverterBrandChange();
 
     // --- Quote Revision & Edit Loader Logic ---
     const quoteMode = sessionStorage.getItem('solis_quote_mode'); // 'revise' or 'edit'

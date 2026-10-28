@@ -9,6 +9,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="js/db.js?v=20261028_cascade_v4"></script>
     <script src="js/firebase-init.js"></script>
 
     <script src="js/auth.js"></script>
@@ -103,8 +104,7 @@
                                 <div class="col-md-4">
                                     <label class="form-label fw-bold small text-muted">Project Capacity</label>
                                     <select class="form-select form-select-lg" id="capacity" onchange="handleCapacityChange()" required>
-                                        <option value="">Select...</option>
-                                        <option value="3kW">3kW</option>
+                                        <option value="3kW" selected>3kW</option>
                                         <option value="5kW">5kW</option>
                                         <option value="8kW">8kW</option>
                                         <option value="10kW">10kW</option>
@@ -119,8 +119,7 @@
                                 <div class="col-md-3">
                                     <label class="form-label fw-bold small text-muted">Panel Brand</label>
                                     <select class="form-select form-select-lg" id="panelBrand" onchange="handlePanelBrandChange()" required>
-                                        <option value="">Select...</option>
-                                        <option value="Adani">Adani</option>
+                                        <option value="Adani" selected>Adani</option>
                                         <option value="Waaree">Waaree</option>
                                         <option value="Tata Power">Tata Power</option>
                                         <option value="Premier Energies">Premier Energies</option>
@@ -129,20 +128,30 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label class="form-label fw-bold small text-muted">Technology</label>
-                                    <select class="form-select form-select-lg" id="panelTech" onchange="handlePanelTechChange()" required disabled>
-                                        <option value="">Select...</option>
+                                    <select class="form-select form-select-lg" id="panelTech" onchange="handlePanelTechChange()" required>
+                                        <option value="TOPCon" selected>TOPCon</option>
+                                        <option value="Bifacial">Bifacial</option>
+                                        <option value="Mono PERC">Mono PERC</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="form-label fw-bold small text-muted">Certification</label>
-                                    <select class="form-select form-select-lg" id="panelCert" onchange="handlePanelCertChange()" required disabled>
-                                        <option value="">Select...</option>
+                                    <select class="form-select form-select-lg" id="panelCert" onchange="handlePanelCertChange()" required>
+                                        <option value="NDCR" selected>NDCR</option>
+                                        <option value="DCR">DCR</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="form-label fw-bold small text-muted">Wattage (Wp)</label>
-                                    <select class="form-select form-select-lg" id="panelWatt" onchange="handlePanelWattChange()" required disabled>
-                                        <option value="">Select...</option>
+                                    <select class="form-select form-select-lg" id="panelWatt" onchange="handlePanelWattChange()" required>
+                                        <option value="605" selected>605W</option>
+                                        <option value="610">610W</option>
+                                        <option value="615">615W</option>
+                                        <option value="620">620W</option>
+                                        <option value="625">625W</option>
+                                        <option value="540">540W</option>
+                                        <option value="550">550W</option>
+                                        <option value="580">580W</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3 mt-3">
@@ -152,19 +161,29 @@
                                 <div class="col-md-3 mt-3">
                                     <label class="form-label fw-bold small text-muted">Solar Inverter Brand</label>
                                     <select class="form-select form-select-lg" id="inverterBrand" onchange="handleInverterBrandChange()" required>
-                                        <option value="">Select...</option>
+                                        <option value="Solis" selected>Solis</option>
+                                        <option value="Deye">Deye</option>
+                                        <option value="Growatt">Growatt</option>
+                                        <option value="GoodWe">GoodWe</option>
+                                        <option value="Sungrow">Sungrow</option>
+                                        <option value="Sofar">Sofar</option>
+                                        <option value="Ksolare">Ksolare</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3 mt-3">
                                     <label class="form-label fw-bold small text-muted">Inverter Capacity</label>
-                                    <select class="form-select form-select-lg" id="inverterCap" onchange="handleInverterCapChange()" required disabled>
-                                        <option value="">Select...</option>
+                                    <select class="form-select form-select-lg" id="inverterCap" onchange="handleInverterCapChange()" required>
+                                        <option value="3kW" selected>3kW</option>
+                                        <option value="5kW">5kW</option>
+                                        <option value="8kW">8kW</option>
+                                        <option value="10kW">10kW</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3 mt-3">
                                     <label class="form-label fw-bold small text-muted">Inverter Phase</label>
-                                    <select class="form-select form-select-lg" id="inverterPhase" onchange="handleInverterPhaseChange()" required disabled>
-                                        <option value="">Select...</option>
+                                    <select class="form-select form-select-lg" id="inverterPhase" onchange="handleInverterPhaseChange()" required>
+                                        <option value="Single Phase" selected>Single Phase</option>
+                                        <option value="Three Phase">Three Phase</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3 mt-3 d-none" id="manualInverterQtyWrapper">
@@ -354,9 +373,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/db.js?v=20261028_cascade_v3"></script>
-    <script src="js/engine_v2.js?v=20261028_cascade_v3"></script>
-    <script src="js/app_v2.js?v=20261028_cascade_v3"></script>
+    <script src="js/engine_v2.js?v=20261028_cascade_v4"></script>
+    <script src="js/app_v2.js?v=20261028_cascade_v4"></script>
     <script>
         // Hide Admin UI elements for Sales users
         if (sessionStorage.getItem('solis_user_role') !== 'admin') {

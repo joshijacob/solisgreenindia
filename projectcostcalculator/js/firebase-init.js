@@ -30,29 +30,32 @@ async function syncFirebaseToLocal() {
             const fbMaster = masterSnap.data();
             const localMaster = localStorage.getItem('solis-master-data');
             
-            // Schema validation: if firebase has old schema or is missing required collections, force push local up
+            // Schema validation: if firebase has old schema or is missing required collections or has fewer than 25 panels, force push full master
             if (
                 fbMaster.panels !== undefined || 
                 fbMaster.panelProducts === undefined ||
                 fbMaster.inverterProducts === undefined ||
                 !fbMaster.supply || 
-                !fbMaster.profitMargins
+                !fbMaster.profitMargins ||
+                !Array.isArray(fbMaster.panelProducts) ||
+                fbMaster.panelProducts.length < 25
             ) {
-                if (localMaster) {
-                    await masterRef.set(JSON.parse(localMaster));
-                    console.log("Forced push of new Master schema to Firebase");
+                const dataToPush = localMaster ? JSON.parse(localMaster) : (typeof DEFAULT_MASTER_DATA !== 'undefined' ? DEFAULT_MASTER_DATA : null);
+                if (dataToPush) {
+                    await masterRef.set(dataToPush);
+                    console.log("Forced push of new Master schema (50 panels, 45 inverters) to Firebase");
                 }
             } else {
                 let needsUpdate = false;
                 
                 // Migrate legacy supply items that lack a category or have an invalid old category
                 if (fbMaster.supply) {
-                    const validCategories = DEFAULT_MASTER_DATA.SUPPLY_CATEGORIES || [];
+                    const validCategories = (typeof DEFAULT_MASTER_DATA !== 'undefined' && DEFAULT_MASTER_DATA.SUPPLY_CATEGORIES) ? DEFAULT_MASTER_DATA.SUPPLY_CATEGORIES : [];
                     for (const item in fbMaster.supply) {
                         const currentCat = fbMaster.supply[item].category;
                         if (!currentCat || !validCategories.includes(currentCat)) {
                             // Find default category from db.js, or fallback to Uncategorized
-                            const defaultCat = DEFAULT_MASTER_DATA.supply[item] 
+                            const defaultCat = (typeof DEFAULT_MASTER_DATA !== 'undefined' && DEFAULT_MASTER_DATA.supply && DEFAULT_MASTER_DATA.supply[item]) 
                                 ? DEFAULT_MASTER_DATA.supply[item].category 
                                 : 'Uncategorized';
                             fbMaster.supply[item].category = defaultCat;
