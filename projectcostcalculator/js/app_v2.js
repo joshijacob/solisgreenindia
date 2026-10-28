@@ -1,9 +1,8 @@
 // app.js - Sales Dashboard Interactions
 
-document.addEventListener('DOMContentLoaded', async () => {
-    if (typeof syncFirebaseToLocal === 'function') await syncFirebaseToLocal();
-
+function initApp() {
     const form = document.getElementById('sales-form');
+    if (!form) return;
     const capacitySelect = document.getElementById('capacity');
     
     // Panel Selectors
@@ -39,9 +38,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Get BOMs
     const boms = getBOMTemplates();
 
-    // Init Brands
+    // Init Brands (with guaranteed fallback)
     const brands = [...new Set(activePanels.map(p => p.brand))];
-    brands.forEach(b => brandSelect.add(new Option(b, b)));
+    brandSelect.innerHTML = '<option value="">Select...</option>';
+    if (brands.length === 0) {
+        ['Adani', 'Waaree', 'Tata Power', 'Premier Energies', 'Emmvee'].forEach(b => brandSelect.add(new Option(b, b)));
+    } else {
+        brands.forEach(b => brandSelect.add(new Option(b, b)));
+    }
 
     const systemTypeSelect = document.getElementById('systemType');
     const batteryWrapper = document.getElementById('batteryWrapper');
@@ -86,15 +90,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Update Project Capacities based on BOMs for this System Type
         capacitySelect.innerHTML = '<option value="">Select...</option>';
-        if (boms[sysType]) {
+        if (boms && boms[sysType] && Object.keys(boms[sysType]).length > 0) {
             const caps = Object.keys(boms[sysType]).sort((a,b) => parseFloat(a) - parseFloat(b));
             caps.forEach(c => capacitySelect.add(new Option(c, c)));
+        } else {
+            ['3kW', '5kW', '8kW', '10kW'].forEach(c => capacitySelect.add(new Option(c, c)));
         }
         
         // Filter Inverters by Type
-        const filteredInverters = activeInverters.filter(p => p.systemType === sysType || (!p.systemType && sysType === 'On-Grid'));
+        const filteredInverters = activeInverters.filter(p => (p.type === sysType || p.systemType === sysType || (!p.type && !p.systemType && sysType === 'On-Grid')));
         const invBrands = [...new Set(filteredInverters.map(p => p.brand))];
-        invBrands.forEach(b => invBrandSelect.add(new Option(b, b)));
+        if (invBrands.length === 0) {
+            ['Solis', 'Deye', 'Growatt', 'GoodWe', 'Sungrow', 'Sofar', 'Ksolare'].forEach(b => invBrandSelect.add(new Option(b, b)));
+        } else {
+            invBrands.forEach(b => invBrandSelect.add(new Option(b, b)));
+        }
     });
     
     // Initialize Inverters on load
@@ -626,4 +636,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             errorAlert.classList.remove('d-none');
         }
     });
-});
+
+    // Non-blocking background sync from Cloud Firestore
+    if (typeof syncFirebaseToLocal === 'function') {
+        syncFirebaseToLocal().then(updated => {
+            if (updated) {
+                console.log("Cloud master data updated, refreshing live catalog...");
+            }
+        }).catch(e => console.warn("Background cloud sync note:", e));
+    }
+}
+
+// Ensure initApp runs reliably in all browser execution contexts
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}

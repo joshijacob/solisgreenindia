@@ -249,18 +249,58 @@ const DEFAULT_BOM_TEMPLATES = {
     }
 };
 
-// Data Access Methods
-const getMasterData = () => JSON.parse(localStorage.getItem('solis-master-data'));
+// Data Access Methods (with guaranteed safe fallbacks)
+const getMasterData = () => {
+    try {
+        const raw = localStorage.getItem('solis-master-data');
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && Array.isArray(parsed.panelProducts) && Array.isArray(parsed.inverterProducts) && parsed.supply) {
+                return parsed;
+            }
+        }
+    } catch (e) {
+        console.warn("getMasterData parse fallback:", e);
+    }
+    try { localStorage.setItem('solis-master-data', JSON.stringify(DEFAULT_MASTER_DATA)); } catch(e){}
+    return DEFAULT_MASTER_DATA;
+};
+
 const saveMasterData = (data) => {
-    localStorage.setItem('solis-master-data', JSON.stringify(data));
+    try { localStorage.setItem('solis-master-data', JSON.stringify(data)); } catch(e){}
     if (typeof pushMasterToFirebase === 'function') pushMasterToFirebase(data);
 };
 
-const getBOMTemplates = () => JSON.parse(localStorage.getItem('solis-bom-templates'));
+const getBOMTemplates = () => {
+    try {
+        const raw = localStorage.getItem('solis-bom-templates');
+        if (raw) {
+            const parsed = JSON.parse(raw);
+            if (parsed && parsed['On-Grid'] && parsed['On-Grid']['3kW']) {
+                return parsed;
+            }
+        }
+    } catch (e) {
+        console.warn("getBOMTemplates parse fallback:", e);
+    }
+    try { localStorage.setItem('solis-bom-templates', JSON.stringify(DEFAULT_BOM_TEMPLATES)); } catch(e){}
+    return DEFAULT_BOM_TEMPLATES;
+};
+
 const saveBOMTemplates = (data) => {
-    localStorage.setItem('solis-bom-templates', JSON.stringify(data));
+    try { localStorage.setItem('solis-bom-templates', JSON.stringify(data)); } catch(e){}
     if (typeof pushBOMToFirebase === 'function') pushBOMToFirebase(data);
 };
+
+// Global window exposure
+if (typeof window !== 'undefined') {
+    window.getMasterData = getMasterData;
+    window.saveMasterData = saveMasterData;
+    window.getBOMTemplates = getBOMTemplates;
+    window.saveBOMTemplates = saveBOMTemplates;
+    window.DEFAULT_MASTER_DATA = DEFAULT_MASTER_DATA;
+    window.DEFAULT_BOM_TEMPLATES = DEFAULT_BOM_TEMPLATES;
+}
 
 // Reset logic for ERP Module
 let storedData = localStorage.getItem('solis-master-data');

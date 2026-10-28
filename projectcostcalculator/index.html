@@ -104,7 +104,10 @@
                                     <label class="form-label fw-bold small text-muted">Project Capacity</label>
                                     <select class="form-select form-select-lg" id="capacity" required>
                                         <option value="">Select...</option>
-                                        <!-- Injected via app.js -->
+                                        <option value="3kW">3kW</option>
+                                        <option value="5kW">5kW</option>
+                                        <option value="8kW">8kW</option>
+                                        <option value="10kW">10kW</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 d-none" id="batteryWrapper">
@@ -117,6 +120,11 @@
                                     <label class="form-label fw-bold small text-muted">Panel Brand</label>
                                     <select class="form-select form-select-lg" id="panelBrand" required>
                                         <option value="">Select...</option>
+                                        <option value="Adani">Adani</option>
+                                        <option value="Waaree">Waaree</option>
+                                        <option value="Tata Power">Tata Power</option>
+                                        <option value="Premier Energies">Premier Energies</option>
+                                        <option value="Emmvee">Emmvee</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
@@ -346,9 +354,9 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/db.js?v=18"></script>
-    <script src="js/engine_v2.js?v=18"></script>
-    <script src="js/app_v2.js?v=18"></script>
+    <script src="js/db.js?v=20261028_1"></script>
+    <script src="js/engine_v2.js?v=20261028_1"></script>
+    <script src="js/app_v2.js?v=20261028_1"></script>
     <script>
         // Hide Admin UI elements for Sales users
         if (sessionStorage.getItem('solis_user_role') !== 'admin') {
