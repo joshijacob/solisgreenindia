@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solis Central Portal | Operational Modules & Admin Data Hub</title>
@@ -361,6 +364,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 </style>
+    <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -438,18 +442,25 @@
             <h2 class="fw-bold font-display text-dark mb-1">Central Operations & EPC Data Hub</h2>
             <p class="text-muted small mb-3">Empowering Kerala's rooftop solar transition with real-time intelligence and precision costing.</p>
 
-            <!-- Positive Thought Card -->
+            <!-- Positive Thought Card with Malayalam / English Toggle -->
             <div class="thought-card p-3 p-md-4 mx-auto mb-3 text-start">
-                <div class="d-flex align-items-center gap-2 mb-2">
-                    <div class="thought-icon">
-                        <i class="fa-solid fa-sun text-warning"></i>
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="thought-icon">
+                            <i class="fa-solid fa-sun text-warning"></i>
+                        </div>
+                        <span class="fw-bold text-uppercase" id="thoughtHeaderTitle" style="color: #ea580c; letter-spacing: 0.08em; font-size: 0.72rem;">ഇന്നത്തെ പോസിറ്റീവ് ചിന്ത</span>
                     </div>
-                    <span class="fw-bold text-uppercase" style="color: #ea580c; letter-spacing: 0.08em; font-size: 0.72rem;">Today's Positive Thought</span>
+                    <!-- Language Switcher Pill -->
+                    <div class="d-flex align-items-center bg-white border rounded-pill shadow-sm p-1" style="border-color: #fed7aa !important;">
+                        <button type="button" class="btn btn-sm py-0 px-2 rounded-pill fw-bold" id="btnLangMl" onclick="setThoughtLang('ml')" style="font-size: 0.72rem; background: #ea580c; color: white;">മലയാളം</button>
+                        <button type="button" class="btn btn-sm py-0 px-2 rounded-pill fw-bold text-muted" id="btnLangEn" onclick="setThoughtLang('en')" style="font-size: 0.72rem; background: transparent;">English</button>
+                    </div>
                 </div>
-                <blockquote class="thought-text mb-2 font-display fs-5 fw-semibold text-dark" id="positiveThoughtText">
-                    "Powering a sustainable tomorrow with every ray of sunshine. Great work begins with clean energy, strong purpose, and collective passion."
+                <blockquote class="thought-text mb-2 fs-5 fw-semibold text-dark" id="positiveThoughtText" style="line-height: 1.55; font-family: 'Noto Sans Malayalam', 'Plus Jakarta Sans', sans-serif;">
+                    "സൂര്യൻ ഒരിക്കലും പകരം ഒന്നും ചോദിക്കുന്നില്ല, എങ്കിലും ഈ ലോകത്തെ മുഴുവൻ പ്രകാശിപ്പിക്കുന്നു. ആ അനന്തമായ ഊർജ്ജത്തെ പ്രയോജനപ്പെടുത്തി ശാശ്വതമായ മൂല്യം സൃഷ്ടിക്കാം."
                 </blockquote>
-                <div class="text-end text-muted small fst-italic" id="thoughtAuthor">— Solis Energy Daily Wisdom</div>
+                <div class="text-end text-muted small fst-italic" id="thoughtAuthor">— സൗരോർജ്ജ സന്ദേശം (Solar Energy Wisdom)</div>
             </div>
 
             <!-- 5-Second Countdown Timer & Visual Progress -->
@@ -824,49 +835,108 @@
             return HARDCODED_FALLBACK_USERS;
         }
 
-        // Curated Positive Thoughts for Solis Green Energy
+        // Curated Bilingual Positive Thoughts for Solis Green Energy (Malayalam & English)
         const POSITIVE_THOUGHTS = [
             {
-                quote: "Powering a sustainable tomorrow with every ray of sunshine. Great work begins with clean energy, strong purpose, and collective passion.",
-                author: "Solis Daily Inspiration"
+                quote_en: "The sun never asks for anything in return, yet it lights up the whole world. Harness its infinite energy to create lasting value.",
+                author_en: "Solar Energy Wisdom",
+                quote_ml: "സൂര്യൻ ഒരിക്കലും പകരം ഒന്നും ചോദിക്കുന്നില്ല, എങ്കിലും ഈ ലോകത്തെ മുഴുവൻ പ്രകാശിപ്പിക്കുന്നു. ആ അനന്തമായ ഊർജ്ജത്തെ പ്രയോജനപ്പെടുത്തി ശാശ്വതമായ മൂല്യം സൃഷ്ടിക്കാം.",
+                author_ml: "സൗരോർജ്ജ സന്ദേശം (Solar Energy Wisdom)"
             },
             {
-                quote: "The sun never asks for anything in return, yet it lights up the whole world. Harness its infinite energy to create lasting value.",
-                author: "Solar Energy Wisdom"
+                quote_en: "Powering a sustainable tomorrow with every ray of sunshine. Great work begins with clean energy, strong purpose, and collective passion.",
+                author_en: "Solis Daily Inspiration",
+                quote_ml: "ഓരോ സൂര്യകിരണത്തിലും സുസ്ഥിരമായൊരു നാളെയെ കരുപ്പിടിപ്പിക്കുന്നു. ശുദ്ധമായ ഊർജ്ജവും ഉന്നതമായ ലക്ഷ്യബോധവും ഒത്തുചേരുമ്പോഴാണ് മഹത്തായ നേട്ടങ്ങൾ സാധ്യമാകുന്നത്.",
+                author_ml: "സോളിസ് പ്രതിദിന സന്ദേശം (Solis Daily Wisdom)"
             },
             {
-                quote: "Every rooftop solar system we build illuminates clean progress for Kerala's homes, businesses, and future generations.",
-                author: "Solis Engineering Philosophy"
+                quote_en: "Every rooftop solar system we build illuminates clean progress for Kerala's homes, businesses, and future generations.",
+                author_en: "Solis Engineering Philosophy",
+                quote_ml: "നാം നിർമ്മിക്കുന്ന ഓരോ റൂഫ്‌ടോപ്പ് സോളാർ സംവിധാനവും കേരളത്തിലെ വീടുകൾക്കും ബിസിനസ്സുകൾക്കും വരുംതലമുറകൾക്കും ശുദ്ധമായ പുരോഗതിയുടെ വെളിച്ചമേകുന്നു.",
+                author_ml: "സോളിസ് എഞ്ചിനീയറിംഗ് തത്ത്വചിന്ത (Engineering Philosophy)"
             },
             {
-                quote: "Energy is the essence of life. When you direct positive energy toward a noble goal, the results are boundless.",
-                author: "Clean Energy Leadership"
+                quote_en: "Energy is the essence of life. When you direct positive energy toward a noble goal, the results are boundless.",
+                author_en: "Clean Energy Leadership",
+                quote_ml: "ഊർജ്ജമാണ് ജീവന്റെ ആധാരം. ഒരു നല്ല ലക്ഷ്യത്തിലേക്ക് നിങ്ങളുടെ പോസിറ്റീവ് ഊർജ്ജം നയിക്കുമ്പോൾ, ഫലങ്ങൾ അനന്തമായിരിക്കും.",
+                author_ml: "ക്ലീൻ എനർജി നേതൃത്വം (Clean Energy Leadership)"
             },
             {
-                quote: "Rise like the morning sun: bright, steadfast, and full of positive power to illuminate the day's challenges.",
-                author: "Daily Motivation"
+                quote_en: "Rise like the morning sun: bright, steadfast, and full of positive power to illuminate the day's challenges.",
+                author_en: "Daily Motivation",
+                quote_ml: "പ്രഭാത സൂര്യനെപ്പോലെ ഉണരുക: തിളക്കമുള്ളതും, ഉറച്ചതും, ഇന്നത്തെ വെല്ലുവിളികളെ നേരിടാൻ പോസിറ്റീവ് ഊർജ്ജം നിറഞ്ഞതുമായി.",
+                author_ml: "പ്രതിദിന പ്രചോദനം (Daily Motivation)"
             },
             {
-                quote: "True innovation in clean tech is about empowering every community to achieve lasting energy independence.",
-                author: "Solis Core Values"
+                quote_en: "True innovation in clean tech is about empowering every community to achieve lasting energy independence.",
+                author_en: "Solis Core Values",
+                quote_ml: "ഓരോ പ്രദേശത്തെയും ശാശ്വതമായ ഊർജ്ജ സ്വയംപര്യാപ്തത കൈവരിക്കാൻ പ്രാപ്തരാക്കുന്നതിലാണ് ഹരിത സാങ്കേതികവിദ്യയുടെ യഥാർത്ഥ വിജയം.",
+                author_ml: "സോളിസ് മൂല്യങ്ങൾ (Solis Core Values)"
             },
             {
-                quote: "A greener planet is built one rooftop, one solar module, and one committed team at a time.",
-                author: "Team Solis Green"
+                quote_en: "A greener planet is built one rooftop, one solar module, and one committed team at a time.",
+                author_en: "Team Solis Green",
+                quote_ml: "ഓരോ മേൽക്കൂരയും ഓരോ സോളാർ പാനലും ഒരുമയോടെയുള്ള ഓരോ ചുവടുവെപ്പിലൂടെയുമാണ് ഹരിത ഭൂമിയെന്ന സ്വപ്നം യാഥാർത്ഥ്യമാകുന്നത്.",
+                author_ml: "ടീം സോളിസ് ഗ്രീൻ (Team Solis Green)"
             }
         ];
 
+        let currentThoughtLang = localStorage.getItem('solis_thought_lang') || 'ml'; // Default to Malayalam
         const urlParams = new URLSearchParams(window.location.search);
         const redirectTarget = urlParams.get('redirect');
         let timerInterval = null;
         let countdownTimerSeconds = 5;
 
-        // Pick a positive thought
-        function setPositiveThought() {
+        function setThoughtLang(lang) {
+            currentThoughtLang = lang;
+            localStorage.setItem('solis_thought_lang', lang);
+            updateThoughtDisplay();
+        }
+
+        function updateThoughtDisplay() {
             const dayIndex = new Date().getDate() % POSITIVE_THOUGHTS.length;
             const thought = POSITIVE_THOUGHTS[dayIndex] || POSITIVE_THOUGHTS[0];
-            document.getElementById('positiveThoughtText').textContent = `"${thought.quote}"`;
-            document.getElementById('thoughtAuthor').textContent = `— ${thought.author}`;
+            const titleEl = document.getElementById('thoughtHeaderTitle');
+            const quoteEl = document.getElementById('positiveThoughtText');
+            const authorEl = document.getElementById('thoughtAuthor');
+            const btnMl = document.getElementById('btnLangMl');
+            const btnEn = document.getElementById('btnLangEn');
+
+            if (currentThoughtLang === 'ml') {
+                if (titleEl) titleEl.textContent = "ഇന്നത്തെ പോസിറ്റീവ് ചിന്ത";
+                if (quoteEl) {
+                    quoteEl.textContent = `"${thought.quote_ml}"`;
+                    quoteEl.style.fontFamily = "'Noto Sans Malayalam', sans-serif";
+                }
+                if (authorEl) authorEl.textContent = `— ${thought.author_ml}`;
+                if (btnMl) {
+                    btnMl.style.background = '#ea580c';
+                    btnMl.style.color = '#ffffff';
+                }
+                if (btnEn) {
+                    btnEn.style.background = 'transparent';
+                    btnEn.style.color = '#64748b';
+                }
+            } else {
+                if (titleEl) titleEl.textContent = "Today's Positive Thought";
+                if (quoteEl) {
+                    quoteEl.textContent = `"${thought.quote_en}"`;
+                    quoteEl.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+                }
+                if (authorEl) authorEl.textContent = `— ${thought.author_en}`;
+                if (btnEn) {
+                    btnEn.style.background = '#ea580c';
+                    btnEn.style.color = '#ffffff';
+                }
+                if (btnMl) {
+                    btnMl.style.background = 'transparent';
+                    btnMl.style.color = '#64748b';
+                }
+            }
+        }
+
+        function setPositiveThought() {
+            updateThoughtDisplay();
         }
 
         // Check authentication state
@@ -874,9 +944,27 @@
             if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
                 sessionStorage.setItem('solis_auth_token', 'true');
                 sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
+                sessionStorage.setItem('solis_user_name', localStorage.getItem('solis_user_name') || '');
                 sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
                 sessionStorage.setItem('solis_user_permissions', localStorage.getItem('solis_user_permissions') || '{}');
                 sessionStorage.setItem('solis_admin_logged_in', localStorage.getItem('solis_admin_logged_in') || 'false');
+            }
+
+            // Normalize missing or generic user names
+            const curEmail = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase();
+            let curName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name') || '';
+            if (!curName || curName === 'User' || curName.includes('@')) {
+                if (curEmail === 'solisgreenenergysolutions@gmail.com') {
+                    curName = 'Solis Super Admin';
+                } else if (curEmail.includes('joshi') || !curEmail) {
+                    curName = 'Joshi Jacob';
+                } else if (curEmail.includes('kannan') || curEmail.includes('sales2')) {
+                    curName = 'Kannan Deepu';
+                } else {
+                    curName = curEmail.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                }
+                sessionStorage.setItem('solis_user_name', curName);
+                localStorage.setItem('solis_user_name', curName);
             }
 
             const isAuth = sessionStorage.getItem('solis_auth_token') === 'true';

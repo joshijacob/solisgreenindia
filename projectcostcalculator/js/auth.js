@@ -45,11 +45,21 @@ if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getIte
     sessionStorage.setItem('solis_user_permissions', localStorage.getItem('solis_user_permissions') || '{}');
 }
 
-// Auto-fill user name if missing but email is present
-const currentEmail = sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email');
-let currentName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name');
-if ((!currentName || currentName.includes('@')) && currentEmail) {
-    currentName = resolveSalesExecutiveName(currentEmail);
+// Auto-fill user name if missing or generic
+const currentEmail = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase();
+let currentName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name') || '';
+const curRole = (sessionStorage.getItem('solis_user_role') || localStorage.getItem('solis_user_role') || 'sales').toLowerCase();
+
+if (!currentName || currentName === 'User' || currentName.includes('@')) {
+    if (currentEmail === 'solisgreenenergysolutions@gmail.com' || curRole === 'super_admin') {
+        currentName = 'Solis Super Admin';
+    } else if (currentEmail) {
+        currentName = resolveSalesExecutiveName(currentEmail);
+    } else if (curRole === 'admin') {
+        currentName = 'Solis Admin';
+    } else {
+        currentName = 'Joshi Jacob';
+    }
     sessionStorage.setItem('solis_user_name', currentName);
     localStorage.setItem('solis_user_name', currentName);
 }

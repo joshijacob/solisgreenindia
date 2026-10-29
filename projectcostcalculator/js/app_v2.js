@@ -997,11 +997,20 @@ async function setupSalesExecutiveControl() {
     const storedEmail = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase();
     let storedName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name') || '';
 
-    if (!storedName || storedName.includes('@')) {
-        storedName = (typeof window.resolveSalesExecutiveName === 'function')
-            ? window.resolveSalesExecutiveName(storedEmail)
-            : 'Sales Executive';
+    if (!storedName || storedName === 'User' || storedName.includes('@')) {
+        if (storedEmail === 'solisgreenenergysolutions@gmail.com' || role === 'super_admin') {
+            storedName = 'Solis Super Admin';
+        } else if (storedEmail) {
+            storedName = (typeof window.resolveSalesExecutiveName === 'function')
+                ? window.resolveSalesExecutiveName(storedEmail)
+                : 'Sales Executive';
+        } else if (role === 'admin') {
+            storedName = 'Solis Admin';
+        } else {
+            storedName = 'Joshi Jacob';
+        }
         sessionStorage.setItem('solis_user_name', storedName);
+        localStorage.setItem('solis_user_name', storedName);
     }
 
     const isSalesUser = (role === 'sales' || role === 'sales_executive');
@@ -1188,3 +1197,16 @@ async function populateSalesExecutiveDropdown(selectEl) {
     }
 }
 window.setupSalesExecutiveControl = setupSalesExecutiveControl;
+
+// Immediately trigger Sales Executive setup as soon as DOM is interactive
+if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof setupSalesExecutiveControl === 'function') setupSalesExecutiveControl();
+        });
+    } else {
+        setTimeout(() => {
+            if (typeof setupSalesExecutiveControl === 'function') setupSalesExecutiveControl();
+        }, 10);
+    }
+}

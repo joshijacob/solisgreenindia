@@ -4,24 +4,97 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "redirects": [
-    { "source": "/assets/christmas-offer/:path*", "destination": "/", "permanent": true },
-    { "source": "/assets/christmas-offer", "destination": "/", "permanent": true },
-    { "source": "/assets/christmas-offer/", "destination": "/", "permanent": true }
+    {
+      "source": "/assets/christmas-offer/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/assets/christmas-offer",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/assets/christmas-offer/",
+      "destination": "/",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/login", "destination": "/Login/index.html" },
-    { "source": "/login/", "destination": "/Login/index.html" },
-    { "source": "/Login", "destination": "/Login/index.html" },
-    { "source": "/Login/", "destination": "/Login/index.html" },
-    { "source": "/analytics", "destination": "/analytics/index.html" },
-    { "source": "/analytics/", "destination": "/analytics/index.html" },
-    { "source": "/seo", "destination": "/seo/index.html" },
-    { "source": "/seo/", "destination": "/seo/index.html" },
-    { "source": "/leads", "destination": "/leads/index.html" },
-    { "source": "/leads/", "destination": "/leads/index.html" },
-    { "source": "/careers/admin", "destination": "/careers/admin/index.html" },
-    { "source": "/careers/admin/", "destination": "/careers/admin/index.html" },
-    { "source": "/users", "destination": "/users/index.html" },
-    { "source": "/users/", "destination": "/users/index.html" }
+    {
+      "source": "/login",
+      "destination": "/Login/index.html"
+    },
+    {
+      "source": "/login/",
+      "destination": "/Login/index.html"
+    },
+    {
+      "source": "/Login",
+      "destination": "/Login/index.html"
+    },
+    {
+      "source": "/Login/",
+      "destination": "/Login/index.html"
+    },
+    {
+      "source": "/analytics",
+      "destination": "/analytics/index.html"
+    },
+    {
+      "source": "/analytics/",
+      "destination": "/analytics/index.html"
+    },
+    {
+      "source": "/seo",
+      "destination": "/seo/index.html"
+    },
+    {
+      "source": "/seo/",
+      "destination": "/seo/index.html"
+    },
+    {
+      "source": "/leads",
+      "destination": "/leads/index.html"
+    },
+    {
+      "source": "/leads/",
+      "destination": "/leads/index.html"
+    },
+    {
+      "source": "/careers/admin",
+      "destination": "/careers/admin/index.html"
+    },
+    {
+      "source": "/careers/admin/",
+      "destination": "/careers/admin/index.html"
+    },
+    {
+      "source": "/users",
+      "destination": "/users/index.html"
+    },
+    {
+      "source": "/users/",
+      "destination": "/users/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(projectcostcalculator|Login|users|leads|analytics|seo|careers/admin)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Pragma",
+          "value": "no-cache"
+        },
+        {
+          "key": "Expires",
+          "value": "0"
+        }
+      ]
+    }
   ]
 }
