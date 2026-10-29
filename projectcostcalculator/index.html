@@ -12,10 +12,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="js/db.js?v=20261029_fix_v2"></script>
+    <script src="js/db.js?v=20261029_fix_v3"></script>
     <script src="js/firebase-init.js"></script>
 
-    <script src="js/auth.js?v=20261029_fix_v2"></script>
+    <script src="js/auth.js?v=20261029_fix_v3"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -78,6 +78,38 @@
                         <span class="text-muted text-uppercase nav-user-role" style="font-size: 0.62rem; letter-spacing: 0.04em;">Role</span>
                     </div>
                 </div>
+                <script>
+                    (function() {
+                        try {
+                            const role = (sessionStorage.getItem('solis_user_role') || localStorage.getItem('solis_user_role') || 'sales').toLowerCase();
+                            let name = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name') || '';
+                            const email = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase();
+                            const isSuper = (email === 'solisgreenenergysolutions@gmail.com' || role === 'super_admin');
+                            if (!name || name === 'User' || name.includes('@')) {
+                                name = isSuper ? 'Solis Super Admin' : (email.includes('kannan') || email.includes('sales2') ? 'Kannan Deepu' : 'Joshi Jacob');
+                                sessionStorage.setItem('solis_user_name', name);
+                                localStorage.setItem('solis_user_name', name);
+                            }
+                            const nameEl = document.querySelector('.nav-user-name');
+                            const roleEl = document.querySelector('.nav-user-role');
+                            const avatarEl = document.querySelector('.nav-user-avatar');
+                            if (nameEl) nameEl.textContent = name;
+                            if (roleEl) {
+                                if (isSuper) {
+                                    roleEl.innerHTML = '<i class="fa-solid fa-crown me-1 text-warning"></i> SUPER ADMIN';
+                                    roleEl.className = 'badge bg-warning-subtle text-dark border border-warning-subtle fw-bold text-uppercase nav-user-role';
+                                    if (avatarEl) avatarEl.className = 'nav-user-avatar bg-dark text-warning rounded-circle d-flex align-items-center justify-content-center';
+                                } else if (role === 'admin') {
+                                    roleEl.textContent = 'ADMIN';
+                                    roleEl.className = 'badge bg-danger-subtle text-danger border border-danger-subtle text-uppercase nav-user-role';
+                                } else {
+                                    roleEl.textContent = 'SALES EXECUTIVE';
+                                    roleEl.className = 'badge bg-primary-subtle text-primary border border-primary-subtle text-uppercase nav-user-role';
+                                }
+                            }
+                        } catch(e) {}
+                    })();
+                </script>
 
                 <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill" title="Return to Modules Hub">
                     <i class="fa-solid fa-grip me-1"></i> Modules Hub
@@ -266,6 +298,41 @@
                                         <input type="text" class="form-control form-control-lg fw-semibold" id="salesExecutive" placeholder="Sales Executive Name" required>
                                     </div>
                                     <div id="salesExecHelpText" class="form-text text-muted small mt-1" style="font-size: 0.72rem;"></div>
+                                    <script>
+                                        (function() {
+                                            try {
+                                                const role = (sessionStorage.getItem('solis_user_role') || localStorage.getItem('solis_user_role') || 'sales').toLowerCase();
+                                                let name = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name') || '';
+                                                const email = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase();
+                                                const isSuper = (email === 'solisgreenenergysolutions@gmail.com' || role === 'super_admin');
+                                                const isSales = (role === 'sales' || role === 'sales_executive' || (!isSuper && role !== 'admin'));
+
+                                                if (!name || name === 'User' || name.includes('@')) {
+                                                    name = isSuper ? 'Solis Super Admin' : (email.includes('kannan') || email.includes('sales2') ? 'Kannan Deepu' : 'Joshi Jacob');
+                                                    sessionStorage.setItem('solis_user_name', name);
+                                                    localStorage.setItem('solis_user_name', name);
+                                                }
+
+                                                const execEl = document.getElementById('salesExecutive');
+                                                const badgeEl = document.getElementById('salesExecRoleBadge');
+                                                const helpEl = document.getElementById('salesExecHelpText');
+
+                                                if (isSales && execEl) {
+                                                    execEl.value = name;
+                                                    execEl.readOnly = true;
+                                                    execEl.classList.add('bg-light');
+                                                    execEl.style.cursor = 'not-allowed';
+                                                    if (badgeEl) {
+                                                        badgeEl.className = 'badge rounded-pill bg-success-subtle text-success border border-success-subtle';
+                                                        badgeEl.innerHTML = '<i class="fa-solid fa-user-check me-1"></i>Logged in';
+                                                    }
+                                                    if (helpEl) {
+                                                        helpEl.innerHTML = '<i class="fa-solid fa-lock text-muted me-1"></i>Auto-assigned to your account (' + name + ')';
+                                                    }
+                                                }
+                                            } catch(e) {}
+                                        })();
+                                    </script>
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label fw-bold small text-muted">Customer Name</label>
@@ -412,8 +479,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/engine_v2.js?v=20261029_fix_v2"></script>
-    <script src="js/app_v2.js?v=20261029_fix_v2"></script>
+    <script src="js/engine_v2.js?v=20261029_fix_v3"></script>
+    <script src="js/app_v2.js?v=20261029_fix_v3"></script>
     <script>
         // Hide Admin UI elements for Sales users (permit admin and super_admin)
         const currentRole = (sessionStorage.getItem('solis_user_role') || localStorage.getItem('solis_user_role') || '').toLowerCase();
