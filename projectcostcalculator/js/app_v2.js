@@ -997,8 +997,12 @@ async function setupSalesExecutiveControl() {
     const storedEmail = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase();
     let storedName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name') || '';
 
+    const isSuperAdmin = (storedEmail === 'solisgreenenergysolutions@gmail.com' || role === 'super_admin');
+    const isAdmin = isSuperAdmin || (role === 'admin');
+    const isSalesUser = !isAdmin && (role === 'sales' || role === 'sales_executive');
+
     if (!storedName || storedName === 'User' || storedName.includes('@')) {
-        if (storedEmail === 'solisgreenenergysolutions@gmail.com' || role === 'super_admin') {
+        if (isSuperAdmin) {
             storedName = 'Solis Super Admin';
         } else if (storedEmail) {
             storedName = (typeof window.resolveSalesExecutiveName === 'function')
@@ -1013,16 +1017,28 @@ async function setupSalesExecutiveControl() {
         localStorage.setItem('solis_user_name', storedName);
     }
 
-    const isSalesUser = (role === 'sales' || role === 'sales_executive');
-
     if (isSalesUser) {
         // --- CASE 1: LOGGED-IN SALES EXECUTIVE ---
         // Automatically show name as per login, locked/readonly
-        execInput.value = storedName;
-        execInput.readOnly = true;
-        execInput.classList.add('bg-light');
-        execInput.style.cursor = 'not-allowed';
-        execInput.title = `Auto-assigned to your login identity: ${storedName}`;
+        if (execInput.tagName === 'SELECT') {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.id = 'salesExecutive';
+            input.name = 'salesExecutive';
+            input.className = 'form-control form-control-lg fw-semibold bg-light';
+            input.required = true;
+            input.readOnly = true;
+            input.value = storedName;
+            input.style.cursor = 'not-allowed';
+            input.title = `Auto-assigned to your login identity: ${storedName}`;
+            execInput.replaceWith(input);
+        } else {
+            execInput.value = storedName;
+            execInput.readOnly = true;
+            execInput.classList.add('bg-light');
+            execInput.style.cursor = 'not-allowed';
+            execInput.title = `Auto-assigned to your login identity: ${storedName}`;
+        }
 
         if (badgeEl) {
             badgeEl.className = 'badge rounded-pill bg-success-subtle text-success border border-success-subtle';
@@ -1042,40 +1058,44 @@ async function setupSalesExecutiveControl() {
             helpEl.innerHTML = 'Select the Sales Executive who owns or is credited for this proposal.';
         }
 
-        // Replace the input with a select dropdown
-        const select = document.createElement('select');
-        select.id = 'salesExecutive';
-        select.name = 'salesExecutive';
-        select.className = 'form-select form-select-lg fw-semibold';
-        select.required = true;
-        select.innerHTML = '<option value="" disabled selected>-- Choose Sales Executive --</option>';
-
-        execInput.replaceWith(select);
+        // Use existing select or replace input with select dropdown
+        let select = execInput;
+        if (execInput.tagName !== 'SELECT') {
+            select = document.createElement('select');
+            select.id = 'salesExecutive';
+            select.name = 'salesExecutive';
+            select.className = 'form-select form-select-lg fw-semibold';
+            select.required = true;
+            execInput.replaceWith(select);
+        }
 
         // Populate options from team database and Firestore
         await populateSalesExecutiveDropdown(select);
 
         // Handle custom representative creation on the fly
-        select.addEventListener('change', function() {
-            if (this.value === '__custom__') {
-                const customName = prompt('Enter Sales Executive Name:');
-                if (customName && customName.trim()) {
-                    const cleanName = customName.trim();
-                    let match = Array.from(this.options).find(o => o.value.toLowerCase() === cleanName.toLowerCase());
-                    if (!match) {
-                        const opt = document.createElement('option');
-                        opt.value = cleanName;
-                        opt.textContent = `${cleanName} (Custom)`;
-                        this.appendChild(opt);
-                        opt.selected = true;
+        if (!select._customListenerBound) {
+            select._customListenerBound = true;
+            select.addEventListener('change', function() {
+                if (this.value === '__custom__') {
+                    const customName = prompt('Enter Sales Executive Name:');
+                    if (customName && customName.trim()) {
+                        const cleanName = customName.trim();
+                        let match = Array.from(this.options).find(o => o.value.toLowerCase() === cleanName.toLowerCase());
+                        if (!match) {
+                            const opt = document.createElement('option');
+                            opt.value = cleanName;
+                            opt.textContent = `${cleanName} (Custom)`;
+                            this.appendChild(opt);
+                            opt.selected = true;
+                        } else {
+                            match.selected = true;
+                        }
                     } else {
-                        match.selected = true;
+                        this.value = '';
                     }
-                } else {
-                    this.value = '';
                 }
-            }
-        });
+            });
+        }
     }
 }
 

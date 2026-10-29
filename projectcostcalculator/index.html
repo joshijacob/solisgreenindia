@@ -12,10 +12,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="js/db.js?v=20261029_fix_v3"></script>
+    <script src="js/db.js?v=20261029_fix_v4"></script>
     <script src="js/firebase-init.js"></script>
 
-    <script src="js/auth.js?v=20261029_fix_v3"></script>
+    <script src="js/auth.js?v=20261029_fix_v4"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -305,7 +305,8 @@
                                                 let name = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name') || '';
                                                 const email = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase();
                                                 const isSuper = (email === 'solisgreenenergysolutions@gmail.com' || role === 'super_admin');
-                                                const isSales = (role === 'sales' || role === 'sales_executive' || (!isSuper && role !== 'admin'));
+                                                const isAdmin = (role === 'admin' || isSuper);
+                                                const isSales = (!isAdmin && (role === 'sales' || role === 'sales_executive'));
 
                                                 if (!name || name === 'User' || name.includes('@')) {
                                                     name = isSuper ? 'Solis Super Admin' : (email.includes('kannan') || email.includes('sales2') ? 'Kannan Deepu' : 'Joshi Jacob');
@@ -317,11 +318,103 @@
                                                 const badgeEl = document.getElementById('salesExecRoleBadge');
                                                 const helpEl = document.getElementById('salesExecHelpText');
 
-                                                if (isSales && execEl) {
-                                                    execEl.value = name;
-                                                    execEl.readOnly = true;
-                                                    execEl.classList.add('bg-light');
-                                                    execEl.style.cursor = 'not-allowed';
+                                                if (isAdmin) {
+                                                    // SUPER ADMIN / ADMIN: Dropdown with registered Sales Executives
+                                                    if (badgeEl) {
+                                                        badgeEl.className = 'badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle';
+                                                        badgeEl.innerHTML = '<i class="fa-solid fa-users-gear me-1"></i>Admin: Choose Rep';
+                                                    }
+                                                    if (helpEl) {
+                                                        helpEl.innerHTML = 'Select the Sales Executive who owns or is credited for this proposal.';
+                                                    }
+
+                                                    // Replace input with select
+                                                    const select = document.createElement('select');
+                                                    select.id = 'salesExecutive';
+                                                    select.name = 'salesExecutive';
+                                                    select.className = 'form-select form-select-lg fw-semibold';
+                                                    select.required = true;
+
+                                                    // Build candidate list of registered users
+                                                    const candidates = new Map();
+                                                    // Core team
+                                                    candidates.set('joshi jacob', { name: 'Joshi Jacob', role: 'sales', isSales: true });
+                                                    candidates.set('kannan deepu', { name: 'Kannan Deepu', role: 'sales', isSales: true });
+                                                    candidates.set('solis super admin', { name: 'Solis Super Admin', role: 'super_admin', isSales: false });
+
+                                                    // Local DB users
+                                                    try {
+                                                        const dbUsers = JSON.parse(localStorage.getItem('solis_users_db') || '[]');
+                                                        if (Array.isArray(dbUsers)) {
+                                                            dbUsers.forEach(u => {
+                                                                if (u.name && u.status !== 'inactive') {
+                                                                    const k = u.name.toLowerCase();
+                                                                    if (!candidates.has(k)) {
+                                                                        candidates.set(k, { name: u.name, role: u.role || 'sales', isSales: (u.role === 'sales') });
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
+                                                    } catch(e) {}
+
+                                                    select.innerHTML = '<option value="" disabled selected>-- Choose Sales Executive --</option>';
+
+                                                    const salesGroup = document.createElement('optgroup');
+                                                    salesGroup.label = 'Sales Executives';
+                                                    const adminGroup = document.createElement('optgroup');
+                                                    adminGroup.label = 'Management / Direct';
+
+                                                    Array.from(candidates.values()).forEach(u => {
+                                                        const opt = document.createElement('option');
+                                                        opt.value = u.name;
+                                                        opt.textContent = u.name;
+                                                        if (u.isSales) {
+                                                            salesGroup.appendChild(opt);
+                                                        } else {
+                                                            opt.textContent = u.name + ' (Direct Admin)';
+                                                            adminGroup.appendChild(opt);
+                                                        }
+                                                    });
+
+                                                    if (salesGroup.children.length > 0) select.appendChild(salesGroup);
+                                                    if (adminGroup.children.length > 0) select.appendChild(adminGroup);
+
+                                                    const customOpt = document.createElement('option');
+                                                    customOpt.value = '__custom__';
+                                                    customOpt.textContent = '+ Enter Other / Custom Name...';
+                                                    select.appendChild(customOpt);
+
+                                                    select.addEventListener('change', function() {
+                                                        if (this.value === '__custom__') {
+                                                            const customName = prompt('Enter Sales Executive Name:');
+                                                            if (customName && customName.trim()) {
+                                                                const cleanName = customName.trim();
+                                                                let match = Array.from(this.options).find(o => o.value.toLowerCase() === cleanName.toLowerCase());
+                                                                if (!match) {
+                                                                    const opt = document.createElement('option');
+                                                                    opt.value = cleanName;
+                                                                    opt.textContent = cleanName + ' (Custom)';
+                                                                    this.appendChild(opt);
+                                                                    opt.selected = true;
+                                                                } else {
+                                                                    match.selected = true;
+                                                                }
+                                                            } else {
+                                                                this.value = '';
+                                                            }
+                                                        }
+                                                    });
+
+                                                    if (execEl) execEl.replaceWith(select);
+
+                                                } else {
+                                                    // SALES EXECUTIVE: Show logged in name, locked & readonly
+                                                    if (execEl) {
+                                                        execEl.value = name;
+                                                        execEl.readOnly = true;
+                                                        execEl.classList.add('bg-light');
+                                                        execEl.style.cursor = 'not-allowed';
+                                                    }
                                                     if (badgeEl) {
                                                         badgeEl.className = 'badge rounded-pill bg-success-subtle text-success border border-success-subtle';
                                                         badgeEl.innerHTML = '<i class="fa-solid fa-user-check me-1"></i>Logged in';
@@ -479,8 +572,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/engine_v2.js?v=20261029_fix_v3"></script>
-    <script src="js/app_v2.js?v=20261029_fix_v3"></script>
+    <script src="js/engine_v2.js?v=20261029_fix_v4"></script>
+    <script src="js/app_v2.js?v=20261029_fix_v4"></script>
     <script>
         // Hide Admin UI elements for Sales users (permit admin and super_admin)
         const currentRole = (sessionStorage.getItem('solis_user_role') || localStorage.getItem('solis_user_role') || '').toLowerCase();
