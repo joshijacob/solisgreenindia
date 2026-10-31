@@ -85,8 +85,9 @@ async function loadQuotes() {
             return;
         }
 
-        const userRole = sessionStorage.getItem('solis_user_role');
-        const userEmail = sessionStorage.getItem('solis_user_email');
+        const userRole = (sessionStorage.getItem('solis_user_role') || localStorage.getItem('solis_user_role') || '').toLowerCase();
+        const userEmail = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase();
+        const isAdmin = (userRole === 'admin' || userRole === 'super_admin' || userEmail === 'solisgreenenergysolutions@gmail.com');
 
         let html = '';
         let visibleCount = 0;
@@ -95,7 +96,7 @@ async function loadQuotes() {
             const data = doc.data();
             
             // If the user is a sales executive, skip quotes that don't belong to them
-            if (userRole !== 'admin' && data.createdByEmail !== userEmail) {
+            if (!isAdmin && data.createdByEmail !== userEmail) {
                 return;
             }
 
@@ -302,7 +303,7 @@ function viewQuote(id) {
                     </tbody>
                 </table>
             </div>
-            ${(quote.detailedBOM && quote.detailedBOM.length > 0 && sessionStorage.getItem('solis_user_role') === 'admin') ? `
+            ${(quote.detailedBOM && quote.detailedBOM.length > 0 && isAdmin) ? `
             <div class="col-12 mt-4">
                 <h6 class="text-muted fw-bold small text-uppercase mb-1">Detailed BOM</h6>
                 <div class="table-responsive">
@@ -328,7 +329,7 @@ function viewQuote(id) {
                     </table>
                 </div>
             </div>
-            ` : (sessionStorage.getItem('solis_user_role') !== 'admin' ? '' : `
+            ` : (!isAdmin ? '' : `
             <div class="col-12 mt-4 text-center text-muted small">
                 <em>Detailed BOM not saved for this quote.</em>
             </div>

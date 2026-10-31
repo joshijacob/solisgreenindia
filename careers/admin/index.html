@@ -12,24 +12,49 @@
 
     <!-- Central Solis Admin SSO Guard -->
     <script>
+        // 1. Cross-tab & persistence sync
         if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
             sessionStorage.setItem('solis_auth_token', 'true');
             sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
+            sessionStorage.setItem('solis_user_name', localStorage.getItem('solis_user_name') || '');
             sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
+            sessionStorage.setItem('solis_user_permissions', localStorage.getItem('solis_user_permissions') || '{}');
+            sessionStorage.setItem('solis_admin_logged_in', localStorage.getItem('solis_admin_logged_in') || 'false');
         }
 
-        const isAuth = sessionStorage.getItem('solis_auth_token') === 'true';
-        const userRole = sessionStorage.getItem('solis_user_role') || 'sales';
+        const isAuth = (sessionStorage.getItem('solis_auth_token') === 'true' || localStorage.getItem('solis_auth_token') === 'true');
+        const userEmail = (sessionStorage.getItem('solis_user_email') || localStorage.getItem('solis_user_email') || '').toLowerCase().trim();
+        const userRole = (sessionStorage.getItem('solis_user_role') || localStorage.getItem('solis_user_role') || 'sales').toLowerCase().trim();
+        const adminLoggedIn = (sessionStorage.getItem('solis_admin_logged_in') === 'true' || localStorage.getItem('solis_admin_logged_in') === 'true');
+
+        let userPerms = {};
+        try {
+            userPerms = JSON.parse(sessionStorage.getItem('solis_user_permissions') || localStorage.getItem('solis_user_permissions') || '{}');
+        } catch (e) {}
+
+        const isSuperAdmin = (userEmail === 'solisgreenenergysolutions@gmail.com') || (userRole === 'super_admin');
+        const isAuthorized = isSuperAdmin || (userRole === 'admin') || adminLoggedIn || (userPerms.careers_admin === true);
 
         if (!isAuth) {
             const redirectTarget = encodeURIComponent(window.location.pathname + window.location.search);
             window.location.href = '/Login/index.html?redirect=' + redirectTarget;
-        } else if (userRole !== 'admin') {
-            alert('Access restricted to Solis Admin.');
+        } else if (!isAuthorized) {
+            alert('Access restricted to Solis Admin and Authorized HR Managers.');
             window.location.href = '/Login/index.html';
         } else {
             sessionStorage.setItem('solis_admin_logged_in', 'true');
+            localStorage.setItem('solis_admin_logged_in', 'true');
         }
+
+        // Auto-populate navbar user badge once DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const nameEl = document.querySelector('.nav-user-name');
+            const roleEl = document.querySelector('.nav-user-role');
+            const userName = sessionStorage.getItem('solis_user_name') || localStorage.getItem('solis_user_name') || (isSuperAdmin ? 'Solis Super Admin' : 'Admin');
+            const displayRole = (userRole === 'super_admin' ? 'SUPER ADMIN' : userRole.toUpperCase().replace('_', ' '));
+            if (nameEl) nameEl.textContent = userName;
+            if (roleEl) roleEl.textContent = displayRole;
+        });
     </script>
 
     <!-- Bootstrap 5 & FontAwesome 6 -->
