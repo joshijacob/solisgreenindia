@@ -5,6 +5,16 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/pm-surya-ghar-subsidy-kerala/:path*",
+      "destination": "/pm-suryaghar-subsidy-kerala/",
+      "permanent": true
+    },
+    {
+      "source": "/pm-surya-ghar-subsidy-kerala",
+      "destination": "/pm-suryaghar-subsidy-kerala/",
+      "permanent": true
+    },
+    {
       "source": "/contact/contact.html",
       "destination": "/contact/",
       "permanent": true

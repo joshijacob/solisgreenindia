@@ -1290,7 +1290,9 @@ document.addEventListener('DOMContentLoaded', function() {
     '/3kw-solar-system-kerala-price/index.html',
     '/5kw-solar-system-kerala-price/',
     '/5kw-solar-system-kerala-price/index.html',
+    '/pm-suryaghar-subsidy-kerala/',
     '/pm-surya-ghar-subsidy-kerala/',
+    '/pm-suryaghar-subsidy-kerala/index.html',
     '/pm-surya-ghar-subsidy-kerala/index.html'
   ];
 
