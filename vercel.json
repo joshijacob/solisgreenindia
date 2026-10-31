@@ -5,6 +5,16 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/contact/contact.html",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/contact/contact",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
       "source": "/assets/christmas-offer/:path*",
       "destination": "/",
       "permanent": true

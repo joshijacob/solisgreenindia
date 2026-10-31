@@ -68,8 +68,75 @@
         .contact-hero p {
             font-size: 1.2rem;
             max-width: 700px;
-            margin: 0 auto 30px;
+            margin: 0 auto 25px;
             opacity: 0.9;
+        }
+        .contact-hero-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+        .contact-btn-hero {
+            padding: 14px 28px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+        }
+        .contact-btn-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+        }
+        .hero-contact-subline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            font-weight: 400;
+            margin-top: 15px;
+        }
+        .hero-contact-subline a {
+            color: #ffb74d;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .hero-contact-subline a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .hero-contact-subline i {
+            color: #ff9800;
+            margin-right: 5px;
+        }
+        .subline-divider {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+        }
+        @media (max-width: 640px) {
+            .contact-btn-hero {
+                width: 100%;
+                max-width: 320px;
+                justify-content: center;
+            }
+            .hero-contact-subline {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .subline-divider {
+                display: none;
+            }
         }
 
         /* Contact Grid Layout */
@@ -294,14 +361,22 @@
     </nav>
             <h1>Connect With Solar Experts</h1>
             <p>Get personalized solar solutions for your home or business. Call, WhatsApp, or visit our office in Thiruvalla for free consultation and site survey.</p>
-            <div class="hero-buttons">
-                <div class="contact-options">
-                    <a href="tel:8301849474" class="btn btn-primary pulse-animation"><i class="fas fa-phone"></i> Call Primary: 8301849474</a>
-                    <a href="tel:9539316623" class="btn btn-secondary"><i class="fas fa-phone-alt"></i> Alternate: 9539316623</a>
-                </div>
-                <div class="whatsapp-options">
-                    <a href="https://wa.me/918301849474" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Primary</a>
-                </div>
+            <div class="contact-hero-actions">
+                <a href="tel:8301849474" class="btn btn-primary pulse-animation contact-btn-hero">
+                    <i class="fas fa-phone-alt"></i> Call 83018 49474
+                </a>
+                <a href="https://wa.me/918301849474" class="btn btn-whatsapp contact-btn-hero" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Expert
+                </a>
+            </div>
+
+            <!-- Professional Secondary Contact Details Strip -->
+            <div class="hero-contact-subline">
+                <span><i class="fas fa-phone-volume"></i> Alternate: <a href="tel:9539316623">95393 16623</a></span>
+                <span class="subline-divider">•</span>
+                <span><i class="fas fa-map-marker-alt"></i> Muthoor, Thiruvalla</span>
+                <span class="subline-divider">•</span>
+                <span><i class="fas fa-clock"></i> Mon–Sun: 8:30 AM – 8:00 PM</span>
             </div>
         </div>
     </section>
