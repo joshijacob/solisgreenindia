@@ -18,6 +18,251 @@
       "source": "/assets/christmas-offer/",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/quote.html",
+      "destination": "/contact/quote.html",
+      "permanent": true
+    },
+    {
+      "source": "/quote",
+      "destination": "/contact/quote.html",
+      "permanent": true
+    },
+    {
+      "source": "/quote/",
+      "destination": "/contact/quote.html",
+      "permanent": true
+    },
+    {
+      "source": "/services/industrial-solar.html",
+      "destination": "/services/industrial-solar/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/solar-maintenance/:path*",
+      "destination": "/services/solar-maintenance/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/solar-maintenance",
+      "destination": "/services/solar-maintenance/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/solar-maintenance/",
+      "destination": "/services/solar-maintenance/",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-pathanamthitta/:path*",
+      "destination": "/solar-company-in-pathanamthitta/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-pathanamthitta",
+      "destination": "/solar-company-in-pathanamthitta/",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-pathanamthitta/",
+      "destination": "/solar-company-in-pathanamthitta/",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-kottayam/:path*",
+      "destination": "/solar-company-in-kottayam/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-kottayam",
+      "destination": "/solar-company-in-kottayam/",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-kottayam/",
+      "destination": "/solar-company-in-kottayam/",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-alappuzha/:path*",
+      "destination": "/solar-company-in-alappuzha/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-alappuzha",
+      "destination": "/solar-company-in-alappuzha/",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-alappuzha/",
+      "destination": "/solar-company-in-alappuzha/",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-kollam/:path*",
+      "destination": "/solar-company-in-kollam/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-kollam",
+      "destination": "/solar-company-in-kollam/",
+      "permanent": true
+    },
+    {
+      "source": "/cities/solar-company-in-kollam/",
+      "destination": "/solar-company-in-kollam/",
+      "permanent": true
+    },
+    {
+      "source": "/pandalam",
+      "destination": "/solar-company-in-pathanamthitta/pandalam/",
+      "permanent": true
+    },
+    {
+      "source": "/pandalam/",
+      "destination": "/solar-company-in-pathanamthitta/pandalam/",
+      "permanent": true
+    },
+    {
+      "source": "/konni",
+      "destination": "/solar-company-in-pathanamthitta/konni/",
+      "permanent": true
+    },
+    {
+      "source": "/konni/",
+      "destination": "/solar-company-in-pathanamthitta/konni/",
+      "permanent": true
+    },
+    {
+      "source": "/ezhamkulam",
+      "destination": "/solar-company-in-pathanamthitta/ezhamkulam/",
+      "permanent": true
+    },
+    {
+      "source": "/ezhamkulam/",
+      "destination": "/solar-company-in-pathanamthitta/ezhamkulam/",
+      "permanent": true
+    },
+    {
+      "source": "/enadimangalam",
+      "destination": "/solar-company-in-pathanamthitta/enadimangalam/",
+      "permanent": true
+    },
+    {
+      "source": "/enadimangalam/",
+      "destination": "/solar-company-in-pathanamthitta/enadimangalam/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-pathanamthitta/rami",
+      "destination": "/solar-company-in-pathanamthitta/ranni/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-pathanamthitta/rami/",
+      "destination": "/solar-company-in-pathanamthitta/ranni/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/karunagapally",
+      "destination": "/solar-company-in-kollam/karunagappally/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/karunagapally/",
+      "destination": "/solar-company-in-kollam/karunagappally/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kottayam/kanjirapally",
+      "destination": "/solar-company-in-kottayam/kanjirappally/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kottayam/kanjirapally/",
+      "destination": "/solar-company-in-kottayam/kanjirappally/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/punalur-town",
+      "destination": "/solar-company-in-kollam/punalur/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/punalur-town/",
+      "destination": "/solar-company-in-kollam/punalur/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/pathanapuram-road",
+      "destination": "/solar-company-in-kollam/punalur/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/pathanapuram-road/",
+      "destination": "/solar-company-in-kollam/punalur/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/anchal-road",
+      "destination": "/solar-company-in-kollam/anchal/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/anchal-road/",
+      "destination": "/solar-company-in-kollam/anchal/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/valacode",
+      "destination": "/solar-company-in-kollam/punalur/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/valacode/",
+      "destination": "/solar-company-in-kollam/punalur/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/thinkal-karikkakom",
+      "destination": "/solar-company-in-kollam/punalur/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/thinkal-karikkakom/",
+      "destination": "/solar-company-in-kollam/punalur/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/yeroor-road",
+      "destination": "/solar-company-in-kollam/punalur/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-kollam/yeroor-road/",
+      "destination": "/solar-company-in-kollam/punalur/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-pathanamthitta/enadimangalam",
+      "destination": "/solar-company-in-pathanamthitta/adoor/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-pathanamthitta/enadimangalam/",
+      "destination": "/solar-company-in-pathanamthitta/adoor/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-pathanamthitta/ezhamkulam",
+      "destination": "/solar-company-in-pathanamthitta/adoor/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-company-in-pathanamthitta/ezhamkulam/",
+      "destination": "/solar-company-in-pathanamthitta/adoor/",
+      "permanent": true
     }
   ],
   "rewrites": [
