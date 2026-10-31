@@ -1138,7 +1138,7 @@ return;
             renderDashboard();
         }
 
-        // 1. Load Real Events from Cloud & localStorage (zero mock/sample data)
+        // 1. Load Real Events from Cloud & localStorage with smart lead deduplication
         function getRealEvents() {
             let local = [];
             try {
@@ -1161,7 +1161,38 @@ return;
                 }
             });
 
-            return Array.from(mergedMap.values()).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            const allItems = Array.from(mergedMap.values());
+            
+            // Deduplicate multi-logged submissions (cloud lead document + tracker event stream)
+            const deduplicated = [];
+            const seenLeadKeys = new Set();
+            
+            // Sort so richest records (form submissions with KSEB/location details) are processed first
+            allItems.sort((a, b) => {
+                const isFormA = (a.source === 'Website Form' || (a.details && a.details.includes('KSEB #'))) ? 1 : 0;
+                const isFormB = (b.source === 'Website Form' || (b.details && b.details.includes('KSEB #'))) ? 1 : 0;
+                if (isFormA !== isFormB) return isFormB - isFormA;
+                return new Date(b.timestamp) - new Date(a.timestamp);
+            });
+
+            for (const item of allItems) {
+                if (item.type === 'form_submit') {
+                    // Extract lead signature (phone or consumer number + 1-minute window)
+                    const text = (item.details || '') + ' ' + (item.title || '');
+                    const phoneMatch = text.match(/\b\d{10}\b/);
+                    const ksebMatch = text.match(/#?(\d{13})/);
+                    const timeBucket = (item.timestamp || '').slice(0, 16);
+                    
+                    if (phoneMatch || ksebMatch) {
+                        const sig = `lead_${phoneMatch ? phoneMatch[0] : ''}_${ksebMatch ? ksebMatch[1] : ''}_${timeBucket}`;
+                        if (seenLeadKeys.has(sig)) continue;
+                        seenLeadKeys.add(sig);
+                    }
+                }
+                deduplicated.push(item);
+            }
+
+            return deduplicated.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
         }
 
         // 2. Filter events by selected date range

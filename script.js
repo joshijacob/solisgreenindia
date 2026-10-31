@@ -263,8 +263,12 @@ function initializeForms() {
   }
   
   forms.forEach(form => {
+    form.dataset.managedByScript = "true";
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
+      
+      // Prevent double submissions
+      if (this.dataset.isSubmitting === "true") return;
       
       // Validate form
       if (!validateForm(this)) {
@@ -272,6 +276,7 @@ function initializeForms() {
         return;
       }
       
+      this.dataset.isSubmitting = "true";
       // Mark as captured to prevent duplicate handling
       this.dataset.firestoreCaptured = "true";
       
@@ -1548,6 +1553,7 @@ document.addEventListener('DOMContentLoaded', function() {
           location: { stringValue: data.location || detectLocationFromPage() || 'Kerala' },
           message: { stringValue: data.message || '' },
           page: { stringValue: data.page || window.location.pathname },
+          device: { stringValue: data.device || (typeof getDeviceType === 'function' ? getDeviceType() : 'Desktop') },
           status: { stringValue: 'New' },
           source: { stringValue: data.source || 'Website Form' },
           createdAt: { stringValue: timestampIso }
@@ -1701,6 +1707,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = e.target;
     if (!form || form.id === 'login-form' || form.id === 'central-login-form' || form.id === 'loginForm' || form.id === 'addComponentForm' || form.id === 'manualLeadForm' || form.id === 'sales-form') return;
     if (form.id === 'applicationForm' || form.id === 'jobForm') return; // Handled by Careers HR
+    if (form.dataset.managedByScript === "true") return; // Handled directly by initializeForms - prevents duplicate logging
     
     const formName = form.id || form.className || 'Solar Quote Inquiry';
     try {
