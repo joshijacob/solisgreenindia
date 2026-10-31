@@ -186,6 +186,11 @@
                         <i class="fa-solid fa-database me-2"></i> 4. General Supply & GST Pricing
                     </button>
                 </li>
+                <li class="nav-item flex-fill text-center" role="presentation">
+                    <button class="nav-link w-100" id="tab-btn-form-options" data-bs-toggle="pill" data-bs-target="#tab-pane-form-options" type="button" role="tab">
+                        <i class="fa-solid fa-sliders me-2"></i> 5. Form Dropdowns Config
+                    </button>
+                </li>
             </ul>
         </div>
 
@@ -423,6 +428,153 @@
                 </div>
             </div>
 
+            <!-- ======================================================== -->
+            <!-- TAB 5: CENTRALIZED FORM DROPDOWNS CONFIG                 -->
+            <!-- ======================================================== -->
+            <div class="tab-pane fade" id="tab-pane-form-options" role="tabpanel">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+                    <div>
+                        <h5 class="fw-bold text-dark mb-1">
+                            <i class="fa-solid fa-sliders text-primary me-2"></i>Form Dropdowns & Field Options Config
+                        </h5>
+                        <small class="text-muted">Centralized management for non-BOM form dropdowns (Districts, Roof Types, Electrical Phases, Scopes, and Custom Fields). Changes sync instantly to Cloud Firestore & Calculator.</small>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary btn-sm rounded-pill px-3 fw-bold" id="btn-reset-form-options">
+                            <i class="fa-solid fa-rotate-left me-1"></i> Reset Defaults
+                        </button>
+                        <button class="btn btn-success btn-sm rounded-pill px-4 fw-bold shadow-sm" id="btn-save-form-options">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Save All Dropdowns
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Alert Banner -->
+                <div id="form-options-alert" class="alert d-none shadow-sm mb-4 rounded-3"></div>
+
+                <div class="row g-4">
+                    <!-- 1. Districts Card -->
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-header bg-white border-0 pt-4 px-4 pb-2 d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-map-location-dot text-primary me-2"></i>Kerala Districts</h6>
+                                    <small class="text-muted">Options for the "District" dropdown</small>
+                                </div>
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2" id="district-count-badge">0 items</span>
+                            </div>
+                            <div class="card-body px-4">
+                                <div class="input-group mb-3">
+                                    <input type="text" id="new-district-input" class="form-control" placeholder="Add new district (e.g. Kozhikode)...">
+                                    <button class="btn btn-primary fw-bold px-3" type="button" id="btn-add-district">
+                                        <i class="fa-solid fa-plus me-1"></i> Add
+                                    </button>
+                                </div>
+                                <div id="district-tags-container" class="d-flex flex-wrap gap-2 p-3 bg-light rounded-3 border" style="min-height: 120px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Roof Types Card -->
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-header bg-white border-0 pt-4 px-4 pb-2 d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-house-chimney text-warning me-2"></i>Roof Types</h6>
+                                    <small class="text-muted">Options for "Roof Type" (Non-concrete flat triggers Custom Roof Cost)</small>
+                                </div>
+                                <span class="badge bg-warning-subtle text-dark border border-warning-subtle rounded-pill px-2" id="roof-count-badge">0 items</span>
+                            </div>
+                            <div class="card-body px-4">
+                                <div class="input-group mb-3">
+                                    <input type="text" id="new-roof-input" class="form-control" placeholder="Add roof type (e.g. Curved Sheet, Elevated Superstructure)...">
+                                    <button class="btn btn-warning fw-bold px-3" type="button" id="btn-add-roof">
+                                        <i class="fa-solid fa-plus me-1"></i> Add
+                                    </button>
+                                </div>
+                                <div id="roof-tags-container" class="d-flex flex-wrap gap-2 p-3 bg-light rounded-3 border" style="min-height: 120px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Electrical Phases Card -->
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-header bg-white border-0 pt-4 px-4 pb-2">
+                                <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-bolt text-danger me-2"></i>Electrical Phases</h6>
+                                <small class="text-muted">Inverter Phase and KSEB Connection Phase options</small>
+                            </div>
+                            <div class="card-body px-4">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-muted">Inverter Phase Options</label>
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="new-inv-phase-input" class="form-control form-control-sm" placeholder="Add phase option...">
+                                        <button class="btn btn-outline-danger btn-sm fw-bold" type="button" id="btn-add-inv-phase"><i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                    <div id="inv-phase-tags-container" class="d-flex flex-wrap gap-2 p-2 bg-light rounded-3 border"></div>
+                                </div>
+                                <div>
+                                    <label class="form-label small fw-bold text-muted">KSEB Connection Phase Options</label>
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="new-kseb-phase-input" class="form-control form-control-sm" placeholder="Add phase option...">
+                                        <button class="btn btn-outline-danger btn-sm fw-bold" type="button" id="btn-add-kseb-phase"><i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                    <div id="kseb-phase-tags-container" class="d-flex flex-wrap gap-2 p-2 bg-light rounded-3 border"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Scopes Card -->
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-sm rounded-4 h-100">
+                            <div class="card-header bg-white border-0 pt-4 px-4 pb-2">
+                                <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-handshake text-success me-2"></i>Scopes (Net Meter & Payment)</h6>
+                                <small class="text-muted">Scope options for Net Meter & statutory KSEB charges</small>
+                            </div>
+                            <div class="card-body px-4">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-muted">Net Meter Scope Options</label>
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="new-netmeter-scope-input" class="form-control form-control-sm" placeholder="Add scope...">
+                                        <button class="btn btn-outline-success btn-sm fw-bold" type="button" id="btn-add-netmeter-scope"><i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                    <div id="netmeter-scope-tags-container" class="d-flex flex-wrap gap-2 p-2 bg-light rounded-3 border"></div>
+                                </div>
+                                <div>
+                                    <label class="form-label small fw-bold text-muted">KSEB Payment Scope Options</label>
+                                    <div class="input-group mb-2">
+                                        <input type="text" id="new-kseb-scope-input" class="form-control form-control-sm" placeholder="Add scope...">
+                                        <button class="btn btn-outline-success btn-sm fw-bold" type="button" id="btn-add-kseb-scope"><i class="fa-solid fa-plus"></i></button>
+                                    </div>
+                                    <div id="kseb-scope-tags-container" class="d-flex flex-wrap gap-2 p-2 bg-light rounded-3 border"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Future / Custom Form Dropdowns Card -->
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm rounded-4">
+                            <div class="card-header bg-white border-0 pt-4 px-4 pb-2 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-0">
+                                        <i class="fa-solid fa-cube text-info me-2"></i>Custom & Future Form Dropdowns
+                                    </h6>
+                                    <small class="text-muted">Easily configure any new dropdown that gets added to the form. Specify its HTML element ID and comma-separated options.</small>
+                                </div>
+                                <button class="btn btn-outline-info btn-sm rounded-pill px-3 fw-bold" id="btn-add-custom-dropdown-row">
+                                    <i class="fa-solid fa-plus me-1"></i> Add Custom Dropdown
+                                </button>
+                            </div>
+                            <div class="card-body px-4 pb-4">
+                                <div id="custom-dropdowns-container" class="d-flex flex-column gap-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -623,8 +775,8 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/db.js?v=20261028_cascade_v3"></script>
-    <script src="js/unified_bom_master.js?v=20261028_cascade_v3"></script>
+    <script src="js/db.js?v=20261031_form_cfg_v1"></script>
+    <script src="js/unified_bom_master.js?v=20261031_form_cfg_v1"></script>
 
     <script>
         function handleLogout() {

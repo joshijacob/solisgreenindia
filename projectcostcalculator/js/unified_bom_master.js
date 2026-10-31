@@ -1,18 +1,15 @@
 // unified_bom_master.js - Unified ERP Engineering & BOM Master Controller
 // Consolidates: 1. BOM Rules & Packages, 2. Solar Panels Master, 3. Inverters Master, 4. General Supply & GST Pricing
 
-document.addEventListener('DOMContentLoaded', async () => {
-    if (typeof syncFirebaseToLocal === 'function') {
-        await syncFirebaseToLocal();
-    }
-
-    // Initialize all 4 modules
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Initialize all 5 modules immediately with zero latency from local cache / defaults
     initBomRulesTab();
     initPanelsMasterTab();
     initInvertersMasterTab();
     initGeneralPricingTab();
+    initFormOptionsTab();
 
-    // Check URL parameter for active tab (?tab=panels, ?tab=inverters, ?tab=general, ?tab=bom)
+    // Check URL parameter for active tab (?tab=panels, ?tab=inverters, ?tab=general, ?tab=bom, ?tab=form-options)
     const urlParams = new URLSearchParams(window.location.search);
     const activeTab = urlParams.get('tab');
     if (activeTab === 'panels') {
@@ -24,9 +21,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else if (activeTab === 'general' || activeTab === 'pricing') {
         const tabEl = document.getElementById('tab-btn-general');
         if (tabEl) bootstrap.Tab.getOrCreateInstance(tabEl).show();
+    } else if (activeTab === 'form-options' || activeTab === 'dropdowns') {
+        const tabEl = document.getElementById('tab-btn-form-options');
+        if (tabEl) bootstrap.Tab.getOrCreateInstance(tabEl).show();
     } else {
         const tabEl = document.getElementById('tab-btn-bom-rules');
         if (tabEl) bootstrap.Tab.getOrCreateInstance(tabEl).show();
+    }
+
+    // 2. Non-blocking background sync from Cloud Firestore
+    if (typeof syncFirebaseToLocal === 'function') {
+        syncFirebaseToLocal().then(updated => {
+            if (updated) {
+                console.log("Cloud master data updated, re-rendering master tabs...");
+                initBomRulesTab();
+                initPanelsMasterTab();
+                initInvertersMasterTab();
+                initGeneralPricingTab();
+                initFormOptionsTab();
+            }
+        }).catch(e => console.warn("Background cloud sync note:", e));
     }
 });
 
@@ -763,3 +777,270 @@ window.deletePanelProduct = deletePanelProduct;
 window.openEditInverterModal = openEditInverterModal;
 window.toggleInverterStatus = toggleInverterStatus;
 window.deleteInverterProduct = deleteInverterProduct;
+
+
+// =========================================================================
+// MODULE 5: CENTRALIZED FORM DROPDOWNS CONFIG
+// =========================================================================
+let liveFormConfig = null;
+
+function initFormOptionsTab() {
+    // Clone form configuration into working copy
+    const sourceConfig = (typeof getFormConfig === 'function' ? getFormConfig() : null) || window.DEFAULT_FORM_CONFIG;
+    liveFormConfig = JSON.parse(JSON.stringify(sourceConfig || {}));
+
+    if (!Array.isArray(liveFormConfig.districts)) liveFormConfig.districts = [];
+    if (!Array.isArray(liveFormConfig.roofTypes)) liveFormConfig.roofTypes = [];
+    if (!Array.isArray(liveFormConfig.inverterPhases)) liveFormConfig.inverterPhases = [];
+    if (!Array.isArray(liveFormConfig.ksebPhases)) liveFormConfig.ksebPhases = [];
+    if (!Array.isArray(liveFormConfig.netMeterScopes)) liveFormConfig.netMeterScopes = [];
+    if (!Array.isArray(liveFormConfig.ksebPaymentScopes)) liveFormConfig.ksebPaymentScopes = [];
+    if (!Array.isArray(liveFormConfig.customDropdowns)) liveFormConfig.customDropdowns = [];
+
+    renderAllFormOptionCards();
+
+    // Helper to bind Add button + Enter key
+    function bindAddControl(inputId, btnId, targetArray, renderFunc) {
+        const input = document.getElementById(inputId);
+        const btn = document.getElementById(btnId);
+        if (!input || !btn) return;
+
+        const handleAdd = () => {
+            const val = input.value.trim();
+            if (!val) return;
+            if (targetArray.some(item => item.toLowerCase() === val.toLowerCase())) {
+                alert(`"${val}" already exists in the list.`);
+                return;
+            }
+            targetArray.push(val);
+            input.value = '';
+            renderFunc();
+        };
+
+        btn.onclick = handleAdd;
+        input.onkeydown = (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleAdd();
+            }
+        };
+    }
+
+    // Bind controls
+    bindAddControl('new-district-input', 'btn-add-district', liveFormConfig.districts, renderDistrictTags);
+    bindAddControl('new-roof-input', 'btn-add-roof', liveFormConfig.roofTypes, renderRoofTags);
+    bindAddControl('new-inv-phase-input', 'btn-add-inv-phase', liveFormConfig.inverterPhases, renderInvPhaseTags);
+    bindAddControl('new-kseb-phase-input', 'btn-add-kseb-phase', liveFormConfig.ksebPhases, renderKsebPhaseTags);
+    bindAddControl('new-netmeter-scope-input', 'btn-add-netmeter-scope', liveFormConfig.netMeterScopes, renderNetMeterScopeTags);
+    bindAddControl('new-kseb-scope-input', 'btn-add-kseb-scope', liveFormConfig.ksebPaymentScopes, renderKsebScopeTags);
+
+    // Add Custom Dropdown row button
+    const addCustomBtn = document.getElementById('btn-add-custom-dropdown-row');
+    if (addCustomBtn) {
+        addCustomBtn.onclick = () => {
+            const id = prompt('Enter Form Element ID (e.g., buildingFloors, subsidyScheme):');
+            if (!id || !id.trim()) return;
+            const cleanId = id.trim().replace(/[^a-zA-Z0-9_-]/g, '');
+            if (liveFormConfig.customDropdowns.some(cd => cd.id === cleanId)) {
+                alert(`A dropdown with ID "${cleanId}" already exists.`);
+                return;
+            }
+            const label = prompt('Enter Display Label for this field (e.g., Building Floors):') || cleanId;
+            const optionsStr = prompt('Enter comma-separated options (e.g., Ground Floor, 1-2 Floors, 3+ Floors):');
+            const options = optionsStr ? optionsStr.split(',').map(s => s.trim()).filter(Boolean) : ['Option 1', 'Option 2'];
+
+            liveFormConfig.customDropdowns.push({
+                id: cleanId,
+                label: label.trim(),
+                options: options,
+                placeholder: 'Select...'
+            });
+            renderCustomDropdowns();
+        };
+    }
+
+    // Save All Dropdowns
+    const saveBtn = document.getElementById('btn-save-form-options');
+    if (saveBtn) {
+        saveBtn.onclick = async () => {
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Saving...';
+            try {
+                if (typeof saveFormConfig === 'function') {
+                    await saveFormConfig(liveFormConfig);
+                } else {
+                    localStorage.setItem('solis-form-config', JSON.stringify(liveFormConfig));
+                    if (typeof pushFormConfigToFirebase === 'function') {
+                        await pushFormConfigToFirebase(liveFormConfig);
+                    }
+                }
+
+                showFormOptionsAlert('success', '<i class="fa-solid fa-circle-check me-2"></i> Form dropdown configurations saved successfully to Cloud Firestore & Calculator!');
+            } catch (err) {
+                console.error('Error saving form config:', err);
+                showFormOptionsAlert('danger', '<i class="fa-solid fa-triangle-exclamation me-2"></i> Error saving configurations: ' + err.message);
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Save All Dropdowns';
+            }
+        };
+    }
+
+    // Reset Defaults
+    const resetBtn = document.getElementById('btn-reset-form-options');
+    if (resetBtn) {
+        resetBtn.onclick = () => {
+            if (!confirm('Are you sure you want to reset all dropdown options to factory defaults?')) return;
+            const defaults = window.DEFAULT_FORM_CONFIG;
+            if (defaults) {
+                liveFormConfig = JSON.parse(JSON.stringify(defaults));
+                renderAllFormOptionCards();
+                showFormOptionsAlert('warning', '<i class="fa-solid fa-rotate-left me-2"></i> Reset to factory defaults. Click "Save All Dropdowns" to push these defaults to Cloud Firestore.');
+            }
+        };
+    }
+}
+
+function renderAllFormOptionCards() {
+    renderDistrictTags();
+    renderRoofTags();
+    renderInvPhaseTags();
+    renderKsebPhaseTags();
+    renderNetMeterScopeTags();
+    renderKsebScopeTags();
+    renderCustomDropdowns();
+}
+
+function showFormOptionsAlert(type, messageHtml) {
+    const el = document.getElementById('form-options-alert');
+    if (!el) return;
+    el.className = `alert alert-${type} shadow-sm mb-4 rounded-3 d-flex align-items-center justify-content-between`;
+    el.innerHTML = `<div>${messageHtml}</div><button type="button" class="btn-close" onclick="this.parentElement.classList.add('d-none')"></button>`;
+    el.classList.remove('d-none');
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Render Tag helpers
+function renderPillList(containerId, countBadgeId, itemsArray, badgeColorClass, removeCallback) {
+    const container = document.getElementById(containerId);
+    const countBadge = countBadgeId ? document.getElementById(countBadgeId) : null;
+    if (!container) return;
+
+    if (countBadge) countBadge.textContent = `${itemsArray.length} items`;
+    container.innerHTML = '';
+
+    if (itemsArray.length === 0) {
+        container.innerHTML = '<span class="text-muted small fst-italic">No options defined yet. Add one above.</span>';
+        return;
+    }
+
+    itemsArray.forEach((item, idx) => {
+        const pill = document.createElement('span');
+        pill.className = `badge ${badgeColorClass} border py-2 px-3 rounded-pill fw-semibold d-inline-flex align-items-center gap-2 shadow-xs`;
+        pill.innerHTML = `<span>${item}</span><button type="button" class="btn-close btn-close-sm" style="font-size: 0.65rem;" title="Remove option"></button>`;
+        pill.querySelector('button').onclick = () => {
+            removeCallback(idx);
+        };
+        container.appendChild(pill);
+    });
+}
+
+function renderDistrictTags() {
+    renderPillList('district-tags-container', 'district-count-badge', liveFormConfig.districts, 'bg-white text-dark border-primary-subtle', (idx) => {
+        liveFormConfig.districts.splice(idx, 1);
+        renderDistrictTags();
+    });
+}
+
+function renderRoofTags() {
+    renderPillList('roof-tags-container', 'roof-count-badge', liveFormConfig.roofTypes, 'bg-white text-dark border-warning-subtle', (idx) => {
+        liveFormConfig.roofTypes.splice(idx, 1);
+        renderRoofTags();
+    });
+}
+
+function renderInvPhaseTags() {
+    renderPillList('inv-phase-tags-container', null, liveFormConfig.inverterPhases, 'bg-white text-dark border-danger-subtle', (idx) => {
+        liveFormConfig.inverterPhases.splice(idx, 1);
+        renderInvPhaseTags();
+    });
+}
+
+function renderKsebPhaseTags() {
+    renderPillList('kseb-phase-tags-container', null, liveFormConfig.ksebPhases, 'bg-white text-dark border-danger-subtle', (idx) => {
+        liveFormConfig.ksebPhases.splice(idx, 1);
+        renderKsebPhaseTags();
+    });
+}
+
+function renderNetMeterScopeTags() {
+    renderPillList('netmeter-scope-tags-container', null, liveFormConfig.netMeterScopes, 'bg-white text-dark border-success-subtle', (idx) => {
+        liveFormConfig.netMeterScopes.splice(idx, 1);
+        renderNetMeterScopeTags();
+    });
+}
+
+function renderKsebScopeTags() {
+    renderPillList('kseb-scope-tags-container', null, liveFormConfig.ksebPaymentScopes, 'bg-white text-dark border-success-subtle', (idx) => {
+        liveFormConfig.ksebPaymentScopes.splice(idx, 1);
+        renderKsebScopeTags();
+    });
+}
+
+function renderCustomDropdowns() {
+    const container = document.getElementById('custom-dropdowns-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    if (!liveFormConfig.customDropdowns || liveFormConfig.customDropdowns.length === 0) {
+        container.innerHTML = `
+            <div class="text-center p-4 bg-light rounded-3 border border-dashed">
+                <i class="fa-solid fa-cube text-muted fs-3 mb-2"></i>
+                <div class="text-muted small">No custom form dropdowns registered yet. Click <strong>"+ Add Custom Dropdown"</strong> above if you add a new field to the form in the future.</div>
+            </div>
+        `;
+        return;
+    }
+
+    liveFormConfig.customDropdowns.forEach((cd, cIndex) => {
+        const row = document.createElement('div');
+        row.className = 'p-3 bg-light rounded-3 border d-flex flex-column flex-md-row gap-3 align-items-md-center justify-content-between';
+        row.innerHTML = `
+            <div class="d-flex flex-column gap-1 flex-grow-1">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-info-subtle text-info border border-info-subtle font-mono">${cd.id}</span>
+                    <strong class="text-dark">${cd.label}</strong>
+                </div>
+                <div class="d-flex flex-wrap gap-1 mt-1">
+                    ${cd.options.map(opt => `<span class="badge bg-white text-dark border small">${opt}</span>`).join('')}
+                </div>
+            </div>
+            <div class="d-flex gap-2 align-items-center">
+                <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3" data-action="edit-options">
+                    <i class="fa-solid fa-pen me-1"></i> Edit Options
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-sm rounded-pill px-3" data-action="delete">
+                    <i class="fa-solid fa-trash me-1"></i> Remove
+                </button>
+            </div>
+        `;
+
+        row.querySelector('[data-action="edit-options"]').onclick = () => {
+            const currentStr = cd.options.join(', ');
+            const newStr = prompt(`Edit comma-separated options for "${cd.label}" (ID: ${cd.id}):`, currentStr);
+            if (newStr !== null) {
+                cd.options = newStr.split(',').map(s => s.trim()).filter(Boolean);
+                renderCustomDropdowns();
+            }
+        };
+
+        row.querySelector('[data-action="delete"]').onclick = () => {
+            if (confirm(`Remove custom dropdown configuration for "${cd.label}" (${cd.id})?`)) {
+                liveFormConfig.customDropdowns.splice(cIndex, 1);
+                renderCustomDropdowns();
+            }
+        };
+
+        container.appendChild(row);
+    });
+}

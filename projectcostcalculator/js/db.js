@@ -1529,6 +1529,97 @@ function saveBOMTemplates(data) {
     if (typeof pushBOMToFirebase === 'function') pushBOMToFirebase(data);
 }
 
+
+// Centralized Form Dropdowns Configuration (Districts, Roof Types, Electrical Phases, Scopes, and Future Custom Dropdowns)
+const DEFAULT_FORM_CONFIG = {
+    // 14 Kerala districts in standard order + Others
+    districts: [
+        "Alappuzha",
+        "Ernakulam",
+        "Idukki",
+        "Kannur",
+        "Kasaragod",
+        "Kollam",
+        "Kottayam",
+        "Kozhikode",
+        "Malappuram",
+        "Palakkad",
+        "Pathanamthitta",
+        "Thiruvananthapuram",
+        "Thrissur",
+        "Wayanad",
+        "Others"
+    ],
+    // Roof Types (Non-concrete flat reveals custom roof cost field)
+    roofTypes: [
+        "Concrete Flat",
+        "GI Sheet",
+        "Tiled Roof"
+    ],
+    // Solar Inverter Phases
+    inverterPhases: [
+        "Single Phase",
+        "Three Phase"
+    ],
+    // KSEB Connection Phases
+    ksebPhases: [
+        "Single Phase",
+        "Three Phase"
+    ],
+    // Net Meter Scope
+    netMeterScopes: [
+        "Solis",
+        "KSEB"
+    ],
+    // KSEB Payment Scope
+    ksebPaymentScopes: [
+        "Solis",
+        "Customer"
+    ],
+    // System Types
+    systemTypes: [
+        { value: "On-Grid", label: "On-Grid String" },
+        { value: "Hybrid", label: "Hybrid (Battery Backup)" },
+        { value: "Micro Inverter", label: "Micro Inverter" }
+    ],
+    // Future / Custom Form Dropdowns:
+    // Format: [ { id: "elementId", label: "Display Label", options: ["Option 1", "Option 2"], placeholder: "Select..." } ]
+    customDropdowns: []
+};
+
+function getFormConfig() {
+    try {
+        if (typeof localStorage !== 'undefined') {
+            const raw = localStorage.getItem('solis-form-config');
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed && Array.isArray(parsed.districts) && parsed.districts.length > 0) {
+                    return parsed;
+                }
+            }
+        }
+    } catch(e) {
+        console.warn('getFormConfig parse fallback:', e);
+    }
+    try {
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('solis-form-config', JSON.stringify(DEFAULT_FORM_CONFIG));
+        }
+    } catch(e) {}
+    return DEFAULT_FORM_CONFIG;
+}
+
+async function saveFormConfig(data) {
+    try {
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('solis-form-config', JSON.stringify(data));
+        }
+    } catch(e) {}
+    if (typeof pushFormConfigToFirebase === 'function') {
+        return await pushFormConfigToFirebase(data);
+    }
+}
+
 // Global window exposure
 if (typeof window !== 'undefined') {
     window.getMasterData = getMasterData;
@@ -1537,6 +1628,9 @@ if (typeof window !== 'undefined') {
     window.saveBOMTemplates = saveBOMTemplates;
     window.DEFAULT_MASTER_DATA = DEFAULT_MASTER_DATA;
     window.DEFAULT_BOM_TEMPLATES = DEFAULT_BOM_TEMPLATES;
+    window.DEFAULT_FORM_CONFIG = DEFAULT_FORM_CONFIG;
+    window.getFormConfig = getFormConfig;
+    window.saveFormConfig = saveFormConfig;
 }
 
 // Reset logic for ERP Module
@@ -1578,6 +1672,9 @@ try {
         }
         if (needsBomReset) {
             localStorage.setItem('solis-bom-templates', JSON.stringify(DEFAULT_BOM_TEMPLATES));
+        }
+        if (!localStorage.getItem('solis-form-config')) {
+            localStorage.setItem('solis-form-config', JSON.stringify(DEFAULT_FORM_CONFIG));
         }
     }
 } catch(e) {}

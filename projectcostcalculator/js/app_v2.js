@@ -441,6 +441,9 @@ async function initApp() {
     const roofTypeSelect = document.getElementById('roofType');
     const customRoofWrapper = document.getElementById('customRoofWrapper');
 
+    // Populate Centralized Form Dropdowns (Districts, Roof Types, Phases, Scopes, Custom Dropdowns)
+    populateFormDropdowns();
+
     // Load Master Data & BOM Templates safely
     db = (typeof getMasterData === 'function' ? getMasterData() : null) || window.DEFAULT_MASTER_DATA;
     activePanels = (db && db.panelProducts ? db.panelProducts : []).filter(p => !p.status || p.status.toLowerCase() === 'active');
@@ -967,7 +970,8 @@ async function initApp() {
     if (typeof syncFirebaseToLocal === 'function') {
         syncFirebaseToLocal().then(updated => {
             if (updated) {
-                console.log("Cloud master data updated, refreshing live catalog...");
+                console.log("Cloud master data updated, refreshing live catalog and dropdowns...");
+                populateFormDropdowns();
             }
         }).catch(e => console.warn("Background cloud sync note:", e));
     }
@@ -980,6 +984,96 @@ if (document.readyState === 'loading') {
     initApp();
 }
 
+
+
+// ============================================================================
+// CENTRALIZED FORM DROPDOWNS POPULATION
+// Dynamically populates Districts, Roof Types, Electrical Phases, Scopes,
+// and any future custom dropdowns defined in Centralized Form Config.
+// ============================================================================
+function populateFormDropdowns() {
+    const cfg = (typeof getFormConfig === 'function' ? getFormConfig() : null) || window.DEFAULT_FORM_CONFIG;
+    if (!cfg) return;
+
+    function populateSelect(selectId, optionsArray, defaultPlaceholder = null) {
+        const el = document.getElementById(selectId);
+        if (!el || el.tagName !== 'SELECT') return;
+
+        const currentVal = el.value;
+        el.innerHTML = '';
+
+        if (defaultPlaceholder) {
+            const defOpt = document.createElement('option');
+            defOpt.value = '';
+            defOpt.textContent = defaultPlaceholder;
+            el.appendChild(defOpt);
+        }
+
+        optionsArray.forEach(item => {
+            const opt = document.createElement('option');
+            if (typeof item === 'object' && item !== null) {
+                opt.value = item.value;
+                opt.textContent = item.label || item.value;
+            } else {
+                opt.value = String(item);
+                opt.textContent = String(item);
+            }
+            el.appendChild(opt);
+        });
+
+        // Restore prior selection if still valid
+        if (currentVal && Array.from(el.options).some(o => o.value === currentVal)) {
+            el.value = currentVal;
+        } else if (defaultPlaceholder) {
+            if (!currentVal) el.value = '';
+        }
+    }
+
+    // 1. Districts (all 14 Kerala districts + Others)
+    if (Array.isArray(cfg.districts) && cfg.districts.length > 0) {
+        populateSelect('district', cfg.districts, 'Select...');
+    }
+
+    // 2. Roof Types
+    if (Array.isArray(cfg.roofTypes) && cfg.roofTypes.length > 0) {
+        populateSelect('roofType', cfg.roofTypes);
+    }
+
+    // 3. Solar Inverter Phases
+    if (Array.isArray(cfg.inverterPhases) && cfg.inverterPhases.length > 0) {
+        populateSelect('inverterPhase', cfg.inverterPhases);
+    }
+
+    // 4. KSEB Connection Phases
+    if (Array.isArray(cfg.ksebPhases) && cfg.ksebPhases.length > 0) {
+        populateSelect('phase', cfg.ksebPhases);
+    }
+
+    // 5. Net Meter Scope
+    if (Array.isArray(cfg.netMeterScopes) && cfg.netMeterScopes.length > 0) {
+        populateSelect('netMeterScope', cfg.netMeterScopes);
+    }
+
+    // 6. KSEB Payment Scope
+    if (Array.isArray(cfg.ksebPaymentScopes) && cfg.ksebPaymentScopes.length > 0) {
+        populateSelect('ksebScope', cfg.ksebPaymentScopes);
+    }
+
+    // 7. System Types
+    if (Array.isArray(cfg.systemTypes) && cfg.systemTypes.length > 0) {
+        populateSelect('systemType', cfg.systemTypes);
+    }
+
+    // 8. Custom / Future Form Dropdowns (Extensible for any new dropdown added later!)
+    if (Array.isArray(cfg.customDropdowns)) {
+        cfg.customDropdowns.forEach(cd => {
+            if (cd && cd.id && Array.isArray(cd.options)) {
+                populateSelect(cd.id, cd.options, cd.placeholder || 'Select...');
+            }
+        });
+    }
+}
+window.populateFormDropdowns = populateFormDropdowns;
 
 // ============================================================================
 // ROLE-AWARE SALES EXECUTIVE CONTROL IMPLEMENTATION

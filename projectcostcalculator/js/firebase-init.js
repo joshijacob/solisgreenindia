@@ -21,8 +21,13 @@ async function syncFirebaseToLocal() {
     try {
         const masterRef = dbFirestore.collection('solis').doc('masterData');
         const bomRef = dbFirestore.collection('solis').doc('bomTemplates');
+        const formConfigRef = dbFirestore.collection('solis').doc('formConfig');
 
-        const [masterSnap, bomSnap] = await Promise.all([masterRef.get(), bomRef.get()]);
+        const [masterSnap, bomSnap, formConfigSnap] = await Promise.all([
+            masterRef.get(),
+            bomRef.get(),
+            formConfigRef.get().catch(() => ({ exists: false }))
+        ]);
 
         let updated = false;
 
@@ -98,6 +103,27 @@ async function syncFirebaseToLocal() {
             }
         }
 
+        // Form Config synchronization (Districts, Roof Types, Electrical Phases, Scopes, Custom Dropdowns)
+        if (formConfigSnap && formConfigSnap.exists) {
+            const fbConfig = formConfigSnap.data();
+            const localConfig = localStorage.getItem('solis-form-config');
+            if (fbConfig && Array.isArray(fbConfig.districts) && fbConfig.districts.length > 0) {
+                const fbConfigStr = JSON.stringify(fbConfig);
+                if (localConfig !== fbConfigStr) {
+                    localStorage.setItem('solis-form-config', fbConfigStr);
+                    updated = true;
+                }
+            }
+        } else if (formConfigRef) {
+            // First time push default form config to Firebase if missing
+            const localConfig = localStorage.getItem('solis-form-config');
+            const dataToPush = localConfig ? JSON.parse(localConfig) : (typeof DEFAULT_FORM_CONFIG !== 'undefined' ? DEFAULT_FORM_CONFIG : null);
+            if (dataToPush) {
+                await formConfigRef.set(dataToPush).catch(() => {});
+                console.log("Initialized Form Config in Firebase");
+            }
+        }
+
         return updated;
     } catch (e) {
         console.error("Firebase Sync Error:", e);
@@ -117,6 +143,14 @@ async function pushBOMToFirebase(data) {
         await dbFirestore.collection('solis').doc('bomTemplates').set(data);
     } catch(e) { console.error("Error pushing BOM templates:", e); }
 }
+
+async function pushFormConfigToFirebase(data) {
+    try {
+        await dbFirestore.collection('solis').doc('formConfig').set(data);
+        console.log("Form config synced to Cloud Firestore successfully");
+    } catch(e) { console.error("Error pushing form config:", e); }
+}
+window.pushFormConfigToFirebase = pushFormConfigToFirebase;
 
 async function saveQuoteToFirebase(quoteData, quoteId = null) {
     try {
