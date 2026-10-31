@@ -1041,16 +1041,17 @@
             const allTowns = [
                 // Pathanamthitta
                 'Thiruvalla', 'Ranni', 'Adoor', 'Kozhencherry', 'Pandalam', 
-                'Mallappally', 'Elanthoor', 'Kozhuvalloor', 'Komi', 'Muthoor', 'Aranmula',
+                'Mallappally', 'Elanthoor', 'Kozhuvalloor', 'Konni', 'Muthoor', 'Aranmula',
                 // Kottayam
                 'Changanacherry', 'Pala', 'Kanjirappally', 'Vaikom', 'Ettumanoor', 
-                'Kumarakom', 'Kuravilangad', 'Mundakayam', 'Vakaihanam', 'Kaduthuruthy',
-                'Bharananganam', 'Kangazha',
+                'Kumarakom', 'Kuravilangad', 'Mundakayam', 'Vakathanam', 'Kaduthuruthy',
+                'Bharananganam', 'Kangazha', 'Thrickodithanam', 'Karukachal', 'Puthuppalli', 
+                'Manarcadu', 'Chingavanam',
                 // Alappuzha
                 'Cherthala', 'Haripad', 'Mavelikkara', 'Kayamkulam', 'Chengannur',
                 'Ambalapuzha', 'Kuttanad', 'Karthikappally', 'Mannar', 'Thuravoor',
                 // Kollam
-                'Karunagapally', 'Punalur', 'Kottarakara', 'Paravur', 'Sasthamkotta',
+                'Karunagappally', 'Punalur', 'Kottarakara', 'Paravur', 'Sasthamkotta',
                 'Anchal', 'Kundara', 'Chathannoor', 'Oachira', 'Kulathupuzha'
             ];
             
@@ -1064,8 +1065,10 @@
                 // Kottayam
                 'Changanacherry': 'Kottayam', 'Pala': 'Kottayam', 'Kanjirappally': 'Kottayam',
                 'Vaikom': 'Kottayam', 'Ettumanoor': 'Kottayam', 'Kumarakom': 'Kottayam',
-                'Kuravilangad': 'Kottayam', 'Mundakayam': 'Kottayam', 'Vakaihanam': 'Kottayam',
+                'Kuravilangad': 'Kottayam', 'Mundakayam': 'Kottayam', 'Vakathanam': 'Kottayam',
                 'Kaduthuruthy': 'Kottayam', 'Bharananganam': 'Kottayam', 'Kangazha': 'Kottayam',
+                'Thrickodithanam': 'Kottayam', 'Karukachal': 'Kottayam', 'Puthuppalli': 'Kottayam',
+                'Manarcadu': 'Kottayam', 'Chingavanam': 'Kottayam',
                 // Alappuzha
                 'Cherthala': 'Alappuzha', 'Haripad': 'Alappuzha', 'Mavelikkara': 'Alappuzha',
                 'Kayamkulam': 'Alappuzha', 'Chengannur': 'Alappuzha', 'Ambalapuzha': 'Alappuzha',
@@ -1093,15 +1096,60 @@
                 
                 if (matches.length > 0) {
                     searchResults.innerHTML = '';
+                    const townLinks = {
+                        'Thiruvalla': '/solar-company-in-pathanamthitta/thiruvalla/',
+                        'Adoor': '/solar-company-in-pathanamthitta/adoor/',
+                        'Ranni': '/solar-company-in-pathanamthitta/ranni/',
+                        'Kozhencherry': '/solar-company-in-pathanamthitta/kozhencherry/',
+                        'Pandalam': '/solar-company-in-pathanamthitta/pandalam/',
+                        'Mallappally': '/solar-company-in-pathanamthitta/mallappally/',
+                        'Konni': '/solar-company-in-pathanamthitta/konni/',
+                        'Elanthoor': '/solar-company-in-pathanamthitta/elanthoor/',
+                        'Changanacherry': '/solar-company-in-kottayam/changanacherry/',
+                        'Thrickodithanam': '/solar-company-in-kottayam/changanacherry/',
+                        'Karukachal': '/solar-company-in-kottayam/changanacherry/',
+                        'Pala': '/solar-company-in-kottayam/pala/',
+                        'Kanjirappally': '/solar-company-in-kottayam/kanjirappally/',
+                        'Vaikom': '/solar-company-in-kottayam/vaikom/',
+                        'Ettumanoor': '/solar-company-in-kottayam/ettumanoor/',
+                        'Erattupetta': '/solar-company-in-kottayam/erattupetta/',
+                        'Kumarakom': '/solar-company-in-kottayam/kumarakom/',
+                        'Kuravilangad': '/solar-company-in-kottayam/kuravilangad/',
+                        'Puthuppalli': '/solar-company-in-kottayam/kottayam-town/',
+                        'Manarcadu': '/solar-company-in-kottayam/kottayam-town/',
+                        'Chingavanam': '/solar-company-in-kottayam/kottayam-town/',
+                        'Cherthala': '/solar-company-in-alappuzha/cherthala/',
+                        'Haripad': '/solar-company-in-alappuzha/haripad/',
+                        'Mavelikkara': '/solar-company-in-alappuzha/mavelikkara/',
+                        'Kayamkulam': '/solar-company-in-alappuzha/kayamkulam/',
+                        'Chengannur': '/solar-company-in-alappuzha/chengannur/',
+                        'Ambalapuzha': '/solar-company-in-alappuzha/ambalapuzha/',
+                        'Kuttanad': '/solar-company-in-alappuzha/kuttanad/',
+                        'Alappuzha': '/solar-company-in-alappuzha/alappuzha/',
+                        'Karunagappally': '/solar-company-in-kollam/karunagappally/',
+                        'Punalur': '/solar-company-in-kollam/punalur/',
+                        'Kottarakara': '/solar-company-in-kollam/kottarakara/',
+                        'Paravur': '/solar-company-in-kollam/paravur/',
+                        'Anchal': '/solar-company-in-kollam/anchal/',
+                        'Chadayamangalam': '/solar-company-in-kollam/chadayamangalam/',
+                        'Kollam': '/solar-company-in-kollam/kollam/'
+                    };
+
                     matches.forEach(town => {
                         const district = townDistricts[town] || 'Kerala';
+                        const link = townLinks[town];
                         const resultItem = document.createElement('div');
                         resultItem.className = 'search-result-item';
                         resultItem.innerHTML = `
-                            <strong>${town}</strong> 
-                            <span style="color: var(--text-light); font-size: 0.9rem;">(${district} District)</span>
-                            <div style="font-size: 0.85rem; color: var(--solis-green); margin-top: 5px;">
-                                <i class="fas fa-check-circle"></i> We serve this area
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                                <div>
+                                    <strong>${town}</strong> 
+                                    <span style="color: var(--text-light); font-size: 0.9rem;">(${district} District)</span>
+                                    <div style="font-size: 0.85rem; color: var(--solis-green); margin-top: 3px;">
+                                        <i class="fas fa-check-circle"></i> We serve this area - Free Site Visit
+                                    </div>
+                                </div>
+                                ${link ? `<a href="${link}" style="font-size: 0.85rem; font-weight: 600; color: var(--solis-blue); text-decoration: none; padding: 4px 10px; border: 1px solid var(--solis-blue); border-radius: 4px;"><i class="fas fa-arrow-right"></i> View Team</a>` : ''}
                             </div>
                         `;
                         resultItem.addEventListener('click', () => {
