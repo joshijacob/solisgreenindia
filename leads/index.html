@@ -800,6 +800,9 @@
     <script>
         const FB_REST_URL = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
         
+        // Define db instance from firebase-init.js dbFirestore
+        const db = (typeof dbFirestore !== 'undefined' && dbFirestore) ? dbFirestore : (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length ? firebase.firestore() : null);
+
         let allLeads = [];
         let filteredLeads = [];
         let activeModalLead = null;
@@ -915,14 +918,21 @@
             const wonCount = allLeads.filter(l => (l.status || '').toLowerCase().includes('won')).length;
             const ksebCount = allLeads.filter(l => l.consumerNumber && l.consumerNumber.trim().length >= 8).length;
 
-            document.getElementById('statTotalSubmissions').textContent = total;
-            document.getElementById('statNewLeads').textContent = newCount;
-            document.getElementById('statSurveyScheduled').textContent = surveyCount;
-            document.getElementById('statWonLeads').textContent = wonCount;
-            document.getElementById('statKsebNumbers').textContent = ksebCount;
+            const elTotal = document.getElementById('statTotalSubmissions');
+            if (elTotal) elTotal.textContent = total;
+            const elNew = document.getElementById('statNewLeads');
+            if (elNew) elNew.textContent = newCount;
+            const elSurvey = document.getElementById('statSurveyScheduled');
+            if (elSurvey) elSurvey.textContent = surveyCount;
+            const elWon = document.getElementById('statWonLeads');
+            if (elWon) elWon.textContent = wonCount;
+            const elKseb = document.getElementById('statKsebNumbers');
+            if (elKseb) elKseb.textContent = ksebCount;
             
-            document.getElementById('liveCountText').textContent = total;
-            document.getElementById('totalCount').textContent = total;
+            const elLiveCount = document.getElementById('liveCountText');
+            if (elLiveCount) elLiveCount.textContent = total;
+            const elTotalCount = document.getElementById('totalCount');
+            if (elTotalCount) elTotalCount.textContent = total;
         }
 
         // Filter and Search Leads
