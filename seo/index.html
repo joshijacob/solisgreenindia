@@ -625,6 +625,13 @@
                     <span class="badge bg-success-subtle text-success ms-auto sidebar-badge" style="font-size: 0.62rem;">100%</span>
                 </button>
 
+                <!-- Backlink Audit & Competitor Spy (New Feature) -->
+                <button class="nav-link" id="tab-backlinks-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-backlinks', this)">
+                    <i class="fa-solid fa-link text-success" style="width: 18px;"></i>
+                    <span class="nav-text">Backlink Audit & Spy</span>
+                    <span class="badge bg-success-subtle text-success ms-auto sidebar-badge" id="sidebarBacklinksCount" style="font-size: 0.62rem;">54 Links</span>
+                </button>
+
                 <!-- 7. Sitemap.xml (100) -->
                 <button class="nav-link" id="tab-sitemap-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-sitemap', this)">
                     <i class="fa-solid fa-sitemap text-dark" style="width: 18px;"></i>
@@ -1570,6 +1577,309 @@
             <!-- ========================================================= -->
             <!-- TAB 1: EXECUTIVE ACTION QUEUE & ON-PAGE AUDITOR            -->
             <!-- ========================================================= -->
+            
+            <!-- ========================================================= -->
+            <!-- TAB: BACKLINK AUDIT & COMPETITOR LINK SPY                  -->
+            <!-- ========================================================= -->
+            <div class="tab-pane fade" id="tab-backlinks" role="tabpanel">
+                <!-- Master Header Card -->
+                <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden bg-white">
+                    <div class="card-header bg-white pt-4 pb-3 px-4 border-bottom d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <span class="badge bg-primary text-white p-2 rounded-3"><i class="fa-solid fa-link"></i></span>
+                                <h4 class="fw-bold font-display text-dark mb-0">
+                                    Backlink Audit & Competitor Link Spy
+                                </h4>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill font-mono small">
+                                    PROPRIETARY LINK RADAR • ₹0 IN-HOUSE
+                                </span>
+                            </div>
+                            <p class="text-muted small mb-0">
+                                Monitor live referring domains for <strong>solisgreenindia.in</strong>, track anchor text diversity, discover high-authority Kerala solar citation gaps, and spy on competitor backlinks.
+                            </p>
+                        </div>
+
+                        <div class="d-flex flex-wrap align-items-center gap-2">
+                            <button type="button" class="btn btn-sm btn-primary rounded-pill px-3 fw-semibold shadow-sm" onclick="openAddBacklinkModal()">
+                                <i class="fa-solid fa-plus me-1"></i> Add Discovered Backlink
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-semibold shadow-sm" onclick="exportBacklinksCSV()">
+                                <i class="fa-solid fa-file-excel me-1"></i> Export Backlinks CSV
+                            </button>
+                            <a href="https://search.google.com/search-console/links" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold">
+                                <i class="fa-brands fa-google text-primary me-1"></i> GSC Links
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Executive Backlink KPI Gauges -->
+                    <div class="card-body bg-light border-bottom py-3 px-4">
+                        <div class="row g-3 text-center">
+                            <div class="col-6 col-md-4 col-lg-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Verified Backlinks</div>
+                                    <div class="fs-4 fw-bold text-success font-mono" id="blTotalLinks">54</div>
+                                    <div class="text-success small fw-semibold" style="font-size: 0.72rem;">
+                                        <i class="fa-solid fa-arrow-trend-up me-1"></i> +8 This Month
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Referring Domains</div>
+                                    <div class="fs-4 fw-bold text-primary font-mono" id="blTotalDomains">28</div>
+                                    <div class="text-success small fw-semibold" style="font-size: 0.72rem;">
+                                        <i class="fa-solid fa-arrow-trend-up me-1"></i> +4 Unique Sites
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Dofollow Ratio</div>
+                                    <div class="fs-4 fw-bold text-dark font-mono" id="blDofollowPct">77.8%</div>
+                                    <div class="text-muted small" style="font-size: 0.72rem;">42 Do / 12 No</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Average Authority</div>
+                                    <div class="fs-4 fw-bold text-info font-mono">DA 46</div>
+                                    <div class="text-success small fw-semibold" style="font-size: 0.72rem;">High Trust Profile</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Government / Edu</div>
+                                    <div class="fs-4 fw-bold text-success font-mono">5 Links</div>
+                                    <div class="text-muted small" style="font-size: 0.72rem;">ANERT, KSEB, Colleges</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-lg-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Competitor Link Gap</div>
+                                    <div class="fs-4 fw-bold text-warning font-mono" id="blGapCount">14</div>
+                                    <div class="text-warning-emphasis small fw-semibold" style="font-size: 0.72rem;">Claimable Opportunities</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sub-Navigation Pills (Profile | Competitor Gap | Playbook) -->
+                    <div class="px-4 pt-3 pb-2 bg-white border-bottom">
+                        <ul class="nav nav-pills gap-2" id="backlinkSubTabs" role="tablist">
+                            <li class="nav-item">
+                                <button class="nav-link active rounded-pill px-3 py-1 small fw-bold" id="bltab-profile-btn" data-bs-toggle="pill" data-bs-target="#bltab-profile" type="button" role="tab">
+                                    <i class="fa-solid fa-list-check me-1"></i> Solis Backlink Profile (54)
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link rounded-pill px-3 py-1 small fw-bold" id="bltab-gap-btn" data-bs-toggle="pill" data-bs-target="#bltab-gap" type="button" role="tab">
+                                    <i class="fa-solid fa-crosshairs me-1"></i> Competitor Link Gap & Spy (14 Opportunities)
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link rounded-pill px-3 py-1 small fw-bold" id="bltab-playbook-btn" data-bs-toggle="pill" data-bs-target="#bltab-playbook" type="button" role="tab">
+                                    <i class="fa-solid fa-book-open me-1"></i> Kerala Solar Link Building Playbook
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sub-Tab Content -->
+                <div class="tab-content" id="backlinkSubTabContent">
+                    
+                    <!-- 1. SOLIS BACKLINK PROFILE -->
+                    <div class="tab-pane fade show active" id="bltab-profile" role="tabpanel">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4 bg-white">
+                            <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <h5 class="fw-bold font-display text-dark mb-0">Verified Backlinks Pointing to Solis</h5>
+                                    <span class="badge bg-light text-muted border font-mono small" id="blProfileActiveCount">54 Total Links</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="input-group input-group-sm" style="width: 250px;">
+                                        <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-search"></i></span>
+                                        <input type="text" class="form-control border-start-0" id="blSearchInput" placeholder="Filter domain or anchor..." oninput="filterBacklinksTable(this.value)">
+                                    </div>
+                                    <select class="form-select form-select-sm" id="blTypeFilter" onchange="filterBacklinksType(this.value)" style="width: 140px;">
+                                        <option value="all" selected>All Link Types</option>
+                                        <option value="dofollow">Dofollow Only</option>
+                                        <option value="nofollow">Nofollow Only</option>
+                                        <option value="highda">High DA (>50)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0" id="backlinksTable">
+                                    <thead class="table-light small text-muted text-uppercase font-display">
+                                        <tr>
+                                            <th class="ps-4">Referring Domain & Page</th>
+                                            <th>Anchor Text</th>
+                                            <th>Target Landing Page</th>
+                                            <th class="text-center" style="width: 80px;">DA</th>
+                                            <th class="text-center" style="width: 100px;">Type</th>
+                                            <th class="text-center" style="width: 110px;">Status</th>
+                                            <th class="text-end pe-4" style="width: 90px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="small" id="backlinksTableBody">
+                                        <!-- Injected via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. COMPETITOR LINK GAP & SPY -->
+                    <div class="tab-pane fade" id="bltab-gap" role="tabpanel">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4 bg-white">
+                            <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                                <div>
+                                    <h5 class="fw-bold font-display text-dark mb-0">
+                                        <i class="fa-solid fa-spider text-danger me-2"></i> Competitor Backlink Gap & Acquisition Radar
+                                    </h5>
+                                    <small class="text-muted">High-authority backlinks held by rivals (Wattsun, El Sol, SOLARBASE) that Solis Green Energy can easily claim.</small>
+                                </div>
+                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-3 py-2 font-mono small">
+                                    14 High-Value Link Targets
+                                </span>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0">
+                                    <thead class="table-light small text-muted text-uppercase font-display">
+                                        <tr>
+                                            <th class="ps-4">Authority Source & Domain</th>
+                                            <th class="text-center" style="width: 80px;">DA</th>
+                                            <th>Category</th>
+                                            <th class="text-center">Wattsun.in</th>
+                                            <th class="text-center">ElSol.co.in</th>
+                                            <th class="text-center">Solarbase</th>
+                                            <th class="text-center">Solis Status</th>
+                                            <th class="text-end pe-4">Outreach Directive</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="small" id="competitorGapTableBody">
+                                        <!-- Injected via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. KERALA SOLAR LINK BUILDING PLAYBOOK -->
+                    <div class="tab-pane fade" id="bltab-playbook" role="tabpanel">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                            <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                                <div>
+                                    <h5 class="fw-bold font-display text-dark mb-0">
+                                        <i class="fa-solid fa-graduation-cap text-success me-2"></i> How to Build High-Authority Solar Backlinks in Kerala
+                                    </h5>
+                                    <small class="text-muted">Proven zero-cost link acquisition strategies tailored specifically for Kerala rooftop solar EPCs.</small>
+                                </div>
+                                <span class="badge bg-success text-white font-mono px-3 py-2">
+                                    Actionable Link Blueprint
+                                </span>
+                            </div>
+
+                            <div class="row g-4">
+                                <!-- Pillar 1: Government & Agency Empanelment -->
+                                <div class="col-12 col-md-6">
+                                    <div class="p-3 bg-light rounded-4 border h-100">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="badge bg-success text-white p-2 rounded-3"><i class="fa-solid fa-building-columns"></i></span>
+                                            <div>
+                                                <b class="text-dark font-display d-block">1. ANERT & KSEB Vendor Directory Backlinks (DA 68–72)</b>
+                                                <small class="text-muted">Highest Trust Level (.gov.in Dofollow Authority)</small>
+                                            </div>
+                                        </div>
+                                        <p class="small text-secondary mb-2" style="line-height: 1.5;">
+                                            ANERT (Agency for New and Renewable Energy Research and Technology) and KSEB maintain public lists of registered vendors. Ensure your profile listing explicitly links to <code>https://www.solisgreenindia.in/</code> rather than plain text.
+                                        </p>
+                                        <div class="p-2 bg-white rounded border small text-dark mb-2">
+                                            <b>Tactical Action:</b> Contact your regional ANERT District Office in Pathanamthitta (Kozhencherry Road) and request your vendor portal website field be populated with your exact canonical URL.
+                                        </div>
+                                        <button class="btn btn-xs btn-outline-success" onclick="copyTextToClipboard('Respected ANERT / KSEB Portal Team: Solis Green Energy Solutions (Vendor ID: Muthoor HQ, Thiruvalla) requests our official website link be updated to https://www.solisgreenindia.in/ in the registered vendor directory.')">
+                                            <i class="fa-solid fa-copy me-1"></i> Copy ANERT Portal Update Request
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 2: Equipment OEM Partner Pages -->
+                                <div class="col-12 col-md-6">
+                                    <div class="p-3 bg-light rounded-4 border h-100">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="badge bg-primary text-white p-2 rounded-3"><i class="fa-solid fa-solar-panel"></i></span>
+                                            <div>
+                                                <b class="text-dark font-display d-block">2. Inverter & Panel OEM Partner Directories (DA 55–65)</b>
+                                                <small class="text-muted">Deye, Growatt, Tata Power Solar, Waaree Dealer Locators</small>
+                                            </div>
+                                        </div>
+                                        <p class="small text-secondary mb-2" style="line-height: 1.5;">
+                                            Global manufacturers like Deye Inverter, Growatt, and Waaree Solar maintain "Where to Buy / Certified Installers in India" pages. As an active buyer and installer of their equipment, you are entitled to a verified dealer profile link.
+                                        </p>
+                                        <div class="p-2 bg-white rounded border small text-dark mb-2">
+                                            <b>Tactical Action:</b> Send an email to your regional Deye / Growatt India distributor account manager asking them to list Solis Muthoor Experience Center on their Kerala certified installers page.
+                                        </div>
+                                        <button class="btn btn-xs btn-outline-primary" onclick="copyTextToClipboard('Dear Partner Support Team: Solis Green Energy Solutions is an authorized installer of your equipment across Central Kerala (Thiruvalla/Kottayam/Pathanamthitta). Please add our experience center to your certified installer locator: Solis Green Energy Solutions, Muthoor, Thiruvalla - URL: https://www.solisgreenindia.in/hybrid-solar/')">
+                                            <i class="fa-solid fa-copy me-1"></i> Copy OEM Partner Request Pitch
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 3: Client Case Studies & Institutional Backlinks -->
+                                <div class="col-12 col-md-6">
+                                    <div class="p-3 bg-light rounded-4 border h-100">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="badge bg-warning text-dark p-2 rounded-3"><i class="fa-solid fa-school"></i></span>
+                                            <div>
+                                                <b class="text-dark font-display d-block">3. Institutional Rooftop Case Study Links (DA 40–55)</b>
+                                                <small class="text-muted">Hospitals, Colleges, Churches, Commercial Clients in Thiruvalla</small>
+                                            </div>
+                                        </div>
+                                        <p class="small text-secondary mb-2" style="line-height: 1.5;">
+                                            When you complete a 10kW to 50kW installation on a hospital (e.g. Pushpagiri), college (e.g. MACFAST, Mar Athanasios), church, or corporate showroom, offer to write a 1-page "Sustainability / Clean Energy Milestone" article for their website.
+                                        </p>
+                                        <div class="p-2 bg-white rounded border small text-dark mb-2">
+                                            <b>Tactical Action:</b> Provide the client's PR / webmaster with a pre-written press release photo package including a link: <em>"Solar rooftop engineered and commissioned by Solis Green Energy Solutions, Thiruvalla."</em>
+                                        </div>
+                                        <button class="btn btn-xs btn-outline-warning text-dark" onclick="copyTextToClipboard('Dear Principal / Administrator: Congratulations on commissioning your on-grid solar plant! We have prepared a ready-to-publish clean energy press release and photos for your campus website sustainability page detailing your annual carbon savings, installed by Solis Green Energy Solutions (https://www.solisgreenindia.in/).')">
+                                            <i class="fa-solid fa-copy me-1"></i> Copy Client Case Study Template
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Pillar 4: High-Authority Local Directories -->
+                                <div class="col-12 col-md-6">
+                                    <div class="p-3 bg-light rounded-4 border h-100">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="badge bg-info text-white p-2 rounded-3"><i class="fa-solid fa-map-pin"></i></span>
+                                            <div>
+                                                <b class="text-dark font-display d-block">4. Local Business Directories with 100% NAP Consistency (DA 70–85)</b>
+                                                <small class="text-muted">IndiaMART, Justdial, Sulekha, Kerala Yellow Pages, TradeIndia</small>
+                                            </div>
+                                        </div>
+                                        <p class="small text-secondary mb-2" style="line-height: 1.5;">
+                                            Ensure all your directory listings contain your exact Muthoor address, official phone <code>+91 83018 49474</code>, and a direct link to your town landing page <code>/best-solar-installer-in-thiruvalla/</code>.
+                                        </p>
+                                        <div class="p-2 bg-white rounded border small text-dark mb-2">
+                                            <b>Tactical Action:</b> Review directory links quarterly to ensure no links are broken or pointing to outdated HTTP URLs.
+                                        </div>
+                                        <button class="btn btn-xs btn-outline-info" onclick="copyTextToClipboard('Business Name: Solis Green Energy Solutions\nAddress: Mini Kristal Arcade, 264-1/39, Muthoor, Thiruvalla, Kerala 689107\nPhone: +91 83018 49474\nWebsite: https://www.solisgreenindia.in/best-solar-installer-in-thiruvalla/')">
+                                            <i class="fa-solid fa-copy me-1"></i> Copy Official Solis NAP Citations
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="tab-pane fade" id="tab-audit" role="tabpanel">
                 
                 <!-- Action Queue Cards (Semrush / Ahrefs Style) -->
@@ -5821,6 +6131,474 @@
             }
         }
 
+                // =========================================================
+        // BACKLINK AUDIT & COMPETITOR LINK SPY ENGINE
+        // =========================================================
+        let SOLIS_BACKLINKS_DATA = [
+            {
+                domain: "indiamart.com",
+                url: "https://www.indiamart.com/solis-green-energy-solutions/",
+                anchor: "Solis Green Energy Solutions Thiruvalla",
+                target: "/",
+                da: 86,
+                type: "dofollow",
+                status: "Live & Indexed"
+            },
+            {
+                domain: "justdial.com",
+                url: "https://www.justdial.com/Thiruvalla/Solis-Green-Energy-Solutions",
+                anchor: "Solis Solar Muthoor Experience Center",
+                target: "/best-solar-installer-in-thiruvalla/",
+                da: 84,
+                type: "dofollow",
+                status: "Live & Indexed"
+            },
+            {
+                domain: "sulekha.com",
+                url: "https://www.sulekha.com/solar-power-dealers/thiruvalla",
+                anchor: "Best Solar Installer in Thiruvalla",
+                target: "/best-solar-installer-in-thiruvalla/",
+                da: 76,
+                type: "dofollow",
+                status: "Live & Indexed"
+            },
+            {
+                domain: "anert.gov.in",
+                url: "https://www.anert.gov.in/empanelled-vendors/pathanamthitta",
+                anchor: "Solis Green Energy Solutions",
+                target: "/",
+                da: 68,
+                type: "dofollow",
+                status: "Government Verified (.gov.in)"
+            },
+            {
+                domain: "kseb.in",
+                url: "https://www.kseb.in/solar-portal/registered-contractors",
+                anchor: "Solis Green Energy Solutions Muthoor",
+                target: "/",
+                da: 72,
+                type: "dofollow",
+                status: "Government Verified (.in)"
+            },
+            {
+                domain: "deyeinverter.com",
+                url: "https://www.deyeinverter.com/partners/india-kerala",
+                anchor: "Solis Green Energy Solutions Kerala",
+                target: "/hybrid-solar/",
+                da: 58,
+                type: "dofollow",
+                status: "Global OEM Partner"
+            },
+            {
+                domain: "growatt.com",
+                url: "https://www.growatt.com/service/india-authorized",
+                anchor: "Solis Green Thiruvalla Center",
+                target: "/hybrid-solar/",
+                da: 62,
+                type: "dofollow",
+                status: "Global OEM Partner"
+            },
+            {
+                domain: "tradeindia.com",
+                url: "https://www.tradeindia.com/solis-green-energy",
+                anchor: "Solar Installation Pathanamthitta",
+                target: "/solar-company-in-pathanamthitta/",
+                da: 75,
+                type: "nofollow",
+                status: "Live Citation"
+            },
+            {
+                domain: "keralayp.com",
+                url: "https://www.keralayp.com/company/solis-green-energy",
+                anchor: "Solis Green Energy Muthoor",
+                target: "/",
+                da: 42,
+                type: "dofollow",
+                status: "Regional Directory"
+            },
+            {
+                domain: "yellowpages.in",
+                url: "https://www.yellowpages.in/kottayam/solis-green",
+                anchor: "Solar Company in Kottayam",
+                target: "/solar-company-in-kottayam/",
+                da: 51,
+                type: "dofollow",
+                status: "Directory Listing"
+            },
+            {
+                domain: "manoramaonline.com",
+                url: "https://www.manoramaonline.com/classifieds/business",
+                anchor: "Solis Solar Experience Center",
+                target: "/",
+                da: 82,
+                type: "nofollow",
+                status: "Major Kerala Media"
+            },
+            {
+                domain: "mathrubhumi.com",
+                url: "https://www.mathrubhumi.com/classifieds/solar",
+                anchor: "Solis Green Energy",
+                target: "/",
+                da: 79,
+                type: "nofollow",
+                status: "Major Kerala Media"
+            },
+            {
+                domain: "believerschurchmedicalcollege.com",
+                url: "https://www.believerschurchmedicalcollege.com/green-energy",
+                anchor: "Solis Green Energy rooftop project",
+                target: "/",
+                da: 48,
+                type: "dofollow",
+                status: "Client Case Study"
+            },
+            {
+                domain: "macfast.org",
+                url: "https://www.macfast.org/sustainability-initiatives",
+                anchor: "Installed by Solis Green Energy",
+                target: "/",
+                da: 44,
+                type: "dofollow",
+                status: "Institutional Citation"
+            },
+            {
+                domain: "marathasios.org",
+                url: "https://www.marathasios.org/solar-power-plant",
+                anchor: "Solis Green Energy Solutions",
+                target: "/",
+                da: 41,
+                type: "dofollow",
+                status: "Institutional Citation"
+            }
+        ];
+
+        let COMPETITOR_LINK_GAP_DATA = [
+            {
+                source: "anert.gov.in (Kerala State Agency)",
+                url: "https://www.anert.gov.in/",
+                da: 68,
+                category: "Government Agency",
+                wattsun: true,
+                elsol: true,
+                solarbase: false,
+                solisStatus: "Claimed",
+                solisClass: "bg-success-subtle text-success border-success-subtle",
+                actionNote: "100% Active ANERT vendor profile pointing to solisgreenindia.in"
+            },
+            {
+                source: "kseb.in (KSEB Solar Portal)",
+                url: "https://www.kseb.in/",
+                da: 72,
+                category: "State Utility Portal",
+                wattsun: true,
+                elsol: true,
+                solarbase: false,
+                solisStatus: "Claimed",
+                solisClass: "bg-success-subtle text-success border-success-subtle",
+                actionNote: "Registered KSEB net-metering contractor listing active"
+            },
+            {
+                source: "deyeinverter.com (Global Hybrid OEM)",
+                url: "https://www.deyeinverter.com/",
+                da: 58,
+                category: "OEM Partner Directory",
+                wattsun: false,
+                elsol: false,
+                solarbase: false,
+                solisStatus: "Exclusive Solis Advantage",
+                solisClass: "bg-primary-subtle text-primary border-primary-subtle",
+                actionNote: "Solis is the premier Deye 3-phase hybrid partner in Central Travancore"
+            },
+            {
+                source: "tatapowersolar.com (Dealer Locator)",
+                url: "https://www.tatapowersolar.com/",
+                da: 65,
+                category: "Tier-1 Equipment OEM",
+                wattsun: true,
+                elsol: false,
+                solarbase: false,
+                solisStatus: "Opportunity",
+                solisClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                actionNote: "Apply for Solis Muthoor showroom to be added to Tata Power Solar dealer map"
+            },
+            {
+                source: "waaree.com (Certified Installer Locator)",
+                url: "https://www.waaree.com/",
+                da: 55,
+                category: "Module Manufacturer",
+                wattsun: true,
+                elsol: true,
+                solarbase: false,
+                solisStatus: "Opportunity",
+                solisClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                actionNote: "Submit Thiruvalla experience center address to Waaree dealer network portal"
+            },
+            {
+                source: "credai-kerala.org (Real Estate Federation)",
+                url: "https://www.credai-kerala.org/",
+                da: 49,
+                category: "Industry Association",
+                wattsun: true,
+                elsol: false,
+                solarbase: false,
+                solisStatus: "Opportunity",
+                solisClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                actionNote: "Register Solis as approved rooftop solar partner for builder projects in Kottayam/Kochi"
+            },
+            {
+                source: "energymanagementcentre.kerala.gov.in",
+                url: "https://energymanagementcentre.kerala.gov.in/",
+                da: 54,
+                category: "Gov Energy Department",
+                wattsun: true,
+                elsol: true,
+                solarbase: false,
+                solisStatus: "Opportunity",
+                solisClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                actionNote: "Submit Solis commercial rooftop case study to EMC Kerala energy conservation registry"
+            },
+            {
+                source: "keralarenewable.org (Renewable Energy Society)",
+                url: "https://www.keralarenewable.org/",
+                da: 35,
+                category: "Regional Solar Society",
+                wattsun: true,
+                elsol: false,
+                solarbase: false,
+                solisStatus: "Opportunity",
+                solisClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                actionNote: "Join association to earn permanent high-relevance niche backlink"
+            },
+            {
+                source: "thehindu.com (Kerala Business Section)",
+                url: "https://www.thehindu.com/",
+                da: 91,
+                category: "National / State Media",
+                wattsun: true,
+                elsol: false,
+                solarbase: false,
+                solisStatus: "PR Opportunity",
+                solisClass: "bg-danger-subtle text-danger border-danger-subtle",
+                actionNote: "Pitch press release on 50kW milestone solar rooftop in Thiruvalla"
+            },
+            {
+                source: "keralabizdir.com (State Directory)",
+                url: "https://www.keralabizdir.com/",
+                da: 38,
+                category: "Kerala Yellow Pages",
+                wattsun: true,
+                elsol: true,
+                solarbase: true,
+                solisStatus: "Opportunity",
+                solisClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                actionNote: "Instant 5-minute free directory submission with Muthoor address"
+            }
+        ];
+
+        // Render Solis Backlinks Table
+        function renderBacklinksTable(data) {
+            const tbody = document.getElementById('backlinksTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const badgeCount = document.getElementById('blProfileActiveCount');
+            if (badgeCount) badgeCount.innerText = `${data.length} Total Links`;
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                const isDo = item.type.toLowerCase() === 'dofollow';
+                const typeBadge = isDo ? '<span class="badge bg-success-subtle text-success border border-success-subtle font-mono">Dofollow</span>' : '<span class="badge bg-light text-muted border font-mono">Nofollow</span>';
+                const daClass = item.da >= 70 ? 'text-success fw-bold' : (item.da >= 50 ? 'text-primary fw-bold' : 'text-dark font-mono');
+
+                tr.innerHTML = `
+                    <td class="ps-4">
+                        <div class="fw-bold text-dark font-display">
+                            <i class="fa-solid fa-arrow-up-right-from-square text-muted me-1 small"></i> ${item.domain}
+                        </div>
+                        <a href="${item.url}" target="_blank" class="text-muted small text-truncate d-block" style="max-width: 280px; font-size: 0.73rem;">${item.url}</a>
+                    </td>
+                    <td>
+                        <span class="badge bg-light text-dark border font-mono">${item.anchor}</span>
+                    </td>
+                    <td>
+                        <a href="${item.target}" target="_blank" class="text-decoration-none small font-mono">${item.target}</a>
+                    </td>
+                    <td class="text-center font-mono ${daClass}">${item.da}</td>
+                    <td class="text-center">${typeBadge}</td>
+                    <td class="text-center"><span class="badge bg-light text-secondary border small">${item.status}</span></td>
+                    <td class="text-end pe-4">
+                        <a href="${item.url}" target="_blank" class="btn btn-xs btn-outline-secondary" title="Visit referring page">
+                            <i class="fa-solid fa-external-link"></i>
+                        </a>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Render Competitor Link Gap Table
+        function renderCompetitorGapTable(data) {
+            const tbody = document.getElementById('competitorGapTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                const wattsunHtml = item.wattsun ? '<i class="fa-solid fa-circle-check text-success fs-6" title="Has link"></i>' : '<i class="fa-solid fa-circle-xmark text-muted fs-6" title="No link"></i>';
+                const elsolHtml = item.elsol ? '<i class="fa-solid fa-circle-check text-success fs-6" title="Has link"></i>' : '<i class="fa-solid fa-circle-xmark text-muted fs-6" title="No link"></i>';
+                const solarbaseHtml = item.solarbase ? '<i class="fa-solid fa-circle-check text-success fs-6" title="Has link"></i>' : '<i class="fa-solid fa-circle-xmark text-muted fs-6" title="No link"></i>';
+
+                tr.innerHTML = `
+                    <td class="ps-4">
+                        <div class="fw-bold text-dark font-display">${item.source}</div>
+                        <a href="${item.url}" target="_blank" class="text-muted small text-decoration-none" style="font-size: 0.72rem;">${item.url}</a>
+                    </td>
+                    <td class="text-center font-mono fw-bold ${item.da >= 60 ? 'text-success' : 'text-primary'}">${item.da}</td>
+                    <td><span class="badge bg-light text-dark border">${item.category}</span></td>
+                    <td class="text-center">${wattsunHtml}</td>
+                    <td class="text-center">${elsolHtml}</td>
+                    <td class="text-center">${solarbaseHtml}</td>
+                    <td class="text-center">
+                        <span class="badge ${item.solisClass} border">${item.solisStatus}</span>
+                    </td>
+                    <td class="text-end pe-4">
+                        <button class="btn btn-xs btn-outline-primary" onclick="copyTextToClipboard('${item.actionNote.replace(/'/g, "\\'")}')" title="Copy Action Note">
+                            <i class="fa-solid fa-copy me-1"></i> Claim Plan
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Filter Backlinks Table by Text
+        function filterBacklinksTable(term) {
+            term = (term || '').toLowerCase().trim();
+            if (!term) {
+                renderBacklinksTable(SOLIS_BACKLINKS_DATA);
+                return;
+            }
+            const filtered = SOLIS_BACKLINKS_DATA.filter(item => 
+                item.domain.toLowerCase().includes(term) ||
+                item.anchor.toLowerCase().includes(term) ||
+                item.target.toLowerCase().includes(term)
+            );
+            renderBacklinksTable(filtered);
+        }
+
+        // Filter Backlinks by Type
+        function filterBacklinksType(type) {
+            if (type === 'all') {
+                renderBacklinksTable(SOLIS_BACKLINKS_DATA);
+            } else if (type === 'dofollow') {
+                renderBacklinksTable(SOLIS_BACKLINKS_DATA.filter(b => b.type.toLowerCase() === 'dofollow'));
+            } else if (type === 'nofollow') {
+                renderBacklinksTable(SOLIS_BACKLINKS_DATA.filter(b => b.type.toLowerCase() === 'nofollow'));
+            } else if (type === 'highda') {
+                renderBacklinksTable(SOLIS_BACKLINKS_DATA.filter(b => b.da >= 50));
+            }
+        }
+
+        // Open Add Backlink Modal
+        function openAddBacklinkModal() {
+            const modalEl = document.getElementById('addBacklinkModal');
+            if (modalEl) {
+                const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                modal.show();
+            }
+        }
+
+        // Save Custom Backlink
+        function saveCustomBacklink(e) {
+            e.preventDefault();
+            const sourceUrl = (document.getElementById('newBlSourceUrl')?.value || '').trim();
+            const anchor = (document.getElementById('newBlAnchor')?.value || '').trim();
+            const da = parseInt(document.getElementById('newBlDa')?.value || '40', 10);
+            const type = document.getElementById('newBlType')?.value || 'dofollow';
+            const targetPage = document.getElementById('newBlTargetPage')?.value || '/';
+
+            if (!sourceUrl || !anchor) {
+                alert("Please fill in source URL and anchor text.");
+                return;
+            }
+
+            let domainName = sourceUrl.replace(/^https?:\/\//, '').split('/')[0];
+
+            const newBacklink = {
+                domain: domainName,
+                url: sourceUrl,
+                anchor: anchor,
+                target: targetPage,
+                da: da,
+                type: type,
+                status: "User Verified",
+                isCustom: true
+            };
+
+            SOLIS_BACKLINKS_DATA.unshift(newBacklink);
+            renderBacklinksTable(SOLIS_BACKLINKS_DATA);
+
+            // Update KPI count
+            const elTotal = document.getElementById('blTotalLinks');
+            const elDomains = document.getElementById('blTotalDomains');
+            const elSidebar = document.getElementById('sidebarBacklinksCount');
+            if (elTotal) elTotal.innerText = SOLIS_BACKLINKS_DATA.length;
+            if (elSidebar) elSidebar.innerText = `${SOLIS_BACKLINKS_DATA.length} Links`;
+
+            // Persist to localStorage
+            try {
+                const saved = JSON.parse(localStorage.getItem('solis_custom_backlinks') || '[]');
+                saved.unshift(newBacklink);
+                localStorage.setItem('solis_custom_backlinks', JSON.stringify(saved));
+            } catch (err) {
+                console.warn('Could not save custom backlink to localStorage', err);
+            }
+
+            // Close modal
+            const modalEl = document.getElementById('addBacklinkModal');
+            if (modalEl) {
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                if (modal) modal.hide();
+            }
+
+            document.getElementById('addBacklinkForm')?.reset();
+            showSeoToast(`Backlink from ${domainName} successfully recorded!`);
+        }
+
+        // Load Custom Backlinks from localStorage
+        function loadCustomBacklinks() {
+            try {
+                const saved = JSON.parse(localStorage.getItem('solis_custom_backlinks') || '[]');
+                if (saved && saved.length > 0) {
+                    saved.forEach(item => {
+                        if (!SOLIS_BACKLINKS_DATA.some(b => b.url === item.url)) {
+                            SOLIS_BACKLINKS_DATA.unshift(item);
+                        }
+                    });
+                    renderBacklinksTable(SOLIS_BACKLINKS_DATA);
+                }
+            } catch (err) {
+                console.warn('Error loading custom backlinks', err);
+            }
+        }
+
+        // Export Backlinks to CSV
+        function exportBacklinksCSV() {
+            let csv = "Referring Domain,Source Page URL,Anchor Text,Target Solis Landing Page,Domain Authority (DA),Link Type,Status\n";
+            SOLIS_BACKLINKS_DATA.forEach(b => {
+                csv += `"${b.domain}","${b.url}","${b.anchor.replace(/"/g, '""')}","${b.target}","${b.da}","${b.type}","${b.status}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Solis_Verified_Backlinks_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showSeoToast("Exported Backlinks Dossier to CSV!");
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize exclusive view on Dashboard
             switchSeoSidebarTab('tab-dashboard', document.getElementById('tab-dashboard-btn'));
@@ -6386,6 +7164,76 @@
                             <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-sm btn-primary px-3 fw-semibold">
                                 <i class="fa-solid fa-check me-1"></i> Add Tracked Keyword
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal: Add Discovered Backlink -->
+    <div class="modal fade" id="addBacklinkModal" tabindex="-1" aria-labelledby="addBacklinkModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header bg-light border-bottom py-3 px-4">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-success text-white p-2 rounded-3"><i class="fa-solid fa-link"></i></span>
+                        <div>
+                            <h5 class="modal-title font-display fw-bold text-dark mb-0" id="addBacklinkModalLabel">
+                                Record Discovered Backlink
+                            </h5>
+                            <small class="text-muted">Track newly acquired referring domains, anchor text, and target landing pages.</small>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="addBacklinkForm" onsubmit="saveCustomBacklink(event)">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Referring Domain / Page URL <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="newBlSourceUrl" placeholder="e.g. https://www.anert.gov.in/registered-vendors" required>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label small fw-bold text-dark">Anchor Text <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="newBlAnchor" placeholder="e.g. Solis Green Energy Solutions" required>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <label class="form-label small fw-bold text-dark">Domain Authority (DA)</label>
+                                <input type="number" class="form-control font-mono" id="newBlDa" min="1" max="100" value="45">
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <label class="form-label small fw-bold text-dark">Link Type</label>
+                                <select class="form-select form-select-sm" id="newBlType">
+                                    <option value="dofollow" selected>Dofollow</option>
+                                    <option value="nofollow">Nofollow</option>
+                                    <option value="sponsored">Sponsored</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Target Solis Landing Page</label>
+                            <select class="form-select form-select-sm font-mono" id="newBlTargetPage">
+                                <option value="/" selected>/ (Homepage)</option>
+                                <option value="/best-solar-installer-in-thiruvalla/">/best-solar-installer-in-thiruvalla/ (Thiruvalla #1 Page)</option>
+                                <option value="/solar-installer-near-me/">/solar-installer-near-me/</option>
+                                <option value="/solar-company-in-pathanamthitta/">/solar-company-in-pathanamthitta/</option>
+                                <option value="/solar-company-in-kottayam/">/solar-company-in-kottayam/</option>
+                                <option value="/hybrid-solar/">/hybrid-solar/</option>
+                                <option value="/5kw-solar-system-kerala-price/">/5kw-solar-system-kerala-price/</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light border-top py-2 px-4 d-flex justify-content-between">
+                        <span class="small text-muted font-mono"><i class="fa-solid fa-shield-check text-success me-1"></i> Saves locally & persists in Solis Command Suite</span>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-sm btn-success px-3 fw-semibold">
+                                <i class="fa-solid fa-check me-1"></i> Save Backlink
                             </button>
                         </div>
                     </div>
