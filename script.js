@@ -1401,17 +1401,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const utmSource = urlParams.get('utm_source');
     const utmMedium = urlParams.get('utm_medium');
-    const utmCampaign = urlParams.get('utm_campaign');
-    const utmTerm = urlParams.get('utm_term');
+    const utmCampaign = urlParams.get('utm_campaign') || urlParams.get('campaign') || urlParams.get('campaign_name');
+    const utmTerm = urlParams.get('utm_term') || urlParams.get('keyword');
     const utmContent = urlParams.get('utm_content');
     const gclid = urlParams.get('gclid');
     const fbclid = urlParams.get('fbclid');
 
     if (utmSource || utmCampaign || gclid || fbclid) {
+      const defaultGoogleCamp = (utmMedium === 'display' || (utmCampaign && utmCampaign.toLowerCase().includes('display'))) 
+        ? 'Google Display Campaign' 
+        : 'Google Ads Search Campaign';
+
       campaignInfo = {
         source: utmSource || (gclid ? 'google' : (fbclid ? 'facebook' : '')),
         medium: utmMedium || (gclid ? 'cpc' : (fbclid ? 'paid_social' : '')),
-        campaign: utmCampaign || (gclid ? 'Google Ads Search' : (fbclid ? 'Meta Ads Campaign' : '')),
+        campaign: utmCampaign || (gclid ? defaultGoogleCamp : (fbclid ? 'Meta Ads Campaign' : '')),
         term: utmTerm || '',
         content: utmContent || '',
         gclid: gclid || '',
