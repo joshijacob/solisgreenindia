@@ -4153,6 +4153,7 @@
                 renderPositionsTable(livePositionsData.filter(p => p.nov1 <= 10));
             } else {
                 renderPositionsTable(livePositionsData);
+            loadCustomPositions();
             loadCustomCompetitors();
             renderCompetitorDossiers(liveCompetitorsList);
             }
@@ -5652,11 +5653,130 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+                // =========================================================
+        // ADD TRACKED KEYWORD MODAL HANDLERS
+        // =========================================================
+        function openAddPositionModal() {
+            const modalEl = document.getElementById('addPositionModal');
+            if (modalEl) {
+                const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                modal.show();
+            } else {
+                console.warn('addPositionModal element not found');
+            }
+        }
+
+        function saveNewTrackedKeyword(e) {
+            e.preventDefault();
+            const query = (document.getElementById('newPosQuery')?.value || '').trim();
+            if (!query) {
+                alert("Please enter a keyword query.");
+                return;
+            }
+
+            const intentVal = document.getElementById('newPosIntent')?.value || 'Commercial';
+            const locationVal = document.getElementById('newPosLocation')?.value || 'Thiruvalla';
+            const vol = (document.getElementById('newPosVol')?.value || '650/mo').trim();
+            const kd = parseInt(document.getElementById('newPosKd')?.value || '22', 10);
+            const rank = parseInt(document.getElementById('newPosRank')?.value || '1', 10);
+            const prevRank = parseInt(document.getElementById('newPosPrevRank')?.value || rank, 10);
+            const landingPage = document.getElementById('newPosLandingPage')?.value || '/best-solar-installer-in-thiruvalla/';
+            const tagsRaw = (document.getElementById('newPosTags')?.value || '').split(',');
+            const tags = tagsRaw.map(t => t.trim()).filter(Boolean);
+
+            let intentCode = "C";
+            let intentLabel = "Commercial";
+            let intentClass = "bg-warning-subtle text-warning-emphasis border-warning-subtle";
+            if (intentVal === "Transactional") {
+                intentCode = "T";
+                intentLabel = "Transactional";
+                intentClass = "bg-success-subtle text-success border-success-subtle";
+            } else if (intentVal === "Informational") {
+                intentCode = "I";
+                intentLabel = "Informational";
+                intentClass = "bg-info-subtle text-info border-info-subtle";
+            } else if (intentVal === "Local Intent") {
+                intentCode = "L";
+                intentLabel = "Local Pack";
+                intentClass = "bg-primary-subtle text-primary border-primary-subtle";
+            }
+
+            const diff = prevRank - rank; // e.g. prev 2, now 1 => +1
+
+            const newKeywordItem = {
+                query: query,
+                tags: tags.length > 0 ? tags : [locationVal, "solar installation"],
+                intent: intentCode,
+                intentLabel: intentLabel,
+                intentClass: intentClass,
+                sf: 6,
+                kd: kd,
+                oct26: prevRank,
+                nov1: rank,
+                diff: diff,
+                vol: vol.includes('/mo') ? vol : vol + '/mo',
+                cpc: "₹21.50",
+                landingPage: landingPage,
+                isCustom: true
+            };
+
+            // Prepend to livePositionsData
+            if (typeof livePositionsData !== 'undefined') {
+                livePositionsData.unshift(newKeywordItem);
+                renderPositionsTable(livePositionsData);
+            loadCustomPositions();
+            }
+
+            // Also persist to localStorage so custom keywords persist across reloads
+            try {
+                const customSaved = JSON.parse(localStorage.getItem('solis_custom_positions') || '[]');
+                customSaved.unshift(newKeywordItem);
+                localStorage.setItem('solis_custom_positions', JSON.stringify(customSaved));
+            } catch (err) {
+                console.warn('Could not save to localStorage', err);
+            }
+
+            // Close modal
+            const modalEl = document.getElementById('addPositionModal');
+            if (modalEl) {
+                const modal = bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl);
+                if (modal) modal.hide();
+            }
+
+            // Reset form
+            document.getElementById('addPositionForm')?.reset();
+
+            if (typeof showSeoToast === 'function') {
+                showSeoToast(`Successfully added "${query}" to tracked keywords!`);
+            } else {
+                alert(`Successfully added "${query}" to tracked keywords!`);
+            }
+        }
+
+        // Load custom positions on startup
+        function loadCustomPositions() {
+            try {
+                const saved = JSON.parse(localStorage.getItem('solis_custom_positions') || '[]');
+                if (saved && saved.length > 0 && typeof livePositionsData !== 'undefined') {
+                    saved.forEach(item => {
+                        if (!livePositionsData.some(p => p.query.toLowerCase() === item.query.toLowerCase())) {
+                            livePositionsData.unshift(item);
+                        }
+                    });
+                    renderPositionsTable(livePositionsData);
+            loadCustomPositions();
+                }
+            } catch (err) {
+                console.warn('Error loading custom positions', err);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize exclusive view on Dashboard
             switchSeoSidebarTab('tab-dashboard', document.getElementById('tab-dashboard-btn'));
             initSidebarState();
             renderPositionsTable(livePositionsData);
+            loadCustomPositions();
             loadCustomCompetitors();
             renderCompetitorDossiers(liveCompetitorsList);
             loadCustomKeywords();
@@ -6107,6 +6227,118 @@
                     Notification message
                 </div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal: Add New Tracked Keyword / Query -->
+    <div class="modal fade" id="addPositionModal" tabindex="-1" aria-labelledby="addPositionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header bg-light border-bottom py-3 px-4">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-primary text-white p-2 rounded-3"><i class="fa-solid fa-key"></i></span>
+                        <div>
+                            <h5 class="modal-title font-display fw-bold text-dark mb-0" id="addPositionModalLabel">
+                                Add Tracked Keyword to Solis SEO
+                            </h5>
+                            <small class="text-muted">Track live Google SERP positions, Local Pack 3-Pack, monthly volume, and ranking URL.</small>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="addPositionForm" onsubmit="saveNewTrackedKeyword(event)">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Keyword / Search Query <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-control-lg fs-6" id="newPosQuery" placeholder="e.g. solar panel installation cost in thiruvalla" required>
+                            <div class="form-text small">Enter the exact search query you want to monitor across Google Kerala SERP and Google Maps.</div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-12 col-md-4">
+                                <label class="form-label small fw-bold text-dark">Search Intent</label>
+                                <select class="form-select form-select-sm fw-semibold" id="newPosIntent">
+                                    <option value="Commercial" selected>Commercial (Buyer Comparison)</option>
+                                    <option value="Transactional">Transactional (Ready to Buy / Install)</option>
+                                    <option value="Local Intent">Local Hub / Map Pack</option>
+                                    <option value="Informational">Informational (Subsidy / Guide)</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label class="form-label small fw-bold text-dark">Target Location / Hub</label>
+                                <select class="form-select form-select-sm fw-semibold" id="newPosLocation">
+                                    <option value="Thiruvalla (HQ)" selected>📍 Thiruvalla (Muthoor HQ)</option>
+                                    <option value="Pathanamthitta">📍 Pathanamthitta District</option>
+                                    <option value="Kottayam">📍 Kottayam Central</option>
+                                    <option value="Adoor">📍 Adoor Hub</option>
+                                    <option value="Changanassery">📍 Changanassery Hub</option>
+                                    <option value="Kollam">📍 Kollam Coastal</option>
+                                    <option value="Kerala Wide">⚡ Kerala Statewide</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label class="form-label small fw-bold text-dark">Monthly Search Volume</label>
+                                <input type="text" class="form-control form-control-sm font-mono" id="newPosVol" placeholder="e.g. 720/mo" value="650/mo">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-12 col-md-4">
+                                <label class="form-label small fw-bold text-dark">Keyword Difficulty (KD %)</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control font-mono" id="newPosKd" min="0" max="100" value="22">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label class="form-label small fw-bold text-dark">Current Google Rank</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text font-mono">#</span>
+                                    <input type="number" class="form-control font-mono" id="newPosRank" min="1" max="100" value="1">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label class="form-label small fw-bold text-dark">Previous Week Rank (Diff)</label>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text font-mono">#</span>
+                                    <input type="number" class="form-control font-mono" id="newPosPrevRank" min="1" max="100" value="2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Target Landing Page URL</label>
+                            <select class="form-select form-select-sm font-mono" id="newPosLandingPage">
+                                <option value="/best-solar-installer-in-thiruvalla/" selected>/best-solar-installer-in-thiruvalla/ (Rank #1 Thiruvalla Page)</option>
+                                <option value="/solar-installer-near-me/">/solar-installer-near-me/ (Near Me Hub)</option>
+                                <option value="/solar-company-in-pathanamthitta/thiruvalla/">/solar-company-in-pathanamthitta/thiruvalla/ (Town Hub)</option>
+                                <option value="/solar-company-in-pathanamthitta/">/solar-company-in-pathanamthitta/ (District Page)</option>
+                                <option value="/solar-company-in-kottayam/">/solar-company-in-kottayam/ (Kottayam Hub)</option>
+                                <option value="/5kw-solar-system-kerala-price/">/5kw-solar-system-kerala-price/ (5kW Pricing Page)</option>
+                                <option value="/3kw-solar-system-kerala-price/">/3kw-solar-system-kerala-price/ (3kW Pricing Page)</option>
+                                <option value="/hybrid-solar/">/hybrid-solar/ (Hybrid Solar)</option>
+                                <option value="/pm-surya-ghar-muft-bijli-yojana-kerala/">/pm-surya-ghar-muft-bijli-yojana-kerala/ (Subsidy Guide)</option>
+                                <option value="/">/ (Homepage)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold text-dark">Related Sub-Tags (Comma Separated)</label>
+                            <input type="text" class="form-control form-control-sm" id="newPosTags" placeholder="e.g. solar subsidy, thiruvalla solar, on grid solar" value="solar installation, thiruvalla solar">
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light border-top py-2 px-4 d-flex justify-content-between">
+                        <span class="small text-muted font-mono"><i class="fa-solid fa-database text-success me-1"></i> Saves locally & syncs to Solis SEO Suite</span>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-sm btn-primary px-3 fw-semibold">
+                                <i class="fa-solid fa-check me-1"></i> Add Tracked Keyword
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
