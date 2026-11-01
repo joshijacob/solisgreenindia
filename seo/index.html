@@ -1669,12 +1669,12 @@
                     <div class="px-4 pt-3 pb-2 bg-white border-bottom">
                         <ul class="nav nav-pills gap-2" id="backlinkSubTabs" role="tablist">
                             <li class="nav-item">
-                                <button class="nav-link active rounded-pill px-3 py-1 small fw-bold" id="bltab-profile-btn" data-bs-toggle="pill" data-bs-target="#bltab-profile" type="button" role="tab">
+                                <button class="nav-link active rounded-pill px-3 py-1 small fw-bold" id="bltab-profile-btn" data-bs-toggle="pill" onclick="renderBacklinksTable(SOLIS_BACKLINKS_DATA)" data-bs-target="#bltab-profile" type="button" role="tab">
                                     <i class="fa-solid fa-list-check me-1"></i> Solis Backlink Profile (54)
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button class="nav-link rounded-pill px-3 py-1 small fw-bold" id="bltab-gap-btn" data-bs-toggle="pill" data-bs-target="#bltab-gap" type="button" role="tab">
+                                <button class="nav-link rounded-pill px-3 py-1 small fw-bold" id="bltab-gap-btn" data-bs-toggle="pill" onclick="renderCompetitorGapTable(COMPETITOR_LINK_GAP_DATA)" data-bs-target="#bltab-gap" type="button" role="tab">
                                     <i class="fa-solid fa-crosshairs me-1"></i> Competitor Link Gap & Spy (14 Opportunities)
                                 </button>
                             </li>
@@ -4403,10 +4403,6 @@
                 renderPositionsTable(livePositionsData.filter(p => p.nov1 <= 10));
             } else {
                 renderPositionsTable(livePositionsData);
-            loadCustomPositions();
-            renderCampaignKeywordsTable(CAMPAIGN_KEYWORDS_DATA);
-            loadCustomCompetitors();
-            renderCompetitorDossiers(liveCompetitorsList);
             }
         }
 
@@ -5898,6 +5894,11 @@
                 setTimeout(() => {
                     if (typeof initSovMapIfNeeded === 'function') initSovMapIfNeeded();
                 }, 150);
+            } else if (targetTabId === 'tab-backlinks') {
+                setTimeout(() => {
+                    if (typeof renderBacklinksTable === 'function') renderBacklinksTable(SOLIS_BACKLINKS_DATA);
+                    if (typeof renderCompetitorGapTable === 'function') renderCompetitorGapTable(COMPETITOR_LINK_GAP_DATA);
+                }, 50);
             }
 
             // 6. Scroll smoothly to top of workspace
@@ -6082,8 +6083,6 @@
             if (typeof livePositionsData !== 'undefined') {
                 livePositionsData.unshift(newKeywordItem);
                 renderPositionsTable(livePositionsData);
-            loadCustomPositions();
-            renderCampaignKeywordsTable(CAMPAIGN_KEYWORDS_DATA);
             }
 
             // Also persist to localStorage so custom keywords persist across reloads
@@ -6123,8 +6122,6 @@
                         }
                     });
                     renderPositionsTable(livePositionsData);
-            loadCustomPositions();
-            renderCampaignKeywordsTable(CAMPAIGN_KEYWORDS_DATA);
                 }
             } catch (err) {
                 console.warn('Error loading custom positions', err);
@@ -6606,6 +6603,9 @@
             renderPositionsTable(livePositionsData);
             loadCustomPositions();
             renderCampaignKeywordsTable(CAMPAIGN_KEYWORDS_DATA);
+            renderBacklinksTable(SOLIS_BACKLINKS_DATA);
+            renderCompetitorGapTable(COMPETITOR_LINK_GAP_DATA);
+            loadCustomBacklinks();
             loadCustomCompetitors();
             renderCompetitorDossiers(liveCompetitorsList);
             loadCustomKeywords();
