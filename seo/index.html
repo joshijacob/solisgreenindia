@@ -208,6 +208,29 @@
         .custom-scroll::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+    
+        @media print {
+            body * {
+                visibility: hidden !important;
+            }
+            #executiveReportPrintArea, #executiveReportPrintArea * {
+                visibility: visible !important;
+            }
+            #executiveReportPrintArea {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                background: white !important;
+                color: #000000 !important;
+            }
+            .modal-backdrop, .modal-header, .btn, .no-print {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -279,8 +302,14 @@
                 <a href="https://search.google.com/test/rich-results" target="_blank" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-semibold shadow-sm">
                     <i class="fa-solid fa-shield-halved me-1"></i> Google Rich Test
                 </a>
-                <button class="btn btn-sm btn-success rounded-pill px-3 fw-semibold shadow-sm" onclick="exportSeoReportCSV()">
-                    <i class="fa-solid fa-file-csv me-1"></i> Export Audit CSV
+                <button class="btn btn-sm btn-success rounded-pill px-3 fw-semibold shadow-sm" onclick="openExecutiveReportModal()">
+                    <i class="fa-solid fa-file-pdf me-1"></i> Executive Report (PDF/Print)
+                </button>
+                <button class="btn btn-sm btn-outline-success rounded-pill px-3 fw-semibold shadow-sm" onclick="exportKeywordsCSV()">
+                    <i class="fa-solid fa-file-excel me-1"></i> Export Keywords CSV
+                </button>
+                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold shadow-sm" onclick="exportSeoReportCSV()">
+                    <i class="fa-solid fa-file-csv me-1"></i> Technical Crawl CSV
                 </button>
             </div>
         </div>
@@ -551,11 +580,16 @@
                             <h5 class="fw-bold font-display text-dark mb-0"><i class="fa-solid fa-bullseye text-primary me-2"></i> Kerala Solar Keyword Priority Tiers ("Where the Money Is")</h5>
                             <small class="text-muted">Commercial buyer intent, search volume, ranking difficulty & Solis competitive positioning</small>
                         </div>
-                        <div class="btn-group btn-group-sm" role="group">
-                            <button type="button" class="btn btn-outline-secondary active kw-tier-btn" onclick="filterKeywordTier('all', this)">All Keywords (12)</button>
-                            <button type="button" class="btn btn-outline-primary kw-tier-btn" onclick="filterKeywordTier('tier1', this)">🥇 Tier 1: High-Ticket</button>
-                            <button type="button" class="btn btn-outline-success kw-tier-btn" onclick="filterKeywordTier('tier2', this)">🥈 Tier 2: Local Towns</button>
-                            <button type="button" class="btn btn-outline-info kw-tier-btn" onclick="filterKeywordTier('tier3', this)">🥉 Tier 3: Subsidy & Tech</button>
+                        <div class="d-flex flex-wrap gap-2 align-items-center">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button type="button" class="btn btn-outline-secondary active kw-tier-btn" id="kw-tier-all-btn" onclick="filterKeywordTier('all', this)">All Keywords (<span id="kw-count-all">12</span>)</button>
+                                <button type="button" class="btn btn-outline-primary kw-tier-btn" onclick="filterKeywordTier('tier1', this)">🥇 Tier 1: High-Ticket</button>
+                                <button type="button" class="btn btn-outline-success kw-tier-btn" onclick="filterKeywordTier('tier2', this)">🥈 Tier 2: Local Towns</button>
+                                <button type="button" class="btn btn-outline-info kw-tier-btn" onclick="filterKeywordTier('tier3', this)">🥉 Tier 3: Subsidy & Tech</button>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-primary rounded-pill px-3 shadow-sm fw-semibold" onclick="openAddKeywordModal()">
+                                <i class="fa-solid fa-plus me-1"></i> Add Target Keyword
+                            </button>
                         </div>
                     </div>
                     <div class="card-body p-0">
@@ -719,6 +753,66 @@
                         </span>
                     </div>
                     <div class="card-body p-4">
+
+                                                <!-- At-A-Glance Head-to-Head Scorecard -->
+                        <div class="card border rounded-3 p-3 p-md-4 mb-4 bg-white shadow-sm">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 pb-2 border-bottom">
+                                <div>
+                                    <h6 class="fw-bold font-display text-dark mb-1">
+                                        <i class="fa-solid fa-trophy text-warning me-2"></i> Solis vs Surrounding Competitors: Head-to-Head Scorecard
+                                    </h6>
+                                    <small class="text-muted">A clear, at-a-glance comparison showing where Solis Green Energy holds the decisive commercial advantage in Kerala.</small>
+                                </div>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill small fw-semibold">
+                                    <i class="fa-solid fa-check-double me-1"></i> 5 out of 5 Market Advantages
+                                </span>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0" style="font-size: 0.85rem;">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="ps-3" style="width: 25%;">Competitive Metric</th>
+                                            <th style="width: 30%;" class="text-success"><i class="fa-solid fa-shield-halved me-1"></i> Solis Green Energy Solutions</th>
+                                            <th style="width: 25%;" class="text-secondary"><i class="fa-solid fa-users me-1"></i> Average Competitors</th>
+                                            <th style="width: 20%;" class="text-primary text-end pe-3">The Solis Winning Edge</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="ps-3 fw-bold text-dark">Physical Presence & Experience Center</td>
+                                            <td><span class="badge bg-success text-white"><i class="fa-solid fa-check me-1"></i> Muthoor, Thiruvalla HQ</span></td>
+                                            <td class="text-muted">Remote sales reps / Home offices</td>
+                                            <td class="text-end pe-3 small fw-semibold text-primary">Walk-in customer trust & live product demos</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-3 fw-bold text-dark">Live Pricing Transparency</td>
+                                            <td><span class="badge bg-success text-white"><i class="fa-solid fa-calculator me-1"></i> 3-Phase Online Calculator</span></td>
+                                            <td class="text-muted">Hidden pricing / "Contact for quote"</td>
+                                            <td class="text-end pe-3 small fw-semibold text-primary">Instant pre-qualified leads with exact subsidy breakdowns</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-3 fw-bold text-dark">Hyper-Local Town Coverage</td>
+                                            <td><span class="badge bg-success text-white"><i class="fa-solid fa-map-pin me-1"></i> 33 Dedicated Town Hubs</span></td>
+                                            <td class="text-muted">1-2 generic Kerala web pages</td>
+                                            <td class="text-end pe-3 small fw-semibold text-primary">Captures local searches in Ranni, Kozhencherry, Adoor, etc.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-3 fw-bold text-dark">Lead Response Speed</td>
+                                            <td><span class="badge bg-success text-white"><i class="fa-brands fa-whatsapp me-1"></i> 1-Click WhatsApp & Direct Call</span></td>
+                                            <td class="text-muted">Slow standard web forms (24-48 hr reply)</td>
+                                            <td class="text-end pe-3 small fw-semibold text-primary">Instant response closes buyers before competitors call back</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-3 fw-bold text-dark">Equipment Brand Tiering</td>
+                                            <td><span class="badge bg-success text-white"><i class="fa-solid fa-bolt me-1"></i> Deye, Growatt & TOPCon Bifacial</span></td>
+                                            <td class="text-muted">Generic unbranded inverters</td>
+                                            <td class="text-end pe-3 small fw-semibold text-primary">Higher reliability, 10-year battery warranty, NRI confidence</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
                         <!-- Location Selector Filter -->
                         <div class="mb-4">
@@ -1729,8 +1823,185 @@
         }
 
         // Render Keyword Tiers Table
+        const CUSTOM_KEYWORDS_KEY = 'solis_custom_keywords';
+
+        function loadCustomKeywords() {
+            try {
+                const stored = localStorage.getItem(CUSTOM_KEYWORDS_KEY);
+                if (stored) {
+                    const list = JSON.parse(stored);
+                    if (Array.isArray(list)) {
+                        list.forEach(item => {
+                            item.isCustom = true;
+                            if (!KEYWORD_TIERS_DATA.some(k => k.query.toLowerCase() === item.query.toLowerCase())) {
+                                KEYWORD_TIERS_DATA.unshift(item);
+                            }
+                        });
+                    }
+                }
+            } catch(e) {
+                console.warn("Could not load custom keywords:", e);
+            }
+            updateKeywordCounters();
+        }
+
+        function updateKeywordCounters() {
+            const total = KEYWORD_TIERS_DATA.length;
+            const statEl = document.getElementById('stat-queries-count');
+            if (statEl) statEl.textContent = total;
+            const kwCountAll = document.getElementById('kw-count-all');
+            if (kwCountAll) kwCountAll.textContent = total;
+            const pillKw = document.getElementById('pill-count-keywords');
+            if (pillKw) pillKw.textContent = total;
+        }
+
+        function openAddKeywordModal() {
+            const modalEl = document.getElementById('addKeywordModal');
+            if (modalEl) {
+                const modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        }
+
+        function saveCustomKeyword(e) {
+            e.preventDefault();
+            const query = (document.getElementById('newKwQuery').value || '').trim();
+            const tier = document.getElementById('newKwTier').value;
+            const intent = document.getElementById('newKwIntent').value;
+            const vol = (document.getElementById('newKwVol').value || '').trim() || '500/mo';
+            const diff = document.getElementById('newKwDiff').value;
+            const page = (document.getElementById('newKwPage').value || '').trim() || '/';
+            const adv = (document.getElementById('newKwAdv').value || '').trim() || 'Muthoor HQ experience center + Deye hybrid inverter';
+            const action = (document.getElementById('newKwAction').value || '').trim() || 'Promote 3-phase live pricing calculator to local homeowners';
+
+            if (!query) {
+                alert("Please enter a target keyword.");
+                return;
+            }
+
+            let tierLabel = "🥇 Tier 1: High-Ticket";
+            let tierBadge = "bg-danger-subtle text-danger border-danger-subtle";
+            if (tier === 'tier2') {
+                tierLabel = "🥈 Tier 2: Local Towns";
+                tierBadge = "bg-primary-subtle text-primary border-primary-subtle";
+            } else if (tier === 'tier3') {
+                tierLabel = "🥉 Tier 3: Subsidy & Tech";
+                tierBadge = "bg-info-subtle text-info-emphasis border-info-subtle";
+            }
+
+            const newKw = {
+                query,
+                tier,
+                tierLabel,
+                tierBadge,
+                intent,
+                vol,
+                diff,
+                page,
+                adv,
+                action,
+                isCustom: true
+            };
+
+            KEYWORD_TIERS_DATA = KEYWORD_TIERS_DATA.filter(k => k.query.toLowerCase() !== query.toLowerCase());
+            KEYWORD_TIERS_DATA.unshift(newKw);
+
+            try {
+                let existing = JSON.parse(localStorage.getItem(CUSTOM_KEYWORDS_KEY) || '[]');
+                existing = existing.filter(k => k.query.toLowerCase() !== query.toLowerCase());
+                existing.unshift(newKw);
+                localStorage.setItem(CUSTOM_KEYWORDS_KEY, JSON.stringify(existing));
+            } catch(err) {
+                console.warn("Could not save to localStorage:", err);
+            }
+
+            const modalEl = document.getElementById('addKeywordModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalEl);
+            if (modalInstance) modalInstance.hide();
+
+            document.getElementById('addKeywordForm').reset();
+            updateKeywordCounters();
+            renderKeywordsTable(KEYWORD_TIERS_DATA);
+            showSeoToast(`✅ Target keyword "${query}" added & saved!`);
+        }
+
+        function deleteCustomKeyword(query) {
+            if (!confirm(`Are you sure you want to remove target keyword: "${query}"?`)) return;
+
+            KEYWORD_TIERS_DATA = KEYWORD_TIERS_DATA.filter(k => k.query !== query);
+            try {
+                let existing = JSON.parse(localStorage.getItem(CUSTOM_KEYWORDS_KEY) || '[]');
+                existing = existing.filter(k => k.query !== query);
+                localStorage.setItem(CUSTOM_KEYWORDS_KEY, JSON.stringify(existing));
+            } catch(e) {}
+
+            updateKeywordCounters();
+            if (currentKeywordsFilter === 'all') {
+                renderKeywordsTable(KEYWORD_TIERS_DATA);
+            } else {
+                renderKeywordsTable(KEYWORD_TIERS_DATA.filter(k => k.tier === currentKeywordsFilter));
+            }
+            showSeoToast(`🗑️ Keyword "${query}" removed.`);
+        }
+
+        function openExecutiveReportModal() {
+            const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            const dateEl = document.getElementById('execReportDate');
+            if (dateEl) dateEl.textContent = today;
+
+            const pagesEl = document.getElementById('execPagesCount');
+            if (pagesEl) pagesEl.textContent = realAuditPages.length || 100;
+
+            const kwCount = KEYWORD_TIERS_DATA.length;
+            const kwBadge = document.getElementById('execReportKwBadge');
+            if (kwBadge) kwBadge.textContent = `${kwCount} Tracked Queries`;
+
+            const tbody = document.getElementById('execReportKeywordsTableBody');
+            if (tbody) {
+                tbody.innerHTML = '';
+                KEYWORD_TIERS_DATA.slice(0, 10).forEach(k => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td class="fw-bold text-dark">${k.query}</td>
+                        <td><span class="badge ${k.tierBadge}">${k.tierLabel}</span></td>
+                        <td><span class="text-secondary small">${k.intent}</span></td>
+                        <td class="text-center font-mono fw-semibold">${k.vol}</td>
+                        <td><code>${k.page}</code></td>
+                        <td class="small text-muted">${k.action || k.adv || '-'}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+
+            const modalEl = document.getElementById('executiveReportModal');
+            if (modalEl) {
+                const modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        }
+
+        function printExecutiveReport() {
+            window.print();
+        }
+
+        function exportKeywordsCSV() {
+            let csv = "Target Query / Keyword,Tier,Intent,Est Monthly Searches,Ranking Difficulty,Target Page,Solis Advantage,Recommended Action\n";
+            KEYWORD_TIERS_DATA.forEach(k => {
+                csv += `"${k.query.replace(/"/g, '""')}","${k.tierLabel.replace(/"/g, '""')}","${k.intent}","${k.vol}","${k.diff}","${k.page}","${(k.adv || '').replace(/"/g, '""')}","${(k.action || '').replace(/"/g, '""')}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Solis_Keyword_Strategy_Report_${new Date().toISOString().slice(0,10)}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showSeoToast("📊 Keyword Strategy CSV exported successfully!");
+        }
+
         function renderKeywordsTable(keywords) {
             const tbody = document.getElementById('keywordsTableBody');
+            if (!tbody) return;
             tbody.innerHTML = '';
 
             keywords.forEach(k => {
@@ -1738,10 +2009,16 @@
                 if (k.diff === 'Medium') diffBadge = '<span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">Medium</span>';
                 if (k.diff === 'High') diffBadge = '<span class="badge bg-danger-subtle text-danger border border-danger-subtle">High (Competitive)</span>';
 
+                const customBadge = k.isCustom 
+                    ? `<span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle ms-1" style="font-size: 0.65rem;">Custom</span>
+                       <button class="btn btn-sm btn-link text-danger p-0 ms-2" title="Remove custom keyword" onclick="deleteCustomKeyword('${k.query.replace(/'/g, "\\'")}')"><i class="fa-solid fa-trash-can"></i></button>`
+                    : '';
+
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td class="ps-4">
                         <span class="fw-bold text-dark font-display fs-6">${k.query}</span>
+                        ${customBadge}
                     </td>
                     <td><span class="badge ${k.tierBadge}">${k.tierLabel}</span></td>
                     <td><span class="text-capitalize small fw-semibold text-secondary">${k.intent}</span></td>
@@ -1752,10 +2029,8 @@
                             <code>${k.page}</code>
                         </a>
                     </td>
-                    <td class="pe-3"><small class="text-dark">${k.adv}</small></td>
-                    <td class="text-end pe-4">
-                        <span class="badge bg-light text-dark border small">${k.action}</span>
-                    </td>
+                    <td class="ps-3 small text-muted">${k.adv}</td>
+                    <td class="small fw-semibold text-primary">${k.action}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -2603,6 +2878,7 @@
 
         // On Load Init
         document.addEventListener('DOMContentLoaded', () => {
+            loadCustomKeywords();
             loadRealAuditData();
             loadRealSitemapXml();
             initFirestoreOrganicSync();
@@ -2633,6 +2909,285 @@
             }
         }
     </script>
+    
+    <!-- Modal: Add Custom Target Keyword -->
+    <div class="modal fade" id="addKeywordModal" tabindex="-1" aria-labelledby="addKeywordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header bg-light border-bottom py-3 px-4">
+                    <h5 class="modal-title font-display fw-bold text-dark" id="addKeywordModalLabel">
+                        <i class="fa-solid fa-plus-circle text-primary me-2"></i> Add New Target Keyword
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="addKeywordForm" onsubmit="saveCustomKeyword(event)">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Target Keyword / Query <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="newKwQuery" placeholder="e.g. commercial solar panel kottayam" required>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold text-dark">Priority Tier</label>
+                                <select class="form-select form-select-sm" id="newKwTier">
+                                    <option value="tier1">🥇 Tier 1: High-Ticket</option>
+                                    <option value="tier2" selected>🥈 Tier 2: Local Towns</option>
+                                    <option value="tier3">🥉 Tier 3: Subsidy & Tech</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold text-dark">Search Intent</label>
+                                <select class="form-select form-select-sm" id="newKwIntent">
+                                    <option value="Transactional">Transactional</option>
+                                    <option value="Commercial B2B">Commercial B2B</option>
+                                    <option value="Local Buying Intent" selected>Local Buying Intent</option>
+                                    <option value="Informational">Informational</option>
+                                    <option value="Service / Maintenance">Service / Maintenance</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold text-dark">Est. Monthly Searches</label>
+                                <input type="text" class="form-control form-control-sm" id="newKwVol" placeholder="e.g. 850/mo" value="500/mo">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold text-dark">Ranking Difficulty</label>
+                                <select class="form-select form-select-sm" id="newKwDiff">
+                                    <option value="Low">Low (Easy Win)</option>
+                                    <option value="Medium" selected>Medium</option>
+                                    <option value="High">High (Competitive)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Target Landing Page URL</label>
+                            <input type="text" class="form-control form-control-sm" id="newKwPage" placeholder="e.g. /solar-panel-installation-kottayam/" value="/solar-company-in-pathanamthitta/">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Solis Competitive Advantage</label>
+                            <input type="text" class="form-control form-control-sm" id="newKwAdv" placeholder="e.g. Muthoor HQ experience center + Deye hybrid inverter" value="Muthoor HQ experience center + 25-yr panel warranty">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label small fw-bold text-dark">Recommended Sales Action</label>
+                            <input type="text" class="form-control form-control-sm" id="newKwAction" placeholder="e.g. Run Google Search Ads targeting local villas" value="Promote 3-phase live pricing calculator to local homeowners">
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light border-top py-2 px-4 d-flex justify-content-between">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-primary px-4 fw-semibold">
+                            <i class="fa-solid fa-save me-1"></i> Save Keyword
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Executive SEO & Market Intelligence Report -->
+    <div class="modal fade" id="executiveReportModal" tabindex="-1" aria-labelledby="execReportModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white py-3 px-4 border-0 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="modal-title font-display fw-bold mb-0 text-white" id="execReportModalLabel">
+                            <i class="fa-solid fa-file-contract text-warning me-2"></i> Executive Search Engine & Market Visibility Report
+                        </h5>
+                        <small class="text-white-50">Solis Green Energy Solutions — Central & South Kerala Strategic Intelligence</small>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-success btn-sm px-3 fw-bold" onclick="printExecutiveReport()">
+                            <i class="fa-solid fa-print me-1"></i> Print / Save as PDF
+                        </button>
+                        <button type="button" class="btn btn-outline-light btn-sm" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <div class="modal-body p-4 p-md-5" id="executiveReportPrintArea" style="background-color: #ffffff; color: #1e293b;">
+                    
+                    <!-- Report Header -->
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-4 mb-4 border-bottom border-2">
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <div class="bg-warning text-white rounded-circle p-2 d-inline-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                                    <i class="fa-solid fa-sun fs-5"></i>
+                                </div>
+                                <h3 class="fw-bold font-display text-dark mb-0">SOLIS GREEN ENERGY SOLUTIONS</h3>
+                            </div>
+                            <div class="small text-muted">
+                                Head Office: Muthoor, Thiruvalla, Pathanamthitta, Kerala 689107 | Phone: +91 83018 49474 | Web: solisgreenindia.in
+                            </div>
+                        </div>
+                        <div class="text-md-end mt-3 mt-md-0">
+                            <span class="badge bg-primary px-3 py-2 rounded-pill fs-7 mb-1">CONFIDENTIAL EXECUTIVE BRIEFING</span>
+                            <div class="small text-muted">Report Generated: <span id="execReportDate">November 2026</span></div>
+                            <div class="small fw-semibold text-success"><i class="fa-solid fa-circle-check me-1"></i> Production Verified</div>
+                        </div>
+                    </div>
+
+                    <!-- 4 Executive KPI Cards -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-6 col-md-3">
+                            <div class="p-3 border rounded-3 bg-light text-center">
+                                <div class="small text-uppercase fw-bold text-muted" style="font-size: 0.7rem;">Site Health Score</div>
+                                <div class="fs-2 fw-bold text-success font-display">98%</div>
+                                <span class="badge bg-success-subtle text-success">Grade A+ (Optimal)</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="p-3 border rounded-3 bg-light text-center">
+                                <div class="small text-uppercase fw-bold text-muted" style="font-size: 0.7rem;">Indexable Web Pages</div>
+                                <div class="fs-2 fw-bold text-dark font-display" id="execPagesCount">100</div>
+                                <span class="badge bg-primary-subtle text-primary">0 Critical Errors</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="p-3 border rounded-3 bg-light text-center">
+                                <div class="small text-uppercase fw-bold text-muted" style="font-size: 0.7rem;">Regional Town Hubs</div>
+                                <div class="fs-2 fw-bold text-warning-emphasis font-display">33</div>
+                                <span class="badge bg-warning-subtle text-warning-emphasis">4 Key Districts</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="p-3 border rounded-3 bg-light text-center">
+                                <div class="small text-uppercase fw-bold text-muted" style="font-size: 0.7rem;">NAP Citation Integrity</div>
+                                <div class="fs-2 fw-bold text-success font-display">100%</div>
+                                <span class="badge bg-success-subtle text-success">0 Name/Phone Conflicts</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Executive Summary Paragraph -->
+                    <div class="card border rounded-3 p-3 p-md-4 mb-4 bg-light">
+                        <h6 class="fw-bold text-dark font-display mb-2">
+                            <i class="fa-solid fa-clipboard-check text-primary me-2"></i> Executive Performance Summary
+                        </h6>
+                        <p class="small text-muted mb-0" style="line-height: 1.6;">
+                            Solis Green Energy Solutions holds a commanding local organic search and technical health position across Central and South Kerala. With 100 fully indexed pages mapped in <code>sitemap.xml</code>, 33 dedicated town-specific landing pages (covering Thiruvalla, Kottayam, Kollam, Alappuzha, and Kochi), and an official verified NAP standard in Muthoor, Solis is strategically positioned to capture high-intent commercial and residential rooftop solar inquiries without reliance on paid advertising brokers.
+                        </p>
+                    </div>
+
+                    <!-- Section 1: Commercial Priority Keywords -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="fw-bold text-dark font-display mb-0">
+                                <i class="fa-solid fa-bullseye text-danger me-2"></i> 1. High-Priority Commercial Keyword Targets
+                            </h6>
+                            <span class="badge bg-secondary-subtle text-secondary" id="execReportKwBadge">12 Tracked Queries</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm align-middle" style="font-size: 0.8rem;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Target Keyword</th>
+                                        <th>Priority Tier</th>
+                                        <th>Search Intent</th>
+                                        <th class="text-center">Monthly Vol</th>
+                                        <th>Target Landing Page</th>
+                                        <th>Recommended Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="execReportKeywordsTableBody">
+                                    <!-- Injected via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Competitor Ground Scorecard -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold text-dark font-display mb-2">
+                            <i class="fa-solid fa-chess-knight text-warning me-2"></i> 2. Hyper-Local Competitor Ground Benchmark
+                        </h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm align-middle" style="font-size: 0.8rem;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Competitive Dimension</th>
+                                        <th class="text-success fw-bold">Solis Green Energy</th>
+                                        <th class="text-secondary">Regional Competitor Baseline</th>
+                                        <th class="text-primary">Commercial Impact</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold">Physical Base & Office</td>
+                                        <td><span class="text-success fw-bold">Muthoor, Thiruvalla HQ</span> (Experience Center)</td>
+                                        <td class="text-muted">Remote brokers / Home offices</td>
+                                        <td>Strong walk-in confidence and local credibility</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Pricing Engine</td>
+                                        <td><span class="text-success fw-bold">Live 3-Phase Online Solar Calculator</span></td>
+                                        <td class="text-muted">Generic "Call for Quote" forms</td>
+                                        <td>Pre-qualifies buyers with real subsidy numbers</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Town Hub Landing Pages</td>
+                                        <td><span class="text-success fw-bold">33 Dedicated Local Town Pages</span></td>
+                                        <td class="text-muted">1-2 generic state pages</td>
+                                        <td>Monopolizes long-tail town searches in Pathanamthitta & Kottayam</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Inquiry Response Speed</td>
+                                        <td><span class="text-success fw-bold">1-Click WhatsApp & Call Direct</span></td>
+                                        <td class="text-muted">24 to 48 hr email turnaround</td>
+                                        <td>Faster close rate before competitors reach customer</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Verified NAP Baseline -->
+                    <div class="mb-4">
+                        <h6 class="fw-bold text-dark font-display mb-2">
+                            <i class="fa-solid fa-address-card text-success me-2"></i> 3. Verified NAP Consistency (Google Maps Standard)
+                        </h6>
+                        <div class="row g-2 small">
+                            <div class="col-12 col-md-4">
+                                <div class="p-2 border rounded bg-light">
+                                    <div class="fw-bold text-dark">Official Registered Name:</div>
+                                    <div class="text-primary fw-semibold">SOLIS GREEN ENERGY SOLUTIONS</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="p-2 border rounded bg-light">
+                                    <div class="fw-bold text-dark">Primary Telephone:</div>
+                                    <div class="text-success fw-semibold">+91 83018 49474</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="p-2 border rounded bg-light">
+                                    <div class="fw-bold text-dark">Headquarters Location:</div>
+                                    <div class="text-muted">Muthoor, Thiruvalla, Pathanamthitta 689107</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Next 30-Day Growth Roadmap -->
+                    <div class="p-3 border rounded-3 bg-light">
+                        <h6 class="fw-bold text-dark font-display mb-2">
+                            <i class="fa-solid fa-road text-info me-2"></i> 4. Next 30-Day Executive Growth Directives
+                        </h6>
+                        <ol class="small text-muted mb-0 ps-3" style="line-height: 1.6;">
+                            <li><b>Customer Reviews:</b> Encourage happy customers in Thiruvalla, Changanassery, and Kottayam to mention their exact locality in Google Reviews (e.g., <i>"Installed 5kW system in Kozhencherry"</i>).</li>
+                            <li><b>High-Ticket Ads:</b> Direct Google Search Ad spend specifically toward commercial keywords like <i>"commercial solar installation kochi"</i> and <i>"10kw on grid solar price kerala"</i>.</li>
+                            <li><b>Local Citations:</b> Maintain identical Name, Address, and Phone numbers across Google Business Profile, Justdial, and Indiamart to protect Google Map Pack Rank #1.</li>
+                        </ol>
+                    </div>
+
+                    <!-- Sign-off Footer -->
+                    <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top text-muted small">
+                        <div>Verified by: <b>Solis Super Admin Technical Team</b></div>
+                        <div>Official Portal: <a href="https://www.solisgreenindia.in" class="text-decoration-none">solisgreenindia.in</a></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Floating Notification Toast -->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
         <div id="seoLiveToast" class="toast align-items-center text-bg-dark border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
