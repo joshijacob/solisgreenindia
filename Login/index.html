@@ -6,6 +6,7 @@
     <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Solis Central Portal | Operational Modules & Admin Data Hub</title>
 
     <!-- Favicon -->
@@ -553,6 +554,7 @@
                 <div class="d-flex align-items-center gap-2">
                     <h5 class="fw-bold font-display mb-0 text-dark">Operational Modules & Data Hub</h5>
                     <span class="badge bg-light text-muted border d-none d-sm-inline" style="font-size: 0.68rem;" id="modulesCountBadge">9 Live Modules</span>
+                    <span class="badge bg-light text-secondary border font-mono d-none d-sm-inline" style="font-size: 0.68rem;" id="hubSessionTimerBadge"><i class="fa-regular fa-clock text-warning me-1"></i> Session: 4h 0m</span>
                 </div>
                 <div>
                     <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 rounded-pill fw-semibold" style="font-size: 0.7rem;">
@@ -939,15 +941,63 @@
             updateThoughtDisplay();
         }
 
-        // Check authentication state
+        const SOLIS_SESSION_TIMEOUT_MS = 4 * 60 * 60 * 1000; // 4 Hours
+
+        function hasActiveBrowserSession() {
+            return (typeof document !== 'undefined') && document.cookie.split(';').some(c => c.trim().startsWith('solis_session_active=true'));
+        }
+
+        // Check authentication state with dual guard (Browser-Close + 4-Hour Timer)
         function checkAuthState() {
-            if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
-                sessionStorage.setItem('solis_auth_token', 'true');
-                sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
-                sessionStorage.setItem('solis_user_name', localStorage.getItem('solis_user_name') || '');
-                sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
-                sessionStorage.setItem('solis_user_permissions', localStorage.getItem('solis_user_permissions') || '{}');
-                sessionStorage.setItem('solis_admin_logged_in', localStorage.getItem('solis_admin_logged_in') || 'false');
+            const browserActive = hasActiveBrowserSession();
+            const rawLoginTime = sessionStorage.getItem('solis_login_time') || localStorage.getItem('solis_login_time');
+            const loginTimestamp = rawLoginTime ? parseInt(rawLoginTime, 10) : 0;
+            const isWithin4Hours = (loginTimestamp > 0) && ((Date.now() - loginTimestamp) <= SOLIS_SESSION_TIMEOUT_MS);
+
+            // Check URL reason parameter
+            const urlReason = urlParams.get('reason');
+            if (urlReason === 'expired') {
+                const errorAlert = document.getElementById('login-error');
+                if (errorAlert) {
+                    errorAlert.querySelector('span').textContent = 'Your session has expired (4-hour security limit). Please sign in again.';
+                    errorAlert.classList.remove('d-none');
+                }
+            } else if (urlReason === 'logged_out') {
+                const redirectNotice = document.getElementById('redirect-notice');
+                if (redirectNotice) {
+                    redirectNotice.textContent = 'You have been successfully signed out.';
+                    redirectNotice.classList.remove('d-none');
+                }
+            }
+
+            // If browser closed or 4 hours elapsed, purge tokens immediately
+            if (!browserActive || !isWithin4Hours) {
+                const hadAuth = (sessionStorage.getItem('solis_auth_token') === 'true' || localStorage.getItem('solis_auth_token') === 'true');
+                sessionStorage.removeItem('solis_auth_token');
+                sessionStorage.removeItem('solis_login_time');
+                sessionStorage.removeItem('solis_hub_unlocked');
+                localStorage.removeItem('solis_auth_token');
+                localStorage.removeItem('solis_login_time');
+                document.cookie = "solis_session_active=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax";
+
+                // Show expiration warning if session timed out while user was active
+                if (hadAuth && browserActive && !isWithin4Hours) {
+                    const errorAlert = document.getElementById('login-error');
+                    if (errorAlert) {
+                        errorAlert.querySelector('span').textContent = 'Your session has expired (4-hour security limit). Please sign in again.';
+                        errorAlert.classList.remove('d-none');
+                    }
+                }
+            } else {
+                if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
+                    sessionStorage.setItem('solis_auth_token', 'true');
+                    sessionStorage.setItem('solis_login_time', rawLoginTime);
+                    sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
+                    sessionStorage.setItem('solis_user_name', localStorage.getItem('solis_user_name') || '');
+                    sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
+                    sessionStorage.setItem('solis_user_permissions', localStorage.getItem('solis_user_permissions') || '{}');
+                    sessionStorage.setItem('solis_admin_logged_in', localStorage.getItem('solis_admin_logged_in') || 'false');
+                }
             }
 
             // Normalize missing or generic user names
@@ -1179,6 +1229,16 @@
             if (countBadge) {
                 countBadge.textContent = `${visibleModulesCount} Active Module${visibleModulesCount === 1 ? '' : 's'}`;
             }
+
+            // Update live session timer badge
+            const hubLoginTime = parseInt(sessionStorage.getItem('solis_login_time') || localStorage.getItem('solis_login_time') || '0', 10);
+            const hubTimerBadge = document.getElementById('hubSessionTimerBadge');
+            if (hubTimerBadge && hubLoginTime > 0) {
+                const remMs = Math.max(0, SOLIS_SESSION_TIMEOUT_MS - (Date.now() - hubLoginTime));
+                const remMins = Math.floor(remMs / 60000);
+                hubTimerBadge.innerHTML = `<i class="fa-regular fa-clock text-warning me-1"></i> Session: ${Math.floor(remMins / 60)}h ${remMins % 60}m`;
+                hubTimerBadge.classList.remove('d-none');
+            }
         }
 
         // Toggle password visibility
@@ -1271,7 +1331,11 @@
                 }
 
                 if (authenticated) {
+                    const loginNow = Date.now().toString();
+                    document.cookie = "solis_session_active=true; path=/; SameSite=Lax";
+
                     sessionStorage.setItem('solis_auth_token', 'true');
+                    sessionStorage.setItem('solis_login_time', loginNow);
                     sessionStorage.setItem('solis_user_email', email);
                     sessionStorage.setItem('solis_user_name', userName);
                     sessionStorage.setItem('solis_user_role', role);
@@ -1279,6 +1343,7 @@
                     sessionStorage.removeItem('solis_hub_unlocked'); // Show Welcome Landing page on fresh login
 
                     localStorage.setItem('solis_auth_token', 'true');
+                    localStorage.setItem('solis_login_time', loginNow);
                     localStorage.setItem('solis_user_email', email);
                     localStorage.setItem('solis_user_name', userName);
                     localStorage.setItem('solis_user_role', role);
@@ -1314,6 +1379,7 @@
         // Sign Out Handler
         function handleLogout() {
             sessionStorage.removeItem('solis_auth_token');
+            sessionStorage.removeItem('solis_login_time');
             sessionStorage.removeItem('solis_user_email');
             sessionStorage.removeItem('solis_user_role');
             sessionStorage.removeItem('solis_hub_unlocked');
@@ -1322,11 +1388,14 @@
             sessionStorage.removeItem('solis_user_name');
 
             localStorage.removeItem('solis_auth_token');
+            localStorage.removeItem('solis_login_time');
             localStorage.removeItem('solis_user_email');
             localStorage.removeItem('solis_user_role');
             localStorage.removeItem('solis_admin_logged_in');
             localStorage.removeItem('solis_user_permissions');
             localStorage.removeItem('solis_user_name');
+
+            document.cookie = "solis_session_active=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax";
 
             if (typeof authFirebase !== 'undefined') {
                 authFirebase.signOut().catch(() => {});
@@ -1335,6 +1404,19 @@
             window.history.replaceState({}, document.title, '/Login/index.html');
             checkAuthState();
         }
+
+        // 30-Second Security Watchdog
+        setInterval(() => {
+            const rawTime = sessionStorage.getItem('solis_login_time') || localStorage.getItem('solis_login_time');
+            const time = rawTime ? parseInt(rawTime, 10) : 0;
+            const active = hasActiveBrowserSession();
+            if (sessionStorage.getItem('solis_auth_token') === 'true') {
+                if (!active || !time || (Date.now() - time > SOLIS_SESSION_TIMEOUT_MS)) {
+                    handleLogout();
+                    alert('Your session has expired (4-hour security limit). Please sign in again.');
+                }
+            }
+        }, 30000);
 
         // Initial Auth Check
         checkAuthState();

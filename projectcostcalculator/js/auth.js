@@ -36,13 +36,85 @@ function resolveSalesExecutiveName(email, fallbackName = '') {
 }
 window.resolveSalesExecutiveName = resolveSalesExecutiveName;
 
-// Cross-tab sync: restore sessionStorage from localStorage if available
-if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
-    sessionStorage.setItem('solis_auth_token', 'true');
-    sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
-    sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
-    sessionStorage.setItem('solis_user_name', localStorage.getItem('solis_user_name') || '');
-    sessionStorage.setItem('solis_user_permissions', localStorage.getItem('solis_user_permissions') || '{}');
+// ========================================================
+// DUAL SECURITY GUARD: 4-HOUR TIMEOUT + BROWSER-CLOSE LOCK
+// ========================================================
+const SOLIS_SESSION_TIMEOUT_MS = 4 * 60 * 60 * 1000; // 4 Hours (14,400,000 ms)
+
+function hasActiveBrowserSession() {
+    return (typeof document !== 'undefined') && document.cookie.split(';').some(c => c.trim().startsWith('solis_session_active=true'));
+}
+
+function purgeAuthSession() {
+    if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.removeItem('solis_auth_token');
+        sessionStorage.removeItem('solis_login_time');
+        sessionStorage.removeItem('solis_user_email');
+        sessionStorage.removeItem('solis_user_role');
+        sessionStorage.removeItem('solis_user_name');
+        sessionStorage.removeItem('solis_user_permissions');
+        sessionStorage.removeItem('solis_admin_logged_in');
+        sessionStorage.removeItem('solis_hub_unlocked');
+    }
+    if (typeof localStorage !== 'undefined') {
+        localStorage.removeItem('solis_auth_token');
+        localStorage.removeItem('solis_login_time');
+        localStorage.removeItem('solis_user_email');
+        localStorage.removeItem('solis_user_role');
+        localStorage.removeItem('solis_user_name');
+        localStorage.removeItem('solis_user_permissions');
+        localStorage.removeItem('solis_admin_logged_in');
+    }
+    if (typeof document !== 'undefined') {
+        document.cookie = "solis_session_active=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax";
+    }
+    if (typeof authFirebase !== 'undefined' && authFirebase.signOut) {
+        authFirebase.signOut().catch(() => {});
+    }
+}
+window.purgeAuthSession = purgeAuthSession;
+
+// Guard check on page load:
+const browserSessionActive = hasActiveBrowserSession();
+const rawLoginTime = (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('solis_login_time')) || 
+                     (typeof localStorage !== 'undefined' && localStorage.getItem('solis_login_time'));
+const loginTimestamp = rawLoginTime ? parseInt(rawLoginTime, 10) : 0;
+const isWithin4Hours = (loginTimestamp > 0) && ((Date.now() - loginTimestamp) <= SOLIS_SESSION_TIMEOUT_MS);
+
+// If browser was closed or session exceeded 4 hours, purge immediately
+if (!browserSessionActive || !isWithin4Hours) {
+    if ((typeof localStorage !== 'undefined' && localStorage.getItem('solis_auth_token')) || 
+        (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('solis_auth_token'))) {
+        purgeAuthSession();
+    }
+} else {
+    // Both guards passed: browser remains open and session is within 4 hours.
+    // Cross-tab sync: restore sessionStorage from localStorage if needed
+    if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
+        sessionStorage.setItem('solis_auth_token', 'true');
+        sessionStorage.setItem('solis_login_time', rawLoginTime);
+        sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
+        sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
+        sessionStorage.setItem('solis_user_name', localStorage.getItem('solis_user_name') || '');
+        sessionStorage.setItem('solis_user_permissions', localStorage.getItem('solis_user_permissions') || '{}');
+        sessionStorage.setItem('solis_admin_logged_in', localStorage.getItem('solis_admin_logged_in') || 'false');
+    }
+}
+
+// Background timer: checks every 30 seconds while page is open
+if (typeof window !== 'undefined') {
+    setInterval(() => {
+        const rawTime = sessionStorage.getItem('solis_login_time') || localStorage.getItem('solis_login_time');
+        const time = rawTime ? parseInt(rawTime, 10) : 0;
+        const active = hasActiveBrowserSession();
+        if (sessionStorage.getItem('solis_auth_token') === 'true' || localStorage.getItem('solis_auth_token') === 'true') {
+            if (!active || !time || (Date.now() - time > SOLIS_SESSION_TIMEOUT_MS)) {
+                purgeAuthSession();
+                alert("Your session has expired (4-hour security limit). Please sign in again.");
+                window.location.href = '/Login/index.html?reason=expired';
+            }
+        }
+    }, 30000);
 }
 
 // Auto-fill user name if missing or generic
@@ -144,9 +216,13 @@ async function attemptLogin(email, password) {
         const userCredential = await authFirebase.signInWithEmailAndPassword(email, password);
         const user = userCredential.user;
         
+        document.cookie = "solis_session_active=true; path=/; SameSite=Lax";
+        const loginNow = Date.now().toString();
         sessionStorage.setItem('solis_auth_token', 'true');
+        sessionStorage.setItem('solis_login_time', loginNow);
         sessionStorage.setItem('solis_user_email', user.email);
         localStorage.setItem('solis_auth_token', 'true');
+        localStorage.setItem('solis_login_time', loginNow);
         localStorage.setItem('solis_user_email', user.email);
         
         const role = (user.email.toLowerCase() === "solisgreenenergysolutions@gmail.com") ? 'admin' : 'sales';
@@ -168,11 +244,15 @@ async function attemptLogin(email, password) {
                 const userCredential = await authFirebase.createUserWithEmailAndPassword(email, password);
                 const user = userCredential.user;
                 
+                document.cookie = "solis_session_active=true; path=/; SameSite=Lax";
+                const regNow = Date.now().toString();
                 sessionStorage.setItem('solis_auth_token', 'true');
+                sessionStorage.setItem('solis_login_time', regNow);
                 sessionStorage.setItem('solis_user_email', user.email);
                 sessionStorage.setItem('solis_user_role', isValidUser.role);
                 sessionStorage.setItem('solis_user_name', isValidUser.name || resolveSalesExecutiveName(user.email));
                 localStorage.setItem('solis_auth_token', 'true');
+                localStorage.setItem('solis_login_time', regNow);
                 localStorage.setItem('solis_user_email', user.email);
                 localStorage.setItem('solis_user_role', isValidUser.role);
                 localStorage.setItem('solis_user_name', isValidUser.name || resolveSalesExecutiveName(user.email));
@@ -191,22 +271,8 @@ async function attemptLogin(email, password) {
 }
 
 function logout() {
-    sessionStorage.removeItem('solis_auth_token');
-    sessionStorage.removeItem('solis_user_email');
-    sessionStorage.removeItem('solis_user_role');
-    sessionStorage.removeItem('solis_user_name');
-    sessionStorage.removeItem('solis_user_permissions');
-    sessionStorage.removeItem('solis_admin_logged_in');
-    localStorage.removeItem('solis_auth_token');
-    localStorage.removeItem('solis_user_email');
-    localStorage.removeItem('solis_user_role');
-    localStorage.removeItem('solis_user_name');
-    localStorage.removeItem('solis_user_permissions');
-    localStorage.removeItem('solis_admin_logged_in');
-    if (typeof authFirebase !== 'undefined') {
-        authFirebase.signOut().catch(() => {});
-    }
-    window.location.href = '/Login/index.html';
+    purgeAuthSession();
+    window.location.href = '/Login/index.html?reason=logged_out';
 }
 
 function handleLogout() {
@@ -244,6 +310,24 @@ function updateNavbarUserInfo() {
             el.className = 'badge bg-primary-subtle text-primary border border-primary-subtle text-uppercase nav-user-role';
         }
     });
+
+
+    // Render session timer countdown in top navbar
+    const rawTime = (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('solis_login_time')) || 
+                     (typeof localStorage !== 'undefined' && localStorage.getItem('solis_login_time'));
+    if (rawTime) {
+        const loginTime = parseInt(rawTime, 10);
+        const elapsed = Date.now() - loginTime;
+        const remainingMs = Math.max(0, SOLIS_SESSION_TIMEOUT_MS - elapsed);
+        const totalMinutes = Math.floor(remainingMs / (60 * 1000));
+        const hours = Math.floor(totalMinutes / 60);
+        const mins = totalMinutes % 60;
+        const timeDisplay = `${hours}h ${mins}m`;
+
+        document.querySelectorAll('.nav-session-timer').forEach(el => {
+            el.innerHTML = `<i class="fa-regular fa-clock text-warning me-1"></i> Session: ${timeDisplay}`;
+        });
+    }
 
     document.querySelectorAll('.nav-user-avatar').forEach(el => {
         if (isSuperAdmin) {

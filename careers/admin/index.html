@@ -10,11 +10,26 @@
     <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.ico">
 
-    <!-- Central Solis Admin SSO Guard -->
+    <!-- Central Solis Admin SSO Guard with Dual Security (Browser-Close + 4-Hour Timer) -->
     <script>
-        // 1. Cross-tab & persistence sync
-        if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
+        const SOLIS_TIMEOUT_MS = 4 * 60 * 60 * 1000;
+        const browserActive = document.cookie.split(';').some(c => c.trim().startsWith('solis_session_active=true'));
+        const rawLoginTime = sessionStorage.getItem('solis_login_time') || localStorage.getItem('solis_login_time');
+        const loginTime = rawLoginTime ? parseInt(rawLoginTime, 10) : 0;
+        const isWithin4Hours = (loginTime > 0) && ((Date.now() - loginTime) <= SOLIS_TIMEOUT_MS);
+
+        if (!browserActive || !isWithin4Hours) {
+            sessionStorage.clear();
+            localStorage.removeItem('solis_auth_token');
+            localStorage.removeItem('solis_login_time');
+            localStorage.removeItem('solis_user_email');
+            localStorage.removeItem('solis_user_role');
+            localStorage.removeItem('solis_admin_logged_in');
+            document.cookie = "solis_session_active=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax";
+            window.location.href = '/Login/index.html?redirect=' + encodeURIComponent(window.location.pathname) + (browserActive && !isWithin4Hours ? '&reason=expired' : '');
+        } else if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
             sessionStorage.setItem('solis_auth_token', 'true');
+            sessionStorage.setItem('solis_login_time', rawLoginTime);
             sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
             sessionStorage.setItem('solis_user_name', localStorage.getItem('solis_user_name') || '');
             sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');

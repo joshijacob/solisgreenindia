@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>User Management & Role Access Control | Solis EPC Admin</title>
 
     <!-- Favicon -->
@@ -698,12 +699,37 @@
         let currentUsers = [];
         let userModalInstance = null;
 
+        const SOLIS_SESSION_TIMEOUT_MS = 4 * 60 * 60 * 1000; // 4 Hours
+
+        function hasActiveBrowserSession() {
+            return (typeof document !== 'undefined') && document.cookie.split(';').some(c => c.trim().startsWith('solis_session_active=true'));
+        }
+
         // ========================================================
-        // AUTHENTICATION & SUPER ADMIN GUARD
+        // AUTHENTICATION & SUPER ADMIN GUARD (DUAL SECURITY)
         // ========================================================
         function verifySuperAdminAuth() {
+            const browserActive = hasActiveBrowserSession();
+            const rawLoginTime = sessionStorage.getItem('solis_login_time') || localStorage.getItem('solis_login_time');
+            const loginTime = rawLoginTime ? parseInt(rawLoginTime, 10) : 0;
+            const isWithin4Hours = (loginTime > 0) && ((Date.now() - loginTime) <= SOLIS_SESSION_TIMEOUT_MS);
+
+            // If browser closed or 4 hours elapsed, purge and force login
+            if (!browserActive || !isWithin4Hours) {
+                sessionStorage.clear();
+                localStorage.removeItem('solis_auth_token');
+                localStorage.removeItem('solis_login_time');
+                localStorage.removeItem('solis_user_email');
+                localStorage.removeItem('solis_user_role');
+                localStorage.removeItem('solis_admin_logged_in');
+                document.cookie = "solis_session_active=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax";
+                window.location.href = '/Login/index.html?redirect=' + encodeURIComponent('/users/index.html') + (browserActive && !isWithin4Hours ? '&reason=expired' : '');
+                return false;
+            }
+
             if (sessionStorage.getItem('solis_auth_token') !== 'true' && localStorage.getItem('solis_auth_token') === 'true') {
                 sessionStorage.setItem('solis_auth_token', 'true');
+                sessionStorage.setItem('solis_login_time', rawLoginTime);
                 sessionStorage.setItem('solis_user_email', localStorage.getItem('solis_user_email') || '');
                 sessionStorage.setItem('solis_user_role', localStorage.getItem('solis_user_role') || 'sales');
             }
@@ -1216,13 +1242,15 @@
         function handleLogout() {
             sessionStorage.clear();
             localStorage.removeItem('solis_auth_token');
+            localStorage.removeItem('solis_login_time');
             localStorage.removeItem('solis_user_email');
             localStorage.removeItem('solis_user_role');
             localStorage.removeItem('solis_admin_logged_in');
+            document.cookie = "solis_session_active=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax";
             if (typeof authFirebase !== 'undefined') {
                 authFirebase.signOut().catch(() => {});
             }
-            window.location.href = '/Login/index.html';
+            window.location.href = '/Login/index.html?reason=logged_out';
         }
 
         function escapeHtml(text) {
