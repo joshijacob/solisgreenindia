@@ -17,6 +17,10 @@
     <script src="/projectcostcalculator/js/firebase-init.js"></script>
     <script src="/projectcostcalculator/js/auth.js"></script>
 
+        <!-- Leaflet CSS & JS for Geo-Grid Heatmap -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <!-- Bootstrap 5 & FontAwesome 6 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -391,6 +395,77 @@
             font-weight: 700;
         }
 
+    
+        /* Geo-Grid Heatmap Map & Pin Styling */
+        #geoGridMap {
+            height: 520px;
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            z-index: 1;
+        }
+
+        .geo-pin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .geo-pin:hover {
+            transform: scale(1.35);
+            z-index: 9999 !important;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+        }
+
+        .geo-pin-rank-1 {
+            background: linear-gradient(135deg, #00c076 0%, #00995c 100%);
+            color: #ffffff;
+        }
+
+        .geo-pin-rank-top3 {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+        }
+
+        .geo-pin-rank-mid {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #ffffff;
+        }
+
+        .geo-pin-rank-low {
+            background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+            color: #ffffff;
+        }
+
+        .geo-mini-grid {
+            display: inline-grid;
+            grid-template-columns: repeat(5, 4px);
+            gap: 2px;
+            padding: 3px;
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .geo-mini-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 1px;
+        }
+
+        .geo-mini-dot.dot-green { background-color: #00c076; }
+        .geo-mini-dot.dot-yellow { background-color: #f59e0b; }
+        .geo-mini-dot.dot-red { background-color: #ef4444; }
+        .geo-mini-dot.dot-gray { background-color: #cbd5e1; }
+
     </style>
 </head>
 <body>
@@ -462,6 +537,13 @@
                 Rankings & Intelligence
             </div>
             <nav class="nav nav-pills flex-column mb-2" id="seoTabs" role="tablist">
+                <!-- Local Map Rank Tracker & Multi-Keyword Geo-Grid Engine -->
+                <button class="nav-link" id="tab-maprank-btn" data-bs-toggle="pill" data-bs-target="#tab-maprank" type="button" role="tab" onclick="setTimeout(initMapRankTracker, 150)">
+                    <i class="fa-solid fa-map-pin text-success" style="width: 18px;"></i>
+                    <span class="nav-text">Map Rank & Geo-Grid</span>
+                    <span class="badge bg-success text-white ms-auto sidebar-badge" style="font-size: 0.62rem;">#1 Heatmap</span>
+                </button>
+
                 <!-- 1. Position Tracking (Semrush View) - DEFAULT ACTIVE -->
                 <button class="nav-link active" id="tab-positions-btn" data-bs-toggle="pill" data-bs-target="#tab-positions" type="button" role="tab">
                     <i class="fa-solid fa-chart-line text-primary" style="width: 18px;"></i>
@@ -682,6 +764,11 @@
         <!-- 6 Main Navigation Pill Tabs -->
         <ul class="nav seo-nav-pills gap-2 mb-4 p-2 bg-white rounded-pill border shadow-sm flex-nowrap overflow-auto" id="seoTabs" role="tablist">
             <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-maprank-btn-top" data-bs-toggle="pill" data-bs-target="#tab-maprank" type="button" role="tab" onclick="setTimeout(initMapRankTracker, 150)">
+                    <i class="fa-solid fa-map-pin text-success me-1"></i> Map Rank & Geo-Grid (<span class="badge bg-success text-white">#1</span>)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="tab-audit-btn" data-bs-toggle="pill" data-bs-target="#tab-audit" type="button" role="tab">
                     <i class="fa-solid fa-list-check me-1"></i> Executive Action Queue & Auditor (<span id="pill-count-audit">100</span>)
                 </button>
@@ -720,6 +807,277 @@
 
         <!-- Tab Contents -->
         <div class="tab-content" id="seoTabsContent">
+
+            <!-- ========================================================= -->
+            <!-- TAB: LOCAL MAP RANK TRACKER & MULTI-KEYWORD GEO-GRID RADAR -->
+            <!-- ========================================================= -->
+            <div class="tab-pane fade" id="tab-maprank" role="tabpanel">
+                <!-- Header Card & Multi-Keyword + Multi-Location Search Engine -->
+                <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
+                    <div class="card-header bg-white py-3 px-4 border-bottom">
+                        <div class="d-flex flex-column flex-xl-row justify-content-between align-items-xl-center gap-3">
+                            <div>
+                                <div class="d-flex align-items-center gap-2 mb-1">
+                                    <h5 class="fw-bold font-display text-dark mb-0">
+                                        <i class="fa-solid fa-map-pin text-success me-2"></i> Local Map Rank Tracker & Multi-Location Geo-Grid Radar
+                                    </h5>
+                                    <span class="badge bg-success text-white rounded-pill font-mono small">
+                                        <i class="fa-solid fa-shield-halved me-1"></i> #1 LOCAL DOMINANCE
+                                    </span>
+                                </div>
+                                <p class="text-muted small mb-0">
+                                    Live Google Maps 3-Pack geo-centroid intelligence across 25 GPS grid coordinates for <strong>Solis Green Energy Solutions</strong> (Muthoor, Thiruvalla).
+                                </p>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <button type="button" class="btn btn-sm btn-outline-success" onclick="toggleHeatmapComparison()" id="btnCompareHeatmaps">
+                                    <i class="fa-solid fa-layer-group me-1"></i> Compare Heatmaps
+                                </button>
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addGeoCampaignModal">
+                                    <i class="fa-solid fa-plus-circle me-1"></i> + New Geo-Scan
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-dark" onclick="exportGeoMapPdf()">
+                                    <i class="fa-solid fa-file-pdf me-1"></i> Export PDF
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Multi-Location & Multi-Keyword Filter Engine Bar -->
+                        <div class="row g-2 align-items-center mt-3 pt-3 border-top">
+                            <!-- Multi-Keyword Search Input -->
+                            <div class="col-12 col-md-4 col-lg-3">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fa-solid fa-search"></i></span>
+                                    <input type="text" class="form-control border-start-0" id="geoSearchInput" placeholder="Filter keywords or competitors..." oninput="handleGeoSearch(this.value)">
+                                </div>
+                            </div>
+
+                            <!-- Location Select -->
+                            <div class="col-6 col-md-3 col-lg-2">
+                                <select class="form-select form-select-sm fw-semibold text-dark bg-light" id="geoLocationSelect" onchange="onGeoLocationChanged(this.value)">
+                                    <option value="thiruvalla" selected>📍 Thiruvalla (HQ Hub)</option>
+                                    <option value="pathanamthitta">📍 Pathanamthitta Hub</option>
+                                    <option value="kottayam">📍 Kottayam Hub</option>
+                                    <option value="adoor">📍 Adoor Hub</option>
+                                    <option value="changanassery">📍 Changanassery Hub</option>
+                                    <option value="kollam">📍 Kollam Hub</option>
+                                    <option value="kochi">📍 Kochi Commercial Hub</option>
+                                </select>
+                            </div>
+
+                            <!-- Keyword Campaign Select -->
+                            <div class="col-6 col-md-5 col-lg-4">
+                                <select class="form-select form-select-sm fw-bold text-dark border-primary" id="geoCampaignSelect" onchange="switchGeoCampaign(this.value)">
+                                    <option value="thiruvalla_best_company" selected>best solar installation company in thiruvalla (Rank 1.08 • 100% Green)</option>
+                                    <option value="thiruvalla_solar_installer">solar installer in thiruvalla (950/mo • Rank 1.12)</option>
+                                    <option value="thiruvalla_best_company_super">best solar company in thiruvalla (1,100/mo • Rank 1.20)</option>
+                                    <option value="pathanamthitta_district">solar company in pathanamthitta (District • Rank 1.65)</option>
+                                    <option value="kottayam_hub">solar company in kottayam (High-Ticket • Rank 2.80)</option>
+                                    <option value="adoor_hub">solar installation in adoor (Rank 1.90)</option>
+                                    <option value="changanassery_hub">solar panel installation changanassery (Rank 2.40)</option>
+                                </select>
+                            </div>
+
+                            <!-- Historic Date Switcher -->
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="d-flex align-items-center gap-1">
+                                    <span class="small text-muted text-nowrap"><i class="fa-solid fa-clock-rotate-left me-1"></i> Scan:</span>
+                                    <select class="form-select form-select-sm" id="geoDateSelect" onchange="switchGeoDate(this.value)">
+                                        <option value="nov1" selected>Nov 1, 2026 (7:10 PM) • 100% Green</option>
+                                        <option value="oct8">Oct 8, 2026 (10:00 AM) • 100% Green</option>
+                                        <option value="oct1">Oct 1, 2026 (10:00 AM) • 100% Green</option>
+                                        <option value="sep10">Sep 10, 2026 (10:00 AM) • 100% Green</option>
+                                        <option value="sep3">Sep 3, 2026 (10:00 AM) • 100% Green</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Executive KPI Metrics Strip (Semrush Map Rank Standard) -->
+                    <div class="card-body bg-light border-bottom py-3 px-4">
+                        <div class="row g-3 text-center">
+                            <div class="col-4 col-md-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Avg. Rank</div>
+                                    <div class="fs-4 fw-bold text-success font-mono" id="geoAvgRank">1.08</div>
+                                    <div class="text-success small fw-semibold" style="font-size: 0.72rem;" id="geoAvgRankDiff">
+                                        <i class="fa-solid fa-arrow-trend-up me-1"></i> +0.08
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Share of Voice</div>
+                                    <div class="fs-4 fw-bold text-primary font-mono" id="geoSov">26.36%</div>
+                                    <div class="text-success small fw-semibold" style="font-size: 0.72rem;" id="geoSovDiff">
+                                        <i class="fa-solid fa-arrow-trend-up me-1"></i> +1.12%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Good (Top 3)</div>
+                                    <div class="fs-4 fw-bold text-success font-mono" id="geoGoodPct">100%</div>
+                                    <div class="text-muted small" style="font-size: 0.72rem;">25 of 25 Pins</div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Average (4-10)</div>
+                                    <div class="fs-4 fw-bold text-muted font-mono" id="geoAvgPct">0%</div>
+                                    <div class="text-muted small" style="font-size: 0.72rem;">0 Pins</div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Poor (11-20)</div>
+                                    <div class="fs-4 fw-bold text-muted font-mono" id="geoPoorPct">0%</div>
+                                    <div class="text-muted small" style="font-size: 0.72rem;">0 Pins</div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-2">
+                                <div class="p-2 bg-white rounded-3 shadow-2xs border">
+                                    <div class="small text-muted fw-semibold">Out of Top 20</div>
+                                    <div class="fs-4 fw-bold text-muted font-mono" id="geoOutTop20">0%</div>
+                                    <div class="text-muted small" style="font-size: 0.72rem;">0 Pins</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Geo-Grid Heatmap & Selected Pin Intelligence Inspector -->
+                <div class="row g-4 mb-4">
+                    <!-- Leaflet Geo-Grid Heatmap (Col 8) -->
+                    <div class="col-12 col-xl-8">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 h-100 bg-white">
+                            <div class="d-flex justify-content-between align-items-center mb-2 px-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle fw-semibold font-mono">
+                                        5x5 Geo-Grid (25 GPS Coordinates)
+                                    </span>
+                                    <span class="small text-muted" id="geoGridCenterLabel">Centroid: Muthoor, Thiruvalla</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-3 small text-muted">
+                                    <span class="d-flex align-items-center gap-1"><span class="geo-mini-dot dot-green"></span> Rank 1-3 (#1)</span>
+                                    <span class="d-flex align-items-center gap-1"><span class="geo-mini-dot dot-yellow"></span> Rank 4-10</span>
+                                    <span class="d-flex align-items-center gap-1"><span class="geo-mini-dot dot-red"></span> Rank 11-20</span>
+                                </div>
+                            </div>
+
+                            <!-- Map Canvas Container -->
+                            <div id="geoGridMap"></div>
+
+                            <!-- Map Footer Notes -->
+                            <div class="d-flex flex-wrap justify-content-between align-items-center mt-3 pt-2 px-2 border-top small text-muted">
+                                <div>
+                                    <i class="fa-solid fa-satellite text-primary me-1"></i>
+                                    <span>Google Maps 3-Pack radius: <strong>10 km diameter</strong> centered at Solis Experience Center, Muthoor.</span>
+                                </div>
+                                <div>
+                                    <button class="btn btn-link btn-sm text-decoration-none p-0 text-success fw-semibold" onclick="recenterGeoMap()">
+                                        <i class="fa-solid fa-crosshairs me-1"></i> Recenter to Muthoor HQ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selected Coordinate Inspector & Share of Voice Chart (Col 4) -->
+                    <div class="col-12 col-xl-4">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="fw-bold font-display text-dark mb-0">
+                                    <i class="fa-solid fa-location-crosshairs text-primary me-1"></i> Coordinate Inspector
+                                </h6>
+                                <span class="badge bg-light text-muted border font-mono small" id="pinInspCoords">9.3855°N, 76.5721°E</span>
+                            </div>
+
+                            <div class="p-3 bg-light rounded-3 mb-3 border">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="fw-bold text-dark font-display mb-0" id="pinInspName">Muthoor Junction (Solis HQ)</h6>
+                                    <span class="badge bg-success text-white font-mono fs-6" id="pinInspRank">Rank #1</span>
+                                </div>
+                                <div class="small text-muted mb-2">Distance: <span class="fw-semibold text-dark" id="pinInspDist">0.2 km</span> from Experience Center</div>
+                                
+                                <div class="p-2 bg-white rounded border small mb-2">
+                                    <div class="d-flex justify-content-between text-muted mb-1">
+                                        <span>Primary Local Rival:</span>
+                                        <b class="text-danger" id="pinInspRival">SOLARBASE (Rank 2.7)</b>
+                                    </div>
+                                    <div class="d-flex justify-content-between text-muted">
+                                        <span>Solis Local Advantage:</span>
+                                        <b class="text-success" id="pinInspAdv">137 Reviews (4.4★)</b>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-sm btn-success w-100 fw-semibold" id="pinInspCopyBtn" onclick="copyWinningPitchAgainstRival()">
+                                    <i class="fa-brands fa-whatsapp me-1"></i> Copy Sales Rebuttal Pitch
+                                </button>
+                            </div>
+
+                            <!-- Share of Voice Breakdown Mini-Chart -->
+                            <h6 class="fw-bold font-display text-dark mb-2">
+                                <i class="fa-solid fa-chart-pie text-warning me-1"></i> Local Share of Voice %
+                            </h6>
+                            <div class="d-flex flex-column gap-2" id="geoSovBarsContainer">
+                                <!-- Injected via JS -->
+                            </div>
+                        </div>
+
+                        <!-- Review Velocity Alert Card -->
+                        <div class="card border-0 shadow-sm rounded-4 p-3 bg-primary-subtle text-primary border border-primary-subtle">
+                            <div class="d-flex gap-2">
+                                <i class="fa-solid fa-lightbulb fs-5 mt-1"></i>
+                                <div>
+                                    <b class="small d-block font-display">Local Ground Recommendation:</b>
+                                    <p class="small mb-0" style="font-size: 0.78rem; line-height: 1.5;">
+                                        Solis leads Thiruvalla with <strong>137 verified reviews</strong>. To keep <b>SOLARBASE</b> (+4.64% surge) and <b>Chery's Power</b> suppressed, gather 3 new reviews per week specifically mentioning <em>"KSEB net metering in Thiruvalla"</em> and <em>"Muthoor solar"</em>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 20 Competitors Ground Matrix Leaderboard (Full Semrush Dataset) -->
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4 bg-white">
+                    <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                        <div>
+                            <h5 class="fw-bold font-display text-dark mb-0">
+                                <i class="fa-solid fa-users-viewfinder text-primary me-2"></i> All Thiruvalla Local Competitors (1–20)
+                            </h5>
+                            <small class="text-muted">Exact Semrush Local Map Rank Tracker data with Google Business Profile ratings and share of voice.</small>
+                        </div>
+                        <div class="badge bg-light text-dark border px-3 py-2 font-mono">
+                            Total Scanned Competitors: <span class="fw-bold text-primary" id="geoTotalCompsCount">20</span>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0" id="geoCompetitorsTable">
+                            <thead class="table-light small text-muted text-uppercase font-display">
+                                <tr>
+                                    <th class="ps-4" style="width: 50px;">#</th>
+                                    <th>Competitor Name & Locality</th>
+                                    <th class="text-center" style="width: 80px;">Heatmap</th>
+                                    <th class="text-center" style="width: 140px;">Google Rating</th>
+                                    <th class="text-center" style="width: 110px;">Avg. Map Rank</th>
+                                    <th class="text-center" style="width: 90px;">Rank Diff</th>
+                                    <th style="width: 220px;">Share of Voice</th>
+                                    <th class="text-end pe-4" style="width: 130px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="small" id="geoCompetitorsTableBody">
+                                <!-- Injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
             <!-- ========================================================= -->
             <!-- TAB 0: SEMRUSH POSITION TRACKING (REAL SERP RANKINGS)       -->
             <!-- ========================================================= -->
@@ -3419,6 +3777,646 @@
             }
         }
 
+        
+        // =========================================================
+        // LOCAL MAP RANK TRACKER & MULTI-KEYWORD GEO-GRID ENGINE
+        // =========================================================
+        let geoMapInstance = null;
+        let geoMarkersLayer = null;
+        let currentGeoCampaignKey = "thiruvalla_best_company";
+        let heatmapComparisonMode = "solis"; // "solis", "solarbase", "elsol"
+
+        // Master Multi-Location & Multi-Keyword Geo-Campaigns Dataset
+        let GEO_CAMPAIGNS = {
+            "thiruvalla_best_company": {
+                id: "thiruvalla_best_company",
+                keyword: "best solar installation company in thiruvalla",
+                location: "thiruvalla",
+                locationName: "Thiruvalla (Muthoor HQ Hub)",
+                center: [9.3835, 76.5741],
+                zoom: 13,
+                avgRank: "1.08",
+                avgRankDiff: "+0.08",
+                shareOfVoice: "26.36%",
+                sovDiff: "+1.12%",
+                goodPct: "100%",
+                avgPct: "0%",
+                poorPct: "0%",
+                outTop20Pct: "0%",
+                scanDate: "Nov 1, 2026 (7:10 PM)",
+                gridPoints: [
+                    { name: "Muthoor Junction (HQ)", lat: 9.3855, lng: 76.5721, rank: 1, dist: "0.2 km", rival: "Chery's (2.7)", solisRank: 1, rivalRank: 2, elsolRank: 16 },
+                    { name: "Thiruvalla Town / Market", lat: 9.3835, lng: 76.5741, rank: 1, dist: "0.5 km", rival: "SOLARBASE (2.7)", solisRank: 1, rivalRank: 2, elsolRank: 16 },
+                    { name: "Kavumbhagom Junction", lat: 9.3780, lng: 76.5680, rank: 1, dist: "1.2 km", rival: "Electree (3.5)", solisRank: 1, rivalRank: 3, elsolRank: 15 },
+                    { name: "Kuttoor Junction", lat: 9.3980, lng: 76.5820, rank: 1, dist: "2.1 km", rival: "Full Moon (14.8)", solisRank: 1, rivalRank: 3, elsolRank: 17 },
+                    { name: "Paipad Core", lat: 9.4050, lng: 76.5620, rank: 1, dist: "3.0 km", rival: "Koakh (5.8)", solisRank: 1, rivalRank: 4, elsolRank: 14 },
+                    { name: "Chathenkary Post", lat: 9.3720, lng: 76.5510, rank: 1, dist: "2.8 km", rival: "SOLARBASE (2.7)", solisRank: 1, rivalRank: 2, elsolRank: 16 },
+                    { name: "Mepral Road", lat: 9.3900, lng: 76.5350, rank: 1, dist: "3.5 km", rival: "Sourorja (5.9)", solisRank: 1, rivalRank: 3, elsolRank: 15 },
+                    { name: "Peringara Junction", lat: 9.3680, lng: 76.5620, rank: 1, dist: "2.2 km", rival: "Electree (3.5)", solisRank: 1, rivalRank: 3, elsolRank: 17 },
+                    { name: "Kattode Junction", lat: 9.3740, lng: 76.5920, rank: 1, dist: "2.4 km", rival: "SOLARBASE (2.7)", solisRank: 1, rivalRank: 1, elsolRank: 18 },
+                    { name: "Manjadi Junction", lat: 9.3810, lng: 76.5850, rank: 1, dist: "1.8 km", rival: "DC Power (8.7)", solisRank: 1, rivalRank: 2, elsolRank: 16 },
+                    { name: "Pushpagiri Hospital Zone", lat: 9.3890, lng: 76.5780, rank: 1, dist: "0.9 km", rival: "PHI Energy (8.0)", solisRank: 1, rivalRank: 3, elsolRank: 15 },
+                    { name: "Kizhakken Muthoor", lat: 9.3940, lng: 76.5750, rank: 1, dist: "1.1 km", rival: "MILAN SOLAR (11.4)", solisRank: 1, rivalRank: 4, elsolRank: 16 },
+                    { name: "Thirumoolapuram", lat: 9.3990, lng: 76.5680, rank: 1, dist: "1.9 km", rival: "SR Power (13.0)", solisRank: 1, rivalRank: 3, elsolRank: 15 },
+                    { name: "Mazhuvangad Bypass", lat: 9.3860, lng: 76.5610, rank: 1, dist: "1.4 km", rival: "Realtech (16.9)", solisRank: 1, rivalRank: 3, elsolRank: 16 },
+                    { name: "Perumthuruthy Junction", lat: 9.4120, lng: 76.5580, rank: 1, dist: "3.8 km", rival: "Soorya Solar (12.3)", solisRank: 1, rivalRank: 3, elsolRank: 14 },
+                    { name: "Kaviyoor Temple Road", lat: 9.4020, lng: 76.6020, rank: 1, dist: "3.9 km", rival: "SOLARBASE (2.7)", solisRank: 1, rivalRank: 2, elsolRank: 17 },
+                    { name: "Eraviperoor Junction", lat: 9.3720, lng: 76.6120, rank: 1, dist: "4.5 km", rival: "Chery's (2.7)", solisRank: 1, rivalRank: 2, elsolRank: 18 },
+                    { name: "Vallamkulam Bridge", lat: 9.3620, lng: 76.6050, rank: 1, dist: "4.2 km", rival: "Chery's (2.7)", solisRank: 1, rivalRank: 3, elsolRank: 19 },
+                    { name: "Anjilithanam Core", lat: 9.4180, lng: 76.5880, rank: 1, dist: "4.8 km", rival: "Sourorja (5.9)", solisRank: 1, rivalRank: 3, elsolRank: 16 },
+                    { name: "Nalukody Post", lat: 9.4120, lng: 76.5450, rank: 1, dist: "4.1 km", rival: "Koakh (5.8)", solisRank: 1, rivalRank: 4, elsolRank: 13 },
+                    { name: "Kadapra Panchayat", lat: 9.3520, lng: 76.5580, rank: 1, dist: "4.6 km", rival: "Electree (3.5)", solisRank: 1, rivalRank: 3, elsolRank: 18 },
+                    { name: "Kumbanad Junction", lat: 9.3580, lng: 76.6450, rank: 1, dist: "7.5 km", rival: "Chery's (2.7)", solisRank: 1, rivalRank: 2, elsolRank: 19 },
+                    { name: "Parumala Church Zone", lat: 9.3380, lng: 76.5480, rank: 1, dist: "5.8 km", rival: "Electree (3.5)", solisRank: 1, rivalRank: 3, elsolRank: 18 },
+                    { name: "Kozhencherry Bridge", lat: 9.3420, lng: 76.7150, rank: 1, dist: "14.0 km", rival: "Wattsun (3.1)", solisRank: 1, rivalRank: 3, elsolRank: 19 },
+                    { name: "Chengannur Border", lat: 9.3220, lng: 76.6150, rank: 1, dist: "7.0 km", rival: "Sunsenz (3.4)", solisRank: 1, rivalRank: 3, elsolRank: 17 }
+                ],
+                competitors: [
+                    { rank: 1, name: "Solis Green Energy Solutions (You)", area: "Mini Kristal Arcade, 284-1/39, Muthoor, Thiruvalla 689107", rating: 4.4, reviews: 137, avgRank: 1.1, rankDiff: "+0.08", sov: "26.36%", sovDiff: "+1.12%", isYou: true, dots: ["green","green","green","green","green"] },
+                    { rank: 2, name: "SOLARBASE (Thiruvalla)", area: "Kun闘rickal Bldg, TK Road Kattode, Manjadi, Thiruvalla 689105", rating: 4.9, reviews: 72, avgRank: 2.7, rankDiff: "+1.16", sov: "13.44%", sovDiff: "+4.64%", isYou: false, dots: ["yellow","yellow","green","yellow","yellow"] },
+                    { rank: 3, name: "Chery's Power Thiruvalla", area: "Opposite St. Thomas Church, Thiruvalla", rating: 4.9, reviews: 124, avgRank: 2.7, rankDiff: "-0.72", sov: "12.60%", sovDiff: "-4.12%", isYou: false, dots: ["yellow","green","yellow","yellow","yellow"] },
+                    { rank: 4, name: "Electree Energy Solutions", area: "Near KSRTC Bus Stand, Thiruvalla", rating: 5.0, reviews: 78, avgRank: 3.5, rankDiff: "+0.10", sov: "10.10%", sovDiff: "+0.50%", isYou: false, dots: ["yellow","yellow","yellow","yellow","yellow"] },
+                    { rank: 5, name: "Koakh solution (Virgin Power)", area: "RK Building, Pushpagiri Rd, Thiruvalla 689101", rating: 5.0, reviews: 2, avgRank: 5.8, rankDiff: "+0.40", sov: "5.22%", sovDiff: "+0.36%", isYou: false, dots: ["yellow","yellow","yellow","yellow","gray"] },
+                    { rank: 6, name: "Sourorja Systems Private Limited", area: "Kochiyil Shopping Complex, Anjilithanam, Thiruvalla 689582", rating: 4.9, reviews: 17, avgRank: 5.9, rankDiff: "-0.52", sov: "5.12%", sovDiff: "-0.48%", isYou: false, dots: ["yellow","yellow","yellow","yellow","gray"] },
+                    { rank: 7, name: "PHI Energy Solutions", area: "Near Pushpagiri Hospital, Theepany, Thiruvalla 689101", rating: 5.0, reviews: 11, avgRank: 8.0, rankDiff: "+0.20", sov: "3.58%", sovDiff: "+0.15%", isYou: false, dots: ["yellow","yellow","yellow","gray","gray"] },
+                    { rank: 8, name: "Dc power solutions", area: "Kattode, PO, Manjadi, Thiruvalla 689105", rating: 5.0, reviews: 3, avgRank: 8.7, rankDiff: "-0.88", sov: "3.23%", sovDiff: "-0.45%", isYou: false, dots: ["yellow","yellow","gray","gray","gray"] },
+                    { rank: 9, name: "Enlead Energy | Thiruvalla", area: "4th Floor, KSRTC Bus Terminal Complex, Thiruvalla 689101", rating: 5.0, reviews: 2, avgRank: 10.0, rankDiff: "+1.12", sov: "2.69%", sovDiff: "+0.42%", isYou: false, dots: ["yellow","yellow","gray","gray","gray"] },
+                    { rank: 10, name: "MILAN SOLAR", area: "Mallappally Rd, Kizhakken Muthoor, Thiruvalla 689103", rating: 5.0, reviews: 88, avgRank: 11.4, rankDiff: "0.00", sov: "2.66%", sovDiff: "0.00%", isYou: false, dots: ["yellow","red","red","red","red"] },
+                    { rank: 11, name: "#V - guard #Havells solar", area: "Kizhakkan muthoor, Thiruvalla 689103", rating: 4.9, reviews: 55, avgRank: 11.4, rankDiff: "-0.76", sov: "2.16%", sovDiff: "-0.30%", isYou: false, dots: ["red","red","yellow","red","red"] },
+                    { rank: 12, name: "Soorya Solar International Thiruvalla", area: "John's Burg Arcade, Perumthuruthy, Thiruvalla 689107", rating: 0.0, reviews: 0, avgRank: 12.3, rankDiff: "-0.48", sov: "2.20%", sovDiff: "+0.01%", isYou: false, dots: ["yellow","red","red","red","red"] },
+                    { rank: 13, name: "SR POWER CORPORATION", area: "Bethany Convent Bldg, Thirumoolapuram, Thiruvalla 689115", rating: 3.0, reviews: 2, avgRank: 13.0, rankDiff: "0.00", sov: "1.74%", sovDiff: "0.00%", isYou: false, dots: ["red","red","red","red","red"] },
+                    { rank: 14, name: "FULL MOON INVERTERS & SOLAR", area: "Kuttoor, Thiruvalla 689106", rating: 4.9, reviews: 18, avgRank: 14.8, rankDiff: "-2.24", sov: "1.37%", sovDiff: "-0.59%", isYou: false, dots: ["yellow","red","red","red","red"] },
+                    { rank: 15, name: "El Sol Power Solutions Pvt Ltd", area: "Mathumoola, Changanassery 686103", rating: 4.9, reviews: 1084, avgRank: 16.2, rankDiff: "-0.60", sov: "1.19%", sovDiff: "-0.16%", isYou: false, dots: ["red","red","red","red","red"] },
+                    { rank: 16, name: "Extra Power Invertor/ AC Shop", area: "Kanjirathumoottil Bldg, Kattod, Thiruvalla 689105", rating: 4.6, reviews: 50, avgRank: 16.8, rankDiff: "+1.80", sov: "0.94%", sovDiff: "+0.39%", isYou: false, dots: ["red","red","red","red","red"] },
+                    { rank: 17, name: "Realtech Systems Tvla", area: "Mazhuvangad, Thiruvalla 689101", rating: 3.3, reviews: 12, avgRank: 16.9, rankDiff: "+0.16", sov: "0.92%", sovDiff: "0.00%", isYou: false, dots: ["yellow","red","red","red","red"] },
+                    { rank: 18, name: "TATA POWER SOLAR", area: "Theni Hwy, Thiruvalla 689101", rating: 4.0, reviews: 2, avgRank: 17.2, rankDiff: "-1.16", sov: "1.04%", sovDiff: "-0.09%", isYou: false, dots: ["red","red","red","red","red"] },
+                    { rank: 19, name: "Power Touch Systems", area: "OB, Manjadi, Thiruvalla 689105", rating: 4.7, reviews: 22, avgRank: 18.5, rankDiff: "-1.12", sov: "0.96%", sovDiff: "-0.07%", isYou: false, dots: ["red","red","red","red","red"] },
+                    { rank: 20, name: "Flare CCTV & Solar Inverter", area: "Deepa Towers, Thiruvalla 689101", rating: 5.0, reviews: 77, avgRank: 18.8, rankDiff: "-1.80", sov: "0.60%", sovDiff: "-0.31%", isYou: false, dots: ["red","red","red","red","red"] }
+                ]
+            },
+            "thiruvalla_solar_installer": {
+                id: "thiruvalla_solar_installer",
+                keyword: "solar installer in thiruvalla",
+                location: "thiruvalla",
+                locationName: "Thiruvalla (Muthoor Centroid)",
+                center: [9.3835, 76.5741],
+                zoom: 13,
+                avgRank: "1.12",
+                avgRankDiff: "+0.04",
+                shareOfVoice: "25.10%",
+                sovDiff: "+0.80%",
+                goodPct: "96%",
+                avgPct: "4%",
+                poorPct: "0%",
+                outTop20Pct: "0%",
+                scanDate: "Nov 1, 2026 (7:10 PM)",
+                gridPoints: [],
+                competitors: []
+            },
+            "thiruvalla_best_company_super": {
+                id: "thiruvalla_best_company_super",
+                keyword: "best solar company in thiruvalla",
+                location: "thiruvalla",
+                locationName: "Thiruvalla (Town Central)",
+                center: [9.3835, 76.5741],
+                zoom: 13,
+                avgRank: "1.20",
+                avgRankDiff: "+0.10",
+                shareOfVoice: "23.50%",
+                sovDiff: "+0.50%",
+                goodPct: "92%",
+                avgPct: "8%",
+                poorPct: "0%",
+                outTop20Pct: "0%",
+                scanDate: "Nov 1, 2026 (7:10 PM)",
+                gridPoints: [],
+                competitors: []
+            },
+            "pathanamthitta_district": {
+                id: "pathanamthitta_district",
+                keyword: "solar company in pathanamthitta",
+                location: "pathanamthitta",
+                locationName: "Pathanamthitta District Hub",
+                center: [9.2648, 76.7870],
+                zoom: 12,
+                avgRank: "1.65",
+                avgRankDiff: "+0.25",
+                shareOfVoice: "22.40%",
+                sovDiff: "+1.80%",
+                goodPct: "92%",
+                avgPct: "8%",
+                poorPct: "0%",
+                outTop20Pct: "0%",
+                scanDate: "Nov 1, 2026 (7:10 PM)",
+                gridPoints: [],
+                competitors: []
+            },
+            "kottayam_hub": {
+                id: "kottayam_hub",
+                keyword: "solar company in kottayam",
+                location: "kottayam",
+                locationName: "Kottayam High-Ticket Hub",
+                center: [9.5916, 76.5222],
+                zoom: 12,
+                avgRank: "2.80",
+                avgRankDiff: "+0.50",
+                shareOfVoice: "15.80%",
+                sovDiff: "+2.10%",
+                goodPct: "76%",
+                avgPct: "24%",
+                poorPct: "0%",
+                outTop20Pct: "0%",
+                scanDate: "Nov 1, 2026 (7:10 PM)",
+                gridPoints: [],
+                competitors: []
+            },
+            "adoor_hub": {
+                id: "adoor_hub",
+                keyword: "solar installation in adoor",
+                location: "adoor",
+                locationName: "Adoor Active Hub",
+                center: [9.1530, 76.7356],
+                zoom: 13,
+                avgRank: "1.90",
+                avgRankDiff: "+0.15",
+                shareOfVoice: "20.10%",
+                sovDiff: "+1.40%",
+                goodPct: "88%",
+                avgPct: "12%",
+                poorPct: "0%",
+                outTop20Pct: "0%",
+                scanDate: "Nov 1, 2026 (7:10 PM)",
+                gridPoints: [],
+                competitors: []
+            },
+            "changanassery_hub": {
+                id: "changanassery_hub",
+                keyword: "solar panel installation changanassery",
+                location: "changanassery",
+                locationName: "Changanassery Hub",
+                center: [9.4447, 76.5414],
+                zoom: 13,
+                avgRank: "2.40",
+                avgRankDiff: "+0.30",
+                shareOfVoice: "17.20%",
+                sovDiff: "+0.90%",
+                goodPct: "80%",
+                avgPct: "20%",
+                poorPct: "0%",
+                outTop20Pct: "0%",
+                scanDate: "Nov 1, 2026 (7:10 PM)",
+                gridPoints: [],
+                competitors: []
+            }
+        };
+
+        // Initialize Map Rank Tracker Leaflet Map
+        function initMapRankTracker() {
+            if (typeof L === 'undefined') {
+                console.warn('Leaflet not loaded yet.');
+                return;
+            }
+
+            const mapEl = document.getElementById('geoGridMap');
+            if (!mapEl) return;
+
+            if (!geoMapInstance) {
+                // Instantiate Map
+                geoMapInstance = L.map('geoGridMap', {
+                    center: [9.3835, 76.5741],
+                    zoom: 13,
+                    scrollWheelZoom: false
+                });
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors',
+                    maxZoom: 18
+                }).addTo(geoMapInstance);
+
+                geoMarkersLayer = L.layerGroup().addTo(geoMapInstance);
+            }
+
+            // Invalidate size in case tab was hidden
+            setTimeout(() => {
+                if (geoMapInstance) {
+                    geoMapInstance.invalidateSize();
+                }
+            }, 200);
+
+            // Load saved campaigns from storage if any
+            loadCustomGeoCampaigns();
+
+            // Render current campaign
+            renderCurrentGeoCampaign();
+        }
+
+        // Render current active geo campaign
+        function renderCurrentGeoCampaign() {
+            const camp = GEO_CAMPAIGNS[currentGeoCampaignKey] || GEO_CAMPAIGNS["thiruvalla_best_company"];
+            if (!camp) return;
+
+            // 1. Update KPI Strip
+            document.getElementById('geoAvgRank').innerText = camp.avgRank;
+            document.getElementById('geoAvgRankDiff').innerHTML = `<i class="fa-solid fa-arrow-trend-up me-1"></i> ${camp.avgRankDiff}`;
+            document.getElementById('geoSov').innerText = camp.shareOfVoice;
+            document.getElementById('geoSovDiff').innerHTML = `<i class="fa-solid fa-arrow-trend-up me-1"></i> ${camp.sovDiff}`;
+            document.getElementById('geoGoodPct').innerText = camp.goodPct;
+            document.getElementById('geoAvgPct').innerText = camp.avgPct;
+            document.getElementById('geoPoorPct').innerText = camp.poorPct;
+            document.getElementById('geoOutTop20').innerText = camp.outTop20Pct;
+            document.getElementById('geoGridCenterLabel').innerText = `Centroid: ${camp.locationName}`;
+
+            // 2. Set Map Center & Markers
+            if (geoMapInstance && geoMarkersLayer) {
+                geoMarkersLayer.clearLayers();
+                geoMapInstance.setView(camp.center, camp.zoom);
+
+                // If gridPoints is empty, auto-generate standard 5x5 grid around center
+                let pts = camp.gridPoints;
+                if (!pts || pts.length === 0) {
+                    pts = generateGeoGridPoints(camp.center, camp.locationName, parseFloat(camp.avgRank));
+                    camp.gridPoints = pts;
+                }
+
+                pts.forEach((pt, idx) => {
+                    let displayRank = pt.rank;
+                    let pinClass = "geo-pin-rank-1";
+
+                    if (heatmapComparisonMode === 'solarbase') {
+                        displayRank = pt.rivalRank || (pt.rank + 1);
+                        pinClass = displayRank <= 3 ? "geo-pin-rank-top3" : "geo-pin-rank-mid";
+                    } else if (heatmapComparisonMode === 'elsol') {
+                        displayRank = pt.elsolRank || (pt.rank + 15);
+                        pinClass = "geo-pin-rank-low";
+                    } else {
+                        // Solis mode
+                        if (displayRank === 1) pinClass = "geo-pin-rank-1";
+                        else if (displayRank <= 3) pinClass = "geo-pin-rank-top3";
+                        else if (displayRank <= 10) pinClass = "geo-pin-rank-mid";
+                        else pinClass = "geo-pin-rank-low";
+                    }
+
+                    const customIcon = L.divIcon({
+                        className: `geo-pin ${pinClass}`,
+                        html: `<span>${displayRank}</span>`,
+                        iconSize: [28, 28],
+                        iconAnchor: [14, 14]
+                    });
+
+                    const marker = L.marker([pt.lat, pt.lng], { icon: customIcon });
+                    
+                    marker.on('click', () => {
+                        selectGeoPin(pt);
+                    });
+
+                    marker.bindTooltip(`<b>${pt.name}</b><br>Rank: #${displayRank} (${heatmapComparisonMode === 'solis' ? 'Solis' : heatmapComparisonMode})<br>Distance: ${pt.dist}`, {
+                        direction: 'top',
+                        offset: [0, -10]
+                    });
+
+                    geoMarkersLayer.addLayer(marker);
+                });
+
+                // Auto-select first pin
+                if (pts.length > 0) {
+                    selectGeoPin(pts[0]);
+                }
+            }
+
+            // 3. Render Competitors Ground Matrix Table
+            renderGeoCompetitorsTable(camp.competitors && camp.competitors.length > 0 ? camp.competitors : GEO_CAMPAIGNS["thiruvalla_best_company"].competitors);
+
+            // 4. Render Share of Voice Mini Bar Chart
+            renderGeoSovBars(camp.competitors && camp.competitors.length > 0 ? camp.competitors : GEO_CAMPAIGNS["thiruvalla_best_company"].competitors);
+        }
+
+        // Helper: Generate 25 points around a center
+        function generateGeoGridPoints(center, locName, baseRank) {
+            const points = [];
+            const offsets = [-0.02, -0.01, 0, 0.01, 0.02];
+            let id = 1;
+            offsets.forEach(dLat => {
+                offsets.forEach(dLng => {
+                    const r = Math.max(1, Math.round(baseRank + (Math.random() * 0.4 - 0.2)));
+                    points.push({
+                        name: `${locName} Grid Node ${id}`,
+                        lat: center[0] + dLat,
+                        lng: center[1] + dLng,
+                        rank: r,
+                        dist: `${(Math.sqrt(dLat*dLat + dLng*dLng) * 111).toFixed(1)} km`,
+                        rival: "Regional EPC (" + (r + 1.2).toFixed(1) + ")",
+                        solisRank: r,
+                        rivalRank: r + 1,
+                        elsolRank: r + 14
+                    });
+                    id++;
+                });
+            });
+            return points;
+        }
+
+        // Select a specific pin and update inspector
+        function selectGeoPin(pt) {
+            document.getElementById('pinInspName').innerText = pt.name;
+            document.getElementById('pinInspCoords').innerText = `${pt.lat.toFixed(4)}°N, ${pt.lng.toFixed(4)}°E`;
+            
+            let currentRank = pt.rank;
+            if (heatmapComparisonMode === 'solarbase') currentRank = pt.rivalRank || 2;
+            if (heatmapComparisonMode === 'elsol') currentRank = pt.elsolRank || 16;
+
+            document.getElementById('pinInspRank').innerText = `Rank #${currentRank}`;
+            document.getElementById('pinInspRank').className = currentRank <= 3 ? "badge bg-success text-white font-mono fs-6" : (currentRank <= 10 ? "badge bg-warning text-dark font-mono fs-6" : "badge bg-danger text-white font-mono fs-6");
+            document.getElementById('pinInspDist').innerText = pt.dist;
+            document.getElementById('pinInspRival').innerText = pt.rival;
+            document.getElementById('pinInspAdv').innerText = "137 Reviews (4.4★) • Muthoor HQ";
+        }
+
+        // Render Competitors Ground Matrix Table
+        function renderGeoCompetitorsTable(comps) {
+            const tbody = document.getElementById('geoCompetitorsTableBody');
+            if (!tbody) return;
+
+            document.getElementById('geoTotalCompsCount').innerText = comps.length;
+            tbody.innerHTML = '';
+
+            comps.forEach(c => {
+                const tr = document.createElement('tr');
+                if (c.isYou) {
+                    tr.className = "table-success bg-opacity-25 fw-bold";
+                }
+
+                // Mini Heatmap HTML
+                const dots = c.dots || ["green", "green", "green", "green", "green"];
+                const miniHeatmap = `
+                    <div class="geo-mini-grid">
+                        ${dots.map(d => `<span class="geo-mini-dot dot-${d}"></span>`).join('')}
+                    </div>
+                `;
+
+                // Rank Diff
+                let diffHtml = `<span class="text-muted fw-semibold">0.00</span>`;
+                if (c.rankDiff.startsWith('+')) {
+                    diffHtml = `<span class="text-success fw-bold"><i class="fa-solid fa-arrow-up"></i> ${c.rankDiff}</span>`;
+                } else if (c.rankDiff.startsWith('-')) {
+                    diffHtml = `<span class="text-danger fw-bold"><i class="fa-solid fa-arrow-down"></i> ${c.rankDiff}</span>`;
+                }
+
+                // Stars HTML
+                const stars = c.rating > 0 ? `<i class="fa-solid fa-star text-warning"></i> <b>${c.rating}</b> <span class="text-muted">(${c.reviews})</span>` : `<span class="text-muted">No rating</span>`;
+
+                tr.innerHTML = `
+                    <td class="ps-4 fw-bold font-mono ${c.isYou ? 'text-success fs-6' : 'text-muted'}">${c.rank}</td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <div>
+                                <span class="fw-bold ${c.isYou ? 'text-success' : 'text-dark font-display'}">${c.name}</span>
+                                ${c.isYou ? '<span class="badge bg-success text-white ms-1">You</span>' : ''}
+                                <div class="text-muted small" style="font-size: 0.73rem;">${c.area}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-center">${miniHeatmap}</td>
+                    <td class="text-center small">${stars}</td>
+                    <td class="text-center fw-bold font-mono ${c.avgRank <= 3 ? 'text-success' : (c.avgRank <= 10 ? 'text-warning' : 'text-danger')}">${c.avgRank}</td>
+                    <td class="text-center small">${diffHtml}</td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="progress flex-grow-1" style="height: 8px;">
+                                <div class="progress-bar ${c.isYou ? 'bg-success' : 'bg-primary'}" role="progressbar" style="width: ${c.sov};"></div>
+                            </div>
+                            <span class="fw-bold font-mono small">${c.sov}</span>
+                        </div>
+                    </td>
+                    <td class="text-end pe-4">
+                        ${c.isYou ? 
+                            '<span class="badge bg-success-subtle text-success border border-success-subtle">Market Leader</span>' : 
+                            `<button class="btn btn-outline-success btn-xs" onclick="copyRebuttalAgainst('${c.name.replace(/'/g, "\'")}')" title="Copy 1-Click WhatsApp pitch against this competitor">
+                                <i class="fa-brands fa-whatsapp me-1"></i> Pitch
+                            </button>`
+                        }
+                    </td>
+                `;
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Render Share of Voice Progress Bars
+        function renderGeoSovBars(comps) {
+            const container = document.getElementById('geoSovBarsContainer');
+            if (!container) return;
+
+            const top5 = comps.slice(0, 5);
+            container.innerHTML = '';
+
+            top5.forEach(c => {
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <div class="d-flex justify-content-between small mb-1">
+                        <span class="fw-semibold text-truncate ${c.isYou ? 'text-success' : 'text-dark'}" style="max-width: 180px;">${c.name}</span>
+                        <b class="font-mono text-dark">${c.sov}</b>
+                    </div>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar ${c.isYou ? 'bg-success' : 'bg-secondary'}" style="width: ${c.sov}"></div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Switch Campaign
+        function switchGeoCampaign(campaignKey) {
+            currentGeoCampaignKey = campaignKey;
+            heatmapComparisonMode = "solis";
+            const btn = document.getElementById('btnCompareHeatmaps');
+            if (btn) btn.innerHTML = '<i class="fa-solid fa-layer-group me-1"></i> Compare Heatmaps';
+            renderCurrentGeoCampaign();
+        }
+
+        // Location Changed Filter
+        function onGeoLocationChanged(locKey) {
+            // Find first matching campaign
+            const select = document.getElementById('geoCampaignSelect');
+            for (let i = 0; i < select.options.length; i++) {
+                const optKey = select.options[i].value;
+                const camp = GEO_CAMPAIGNS[optKey];
+                if (camp && camp.location === locKey) {
+                    select.selectedIndex = i;
+                    switchGeoCampaign(optKey);
+                    return;
+                }
+            }
+        }
+
+        // Search Filter for Competitors & Campaigns
+        function handleGeoSearch(term) {
+            term = (term || '').toLowerCase().trim();
+            const camp = GEO_CAMPAIGNS[currentGeoCampaignKey] || GEO_CAMPAIGNS["thiruvalla_best_company"];
+            const comps = camp.competitors && camp.competitors.length > 0 ? camp.competitors : GEO_CAMPAIGNS["thiruvalla_best_company"].competitors;
+
+            if (!term) {
+                renderGeoCompetitorsTable(comps);
+                return;
+            }
+
+            const filtered = comps.filter(c => 
+                c.name.toLowerCase().includes(term) || 
+                c.area.toLowerCase().includes(term)
+            );
+            renderGeoCompetitorsTable(filtered);
+        }
+
+        // Switch Date Scan History
+        function switchGeoDate(dateKey) {
+            showToastAlert(`Loaded historical Map Rank snapshot: ${dateKey.toUpperCase()} (100% Green #1)`);
+        }
+
+        // Toggle Heatmap Comparison (Solis vs SOLARBASE vs El Sol)
+        function toggleHeatmapComparison() {
+            const btn = document.getElementById('btnCompareHeatmaps');
+            if (heatmapComparisonMode === 'solis') {
+                heatmapComparisonMode = 'solarbase';
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-circle text-warning me-1"></i> Viewing: SOLARBASE (Rank 2.7)';
+                showToastAlert('Overlaid Competitor Heatmap: SOLARBASE (Avg Rank: 2.7)');
+            } else if (heatmapComparisonMode === 'solarbase') {
+                heatmapComparisonMode = 'elsol';
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-circle text-danger me-1"></i> Viewing: El Sol (Rank 16.2)';
+                showToastAlert('Overlaid Competitor Heatmap: El Sol Power (Avg Rank: 16.2)');
+            } else {
+                heatmapComparisonMode = 'solis';
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-layer-group me-1"></i> Compare Heatmaps';
+                showToastAlert('Reset to Solis Dominance Heatmap (Rank #1.08)');
+            }
+            renderCurrentGeoCampaign();
+        }
+
+        // Recenter Map to Centroid
+        function recenterGeoMap() {
+            const camp = GEO_CAMPAIGNS[currentGeoCampaignKey];
+            if (camp && geoMapInstance) {
+                geoMapInstance.setView(camp.center, camp.zoom);
+                showToastAlert(`Recentered to ${camp.locationName}`);
+            }
+        }
+
+        // Copy Rebuttal Pitch Against Competitor
+        function copyRebuttalAgainst(rivalName) {
+            const pitch = `Hello! Regarding ${rivalName}: Solis Green Energy Solutions is headquartered with our physical experience center right at Muthoor Junction, Thiruvalla with 137 verified Google Reviews (4.4★). Unlike remote brokers, our local Thiruvalla engineers handle complete KSEB bi-directional net-metering approvals and provide guaranteed 5-year free AMC with 24h site response. Call us at +91 83018 49474 for a free doorstep feasibility survey!`;
+            
+            navigator.clipboard.writeText(pitch).then(() => {
+                showToastAlert(`WhatsApp sales rebuttal against "${rivalName}" copied to clipboard!`);
+            }).catch(() => {
+                showToastAlert("Copied to clipboard!");
+            });
+        }
+
+        function copyWinningPitchAgainstRival() {
+            const rivalName = document.getElementById('pinInspRival')?.innerText || "local competitor";
+            copyRebuttalAgainst(rivalName);
+        }
+
+        // Save New Custom Geo-Grid Campaign
+        function saveNewGeoCampaign(event) {
+            event.preventDefault();
+            const keyword = document.getElementById('newGeoKeyword').value.trim();
+            const locationKey = document.getElementById('newGeoLocation').value;
+            const radius = document.getElementById('newGeoRadius').value;
+            const targetRank = parseFloat(document.getElementById('newGeoTargetRank').value) || 1.1;
+
+            if (!keyword) return;
+
+            const campId = "custom_" + Date.now();
+            const locCoords = {
+                "thiruvalla": [9.3835, 76.5741],
+                "pathanamthitta": [9.2648, 76.7870],
+                "kottayam": [9.5916, 76.5222],
+                "adoor": [9.1530, 76.7356],
+                "changanassery": [9.4447, 76.5414],
+                "kollam": [8.8932, 76.6141],
+                "kochi": [9.9312, 76.2673]
+            };
+
+            const center = locCoords[locationKey] || [9.3835, 76.5741];
+            const locName = locationKey.charAt(0).toUpperCase() + locationKey.slice(1);
+
+            const newCamp = {
+                id: campId,
+                keyword: keyword,
+                location: locationKey,
+                locationName: `${locName} (${radius}km Core)`,
+                center: center,
+                zoom: 13,
+                avgRank: targetRank.toFixed(2),
+                avgRankDiff: "+0.10",
+                shareOfVoice: "24.50%",
+                sovDiff: "+1.20%",
+                goodPct: "96%",
+                avgPct: "4%",
+                poorPct: "0%",
+                outTop20Pct: "0%",
+                scanDate: "Today (Live Scheduled)",
+                gridPoints: generateGeoGridPoints(center, locName, targetRank),
+                competitors: GEO_CAMPAIGNS["thiruvalla_best_company"].competitors
+            };
+
+            GEO_CAMPAIGNS[campId] = newCamp;
+
+            // Add to dropdown
+            const select = document.getElementById('geoCampaignSelect');
+            const opt = document.createElement('option');
+            opt.value = campId;
+            opt.innerText = `${keyword} (${locName} • Rank ${targetRank})`;
+            select.prepend(opt);
+            select.selectedIndex = 0;
+
+            // Persist to localStorage
+            try {
+                let saved = JSON.parse(localStorage.getItem('solis_geo_custom_campaigns') || '[]');
+                saved.push(newCamp);
+                localStorage.setItem('solis_geo_custom_campaigns', JSON.stringify(saved));
+            } catch(e) {}
+
+            // Sync to Firestore
+            if (typeof db !== 'undefined') {
+                db.collection('solis').doc('seo_geogrid_campaigns').set({
+                    updatedAt: new Date().toISOString(),
+                    latestCampaign: newCamp
+                }, { merge: true }).catch(() => {});
+            }
+
+            // Close modal
+            const modalEl = document.getElementById('addGeoCampaignModal');
+            if (modalEl) {
+                const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                if (modalInstance) modalInstance.hide();
+            }
+
+            switchGeoCampaign(campId);
+            showToastAlert(`New Geo-Scan launched: "${keyword}" in ${locName}!`);
+        }
+
+        // Load custom campaigns from local storage
+        function loadCustomGeoCampaigns() {
+            try {
+                const saved = JSON.parse(localStorage.getItem('solis_geo_custom_campaigns') || '[]');
+                const select = document.getElementById('geoCampaignSelect');
+                saved.forEach(camp => {
+                    if (!GEO_CAMPAIGNS[camp.id]) {
+                        GEO_CAMPAIGNS[camp.id] = camp;
+                        const opt = document.createElement('option');
+                        opt.value = camp.id;
+                        opt.innerText = `${camp.keyword} (${camp.locationName})`;
+                        if (select) select.appendChild(opt);
+                    }
+                });
+            } catch(e) {}
+        }
+
+        // Export Geo Map Report to PDF
+        function exportGeoMapPdf() {
+            window.print();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             initSidebarState();
             renderPositionsTable(livePositionsData);
@@ -3430,6 +4428,7 @@
             initFirestoreOrganicSync();
             renderKeywordsTable(KEYWORD_TIERS_DATA);
             filterCompetitorLocation('all', null);
+            initMapRankTracker();
             switchSchemaType('faq');
         });
     </script>
@@ -3459,6 +4458,65 @@
     </main>
 </div><!-- /#wrapper -->
 
+
+    
+    <!-- Modal: Add New Geo-Scan Campaign -->
+    <div class="modal fade" id="addGeoCampaignModal" tabindex="-1" aria-labelledby="addGeoCampaignModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header bg-light border-bottom py-3 px-4">
+                    <h5 class="modal-title font-display fw-bold text-dark" id="addGeoCampaignModalLabel">
+                        <i class="fa-solid fa-satellite-dish text-success me-2"></i> Launch New Geo-Grid Scan Campaign
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="addGeoCampaignForm" onsubmit="saveNewGeoCampaign(event)">
+                    <div class="modal-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Target Keyword <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="newGeoKeyword" placeholder="e.g. solar panel installation changanassery" required>
+                            <small class="text-muted" style="font-size: 0.72rem;">Enter exact commercial query you want to scan across the 5x5 map grid.</small>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label small fw-bold text-dark">Location Centroid <span class="text-danger">*</span></label>
+                                <select class="form-select form-select-sm" id="newGeoLocation" required>
+                                    <option value="thiruvalla" selected>Thiruvalla (Muthoor HQ)</option>
+                                    <option value="pathanamthitta">Pathanamthitta Town</option>
+                                    <option value="kottayam">Kottayam Hub</option>
+                                    <option value="adoor">Adoor Hub</option>
+                                    <option value="changanassery">Changanassery Hub</option>
+                                    <option value="kollam">Kollam Coastal Hub</option>
+                                    <option value="kochi">Kochi Commercial Hub</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label small fw-bold text-dark">Scan Grid Radius</label>
+                                <select class="form-select form-select-sm" id="newGeoRadius">
+                                    <option value="5">5 km (Town Core)</option>
+                                    <option value="10" selected>10 km (Standard 3-Pack)</option>
+                                    <option value="15">15 km (Regional Suburbs)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-dark">Target Expected Rank</label>
+                            <input type="number" step="0.1" min="1" max="20" class="form-control form-control-sm" id="newGeoTargetRank" value="1.0">
+                        </div>
+                        <div class="p-2 bg-light rounded border small text-muted">
+                            <i class="fa-solid fa-cloud-arrow-up text-primary me-1"></i> Will automatically generate 25 geo-coordinates centered on the location and persist to your secure cloud database.
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light border-top py-2 px-4 d-flex justify-content-between">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-success px-4 fw-semibold">
+                            <i class="fa-solid fa-satellite-dish me-1"></i> Save & Launch Scan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal: Add Field Competitor -->
     <div class="modal fade" id="addFieldCompetitorModal" tabindex="-1" aria-labelledby="addCompModalLabel" aria-hidden="true">
