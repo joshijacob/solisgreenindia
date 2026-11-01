@@ -533,6 +533,19 @@
         </div>
 
         <div class="p-2 flex-grow-1">
+            <!-- 0. Main Overview Section -->
+            <div class="sidebar-section-title px-3 pt-2 pb-1 text-uppercase text-muted fw-bold" style="font-size: 0.65rem; letter-spacing: 0.06em;">
+                Overview
+            </div>
+            <nav class="nav nav-pills flex-column mb-3" role="tablist">
+                <!-- 0. Dedicated Executive Dashboard -->
+                <button class="nav-link active" id="tab-dashboard-btn" data-bs-toggle="pill" data-bs-target="#tab-dashboard" type="button" role="tab">
+                    <i class="fa-solid fa-gauge-high text-primary" style="width: 18px;"></i>
+                    <span class="nav-text">Dashboard</span>
+                    <span class="badge bg-primary text-white ms-auto sidebar-badge" style="font-size: 0.62rem;">98%</span>
+                </button>
+            </nav>
+
             <div class="sidebar-section-title px-3 pt-2 pb-1 text-uppercase text-muted fw-bold" style="font-size: 0.65rem; letter-spacing: 0.06em;">
                 Rankings & Intelligence
             </div>
@@ -544,8 +557,8 @@
                     <span class="badge bg-success text-white ms-auto sidebar-badge" style="font-size: 0.62rem;">#1 Heatmap</span>
                 </button>
 
-                <!-- 1. Position Tracking (Semrush View) - DEFAULT ACTIVE -->
-                <button class="nav-link active" id="tab-positions-btn" data-bs-toggle="pill" data-bs-target="#tab-positions" type="button" role="tab">
+                <!-- 1. Position Tracking (Semrush View) -->
+                <button class="nav-link" id="tab-positions-btn" data-bs-toggle="pill" data-bs-target="#tab-positions" type="button" role="tab">
                     <i class="fa-solid fa-chart-line text-primary" style="width: 18px;"></i>
                     <span class="nav-text">Position Tracking</span>
                     <span class="badge bg-success text-white ms-auto sidebar-badge" style="font-size: 0.62rem;">Semrush</span>
@@ -622,191 +635,238 @@
     <!-- Main Content Area -->
     <main id="page-content-wrapper">
 
-        <!-- Header Title & Quick Action -->
-        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4 pb-3 border-bottom">
-            <div>
-                <div class="d-flex align-items-center gap-2 mb-1">
-                    <h2 class="fw-bold font-display text-dark mb-0">Search Engine Optimization & Local Presence</h2>
-                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill font-mono small">PRO SEO SUITE</span>
+        <!-- Compact Top Navigation & Action Bar -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom">
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success-subtle text-success border border-success-subtle font-mono small">
+                        <i class="fa-solid fa-signal me-1"></i> LIVE
+                    </span>
+                    <h5 class="fw-bold font-display text-dark mb-0 fs-6">Solis Search Intelligence & Ground Authority</h5>
                 </div>
-                <p class="text-muted small mb-0">
-                    Enterprise search intelligence, local Map Pack dominance, keyword prioritization & NAP citation consistency for Kerala rooftop solar.
-                </p>
             </div>
 
             <div class="d-flex flex-wrap align-items-center gap-2">
-                <button class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold shadow-sm" onclick="reRunLiveAudit()" id="refreshAuditBtn">
-                    <i class="fa-solid fa-rotate-right me-1"></i> Re-Scan All 100 Pages
+                <button class="btn btn-xs btn-outline-primary rounded-pill px-3 fw-semibold shadow-2xs" onclick="reRunLiveAudit()" id="refreshAuditBtn" style="font-size: 0.75rem; padding: 0.25rem 0.75rem;">
+                    <i class="fa-solid fa-rotate-right me-1"></i> Re-Scan (100)
                 </button>
-                <a href="https://search.google.com/search-console" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold shadow-sm">
-                    <i class="fa-brands fa-google me-1 text-primary"></i> Search Console
+                <button class="btn btn-xs btn-success rounded-pill px-3 fw-semibold shadow-2xs" onclick="openExecutiveReportModal()" style="font-size: 0.75rem; padding: 0.25rem 0.75rem;">
+                    <i class="fa-solid fa-file-pdf me-1"></i> Executive PDF
+                </button>
+                <button class="btn btn-xs btn-outline-success rounded-pill px-3 fw-semibold shadow-2xs" onclick="exportKeywordsCSV()" style="font-size: 0.75rem; padding: 0.25rem 0.75rem;">
+                    <i class="fa-solid fa-file-excel me-1"></i> Export CSV
+                </button>
+                <a href="https://search.google.com/search-console" target="_blank" class="btn btn-xs btn-outline-secondary rounded-pill px-2" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;" title="Google Search Console">
+                    <i class="fa-brands fa-google text-primary"></i> GSC
                 </a>
-                <a href="https://search.google.com/test/rich-results" target="_blank" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-semibold shadow-sm">
-                    <i class="fa-solid fa-shield-halved me-1"></i> Google Rich Test
-                </a>
-                <button class="btn btn-sm btn-success rounded-pill px-3 fw-semibold shadow-sm" onclick="openExecutiveReportModal()">
-                    <i class="fa-solid fa-file-pdf me-1"></i> Executive Report (PDF/Print)
-                </button>
-                <button class="btn btn-sm btn-outline-success rounded-pill px-3 fw-semibold shadow-sm" onclick="exportKeywordsCSV()">
-                    <i class="fa-solid fa-file-excel me-1"></i> Export Keywords CSV
-                </button>
-                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold shadow-sm" onclick="exportSeoReportCSV()">
-                    <i class="fa-solid fa-file-csv me-1"></i> Technical Crawl CSV
-                </button>
             </div>
         </div>
-
-        <!-- 6 Executive SEO Stat Gauges -->
-        <div class="row g-3 mb-4">
-            <!-- 1. Overall SEO Health -->
-            <div class="col-6 col-lg-2">
-                <div class="stat-card" style="border-left: 4px solid #10b981;">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-muted small fw-bold text-uppercase">Site Health</span>
-                        <div class="stat-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                            <i class="fa-solid fa-shield-heart"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value text-success" id="stat-health-score">98%</div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge bg-success-subtle text-success" id="stat-health-badge" style="font-size: 0.68rem;">Grade A+</span>
-                        <small class="text-muted" id="stat-health-sub" style="font-size: 0.72rem;">100 Pages</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. Live Scanned Pages -->
-            <div class="col-6 col-lg-2">
-                <div class="stat-card">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-muted small fw-bold text-uppercase">Indexed Pages</span>
-                        <div class="stat-icon" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
-                            <i class="fa-solid fa-sitemap"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value" id="stat-pages-count">100</div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge bg-primary-subtle text-primary" style="font-size: 0.68rem;">100% Crawlable</span>
-                        <small class="text-muted" style="font-size: 0.72rem;">Sitemap Synced</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Local Town Landing Pages -->
-            <div class="col-6 col-lg-2">
-                <div class="stat-card">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-muted small fw-bold text-uppercase">Local Hubs</span>
-                        <div class="stat-icon" style="background: linear-gradient(135deg, #FF6A2A 0%, #e65618 100%);">
-                            <i class="fa-solid fa-map-location-dot"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value" style="color: #FF6A2A;" id="stat-town-count">33</div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge bg-warning-subtle text-warning-emphasis" style="font-size: 0.68rem;">4 Districts</span>
-                        <small class="text-muted" style="font-size: 0.72rem;">Kerala Towns</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. High-Intent Keywords Tracked -->
-            <div class="col-6 col-lg-2">
-                <div class="stat-card">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-muted small fw-bold text-uppercase">Key Queries</span>
-                        <div class="stat-icon" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
-                            <i class="fa-solid fa-bullseye"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value" style="color: #6366f1;" id="stat-keywords-count">12</div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge bg-indigo-subtle text-indigo border" style="font-size: 0.68rem;">3 Priority Tiers</span>
-                        <small class="text-muted" style="font-size: 0.72rem;">High Intent</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5. NAP Consistency Score -->
-            <div class="col-6 col-lg-2">
-                <div class="stat-card">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-muted small fw-bold text-uppercase">NAP Integrity</span>
-                        <div class="stat-icon" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
-                            <i class="fa-solid fa-address-card"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value text-success" id="stat-nap-count">100%</div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge bg-success-subtle text-success" style="font-size: 0.68rem;">0 Conflicts</span>
-                        <small class="text-muted" style="font-size: 0.72rem;">Phone & Name</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. Real Organic Leads -->
-            <div class="col-6 col-lg-2">
-                <div class="stat-card">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-muted small fw-bold text-uppercase">Organic Leads</span>
-                        <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
-                            <i class="fa-solid fa-phone-volume"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value" style="color: #7c3aed;" id="stat-organic-leads">0</div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge bg-purple-subtle text-purple border" style="font-size: 0.68rem;">Live Firestore</span>
-                        <small class="text-muted" style="font-size: 0.72rem;" id="stat-organic-sub">Calls & WA</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 6 Main Navigation Pill Tabs -->
-        <ul class="nav seo-nav-pills gap-2 mb-4 p-2 bg-white rounded-pill border shadow-sm flex-nowrap overflow-auto" id="seoTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-maprank-btn-top" data-bs-toggle="pill" data-bs-target="#tab-maprank" type="button" role="tab" onclick="setTimeout(initMapRankTracker, 150)">
-                    <i class="fa-solid fa-map-pin text-success me-1"></i> Map Rank & Geo-Grid (<span class="badge bg-success text-white">#1</span>)
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="tab-audit-btn" data-bs-toggle="pill" data-bs-target="#tab-audit" type="button" role="tab">
-                    <i class="fa-solid fa-list-check me-1"></i> Executive Action Queue & Auditor (<span id="pill-count-audit">100</span>)
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-keywords-btn" data-bs-toggle="pill" data-bs-target="#tab-keywords" type="button" role="tab">
-                    <i class="fa-solid fa-bullseye me-1"></i> Keyword Priority Tiers (12)
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-competitors-btn" data-bs-toggle="pill" data-bs-target="#tab-competitors" type="button" role="tab">
-                    <i class="fa-solid fa-chess-knight me-1"></i> Competitors & Map Pack Radar (8)
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-nap-btn" data-bs-toggle="pill" data-bs-target="#tab-nap" type="button" role="tab">
-                    <i class="fa-solid fa-address-card me-1"></i> NAP Consistency & Conflict Scanner
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-local-btn" data-bs-toggle="pill" data-bs-target="#tab-local" type="button" role="tab">
-                    <i class="fa-solid fa-map-location-dot me-1"></i> Kerala Local Hubs (<span id="pill-count-local">33</span>)
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-tools-btn" data-bs-toggle="pill" data-bs-target="#tab-tools" type="button" role="tab">
-                    <i class="fa-solid fa-sliders me-1"></i> SERP Simulator & Schemas
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-sitemap-btn" data-bs-toggle="pill" data-bs-target="#tab-sitemap" type="button" role="tab">
-                    <i class="fa-solid fa-sitemap me-1"></i> Sitemap.xml (<span id="pill-count-sitemap">100</span>)
-                </button>
-            </li>
-        </ul>
 
         <!-- Tab Contents -->
         <div class="tab-content" id="seoTabsContent">
+
+            <!-- ========================================================= -->
+            <!-- TAB: DEDICATED EXECUTIVE DASHBOARD & GAUGES                 -->
+            <!-- ========================================================= -->
+            <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel">
+                <!-- Dashboard Welcome Banner -->
+                <div class="card border-0 shadow-sm rounded-4 mb-4 p-4 bg-white">
+                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <h3 class="fw-bold font-display text-dark mb-0">SEO & Local Map Pack Executive Dashboard</h3>
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill font-mono small">EXECUTIVE VIEW</span>
+                            </div>
+                            <p class="text-muted small mb-0">
+                                High-level overview of site health, local 3-pack dominance, keyword performance, and verified NAP citations for <strong>Solis Green Energy Solutions</strong>.
+                            </p>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://search.google.com/search-console" target="_blank" class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold">
+                                <i class="fa-brands fa-google me-1 text-primary"></i> Search Console
+                            </a>
+                            <a href="https://search.google.com/test/rich-results" target="_blank" class="btn btn-sm btn-outline-success rounded-pill px-3 fw-semibold">
+                                <i class="fa-solid fa-shield-halved me-1"></i> Google Rich Test
+                            </a>
+                            <button class="btn btn-sm btn-success rounded-pill px-3 fw-semibold" onclick="openExecutiveReportModal()">
+                                <i class="fa-solid fa-file-pdf me-1"></i> Executive Report (PDF)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 Executive SEO Stat Gauges -->
+                <div class="row g-3 mb-4">
+                    <!-- 1. Overall SEO Health -->
+                    <div class="col-6 col-lg-2">
+                        <div class="stat-card" style="border-left: 4px solid #10b981;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small fw-bold text-uppercase">Site Health</span>
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                                    <i class="fa-solid fa-shield-heart"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value text-success" id="stat-health-score">98%</div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="badge bg-success-subtle text-success" id="stat-health-badge" style="font-size: 0.68rem;">Grade A+</span>
+                                <small class="text-muted" id="stat-health-sub" style="font-size: 0.72rem;">100 Pages</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Live Scanned Pages -->
+                    <div class="col-6 col-lg-2">
+                        <div class="stat-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small fw-bold text-uppercase">Indexed Pages</span>
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
+                                    <i class="fa-solid fa-sitemap"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" id="stat-pages-count">100</div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="badge bg-primary-subtle text-primary" style="font-size: 0.68rem;">100% Crawlable</span>
+                                <small class="text-muted" style="font-size: 0.72rem;">Sitemap Synced</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Local Town Landing Pages -->
+                    <div class="col-6 col-lg-2">
+                        <div class="stat-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small fw-bold text-uppercase">Local Hubs</span>
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #FF6A2A 0%, #e65618 100%);">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" style="color: #FF6A2A;" id="stat-town-count">33</div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="badge bg-warning-subtle text-warning-emphasis" style="font-size: 0.68rem;">4 Districts</span>
+                                <small class="text-muted" style="font-size: 0.72rem;">Kerala Towns</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. High-Intent Keywords Tracked -->
+                    <div class="col-6 col-lg-2">
+                        <div class="stat-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small fw-bold text-uppercase">Key Queries</span>
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
+                                    <i class="fa-solid fa-bullseye"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" style="color: #6366f1;" id="stat-keywords-count">12</div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="badge bg-indigo-subtle text-indigo border" style="font-size: 0.68rem;">3 Priority Tiers</span>
+                                <small class="text-muted" style="font-size: 0.72rem;">High Intent</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. NAP Consistency Score -->
+                    <div class="col-6 col-lg-2">
+                        <div class="stat-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small fw-bold text-uppercase">NAP Integrity</span>
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+                                    <i class="fa-solid fa-address-card"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value text-success" id="stat-nap-count">100%</div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="badge bg-success-subtle text-success" style="font-size: 0.68rem;">0 Conflicts</span>
+                                <small class="text-muted" style="font-size: 0.72rem;">Phone & Name</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Real Organic Leads -->
+                    <div class="col-6 col-lg-2">
+                        <div class="stat-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted small fw-bold text-uppercase">Organic Leads</span>
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
+                                    <i class="fa-solid fa-phone-volume"></i>
+                                </div>
+                            </div>
+                            <div class="stat-value" style="color: #7c3aed;" id="stat-organic-leads">0</div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="badge bg-purple-subtle text-purple border" style="font-size: 0.68rem;">Live Firestore</span>
+                                <small class="text-muted" style="font-size: 0.72rem;" id="stat-organic-sub">Calls & WA</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Launchpad Quick Access Cards -->
+                <div class="row g-4 mb-4">
+                    <div class="col-12 col-md-4">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="p-3 bg-success-subtle text-success rounded-3 fs-4">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold font-display text-dark mb-0">Local Map Rank Tracker</h6>
+                                    <span class="badge bg-success text-white small">Avg. Rank: 1.08</span>
+                                </div>
+                            </div>
+                            <p class="text-muted small mb-3">
+                                Undisputed #1 dominance across 25 GPS coordinates in Thiruvalla with 26.36% Share of Voice.
+                            </p>
+                            <button class="btn btn-sm btn-outline-success w-100 fw-semibold" onclick="document.getElementById('tab-maprank-btn').click()">
+                                Open Geo-Grid Heatmap <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="p-3 bg-primary-subtle text-primary rounded-3 fs-4">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold font-display text-dark mb-0">SERP Position Tracking</h6>
+                                    <span class="badge bg-primary text-white small">10 Keywords Active</span>
+                                </div>
+                            </div>
+                            <p class="text-muted small mb-3">
+                                Monitor live Google desktop & mobile rankings with Semrush integration, SERP features, and diff tracking.
+                            </p>
+                            <button class="btn btn-sm btn-outline-primary w-100 fw-semibold" onclick="document.getElementById('tab-positions-btn').click()">
+                                Open Position Tracking <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <div class="p-3 bg-warning-subtle text-warning-emphasis rounded-3 fs-4">
+                                    <i class="fa-solid fa-chess-knight"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold font-display text-dark mb-0">Competitor Ground Radar</h6>
+                                    <span class="badge bg-warning-subtle text-warning-emphasis border small">10 Rival EPCs</span>
+                                </div>
+                            </div>
+                            <p class="text-muted small mb-3">
+                                Live dossier on SOLARBASE, Chery's Power, El Sol, Wattsun, and Sunsenz with 1-click counter-rebuttal scripts.
+                            </p>
+                            <button class="btn btn-sm btn-outline-warning text-dark w-100 fw-semibold" onclick="document.getElementById('tab-competitors-btn').click()">
+                                Open Competitor Radar <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- ========================================================= -->
             <!-- TAB: LOCAL MAP RANK TRACKER & MULTI-KEYWORD GEO-GRID RADAR -->
@@ -1081,7 +1141,7 @@
             <!-- ========================================================= -->
             <!-- TAB 0: SEMRUSH POSITION TRACKING (REAL SERP RANKINGS)       -->
             <!-- ========================================================= -->
-            <div class="tab-pane fade show active" id="tab-positions" role="tabpanel">
+            <div class="tab-pane fade" id="tab-positions" role="tabpanel">
                 
                 <!-- Position Tracking Top Control Banner -->
                 <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
