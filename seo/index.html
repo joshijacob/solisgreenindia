@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>SEO Command Center & Local Ranking Matrix | Solis Green Energy</title>
 
     <!-- Favicon -->
@@ -554,53 +557,51 @@
         </div>
 
         <div class="p-2 flex-grow-1">
-            <!-- 0. Main Overview Section -->
-            <div class="sidebar-section-title px-3 pt-2 pb-1 text-uppercase text-muted fw-bold" style="font-size: 0.65rem; letter-spacing: 0.06em;">
-                Overview
-            </div>
-            <nav class="nav nav-pills flex-column mb-3" role="tablist">
+            <nav class="nav nav-pills flex-column mb-2" id="seoTabs" role="tablist">
+                <!-- 0. Main Overview Section -->
+                <div class="sidebar-section-title px-3 pt-2 pb-1 text-uppercase text-muted fw-bold" style="font-size: 0.65rem; letter-spacing: 0.06em;">
+                    Overview
+                </div>
                 <!-- 0. Dedicated Executive Dashboard -->
-                <button class="nav-link active" id="tab-dashboard-btn" data-bs-toggle="pill" data-bs-target="#tab-dashboard" type="button" role="tab">
+                <button class="nav-link active" id="tab-dashboard-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-dashboard', this)">
                     <i class="fa-solid fa-gauge-high text-primary" style="width: 18px;"></i>
                     <span class="nav-text">Dashboard</span>
                     <span class="badge bg-primary text-white ms-auto sidebar-badge" style="font-size: 0.62rem;">98%</span>
                 </button>
-            </nav>
 
-            <div class="sidebar-section-title px-3 pt-2 pb-1 text-uppercase text-muted fw-bold" style="font-size: 0.65rem; letter-spacing: 0.06em;">
-                Rankings & Intelligence
-            </div>
-            <nav class="nav nav-pills flex-column mb-2" id="seoTabs" role="tablist">
+                <div class="sidebar-section-title px-3 pt-3 pb-1 text-uppercase text-muted fw-bold" style="font-size: 0.65rem; letter-spacing: 0.06em;">
+                    Rankings & Intelligence
+                </div>
                 <!-- Local Map Rank Tracker & Multi-Keyword Geo-Grid Engine -->
-                <button class="nav-link" id="tab-maprank-btn" data-bs-toggle="pill" data-bs-target="#tab-maprank" type="button" role="tab" onclick="setTimeout(initMapRankTracker, 150)">
+                <button class="nav-link" id="tab-maprank-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-maprank', this)">
                     <i class="fa-solid fa-map-pin text-success" style="width: 18px;"></i>
                     <span class="nav-text">Map Rank & Geo-Grid</span>
                     <span class="badge bg-success text-white ms-auto sidebar-badge" style="font-size: 0.62rem;">#1 Heatmap</span>
                 </button>
 
                 <!-- 1. Position Tracking (Semrush View) -->
-                <button class="nav-link" id="tab-positions-btn" data-bs-toggle="pill" data-bs-target="#tab-positions" type="button" role="tab">
+                <button class="nav-link" id="tab-positions-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-positions', this)">
                     <i class="fa-solid fa-chart-line text-primary" style="width: 18px;"></i>
                     <span class="nav-text">Position Tracking</span>
                     <span class="badge bg-primary text-white ms-auto sidebar-badge" style="font-size: 0.62rem;">In-House</span>
                 </button>
 
                 <!-- 2. Commercial Keyword Priority Tiers -->
-                <button class="nav-link" id="tab-keywords-btn" data-bs-toggle="pill" data-bs-target="#tab-keywords" type="button" role="tab">
+                <button class="nav-link" id="tab-keywords-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-keywords', this)">
                     <i class="fa-solid fa-bullseye text-warning" style="width: 18px;"></i>
                     <span class="nav-text">Keyword Priority Tiers</span>
                     <span class="badge bg-light text-dark border ms-auto sidebar-badge" id="pill-count-keywords" style="font-size: 0.62rem;">12</span>
                 </button>
 
                 <!-- 3. Competitors Ground Radar & Scorecard -->
-                <button class="nav-link" id="tab-competitors-btn" data-bs-toggle="pill" data-bs-target="#tab-competitors" type="button" role="tab">
+                <button class="nav-link" id="tab-competitors-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-competitors', this)">
                     <i class="fa-solid fa-chess-knight text-danger" style="width: 18px;"></i>
                     <span class="nav-text">Competitor Ground Radar</span>
                     <span class="badge bg-light text-dark border ms-auto sidebar-badge" style="font-size: 0.62rem;">10</span>
                 </button>
 
                 <!-- 4. Kerala Local Hubs (33) -->
-                <button class="nav-link" id="tab-local-btn" data-bs-toggle="pill" data-bs-target="#tab-local" type="button" role="tab">
+                <button class="nav-link" id="tab-local-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-local', this)">
                     <i class="fa-solid fa-map-location-dot text-success" style="width: 18px;"></i>
                     <span class="nav-text">Kerala Local Hubs</span>
                     <span class="badge bg-light text-dark border ms-auto sidebar-badge" id="pill-count-local" style="font-size: 0.62rem;">33</span>
@@ -611,21 +612,21 @@
                 </div>
 
                 <!-- 5. Executive Action Queue & Auditor -->
-                <button class="nav-link" id="tab-audit-btn" data-bs-toggle="pill" data-bs-target="#tab-audit" type="button" role="tab">
+                <button class="nav-link" id="tab-audit-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-audit', this)">
                     <i class="fa-solid fa-list-check text-info" style="width: 18px;"></i>
                     <span class="nav-text">Action Queue & Health</span>
                     <span class="badge bg-light text-dark border ms-auto sidebar-badge" id="pill-count-audit" style="font-size: 0.62rem;">100</span>
                 </button>
 
                 <!-- 6. NAP Consistency & Conflict Scanner -->
-                <button class="nav-link" id="tab-nap-btn" data-bs-toggle="pill" data-bs-target="#tab-nap" type="button" role="tab">
+                <button class="nav-link" id="tab-nap-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-audit', this)">
                     <i class="fa-solid fa-address-card text-primary" style="width: 18px;"></i>
                     <span class="nav-text">NAP Conflict Scanner</span>
                     <span class="badge bg-success-subtle text-success ms-auto sidebar-badge" style="font-size: 0.62rem;">100%</span>
                 </button>
 
                 <!-- 7. Sitemap.xml (100) -->
-                <button class="nav-link" id="tab-sitemap-btn" data-bs-toggle="pill" data-bs-target="#tab-sitemap" type="button" role="tab">
+                <button class="nav-link" id="tab-sitemap-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-sitemap', this)">
                     <i class="fa-solid fa-sitemap text-dark" style="width: 18px;"></i>
                     <span class="nav-text">Sitemap.xml (100)</span>
                 </button>
@@ -635,7 +636,7 @@
                 </div>
 
                 <!-- 8. SERP Simulator & Schemas -->
-                <button class="nav-link" id="tab-tools-btn" data-bs-toggle="pill" data-bs-target="#tab-tools" type="button" role="tab">
+                <button class="nav-link" id="tab-tools-btn" type="button" role="tab" onclick="switchSeoSidebarTab('tab-tools', this)">
                     <i class="fa-solid fa-sliders text-secondary" style="width: 18px;"></i>
                     <span class="nav-text">SERP & Schema Lab</span>
                 </button>
@@ -890,7 +891,7 @@
                             <p class="text-muted small mb-3">
                                 Undisputed #1 dominance across 25 GPS coordinates in Thiruvalla with 26.36% Share of Voice.
                             </p>
-                            <button class="btn btn-sm btn-outline-success w-100 fw-semibold" onclick="document.getElementById('tab-maprank-btn').click()">
+                            <button class="btn btn-sm btn-outline-success w-100 fw-semibold" onclick="switchSeoSidebarTab('tab-maprank', document.getElementById('tab-maprank-btn'))">
                                 Open Geo-Grid Heatmap <i class="fa-solid fa-arrow-right ms-1"></i>
                             </button>
                         </div>
@@ -910,7 +911,7 @@
                             <p class="text-muted small mb-3">
                                 Monitor live Google desktop & mobile rankings with Semrush integration, SERP features, and diff tracking.
                             </p>
-                            <button class="btn btn-sm btn-outline-primary w-100 fw-semibold" onclick="document.getElementById('tab-positions-btn').click()">
+                            <button class="btn btn-sm btn-outline-primary w-100 fw-semibold" onclick="switchSeoSidebarTab('tab-positions', document.getElementById('tab-positions-btn'))">
                                 Open Position Tracking <i class="fa-solid fa-arrow-right ms-1"></i>
                             </button>
                         </div>
@@ -930,7 +931,7 @@
                             <p class="text-muted small mb-3">
                                 Live dossier on SOLARBASE, Chery's Power, El Sol, Wattsun, and Sunsenz with 1-click counter-rebuttal scripts.
                             </p>
-                            <button class="btn btn-sm btn-outline-warning text-dark w-100 fw-semibold" onclick="document.getElementById('tab-competitors-btn').click()">
+                            <button class="btn btn-sm btn-outline-warning text-dark w-100 fw-semibold" onclick="switchSeoSidebarTab('tab-competitors', document.getElementById('tab-competitors-btn'))">
                                 Open Competitor Radar <i class="fa-solid fa-arrow-right ms-1"></i>
                             </button>
                         </div>
@@ -5592,7 +5593,68 @@
             if (elRevenue) elRevenue.innerText = "₹" + (pipelineVal / 100000).toFixed(1) + " L";
         }
 
+                // =========================================================
+        // UNIFIED SIDEBAR NAVIGATION: EXCLUSIVE TAB SWITCHER
+        // (Guarantees Dashboard is completely hidden when another tool is clicked)
+        // =========================================================
+        function switchSeoSidebarTab(targetTabId, btnElement) {
+            console.log('[Solis SEO] Switching tab exclusively to:', targetTabId);
+
+            // 1. Remove active state from all sidebar nav links
+            document.querySelectorAll('#sidebar-wrapper .nav-link').forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+
+            // 2. Add active state to clicked button or matching button
+            if (btnElement) {
+                btnElement.classList.add('active');
+                btnElement.setAttribute('aria-selected', 'true');
+            } else {
+                const targetBtn = document.getElementById(targetTabId + '-btn');
+                if (targetBtn) {
+                    targetBtn.classList.add('active');
+                    targetBtn.setAttribute('aria-selected', 'true');
+                }
+            }
+
+            // 3. Hide ALL top-level tab panes in seoTabsContent strictly
+            const tabPanes = document.querySelectorAll('#seoTabsContent > .tab-pane');
+            tabPanes.forEach(pane => {
+                pane.classList.remove('show', 'active');
+                pane.style.display = 'none';
+            });
+
+            // 4. Show strictly ONLY the targeted tab pane
+            const targetPane = document.getElementById(targetTabId);
+            if (targetPane) {
+                targetPane.classList.add('show', 'active');
+                targetPane.style.display = 'block';
+            } else {
+                console.warn('[Solis SEO] Target tab pane not found:', targetTabId);
+            }
+
+            // 5. Component-specific redraws
+            if (targetTabId === 'tab-maprank') {
+                setTimeout(() => {
+                    if (typeof initMapRankTracker === 'function') initMapRankTracker();
+                    if (typeof geoMapInstance !== 'undefined' && geoMapInstance) {
+                        geoMapInstance.invalidateSize();
+                    }
+                }, 150);
+            } else if (targetTabId === 'tab-competitors') {
+                setTimeout(() => {
+                    if (typeof initSovMapIfNeeded === 'function') initSovMapIfNeeded();
+                }, 150);
+            }
+
+            // 6. Scroll smoothly to top of workspace
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize exclusive view on Dashboard
+            switchSeoSidebarTab('tab-dashboard', document.getElementById('tab-dashboard-btn'));
             initSidebarState();
             renderPositionsTable(livePositionsData);
             loadCustomCompetitors();
