@@ -422,10 +422,14 @@
             <!-- Top Districts Engagement (6 cols) -->
             <div class="col-12 col-lg-6">
                 <div class="chart-card">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
                         <div>
                             <h5 class="fw-bold font-display text-dark mb-0">District Inquiries & Traffic</h5>
-                            <small class="text-muted">Actual actions tracked across regional Kerala landing pages</small>
+                            <small class="text-muted" id="districtChartSubtitle">Actual actions tracked across regional Kerala landing pages</small>
+                        </div>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="District Filter Mode">
+                            <button type="button" class="btn btn-secondary active py-1 px-2" id="btnDistrictAll" onclick="setDistrictMode('all')" style="font-size: 0.75rem; font-weight: 600;">All Traffic</button>
+                            <button type="button" class="btn btn-outline-primary py-1 px-2" id="btnDistrictLeads" onclick="setDistrictMode('leads')" style="font-size: 0.75rem; font-weight: 600;"><i class="fa-solid fa-bullseye me-1 text-danger"></i>Leads Only</button>
                         </div>
                     </div>
                     <div style="height: 250px; width: 100%;">
@@ -1399,14 +1403,40 @@ return;
             });
         }
 
-        // Chart 3: Real District & City Inquiries
+        // Chart 3: Real District & City Inquiries with Leads-Only Mode
+        let currentDistrictMode = 'all'; // 'all' or 'leads'
+
+        function setDistrictMode(mode) {
+            currentDistrictMode = mode;
+            const btnAll = document.getElementById('btnDistrictAll');
+            const btnLeads = document.getElementById('btnDistrictLeads');
+            const subtitle = document.getElementById('districtChartSubtitle');
+
+            if (mode === 'leads') {
+                if (btnAll) { btnAll.classList.remove('active', 'btn-secondary'); btnAll.classList.add('btn-outline-secondary'); }
+                if (btnLeads) { btnLeads.classList.add('active', 'btn-primary'); btnLeads.classList.remove('btn-outline-primary'); }
+                if (subtitle) subtitle.textContent = 'Showing verified conversion leads only (Phone Calls, WhatsApp, Forms)';
+            } else {
+                if (btnAll) { btnAll.classList.add('active', 'btn-secondary'); btnAll.classList.remove('btn-outline-secondary'); }
+                if (btnLeads) { btnLeads.classList.remove('active', 'btn-primary'); btnLeads.classList.add('btn-outline-primary'); }
+                if (subtitle) subtitle.textContent = 'Actual actions tracked across regional Kerala landing pages';
+            }
+            renderRealDistrictChart(getFilteredEvents());
+        }
+
         function renderRealDistrictChart(events) {
             const ctx = document.getElementById('districtChart').getContext('2d');
             if (chartInstances.district) chartInstances.district.destroy();
 
+            // Filter for leads only if requested
+            let targetEvents = events;
+            if (currentDistrictMode === 'leads') {
+                targetEvents = events.filter(e => e.type === 'call_click' || e.type === 'whatsapp_click' || e.type === 'form_submit');
+            }
+
             const locationMap = {};
 
-            events.forEach(e => {
+            targetEvents.forEach(e => {
                 let loc = e.city || '';
                 if (!loc && e.location) {
                     loc = e.location.split(',')[0].trim();
@@ -1418,7 +1448,7 @@ return;
                     else if (url.includes('kollam')) loc = 'Kollam';
                     else if (url.includes('alappuzha')) loc = 'Alappuzha';
                     else if (url.includes('thiruvananthapuram') || url.includes('trivandrum')) loc = 'Trivandrum';
-                    else loc = 'Kerala (General)';
+                    else loc = (currentDistrictMode === 'leads') ? 'Central Kerala' : 'Kerala (General)';
                 }
                 locationMap[loc] = (locationMap[loc] || 0) + 1;
             });
@@ -1428,17 +1458,21 @@ return;
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 6);
 
-            const labels = sortedLocs.length > 0 ? sortedLocs.map(i => i[0]) : ['Kottayam', 'Thiruvalla', 'Kollam', 'Alappuzha'];
+            const labels = sortedLocs.length > 0 ? sortedLocs.map(i => i[0]) : ['Thiruvalla', 'Kottayam', 'Kollam', 'Alappuzha'];
             const data = sortedLocs.length > 0 ? sortedLocs.map(i => i[1]) : [0, 0, 0, 0];
+            const datasetLabel = (currentDistrictMode === 'leads') ? 'Verified Customer Leads (Calls, WhatsApp, Forms)' : 'Total Visitors & Inquiries';
+            const yAxisTitle = (currentDistrictMode === 'leads') ? 'Customer Leads' : 'Visits & Inquiries';
 
             chartInstances.district = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Real Visitors by Location',
+                        label: datasetLabel,
                         data: data,
-                        backgroundColor: ['#FF6A2A', '#10b981', '#0284c7', '#8b5cf6', '#eab308', '#64748b'],
+                        backgroundColor: (currentDistrictMode === 'leads') 
+                            ? ['#10b981', '#FF6A2A', '#0284c7', '#8b5cf6', '#eab308', '#64748b']
+                            : ['#FF6A2A', '#10b981', '#0284c7', '#8b5cf6', '#eab308', '#64748b'],
                         borderRadius: 4
                     }]
                 },
@@ -1447,9 +1481,18 @@ return;
                     maintainAspectRatio: false,
                     scales: {
                         x: { grid: { display: false } },
-                        y: { beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: 'Visits & Inquiries', font: { size: 10 } } }
+                        y: { beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: yAxisTitle, font: { size: 10 } } }
                     },
-                    plugins: { legend: { display: false } }
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` ${context.parsed.y} ${currentDistrictMode === 'leads' ? 'Customer Leads' : 'Visits & Actions'}`;
+                                }
+                            }
+                        }
+                    }
                 }
             });
         }
@@ -1849,7 +1892,29 @@ return;
                     </td>
                     <td>${typeBadge}</td>
                     <td>
-                        <span class="small fw-bold text-dark">${evt.details || evt.title}</span>
+                        <span class="small fw-bold text-dark d-block">${evt.details || evt.title}</span>
+                        ${(() => {
+                            const combined = (evt.details || '') + ' ' + (evt.title || '') + ' ' + (evt.phone || '');
+                            const match = combined.match(/(?:\+?91[\s-]?)?[6-9]\d{9}/);
+                            if (match) {
+                                const digits = match[0].replace(/\D/g, '');
+                                let clean = digits;
+                                if (digits.length === 10) clean = '91' + digits;
+                                else if (digits.length > 10 && !digits.startsWith('91')) clean = '91' + digits.slice(-10);
+                                const greeting = encodeURIComponent("Hello! Thank you for contacting Solis Green Energy Solutions regarding rooftop solar installation in Kerala. How can we assist you today with your KSEB connection and PM Surya Ghar subsidy?");
+                                return `
+                                    <div class="d-flex align-items-center gap-1 mt-1">
+                                        <a href="tel:+${clean}" class="btn btn-xs btn-outline-success rounded-pill px-2 py-0 text-decoration-none" style="font-size: 0.72rem; font-weight: 600;" title="Call Customer directly">
+                                            <i class="fa-solid fa-phone me-1"></i> Call
+                                        </a>
+                                        <a href="https://wa.me/${clean}?text=${greeting}" target="_blank" class="btn btn-xs btn-success rounded-pill px-2 py-0 text-decoration-none text-white shadow-sm" style="font-size: 0.72rem; font-weight: 600;" title="Open WhatsApp Chat with pre-filled greeting">
+                                            <i class="fa-brands fa-whatsapp me-1"></i> WhatsApp
+                                        </a>
+                                    </div>
+                                `;
+                            }
+                            return '';
+                        })()}
                     </td>
                     <td>
                         <a href="${evt.url}" target="_blank" class="small text-decoration-none">
