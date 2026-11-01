@@ -1345,7 +1345,7 @@
         let currentKeywordsFilter = 'all';
 
         // 12 High-Intent Kerala Solar Keywords categorized into 3 Commercial Tiers
-        const KEYWORD_TIERS_DATA = [
+        let KEYWORD_TIERS_DATA = [
             // Tier 1: High-Ticket Transactional (Immediate Revenue)
             {
                 query: "3kw solar system kerala price",
@@ -1840,9 +1840,33 @@
                     }
                 }
             } catch(e) {
-                console.warn("Could not load custom keywords:", e);
+                console.warn("Could not load custom keywords from localStorage:", e);
             }
             updateKeywordCounters();
+
+            // Cloud sync via Firestore if connected
+            if (typeof dbFirestore !== 'undefined') {
+                dbFirestore.collection('solis').doc('seo_custom_keywords').get().then(doc => {
+                    if (doc.exists && doc.data() && Array.isArray(doc.data().keywords)) {
+                        let hasNew = false;
+                        doc.data().keywords.forEach(item => {
+                            item.isCustom = true;
+                            if (!KEYWORD_TIERS_DATA.some(k => k.query.toLowerCase() === item.query.toLowerCase())) {
+                                KEYWORD_TIERS_DATA.unshift(item);
+                                hasNew = true;
+                            }
+                        });
+                        if (hasNew) {
+                            updateKeywordCounters();
+                            if (currentKeywordsFilter === 'all') {
+                                renderKeywordsTable(KEYWORD_TIERS_DATA);
+                            } else {
+                                renderKeywordsTable(KEYWORD_TIERS_DATA.filter(k => k.tier === currentKeywordsFilter));
+                            }
+                        }
+                    }
+                }).catch(err => console.warn("Firestore kw fetch:", err));
+            }
         }
 
         function updateKeywordCounters() {
@@ -1858,7 +1882,7 @@
         function openAddKeywordModal() {
             const modalEl = document.getElementById('addKeywordModal');
             if (modalEl) {
-                const modal = new bootstrap.Modal(modalEl);
+                const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
                 modal.show();
             }
         }
@@ -1903,9 +1927,11 @@
                 isCustom: true
             };
 
+            // Remove duplicate if already exists
             KEYWORD_TIERS_DATA = KEYWORD_TIERS_DATA.filter(k => k.query.toLowerCase() !== query.toLowerCase());
             KEYWORD_TIERS_DATA.unshift(newKw);
 
+            // 1. Save to localStorage
             try {
                 let existing = JSON.parse(localStorage.getItem(CUSTOM_KEYWORDS_KEY) || '[]');
                 existing = existing.filter(k => k.query.toLowerCase() !== query.toLowerCase());
@@ -1915,14 +1941,39 @@
                 console.warn("Could not save to localStorage:", err);
             }
 
-            const modalEl = document.getElementById('addKeywordModal');
-            const modalInstance = bootstrap.Modal.getInstance(modalEl);
-            if (modalInstance) modalInstance.hide();
+            // 2. Save to Firestore (Cloud sync)
+            if (typeof dbFirestore !== 'undefined') {
+                dbFirestore.collection('solis').doc('seo_custom_keywords').set({
+                    keywords: KEYWORD_TIERS_DATA.filter(k => k.isCustom),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true }).catch(err => console.warn("Firestore kw save:", err));
+            }
 
+            // 3. Close modal safely
+            const modalEl = document.getElementById('addKeywordModal');
+            if (modalEl) {
+                const modalInstance = bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl);
+                if (modalInstance) {
+                    modalInstance.hide();
+                }
+            }
+            // Ensure any modal backdrops are cleared
+            setTimeout(() => {
+                document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+                document.body.classList.remove('modal-open');
+                document.body.style.removeProperty('overflow');
+                document.body.style.removeProperty('padding-right');
+            }, 300);
+
+            // 4. Reset form & update UI
             document.getElementById('addKeywordForm').reset();
             updateKeywordCounters();
-            renderKeywordsTable(KEYWORD_TIERS_DATA);
-            showSeoToast(`✅ Target keyword "${query}" added & saved!`);
+            if (currentKeywordsFilter === 'all') {
+                renderKeywordsTable(KEYWORD_TIERS_DATA);
+            } else {
+                renderKeywordsTable(KEYWORD_TIERS_DATA.filter(k => k.tier === currentKeywordsFilter));
+            }
+            showSeoToast(`✅ Target keyword "${query}" added & saved permanently!`);
         }
 
         function deleteCustomKeyword(query) {
@@ -1934,6 +1985,13 @@
                 existing = existing.filter(k => k.query !== query);
                 localStorage.setItem(CUSTOM_KEYWORDS_KEY, JSON.stringify(existing));
             } catch(e) {}
+
+            if (typeof dbFirestore !== 'undefined') {
+                dbFirestore.collection('solis').doc('seo_custom_keywords').set({
+                    keywords: KEYWORD_TIERS_DATA.filter(k => k.isCustom),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true }).catch(err => console.warn("Firestore kw delete:", err));
+            }
 
             updateKeywordCounters();
             if (currentKeywordsFilter === 'all') {
