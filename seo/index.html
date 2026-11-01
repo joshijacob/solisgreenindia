@@ -989,7 +989,7 @@
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link rounded-pill px-3 py-1 small fw-bold" id="subtab-keywords-btn" data-bs-toggle="pill" data-bs-target="#subtab-keywords" type="button" role="tab">
-                                    <i class="fa-solid fa-key me-1"></i> Keywords (6)
+                                    <i class="fa-solid fa-key me-1"></i> Keywords (<span id="subtabKeywordsCount">6</span>)
                                 </button>
                             </li>
                         </ul>
@@ -1363,16 +1363,21 @@
                     <!-- ========================================== -->
                     <div class="tab-pane fade" id="subtab-keywords" role="tabpanel">
                         <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4 bg-white">
-                            <div class="card-header bg-white py-3 px-4 border-bottom d-flex justify-content-between align-items-center">
+                            <div class="card-header bg-white py-3 px-4 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
                                 <div>
                                     <h5 class="fw-bold font-display text-dark mb-0">
                                         <i class="fa-solid fa-key text-primary me-2"></i> Tracked Keywords in Campaign
                                     </h5>
                                     <small class="text-muted">High-intent solar search queries tracked across Google Local Pack and Kerala organic SERP.</small>
                                 </div>
-                                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill font-mono small">
-                                    6 Verified Keywords Active
-                                </span>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill font-mono small" id="campaignKeywordsBadgeCount">
+                                        6 Verified Keywords Active
+                                    </span>
+                                    <button class="btn btn-sm btn-primary rounded-pill px-3 shadow-sm fw-semibold" onclick="openAddPositionModal()">
+                                        <i class="fa-solid fa-plus me-1"></i> + Add Tracked Keyword
+                                    </button>
+                                </div>
                             </div>
 
                             <div class="table-responsive">
@@ -1388,73 +1393,8 @@
                                             <th class="text-end pe-4">Attributed Revenue</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="small">
-                                        <tr>
-                                            <td class="ps-4 fw-bold text-dark">
-                                                <i class="fa-solid fa-magnifying-glass text-muted me-1"></i> best solar installation company in thiruvalla
-                                            </td>
-                                            <td class="text-center font-mono">1,100/mo</td>
-                                            <td class="text-center"><span class="badge bg-warning text-dark font-mono">28% Easy</span></td>
-                                            <td class="text-center"><span class="badge bg-success text-white font-mono fs-6">#1.08</span></td>
-                                            <td><span class="badge bg-light text-dark border">Local 3-Pack</span> <span class="badge bg-light text-dark border">Review Stars</span></td>
-                                            <td><a href="/best-solar-installer-in-thiruvalla/" target="_blank" class="text-decoration-none">/best-solar-installer-in-thiruvalla/</a></td>
-                                            <td class="text-end pe-4 font-mono fw-bold text-success">₹4.65 L</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4 fw-bold text-dark">
-                                                <i class="fa-solid fa-magnifying-glass text-muted me-1"></i> solar installer in thiruvalla
-                                            </td>
-                                            <td class="text-center font-mono">950/mo</td>
-                                            <td class="text-center"><span class="badge bg-success text-white font-mono">24% Very Easy</span></td>
-                                            <td class="text-center"><span class="badge bg-success text-white font-mono fs-6">#1</span></td>
-                                            <td><span class="badge bg-light text-dark border">Local 3-Pack</span> <span class="badge bg-light text-dark border">FAQ Accordion</span></td>
-                                            <td><a href="/best-solar-installer-in-thiruvalla/" target="_blank" class="text-decoration-none">/best-solar-installer-in-thiruvalla/</a></td>
-                                            <td class="text-end pe-4 font-mono fw-bold text-success">₹3.10 L</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4 fw-bold text-dark">
-                                                <i class="fa-solid fa-magnifying-glass text-muted me-1"></i> best solar company in thiruvalla
-                                            </td>
-                                            <td class="text-center font-mono">720/mo</td>
-                                            <td class="text-center"><span class="badge bg-success text-white font-mono">21% Very Easy</span></td>
-                                            <td class="text-center"><span class="badge bg-success text-white font-mono fs-6">#1.20</span></td>
-                                            <td><span class="badge bg-light text-dark border">Local 3-Pack</span></td>
-                                            <td><a href="/solar-company-in-pathanamthitta/thiruvalla/" target="_blank" class="text-decoration-none">/solar-company-in-pathanamthitta/thiruvalla/</a></td>
-                                            <td class="text-end pe-4 font-mono fw-bold text-success">₹1.55 L</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4 fw-bold text-dark">
-                                                <i class="fa-solid fa-magnifying-glass text-muted me-1"></i> solar company in pathanamthitta
-                                            </td>
-                                            <td class="text-center font-mono">1,400/mo</td>
-                                            <td class="text-center"><span class="badge bg-warning text-dark font-mono">31% Moderate</span></td>
-                                            <td class="text-center"><span class="badge bg-success text-white font-mono fs-6">#1.65</span></td>
-                                            <td><span class="badge bg-light text-dark border">District Hub</span> <span class="badge bg-light text-dark border">Local Pack</span></td>
-                                            <td><a href="/solar-company-in-pathanamthitta/" target="_blank" class="text-decoration-none">/solar-company-in-pathanamthitta/</a></td>
-                                            <td class="text-end pe-4 font-mono fw-bold text-success">₹6.20 L</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4 fw-bold text-dark">
-                                                <i class="fa-solid fa-magnifying-glass text-muted me-1"></i> solar company in kottayam
-                                            </td>
-                                            <td class="text-center font-mono">1,850/mo</td>
-                                            <td class="text-center"><span class="badge bg-warning text-dark font-mono">35% Moderate</span></td>
-                                            <td class="text-center"><span class="badge bg-primary text-white font-mono fs-6">#2.80</span></td>
-                                            <td><span class="badge bg-light text-dark border">Top 3 Pack</span></td>
-                                            <td><a href="/solar-company-in-kottayam/" target="_blank" class="text-decoration-none">/solar-company-in-kottayam/</a></td>
-                                            <td class="text-end pe-4 font-mono fw-bold text-success">₹4.65 L</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4 fw-bold text-dark">
-                                                <i class="fa-solid fa-magnifying-glass text-muted me-1"></i> solar installation in adoor
-                                            </td>
-                                            <td class="text-center font-mono">680/mo</td>
-                                            <td class="text-center"><span class="badge bg-success text-white font-mono">19% Easy</span></td>
-                                            <td class="text-center"><span class="badge bg-success text-white font-mono fs-6">#1.90</span></td>
-                                            <td><span class="badge bg-light text-dark border">Local Pack</span></td>
-                                            <td><a href="/solar-installer-near-me/" target="_blank" class="text-decoration-none">/solar-installer-near-me/</a></td>
-                                            <td class="text-end pe-4 font-mono fw-bold text-success">₹1.55 L</td>
-                                        </tr>
+                                    <tbody class="small" id="campaignKeywordsTableBody">
+                                        <!-- Dynamically rendered via JS -->
                                     </tbody>
                                 </table>
                             </div>
@@ -4154,6 +4094,7 @@
             } else {
                 renderPositionsTable(livePositionsData);
             loadCustomPositions();
+            renderCampaignKeywordsTable(CAMPAIGN_KEYWORDS_DATA);
             loadCustomCompetitors();
             renderCompetitorDossiers(liveCompetitorsList);
             }
@@ -5666,6 +5607,113 @@
             }
         }
 
+        
+        // =========================================================
+        // CAMPAIGN TRACKED KEYWORDS ENGINE
+        // =========================================================
+        let CAMPAIGN_KEYWORDS_DATA = [
+            {
+                query: "best solar installation company in thiruvalla",
+                vol: "1,100/mo",
+                kd: 28,
+                kdLabel: "28% Easy",
+                kdClass: "bg-warning text-dark font-mono",
+                rank: "#1.08",
+                rankClass: "bg-success text-white font-mono fs-6",
+                features: ["Local 3-Pack", "Review Stars"],
+                page: "/best-solar-installer-in-thiruvalla/",
+                revenue: "₹4.65 L"
+            },
+            {
+                query: "solar installer in thiruvalla",
+                vol: "950/mo",
+                kd: 24,
+                kdLabel: "24% Very Easy",
+                kdClass: "bg-success text-white font-mono",
+                rank: "#1",
+                rankClass: "bg-success text-white font-mono fs-6",
+                features: ["Local 3-Pack", "FAQ Accordion"],
+                page: "/best-solar-installer-in-thiruvalla/",
+                revenue: "₹3.10 L"
+            },
+            {
+                query: "best solar company in thiruvalla",
+                vol: "720/mo",
+                kd: 21,
+                kdLabel: "21% Very Easy",
+                kdClass: "bg-success text-white font-mono",
+                rank: "#1.20",
+                rankClass: "bg-success text-white font-mono fs-6",
+                features: ["Local 3-Pack"],
+                page: "/solar-company-in-pathanamthitta/thiruvalla/",
+                revenue: "₹1.55 L"
+            },
+            {
+                query: "solar company in pathanamthitta",
+                vol: "1,400/mo",
+                kd: 31,
+                kdLabel: "31% Moderate",
+                kdClass: "bg-warning text-dark font-mono",
+                rank: "#1.65",
+                rankClass: "bg-success text-white font-mono fs-6",
+                features: ["District Hub", "Local Pack"],
+                page: "/solar-company-in-pathanamthitta/",
+                revenue: "₹6.20 L"
+            },
+            {
+                query: "solar company in kottayam",
+                vol: "1,850/mo",
+                kd: 35,
+                kdLabel: "35% Moderate",
+                kdClass: "bg-warning text-dark font-mono",
+                rank: "#2.80",
+                rankClass: "bg-primary text-white font-mono fs-6",
+                features: ["Top 3 Pack"],
+                page: "/solar-company-in-kottayam/",
+                revenue: "₹4.65 L"
+            },
+            {
+                query: "solar installation in adoor",
+                vol: "680/mo",
+                kd: 19,
+                kdLabel: "19% Easy",
+                kdClass: "bg-success text-white font-mono",
+                rank: "#1.90",
+                rankClass: "bg-success text-white font-mono fs-6",
+                features: ["Local Pack"],
+                page: "/solar-installer-near-me/",
+                revenue: "₹1.55 L"
+            }
+        ];
+
+        function renderCampaignKeywordsTable(data) {
+            const tbody = document.getElementById('campaignKeywordsTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const badgeCount = document.getElementById('campaignKeywordsBadgeCount');
+            const subtabCount = document.getElementById('subtabKeywordsCount');
+            if (badgeCount) badgeCount.innerText = `${data.length} Verified Keywords Active`;
+            if (subtabCount) subtabCount.innerText = data.length;
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                const featuresHtml = (item.features || ['Local 3-Pack']).map(f => `<span class="badge bg-light text-dark border me-1">${f}</span>`).join('');
+                tr.innerHTML = `
+                    <td class="ps-4 fw-bold text-dark">
+                        <i class="fa-solid fa-magnifying-glass text-muted me-1"></i> ${item.query}
+                    </td>
+                    <td class="text-center font-mono">${item.vol}</td>
+                    <td class="text-center"><span class="badge ${item.kdClass || 'bg-success text-white font-mono'}">${item.kdLabel || item.kd + '%'}</span></td>
+                    <td class="text-center"><span class="badge ${item.rankClass || 'bg-success text-white font-mono fs-6'}">${item.rank}</span></td>
+                    <td>${featuresHtml}</td>
+                    <td><a href="${item.page}" target="_blank" class="text-decoration-none">${item.page}</a></td>
+                    <td class="text-end pe-4 font-mono fw-bold text-success">${item.revenue || '₹1.55 L'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
         function saveNewTrackedKeyword(e) {
             e.preventDefault();
             const query = (document.getElementById('newPosQuery')?.value || '').trim();
@@ -5725,6 +5773,7 @@
                 livePositionsData.unshift(newKeywordItem);
                 renderPositionsTable(livePositionsData);
             loadCustomPositions();
+            renderCampaignKeywordsTable(CAMPAIGN_KEYWORDS_DATA);
             }
 
             // Also persist to localStorage so custom keywords persist across reloads
@@ -5765,6 +5814,7 @@
                     });
                     renderPositionsTable(livePositionsData);
             loadCustomPositions();
+            renderCampaignKeywordsTable(CAMPAIGN_KEYWORDS_DATA);
                 }
             } catch (err) {
                 console.warn('Error loading custom positions', err);
@@ -5777,6 +5827,7 @@
             initSidebarState();
             renderPositionsTable(livePositionsData);
             loadCustomPositions();
+            renderCampaignKeywordsTable(CAMPAIGN_KEYWORDS_DATA);
             loadCustomCompetitors();
             renderCompetitorDossiers(liveCompetitorsList);
             loadCustomKeywords();
