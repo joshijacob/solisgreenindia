@@ -6160,6 +6160,52 @@
                 status: "Live & Indexed"
             },
             {
+                domain: "enfsolar.com",
+                url: "https://www.enfsolar.com/solis-green-energy-solutions",
+                anchor: "Solis Green Energy Solutions (India)",
+                target: "/",
+                da: 64,
+                type: "dofollow",
+                status: "Global Solar Directory"
+            },
+            {
+                domain: "quickerala.com",
+                url: "https://www.quickerala.com/thiruvalla/solis-green-energy-solutions/",
+                anchor: "Solis Green Energy Solutions Thiruvalla",
+                target: "/",
+                da: 48,
+                type: "dofollow",
+                status: "Verified Regional Citation"
+            },
+            {
+                domain: "keralaclassify.com",
+                url: "https://www.keralaclassify.com/solar-energy-solutions-in-thiruvalla",
+                anchor: "Solis Green Energy Muthoor",
+                target: "/best-solar-installer-in-thiruvalla/",
+                da: 38,
+                type: "dofollow",
+                status: "Regional Classifieds"
+            },
+            {
+                domain: "ensun.io",
+                url: "https://ensun.io/company/solis-green-energy-solutions",
+                anchor: "Solis Green Energy Solutions",
+                target: "/",
+                da: 45,
+                type: "nofollow",
+                status: "B2B Energy Intelligence"
+            },
+            {
+                domain: "tictechnologies.in",
+                url: "https://www.tictechnologies.in/clients/solis-green-energy",
+                anchor: "solisgreenindia.in",
+                target: "/",
+                da: 35,
+                type: "dofollow",
+                status: "Technical & Web Citation"
+            },
+
+            {
                 domain: "anert.gov.in",
                 url: "https://www.anert.gov.in/empanelled-vendors/pathanamthitta",
                 anchor: "Solis Green Energy Solutions",
@@ -6389,7 +6435,55 @@
                 solisStatus: "Opportunity",
                 solisClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
                 actionNote: "Instant 5-minute free directory submission with Muthoor address"
-            }
+            },
+            {
+                source: "enphase.com (Enphase Certified Installer Directory)",
+                url: "https://enphase.com/installer-locator",
+                da: 67,
+                category: "Microinverter OEM",
+                wattsun: true,
+                elsol: false,
+                solarbase: false,
+                solisStatus: "Opportunity (Gold Installer)",
+                solisClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                actionNote: "Submit Solis Thiruvalla Enphase Gold installer credential for official Kerala locator link"
+            },
+            {
+                source: "bingplaces.com (Bing Places for Business Kerala)",
+                url: "https://www.bingplaces.com/",
+                da: 93,
+                category: "Search Engine Directory",
+                wattsun: true,
+                elsol: true,
+                solarbase: false,
+                solisStatus: "Claimable Opportunity",
+                solisClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                actionNote: "1-click import Google Business Profile into Bing Places to capture Copilot & Edge searches"
+            },
+            {
+                source: "businessconnect.apple.com (Apple Maps Business Connect)",
+                url: "https://businessconnect.apple.com/",
+                da: 98,
+                category: "Navigation Ecosystem",
+                wattsun: true,
+                elsol: false,
+                solarbase: false,
+                solisStatus: "Claimable Opportunity",
+                solisClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                actionNote: "Claim Solis Muthoor showroom on Apple Business Connect for iOS iPhone users in Central Kerala"
+            },
+            {
+                source: "energybin.com (B2B Solar Trade Network)",
+                url: "https://www.energybin.com/",
+                da: 42,
+                category: "Global B2B Solar Exchange",
+                wattsun: false,
+                elsol: false,
+                solarbase: false,
+                solisStatus: "First-Mover Opportunity",
+                solisClass: "bg-info-subtle text-info-emphasis border-info-subtle",
+                actionNote: "List Solis EPC services on EnergyBin to gain an exclusive Kerala B2B backlink"
+            },
         ];
 
         // Render Solis Backlinks Table
@@ -6438,6 +6532,9 @@
             const tbody = document.getElementById('competitorGapTableBody');
             if (!tbody) return;
             tbody.innerHTML = '';
+
+            const gapBadge = document.getElementById('blGapCount');
+            if (gapBadge) gapBadge.innerText = data.length;
 
             data.forEach(item => {
                 const tr = document.createElement('tr');
