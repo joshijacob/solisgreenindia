@@ -88,11 +88,22 @@ function trackEvent(category, action, label, value = null) {
   
   // Meta Pixel (Facebook & Instagram)
   if (typeof fbq !== 'undefined') {
+    // Filter out internal diagnostic / performance metrics from Meta Ad tracking (prevents missing currency error)
+    if (category === 'Performance' || category === 'Error') {
+      return;
+    }
+
+    // Prevent duplicate custom 'view' events since Meta already tracks standard 'PageView'
+    if (action === 'view') {
+      return;
+    }
+
+    // High-value standard conversions
     if (action === 'form_success' || category === 'Conversion') {
       fbq('track', 'Lead', {
         content_name: label || 'Solar Quote Inquiry',
         content_category: category,
-        value: value || 1.0,
+        value: typeof value === 'number' && value > 0 ? value : 1.0,
         currency: 'INR'
       });
     } else if (action === 'whatsapp_click' || action === 'phone_call' || category === 'Contact') {
@@ -101,11 +112,16 @@ function trackEvent(category, action, label, value = null) {
         content_category: label || category
       });
     } else {
-      fbq('trackCustom', action, {
+      const customData = {
         category: category,
-        label: label,
-        value: value
-      });
+        label: label
+      };
+      // Meta requires currency whenever value is passed
+      if (typeof value === 'number' && value > 0) {
+        customData.value = value;
+        customData.currency = 'INR';
+      }
+      fbq('trackCustom', action, customData);
     }
   }
   
