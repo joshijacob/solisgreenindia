@@ -333,17 +333,24 @@ function initializeForms() {
         setButtonLoading(submitBtn, true, originalText);
         
         // 1. Save directly to Cloud Backend Firestore collection (solis/forms/submissions)
+        let firestoreOk = false;
         if (typeof saveLeadToFirestore === 'function') {
-          saveLeadToFirestore(data);
+          try {
+            await saveLeadToFirestore(data);
+            firestoreOk = true;
+          } catch(err) {
+            console.warn('Firestore direct save notice:', err);
+          }
         }
         
         // 2. Relay via FormSubmit email
-        const success = await submitToFormSubmit(data, this);
+        const formSubmitOk = await submitToFormSubmit(data, this);
         
-        if (success) {
+        // If either Firestore or FormSubmit succeeded, treat as 100% success
+        if (firestoreOk || formSubmitOk) {
           handleFormSuccess(submitBtn, originalText, this, data);
         } else {
-          // Fallback to WhatsApp
+          // Fallback to WhatsApp only if both failed
           fallbackToWhatsApp(data);
           setButtonLoading(submitBtn, false, originalText);
         }
@@ -820,7 +827,10 @@ async function submitToFormSubmit(data, form) {
     formData.append('_captcha', 'false');
     if (data.email) formData.append('_replyto', data.email);
     
-    const actionUrl = form.action || CONFIG.FORMSUBMIT_URL;
+    const actionAttr = form.getAttribute('action');
+    const actionUrl = (actionAttr && actionAttr.trim() && !actionAttr.startsWith('#') && !actionAttr.includes(window.location.pathname))
+      ? actionAttr
+      : CONFIG.FORMSUBMIT_URL;
     
     const response = await fetch(actionUrl, {
       method: 'POST',
@@ -855,21 +865,104 @@ URGENT: Please contact for solar installation quote.`;
   trackEvent('Form', 'whatsapp_fallback', data.location || 'general');
 }
 
-// Form Success Handler
+// Form Success Handler & Thank You Note Renderer
 function handleFormSuccess(submitBtn, originalText, form, data) {
   submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent Successfully!';
   showNotification('Thank you! We will contact you within 30 minutes.', 'success');
   
-  // Track successful submission
+  // Track successful submission in Analytics & Meta Pixel
   trackEvent('Conversion', 'form_success', data.location || 'general', 1.0);
   
-  // Reset form after delay
-  setTimeout(() => {
-    form.reset();
-    setButtonLoading(submitBtn, false, originalText);
-    closeAllModals();
-  }, 3000);
+  // Check if form is inside a modal popup
+  const modalParent = form.closest('.modal') || form.closest('.modal-content') || form.closest('#quoteModal') || form.closest('#serviceModal');
+
+  const parentContainer = form.parentElement;
+  if (parentContainer && !modalParent) {
+    const refId = 'SG-' + new Date().toISOString().slice(2, 10).replace(/-/g, '') + '-' + Math.floor(1000 + Math.random() * 9000);
+    const formId = form.id || ('form_' + Math.random().toString(36).substr(2, 9));
+    form.id = formId;
+
+    const thankYouHtml = `
+      <div class="solis-thank-you-card text-center p-4 p-md-5 bg-white rounded-4 shadow-sm border animate-fade-in" style="min-height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 16px;">
+        <div class="thank-you-icon mb-3" style="width: 80px; height: 80px; background: rgba(39, 174, 96, 0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+          <i class="fas fa-check-circle" style="font-size: 3.2rem; color: #27ae60;"></i>
+        </div>
+        <h2 class="fw-bold mb-2 font-display" style="color: #1e293b; font-size: 1.85rem;">Thank You, ${data.name || 'Valued Customer'}!</h2>
+        <p class="text-success fw-semibold mb-3" style="font-size: 1.05rem;">
+          <i class="fas fa-bolt me-1"></i> Your Solar Enquiry Has Been Successfully Received
+        </p>
+        <p class="text-muted mb-4" style="max-width: 480px; font-size: 0.95rem; line-height: 1.6;">
+          Our senior solar engineering team in Thiruvalla has received your details. We will call you at <strong style="color: #0f172a;">${data.phone}</strong> within 30 minutes to discuss your rooftop capacity, subsidy eligibility, and free site survey.
+        </p>
+
+        <div class="p-3 bg-light rounded-3 mb-4 w-100 text-start" style="max-width: 440px; border: 1px dashed #cbd5e1; font-size: 0.88rem; background-color: #f8fafc;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span style="color: #64748b;">Enquiry Reference:</span>
+            <strong style="color: #0f172a; font-family: monospace; font-size: 0.95rem;">${refId}</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span style="color: #64748b;">Service Requested:</span>
+            <strong style="color: #0f172a;">${data.service || 'Solar Installation'}</strong>
+          </div>
+          ${data.consumerNumber ? `
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+            <span style="color: #64748b;">KSEB Consumer No:</span>
+            <strong style="color: #0f172a; font-family: monospace;">${data.consumerNumber}</strong>
+          </div>` : ''}
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: #64748b;">Next Action:</span>
+            <span style="background: #e8f5e9; color: #166534; font-weight: 600; padding: 2px 8px; border-radius: 4px; font-size: 0.78rem;">Senior Engineer Callback Queued</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; align-items: center;">
+          <a href="https://wa.me/918301849474?text=${encodeURIComponent('Hello Solis Green Energy, I just submitted an enquiry (Ref: ' + refId + ') for ' + (data.name || '') + ' (' + (data.phone || '') + ').')}" target="_blank" class="btn btn-whatsapp" style="background: #25D366; color: white; padding: 11px 24px; font-weight: 600; border-radius: 30px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; border: none; box-shadow: 0 4px 12px rgba(37,211,102,0.3);">
+            <i class="fab fa-whatsapp" style="font-size: 1.25rem;"></i> WhatsApp Us Directly
+          </a>
+          <button type="button" class="btn btn-outline" onclick="window.restoreSolisForm('${formId}')" style="padding: 10px 22px; border-radius: 30px; font-size: 0.9rem; border: 1px solid #cbd5e1; background: transparent; color: #475569; font-weight: 500; cursor: pointer;">
+            <i class="fas fa-redo me-1"></i> Submit Another Enquiry
+          </button>
+        </div>
+      </div>
+    `;
+
+    form.style.display = 'none';
+    const existingCard = document.getElementById('thankYouCard_' + formId);
+    if (existingCard) existingCard.remove();
+    
+    const thankYouEl = document.createElement('div');
+    thankYouEl.id = 'thankYouCard_' + formId;
+    thankYouEl.innerHTML = thankYouHtml;
+    parentContainer.appendChild(thankYouEl);
+    thankYouEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else {
+    // Inside modal: show notification and close after delay
+    setTimeout(() => {
+      form.reset();
+      setButtonLoading(submitBtn, false, originalText);
+      closeAllModals();
+    }, 2500);
+  }
 }
+
+// Restore form handler
+window.restoreSolisForm = function(formId) {
+  const thankYouCard = document.getElementById('thankYouCard_' + formId);
+  if (thankYouCard) thankYouCard.remove();
+  const form = document.getElementById(formId);
+  if (form) {
+    form.reset();
+    form.dataset.isSubmitting = "false";
+    form.dataset.firestoreCaptured = "false";
+    form.style.display = 'block';
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Enquiry';
+    }
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+};
 
 // Form Validation - Mandatory: Customer Name, Contact Number, KSEB Consumer Number
 function validateForm(form) {
