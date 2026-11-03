@@ -1424,7 +1424,7 @@
                         </div>
                         <div class="d-flex flex-wrap gap-2 align-items-center">
                             <span class="badge bg-light text-dark border px-3 py-2 rounded-pill small">
-                                <i class="fa-regular fa-calendar me-1 text-primary"></i> Oct 26 – Nov 1, 2026
+                                <i class="fa-regular fa-calendar me-1 text-primary"></i> Oct 28 – Nov 3, 2026
                             </span>
                             <button class="btn btn-sm btn-primary rounded-pill px-3 shadow-sm fw-semibold" onclick="openAddPositionModal()">
                                 <i class="fa-solid fa-plus me-1"></i> Add Tracked Keyword
@@ -1442,8 +1442,8 @@
                             <div class="col-6 col-md-3">
                                 <div class="p-3 border rounded-3 bg-light text-center h-100">
                                     <small class="text-muted fw-bold text-uppercase d-block" style="font-size: 0.68rem;">Google Top 3 (Map Pack)</small>
-                                    <div class="fs-2 fw-bold text-success font-display" id="kpi-top3-count">2</div>
-                                    <span class="badge bg-success-subtle text-success" style="font-size: 0.65rem;">#1 & #3 in Thiruvalla</span>
+                                    <div class="fs-2 fw-bold text-success font-display" id="kpi-top3-count">3</div>
+                                    <span class="badge bg-success-subtle text-success" style="font-size: 0.65rem;">#1, #2 & #3 in Thiruvalla</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
@@ -4246,49 +4246,19 @@
                 landingPage: "/5kw-solar-system-kerala-price/"
             },
             {
-                query: "3kw solar system price in thiruvalla",
-                tags: ["solar hybrid system", "solar on grid system"],
-                intent: "T",
-                intentLabel: "Transactional",
-                intentClass: "bg-success-subtle text-success border-success-subtle",
-                sf: 5,
-                kd: 7,
-                oct26: 3,
-                nov1: 3,
-                diff: 0,
-                vol: "2,900/mo",
-                cpc: "₹22.10",
-                landingPage: "/3kw-solar-system-kerala-price/"
-            },
-            {
-                query: "best solar company in thiruvalla",
-                tags: ["3kw solar system", "best solar company", "solis green energy", "solar panel installation"],
+                query: "solar company in thiruvalla",
+                tags: ["solar company", "solar thiruvalla", "top installer"],
                 intent: "C",
                 intentLabel: "Commercial",
                 intentClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
                 sf: 6,
-                kd: 18,
+                kd: 21,
                 oct26: 5,
-                nov1: 5,
-                diff: 0,
-                vol: "1,100/mo",
-                cpc: "₹26.50",
+                nov1: 2,
+                diff: 3,
+                vol: "1,400/mo",
+                cpc: "₹24.50",
                 landingPage: "/solar-company-in-thiruvalla/"
-            },
-            {
-                query: "best solar installer in thiruvalla",
-                tags: ["solis green energy", "solar installation", "thiruvalla solar installer"],
-                intent: "C",
-                intentLabel: "Commercial",
-                intentClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
-                sf: 6,
-                kd: 19,
-                oct26: 4,
-                nov1: 5,
-                diff: -1,
-                vol: "850/mo",
-                cpc: "₹19.20",
-                landingPage: "/solar-installer-near-me/"
             },
             {
                 query: "solar subsidy in thiruvalla",
@@ -4298,12 +4268,27 @@
                 intentClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
                 sf: 7,
                 kd: 0,
-                oct26: 6,
-                nov1: 6,
-                diff: 0,
+                oct26: 23,
+                nov1: 3,
+                diff: 20,
                 vol: "6,400/mo",
                 cpc: "₹14.80",
-                landingPage: "/pm-surya-ghar-muft-bijli-yojana-kerala-subsidy/"
+                landingPage: "/pm-surya-ghar-subsidy-kerala/"
+            },
+            {
+                query: "best solar company in thiruvalla",
+                tags: ["3kw solar system", "best solar company", "solis green energy"],
+                intent: "C",
+                intentLabel: "Commercial",
+                intentClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                sf: 6,
+                kd: 18,
+                oct26: 5,
+                nov1: 4,
+                diff: 1,
+                vol: "1,100/mo",
+                cpc: "₹26.50",
+                landingPage: "/solar-company-in-thiruvalla/"
             },
             {
                 query: "solar installer in thiruvalla",
@@ -4314,11 +4299,56 @@
                 sf: 6,
                 kd: 24,
                 oct26: 4,
-                nov1: 10,
-                diff: -6,
+                nov1: 4,
+                diff: 0,
                 vol: "950/mo",
                 cpc: "₹17.30",
-                landingPage: "/solar-company-in-pathanamthitta/"
+                landingPage: "/best-solar-installer-in-thiruvalla/"
+            },
+            {
+                query: "3kw solar system price in thiruvalla",
+                tags: ["solar hybrid system", "solar on grid system"],
+                intent: "T",
+                intentLabel: "Transactional",
+                intentClass: "bg-success-subtle text-success border-success-subtle",
+                sf: 5,
+                kd: 7,
+                oct26: 3,
+                nov1: 6,
+                diff: -3,
+                vol: "2,900/mo",
+                cpc: "₹22.10",
+                landingPage: "/3kw-solar-system-kerala-price/"
+            },
+            {
+                query: "solar panel installation in thiruvalla",
+                tags: ["solar installation", "rooftop setup"],
+                intent: "C",
+                intentLabel: "Commercial",
+                intentClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                sf: 6,
+                kd: 15,
+                oct26: 6,
+                nov1: 8,
+                diff: -2,
+                vol: "880/mo",
+                cpc: "₹19.50",
+                landingPage: "/solar-installation-kerala/"
+            },
+            {
+                query: "best solar company in kerala",
+                tags: ["kerala solar", "top brand"],
+                intent: "I",
+                intentLabel: "Informational",
+                intentClass: "bg-info-subtle text-info-emphasis border-info-subtle",
+                sf: 7,
+                kd: 32,
+                oct26: 8,
+                nov1: 9,
+                diff: -1,
+                vol: "4,200/mo",
+                cpc: "₹28.00",
+                landingPage: "/best-solar-company-in-kerala/"
             }
         ];
 
