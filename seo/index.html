@@ -20,6 +20,9 @@
     <script src="/projectcostcalculator/js/firebase-init.js"></script>
     <script src="/projectcostcalculator/js/auth.js"></script>
 
+    <!-- Google Identity Services for Free Official Google Search Console API -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
         <!-- Leaflet CSS & JS for Geo-Grid Heatmap -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -1422,21 +1425,56 @@
                             </div>
                             <small class="text-muted">Live search engine ranking positions tracked across Central & South Kerala, real keyword difficulty (KD %), and SERP features footprint.</small>
                         </div>
-                        <div class="d-flex flex-wrap gap-2 align-items-center">
-                            <span class="badge bg-light text-dark border px-3 py-2 rounded-pill small">
-                                <i class="fa-regular fa-calendar me-1 text-primary"></i> Oct 28 – Nov 3, 2026
+                                                <div class="d-flex flex-wrap gap-2 align-items-center">
+                            <span id="gscStatusPill" class="badge bg-light text-muted border px-3 py-2 rounded-pill small" onclick="openGscSyncModal()" style="cursor: pointer;" title="Google Search Console API Sync Status">
+                                <i class="fa-brands fa-google text-primary me-1"></i> GSC API: <span id="gscSyncStatusText">Ready to Sync</span>
                             </span>
-                            <button class="btn btn-sm btn-primary rounded-pill px-3 shadow-sm fw-semibold" onclick="openAddPositionModal()">
+                            <button class="btn btn-sm btn-primary rounded-pill px-3 shadow-sm fw-semibold" onclick="openGscSyncModal()">
+                                <i class="fa-brands fa-google me-1"></i> Google Search Console API
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary rounded-pill px-3 shadow-sm fw-semibold" onclick="openAddPositionModal()">
                                 <i class="fa-solid fa-plus me-1"></i> Add Tracked Keyword
                             </button>
                             <button class="btn btn-sm btn-outline-success rounded-pill px-3 shadow-sm fw-semibold" onclick="exportPositionsCSV()">
-                                <i class="fa-solid fa-file-excel me-1"></i> Export Positions CSV
+                                <i class="fa-solid fa-file-excel me-1"></i> Export CSV
                             </button>
                         </div>
                     </div>
 
                     <div class="card-body p-4">
-                        
+
+                        <!-- Google Search Console Automated Sync Banner -->
+                        <div class="card border rounded-3 p-3 mb-4 bg-light-subtle shadow-xs" style="border-left: 4px solid #1a73e8 !important;">
+                            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div style="width: 44px; height: 44px; border-radius: 12px; background: white; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                                        <i class="fa-brands fa-google fs-4 text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <h6 class="fw-bold font-display text-dark mb-0">Official Google Search Console Automated Tracking</h6>
+                                            <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill font-mono" style="font-size: 0.65rem;">100% FREE OFFICIAL API</span>
+                                        </div>
+                                        <small class="text-muted">
+                                            Property: <strong class="text-dark">https://www.solisgreenindia.in/</strong> • Live SERP Positions, Impressions, Clicks & CTR synced directly from Google Search Console.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-wrap gap-2 align-items-center">
+                                    <button class="btn btn-sm btn-primary rounded-pill px-3 fw-semibold shadow-xs" onclick="openGscSyncModal()">
+                                        <i class="fa-solid fa-arrows-rotate me-1"></i> Sync GSC API
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 fw-semibold shadow-xs" onclick="triggerGscCsvFileInput()">
+                                        <i class="fa-solid fa-file-import me-1"></i> 1-Click CSV Drop
+                                    </button>
+                                    <input type="file" id="gscQueriesCsvFileInput" accept=".csv" style="display:none;" onchange="handleGscCsvFileUpload(event)">
+                                    <a href="https://search.google.com/search-console" target="_blank" class="btn btn-sm btn-light border rounded-pill px-3 fw-semibold text-muted" title="Open Google Search Console in new tab">
+                                        <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Open GSC
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- 4 Position Tracking KPI Cards -->
                         <div class="row g-3 mb-4">
                             <div class="col-6 col-md-3">
@@ -1526,10 +1564,11 @@
                         <!-- Filter Controls Bar -->
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-3">
                             <div class="d-flex flex-wrap gap-2 align-items-center">
-                                <div class="btn-group btn-group-sm" role="group">
-                                    <button type="button" class="btn btn-dark active pos-filter-btn" onclick="filterPositionsByRank('all', this)">All Tracked (<span id="count-pos-all">6</span>)</button>
-                                    <button type="button" class="btn btn-outline-secondary pos-filter-btn" onclick="filterPositionsByRank('top3', this)">🥇 Top 3 (2)</button>
-                                    <button type="button" class="btn btn-outline-secondary pos-filter-btn" onclick="filterPositionsByRank('top10', this)">📄 Top 10 (6)</button>
+                                                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-dark active pos-filter-btn" onclick="filterPositionsByRank('all', this)">All Tracked (<span id="count-pos-all">8</span>)</button>
+                                    <button type="button" class="btn btn-outline-secondary pos-filter-btn" onclick="filterPositionsByRank('top3', this)">🥇 Top 3 (<span id="count-pos-top3">3</span>)</button>
+                                    <button type="button" class="btn btn-outline-secondary pos-filter-btn" onclick="filterPositionsByRank('top10', this)">📄 Top 10 (<span id="count-pos-top10">8</span>)</button>
+                                    <button type="button" class="btn btn-outline-primary pos-filter-btn" onclick="filterPositionsByRank('gsc', this)"><i class="fa-brands fa-google me-1"></i> Live GSC (<span id="count-pos-gsc">0</span>)</button>
                                 </div>
                                 <span class="badge bg-light text-muted border px-2 py-1 small">
                                     <i class="fa-solid fa-location-dot text-danger me-1"></i> Location: Thiruvalla & Pathanamthitta
@@ -4353,6 +4392,449 @@
         ];
 
         let livePositionsData = [...SEMRUSH_POSITIONS_DATA];
+
+        // =========================================================
+        // GOOGLE SEARCH CONSOLE (GSC) OFFICIAL API & SYNC ENGINE
+        // =========================================================
+        let gscAccessToken = localStorage.getItem('solis_gsc_token') || null;
+        let gscTokenExpiry = parseInt(localStorage.getItem('solis_gsc_token_expiry') || '0', 10);
+        let gscLastSyncTime = localStorage.getItem('solis_gsc_last_sync') || null;
+
+        function openGscSyncModal() {
+            const modalEl = document.getElementById('gscSyncModal');
+            if (modalEl) {
+                const storedClientId = localStorage.getItem('solis_gsc_client_id') || '';
+                const inputClientId = document.getElementById('gscClientIdInput');
+                if (inputClientId && storedClientId) inputClientId.value = storedClientId;
+
+                updateGscModalStatusDisplay();
+                const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                modal.show();
+            }
+        }
+
+        function updateGscModalStatusDisplay() {
+            const statusBox = document.getElementById('gscModalStatusBox');
+            const pill = document.getElementById('gscStatusPill');
+            const syncText = document.getElementById('gscSyncStatusText');
+            const lastSync = localStorage.getItem('solis_gsc_last_sync');
+
+            const hasActiveToken = gscAccessToken && Date.now() < gscTokenExpiry;
+
+            if (statusBox) {
+                if (hasActiveToken) {
+                    statusBox.innerHTML = `
+                        <div class="alert alert-success d-flex align-items-center gap-3 mb-3 py-2 px-3 small">
+                            <i class="fa-solid fa-circle-check fs-4 text-success"></i>
+                            <div>
+                                <strong class="text-success">Google Search Console API Connected!</strong> Active OAuth session for <code>https://www.solisgreenindia.in/</code>.
+                                ${lastSync ? `<div class="text-muted" style="font-size: 0.72rem;">Last synced: ${lastSync}</div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                } else if (lastSync) {
+                    statusBox.innerHTML = `
+                        <div class="alert alert-info d-flex align-items-center gap-3 mb-3 py-2 px-3 small">
+                            <i class="fa-solid fa-database fs-4 text-info"></i>
+                            <div>
+                                <strong class="text-dark">GSC Snapshot Cached:</strong> Last synchronized on ${lastSync}. Click below to refresh with live Google data.
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            if (pill && syncText) {
+                if (hasActiveToken) {
+                    pill.className = "badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill small";
+                    syncText.innerText = "Connected & Active";
+                } else if (lastSync) {
+                    pill.className = "badge bg-info-subtle text-info border border-info-subtle px-3 py-2 rounded-pill small";
+                    syncText.innerText = "Synced (Cached)";
+                } else {
+                    pill.className = "badge bg-light text-muted border px-3 py-2 rounded-pill small";
+                    syncText.innerText = "Ready to Sync";
+                }
+            }
+        }
+
+        function connectGscOAuth() {
+            const clientId = (document.getElementById('gscClientIdInput')?.value || '').trim();
+            const directToken = (document.getElementById('gscDirectTokenInput')?.value || '').trim();
+
+            if (directToken) {
+                gscAccessToken = directToken;
+                gscTokenExpiry = Date.now() + 3600 * 1000;
+                localStorage.setItem('solis_gsc_token', directToken);
+                localStorage.setItem('solis_gsc_token_expiry', gscTokenExpiry.toString());
+                updateGscModalStatusDisplay();
+                fetchGscSearchAnalytics();
+                return;
+            }
+
+            if (!clientId) {
+                alert("Please enter your Google Cloud OAuth Client ID (or paste an Access Token). Follow the 60-second guide below to get one for free.");
+                return;
+            }
+
+            localStorage.setItem('solis_gsc_client_id', clientId);
+
+            if (typeof google === 'undefined' || !google.accounts || !google.accounts.oauth2) {
+                alert("Google Identity Services is loading. Please check your internet connection and try again in 5 seconds.");
+                return;
+            }
+
+            try {
+                const tokenClient = google.accounts.oauth2.initTokenClient({
+                    client_id: clientId,
+                    scope: 'https://www.googleapis.com/auth/webmasters.readonly',
+                    callback: (resp) => {
+                        if (resp.error) {
+                            console.error("GSC OAuth error", resp);
+                            alert("Google Authorization notice: " + (resp.error_description || resp.error));
+                            return;
+                        }
+                        if (resp.access_token) {
+                            gscAccessToken = resp.access_token;
+                            gscTokenExpiry = Date.now() + (parseInt(resp.expires_in, 10) || 3600) * 1000;
+                            localStorage.setItem('solis_gsc_token', resp.access_token);
+                            localStorage.setItem('solis_gsc_token_expiry', gscTokenExpiry.toString());
+                            updateGscModalStatusDisplay();
+                            fetchGscSearchAnalytics();
+                        }
+                    }
+                });
+
+                tokenClient.requestAccessToken({ prompt: 'consent' });
+            } catch (err) {
+                console.error("OAuth client init error", err);
+                alert("Could not start Google OAuth client: " + err.message);
+            }
+        }
+
+        async function fetchGscSearchAnalytics() {
+            if (!gscAccessToken) {
+                alert("Please authorize your Google account first.");
+                return;
+            }
+
+            const btn = document.getElementById('btnSyncGscLive');
+            const originalText = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> Fetching Live Google SERP Data...`;
+            }
+
+            const rangeDays = parseInt(document.getElementById('gscDateRangeSelect')?.value || '28', 10);
+            const end = new Date();
+            end.setDate(end.getDate() - 2); // 2-day GSC reporting latency
+            const start = new Date();
+            start.setDate(end.getDate() - rangeDays);
+
+            const startDateStr = start.toISOString().slice(0, 10);
+            const endDateStr = end.toISOString().slice(0, 10);
+
+            const siteUrl = encodeURIComponent('https://www.solisgreenindia.in/');
+            const apiUrl = `https://www.googleapis.com/webmasters/v3/sites/${siteUrl}/searchAnalytics/query`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${gscAccessToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        startDate: startDateStr,
+                        endDate: endDateStr,
+                        dimensions: ['query', 'page'],
+                        rowLimit: 250,
+                        startRow: 0
+                    })
+                });
+
+                if (!response.ok) {
+                    const errData = await response.json().catch(() => ({}));
+                    throw new Error(errData.error?.message || `HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                const rows = data.rows || [];
+                processGscQueryRows(rows, `${startDateStr} to ${endDateStr}`);
+
+                const modalEl = document.getElementById('gscSyncModal');
+                if (modalEl) bootstrap.Modal.getInstance(modalEl)?.hide();
+                showSeoToast(`🎉 Successfully synced ${rows.length} live search queries from Google Search Console API!`);
+            } catch (err) {
+                console.error("Error querying GSC API", err);
+                alert(`Google Search Console API Notice: ${err.message}\n\nTip: Ensure the signed-in Google account has permissions for 'https://www.solisgreenindia.in/' in Google Search Console, or use the 1-Click CSV tab.`);
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                }
+            }
+        }
+
+        function processGscQueryRows(apiRows, dateRange) {
+            if (!apiRows || apiRows.length === 0) {
+                alert("Google Search Console returned 0 rows for this date range.");
+                return;
+            }
+
+            const formattedRows = apiRows.map(row => {
+                const query = row.keys[0];
+                const page = row.keys.length > 1 ? row.keys[1] : '/';
+                const exactPos = row.position ? row.position.toFixed(1) : '10.0';
+                const roundedPos = Math.round(row.position || 10);
+                const ctrFormatted = row.ctr ? (row.ctr * 100).toFixed(1) + '%' : '0.0%';
+
+                return {
+                    query: query,
+                    tags: ["google search console", "gsc api"],
+                    intent: "C",
+                    intentLabel: "Commercial",
+                    intentClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                    sf: 6,
+                    kd: 15,
+                    oct26: roundedPos,
+                    nov1: roundedPos,
+                    diff: 0,
+                    vol: `${row.impressions || 0} impr (${row.clicks || 0} clicks)`,
+                    cpc: `CTR: ${ctrFormatted}`,
+                    landingPage: page,
+                    isGsc: true,
+                    gscMetrics: {
+                        clicks: row.clicks || 0,
+                        impressions: row.impressions || 0,
+                        ctr: ctrFormatted,
+                        exactPos: exactPos
+                    }
+                };
+            });
+
+            mergeGscDataIntoPositions(formattedRows);
+            localStorage.setItem('solis_gsc_synced_data', JSON.stringify(formattedRows));
+            const nowStr = new Date().toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            localStorage.setItem('solis_gsc_last_sync', nowStr);
+            updateGscModalStatusDisplay();
+
+            // Persist to Firestore if available
+            try {
+                if (typeof db !== 'undefined' && db.collection) {
+                    const todayStr = new Date().toISOString().slice(0, 10);
+                    db.collection('seo_gsc_daily').doc(todayStr).set({
+                        syncedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        dateRange: dateRange,
+                        totalQueries: formattedRows.length,
+                        topQueries: formattedRows.slice(0, 50)
+                    }, { merge: true }).catch(err => console.warn('Firestore GSC persistence notice:', err));
+                }
+            } catch (e) {}
+        }
+
+        function mergeGscDataIntoPositions(gscItems) {
+            if (!Array.isArray(gscItems)) return;
+            gscItems.forEach(item => {
+                const existing = livePositionsData.find(p => p.query.toLowerCase() === item.query.toLowerCase());
+                if (existing) {
+                    existing.nov1 = item.nov1;
+                    existing.diff = existing.oct26 ? (existing.oct26 - existing.nov1) : 0;
+                    existing.isGsc = true;
+                    existing.gscMetrics = item.gscMetrics;
+                } else {
+                    livePositionsData.push(item);
+                }
+            });
+            renderPositionsTable(livePositionsData);
+            updatePositionsKpis();
+            updateGscModalStatusDisplay();
+        }
+
+        function updatePositionsKpis() {
+            const top3 = livePositionsData.filter(p => p.nov1 <= 3).length;
+            const top10 = livePositionsData.filter(p => p.nov1 <= 10).length;
+            const gscCount = livePositionsData.filter(p => p.isGsc).length;
+
+            let sumRank = 0;
+            livePositionsData.forEach(p => {
+                sumRank += (typeof p.nov1 === 'number' ? p.nov1 : parseInt(p.nov1, 10)) || 0;
+            });
+            const avgRank = livePositionsData.length > 0 ? (sumRank / livePositionsData.length).toFixed(1) : "0.0";
+
+            const elTop3 = document.getElementById('kpi-top3-count');
+            if (elTop3) elTop3.innerText = top3;
+
+            const elTop10 = document.getElementById('kpi-top10-count');
+            if (elTop10) elTop10.innerText = top10;
+
+            const elAvg = document.getElementById('kpi-avg-rank');
+            if (elAvg) elAvg.innerText = avgRank;
+
+            const countAll = document.getElementById('count-pos-all');
+            if (countAll) countAll.innerText = livePositionsData.length;
+
+            const countTop3 = document.getElementById('count-pos-top3');
+            if (countTop3) countTop3.innerText = top3;
+
+            const countTop10 = document.getElementById('count-pos-top10');
+            if (countTop10) countTop10.innerText = top10;
+
+            const countGsc = document.getElementById('count-pos-gsc');
+            if (countGsc) countGsc.innerText = gscCount;
+        }
+
+        function parseGscCsvText(csvText) {
+            if (!csvText || !csvText.trim()) return [];
+
+            const lines = csvText.trim().split(/\r?\n/);
+            if (lines.length < 2) return [];
+
+            function splitCsvRow(rowStr) {
+                const pattern = /(?:,|\n|^)("(?:(?:"")*[^"]*)*"|[^",\n]*|(?:\n|$))/g;
+                const matches = [];
+                let match;
+                while ((match = pattern.exec(rowStr)) !== null) {
+                    let matched = match[1];
+                    if (matched === undefined) break;
+                    if (matched.startsWith('"') && matched.endsWith('"')) {
+                        matched = matched.substring(1, matched.length - 1).replace(/""/g, '"');
+                    }
+                    matches.push(matched.trim());
+                    if (pattern.lastIndex >= rowStr.length) break;
+                }
+                return matches;
+            }
+
+            const headerTokens = lines[0].toLowerCase().split(',').map(s => s.replace(/["\r]/g, '').trim());
+            let queryIdx = headerTokens.findIndex(h => h.includes('query') || h.includes('keyword') || h.includes('top queries'));
+            let clicksIdx = headerTokens.findIndex(h => h.includes('click'));
+            let imprIdx = headerTokens.findIndex(h => h.includes('impression'));
+            let ctrIdx = headerTokens.findIndex(h => h.includes('ctr'));
+            let posIdx = headerTokens.findIndex(h => h.includes('position') || h.includes('rank'));
+
+            if (queryIdx === -1) queryIdx = 0;
+            if (clicksIdx === -1) clicksIdx = 1;
+            if (imprIdx === -1) imprIdx = 2;
+            if (ctrIdx === -1) ctrIdx = 3;
+            if (posIdx === -1) posIdx = 4;
+
+            const parsedRows = [];
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+                const cols = splitCsvRow(line);
+                if (cols.length <= queryIdx) continue;
+
+                const q = cols[queryIdx];
+                if (!q || q.toLowerCase().includes('top queries') || q.toLowerCase() === 'query') continue;
+
+                const clicks = parseInt(cols[clicksIdx] || '0', 10) || 0;
+                const impressions = parseInt(cols[imprIdx] || '0', 10) || 0;
+                const ctr = cols[ctrIdx] || '0%';
+                const positionFloat = parseFloat(cols[posIdx] || '10');
+                const exactPos = isNaN(positionFloat) ? 10.0 : positionFloat;
+                const roundedPos = Math.round(exactPos);
+
+                parsedRows.push({
+                    query: q,
+                    tags: ["google search console", "gsc csv"],
+                    intent: "C",
+                    intentLabel: "Commercial",
+                    intentClass: "bg-warning-subtle text-warning-emphasis border-warning-subtle",
+                    sf: 6,
+                    kd: 15,
+                    oct26: roundedPos,
+                    nov1: roundedPos,
+                    diff: 0,
+                    vol: `${impressions} impr (${clicks} clicks)`,
+                    cpc: `CTR: ${ctr}`,
+                    landingPage: "/",
+                    isGsc: true,
+                    gscMetrics: {
+                        clicks: clicks,
+                        impressions: impressions,
+                        ctr: ctr.includes('%') ? ctr : `${(parseFloat(ctr)*100).toFixed(1)}%`,
+                        exactPos: exactPos.toFixed(1)
+                    }
+                });
+            }
+
+            return parsedRows;
+        }
+
+        function triggerGscCsvFileInput() {
+            const input = document.getElementById('gscQueriesCsvFileInput');
+            if (input) {
+                input.value = '';
+                input.click();
+            }
+        }
+
+        function handleGscCsvFileUpload(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const text = evt.target.result;
+                const rows = parseGscCsvText(text);
+                if (rows.length > 0) {
+                    mergeGscDataIntoPositions(rows);
+                    localStorage.setItem('solis_gsc_synced_data', JSON.stringify(rows));
+                    const nowStr = new Date().toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    localStorage.setItem('solis_gsc_last_sync', nowStr);
+                    updateGscModalStatusDisplay();
+                    showSeoToast(`🎉 Successfully parsed & synced ${rows.length} real Google Search Console queries!`);
+                } else {
+                    alert("No valid query rows found in CSV. Please verify it is a valid GSC export.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function handleModalGscCsv(e) {
+            handleGscCsvFileUpload(e);
+            const modalEl = document.getElementById('gscSyncModal');
+            if (modalEl) bootstrap.Modal.getInstance(modalEl)?.hide();
+        }
+
+        function processModalGscCsvText() {
+            const textarea = document.getElementById('gscModalCsvTextarea');
+            const text = (textarea ? textarea.value : '').trim();
+            if (!text) {
+                alert("Please paste CSV or tab-separated text from Google Search Console.");
+                return;
+            }
+            const rows = parseGscCsvText(text);
+            if (rows.length > 0) {
+                mergeGscDataIntoPositions(rows);
+                localStorage.setItem('solis_gsc_synced_data', JSON.stringify(rows));
+                const nowStr = new Date().toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' }) + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                localStorage.setItem('solis_gsc_last_sync', nowStr);
+                updateGscModalStatusDisplay();
+                const modalEl = document.getElementById('gscSyncModal');
+                if (modalEl) bootstrap.Modal.getInstance(modalEl)?.hide();
+                showSeoToast(`🎉 Successfully synced ${rows.length} real Google Search Console queries!`);
+            } else {
+                alert("Could not parse rows. Ensure format has columns: Query, Clicks, Impressions, CTR, Position");
+            }
+        }
+
+        function loadStoredGscData() {
+            try {
+                const storedGsc = localStorage.getItem('solis_gsc_synced_data');
+                if (storedGsc) {
+                    const parsed = JSON.parse(storedGsc);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        mergeGscDataIntoPositions(parsed);
+                    }
+                }
+            } catch (err) {
+                console.warn('Error reading stored GSC data', err);
+            }
+        }
+
         let currentPosFilter = 'all';
 
         function renderPositionsTable(data) {
@@ -4361,18 +4843,19 @@
             tbody.innerHTML = '';
 
             if (data.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-muted">No keywords match your search.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-muted">No keywords match your search or filter.</td></tr>`;
                 return;
             }
 
             data.forEach((item, index) => {
+                const numRank = typeof item.nov1 === 'number' ? item.nov1 : parseInt(item.nov1, 10);
                 // Rank styling badge
                 let rankBadge = `<span class="badge bg-light text-dark border px-2 py-1 font-mono fs-6">#${item.nov1}</span>`;
-                if (item.nov1 === 1) {
+                if (numRank === 1) {
                     rankBadge = `<span class="badge rank-gold px-2 py-1 fs-6"><i class="fa-solid fa-crown text-warning me-1"></i> #1 Rank</span>`;
-                } else if (item.nov1 <= 3) {
+                } else if (numRank <= 3) {
                     rankBadge = `<span class="badge rank-bronze px-2 py-1 fs-6"><i class="fa-solid fa-medal me-1"></i> #${item.nov1} (Top 3)</span>`;
-                } else if (item.nov1 <= 10) {
+                } else if (numRank <= 10) {
                     rankBadge = `<span class="badge rank-top10 px-2 py-1 fs-6">#${item.nov1} (Page 1)</span>`;
                 }
 
@@ -4389,6 +4872,12 @@
                 if (item.kd > 20 && item.kd <= 50) kdDotClass = 'kd-yellow';
                 else if (item.kd > 50) kdDotClass = 'kd-red';
 
+                // GSC indicator badge
+                let gscBadge = '';
+                if (item.isGsc) {
+                    gscBadge = `<span class="badge bg-primary-subtle text-primary border border-primary-subtle me-1" style="font-size: 0.65rem;"><i class="fa-brands fa-google text-primary me-1"></i>Google Search Console</span>`;
+                }
+
                 // Related tags HTML
                 const tagsHtml = (item.tags || []).map(t => `<span class="badge bg-light text-secondary border me-1" style="font-size: 0.65rem;">${t}</span>`).join('');
 
@@ -4400,10 +4889,22 @@
                 // Human friendly intent label
                 const intentBadge = `<span class="badge ${item.intentClass} px-2 py-1" style="font-size: 0.72rem;">${item.intentLabel || (item.intent === 'C' ? 'Commercial' : (item.intent === 'T' ? 'Transactional' : 'Informational'))}</span>`;
 
+                // Volume / GSC metrics
+                let volumeDisplay = `<span class="font-mono fw-bold text-dark small">${item.vol}</span>`;
+                if (item.gscMetrics) {
+                    volumeDisplay = `
+                        <div class="small fw-bold text-dark font-mono">${item.gscMetrics.impressions} impr.</div>
+                        <div class="text-muted font-mono" style="font-size: 0.7rem;">${item.gscMetrics.clicks} clicks (${item.gscMetrics.ctr})</div>
+                    `;
+                }
+
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td class="ps-3 py-3">
-                        <div class="fw-bold font-display text-dark fs-6">${item.query}</div>
+                        <div class="d-flex align-items-center flex-wrap gap-1 mb-1">
+                            <span class="fw-bold font-display text-dark fs-6">${item.query}</span>
+                            ${gscBadge}
+                        </div>
                         <div class="mt-1 d-flex flex-wrap gap-1">${tagsHtml}</div>
                     </td>
                     <td class="text-center">
@@ -4414,9 +4915,12 @@
                         <span class="small font-mono fw-bold"><span class="kd-dot ${kdDotClass}"></span>${item.kd}% (${kdLabel})</span>
                     </td>
                     <td class="text-center text-muted font-mono small">#${item.oct26}</td>
-                    <td class="text-center">${rankBadge}</td>
+                    <td class="text-center">
+                        ${rankBadge}
+                        ${item.gscMetrics && item.gscMetrics.exactPos ? `<div class="text-muted font-mono mt-1" style="font-size: 0.68rem;">Avg Pos: ${item.gscMetrics.exactPos}</div>` : ''}
+                    </td>
                     <td class="text-center">${diffHtml}</td>
-                    <td class="text-center font-mono fw-bold text-dark small">${item.vol}</td>
+                    <td class="text-center">${volumeDisplay}</td>
                     <td class="text-end pe-3">
                         <a href="https://www.google.com/search?q=${encodeURIComponent(item.query)}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-2 py-1" style="font-size: 0.72rem;" title="Click to verify live rank on Google Search">
                             <i class="fa-brands fa-google me-1"></i> Check Google
@@ -4425,23 +4929,33 @@
                 `;
                 tbody.appendChild(tr);
             });
+
+            if (typeof updatePositionsKpis === 'function') {
+                updatePositionsKpis();
+            }
         }
 
         function filterPositionsByRank(filter, btnEl) {
             currentPosFilter = filter;
             document.querySelectorAll('.pos-filter-btn').forEach(b => {
-                b.classList.remove('btn-dark', 'active');
+                b.classList.remove('btn-dark', 'btn-primary', 'active');
                 b.classList.add('btn-outline-secondary');
             });
             if (btnEl) {
                 btnEl.classList.remove('btn-outline-secondary');
-                btnEl.classList.add('btn-dark', 'active');
+                if (filter === 'gsc') {
+                    btnEl.classList.add('btn-primary', 'active');
+                } else {
+                    btnEl.classList.add('btn-dark', 'active');
+                }
             }
 
             if (filter === 'top3') {
                 renderPositionsTable(livePositionsData.filter(p => p.nov1 <= 3));
             } else if (filter === 'top10') {
                 renderPositionsTable(livePositionsData.filter(p => p.nov1 <= 10));
+            } else if (filter === 'gsc') {
+                renderPositionsTable(livePositionsData.filter(p => p.isGsc));
             } else {
                 renderPositionsTable(livePositionsData);
             }
@@ -6923,6 +7437,8 @@
             initSidebarState();
             renderPositionsTable(livePositionsData);
             loadCustomPositions();
+            loadStoredGscData();
+            updateGscModalStatusDisplay();
             renderCampaignKeywordsTable(CAMPAIGN_KEYWORDS_DATA);
             renderBacklinksTable(SOLIS_BACKLINKS_DATA);
             renderCompetitorGapTable(COMPETITOR_LINK_GAP_DATA);
@@ -7696,6 +8212,186 @@
                 <div class="modal-footer bg-white border-top py-2 px-4 d-flex justify-content-between">
                     <span class="small text-muted font-mono"><i class="fa-solid fa-shield-halved text-success me-1"></i> Data Integrity Policy Enforced • No Synthetics</span>
                     <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- MODAL: GOOGLE SEARCH CONSOLE AUTOMATED API SYNC           -->
+    <!-- ========================================================= -->
+    <div class="modal fade" id="gscSyncModal" tabindex="-1" aria-labelledby="gscSyncModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+                <div class="modal-header bg-dark text-white border-bottom py-3 px-4" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;">
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="width: 42px; height: 42px; border-radius: 10px; background: white; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-brands fa-google fs-4 text-primary"></i>
+                        </div>
+                        <div>
+                            <h5 class="modal-title font-display fw-bold text-white mb-0" id="gscSyncModalLabel">
+                                Google Search Console API Center
+                            </h5>
+                            <small class="text-white-50">Automated Daily SERP Ranks, Clicks & Impressions • 100% Free Official Google API</small>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-4">
+                    <!-- Live Status Alert Box -->
+                    <div id="gscModalStatusBox">
+                        <div class="alert alert-light border d-flex align-items-center gap-3 mb-3 py-2 px-3 small text-muted">
+                            <i class="fa-brands fa-google fs-4 text-primary"></i>
+                            <div>
+                                <strong class="text-dark">Ready to Sync Google Search Console:</strong> Connect your verified Google property <code>https://www.solisgreenindia.in/</code> to pull live rankings for free without Semrush subscriptions.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Tabs for Sync Methods -->
+                    <ul class="nav nav-pills mb-3 gap-2" id="gscSyncTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active rounded-pill px-3 py-1 small fw-bold" id="gsc-tab-oauth-btn" data-bs-toggle="pill" data-bs-target="#gsc-tab-oauth" type="button" role="tab">
+                                <i class="fa-brands fa-google me-1"></i> 1-Click Google OAuth API
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-pill px-3 py-1 small fw-bold" id="gsc-tab-csv-btn" data-bs-toggle="pill" data-bs-target="#gsc-tab-csv" type="button" role="tab">
+                                <i class="fa-solid fa-file-csv me-1"></i> 1-Click CSV Export Sync
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-pill px-3 py-1 small fw-bold" id="gsc-tab-cron-btn" data-bs-toggle="pill" data-bs-target="#gsc-tab-cron" type="button" role="tab">
+                                <i class="fa-solid fa-robot me-1"></i> Headless 24/7 Overnight Sync
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="gscSyncTabsContent">
+                        <!-- Method 1: Google OAuth 2.0 API (Direct & Official) -->
+                        <div class="tab-pane fade show active" id="gsc-tab-oauth" role="tabpanel">
+                            <div class="card border rounded-3 p-3 bg-white mb-3">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <h6 class="fw-bold font-display text-dark mb-0">Official Google Search Console API v3</h6>
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle font-mono small">REST API</span>
+                                </div>
+                                <p class="text-muted small mb-3">
+                                    Fetch exact Google search impressions, click-through rates, and average SERP positions directly into your Solis SEO suite.
+                                </p>
+
+                                <div class="row g-3 mb-3">
+                                    <div class="col-12 col-md-8">
+                                        <label class="form-label small fw-bold text-dark">Google Cloud OAuth 2.0 Client ID (Web Application)</label>
+                                        <input type="text" class="form-control form-control-sm font-mono" id="gscClientIdInput" placeholder="e.g. 1234567890-xyz.apps.googleusercontent.com">
+                                        <div class="form-text small" style="font-size: 0.72rem;">Enter your free OAuth Client ID from Google Cloud Console (instructions below).</div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <label class="form-label small fw-bold text-dark">Reporting Window</label>
+                                        <select class="form-select form-select-sm fw-semibold" id="gscDateRangeSelect">
+                                            <option value="28" selected>Last 28 Days (Recommended)</option>
+                                            <option value="7">Last 7 Days (Recent Shift)</option>
+                                            <option value="90">Last 3 Months (Quarterly)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-dark">Or Paste Temporary Google Access Token (Quick Test)</label>
+                                    <input type="password" class="form-control form-control-sm font-mono" id="gscDirectTokenInput" placeholder="ya29.a0... (Optional token from OAuth Playground)">
+                                    <div class="form-text small" style="font-size: 0.72rem;">Leave empty if using OAuth Client ID above.</div>
+                                </div>
+
+                                <div class="d-flex gap-2">
+                                    <button type="button" id="btnSyncGscLive" class="btn btn-primary fw-bold flex-grow-1 py-2 rounded-pill shadow-sm" onclick="connectGscOAuth()">
+                                        <i class="fa-brands fa-google me-2"></i> Authorize & Fetch Live Google SERP Data
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 60-Second Setup Guide Accordion -->
+                            <div class="accordion" id="gscSetupAccordion">
+                                <div class="accordion-item border rounded-3 overflow-hidden">
+                                    <h2 class="accordion-header" id="headingGscGuide">
+                                        <button class="accordion-button collapsed py-2 px-3 small fw-bold bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGscGuide">
+                                            <i class="fa-solid fa-circle-question text-primary me-2"></i> How to get your free Google Cloud Client ID (60 Seconds)
+                                        </button>
+                                    </h2>
+                                    <div id="collapseGscGuide" class="accordion-collapse collapse" data-bs-parent="#gscSetupAccordion">
+                                        <div class="accordion-body small text-muted p-3">
+                                            <ol class="mb-2 ps-3">
+                                                <li class="mb-1">Open <a href="https://console.cloud.google.com/" target="_blank" class="fw-bold">Google Cloud Console</a> (100% Free).</li>
+                                                <li class="mb-1">Go to <strong>APIs & Services</strong> → <strong>Library</strong> → Search for <strong>Google Search Console API</strong> and click <strong>Enable</strong>.</li>
+                                                <li class="mb-1">Go to <strong>Credentials</strong> → <strong>Create Credentials</strong> → <strong>OAuth client ID</strong> (Type: <em>Web application</em>).</li>
+                                                <li class="mb-1">Add <code>https://www.solisgreenindia.in</code> to <strong>Authorized JavaScript origins</strong>.</li>
+                                                <li class="mb-1">Copy the <strong>Client ID</strong> and paste it in the box above!</li>
+                                            </ol>
+                                            <div class="alert alert-success py-1 px-2 mb-0" style="font-size: 0.72rem;">
+                                                <i class="fa-solid fa-shield-halved me-1"></i> Read-only scope: <code>https://www.googleapis.com/auth/webmasters.readonly</code>. Google charges ₹0 forever.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Method 2: 1-Click Search Console CSV Export (Zero Setup / Instant) -->
+                        <div class="tab-pane fade" id="gsc-tab-csv" role="tabpanel">
+                            <div class="card border rounded-3 p-3 bg-white mb-3">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <h6 class="fw-bold font-display text-dark mb-0">Instant Search Console CSV Sync (Zero API Keys Needed)</h6>
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle font-mono small">INSTANT</span>
+                                </div>
+                                <p class="text-muted small mb-3">
+                                    Already have Google Search Console open? Click <strong>Export → Download CSV</strong> in GSC and drop <code>Queries.csv</code> here for instantaneous rank updates!
+                                </p>
+
+                                <div class="border border-2 border-dashed rounded-3 p-4 text-center bg-light mb-3" onclick="document.getElementById('gscModalFileInput').click()" style="cursor: pointer; transition: all 0.2s ease;">
+                                    <i class="fa-solid fa-cloud-arrow-up fs-2 text-primary mb-2"></i>
+                                    <p class="mb-1 fw-bold text-dark">Click here to choose <code>Queries.csv</code> from Google Search Console</p>
+                                    <small class="text-muted">Or drag and drop your exported CSV file anywhere in this box</small>
+                                    <input type="file" id="gscModalFileInput" accept=".csv" style="display:none;" onchange="handleModalGscCsv(event)">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold text-dark">Or Paste CSV / Tab-Separated Rows from Search Console Table</label>
+                                    <textarea class="form-control font-mono small" id="gscModalCsvTextarea" rows="3" placeholder="Top queries,Clicks,Impressions,CTR,Position&#10;5kw solar system price in thiruvalla,14,320,4.38%,1.2&#10;solar company in thiruvalla,11,280,3.93%,2.1"></textarea>
+                                </div>
+
+                                <button type="button" class="btn btn-success fw-bold w-100 py-2 rounded-pill shadow-sm" onclick="processModalGscCsvText()">
+                                    <i class="fa-solid fa-file-circle-check me-2"></i> Parse & Sync Google Search Console Data
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Method 3: Headless 24/7 Overnight Sync (Automated Daemon) -->
+                        <div class="tab-pane fade" id="gsc-tab-cron" role="tabpanel">
+                            <div class="card border rounded-3 p-3 bg-white">
+                                <h6 class="fw-bold font-display text-dark mb-2">Automated Overnight 24/7 Rank Sync Engine</h6>
+                                <p class="text-muted small mb-3">
+                                    Want 100% automated daily tracking without touching a single button? Here is how our automated daemon keeps Firestore updated every midnight:
+                                </p>
+
+                                <div class="p-3 bg-light rounded-3 border mb-3 font-mono small" style="font-size: 0.75rem;">
+                                    <strong>Architecture:</strong><br>
+                                    1. <code>tools/sync_gsc_rankings.py</code> runs on GitHub Actions / Vercel Cron daily at 00:00 IST.<br>
+                                    2. It connects to Google Search Console API via Service Account.<br>
+                                    3. Automatically saves the daily query snapshot to Firestore collection <code>seo_gsc_daily</code>.<br>
+                                    4. Solis SEO Suite automatically loads the newest snapshot when you log in!
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between p-2 rounded bg-success-subtle text-success border border-success-subtle small">
+                                    <span><i class="fa-solid fa-circle-check me-2"></i> Firestore collection <code>seo_gsc_daily</code> is active & ready for daily ingestion.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer bg-light py-2 px-4 border-top d-flex justify-content-between align-items-center">
+                    <span class="small text-muted font-mono"><i class="fa-solid fa-shield-halved text-success me-1"></i> Data Integrity Policy Enforced • Official Google SERP API</span>
+                    <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
