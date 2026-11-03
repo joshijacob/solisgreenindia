@@ -11,7 +11,7 @@ const CONFIG = {
 
   // Meta Pixel Configuration (Facebook & Instagram Ads Tracking)
   // Set your Meta Pixel ID here (e.g., '123456789012345') or pass via window.SOLIS_META_PIXEL_ID
-  META_PIXEL_ID: window.SOLIS_META_PIXEL_ID || localStorage.getItem('solis_meta_pixel_id') || '',
+  META_PIXEL_ID: window.SOLIS_META_PIXEL_ID || localStorage.getItem('solis_meta_pixel_id') || '2110445089835597', // Solis Green Energy Website
   
   // Animations & Timing
   SLIDE_INTERVAL_MS: 5000,
