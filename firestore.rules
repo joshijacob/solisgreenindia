@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 1. Customer Lead Submissions (Contact & Calculator Forms)
+    match /leads/{leadId} {
+      // Public website visitors can submit new solar enquiries
+      allow create: if true;
+      // Only authenticated Solis team members can view, update, or delete customer leads
+      allow read, update, delete: if request.auth != null;
+    }
+
+    // 2. Automated Google Search Console Daily Snapshots
+    match /seo_gsc_daily/{dateDoc} {
+      allow read, write: if request.auth != null;
+    }
+
+    // 3. User Management & Access Rights
+    match /solis/userManagement {
+      // Only the Super Admin can read or modify user permissions and roles
+      allow read, write: if request.auth != null && 
+        request.auth.token.email == 'solisgreenenergysolutions@gmail.com';
+    }
+
+    // 4. Master Engineering Data, BOM Templates & Margin Multipliers
+    match /solis/{document=**} {
+      // Authenticated team members can read pricing & BOM templates
+      allow read: if request.auth != null;
+      // Only Super Admin or Admin role can update master pricing
+      allow write: if request.auth != null && 
+        (request.auth.token.email == 'solisgreenenergysolutions@gmail.com' || 
+         request.auth.token.role == 'admin');
+    }
+  }
+}

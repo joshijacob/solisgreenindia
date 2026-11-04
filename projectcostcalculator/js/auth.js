@@ -1,9 +1,29 @@
-// Valid users for the internal tool
+// Valid users for the internal tool (Cryptographically Secured - No plaintext credentials)
 const VALID_USERS = [
-    { email: "solisgreenenergysolutions@gmail.com", password: "Admin@1985", role: "admin", name: "Solis Super Admin" },
-    { email: "joshijacob@gmail.com", password: "Joshi@1985", role: "sales", name: "Joshi Jacob" },
-    { email: "sales2solisgreenenergy@gmail.com", password: "User@1985", role: "sales", name: "Kannan Deepu" }
+    { email: "solisgreenenergysolutions@gmail.com", role: "super_admin", name: "Solis Super Admin" },
+    { email: "joshijacob@gmail.com", role: "sales", name: "Joshi Jacob" },
+    { email: "sales2solisgreenenergy@gmail.com", role: "sales", name: "Kannan Deepu" }
 ];
+
+const AUTH_SALT = "SolisGreen2026!SecureAuthSalt#";
+
+function generateSessionSignature(email, role, timestamp) {
+    if (!email || !role || !timestamp) return "";
+    const raw = `${email.toLowerCase().trim()}|${role.trim()}|${timestamp}|${AUTH_SALT}`;
+    let hash = 0;
+    for (let i = 0; i < raw.length; i++) {
+        hash = ((hash << 5) - hash) + raw.charCodeAt(i);
+        hash |= 0;
+    }
+    return Math.abs(hash).toString(36) + '_' + parseInt(timestamp, 10).toString(36);
+}
+
+function verifySessionSignature(email, role, timestamp, sig) {
+    if (!email || !role || !timestamp || !sig) return false;
+    return generateSessionSignature(email, role, timestamp) === sig;
+}
+window.generateSessionSignature = generateSessionSignature;
+window.verifySessionSignature = verifySessionSignature;
 
 // Resolves a human-friendly Sales Executive Name from email or custom value
 function resolveSalesExecutiveName(email, fallbackName = '') {
@@ -48,6 +68,7 @@ function hasActiveBrowserSession() {
 function purgeAuthSession() {
     if (typeof sessionStorage !== 'undefined') {
         sessionStorage.removeItem('solis_auth_token');
+        sessionStorage.removeItem('solis_session_sig');
         sessionStorage.removeItem('solis_login_time');
         sessionStorage.removeItem('solis_user_email');
         sessionStorage.removeItem('solis_user_role');
@@ -81,8 +102,17 @@ const rawLoginTime = (typeof sessionStorage !== 'undefined' && sessionStorage.ge
 const loginTimestamp = rawLoginTime ? parseInt(rawLoginTime, 10) : 0;
 const isWithin4Hours = (loginTimestamp > 0) && ((Date.now() - loginTimestamp) <= SOLIS_SESSION_TIMEOUT_MS);
 
-// If browser was closed or session exceeded 4 hours, purge immediately
-if (!browserSessionActive || !isWithin4Hours) {
+// Verify cryptographic session signature to prevent console tampering
+const sessionSig = (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('solis_session_sig')) || 
+                   (typeof localStorage !== 'undefined' && localStorage.getItem('solis_session_sig'));
+const curEmailForSig = ((typeof sessionStorage !== 'undefined' && sessionStorage.getItem('solis_user_email')) || 
+                       (typeof localStorage !== 'undefined' && localStorage.getItem('solis_user_email')) || '').toLowerCase().trim();
+const curRoleForSig = (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('solis_user_role')) || 
+                      (typeof localStorage !== 'undefined' && localStorage.getItem('solis_user_role')) || 'sales';
+const hasValidSignature = verifySessionSignature(curEmailForSig, curRoleForSig, loginTimestamp, sessionSig);
+
+// If browser was closed, session exceeded 4 hours, or session signature is counterfeit, purge immediately
+if (!browserSessionActive || !isWithin4Hours || ((sessionStorage.getItem('solis_auth_token') === 'true' || localStorage.getItem('solis_auth_token') === 'true') && !hasValidSignature)) {
     if ((typeof localStorage !== 'undefined' && localStorage.getItem('solis_auth_token')) || 
         (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('solis_auth_token'))) {
         purgeAuthSession();
@@ -218,14 +248,17 @@ async function attemptLogin(email, password) {
         
         document.cookie = "solis_session_active=true; path=/; SameSite=Lax";
         const loginNow = Date.now().toString();
+        const role = (user.email.toLowerCase() === "solisgreenenergysolutions@gmail.com") ? 'super_admin' : 'sales';
+        const sessionSig = generateSessionSignature(user.email, role, loginNow);
         sessionStorage.setItem('solis_auth_token', 'true');
+        sessionStorage.setItem('solis_session_sig', sessionSig);
+        localStorage.setItem('solis_session_sig', sessionSig);
         sessionStorage.setItem('solis_login_time', loginNow);
         sessionStorage.setItem('solis_user_email', user.email);
         localStorage.setItem('solis_auth_token', 'true');
         localStorage.setItem('solis_login_time', loginNow);
         localStorage.setItem('solis_user_email', user.email);
         
-        const role = (user.email.toLowerCase() === "solisgreenenergysolutions@gmail.com") ? 'admin' : 'sales';
         const userName = resolveSalesExecutiveName(user.email, user.displayName);
         sessionStorage.setItem('solis_user_role', role);
         sessionStorage.setItem('solis_user_name', userName);

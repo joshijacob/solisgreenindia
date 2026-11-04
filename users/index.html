@@ -696,6 +696,24 @@
             }
         };
 
+        const AUTH_SALT = "SolisGreen2026!SecureAuthSalt#";
+
+        async function computeSha256(text) {
+            if (window.crypto && window.crypto.subtle) {
+                const msgBuffer = new TextEncoder().encode(AUTH_SALT + text);
+                const hashBuffer = await window.crypto.subtle.digest('SHA-256', msgBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+            let hash = 0;
+            const str = AUTH_SALT + text;
+            for (let i = 0; i < str.length; i++) {
+                hash = ((hash << 5) - hash) + str.charCodeAt(i);
+                hash |= 0;
+            }
+            return 'fallback_' + Math.abs(hash).toString(16);
+        }
+
         let currentUsers = [];
         let userModalInstance = null;
 
@@ -815,7 +833,7 @@
                     id: 'usr_superadmin',
                     email: SUPER_ADMIN_EMAIL,
                     name: 'Solis Super Admin',
-                    password: 'Admin@1985',
+                    passwordHash: 'bcba054b05d6baea65846dd81df4a6c8977e772c6498e7bd67d0d39a2fcc18d6',
                     role: 'super_admin',
                     roleLabel: 'Super Admin',
                     status: 'active',
@@ -1153,7 +1171,8 @@
                     const idx = currentUsers.findIndex(u => u.id === userId);
                     if (idx !== -1) {
                         currentUsers[idx].name = name;
-                        currentUsers[idx].password = password;
+                        currentUsers[idx].passwordHash = await computeSha256(password);
+                        delete currentUsers[idx].password;
                         if (currentUsers[idx].email.toLowerCase() !== SUPER_ADMIN_EMAIL.toLowerCase()) {
                             currentUsers[idx].email = email;
                             currentUsers[idx].role = role;

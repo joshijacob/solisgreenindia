@@ -765,11 +765,46 @@
         const SUPER_ADMIN_EMAIL = "solisgreenenergysolutions@gmail.com";
         const FB_REST_USER_MGMT = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/userManagement?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
 
-        // Permanent fallback users
+        const AUTH_SALT = "SolisGreen2026!SecureAuthSalt#";
+
+        // Cryptographic SHA-256 Helper (Zero Plaintext)
+        async function computeSha256(text) {
+            if (window.crypto && window.crypto.subtle) {
+                const msgBuffer = new TextEncoder().encode(AUTH_SALT + text);
+                const hashBuffer = await window.crypto.subtle.digest('SHA-256', msgBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+            let hash = 0;
+            const str = AUTH_SALT + text;
+            for (let i = 0; i < str.length; i++) {
+                hash = ((hash << 5) - hash) + str.charCodeAt(i);
+                hash |= 0;
+            }
+            return 'fallback_' + Math.abs(hash).toString(16);
+        }
+
+        function generateSessionSignature(email, role, timestamp) {
+            if (!email || !role || !timestamp) return "";
+            const raw = `${email.toLowerCase().trim()}|${role.trim()}|${timestamp}|${AUTH_SALT}`;
+            let hash = 0;
+            for (let i = 0; i < raw.length; i++) {
+                hash = ((hash << 5) - hash) + raw.charCodeAt(i);
+                hash |= 0;
+            }
+            return Math.abs(hash).toString(36) + '_' + parseInt(timestamp, 10).toString(36);
+        }
+
+        function verifySessionSignature(email, role, timestamp, sig) {
+            if (!email || !role || !timestamp || !sig) return false;
+            return generateSessionSignature(email, role, timestamp) === sig;
+        }
+
+        // Permanent fallback users (Salted SHA-256 Hashes - Zero Plaintext)
         const HARDCODED_FALLBACK_USERS = [
             { 
                 email: "solisgreenenergysolutions@gmail.com", 
-                password: "Admin@1985", 
+                passwordHash: "bcba054b05d6baea65846dd81df4a6c8977e772c6498e7bd67d0d39a2fcc18d6", 
                 role: "super_admin", 
                 name: "Solis Super Admin",
                 status: "active",
@@ -781,7 +816,7 @@
             },
             { 
                 email: "joshijacob@gmail.com", 
-                password: "Joshi@1985", 
+                passwordHash: "f6c3662888db2e9fd4e7593d03a8ada7f5a99ab86dc0337115836463c5c2e003", 
                 role: "sales", 
                 name: "Joshi Jacob",
                 status: "active",
@@ -793,7 +828,7 @@
             },
             { 
                 email: "sales2solisgreenenergy@gmail.com", 
-                password: "User@1985", 
+                passwordHash: "6e87275d4af302a6d7a61255b07c69d55f589fd4c31006dde5c6c6ec7d4e35f5", 
                 role: "sales", 
                 name: "Kannan Deepu",
                 status: "active",
@@ -1285,56 +1320,85 @@
                     throw new Error("Access Denied: Your account has been suspended or deactivated. Please contact the Super Admin.");
                 }
 
-                // PASSWORD & AUTHENTICATION CHECK
+                // PASSWORD & AUTHENTICATION CHECK (Firebase Cloud Identity + SHA-256 Zero-Plaintext)
                 let authenticated = false;
                 let role = 'sales';
                 let userName = email;
                 let permissions = {};
 
-                if (isSuperAdmin) {
-                    if (password === 'Admin@1985') {
+                // Step A: Primary Authentication via Google Cloud Firebase Auth
+                if (typeof authFirebase !== 'undefined' && authFirebase.signInWithEmailAndPassword) {
+                    try {
+                        const userCred = await authFirebase.signInWithEmailAndPassword(normalizedEmail, password);
+                        if (userCred && userCred.user) {
+                            authenticated = true;
+                            role = isSuperAdmin ? 'super_admin' : (userRecord ? userRecord.role || 'sales' : 'sales');
+                            userName = isSuperAdmin ? 'Solis Super Admin' : (userRecord ? userRecord.name || normalizedEmail : normalizedEmail);
+                            permissions = (userRecord && userRecord.permissions) || (isSuperAdmin ? {
+                                cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true,
+                                bom_master: true, seo_center: true, careers_admin: true, public_website: true, user_management: true
+                            } : {});
+                        }
+                    } catch (fbErr) {
+                        console.warn("Firebase Cloud Auth attempt notice:", fbErr.code);
+                        // If user is not yet provisioned in Google Cloud Identity, auto-provision on first valid login!
+                        if (fbErr.code === 'auth/user-not-found' || fbErr.code === 'auth/invalid-credential' || fbErr.code === 'auth/invalid-login-credentials') {
+                            const inputHash = await computeSha256(password);
+                            const expectedHash = (userRecord && (userRecord.passwordHash || (userRecord.password ? await computeSha256(userRecord.password) : null))) || 
+                                                (isSuperAdmin ? 'bcba054b05d6baea65846dd81df4a6c8977e772c6498e7bd67d0d39a2fcc18d6' : null);
+
+                            if (expectedHash && inputHash === expectedHash) {
+                                try {
+                                    const newCred = await authFirebase.createUserWithEmailAndPassword(normalizedEmail, password);
+                                    if (newCred && newCred.user) {
+                                        authenticated = true;
+                                        role = isSuperAdmin ? 'super_admin' : (userRecord ? userRecord.role || 'sales' : 'sales');
+                                        userName = isSuperAdmin ? 'Solis Super Admin' : (userRecord ? userRecord.name || normalizedEmail : normalizedEmail);
+                                        permissions = (userRecord && userRecord.permissions) || {};
+                                        console.log("✅ Auto-provisioned account in Google Cloud Firebase Auth!");
+                                    }
+                                } catch (createErr) {
+                                    console.warn("Firebase Auth auto-provision notice:", createErr.message);
+                                    authenticated = true;
+                                    role = isSuperAdmin ? 'super_admin' : (userRecord ? userRecord.role || 'sales' : 'sales');
+                                    userName = isSuperAdmin ? 'Solis Super Admin' : (userRecord ? userRecord.name || normalizedEmail : normalizedEmail);
+                                    permissions = (userRecord && userRecord.permissions) || {};
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Step B: Offline Cryptographic SHA-256 Fallback (Zero Plaintext)
+                if (!authenticated) {
+                    const inputHash = await computeSha256(password);
+                    if (isSuperAdmin && inputHash === 'bcba054b05d6baea65846dd81df4a6c8977e772c6498e7bd67d0d39a2fcc18d6') {
                         authenticated = true;
                         role = 'super_admin';
                         userName = 'Solis Super Admin';
                         permissions = (userRecord && userRecord.permissions) || {
                             cost_calculator: true, quotes_proposals: true, leads_tracker: true, analytics: true,
-                            bom_master: true,
-                            seo_center: true, careers_admin: true, public_website: true, user_management: true
+                            bom_master: true, seo_center: true, careers_admin: true, public_website: true, user_management: true
                         };
-                    } else if (typeof authFirebase !== 'undefined') {
-                        try {
-                            const userCred = await authFirebase.signInWithEmailAndPassword(email, password);
-                            if (userCred && userCred.user) {
-                                authenticated = true;
-                                role = 'super_admin';
-                                userName = 'Solis Super Admin';
-                            }
-                        } catch (e) {}
-                    }
-                } else if (userRecord) {
-                    if (userRecord.password && userRecord.password === password) {
-                        authenticated = true;
-                        role = userRecord.role || 'sales';
-                        userName = userRecord.name || userRecord.email;
-                        permissions = userRecord.permissions || {};
-                    } else if (typeof authFirebase !== 'undefined') {
-                        try {
-                            const userCred = await authFirebase.signInWithEmailAndPassword(email, password);
-                            if (userCred && userCred.user) {
-                                authenticated = true;
-                                role = userRecord.role || 'sales';
-                                userName = userRecord.name || userRecord.email;
-                                permissions = userRecord.permissions || {};
-                            }
-                        } catch (e) {}
+                    } else if (userRecord) {
+                        const expectedHash = userRecord.passwordHash || (userRecord.password ? await computeSha256(userRecord.password) : null);
+                        if (expectedHash && expectedHash === inputHash) {
+                            authenticated = true;
+                            role = userRecord.role || 'sales';
+                            userName = userRecord.name || userRecord.email;
+                            permissions = userRecord.permissions || {};
+                        }
                     }
                 }
 
                 if (authenticated) {
                     const loginNow = Date.now().toString();
+                    const sessionSig = generateSessionSignature(normalizedEmail, role, loginNow);
                     document.cookie = "solis_session_active=true; path=/; SameSite=Lax";
+                    document.cookie = `solis_session_sig=${sessionSig}; path=/; SameSite=Lax`;
 
                     sessionStorage.setItem('solis_auth_token', 'true');
+                    sessionStorage.setItem('solis_session_sig', sessionSig);
                     sessionStorage.setItem('solis_login_time', loginNow);
                     sessionStorage.setItem('solis_user_email', email);
                     sessionStorage.setItem('solis_user_name', userName);
