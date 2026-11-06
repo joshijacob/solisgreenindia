@@ -820,162 +820,153 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- MODAL 2: ADD MANUAL CALL / WHATSAPP / WALK-IN LEAD -->
+    <!-- MODAL 2: ADD MANUAL CALL / WHATSAPP / WALK-IN LEAD (CLEAN & UNCLUTTERED) -->
     <div class="modal fade" id="newLeadModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 shadow">
-                <div class="modal-header border-bottom pb-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="stat-icon" style="width: 38px; height: 38px; font-size: 1.1rem; background: var(--excel-green);">
-                            <i class="fa-solid fa-headset text-white"></i>
-                        </div>
-                        <div>
-                            <h5 class="modal-title fw-bold mb-0">Record Quick Lead (Call / WhatsApp / Walk-in)</h5>
-                            <small class="text-muted">Instant 15-second entry for phone calls, WhatsApp messages, and site visit scheduling</small>
-                        </div>
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 620px;">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
+                
+                <!-- Clean Modern Header -->
+                <div class="modal-header px-4 pt-4 pb-2 border-0">
+                    <div>
+                        <h5 class="modal-title fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+                            <span class="badge bg-success-subtle text-success p-2 rounded-circle" style="width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center;">
+                                <i class="fa-solid fa-bolt fs-6"></i>
+                            </span>
+                            Quick Lead Entry
+                        </h5>
+                        <p class="text-muted small mb-0 mt-1">Record incoming call or WhatsApp inquiry in seconds</p>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                
+
                 <form id="manualLeadForm" onsubmit="handleManualLeadSubmit(event)">
-                    <div class="modal-body p-4">
+                    <div class="modal-body px-4 py-3">
+                        
+                        <!-- Sleek Compact Metadata Strip (Lead ID, Date, Source) -->
+                        <div class="p-2 mb-3 bg-light rounded-3 d-flex flex-wrap align-items-center justify-content-between gap-2 border">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge bg-white text-dark border font-mono fw-bold px-2 py-1" id="newLeadNumberBadge">SOL-2601</span>
+                                <input type="hidden" id="newLeadNumber" value="SOL-2601">
+                                <span class="text-muted small">|</span>
+                                <span class="text-muted small fw-semibold" id="newLeadDateDisplay">Today</span>
+                                <input type="hidden" id="newLeadDate">
+                            </div>
+                            
+                            <!-- Source Pills -->
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Lead Source">
+                                <input type="radio" class="btn-check" name="newLeadSourceRadio" id="srcWa" value="WhatsApp" checked onchange="document.getElementById('newLeadSource').value='WhatsApp'">
+                                <label class="btn btn-outline-success border-0 px-2 py-1 fw-semibold" for="srcWa">
+                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                                </label>
+
+                                <input type="radio" class="btn-check" name="newLeadSourceRadio" id="srcCall" value="Phone Call" onchange="document.getElementById('newLeadSource').value='Phone Call'">
+                                <label class="btn btn-outline-primary border-0 px-2 py-1 fw-semibold" for="srcCall">
+                                    <i class="fa-solid fa-phone"></i> Call
+                                </label>
+
+                                <input type="radio" class="btn-check" name="newLeadSourceRadio" id="srcWalkin" value="Walk-In" onchange="document.getElementById('newLeadSource').value='Walk-In'">
+                                <label class="btn btn-outline-secondary border-0 px-2 py-1 fw-semibold" for="srcWalkin">
+                                    <i class="fa-solid fa-person-walking"></i> Walk-In
+                                </label>
+                            </div>
+                            <input type="hidden" id="newLeadSource" value="WhatsApp">
+                        </div>
+
+                        <!-- Essential Inputs Only (Clean, Spacious 2-Column Grid) -->
                         <div class="row g-3">
                             
-                            <!-- Row 1: Lead ID, Date, Source -->
-                            <div class="col-md-4">
-                                <label class="form-label fw-bold small text-muted">Lead Number / ID</label>
-                                <input type="text" class="form-control font-mono fw-bold text-success" id="newLeadNumber" placeholder="SOL-2601" required>
-                                <small class="text-muted" style="font-size: 0.72rem;">Auto-generated sequential ID</small>
+                            <!-- 1. Customer Full Name -->
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-bold text-dark mb-1">Customer Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-lg fs-6 shadow-none" id="newLeadName" placeholder="e.g. Thomas Varghese" required style="border-radius: 10px;">
                             </div>
 
-                            <div class="col-md-4">
-                                <label class="form-label fw-bold small text-muted">Lead Date</label>
-                                <input type="date" class="form-control fw-semibold" id="newLeadDate" required>
+                            <!-- 2. Contact Phone Number -->
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-bold text-dark mb-1">Phone / WhatsApp <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control form-control-lg fs-6 font-mono shadow-none" id="newLeadPhone" placeholder="10-digit mobile" required style="border-radius: 10px;">
                             </div>
 
-                            <div class="col-md-4">
-                                <label class="form-label fw-bold small text-muted">Lead Source <span class="text-danger">*</span></label>
-                                <select class="form-select fw-semibold" id="newLeadSource">
-                                    <option value="WhatsApp" selected>💬 WhatsApp Inquiry</option>
-                                    <option value="Phone Call">📞 Incoming Phone Call</option>
-                                    <option value="Walk-In">🏢 Walk-In / Office Visit</option>
-                                    <option value="Referral">🤝 Referral / Word of Mouth</option>
-                                    <option value="Website Form">🌐 Website Quote Form</option>
-                                </select>
-                            </div>
-
-                            <!-- Row 2: Customer Name & Phone -->
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Customer Full Name <span class="text-danger">*</span></label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-user"></i></span>
-                                    <input type="text" class="form-control fw-bold" id="newLeadName" placeholder="e.g. Thomas Varghese" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Contact Number (Phone / WhatsApp) <span class="text-danger">*</span></label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light text-success"><i class="fa-brands fa-whatsapp"></i></span>
-                                    <input type="tel" class="form-control fw-bold font-mono" id="newLeadPhone" placeholder="10 digits e.g. 98470 12345" required>
-                                </div>
-                            </div>
-
-                            <!-- Row 3: Type of Lead & Handover Assignment -->
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Type of Lead / Solar Capacity</label>
-                                <select class="form-select fw-semibold" id="newLeadService">
-                                    <option value="3kW Rooftop Solar (PM Surya Ghar)" selected>3kW Rooftop Solar (PM Surya Ghar Subsidy)</option>
-                                    <option value="5kW On-Grid Solar">5kW On-Grid Solar System</option>
-                                    <option value="10kW Commercial Solar">10kW Commercial / Large Residential</option>
-                                    <option value="Solar Battery Storage / Hybrid">Solar Battery Storage / Hybrid</option>
+                            <!-- 3. Solar System Requirement -->
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-bold text-dark mb-1">Solar System Requirement</label>
+                                <select class="form-select form-control-lg fs-6 shadow-none" id="newLeadService" style="border-radius: 10px;">
+                                    <option value="3kW Rooftop Solar (PM Surya Ghar)" selected>3kW Rooftop Solar (Subsidy)</option>
+                                    <option value="5kW On-Grid Solar">5kW On-Grid System</option>
+                                    <option value="10kW Commercial Solar">10kW Commercial Solar</option>
+                                    <option value="Solar Battery Storage / Hybrid">Hybrid / Battery System</option>
                                     <option value="Microinverter Solar System">Microinverter Solar System</option>
-                                    <option value="Solar Maintenance & AMC">Solar Maintenance & AMC</option>
-                                    <option value="General Solar Inquiry">General Solar Inquiry / Consultation</option>
+                                    <option value="Solar Maintenance & AMC">Maintenance & AMC</option>
+                                    <option value="General Solar Inquiry">General Inquiry</option>
                                 </select>
                             </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small text-primary">
-                                    <i class="fa-solid fa-user-tie me-1"></i> Lead Assigned To (Sales Handover)
+                            <!-- 4. Place / Town -->
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-bold text-dark mb-1">Place / Town</label>
+                                <input type="text" class="form-control form-control-lg fs-6 shadow-none" id="newLeadPlace" placeholder="e.g. Muthoor, Thiruvalla" style="border-radius: 10px;">
+                                <input type="hidden" id="newLeadDistrict" value="Pathanamthitta">
+                            </div>
+
+                            <!-- 5. Site Visit Plan -->
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-bold text-dark mb-1">Site Visit Plan</label>
+                                <input type="text" class="form-control form-control-lg fs-6 shadow-none" id="newLeadSiteVisit" placeholder="e.g. Tomorrow 10 AM, Saturday..." style="border-radius: 10px;">
+                            </div>
+
+                            <!-- 6. Handover / Assigned To -->
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-bold text-primary mb-1">
+                                    <i class="fa-solid fa-user-check me-1"></i> Handover / Assign To
                                 </label>
-                                <select class="form-select fw-bold border-primary shadow-sm" id="newLeadAssignee">
-                                    <option value="Unassigned">⚠️ Unassigned (Keep in Open Lead Pool)</option>
-                                    <option value="Joshi Jacob">👤 Joshi Jacob (Sales & Estimator)</option>
-                                    <option value="Kannan Deepu">👤 Kannan Deepu (Sales & Estimator)</option>
+                                <select class="form-select form-control-lg fs-6 shadow-none border-primary" id="newLeadAssignee" style="border-radius: 10px; background-color: #f8faff;">
+                                    <option value="Unassigned">⚠️ Keep Unassigned</option>
+                                    <option value="Joshi Jacob">👤 Joshi Jacob</option>
+                                    <option value="Kannan Deepu">👤 Kannan Deepu</option>
                                     <option value="Solis Super Admin">👑 Solis Super Admin</option>
                                 </select>
-                                <small class="text-muted" style="font-size: 0.72rem;">Hand over immediately to your sales executive</small>
-                            </div>
-
-                            <!-- Row 4: Place & District -->
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Place / Town / Neighborhood</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light text-danger"><i class="fa-solid fa-location-dot"></i></span>
-                                    <input type="text" class="form-control fw-semibold" id="newLeadPlace" placeholder="e.g. Muthoor, Thiruvalla Town, Changanassery">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Kerala District</label>
-                                <select class="form-select" id="newLeadDistrict">
-                                    <option value="Pathanamthitta" selected>Pathanamthitta</option>
-                                    <option value="Kottayam">Kottayam</option>
-                                    <option value="Alappuzha">Alappuzha</option>
-                                    <option value="Kollam">Kollam</option>
-                                    <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-                                    <option value="Ernakulam">Ernakulam</option>
-                                    <option value="Idukki">Idukki</option>
-                                    <option value="Thrissur">Thrissur</option>
-                                    <option value="Palakkad">Palakkad</option>
-                                    <option value="Malappuram">Malappuram</option>
-                                    <option value="Kozhikode">Kozhikode</option>
-                                    <option value="Wayanad">Wayanad</option>
-                                    <option value="Kannur">Kannur</option>
-                                    <option value="Kasaragod">Kasaragod</option>
-                                </select>
-                            </div>
-
-                            <!-- Row 5: Site Visit Plan & KSEB (Optional) -->
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Site Visit Plan (Roof Inspection)</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light text-primary"><i class="fa-solid fa-calendar-check"></i></span>
-                                    <input type="text" class="form-control fw-semibold" id="newLeadSiteVisit" placeholder="e.g. Saturday 10:00 AM or 08 Nov 2026">
-                                </div>
-                                <small class="text-muted" style="font-size: 0.72rem;">Leaves status as 'Survey Scheduled' if date is set</small>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">KSEB Consumer No. <span class="badge bg-light text-muted border fw-normal">Optional</span></label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light text-warning" style="color: #b45309 !important;"><i class="fa-solid fa-bolt"></i></span>
-                                    <input type="text" class="form-control font-mono" id="newLeadConsumerNo" placeholder="Leave blank if not available yet">
-                                </div>
-                                <small class="text-muted" style="font-size: 0.72rem;">Can be added later when bill photo is received</small>
-                            </div>
-
-                            <!-- Row 6: Email & Notes -->
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small text-muted">Customer Email <span class="badge bg-light text-muted border fw-normal">Optional</span></label>
-                                <input type="email" class="form-control" id="newLeadEmail" placeholder="e.g. customer@gmail.com">
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Customer Remarks / Chat Notes</label>
-                                <input type="text" class="form-control" id="newLeadMessage" placeholder="e.g. Single phase, 350 units monthly bill, wants Tata panels">
                             </div>
 
                         </div>
+
+                        <!-- Collapsible Extra Details (Keeps form minimal by default!) -->
+                        <div class="mt-3 pt-2">
+                            <a class="text-decoration-none small text-muted d-inline-flex align-items-center gap-1" data-bs-toggle="collapse" href="#extraDetailsCollapse" role="button" aria-expanded="false" style="font-weight: 500;">
+                                <i class="fa-solid fa-sliders"></i>
+                                <span>+ Add Remarks, KSEB No. or Email (Optional)</span>
+                            </a>
+                            
+                            <div class="collapse mt-2" id="extraDetailsCollapse">
+                                <div class="p-3 bg-light rounded-3 border">
+                                    <div class="row g-2">
+                                        <div class="col-sm-6">
+                                            <label class="form-label small text-muted mb-1">KSEB Consumer No.</label>
+                                            <input type="text" class="form-control form-control-sm font-mono" id="newLeadConsumerNo" placeholder="13-digit number (if known)">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-label small text-muted mb-1">Customer Email</label>
+                                            <input type="email" class="form-control form-control-sm" id="newLeadEmail" placeholder="customer@example.com">
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label small text-muted mb-1">Inquiry Notes / Remarks</label>
+                                            <input type="text" class="form-control form-control-sm" id="newLeadMessage" placeholder="Roof type, monthly bill units, specific preferences...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="modal-footer bg-light border-top d-flex justify-content-between align-items-center">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success fw-bold px-4" id="saveLeadBtn">
-                            <i class="fa-solid fa-check me-1"></i> Save & Assign Lead
+                    <!-- Clean Action Footer -->
+                    <div class="modal-footer px-4 py-3 bg-light border-top d-flex justify-content-between align-items-center">
+                        <button type="button" class="btn btn-link text-muted text-decoration-none px-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success fw-bold px-4 py-2 shadow-sm d-flex align-items-center gap-2" id="saveLeadBtn" style="border-radius: 10px;">
+                            <i class="fa-solid fa-check"></i>
+                            <span>Save Lead</span>
                         </button>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -1085,16 +1076,41 @@
         function prepareNewLeadModal() {
             const form = document.getElementById('manualLeadForm');
             if (form) form.reset();
+
+            const nextNo = generateNextLeadNumber();
             const numInput = document.getElementById('newLeadNumber');
-            if (numInput) numInput.value = generateNextLeadNumber();
+            if (numInput) numInput.value = nextNo;
+            const numBadge = document.getElementById('newLeadNumberBadge');
+            if (numBadge) numBadge.textContent = nextNo;
+
+            const today = new Date();
+            const todayIso = today.toISOString().split('T')[0];
             const dateInput = document.getElementById('newLeadDate');
-            if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
-            const sourceSelect = document.getElementById('newLeadSource');
-            if (sourceSelect) sourceSelect.value = 'WhatsApp';
-            const districtSelect = document.getElementById('newLeadDistrict');
-            if (districtSelect) districtSelect.value = 'Pathanamthitta';
+            if (dateInput) dateInput.value = todayIso;
+
+            const dateDisplay = document.getElementById('newLeadDateDisplay');
+            if (dateDisplay) {
+                const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                dateDisplay.textContent = `${today.getDate().toString().padStart(2, '0')} ${months[today.getMonth()]} ${today.getFullYear()}`;
+            }
+
+            const sourceInput = document.getElementById('newLeadSource');
+            if (sourceInput) sourceInput.value = 'WhatsApp';
+            const radioWa = document.getElementById('srcWa');
+            if (radioWa) radioWa.checked = true;
+
+            const districtInput = document.getElementById('newLeadDistrict');
+            if (districtInput) districtInput.value = 'Pathanamthitta';
+
             const assigneeSelect = document.getElementById('newLeadAssignee');
             if (assigneeSelect) assigneeSelect.value = 'Unassigned';
+
+            // Reset optional collapse
+            const collapseEl = document.getElementById('extraDetailsCollapse');
+            if (collapseEl && collapseEl.classList.contains('show')) {
+                collapseEl.classList.remove('show');
+            }
+
             populateAssigneeDropdowns();
         }
 
