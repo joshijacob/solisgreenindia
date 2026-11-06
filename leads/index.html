@@ -219,6 +219,74 @@
             border-color: #e2e8f0;
         }
 
+        /* Interactive Assignee Select */
+        .assignee-select {
+            font-size: 0.78rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            border: 1px solid #cbd5e1;
+            cursor: pointer;
+            width: auto;
+            min-width: 140px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .assignee-select.unassigned {
+            background-color: #fef3c7;
+            color: #92400e;
+            border-color: #fde68a;
+        }
+        .assignee-select.assigned {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            border-color: #bae6fd;
+        }
+
+        /* Lead Source Badges */
+        .source-badge {
+            font-size: 0.74rem;
+            font-weight: 600;
+            padding: 0.22rem 0.55rem;
+            border-radius: 50rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            white-space: nowrap;
+        }
+        .source-badge.badge-wa {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+        }
+        .source-badge.badge-call {
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #7dd3fc;
+        }
+        .source-badge.badge-walkin {
+            background: #f3e8ff;
+            color: #7e22ce;
+            border: 1px solid #d8b4fe;
+        }
+        .source-badge.badge-website {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+        }
+        .source-badge.badge-referral {
+            background: #ffedd5;
+            color: #c2410c;
+            border: 1px solid #fed7aa;
+        }
+
+        /* Toast Alert Container */
+        #leadToastContainer {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1080;
+        }
+
         /* Action Buttons */
         .action-icon-btn {
             width: 30px;
@@ -377,9 +445,9 @@
                     <i class="fa-solid fa-file-excel"></i>
                     <span class="d-none d-sm-inline">Export to Excel</span>
                 </button>
-                <button type="button" class="btn btn-success btn-sm fw-bold px-3 rounded-pill d-flex align-items-center gap-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#newLeadModal" title="Add manual walk-in or customer lead">
+                <button type="button" class="btn btn-success btn-sm fw-bold px-3 rounded-pill d-flex align-items-center gap-1 shadow-sm" data-bs-toggle="modal" data-bs-target="#newLeadModal" onclick="prepareNewLeadModal()" title="Add Call / WhatsApp / Walk-in Lead">
                     <i class="fa-solid fa-plus"></i>
-                    <span class="d-none d-sm-inline">Add Lead</span>
+                    <span class="d-none d-sm-inline">+ Add Call / WhatsApp Lead</span>
                 </button>
                 <button class="btn btn-white bg-white border btn-sm rounded-pill px-3 text-muted fw-semibold" onclick="fetchLeadsData(true)">
                     <i class="fa-solid fa-rotate me-1" id="refreshIcon"></i> Refresh
@@ -480,10 +548,10 @@
                 <div class="row g-2 align-items-center">
                     
                     <!-- Search Input -->
-                    <div class="col-12 col-md-4 col-lg-3">
+                    <div class="col-12 col-md-3 col-lg-3">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text bg-light border-end-0 text-muted"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            <input type="text" class="form-control border-start-0" id="tableSearchInput" placeholder="Search name, phone, KSEB no..." oninput="applyFilters()">
+                            <input type="text" class="form-control border-start-0" id="tableSearchInput" placeholder="Search name, phone, place, ID..." oninput="applyFilters()">
                         </div>
                     </div>
 
@@ -500,17 +568,40 @@
                         </select>
                     </div>
 
+                    <!-- Assignee Filter (Admin Handover) -->
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <select class="form-select form-select-sm" id="assigneeFilter" onchange="applyFilters()">
+                            <option value="all">All Assignees</option>
+                            <option value="unassigned">⚠️ Unassigned Only</option>
+                            <option value="Joshi Jacob">👤 Joshi Jacob</option>
+                            <option value="Kannan Deepu">👤 Kannan Deepu</option>
+                            <option value="Solis Super Admin">👑 Solis Super Admin</option>
+                        </select>
+                    </div>
+
+                    <!-- Source Filter -->
+                    <div class="col-6 col-sm-4 col-md-2">
+                        <select class="form-select form-select-sm" id="sourceFilter" onchange="applyFilters()">
+                            <option value="all">All Sources</option>
+                            <option value="WhatsApp">💬 WhatsApp</option>
+                            <option value="Phone Call">📞 Phone Call</option>
+                            <option value="Walk-In">🏢 Walk-In / Office</option>
+                            <option value="Website">🌐 Website Form</option>
+                            <option value="Referral">🤝 Referral</option>
+                        </select>
+                    </div>
+
                     <!-- Kerala District Filter -->
                     <div class="col-6 col-sm-4 col-md-2">
                         <select class="form-select form-select-sm" id="districtFilter" onchange="applyFilters()">
                             <option value="all">All Districts</option>
-                            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-                            <option value="Kollam">Kollam</option>
                             <option value="Pathanamthitta">Pathanamthitta</option>
-                            <option value="Alappuzha">Alappuzha</option>
                             <option value="Kottayam">Kottayam</option>
-                            <option value="Idukki">Idukki</option>
+                            <option value="Alappuzha">Alappuzha</option>
+                            <option value="Kollam">Kollam</option>
+                            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
                             <option value="Ernakulam">Ernakulam</option>
+                            <option value="Idukki">Idukki</option>
                             <option value="Thrissur">Thrissur</option>
                             <option value="Palakkad">Palakkad</option>
                             <option value="Malappuram">Malappuram</option>
@@ -522,48 +613,39 @@
                     </div>
 
                     <!-- Date Filter -->
-                    <div class="col-6 col-sm-4 col-md-2">
+                    <div class="col-6 col-sm-4 col-md-1">
                         <select class="form-select form-select-sm" id="dateFilter" onchange="applyFilters()">
-                            <option value="all">All Dates</option>
+                            <option value="all">Dates</option>
                             <option value="today">Today</option>
-                            <option value="7days">Last 7 Days</option>
-                            <option value="30days">Last 30 Days</option>
+                            <option value="7days">7 Days</option>
+                            <option value="30days">30 Days</option>
                         </select>
-                    </div>
-
-                    <!-- KSEB Only Checkbox -->
-                    <div class="col-6 col-sm-4 col-md-auto d-flex align-items-center">
-                        <div class="form-check form-check-sm mb-0">
-                            <input class="form-check-input" type="checkbox" id="ksebOnlyCheck" onchange="applyFilters()">
-                            <label class="form-check-label small fw-semibold text-muted" for="ksebOnlyCheck">
-                                Only with KSEB No.
-                            </label>
-                        </div>
                     </div>
 
                     <!-- Results Count Badge -->
                     <div class="col-12 col-md-auto ms-auto text-end">
-                        <span class="text-muted small">Showing <strong class="text-dark" id="filteredCount">0</strong> of <strong class="text-dark" id="totalCount">0</strong> leads</span>
+                        <span class="text-muted small">Showing <strong class="text-dark" id="filteredCount">0</strong> of <strong class="text-dark" id="totalCount">0</strong></span>
                     </div>
 
                 </div>
             </div>
 
             <!-- Excel Table View -->
-            <div class="table-responsive" style="max-height: 680px; overflow-y: auto;">
+            <div class="table-responsive"  style="max-height: 680px; overflow-y: auto;">
                 <table class="table table-hover excel-table" id="leadsTable">
                     <thead>
                         <tr>
-                            <th style="width: 45px;" class="text-center">#</th>
-                            <th style="width: 140px;">Date & Time</th>
-                            <th style="min-width: 180px;">Customer Name</th>
-                            <th style="min-width: 160px;">Contact Number</th>
-                            <th style="min-width: 175px;">KSEB Consumer No.</th>
-                            <th style="min-width: 150px;">Service</th>
-                            <th style="min-width: 140px;">District / Area</th>
-                            <th style="min-width: 140px;">Source Page</th>
-                            <th style="min-width: 150px;">Status</th>
-                            <th style="width: 100px;" class="text-center">Actions</th>
+                            <th style="width: 55px;" class="text-center"># / ID</th>
+                            <th style="min-width: 125px;">Date</th>
+                            <th style="min-width: 170px;">Customer Name</th>
+                            <th style="min-width: 155px;">Contact & Chat</th>
+                            <th style="min-width: 145px;">Type of Lead</th>
+                            <th style="min-width: 140px;">Place & District</th>
+                            <th style="min-width: 115px;">Source</th>
+                            <th style="min-width: 150px;">Assigned To</th>
+                            <th style="min-width: 135px;">Site Visit / KSEB</th>
+                            <th style="min-width: 130px;">Status</th>
+                            <th style="width: 80px;" class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="leadsTableBody">
@@ -614,6 +696,25 @@
                 
                 <div class="modal-body p-4">
                     <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label text-muted small fw-bold">Lead Number / ID</label>
+                            <input type="text" class="form-control font-mono fw-bold text-primary" id="detailLeadNumber" placeholder="SOL-2601">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-muted small fw-bold">Lead Date</label>
+                            <input type="date" class="form-control" id="detailLeadDate">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-muted small fw-bold">Lead Source</label>
+                            <select class="form-select" id="detailLeadSource">
+                                <option value="WhatsApp">💬 WhatsApp</option>
+                                <option value="Phone Call">📞 Phone Call</option>
+                                <option value="Walk-In">🏢 Walk-In / Office</option>
+                                <option value="Website Form">🌐 Website Form</option>
+                                <option value="Referral">🤝 Referral</option>
+                            </select>
+                        </div>
+
                         <div class="col-md-6">
                             <label class="form-label text-muted small fw-bold">Customer Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control fw-bold" id="detailName" placeholder="Customer Name">
@@ -660,6 +761,26 @@
                         </div>
 
                         <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Place / Town</label>
+                            <input type="text" class="form-control" id="detailPlace" placeholder="e.g. Muthoor, Thiruvalla Town">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Site Visit Plan</label>
+                            <input type="text" class="form-control fw-semibold" id="detailSiteVisit" placeholder="e.g. Saturday 10:30 AM or 08 Nov 2026">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold text-primary">Lead Assigned To (Sales Handover) <i class="fa-solid fa-user-tie ms-1"></i></label>
+                            <select class="form-select fw-bold border-primary" id="detailAssignee">
+                                <option value="Unassigned">⚠️ Unassigned</option>
+                                <option value="Joshi Jacob">👤 Joshi Jacob (Sales & Estimator)</option>
+                                <option value="Kannan Deepu">👤 Kannan Deepu (Sales & Estimator)</option>
+                                <option value="Solis Super Admin">👑 Solis Super Admin</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
                             <label class="form-label text-muted small fw-bold">Lead Status</label>
                             <select class="form-select fw-bold" id="modalStatusSelect">
                                 <option value="New">New</option>
@@ -699,19 +820,18 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- MODAL 2: ADD MANUAL IN-PERSON / WALK-IN LEAD -->
-    <!-- ======================================================== -->
+    <!-- MODAL 2: ADD MANUAL CALL / WHATSAPP / WALK-IN LEAD -->
     <div class="modal fade" id="newLeadModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header border-bottom pb-3">
                     <div class="d-flex align-items-center gap-2">
-                        <div class="stat-icon" style="width: 36px; height: 36px; font-size: 1rem; background: var(--excel-green);">
-                            <i class="fa-solid fa-user-plus"></i>
+                        <div class="stat-icon" style="width: 38px; height: 38px; font-size: 1.1rem; background: var(--excel-green);">
+                            <i class="fa-solid fa-headset text-white"></i>
                         </div>
                         <div>
-                            <h5 class="modal-title fw-bold mb-0">Record New Customer Lead</h5>
-                            <small class="text-muted">Enter manual or in-person walk-in customer details</small>
+                            <h5 class="modal-title fw-bold mb-0">Record Quick Lead (Call / WhatsApp / Walk-in)</h5>
+                            <small class="text-muted">Instant 15-second entry for phone calls, WhatsApp messages, and site visit scheduling</small>
                         </div>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -721,49 +841,92 @@
                     <div class="modal-body p-4">
                         <div class="row g-3">
                             
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Customer Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="newLeadName" placeholder="e.g. Rajesh Kumar" required>
+                            <!-- Row 1: Lead ID, Date, Source -->
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold small text-muted">Lead Number / ID</label>
+                                <input type="text" class="form-control font-mono fw-bold text-success" id="newLeadNumber" placeholder="SOL-2601" required>
+                                <small class="text-muted" style="font-size: 0.72rem;">Auto-generated sequential ID</small>
                             </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Contact Number <span class="text-danger">*</span></label>
-                                <input type="tel" class="form-control" id="newLeadPhone" placeholder="e.g. +91 98470 12345" required>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold small text-muted">Lead Date</label>
+                                <input type="date" class="form-control fw-semibold" id="newLeadDate" required>
                             </div>
 
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">KSEB Consumer Number <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control font-mono" id="newLeadConsumerNo" placeholder="10-13 digits e.g. 1146204004161" required>
-                                <small class="text-muted" style="font-size: 0.72rem;">Found on electricity bill for PM Surya Ghar subsidy</small>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Customer Email</label>
-                                <input type="email" class="form-control" id="newLeadEmail" placeholder="e.g. rajesh@example.com">
-                            </div>
-
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold small">Service Requested</label>
-                                <select class="form-select" id="newLeadService">
-                                    <option value="3kW Rooftop Solar (PM Surya Ghar)">3kW Rooftop Solar (PM Surya Ghar)</option>
-                                    <option value="5kW On-Grid Solar">5kW On-Grid Solar</option>
-                                    <option value="10kW Commercial Solar">10kW Commercial Solar</option>
-                                    <option value="Microinverter Solar System">Microinverter Solar System</option>
-                                    <option value="Solar Battery Storage / Hybrid">Solar Battery Storage / Hybrid</option>
-                                    <option value="Solar Maintenance & AMC">Solar Maintenance & AMC</option>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold small text-muted">Lead Source <span class="text-danger">*</span></label>
+                                <select class="form-select fw-semibold" id="newLeadSource">
+                                    <option value="WhatsApp" selected>💬 WhatsApp Inquiry</option>
+                                    <option value="Phone Call">📞 Incoming Phone Call</option>
+                                    <option value="Walk-In">🏢 Walk-In / Office Visit</option>
+                                    <option value="Referral">🤝 Referral / Word of Mouth</option>
+                                    <option value="Website Form">🌐 Website Quote Form</option>
                                 </select>
+                            </div>
+
+                            <!-- Row 2: Customer Name & Phone -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Customer Full Name <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" class="form-control fw-bold" id="newLeadName" placeholder="e.g. Thomas Varghese" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Contact Number (Phone / WhatsApp) <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-success"><i class="fa-brands fa-whatsapp"></i></span>
+                                    <input type="tel" class="form-control fw-bold font-mono" id="newLeadPhone" placeholder="10 digits e.g. 98470 12345" required>
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Type of Lead & Handover Assignment -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Type of Lead / Solar Capacity</label>
+                                <select class="form-select fw-semibold" id="newLeadService">
+                                    <option value="3kW Rooftop Solar (PM Surya Ghar)" selected>3kW Rooftop Solar (PM Surya Ghar Subsidy)</option>
+                                    <option value="5kW On-Grid Solar">5kW On-Grid Solar System</option>
+                                    <option value="10kW Commercial Solar">10kW Commercial / Large Residential</option>
+                                    <option value="Solar Battery Storage / Hybrid">Solar Battery Storage / Hybrid</option>
+                                    <option value="Microinverter Solar System">Microinverter Solar System</option>
+                                    <option value="Solar Maintenance & AMC">Solar Maintenance & AMC</option>
+                                    <option value="General Solar Inquiry">General Solar Inquiry / Consultation</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-primary">
+                                    <i class="fa-solid fa-user-tie me-1"></i> Lead Assigned To (Sales Handover)
+                                </label>
+                                <select class="form-select fw-bold border-primary shadow-sm" id="newLeadAssignee">
+                                    <option value="Unassigned">⚠️ Unassigned (Keep in Open Lead Pool)</option>
+                                    <option value="Joshi Jacob">👤 Joshi Jacob (Sales & Estimator)</option>
+                                    <option value="Kannan Deepu">👤 Kannan Deepu (Sales & Estimator)</option>
+                                    <option value="Solis Super Admin">👑 Solis Super Admin</option>
+                                </select>
+                                <small class="text-muted" style="font-size: 0.72rem;">Hand over immediately to your sales executive</small>
+                            </div>
+
+                            <!-- Row 4: Place & District -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Place / Town / Neighborhood</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-danger"><i class="fa-solid fa-location-dot"></i></span>
+                                    <input type="text" class="form-control fw-semibold" id="newLeadPlace" placeholder="e.g. Muthoor, Thiruvalla Town, Changanassery">
+                                </div>
                             </div>
 
                             <div class="col-md-6">
                                 <label class="form-label fw-bold small">Kerala District</label>
                                 <select class="form-select" id="newLeadDistrict">
-                                    <option value="Pathanamthitta">Pathanamthitta</option>
-                                    <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-                                    <option value="Kollam">Kollam</option>
-                                    <option value="Alappuzha">Alappuzha</option>
+                                    <option value="Pathanamthitta" selected>Pathanamthitta</option>
                                     <option value="Kottayam">Kottayam</option>
-                                    <option value="Idukki">Idukki</option>
+                                    <option value="Alappuzha">Alappuzha</option>
+                                    <option value="Kollam">Kollam</option>
+                                    <option value="Thiruvananthapuram">Thiruvananthapuram</option>
                                     <option value="Ernakulam">Ernakulam</option>
+                                    <option value="Idukki">Idukki</option>
                                     <option value="Thrissur">Thrissur</option>
                                     <option value="Palakkad">Palakkad</option>
                                     <option value="Malappuram">Malappuram</option>
@@ -774,18 +937,43 @@
                                 </select>
                             </div>
 
-                            <div class="col-12">
-                                <label class="form-label fw-bold small">Customer Message / Note</label>
-                                <textarea class="form-control" id="newLeadMessage" rows="2" placeholder="Inquiry notes, roof type, monthly bill..."></textarea>
+                            <!-- Row 5: Site Visit Plan & KSEB (Optional) -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Site Visit Plan (Roof Inspection)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-primary"><i class="fa-solid fa-calendar-check"></i></span>
+                                    <input type="text" class="form-control fw-semibold" id="newLeadSiteVisit" placeholder="e.g. Saturday 10:00 AM or 08 Nov 2026">
+                                </div>
+                                <small class="text-muted" style="font-size: 0.72rem;">Leaves status as 'Survey Scheduled' if date is set</small>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">KSEB Consumer No. <span class="badge bg-light text-muted border fw-normal">Optional</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-warning" style="color: #b45309 !important;"><i class="fa-solid fa-bolt"></i></span>
+                                    <input type="text" class="form-control font-mono" id="newLeadConsumerNo" placeholder="Leave blank if not available yet">
+                                </div>
+                                <small class="text-muted" style="font-size: 0.72rem;">Can be added later when bill photo is received</small>
+                            </div>
+
+                            <!-- Row 6: Email & Notes -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-muted">Customer Email <span class="badge bg-light text-muted border fw-normal">Optional</span></label>
+                                <input type="email" class="form-control" id="newLeadEmail" placeholder="e.g. customer@gmail.com">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Customer Remarks / Chat Notes</label>
+                                <input type="text" class="form-control" id="newLeadMessage" placeholder="e.g. Single phase, 350 units monthly bill, wants Tata panels">
                             </div>
 
                         </div>
                     </div>
 
-                    <div class="modal-footer bg-light border-top">
+                    <div class="modal-footer bg-light border-top d-flex justify-content-between align-items-center">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-success fw-bold px-4" id="saveLeadBtn">
-                            <i class="fa-solid fa-check me-1"></i> Save Lead to Tracker
+                            <i class="fa-solid fa-check me-1"></i> Save & Assign Lead
                         </button>
                     </div>
                 </form>
@@ -799,6 +987,7 @@
     <!-- Leads Application Script -->
     <script>
         const FB_REST_URL = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
+        const FB_REST_USER_MGMT = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/userManagement?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
         
         // Define db instance from firebase-init.js dbFirestore
         const db = (typeof dbFirestore !== 'undefined' && dbFirestore) ? dbFirestore : (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length ? firebase.firestore() : null);
@@ -808,9 +997,106 @@
         let activeModalLead = null;
         let unsubscribeFirestore = null;
 
+        // Sales Executives Registry for Handover
+        let activeSalesUsers = [
+            { name: "Joshi Jacob", email: "joshijacob@gmail.com", role: "sales", roleLabel: "Sales & Estimator" },
+            { name: "Kannan Deepu", email: "sales2solisgreenenergy@gmail.com", role: "sales", roleLabel: "Sales & Estimator" },
+            { name: "Solis Super Admin", email: "solisgreenenergysolutions@gmail.com", role: "super_admin", roleLabel: "Super Admin" }
+        ];
+
         document.addEventListener('DOMContentLoaded', () => {
             initLeadsListener();
+            fetchSalesExecutives();
         });
+
+        // Fetch dynamic sales team from User Management registry
+        async function fetchSalesExecutives() {
+            try {
+                const local = localStorage.getItem('solis_users_db');
+                if (local) {
+                    const parsed = JSON.parse(local);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        activeSalesUsers = parsed.filter(u => u.status === 'active' || !u.status);
+                    }
+                }
+                const resp = await fetch(FB_REST_USER_MGMT);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data && data.fields && data.fields.usersJson && data.fields.usersJson.stringValue) {
+                        const cloudUsers = JSON.parse(data.fields.usersJson.stringValue);
+                        if (Array.isArray(cloudUsers) && cloudUsers.length > 0) {
+                            activeSalesUsers = cloudUsers.filter(u => u.status === 'active' || !u.status);
+                            localStorage.setItem('solis_users_db', JSON.stringify(cloudUsers));
+                        }
+                    }
+                }
+            } catch (e) {
+                console.warn('Could not load live sales users, using defaults:', e);
+            }
+            populateAssigneeDropdowns();
+        }
+
+        // Populate Assignee Selects in Add modal, Edit modal, and Filter
+        function populateAssigneeDropdowns() {
+            const dropdownIds = ['newLeadAssignee', 'detailAssignee', 'assigneeFilter'];
+            dropdownIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const currentVal = el.value;
+                let opts = '';
+                if (id === 'assigneeFilter') {
+                    opts = '<option value="all">All Assignees</option><option value="unassigned">⚠️ Unassigned Only</option>';
+                    activeSalesUsers.forEach(u => {
+                        opts += `<option value="${escapeHtml(u.name)}">👤 ${escapeHtml(u.name)}</option>`;
+                    });
+                } else {
+                    opts = '<option value="Unassigned">⚠️ Unassigned (Keep in Open Lead Pool)</option>';
+                    activeSalesUsers.forEach(u => {
+                        opts += `<option value="${escapeHtml(u.name)}">👤 ${escapeHtml(u.name)} (${escapeHtml(u.roleLabel || u.role || 'Sales')})</option>`;
+                    });
+                }
+                el.innerHTML = opts;
+                if (currentVal) el.value = currentVal;
+            });
+        }
+
+        // Auto-Generate Next Sequential Lead Number (e.g. SOL-2601)
+        function generateNextLeadNumber() {
+            const currentYear = new Date().getFullYear().toString().slice(-2);
+            let maxSeq = 0;
+            allLeads.forEach(lead => {
+                if (lead.leadNumber) {
+                    const m = String(lead.leadNumber).match(/SOL-(\d+)/i);
+                    if (m) {
+                        const num = parseInt(m[1], 10);
+                        if (!isNaN(num) && num > maxSeq) maxSeq = num;
+                    }
+                }
+            });
+            if (maxSeq === 0) {
+                const base = parseInt(currentYear + "01", 10);
+                const total = allLeads.length + 1;
+                return `SOL-${base + total - 1}`;
+            }
+            return `SOL-${maxSeq + 1}`;
+        }
+
+        // Prepare Add Lead Modal for Quick 15-second entry
+        function prepareNewLeadModal() {
+            const form = document.getElementById('manualLeadForm');
+            if (form) form.reset();
+            const numInput = document.getElementById('newLeadNumber');
+            if (numInput) numInput.value = generateNextLeadNumber();
+            const dateInput = document.getElementById('newLeadDate');
+            if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
+            const sourceSelect = document.getElementById('newLeadSource');
+            if (sourceSelect) sourceSelect.value = 'WhatsApp';
+            const districtSelect = document.getElementById('newLeadDistrict');
+            if (districtSelect) districtSelect.value = 'Pathanamthitta';
+            const assigneeSelect = document.getElementById('newLeadAssignee');
+            if (assigneeSelect) assigneeSelect.value = 'Unassigned';
+            populateAssigneeDropdowns();
+        }
 
         // Initialize Firestore Real-Time Listener with REST Fallback
         function initLeadsListener() {
@@ -824,16 +1110,24 @@
                             const data = doc.data();
                             items.push({
                                 id: doc.id,
+                                leadNumber: data.leadNumber || '',
+                                leadDate: data.leadDate || '',
                                 name: data.name || 'Website Visitor',
                                 phone: data.phone || '',
                                 consumerNumber: data.consumerNumber || '',
                                 email: data.email || '',
-                                service: data.service || 'Solar Installation',
-                                location: data.location || 'Kerala',
+                                service: data.service || data.leadType || 'Solar Installation',
+                                leadType: data.leadType || data.service || 'Solar Installation',
+                                place: data.place || '',
+                                district: data.district || '',
+                                location: data.location || (data.place ? `${data.place}, ${data.district || 'Kerala'}` : 'Kerala'),
+                                siteVisitPlan: data.siteVisitPlan || '',
+                                assignedTo: data.assignedTo || 'Unassigned',
                                 message: data.message || '',
                                 staffNotes: data.staffNotes || '',
                                 page: data.page || '/',
-                                source: data.source || 'Website Form',
+                                source: data.source || data.leadSource || 'Website Form',
+                                leadSource: data.leadSource || data.source || 'Website Form',
                                 status: data.status || 'New',
                                 createdAt: data.createdAt || new Date().toISOString()
                             });
@@ -842,8 +1136,11 @@
                         allLeads = items;
                         updateStats();
                         applyFilters();
-                        document.getElementById('cloudSyncBadge').classList.remove('bg-danger-subtle', 'text-danger');
-                        document.getElementById('cloudSyncBadge').classList.add('bg-success-subtle', 'text-success');
+                        const badge = document.getElementById('cloudSyncBadge');
+                        if (badge) {
+                            badge.classList.remove('bg-danger-subtle', 'text-danger');
+                            badge.classList.add('bg-success-subtle', 'text-success');
+                        }
                     }, (err) => {
                         console.warn('Real-time listener notice, falling back to REST:', err);
                         fetchLeadsData();
@@ -874,16 +1171,24 @@
                         const docId = doc.name ? doc.name.split('/').pop() : Math.random().toString();
                         items.push({
                             id: docId,
+                            leadNumber: f.leadNumber ? f.leadNumber.stringValue : '',
+                            leadDate: f.leadDate ? f.leadDate.stringValue : '',
                             name: f.name ? f.name.stringValue : 'Website Visitor',
                             phone: f.phone ? f.phone.stringValue : '',
                             consumerNumber: f.consumerNumber ? f.consumerNumber.stringValue : '',
                             email: f.email ? f.email.stringValue : '',
-                            service: f.service ? f.service.stringValue : 'Solar Installation',
+                            service: f.service ? f.service.stringValue : (f.leadType ? f.leadType.stringValue : 'Solar Installation'),
+                            leadType: f.leadType ? f.leadType.stringValue : (f.service ? f.service.stringValue : 'Solar Installation'),
+                            place: f.place ? f.place.stringValue : '',
+                            district: f.district ? f.district.stringValue : '',
                             location: f.location ? f.location.stringValue : 'Kerala',
+                            siteVisitPlan: f.siteVisitPlan ? f.siteVisitPlan.stringValue : '',
+                            assignedTo: f.assignedTo ? f.assignedTo.stringValue : 'Unassigned',
                             message: f.message ? f.message.stringValue : '',
                             staffNotes: f.staffNotes ? f.staffNotes.stringValue : '',
                             page: f.page ? f.page.stringValue : '/',
-                            source: f.source ? f.source.stringValue : 'Website Form',
+                            source: f.source ? f.source.stringValue : (f.leadSource ? f.leadSource.stringValue : 'Website Form'),
+                            leadSource: f.leadSource ? f.leadSource.stringValue : (f.source ? f.source.stringValue : 'Website Form'),
                             status: f.status ? f.status.stringValue : 'New',
                             createdAt: f.createdAt ? f.createdAt.stringValue : new Date().toISOString()
                         });
@@ -899,7 +1204,7 @@
                 console.error('Error fetching leads:', error);
                 document.getElementById('leadsTableBody').innerHTML = `
                     <tr>
-                        <td colspan="10" class="text-center py-5 text-danger">
+                        <td colspan="11" class="text-center py-5 text-danger">
                             <i class="fa-solid fa-triangle-exclamation fs-3 mb-2 d-block"></i>
                             Could not load form submissions. Please check internet connection.
                         </td>
@@ -914,34 +1219,26 @@
         function updateStats() {
             const total = allLeads.length;
             const newCount = allLeads.filter(l => (l.status || 'New').toLowerCase() === 'new').length;
-            const surveyCount = allLeads.filter(l => (l.status || '').toLowerCase().includes('survey')).length;
+            const surveyCount = allLeads.filter(l => (l.status || '').toLowerCase().includes('survey') || (l.siteVisitPlan && l.siteVisitPlan.trim().length > 0)).length;
             const wonCount = allLeads.filter(l => (l.status || '').toLowerCase().includes('won')).length;
             const ksebCount = allLeads.filter(l => l.consumerNumber && l.consumerNumber.trim().length >= 8).length;
 
-            const elTotal = document.getElementById('statTotalSubmissions');
-            if (elTotal) elTotal.textContent = total;
-            const elNew = document.getElementById('statNewLeads');
-            if (elNew) elNew.textContent = newCount;
-            const elSurvey = document.getElementById('statSurveyScheduled');
-            if (elSurvey) elSurvey.textContent = surveyCount;
-            const elWon = document.getElementById('statWonLeads');
-            if (elWon) elWon.textContent = wonCount;
-            const elKseb = document.getElementById('statKsebNumbers');
-            if (elKseb) elKseb.textContent = ksebCount;
-            
-            const elLiveCount = document.getElementById('liveCountText');
-            if (elLiveCount) elLiveCount.textContent = total;
-            const elTotalCount = document.getElementById('totalCount');
-            if (elTotalCount) elTotalCount.textContent = total;
+            document.getElementById('statTotalSubmissions').textContent = total;
+            document.getElementById('statNewLeads').textContent = newCount;
+            document.getElementById('statSurveyScheduled').textContent = surveyCount;
+            document.getElementById('statWonLeads').textContent = wonCount;
+            document.getElementById('statKsebNumbers').textContent = ksebCount;
+            document.getElementById('totalCount').textContent = total;
         }
 
-        // Filter and Search Leads
+        // Filter Leads based on Search, Status, Assignee, Source, District, Date
         function applyFilters() {
             const searchQuery = (document.getElementById('tableSearchInput').value || '').trim().toLowerCase();
             const statusVal = document.getElementById('statusFilter').value;
+            const assigneeVal = (document.getElementById('assigneeFilter') ? document.getElementById('assigneeFilter').value : 'all');
+            const sourceVal = (document.getElementById('sourceFilter') ? document.getElementById('sourceFilter').value : 'all');
             const districtVal = document.getElementById('districtFilter').value;
             const dateVal = document.getElementById('dateFilter').value;
-            const ksebOnly = document.getElementById('ksebOnlyCheck').checked;
 
             const now = new Date();
 
@@ -953,8 +1250,11 @@
                     const matchKseb = (lead.consumerNumber || '').toLowerCase().includes(searchQuery);
                     const matchEmail = (lead.email || '').toLowerCase().includes(searchQuery);
                     const matchLoc = (lead.location || '').toLowerCase().includes(searchQuery);
+                    const matchPlace = (lead.place || '').toLowerCase().includes(searchQuery);
                     const matchService = (lead.service || '').toLowerCase().includes(searchQuery);
-                    if (!matchName && !matchPhone && !matchKseb && !matchEmail && !matchLoc && !matchService) {
+                    const matchLeadNo = (lead.leadNumber || '').toLowerCase().includes(searchQuery);
+                    const matchAssignee = (lead.assignedTo || '').toLowerCase().includes(searchQuery);
+                    if (!matchName && !matchPhone && !matchKseb && !matchEmail && !matchLoc && !matchPlace && !matchService && !matchLeadNo && !matchAssignee) {
                         return false;
                     }
                 }
@@ -966,23 +1266,34 @@
                     }
                 }
 
-                // District
-                if (districtVal !== 'all') {
-                    if (!(lead.location || '').toLowerCase().includes(districtVal.toLowerCase())) {
+                // Assignee Handover Filter
+                if (assigneeVal !== 'all') {
+                    if (assigneeVal === 'unassigned') {
+                        if (lead.assignedTo && lead.assignedTo !== 'Unassigned' && lead.assignedTo.trim() !== '') return false;
+                    } else {
+                        if ((lead.assignedTo || '').toLowerCase() !== assigneeVal.toLowerCase()) return false;
+                    }
+                }
+
+                // Lead Source Filter
+                if (sourceVal !== 'all') {
+                    const leadSrc = (lead.source || lead.leadSource || '').toLowerCase();
+                    if (!leadSrc.includes(sourceVal.toLowerCase())) {
                         return false;
                     }
                 }
 
-                // KSEB only
-                if (ksebOnly) {
-                    if (!lead.consumerNumber || lead.consumerNumber.trim().length < 5) {
+                // District
+                if (districtVal !== 'all') {
+                    const fullLoc = ((lead.place || '') + ' ' + (lead.district || '') + ' ' + (lead.location || '')).toLowerCase();
+                    if (!fullLoc.includes(districtVal.toLowerCase())) {
                         return false;
                     }
                 }
 
                 // Date filter
                 if (dateVal !== 'all') {
-                    const leadDate = new Date(lead.createdAt);
+                    const leadDate = new Date(lead.leadDate || lead.createdAt);
                     if (dateVal === 'today') {
                         if (leadDate.toDateString() !== now.toDateString()) return false;
                     } else if (dateVal === '7days') {
@@ -1001,13 +1312,13 @@
             renderTable();
         }
 
-        // Render Excel Table
+        // Render Excel Spreadsheet Table
         function renderTable() {
             const tbody = document.getElementById('leadsTableBody');
             if (filteredLeads.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="10" class="text-center py-5 text-muted">
+                        <td colspan="11" class="text-center py-5 text-muted">
                             <i class="fa-solid fa-inbox fs-3 mb-2 d-block opacity-50"></i>
                             No submissions match the selected filters.
                         </td>
@@ -1019,17 +1330,35 @@
             let html = '';
             filteredLeads.forEach((lead, index) => {
                 const rowNum = index + 1;
-                const formattedDate = formatLeadDateTime(lead.createdAt);
+                const formattedDate = formatLeadDateTime(lead.leadDate || lead.createdAt);
                 const safeName = escapeHtml(lead.name || 'Anonymous');
                 const rawPhone = (lead.phone || '').trim();
                 const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
                 const waPhone = cleanPhone.startsWith('91') ? cleanPhone : (cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone);
                 const waText = encodeURIComponent(`Hello ${safeName}, thank you for contacting Solis Green Energy regarding your solar installation inquiry. How can we assist you with your subsidy & solar plan?`);
                 const ksebNo = escapeHtml(lead.consumerNumber || '');
-                const service = escapeHtml(lead.service || 'Solar Installation');
-                const location = escapeHtml(lead.location || 'Kerala');
-                const page = escapeHtml(lead.page || '/');
+                const service = escapeHtml(lead.service || lead.leadType || 'Solar Installation');
+                const place = escapeHtml(lead.place || '');
+                const district = escapeHtml(lead.district || lead.location || 'Kerala');
                 const status = lead.status || 'New';
+                const assignedTo = lead.assignedTo || 'Unassigned';
+                const siteVisit = escapeHtml(lead.siteVisitPlan || '');
+                const leadNo = escapeHtml(lead.leadNumber || `SOL-${index + 1}`);
+
+                // Source Badge
+                const srcRaw = (lead.source || lead.leadSource || 'Website').toLowerCase();
+                let srcBadge = '';
+                if (srcRaw.includes('whatsapp')) {
+                    srcBadge = `<span class="source-badge badge-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>`;
+                } else if (srcRaw.includes('call') || srcRaw.includes('phone')) {
+                    srcBadge = `<span class="source-badge badge-call"><i class="fa-solid fa-phone"></i> Call</span>`;
+                } else if (srcRaw.includes('walk') || srcRaw.includes('office')) {
+                    srcBadge = `<span class="source-badge badge-walkin"><i class="fa-solid fa-person-walking"></i> Walk-In</span>`;
+                } else if (srcRaw.includes('referral')) {
+                    srcBadge = `<span class="source-badge badge-referral"><i class="fa-solid fa-handshake"></i> Referral</span>`;
+                } else {
+                    srcBadge = `<span class="source-badge badge-website"><i class="fa-solid fa-globe"></i> Website</span>`;
+                }
 
                 // Status dropdown class
                 let statusClass = 'status-new';
@@ -1040,50 +1369,95 @@
                 else if (sLow.includes('won')) statusClass = 'status-won';
                 else if (sLow.includes('lost')) statusClass = 'status-lost';
 
+                // Assignee dropdown options
+                let assigneeOpts = `<option value="Unassigned" ${assignedTo === 'Unassigned' ? 'selected' : ''}>⚠️ Unassigned</option>`;
+                activeSalesUsers.forEach(u => {
+                    const isSelected = assignedTo.toLowerCase() === u.name.toLowerCase();
+                    assigneeOpts += `<option value="${escapeHtml(u.name)}" ${isSelected ? 'selected' : ''}>👤 ${escapeHtml(u.name)}</option>`;
+                });
+                const isAssigned = (assignedTo !== 'Unassigned' && assignedTo.trim() !== '');
+                const assigneeClass = isAssigned ? 'assigned' : 'unassigned';
+
                 html += `
                     <tr data-lead-id="${lead.id}">
-                        <td class="text-center text-muted fw-bold">${rowNum}</td>
+                        <!-- Col 1: Row # & Lead ID -->
+                        <td class="text-center">
+                            <span class="text-muted fw-bold d-block" style="font-size: 0.75rem;">#${rowNum}</span>
+                            <span class="badge bg-light text-dark font-mono border" style="font-size: 0.7rem;">${leadNo}</span>
+                        </td>
+
+                        <!-- Col 2: Date -->
                         <td class="text-nowrap small text-muted" title="${lead.createdAt}">
                             ${formattedDate}
                         </td>
+
+                        <!-- Col 3: Customer Name -->
                         <td>
                             <strong class="text-dark d-block">${safeName}</strong>
                             ${lead.email ? `<small class="text-muted d-block" style="font-size: 0.72rem;">${escapeHtml(lead.email)}</small>` : ''}
                         </td>
+
+                        <!-- Col 4: Contact & 1-Click Chat/Call -->
                         <td>
                             <div class="d-flex align-items-center gap-1">
                                 <span class="fw-semibold font-mono small">${escapeHtml(rawPhone) || '-'}</span>
                                 ${rawPhone ? `
-                                    <a href="tel:${rawPhone}" class="action-icon-btn btn-call ms-1" title="Call ${safeName}">
+                                    <a href="tel:${rawPhone}" class="action-icon-btn btn-call ms-1" title="Direct Phone Call to ${safeName}">
                                         <i class="fa-solid fa-phone"></i>
                                     </a>
-                                    <a href="https://wa.me/${waPhone}?text=${waText}" target="_blank" class="action-icon-btn btn-wa" title="WhatsApp Chat">
+                                    <a href="https://wa.me/${waPhone}?text=${waText}" target="_blank" class="action-icon-btn btn-wa" title="Open WhatsApp Chat">
                                         <i class="fa-brands fa-whatsapp text-success"></i>
                                     </a>
                                 ` : ''}
                             </div>
                         </td>
+
+                        <!-- Col 5: Type of Lead -->
+                        <td class="small">
+                            <span class="badge bg-light text-dark border fw-semibold">${service}</span>
+                        </td>
+
+                        <!-- Col 6: Place & District -->
+                        <td class="small">
+                            ${place ? `<div class="fw-semibold text-dark">${place}</div>` : ''}
+                            <div class="text-muted" style="font-size: 0.75rem;">
+                                <i class="fa-solid fa-location-dot text-danger me-1"></i>${district}
+                            </div>
+                        </td>
+
+                        <!-- Col 7: Lead Source -->
                         <td>
+                            ${srcBadge}
+                        </td>
+
+                        <!-- Col 8: Lead Handover / Assigned To (1-Click Switcher) -->
+                        <td>
+                            <select class="form-select form-select-sm assignee-select ${assigneeClass}" onchange="changeLeadAssignee('${lead.id}', this.value, this)" title="Change assigned sales executive">
+                                ${assigneeOpts}
+                            </select>
+                        </td>
+
+                        <!-- Col 9: Site Visit / KSEB -->
+                        <td class="small">
+                            ${siteVisit ? `
+                                <div class="mb-1">
+                                    <span class="badge bg-purple-subtle text-dark border fw-semibold" title="Site Visit Planned">
+                                        <i class="fa-solid fa-calendar-day text-primary me-1"></i>${siteVisit}
+                                    </span>
+                                </div>
+                            ` : ''}
                             ${ksebNo ? `
-                                <span class="kseb-badge" title="Click to copy KSEB Consumer Number">
+                                <span class="kseb-badge font-mono" style="font-size: 0.72rem;" title="Click to copy KSEB Number">
                                     <i class="fa-solid fa-bolt text-warning"></i>
                                     <span>${ksebNo}</span>
                                     <button class="copy-btn" onclick="copyToClipboard('${ksebNo}', this)" title="Copy Number">
                                         <i class="fa-regular fa-copy"></i>
                                     </button>
                                 </span>
-                            ` : `<span class="text-muted small fst-italic">Not provided</span>`}
+                            ` : (!siteVisit ? `<span class="text-muted small fst-italic">Pending</span>` : '')}
                         </td>
-                        <td class="small">
-                            <span class="badge bg-light text-dark border fw-semibold">${service}</span>
-                        </td>
-                        <td class="small text-muted">
-                            <i class="fa-solid fa-location-dot text-danger me-1" style="font-size: 0.75rem;"></i>
-                            ${location}
-                        </td>
-                        <td class="small text-muted font-mono" style="font-size: 0.75rem;" title="${page}">
-                            ${truncateString(page, 22)}
-                        </td>
+
+                        <!-- Col 10: Status -->
                         <td>
                             <select class="form-select form-select-sm status-select ${statusClass}" onchange="changeLeadStatus('${lead.id}', this.value, this)">
                                 <option value="New" ${status === 'New' ? 'selected' : ''}>New</option>
@@ -1094,8 +1468,10 @@
                                 <option value="Lost" ${status === 'Lost' ? 'selected' : ''}>Lost / Closed</option>
                             </select>
                         </td>
+
+                        <!-- Col 11: Actions -->
                         <td class="text-center text-nowrap">
-                            <button class="action-icon-btn text-primary" onclick="openLeadModal('${lead.id}')" title="Edit Customer Details & Notes">
+                            <button class="action-icon-btn text-primary" onclick="openLeadModal('${lead.id}')" title="Edit Customer Details & Assignment">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                             <button class="action-icon-btn text-danger ms-1" onclick="confirmDeleteLead('${lead.id}', '${safeName}')" title="Delete This Lead">
@@ -1149,18 +1525,51 @@
             const val = document.getElementById('detailConsumerNumber').value;
             if (val) {
                 navigator.clipboard.writeText(val);
-                alert('KSEB Consumer Number copied to clipboard: ' + val);
+                showLeadToast('KSEB Consumer Number copied: ' + val);
+            }
+        }
+
+        // 1-Click Update Assignee directly to Firestore (Handover to Sales Executive)
+        async function changeLeadAssignee(leadId, newAssignee, selectElement) {
+            try {
+                const lead = allLeads.find(l => l.id === leadId);
+                if (lead) lead.assignedTo = newAssignee;
+
+                if (selectElement) {
+                    selectElement.className = 'form-select form-select-sm assignee-select ' + (newAssignee === 'Unassigned' ? 'unassigned' : 'assigned');
+                }
+
+                // 1. Try Firebase SDK
+                if (typeof db !== 'undefined' && db) {
+                    await db.collection('solis').doc('forms').collection('submissions').doc(leadId).update({
+                        assignedTo: newAssignee
+                    });
+                } else {
+                    // 2. Fallback to Firestore REST PATCH
+                    const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${leadId}?updateMask.fieldPaths=assignedTo&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
+                    await fetch(patchUrl, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fields: {
+                                assignedTo: { stringValue: newAssignee }
+                            }
+                        })
+                    });
+                }
+                showLeadToast(`Lead handed over to ${newAssignee}`);
+            } catch (err) {
+                console.error('Failed to update assignee:', err);
+                alert('Could not update assignee: ' + err.message);
             }
         }
 
         // Update Lead Status directly to Firestore
         async function changeLeadStatus(leadId, newStatus, selectElement) {
             try {
-                // Update local memory
                 const lead = allLeads.find(l => l.id === leadId);
                 if (lead) lead.status = newStatus;
 
-                // Update visual dropdown style
                 if (selectElement) {
                     selectElement.className = 'form-select form-select-sm status-select';
                     const sLow = newStatus.toLowerCase();
@@ -1174,13 +1583,11 @@
 
                 updateStats();
 
-                // 1. Try Firebase SDK
                 if (typeof db !== 'undefined' && db) {
                     await db.collection('solis').doc('forms').collection('submissions').doc(leadId).update({
                         status: newStatus
                     });
                 } else {
-                    // 2. Fallback to Firestore REST PATCH
                     const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${leadId}?updateMask.fieldPaths=status&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
                     await fetch(patchUrl, {
                         method: 'PATCH',
@@ -1192,6 +1599,7 @@
                         })
                     });
                 }
+                showLeadToast(`Status updated to ${newStatus}`);
             } catch (err) {
                 console.error('Failed to update status in Firestore:', err);
             }
@@ -1203,18 +1611,26 @@
             if (!lead) return;
             activeModalLead = lead;
 
-            document.getElementById('modalCustomerName').textContent = 'Edit: ' + (lead.name || 'Customer Details');
-            document.getElementById('modalDateBadge').textContent = 'Submitted on: ' + formatLeadDateTime(lead.createdAt);
+            document.getElementById('modalCustomerName').textContent = 'Edit Lead: ' + (lead.name || 'Customer');
+            document.getElementById('modalDateBadge').textContent = 'Recorded on: ' + formatLeadDateTime(lead.leadDate || lead.createdAt);
+            
+            // Populate fields
+            document.getElementById('detailLeadNumber').value = lead.leadNumber || '';
+            document.getElementById('detailLeadDate').value = (lead.leadDate || (lead.createdAt ? lead.createdAt.split('T')[0] : ''));
+            document.getElementById('detailLeadSource').value = lead.source || lead.leadSource || 'WhatsApp';
             document.getElementById('detailName').value = lead.name || '';
             document.getElementById('detailPhone').value = lead.phone || '';
             document.getElementById('detailConsumerNumber').value = lead.consumerNumber || '';
             document.getElementById('detailEmail').value = lead.email || '';
-            document.getElementById('detailService').value = lead.service || 'Solar Installation';
-            document.getElementById('detailLocation').value = lead.location || 'Kerala';
+            document.getElementById('detailService').value = lead.service || lead.leadType || '3kW Rooftop Solar (PM Surya Ghar)';
+            document.getElementById('detailPlace').value = lead.place || '';
+            document.getElementById('detailLocation').value = lead.district || lead.location || 'Pathanamthitta';
+            document.getElementById('detailSiteVisit').value = lead.siteVisitPlan || '';
             document.getElementById('detailPage').value = lead.page || '/';
             document.getElementById('detailMessage').value = lead.message || '';
             document.getElementById('detailStaffNotes').value = lead.staffNotes || '';
             document.getElementById('modalStatusSelect').value = lead.status || 'New';
+            document.getElementById('detailAssignee').value = lead.assignedTo || 'Unassigned';
 
             // Links
             const cleanPhone = (lead.phone || '').replace(/[^0-9]/g, '');
@@ -1239,48 +1655,51 @@
             }
 
             const updatedData = {
-                name: document.getElementById('detailName').value.trim() || 'Website Visitor',
+                leadNumber: document.getElementById('detailLeadNumber').value.trim() || activeModalLead.leadNumber,
+                leadDate: document.getElementById('detailLeadDate').value.trim(),
+                source: document.getElementById('detailLeadSource').value,
+                leadSource: document.getElementById('detailLeadSource').value,
+                name: document.getElementById('detailName').value.trim() || 'Customer',
                 phone: document.getElementById('detailPhone').value.trim(),
                 consumerNumber: document.getElementById('detailConsumerNumber').value.trim(),
                 email: document.getElementById('detailEmail').value.trim(),
                 service: document.getElementById('detailService').value.trim(),
-                location: document.getElementById('detailLocation').value.trim(),
+                leadType: document.getElementById('detailService').value.trim(),
+                place: document.getElementById('detailPlace').value.trim(),
+                district: document.getElementById('detailLocation').value.trim(),
+                location: (document.getElementById('detailPlace').value.trim() ? `${document.getElementById('detailPlace').value.trim()}, ${document.getElementById('detailLocation').value.trim()}` : document.getElementById('detailLocation').value.trim()),
+                siteVisitPlan: document.getElementById('detailSiteVisit').value.trim(),
+                assignedTo: document.getElementById('detailAssignee').value,
                 status: document.getElementById('modalStatusSelect').value,
                 message: document.getElementById('detailMessage').value.trim(),
                 staffNotes: document.getElementById('detailStaffNotes').value.trim()
             };
 
             try {
-                // Update in-memory
                 Object.assign(activeModalLead, updatedData);
 
-                // 1. Try Firebase SDK
                 if (typeof db !== 'undefined' && db) {
                     await db.collection('solis').doc('forms').collection('submissions').doc(activeModalLead.id).update(updatedData);
                 } else {
-                    // 2. Fallback to Firestore REST PATCH
-                    const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${activeModalLead.id}?updateMask.fieldPaths=name&updateMask.fieldPaths=phone&updateMask.fieldPaths=consumerNumber&updateMask.fieldPaths=email&updateMask.fieldPaths=service&updateMask.fieldPaths=location&updateMask.fieldPaths=status&updateMask.fieldPaths=message&updateMask.fieldPaths=staffNotes&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
+                    const patchFields = ['leadNumber','leadDate','source','leadSource','name','phone','consumerNumber','email','service','leadType','place','district','location','siteVisitPlan','assignedTo','status','message','staffNotes'];
+                    const maskStr = patchFields.map(f => `updateMask.fieldPaths=${f}`).join('&');
+                    const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${activeModalLead.id}?${maskStr}&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
+                    
+                    const fObj = {};
+                    patchFields.forEach(k => {
+                        fObj[k] = { stringValue: String(updatedData[k] || '') };
+                    });
+
                     await fetch(patchUrl, {
                         method: 'PATCH',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            fields: {
-                                name: { stringValue: updatedData.name },
-                                phone: { stringValue: updatedData.phone },
-                                consumerNumber: { stringValue: updatedData.consumerNumber },
-                                email: { stringValue: updatedData.email },
-                                service: { stringValue: updatedData.service },
-                                location: { stringValue: updatedData.location },
-                                status: { stringValue: updatedData.status },
-                                message: { stringValue: updatedData.message },
-                                staffNotes: { stringValue: updatedData.staffNotes }
-                            }
-                        })
+                        body: JSON.stringify({ fields: fObj })
                     });
                 }
 
                 updateStats();
                 applyFilters();
+                showLeadToast('Lead changes saved successfully');
 
                 const modalInstance = bootstrap.Modal.getInstance(document.getElementById('leadDetailModal'));
                 if (modalInstance) modalInstance.hide();
@@ -1297,25 +1716,22 @@
 
         // Delete Lead with confirmation
         async function deleteLead(leadId, leadName) {
-            const confirmMsg = `Are you sure you want to permanently delete the contact submission for "${leadName || 'this customer'}"?\n\nThis action cannot be undone.`;
+            const confirmMsg = `Are you sure you want to permanently delete the inquiry for "${leadName || 'this customer'}"?\n\nThis action cannot be undone.`;
             if (!confirm(confirmMsg)) return;
 
             try {
-                // 1. Try Firebase SDK
                 if (typeof db !== 'undefined' && db) {
                     await db.collection('solis').doc('forms').collection('submissions').doc(leadId).delete();
                 } else {
-                    // 2. Fallback to Firestore REST DELETE
                     const deleteUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${leadId}?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
                     await fetch(deleteUrl, { method: 'DELETE' });
                 }
 
-                // Remove from local array
                 allLeads = allLeads.filter(l => l.id !== leadId);
                 updateStats();
                 applyFilters();
+                showLeadToast('Lead permanently deleted');
 
-                // Close modal if open
                 const modalEl = document.getElementById('leadDetailModal');
                 const modalInstance = bootstrap.Modal.getInstance(modalEl);
                 if (modalInstance) modalInstance.hide();
@@ -1334,72 +1750,81 @@
             deleteLead(activeModalLead.id, activeModalLead.name);
         }
 
-        // Add Manual Lead
+        // Add Manual Call / WhatsApp Lead
         async function handleManualLeadSubmit(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('saveLeadBtn');
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Saving...';
 
+            const leadNumber = document.getElementById('newLeadNumber').value.trim() || generateNextLeadNumber();
+            const leadDate = document.getElementById('newLeadDate').value.trim() || new Date().toISOString().split('T')[0];
+            const source = document.getElementById('newLeadSource').value;
             const name = document.getElementById('newLeadName').value.trim();
             const phone = document.getElementById('newLeadPhone').value.trim();
-            const consumerNumber = document.getElementById('newLeadConsumerNo').value.trim();
-            const email = document.getElementById('newLeadEmail').value.trim();
             const service = document.getElementById('newLeadService').value;
+            const assignedTo = document.getElementById('newLeadAssignee').value || 'Unassigned';
+            const place = document.getElementById('newLeadPlace').value.trim();
             const district = document.getElementById('newLeadDistrict').value;
+            const siteVisitPlan = document.getElementById('newLeadSiteVisit').value.trim();
+            const consumerNumber = document.getElementById('newLeadConsumerNo').value.trim();
+            const email = (document.getElementById('newLeadEmail') ? document.getElementById('newLeadEmail').value.trim() : '');
             const message = document.getElementById('newLeadMessage').value.trim();
             const timestampIso = new Date().toISOString();
 
+            const fullLocation = place ? `${place}, ${district}` : `${district}, Kerala`;
+            const initStatus = siteVisitPlan ? 'Survey Scheduled' : 'New';
+
             try {
                 const leadData = {
+                    leadNumber,
+                    leadDate,
                     name,
                     phone,
                     consumerNumber,
                     email,
                     service,
-                    location: `${district}, Kerala`,
+                    leadType: service,
+                    assignedTo,
+                    place,
+                    district,
+                    location: fullLocation,
+                    siteVisitPlan,
                     message,
-                    staffNotes: 'Manual walk-in / office entry',
-                    page: '/leads/manual-entry',
-                    source: 'Office / Walk-In',
-                    status: 'New',
+                    staffNotes: `Recorded via ${source} on ${leadDate}. Handed over to: ${assignedTo}`,
+                    page: `/manual-${source.toLowerCase().replace(/[^a-z0-9]/g, '-')}`,
+                    source: source,
+                    leadSource: source,
+                    status: initStatus,
                     createdAt: timestampIso
                 };
 
                 if (typeof db !== 'undefined' && db) {
                     await db.collection('solis').doc('forms').collection('submissions').add(leadData);
                 } else {
+                    const fieldsObj = {};
+                    Object.keys(leadData).forEach(k => {
+                        fieldsObj[k] = { stringValue: String(leadData[k]) };
+                    });
                     await fetch(FB_REST_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            fields: {
-                                name: { stringValue: leadData.name },
-                                phone: { stringValue: leadData.phone },
-                                consumerNumber: { stringValue: leadData.consumerNumber },
-                                email: { stringValue: leadData.email },
-                                service: { stringValue: leadData.service },
-                                location: { stringValue: leadData.location },
-                                message: { stringValue: leadData.message },
-                                staffNotes: { stringValue: leadData.staffNotes },
-                                page: { stringValue: leadData.page },
-                                source: { stringValue: leadData.source },
-                                status: { stringValue: leadData.status },
-                                createdAt: { stringValue: leadData.createdAt }
-                            }
-                        })
+                        body: JSON.stringify({ fields: fieldsObj })
                     });
                 }
 
                 // Close modal and reset form
                 document.getElementById('manualLeadForm').reset();
-                bootstrap.Modal.getInstance(document.getElementById('newLeadModal')).hide();
+                const modalInst = bootstrap.Modal.getInstance(document.getElementById('newLeadModal'));
+                if (modalInst) modalInst.hide();
+                
+                showLeadToast(`Lead ${leadNumber} saved & assigned to ${assignedTo}`);
                 fetchLeadsData(true);
             } catch (err) {
                 alert('Failed to save lead: ' + err.message);
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fa-solid fa-check me-1"></i> Save Lead to Tracker';
+                submitBtn.innerHTML = '<i class="fa-solid fa-check me-1"></i> Save & Assign Lead';
             }
         }
 
@@ -1411,38 +1836,42 @@
             }
 
             const headers = [
-                "ID",
-                "Date & Time",
+                "Lead Number",
+                "Lead Date",
                 "Customer Name",
                 "Contact Number",
+                "Type of Lead",
+                "Lead Source",
+                "Place / Area",
+                "District",
+                "Site Visit Plan",
+                "Assigned To",
+                "Lead Status",
                 "KSEB Consumer Number",
                 "Email Address",
-                "Service Requested",
-                "District / Location",
-                "Traffic Source",
-                "Origin Page",
-                "Lead Status",
                 "Customer Note",
                 "Staff Notes"
             ];
 
             const rows = filteredLeads.map((lead, idx) => [
-                idx + 1,
-                formatLeadDateTime(lead.createdAt),
+                cleanCsv(lead.leadNumber || `SOL-${idx + 1}`),
+                cleanCsv(lead.leadDate || formatLeadDateTime(lead.createdAt)),
                 cleanCsv(lead.name),
                 cleanCsv(lead.phone),
+                cleanCsv(lead.leadType || lead.service),
+                cleanCsv(lead.source || lead.leadSource),
+                cleanCsv(lead.place),
+                cleanCsv(lead.district || lead.location),
+                cleanCsv(lead.siteVisitPlan),
+                cleanCsv(lead.assignedTo || 'Unassigned'),
+                cleanCsv(lead.status),
                 cleanCsv(lead.consumerNumber),
                 cleanCsv(lead.email),
-                cleanCsv(lead.service),
-                cleanCsv(lead.location),
-                cleanCsv(lead.source),
-                cleanCsv(lead.page),
-                cleanCsv(lead.status),
                 cleanCsv(lead.message),
                 cleanCsv(lead.staffNotes)
             ]);
 
-            let csvContent = "\uFEFF"; // UTF-8 BOM so Excel opens with proper encoding
+            let csvContent = "\uFEFF";
             csvContent += headers.map(h => `"${h}"`).join(",") + "\r\n";
             rows.forEach(row => {
                 csvContent += row.map(col => `"${col}"`).join(",") + "\r\n";
@@ -1453,10 +1882,33 @@
             const link = document.createElement("a");
             const dateStr = new Date().toISOString().slice(0, 10);
             link.setAttribute("href", url);
-            link.setAttribute("download", `Solis_Green_Leads_${dateStr}.csv`);
+            link.setAttribute("download", `Solis_Leads_Report_${dateStr}.csv`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+        }
+
+        // Floating Toast Notification
+        function showLeadToast(msg) {
+            let container = document.getElementById('leadToastContainer');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'leadToastContainer';
+                document.body.appendChild(container);
+            }
+            const toast = document.createElement('div');
+            toast.className = 'alert alert-success shadow-lg border-0 py-2 px-3 small d-flex align-items-center gap-2 mb-2 text-dark fw-semibold';
+            toast.style.background = '#dcfce7';
+            toast.style.borderColor = '#86efac';
+            toast.style.borderRadius = '10px';
+            toast.style.boxShadow = '0 8px 20px rgba(0,0,0,0.12)';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-success fs-6"></i> <span>${escapeHtml(msg)}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.4s ease';
+                setTimeout(() => toast.remove(), 400);
+            }, 3200);
         }
 
         function cleanCsv(val) {
