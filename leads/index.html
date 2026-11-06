@@ -431,13 +431,43 @@
     <!-- Main Container -->
     <div class="container-fluid px-3 px-md-5 py-4">
 
+        <!-- Lead Tracker Channel Switcher (Dual Dedicated Trackers: Web Forms vs Manual & Direct) -->
+        <div class="card border-0 shadow-sm rounded-4 p-2 mb-4 bg-white border">
+            <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+                <div class="nav nav-pills p-1 bg-light rounded-pill border" id="leadTrackerTabs" role="tablist">
+                    <button class="nav-link active rounded-pill fw-bold px-3 py-2 d-flex align-items-center gap-2" id="tabWebBtn" onclick="switchTrackerView('web')">
+                        <i class="fa-solid fa-globe text-primary"></i>
+                        <span>1. Website Form Submissions</span>
+                        <span class="badge bg-primary text-white rounded-pill font-mono px-2" id="tabWebCount">0</span>
+                    </button>
+                    <button class="nav-link rounded-pill fw-bold px-3 py-2 d-flex align-items-center gap-2 text-muted" id="tabManualBtn" onclick="switchTrackerView('manual')">
+                        <i class="fa-brands fa-whatsapp text-success"></i>
+                        <span>2. Manual & Direct Leads (WhatsApp / Calls / Referrals)</span>
+                        <span class="badge bg-success text-white rounded-pill font-mono px-2" id="tabManualCount">0</span>
+                    </button>
+                    <button class="nav-link rounded-pill fw-semibold px-3 py-2 d-flex align-items-center gap-2 text-muted" id="tabAllBtn" onclick="switchTrackerView('all')">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>All Combined</span>
+                        <span class="badge bg-secondary text-white rounded-pill font-mono px-2" id="tabAllCount">0</span>
+                    </button>
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <button type="button" class="btn btn-success btn-sm fw-bold px-3 py-2 rounded-pill d-flex align-items-center gap-2 shadow-sm" data-bs-toggle="modal" data-bs-target="#newLeadModal" onclick="prepareNewLeadModal()" title="Record Quick Lead (Call / WhatsApp / Referral)">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>+ Record Call / WhatsApp / Referral Lead</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Header Title Banner -->
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
             <div>
-                <h2 class="fw-bold font-display mb-1 text-dark d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-file-excel text-success"></i> Submitted Forms & Inquiries Tracker
+                <h2 class="fw-bold font-display mb-1 text-dark d-flex align-items-center gap-2" id="trackerMainHeading">
+                    <i class="fa-solid fa-globe text-primary"></i> Website Form Submissions Tracker
                 </h2>
-                <p class="text-muted mb-0">Live spreadsheet view of customer quote requests, KSEB consumer numbers, and solar installation inquiries across Kerala.</p>
+                <p class="text-muted mb-0" id="trackerMainDesc">Live spreadsheet view of customer quote requests, KSEB consumer numbers, and solar installation inquiries auto-captured from solisgreenindia.in website forms.</p>
             </div>
 
             <div class="d-flex align-items-center gap-2">
@@ -463,14 +493,14 @@
                 <div class="stat-card">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <span class="text-muted small fw-semibold text-uppercase">Total Inquiries</span>
+                            <span class="text-muted small fw-semibold text-uppercase" id="statCard1Label">Total Web Inquiries</span>
                             <h3 class="fw-bold font-display mb-0 mt-1" id="statTotalSubmissions">0</h3>
                         </div>
                         <div class="stat-icon" style="background: linear-gradient(135deg, #107c41 0%, #15803d 100%);">
                             <i class="fa-solid fa-list-check"></i>
                         </div>
                     </div>
-                    <small class="text-muted mt-2 d-block">Website Quote Fills</small>
+                    <small class="text-muted mt-2 d-block" id="statCard1Sub">Website Quote Fills</small>
                 </div>
             </div>
 
@@ -527,14 +557,14 @@
                 <div class="stat-card">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <span class="text-muted small fw-semibold text-uppercase">KSEB Numbers</span>
+                            <span class="text-muted small fw-semibold text-uppercase" id="statCard5Label">KSEB Numbers</span>
                             <h3 class="fw-bold font-display mb-0 mt-1 text-warning" style="color: #b45309 !important;" id="statKsebNumbers">0</h3>
                         </div>
                         <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
                             <i class="fa-solid fa-bolt"></i>
                         </div>
                     </div>
-                    <small class="text-muted mt-2 d-block">Ready for PM Surya Ghar</small>
+                    <small class="text-muted mt-2 d-block" id="statCard5Sub">Ready for PM Surya Ghar</small>
                 </div>
             </div>
 
@@ -864,6 +894,11 @@
                                     <i class="fa-solid fa-phone"></i> Call
                                 </label>
 
+                                <input type="radio" class="btn-check" name="newLeadSourceRadio" id="srcRef" value="Referral" onchange="document.getElementById('newLeadSource').value='Referral'">
+                                <label class="btn btn-outline-warning border-0 px-2 py-1 fw-semibold text-dark" for="srcRef">
+                                    <i class="fa-solid fa-handshake text-warning"></i> Referral
+                                </label>
+
                                 <input type="radio" class="btn-check" name="newLeadSourceRadio" id="srcWalkin" value="Walk-In" onchange="document.getElementById('newLeadSource').value='Walk-In'">
                                 <label class="btn btn-outline-secondary border-0 px-2 py-1 fw-semibold" for="srcWalkin">
                                     <i class="fa-solid fa-person-walking"></i> Walk-In
@@ -987,6 +1022,76 @@
         let filteredLeads = [];
         let activeModalLead = null;
         let unsubscribeFirestore = null;
+        let activeTrackerTab = 'web'; // 'web' = Website Form Submissions | 'manual' = Manual (WhatsApp/Call/Referral) | 'all' = All
+
+        // Classification helpers for Dual Trackers
+        function isWebsiteLead(lead) {
+            if (lead.isManual === true) return false;
+            const src = (lead.source || lead.leadSource || '').toLowerCase();
+            const manualKeywords = ['whatsapp', 'call', 'phone', 'walk', 'referral', 'partner', 'manual'];
+            if (manualKeywords.some(k => src.includes(k))) return false;
+            return true;
+        }
+
+        function isManualLead(lead) {
+            if (lead.isManual === true) return true;
+            const src = (lead.source || lead.leadSource || '').toLowerCase();
+            const manualKeywords = ['whatsapp', 'call', 'phone', 'walk', 'referral', 'partner', 'manual'];
+            return manualKeywords.some(k => src.includes(k));
+        }
+
+        // Switch between Dual Trackers (Web Form Submissions vs Manual Leads)
+        function switchTrackerView(tabName) {
+            activeTrackerTab = tabName;
+
+            // Update Tab UI
+            ['tabWebBtn', 'tabManualBtn', 'tabAllBtn'].forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.classList.remove('active', 'bg-white', 'shadow-sm', 'text-dark');
+                el.classList.add('text-muted');
+            });
+
+            const currentBtn = document.getElementById(tabName === 'web' ? 'tabWebBtn' : (tabName === 'manual' ? 'tabManualBtn' : 'tabAllBtn'));
+            if (currentBtn) {
+                currentBtn.classList.add('active', 'bg-white', 'shadow-sm', 'text-dark');
+                currentBtn.classList.remove('text-muted');
+            }
+
+            // Contextual Header updates
+            const heading = document.getElementById('trackerMainHeading');
+            const desc = document.getElementById('trackerMainDesc');
+            const stat1Label = document.getElementById('statCard1Label');
+            const stat1Sub = document.getElementById('statCard1Sub');
+            const stat5Label = document.getElementById('statCard5Label');
+            const stat5Sub = document.getElementById('statCard5Sub');
+
+            if (tabName === 'web') {
+                if (heading) heading.innerHTML = '<i class="fa-solid fa-globe text-primary me-2"></i> Website Form Submissions Tracker';
+                if (desc) desc.textContent = 'Live customer quote requests, KSEB consumer numbers, and solar installation inquiries auto-captured from solisgreenindia.in website forms.';
+                if (stat1Label) stat1Label.textContent = 'Total Web Inquiries';
+                if (stat1Sub) stat1Sub.textContent = 'Website Quote Fills';
+                if (stat5Label) stat5Label.textContent = 'KSEB Numbers';
+                if (stat5Sub) stat5Sub.textContent = 'Ready for PM Surya Ghar';
+            } else if (tabName === 'manual') {
+                if (heading) heading.innerHTML = '<i class="fa-brands fa-whatsapp text-success me-2"></i> Manual & Direct Inquiries Tracker';
+                if (desc) desc.textContent = 'Direct inquiries received from WhatsApp messages, incoming phone calls, customer referrals, and office walk-ins entered manually with sales executive assignment.';
+                if (stat1Label) stat1Label.textContent = 'Total Direct Inquiries';
+                if (stat1Sub) stat1Sub.textContent = 'WhatsApp / Calls / Referrals';
+                if (stat5Label) stat5Label.textContent = 'Direct Conversations';
+                if (stat5Sub) stat5Sub.textContent = 'WhatsApp & Phone Contacts';
+            } else {
+                if (heading) heading.innerHTML = '<i class="fa-solid fa-file-excel text-success me-2"></i> Master Leads & Inquiries Stream';
+                if (desc) desc.textContent = 'Unified spreadsheet view of all incoming solar installation leads across web forms, WhatsApp chats, direct phone calls, and referrals.';
+                if (stat1Label) stat1Label.textContent = 'Total Inquiries';
+                if (stat1Sub) stat1Sub.textContent = 'All Sources Combined';
+                if (stat5Label) stat5Label.textContent = 'KSEB Numbers';
+                if (stat5Sub) stat5Sub.textContent = 'Ready for PM Surya Ghar';
+            }
+
+            updateStats();
+            applyFilters();
+        }
 
         // Sales Executives Registry for Handover
         let activeSalesUsers = [
@@ -1145,7 +1250,8 @@
                                 source: data.source || data.leadSource || 'Website Form',
                                 leadSource: data.leadSource || data.source || 'Website Form',
                                 status: data.status || 'New',
-                                createdAt: data.createdAt || new Date().toISOString()
+                                createdAt: data.createdAt || new Date().toISOString(),
+                                isManual: Boolean(data.isManual)
                             });
                         });
                         
@@ -1206,7 +1312,8 @@
                             source: f.source ? f.source.stringValue : (f.leadSource ? f.leadSource.stringValue : 'Website Form'),
                             leadSource: f.leadSource ? f.leadSource.stringValue : (f.source ? f.source.stringValue : 'Website Form'),
                             status: f.status ? f.status.stringValue : 'New',
-                            createdAt: f.createdAt ? f.createdAt.stringValue : new Date().toISOString()
+                            createdAt: f.createdAt ? f.createdAt.stringValue : new Date().toISOString(),
+                            isManual: f.isManual ? Boolean(f.isManual.booleanValue) : false
                         });
                     });
                 }
@@ -1231,23 +1338,45 @@
             }
         }
 
-        // Update top KPI statistics
+        // Update top KPI statistics (Contextualized for activeTrackerTab)
         function updateStats() {
-            const total = allLeads.length;
-            const newCount = allLeads.filter(l => (l.status || 'New').toLowerCase() === 'new').length;
-            const surveyCount = allLeads.filter(l => (l.status || '').toLowerCase().includes('survey') || (l.siteVisitPlan && l.siteVisitPlan.trim().length > 0)).length;
-            const wonCount = allLeads.filter(l => (l.status || '').toLowerCase().includes('won')).length;
-            const ksebCount = allLeads.filter(l => l.consumerNumber && l.consumerNumber.trim().length >= 8).length;
+            const webLeads = allLeads.filter(isWebsiteLead);
+            const manualLeads = allLeads.filter(isManualLead);
+
+            // Update Tab Badges
+            if (document.getElementById('tabWebCount')) document.getElementById('tabWebCount').textContent = webLeads.length;
+            if (document.getElementById('tabManualCount')) document.getElementById('tabManualCount').textContent = manualLeads.length;
+            if (document.getElementById('tabAllCount')) document.getElementById('tabAllCount').textContent = allLeads.length;
+
+            // Target pool based on active tracker view
+            let currentPool = allLeads;
+            if (activeTrackerTab === 'web') currentPool = webLeads;
+            else if (activeTrackerTab === 'manual') currentPool = manualLeads;
+
+            const total = currentPool.length;
+            const newCount = currentPool.filter(l => (l.status || 'New').toLowerCase() === 'new').length;
+            const surveyCount = currentPool.filter(l => (l.status || '').toLowerCase().includes('survey') || (l.siteVisitPlan && l.siteVisitPlan.trim().length > 0)).length;
+            const wonCount = currentPool.filter(l => (l.status || '').toLowerCase().includes('won')).length;
+            
+            let card5Count = 0;
+            if (activeTrackerTab === 'manual') {
+                card5Count = currentPool.filter(l => {
+                    const s = (l.source || l.leadSource || '').toLowerCase();
+                    return s.includes('whatsapp') || s.includes('call') || s.includes('phone') || s.includes('referral');
+                }).length;
+            } else {
+                card5Count = currentPool.filter(l => l.consumerNumber && l.consumerNumber.trim().length >= 8).length;
+            }
 
             document.getElementById('statTotalSubmissions').textContent = total;
             document.getElementById('statNewLeads').textContent = newCount;
             document.getElementById('statSurveyScheduled').textContent = surveyCount;
             document.getElementById('statWonLeads').textContent = wonCount;
-            document.getElementById('statKsebNumbers').textContent = ksebCount;
+            document.getElementById('statKsebNumbers').textContent = card5Count;
             document.getElementById('totalCount').textContent = total;
         }
 
-        // Filter Leads based on Search, Status, Assignee, Source, District, Date
+        // Filter Leads based on Active Tracker (Web vs Manual), Search, Status, Assignee, Source, District, Date
         function applyFilters() {
             const searchQuery = (document.getElementById('tableSearchInput').value || '').trim().toLowerCase();
             const statusVal = document.getElementById('statusFilter').value;
@@ -1259,7 +1388,11 @@
             const now = new Date();
 
             filteredLeads = allLeads.filter(lead => {
-                // Search query
+                // 1. Dual Tracker Segregation
+                if (activeTrackerTab === 'web' && !isWebsiteLead(lead)) return false;
+                if (activeTrackerTab === 'manual' && !isManualLead(lead)) return false;
+
+                // 2. Search query
                 if (searchQuery) {
                     const matchName = (lead.name || '').toLowerCase().includes(searchQuery);
                     const matchPhone = (lead.phone || '').toLowerCase().includes(searchQuery);
@@ -1275,14 +1408,14 @@
                     }
                 }
 
-                // Status
+                // 3. Status
                 if (statusVal !== 'all') {
                     if ((lead.status || 'New').toLowerCase() !== statusVal.toLowerCase()) {
                         return false;
                     }
                 }
 
-                // Assignee Handover Filter
+                // 4. Assignee Handover Filter
                 if (assigneeVal !== 'all') {
                     if (assigneeVal === 'unassigned') {
                         if (lead.assignedTo && lead.assignedTo !== 'Unassigned' && lead.assignedTo.trim() !== '') return false;
@@ -1291,7 +1424,7 @@
                     }
                 }
 
-                // Lead Source Filter
+                // 5. Lead Source Filter
                 if (sourceVal !== 'all') {
                     const leadSrc = (lead.source || lead.leadSource || '').toLowerCase();
                     if (!leadSrc.includes(sourceVal.toLowerCase())) {
@@ -1299,7 +1432,7 @@
                     }
                 }
 
-                // District
+                // 6. District
                 if (districtVal !== 'all') {
                     const fullLoc = ((lead.place || '') + ' ' + (lead.district || '') + ' ' + (lead.location || '')).toLowerCase();
                     if (!fullLoc.includes(districtVal.toLowerCase())) {
@@ -1307,7 +1440,7 @@
                     }
                 }
 
-                // Date filter
+                // 7. Date filter
                 if (dateVal !== 'all') {
                     const leadDate = new Date(lead.leadDate || lead.createdAt);
                     if (dateVal === 'today') {
@@ -1332,14 +1465,52 @@
         function renderTable() {
             const tbody = document.getElementById('leadsTableBody');
             if (filteredLeads.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="11" class="text-center py-5 text-muted">
-                            <i class="fa-solid fa-inbox fs-3 mb-2 d-block opacity-50"></i>
-                            No submissions match the selected filters.
-                        </td>
-                    </tr>
-                `;
+                let emptyHtml = '';
+                if (activeTrackerTab === 'web') {
+                    emptyHtml = `
+                        <tr>
+                            <td colspan="11" class="text-center py-5">
+                                <div class="py-4">
+                                    <i class="fa-solid fa-globe text-primary opacity-50 mb-3" style="font-size: 2.5rem;"></i>
+                                    <h6 class="fw-bold text-dark mb-1">No Website Form Submissions Yet</h6>
+                                    <p class="small text-muted mb-3" style="max-width: 500px; margin: 0 auto;">
+                                        Customer quote requests and PM Surya Ghar inquiries submitted through the website cost calculator will appear here automatically.
+                                    </p>
+                                    <a href="/" target="_blank" class="btn btn-sm btn-outline-primary fw-bold rounded-pill px-3 shadow-sm">
+                                        <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Visit Public Website
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                } else if (activeTrackerTab === 'manual') {
+                    emptyHtml = `
+                        <tr>
+                            <td colspan="11" class="text-center py-5">
+                                <div class="py-4">
+                                    <i class="fa-brands fa-whatsapp text-success opacity-50 mb-3" style="font-size: 2.5rem;"></i>
+                                    <h6 class="fw-bold text-dark mb-1">No Manual Inquiries Recorded Yet</h6>
+                                    <p class="small text-muted mb-3" style="max-width: 500px; margin: 0 auto;">
+                                        Record incoming customer phone calls, WhatsApp inquiries, referrals, or office walk-ins in 15 seconds.
+                                    </p>
+                                    <button type="button" class="btn btn-sm btn-success fw-bold rounded-pill px-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#newLeadModal" onclick="prepareNewLeadModal()">
+                                        <i class="fa-solid fa-plus me-1"></i> Record First Call / WhatsApp / Referral Lead
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    emptyHtml = `
+                        <tr>
+                            <td colspan="11" class="text-center py-5 text-muted">
+                                <i class="fa-solid fa-inbox fs-3 mb-2 d-block opacity-50"></i>
+                                No submissions match the selected filters.
+                            </td>
+                        </tr>
+                    `;
+                }
+                tbody.innerHTML = emptyHtml;
                 return;
             }
 
@@ -1812,7 +1983,8 @@
                     source: source,
                     leadSource: source,
                     status: initStatus,
-                    createdAt: timestampIso
+                    createdAt: timestampIso,
+                    isManual: true
                 };
 
                 if (typeof db !== 'undefined' && db) {
@@ -1834,7 +2006,7 @@
                 const modalInst = bootstrap.Modal.getInstance(document.getElementById('newLeadModal'));
                 if (modalInst) modalInst.hide();
                 
-                showLeadToast(`Lead ${leadNumber} saved & assigned to ${assignedTo}`);
+                showLeadToast(`Lead ${leadNumber} saved & assigned to ${assignedTo}`); switchTrackerView('manual');
                 fetchLeadsData(true);
             } catch (err) {
                 alert('Failed to save lead: ' + err.message);
