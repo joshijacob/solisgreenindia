@@ -945,8 +945,10 @@
                                     <input type="hidden" id="newLeadNumber" value="SGES-26110001">
                                 </div>
                                 <span class="text-muted small">|</span>
-                                <span class="text-muted small fw-semibold" id="newLeadDateDisplay">Today</span>
-                                <input type="hidden" id="newLeadDate">
+                                <div class="d-flex align-items-center bg-white border rounded px-2 py-1 shadow-xs" style="cursor: pointer;" onclick="const el = document.getElementById('newLeadDate'); if(el.showPicker) el.showPicker(); else el.focus();" title="Click to select lead date">
+                                    <i class="fa-regular fa-calendar text-success me-1" style="font-size: 0.85rem;"></i>
+                                    <input type="date" class="border-0 bg-transparent fw-bold text-dark font-mono p-0 shadow-none" id="newLeadDate" style="font-size: 0.82rem; cursor: pointer; outline: none; width: 125px;" onchange="handleLeadDateChange(this.value)">
+                                </div>
                             </div>
                             
                             <!-- Source Pills -->
@@ -1380,10 +1382,11 @@
         }
 
         // Auto-Generate Next Sequential Lead Number in SGES-YYMM0001 format
-        function generateNextLeadNumber() {
-            const now = new Date();
-            const yy = now.getFullYear().toString().slice(-2);
-            const mm = (now.getMonth() + 1).toString().padStart(2, '0');
+        function generateNextLeadNumber(customDateStr) {
+            const d = customDateStr ? new Date(customDateStr) : new Date();
+            const validDate = isNaN(d.getTime()) ? new Date() : d;
+            const yy = validDate.getFullYear().toString().slice(-2);
+            const mm = (validDate.getMonth() + 1).toString().padStart(2, '0');
             const prefix = `SGES-${yy}${mm}`;
 
             let maxSeq = 0;
@@ -1413,12 +1416,10 @@
             return `${prefix}${nextSeq}`;
         }
 
-        // Prepare Add Lead Modal for Quick 15-second entry
-        function prepareNewLeadModal() {
-            const form = document.getElementById('manualLeadForm');
-            if (form) form.reset();
-
-            const nextNo = generateNextLeadNumber();
+        // Live update lead sequence when user changes the lead date in Quick Lead modal
+        function handleLeadDateChange(dateVal) {
+            if (!dateVal) return;
+            const nextNo = generateNextLeadNumber(dateVal);
             const parts = splitLeadNumber(nextNo);
             const numInput = document.getElementById('newLeadNumber');
             if (numInput) numInput.value = nextNo;
@@ -1426,17 +1427,29 @@
             if (numBadge) numBadge.textContent = parts.digits;
             const pfxBadge = document.getElementById('newLeadNumberPrefix');
             if (pfxBadge) pfxBadge.textContent = parts.prefix;
+        }
+
+        // Prepare Add Lead Modal for Quick 15-second entry
+        function prepareNewLeadModal() {
+            const form = document.getElementById('manualLeadForm');
+            if (form) form.reset();
 
             const today = new Date();
-            const todayIso = today.toISOString().split('T')[0];
+            const y = today.getFullYear();
+            const m = String(today.getMonth() + 1).padStart(2, '0');
+            const d = String(today.getDate()).padStart(2, '0');
+            const todayIso = `${y}-${m}-${d}`;
             const dateInput = document.getElementById('newLeadDate');
             if (dateInput) dateInput.value = todayIso;
 
-            const dateDisplay = document.getElementById('newLeadDateDisplay');
-            if (dateDisplay) {
-                const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-                dateDisplay.textContent = `${today.getDate().toString().padStart(2, '0')} ${months[today.getMonth()]} ${today.getFullYear()}`;
-            }
+            const nextNo = generateNextLeadNumber(todayIso);
+            const parts = splitLeadNumber(nextNo);
+            const numInput = document.getElementById('newLeadNumber');
+            if (numInput) numInput.value = nextNo;
+            const numBadge = document.getElementById('newLeadNumberBadge');
+            if (numBadge) numBadge.textContent = parts.digits;
+            const pfxBadge = document.getElementById('newLeadNumberPrefix');
+            if (pfxBadge) pfxBadge.textContent = parts.prefix;
 
             const sourceInput = document.getElementById('newLeadSource');
             if (sourceInput) sourceInput.value = 'WhatsApp';
