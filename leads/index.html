@@ -665,7 +665,7 @@
                 <table class="table table-hover excel-table" id="leadsTable">
                     <thead>
                         <tr>
-                            <th style="width: 55px;" class="text-center"># / ID</th>
+                            <th style="min-width: 95px;" class="text-center">Lead ID</th>
                             <th style="min-width: 125px;">Date</th>
                             <th style="min-width: 170px;">Customer Name</th>
                             <th style="min-width: 155px;">Contact & Chat</th>
@@ -1567,10 +1567,9 @@
 
                 html += `
                     <tr data-lead-id="${lead.id}">
-                        <!-- Col 1: Row # & Lead ID -->
+                        <!-- Col 1: Lead ID -->
                         <td class="text-center">
-                            <span class="text-muted fw-bold d-block" style="font-size: 0.75rem;">#${rowNum}</span>
-                            <span class="badge bg-light text-dark font-mono border" style="font-size: 0.7rem;">${leadNo}</span>
+                            <span class="badge bg-white text-dark font-mono border px-2 py-1" style="font-size: 0.78rem; letter-spacing: 0.02em;">${leadNo}</span>
                         </td>
 
                         <!-- Col 2: Date -->
