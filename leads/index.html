@@ -451,6 +451,10 @@
                     </div>
                 </div>
 
+                <button type="button" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill" onclick="openSettingsModal()" title="Settings & Dropdown Configuration">
+                    <i class="fa-solid fa-gear me-1 text-primary"></i> Settings
+                </button>
+
                 <a href="/Login/index.html" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill" title="Return to Modules Hub">
                     <i class="fa-solid fa-grip me-1"></i> Modules Hub
                 </a>
@@ -509,6 +513,10 @@
             </div>
 
             <div class="d-flex align-items-center gap-2">
+                <button type="button" class="btn btn-outline-dark btn-sm fw-bold px-3 rounded-pill d-flex align-items-center gap-1 shadow-sm" onclick="openSettingsModal()" title="Manage Dropdowns & Card Configurations">
+                    <i class="fa-solid fa-sliders text-primary"></i>
+                    <span class="d-none d-sm-inline">Manage Dropdowns</span>
+                </button>
                 <button type="button" class="btn btn-outline-success btn-sm fw-bold px-3 rounded-pill d-flex align-items-center gap-1 shadow-sm" onclick="exportToCSV()" title="Export leads to Excel CSV">
                     <i class="fa-solid fa-file-excel"></i>
                     <span class="d-none d-sm-inline">Export to Excel</span>
@@ -914,6 +922,8 @@
     </div>
 
     <!-- ======================================================== -->
+    <!-- MODAL 3: SETTINGS & CONFIGURATION (MULTI-CARD DROPDOWN MANAGER) -->
+    <!-- ======================================================== -->
     <!-- MODAL 2: ADD MANUAL CALL / WHATSAPP / WALK-IN LEAD (CLEAN & UNCLUTTERED) -->
     <div class="modal fade" id="newLeadModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" style="max-width: 620px;">
@@ -1118,6 +1128,218 @@
         </div>
     </div>
 
+    <!-- ======================================================== -->
+    <!-- MODAL 3: SETTINGS & CONFIGURATION (MULTI-CARD DROPDOWN MANAGER) -->
+    <!-- ======================================================== -->
+    <div class="modal fade" id="settingsConfigModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
+                
+                <!-- Modal Header -->
+                <div class="modal-header bg-dark text-white px-4 py-3 border-0 d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-primary text-white rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <div>
+                            <h5 class="modal-title fw-bold font-display mb-0 text-white">Settings & Configuration</h5>
+                            <small class="text-white-50" style="font-size: 0.76rem;">Manage dropdowns and settings separately for each admin card & module</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 rounded-pill small" id="settingsSyncStatus">
+                            <i class="fa-solid fa-cloud-arrow-up me-1"></i> Cloud Synced
+                        </span>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+
+                <!-- Modal Body with 2-Column Card-by-Card Layout -->
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        
+                        <!-- Left Navigation: Admin Card / Module Selector -->
+                        <div class="col-md-4 col-lg-3 bg-light border-end p-3">
+                            <span class="text-muted small fw-bold text-uppercase d-block mb-2 px-2" style="font-size: 0.68rem; letter-spacing: 0.05em;">Admin Cards & Modules</span>
+                            
+                            <div class="nav flex-column nav-pills gap-1" id="settingsModulePills" role="tablist">
+                                <button class="nav-link active text-start rounded-3 fw-bold p-2.5 d-flex align-items-center justify-content-between" id="cardLeadsTab" data-bs-toggle="pill" data-bs-target="#cardLeadsPane" type="button" role="tab">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-table-list text-success"></i>
+                                        <span>Leads & Form Tracker</span>
+                                    </div>
+                                    <span class="badge bg-success text-white rounded-pill px-2" style="font-size: 0.65rem;">Active</span>
+                                </button>
+
+                                <button class="nav-link text-start rounded-3 fw-semibold p-2.5 d-flex align-items-center justify-content-between text-muted" id="cardSeoTab" data-bs-toggle="pill" data-bs-target="#cardSeoPane" type="button" role="tab">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-chart-line text-primary"></i>
+                                        <span>SEO Command Center</span>
+                                    </div>
+                                    <span class="badge bg-secondary-subtle text-dark rounded-pill px-2" style="font-size: 0.65rem;">Card</span>
+                                </button>
+
+                                <button class="nav-link text-start rounded-3 fw-semibold p-2.5 d-flex align-items-center justify-content-between text-muted" id="cardCalcTab" data-bs-toggle="pill" data-bs-target="#cardCalcPane" type="button" role="tab">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-calculator text-warning"></i>
+                                        <span>Cost Calculator</span>
+                                    </div>
+                                    <span class="badge bg-secondary-subtle text-dark rounded-pill px-2" style="font-size: 0.65rem;">Card</span>
+                                </button>
+
+                                <button class="nav-link text-start rounded-3 fw-semibold p-2.5 d-flex align-items-center justify-content-between text-muted" id="cardUsersTab" data-bs-toggle="pill" data-bs-target="#cardUsersPane" type="button" role="tab">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-users-gear text-info"></i>
+                                        <span>User Management</span>
+                                    </div>
+                                    <span class="badge bg-secondary-subtle text-dark rounded-pill px-2" style="font-size: 0.65rem;">Card</span>
+                                </button>
+                            </div>
+
+                            <hr class="my-3 text-muted">
+                            <div class="px-2">
+                                <small class="text-muted d-block" style="font-size: 0.72rem;">
+                                    <i class="fa-solid fa-circle-info text-primary me-1"></i> Dropdown changes saved here apply in real time to Quick Lead Entry, details view, and table filters.
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Right Pane: Active Card Settings -->
+                        <div class="col-md-8 col-lg-9 p-4 bg-white" style="min-height: 520px;">
+                            <div class="tab-content" id="settingsModuleTabContent">
+                                
+                                <!-- CARD 1: LEADS & FORM TRACKER -->
+                                <div class="tab-pane fade show active" id="cardLeadsPane" role="tabpanel">
+                                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-3 pb-2 border-bottom">
+                                        <div>
+                                            <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+                                                <i class="fa-solid fa-table-list text-success"></i> Leads & Form Tracker Dropdowns
+                                            </h5>
+                                            <small class="text-muted">Manage the dropdown options used across the lead capture modals and filters</small>
+                                        </div>
+                                        <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" onclick="resetLeadsDropdownsToDefaults()" title="Reset to standard Solis defaults">
+                                            <i class="fa-solid fa-arrow-rotate-left me-1"></i> Reset Defaults
+                                        </button>
+                                    </div>
+
+                                    <!-- Dropdown Category Selector Pills -->
+                                    <ul class="nav nav-pills nav-fill bg-light p-1 rounded-3 mb-4 border" id="leadsDropdownCategoryTabs" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active rounded-3 py-2 fw-bold small d-flex align-items-center justify-content-center gap-1.5" id="catSolarReqTab" onclick="switchDropdownCategory('solarRequirements')">
+                                                <i class="fa-solid fa-solar-panel text-warning"></i>
+                                                <span>Solar Requirements</span>
+                                                <span class="badge bg-dark text-white rounded-pill ms-1" id="countSolarReq">0</span>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link rounded-3 py-2 fw-bold small d-flex align-items-center justify-content-center gap-1.5" id="catDistrictsTab" onclick="switchDropdownCategory('districts')">
+                                                <i class="fa-solid fa-map-location-dot text-danger"></i>
+                                                <span>Kerala Districts</span>
+                                                <span class="badge bg-secondary text-white rounded-pill ms-1" id="countDistricts">0</span>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link rounded-3 py-2 fw-bold small d-flex align-items-center justify-content-center gap-1.5" id="catSourcesTab" onclick="switchDropdownCategory('sources')">
+                                                <i class="fa-solid fa-share-nodes text-success"></i>
+                                                <span>Lead Sources</span>
+                                                <span class="badge bg-secondary text-white rounded-pill ms-1" id="countSources">0</span>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link rounded-3 py-2 fw-bold small d-flex align-items-center justify-content-center gap-1.5" id="catStatusesTab" onclick="switchDropdownCategory('statuses')">
+                                                <i class="fa-solid fa-traffic-light text-primary"></i>
+                                                <span>Pipeline Statuses</span>
+                                                <span class="badge bg-secondary text-white rounded-pill ms-1" id="countStatuses">0</span>
+                                            </button>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Active Category Manager Workspace -->
+                                    <div class="card border rounded-3 p-3 mb-3 bg-light">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h6 class="fw-bold text-dark mb-0" id="currentCategoryTitle">Solar System Requirement Options</h6>
+                                            <small class="text-muted" id="currentCategoryDesc">Appears in 'Solar System Requirement' dropdown when adding or editing leads</small>
+                                        </div>
+
+                                        <!-- Add New Item Form -->
+                                        <div class="input-group mb-3 shadow-sm">
+                                            <input type="text" class="form-control" id="newOptionInput" placeholder="Type new option name (e.g. 15kW Commercial Solar)..." onkeydown="if(event.key==='Enter'){event.preventDefault();addCurrentCategoryOption();}">
+                                            <button class="btn btn-success fw-bold px-3 d-flex align-items-center gap-1" type="button" onclick="addCurrentCategoryOption()">
+                                                <i class="fa-solid fa-plus"></i> Add Option
+                                            </button>
+                                        </div>
+
+                                        <!-- Options List -->
+                                        <div class="bg-white rounded-3 border" style="max-height: 280px; overflow-y: auto;">
+                                            <ul class="list-group list-group-flush" id="dropdownOptionsList">
+                                                <!-- Dynamic Items Rendered Here -->
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Save Actions -->
+                                    <div class="d-flex justify-content-between align-items-center pt-2">
+                                        <small class="text-muted" id="settingsSaveStatusText">
+                                            <i class="fa-solid fa-circle-check text-success me-1"></i> All options active and in sync
+                                        </small>
+                                        <button class="btn btn-success fw-bold px-4 py-2 rounded-pill shadow-sm d-flex align-items-center gap-2" id="saveDropdownSettingsBtn" onclick="saveAllDropdownSettings()">
+                                            <i class="fa-solid fa-floppy-disk"></i> Save & Apply Changes
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- CARD 2: SEO COMMAND CENTER (Placeholder preview for other cards) -->
+                                <div class="tab-pane fade" id="cardSeoPane" role="tabpanel">
+                                    <div class="text-center py-5">
+                                        <i class="fa-solid fa-chart-line text-muted opacity-50 mb-3" style="font-size: 2.5rem;"></i>
+                                        <h5 class="fw-bold text-dark">SEO Command Center Configuration</h5>
+                                        <p class="text-muted small" style="max-width: 450px; margin: 0 auto;">
+                                            Manage target districts (Pathanamthitta, Alappuzha, Kottayam, Kollam), keyword clusters, rank thresholds, and competitor domains.
+                                        </p>
+                                        <a href="/seo/index.html" class="btn btn-outline-primary btn-sm rounded-pill fw-bold mt-3 px-3">
+                                            <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Open SEO Command Center
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- CARD 3: COST CALCULATOR -->
+                                <div class="tab-pane fade" id="cardCalcPane" role="tabpanel">
+                                    <div class="text-center py-5">
+                                        <i class="fa-solid fa-calculator text-muted opacity-50 mb-3" style="font-size: 2.5rem;"></i>
+                                        <h5 class="fw-bold text-dark">Cost Calculator & Proposal Settings</h5>
+                                        <p class="text-muted small" style="max-width: 450px; margin: 0 auto;">
+                                            Solar panel wattages, inverter tiers, subsidy slabs (PM Surya Ghar: ₹30,000 to ₹78,000), and proposal markup rates.
+                                        </p>
+                                        <a href="/projectcostcalculator/index.html" class="btn btn-outline-warning btn-sm rounded-pill fw-bold mt-3 px-3 text-dark">
+                                            <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Open Cost Calculator
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- CARD 4: USER MANAGEMENT -->
+                                <div class="tab-pane fade" id="cardUsersPane" role="tabpanel">
+                                    <div class="text-center py-5">
+                                        <i class="fa-solid fa-users-gear text-muted opacity-50 mb-3" style="font-size: 2.5rem;"></i>
+                                        <h5 class="fw-bold text-dark">User Management & Sales Assignees</h5>
+                                        <p class="text-muted small" style="max-width: 450px; margin: 0 auto;">
+                                            Sales executives and estimators are automatically synced directly from the central Solis User Management Hub into the Assignee dropdowns.
+                                        </p>
+                                        <a href="/Login/index.html" class="btn btn-outline-info btn-sm rounded-pill fw-bold mt-3 px-3">
+                                            <i class="fa-solid fa-users me-1"></i> Open User Management Hub
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -1125,6 +1347,53 @@
     <script>
         const FB_REST_URL = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
         const FB_REST_USER_MGMT = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/userManagement?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
+        const FB_REST_SETTINGS = "https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/settingsDropdowns?key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ";
+
+        // Master Dynamic Dropdowns Configuration State
+        let currentDropdownSettings = {
+            solarRequirements: [
+                "3kW Rooftop Solar (PM Surya Ghar Subsidy)",
+                "5kW On-Grid System",
+                "10kW Commercial Solar",
+                "Solar Battery Storage / Hybrid",
+                "Microinverter Solar System",
+                "Solar Maintenance & AMC",
+                "General Solar Inquiry"
+            ],
+            districts: [
+                "Pathanamthitta (Solis HQ)",
+                "Alappuzha",
+                "Kottayam",
+                "Kollam",
+                "Ernakulam",
+                "Thiruvananthapuram",
+                "Idukki",
+                "Thrissur",
+                "Palakkad",
+                "Malappuram",
+                "Kozhikode",
+                "Wayanad",
+                "Kannur",
+                "Kasaragod"
+            ],
+            sources: [
+                "WhatsApp",
+                "Phone Call",
+                "Referral",
+                "Walk-In",
+                "Website Form"
+            ],
+            statuses: [
+                "New",
+                "Contacted",
+                "Survey Scheduled",
+                "Proposal Sent",
+                "Won / Installed",
+                "Lost / Closed"
+            ]
+        };
+
+        let activeSettingsCategory = 'solarRequirements';
         
         // Define db instance from firebase-init.js dbFirestore
         const db = (typeof dbFirestore !== 'undefined' && dbFirestore) ? dbFirestore : (typeof firebase !== 'undefined' && firebase.apps && firebase.apps.length ? firebase.firestore() : null);
@@ -1212,8 +1481,14 @@
         ];
 
         document.addEventListener('DOMContentLoaded', () => {
+            initDropdownSettings();
             initLeadsListener();
             fetchSalesExecutives();
+
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('openSettings') === 'true') {
+                setTimeout(() => { openSettingsModal(); }, 600);
+            }
         });
 
         // Fetch dynamic sales team from User Management registry
@@ -1265,6 +1540,461 @@
                 el.innerHTML = opts;
                 if (currentVal) el.value = currentVal;
             });
+        }
+
+        // ========================================================
+        // SETTINGS & CONFIGURATION: MULTI-CARD DROPDOWN MANAGER
+        // ========================================================
+        
+        // Open Settings Modal
+        function openSettingsModal(targetCard = 'leads') {
+            const modalEl = document.getElementById('settingsConfigModal');
+            if (!modalEl) return;
+            const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+            modal.show();
+            renderDropdownOptionsList();
+        }
+
+        // Switch between Dropdown Categories inside Leads & Form Tracker card
+        function switchDropdownCategory(catKey) {
+            activeSettingsCategory = catKey;
+
+            // Reset tab button states
+            const tabs = [
+                { key: 'solarRequirements', id: 'catSolarReqTab' },
+                { key: 'districts', id: 'catDistrictsTab' },
+                { key: 'sources', id: 'catSourcesTab' },
+                { key: 'statuses', id: 'catStatusesTab' }
+            ];
+
+            tabs.forEach(t => {
+                const btn = document.getElementById(t.id);
+                if (btn) {
+                    if (t.key === catKey) {
+                        btn.classList.add('active');
+                        const b = btn.querySelector('.badge');
+                        if (b) b.className = 'badge bg-dark text-white rounded-pill ms-1';
+                    } else {
+                        btn.classList.remove('active');
+                        const b = btn.querySelector('.badge');
+                        if (b) b.className = 'badge bg-secondary text-white rounded-pill ms-1';
+                    }
+                }
+            });
+
+            const catMeta = {
+                solarRequirements: {
+                    title: 'Solar System Requirement Options',
+                    desc: "Options displayed in 'Solar System Requirement' dropdown when adding or editing leads",
+                    placeholder: 'Type new solar requirement (e.g. 15kW Commercial Solar)...'
+                },
+                districts: {
+                    title: 'Kerala Districts & Operational Areas',
+                    desc: "Options displayed in 'Kerala District' dropdown and District filter bar",
+                    placeholder: 'Type district or area name (e.g. Kottayam, Chengannur)...'
+                },
+                sources: {
+                    title: 'Lead Sources & Marketing Channels',
+                    desc: "Options displayed in Lead Source selector and Source filter bar",
+                    placeholder: 'Type new lead source (e.g. Google Search Ads, Exhibition)...'
+                },
+                statuses: {
+                    title: 'Lead Pipeline Workflow Statuses',
+                    desc: "Statuses displayed in 1-Click Status selector, modal, and Status filter",
+                    placeholder: 'Type new pipeline status (e.g. Site Survey Completed)...'
+                }
+            };
+
+            const meta = catMeta[catKey];
+            if (meta) {
+                if (document.getElementById('currentCategoryTitle')) document.getElementById('currentCategoryTitle').textContent = meta.title;
+                if (document.getElementById('currentCategoryDesc')) document.getElementById('currentCategoryDesc').textContent = meta.desc;
+                if (document.getElementById('newOptionInput')) document.getElementById('newOptionInput').placeholder = meta.placeholder;
+            }
+
+            renderDropdownOptionsList();
+        }
+
+        // Render options list for currently active category
+        function renderDropdownOptionsList() {
+            const listEl = document.getElementById('dropdownOptionsList');
+            if (!listEl) return;
+
+            const items = currentDropdownSettings[activeSettingsCategory] || [];
+
+            // Update badge counters
+            if (document.getElementById('countSolarReq')) document.getElementById('countSolarReq').textContent = currentDropdownSettings.solarRequirements.length;
+            if (document.getElementById('countDistricts')) document.getElementById('countDistricts').textContent = currentDropdownSettings.districts.length;
+            if (document.getElementById('countSources')) document.getElementById('countSources').textContent = currentDropdownSettings.sources.length;
+            if (document.getElementById('countStatuses')) document.getElementById('countStatuses').textContent = currentDropdownSettings.statuses.length;
+
+            if (items.length === 0) {
+                listEl.innerHTML = `
+                    <li class="list-group-item text-center py-4 text-muted small">
+                        <i class="fa-solid fa-list text-muted opacity-50 mb-2 fs-4 d-block"></i>
+                        No options defined in this dropdown. Add an option above.
+                    </li>
+                `;
+                return;
+            }
+
+            let html = '';
+            items.forEach((item, idx) => {
+                html += `
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 px-3 border-bottom">
+                        <div class="d-flex align-items-center gap-2 flex-grow-1 me-2">
+                            <span class="badge bg-light text-muted border font-mono px-2 py-1" style="font-size: 0.72rem; min-width: 28px;">#${idx + 1}</span>
+                            <span class="fw-semibold text-dark option-label" id="opt-label-${idx}">${escapeHtml(item)}</span>
+                            <input type="text" class="form-control form-control-sm d-none option-edit-input" id="opt-input-${idx}" value="${escapeHtml(item)}" onkeydown="if(event.key==='Enter'){saveInlineOptionEdit(${idx});}else if(event.key==='Escape'){cancelInlineOptionEdit(${idx});}">
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <button class="btn btn-sm btn-light border py-1 px-2" title="Move Up" onclick="moveOption(${idx}, -1)" ${idx === 0 ? 'disabled' : ''}>
+                                <i class="fa-solid fa-arrow-up text-muted" style="font-size: 0.72rem;"></i>
+                            </button>
+                            <button class="btn btn-sm btn-light border py-1 px-2" title="Move Down" onclick="moveOption(${idx}, 1)" ${idx === items.length - 1 ? 'disabled' : ''}>
+                                <i class="fa-solid fa-arrow-down text-muted" style="font-size: 0.72rem;"></i>
+                            </button>
+                            <button class="btn btn-sm btn-light border py-1 px-2 text-primary" title="Rename Option" onclick="startInlineOptionEdit(${idx})" id="opt-edit-btn-${idx}">
+                                <i class="fa-solid fa-pen" style="font-size: 0.72rem;"></i>
+                            </button>
+                            <button class="btn btn-sm btn-success py-1 px-2 d-none" title="Save Rename" onclick="saveInlineOptionEdit(${idx})" id="opt-save-btn-${idx}">
+                                <i class="fa-solid fa-check" style="font-size: 0.72rem;"></i>
+                            </button>
+                            <button class="btn btn-sm btn-light border py-1 px-2 text-danger" title="Delete Option" onclick="deleteOption(${idx})" ${items.length <= 1 ? 'disabled' : ''}>
+                                <i class="fa-solid fa-trash" style="font-size: 0.72rem;"></i>
+                            </button>
+                        </div>
+                    </li>
+                `;
+            });
+            listEl.innerHTML = html;
+        }
+
+        // Add new option to active category
+        function addCurrentCategoryOption() {
+            const input = document.getElementById('newOptionInput');
+            if (!input) return;
+            const val = input.value.trim();
+            if (!val) {
+                input.focus();
+                return;
+            }
+            const list = currentDropdownSettings[activeSettingsCategory];
+            if (list.some(x => x.toLowerCase() === val.toLowerCase())) {
+                alert(`"${val}" already exists in this dropdown.`);
+                input.focus();
+                return;
+            }
+            list.push(val);
+            input.value = '';
+            renderDropdownOptionsList();
+            saveAllDropdownSettings(true);
+        }
+
+        // Delete option from active category
+        function deleteOption(idx) {
+            const list = currentDropdownSettings[activeSettingsCategory];
+            if (list.length <= 1) {
+                alert('A dropdown list must have at least 1 option.');
+                return;
+            }
+            const item = list[idx];
+            if (!confirm(`Are you sure you want to remove "${item}" from this dropdown list?`)) return;
+            list.splice(idx, 1);
+            renderDropdownOptionsList();
+            saveAllDropdownSettings(true);
+        }
+
+        // Move option up or down
+        function moveOption(idx, direction) {
+            const list = currentDropdownSettings[activeSettingsCategory];
+            const targetIdx = idx + direction;
+            if (targetIdx < 0 || targetIdx >= list.length) return;
+            const temp = list[idx];
+            list[idx] = list[targetIdx];
+            list[targetIdx] = temp;
+            renderDropdownOptionsList();
+            saveAllDropdownSettings(true);
+        }
+
+        // Inline Edit functions
+        function startInlineOptionEdit(idx) {
+            const label = document.getElementById(`opt-label-${idx}`);
+            const editBtn = document.getElementById(`opt-edit-btn-${idx}`);
+            const input = document.getElementById(`opt-input-${idx}`);
+            const saveBtn = document.getElementById(`opt-save-btn-${idx}`);
+            if (label) label.classList.add('d-none');
+            if (editBtn) editBtn.classList.add('d-none');
+            if (input) {
+                input.classList.remove('d-none');
+                input.focus();
+                input.select();
+            }
+            if (saveBtn) saveBtn.classList.remove('d-none');
+        }
+
+        function cancelInlineOptionEdit(idx) {
+            const label = document.getElementById(`opt-label-${idx}`);
+            const editBtn = document.getElementById(`opt-edit-btn-${idx}`);
+            const input = document.getElementById(`opt-input-${idx}`);
+            const saveBtn = document.getElementById(`opt-save-btn-${idx}`);
+            if (label) label.classList.remove('d-none');
+            if (editBtn) editBtn.classList.remove('d-none');
+            if (input) input.classList.add('d-none');
+            if (saveBtn) saveBtn.classList.add('d-none');
+        }
+
+        function saveInlineOptionEdit(idx) {
+            const input = document.getElementById(`opt-input-${idx}`);
+            if (!input) return;
+            const newVal = input.value.trim();
+            if (!newVal) {
+                cancelInlineOptionEdit(idx);
+                return;
+            }
+            currentDropdownSettings[activeSettingsCategory][idx] = newVal;
+            renderDropdownOptionsList();
+            saveAllDropdownSettings(true);
+        }
+
+        // Save All Dropdown Settings to Firestore and LocalStorage
+        async function saveAllDropdownSettings(silent = false) {
+            const saveBtn = document.getElementById('saveDropdownSettingsBtn');
+            const statusText = document.getElementById('settingsSaveStatusText');
+            const syncBadge = document.getElementById('settingsSyncStatus');
+
+            if (!silent && saveBtn) {
+                saveBtn.disabled = true;
+                saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Saving to Cloud...';
+            }
+
+            try {
+                // 1. Save to local cache
+                localStorage.setItem('solis_settings_dropdowns', JSON.stringify(currentDropdownSettings));
+
+                // 2. Repopulate all active form dropdowns & filters immediately
+                repopulateAllDropdowns();
+
+                // 3. Save to Google Cloud Firestore document solis/settingsDropdowns
+                const payloadJson = JSON.stringify(currentDropdownSettings);
+                const patchUrl = 'https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/settingsDropdowns?updateMask.fieldPaths=leadsTrackerJson&updateMask.fieldPaths=lastUpdated&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ';
+
+                await fetch(patchUrl, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        fields: {
+                            lastUpdated: { stringValue: new Date().toISOString() },
+                            leadsTrackerJson: { stringValue: payloadJson }
+                        }
+                    })
+                });
+
+                if (syncBadge) {
+                    syncBadge.className = 'badge bg-success-subtle text-success border border-success-subtle px-2 py-1 rounded-pill small';
+                    syncBadge.innerHTML = '<i class="fa-solid fa-cloud-arrow-up me-1"></i> Cloud Synced';
+                }
+                if (statusText) {
+                    statusText.innerHTML = '<i class="fa-solid fa-circle-check text-success me-1"></i> Changes saved & updated across all cards';
+                }
+                if (!silent) {
+                    showLeadToast('Dropdown configuration saved to Cloud successfully!');
+                    const modalEl = document.getElementById('settingsConfigModal');
+                    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                    if (modalInstance) modalInstance.hide();
+                }
+            } catch (err) {
+                console.warn('Firestore cloud settings sync notice:', err);
+                if (!silent) showLeadToast('Settings saved in browser local storage.');
+            } finally {
+                if (!silent && saveBtn) {
+                    saveBtn.disabled = false;
+                    saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk me-1"></i> Save & Apply Changes';
+                }
+            }
+        }
+
+        // Repopulate all dropdowns in Quick Lead modal, Details modal, and Table Filters
+        function repopulateAllDropdowns() {
+            // 1. Solar System Requirements: newLeadService & detailService
+            const solarSelect = document.getElementById('newLeadService');
+            if (solarSelect) {
+                const cur = solarSelect.value;
+                let html = '';
+                currentDropdownSettings.solarRequirements.forEach(item => {
+                    html += `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`;
+                });
+                solarSelect.innerHTML = html;
+                if (cur && currentDropdownSettings.solarRequirements.includes(cur)) {
+                    solarSelect.value = cur;
+                }
+            }
+
+            // 2. Kerala Districts: newLeadDistrict, detailDistrict, districtFilter
+            const districtSelects = ['newLeadDistrict', 'detailDistrict'];
+            districtSelects.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const cur = el.value;
+                let html = '';
+                currentDropdownSettings.districts.forEach(d => {
+                    html += `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`;
+                });
+                el.innerHTML = html;
+                if (cur && currentDropdownSettings.districts.includes(cur)) {
+                    el.value = cur;
+                }
+            });
+
+            const distFilter = document.getElementById('districtFilter');
+            if (distFilter) {
+                const cur = distFilter.value;
+                let html = '<option value="all">All Districts</option>';
+                currentDropdownSettings.districts.forEach(d => {
+                    html += `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`;
+                });
+                distFilter.innerHTML = html;
+                if (cur) distFilter.value = cur;
+            }
+
+            // 3. Lead Statuses: modalStatusSelect, statusFilter
+            const statusModalSelect = document.getElementById('modalStatusSelect');
+            if (statusModalSelect) {
+                const cur = statusModalSelect.value;
+                let html = '';
+                currentDropdownSettings.statuses.forEach(s => {
+                    html += `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`;
+                });
+                statusModalSelect.innerHTML = html;
+                if (cur) statusModalSelect.value = cur;
+            }
+
+            const statFilter = document.getElementById('statusFilter');
+            if (statFilter) {
+                const cur = statFilter.value;
+                let html = '<option value="all">All Statuses</option>';
+                currentDropdownSettings.statuses.forEach(s => {
+                    html += `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`;
+                });
+                statFilter.innerHTML = html;
+                if (cur) statFilter.value = cur;
+            }
+
+            // 4. Lead Sources: sourceFilter & detailLeadSource
+            const srcDetail = document.getElementById('detailLeadSource');
+            if (srcDetail) {
+                const cur = srcDetail.value;
+                let html = '';
+                currentDropdownSettings.sources.forEach(s => {
+                    html += `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`;
+                });
+                srcDetail.innerHTML = html;
+                if (cur) srcDetail.value = cur;
+            }
+
+            const srcFilter = document.getElementById('sourceFilter');
+            if (srcFilter) {
+                const cur = srcFilter.value;
+                let html = '<option value="all">All Sources</option>';
+                currentDropdownSettings.sources.forEach(s => {
+                    html += `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`;
+                });
+                srcFilter.innerHTML = html;
+                if (cur) srcFilter.value = cur;
+            }
+
+            // Re-render table if leads are already loaded so row status selects reflect updated options
+            if (typeof renderTable === 'function' && typeof filteredLeads !== 'undefined' && filteredLeads.length > 0) {
+                renderTable();
+            }
+        }
+
+        // Reset to Solis Defaults
+        function resetLeadsDropdownsToDefaults() {
+            if (!confirm('Are you sure you want to reset Leads Tracker dropdown options back to Solis factory defaults?')) return;
+            currentDropdownSettings = {
+                solarRequirements: [
+                    "3kW Rooftop Solar (PM Surya Ghar Subsidy)",
+                    "5kW On-Grid System",
+                    "10kW Commercial Solar",
+                    "Solar Battery Storage / Hybrid",
+                    "Microinverter Solar System",
+                    "Solar Maintenance & AMC",
+                    "General Solar Inquiry"
+                ],
+                districts: [
+                    "Pathanamthitta (Solis HQ)",
+                    "Alappuzha",
+                    "Kottayam",
+                    "Kollam",
+                    "Ernakulam",
+                    "Thiruvananthapuram",
+                    "Idukki",
+                    "Thrissur",
+                    "Palakkad",
+                    "Malappuram",
+                    "Kozhikode",
+                    "Wayanad",
+                    "Kannur",
+                    "Kasaragod"
+                ],
+                sources: [
+                    "WhatsApp",
+                    "Phone Call",
+                    "Referral",
+                    "Walk-In",
+                    "Website Form"
+                ],
+                statuses: [
+                    "New",
+                    "Contacted",
+                    "Survey Scheduled",
+                    "Proposal Sent",
+                    "Won / Installed",
+                    "Lost / Closed"
+                ]
+            };
+            renderDropdownOptionsList();
+            saveAllDropdownSettings();
+        }
+
+        // Initialize Dropdown Settings from Cache and Cloud Firestore
+        async function initDropdownSettings() {
+            try {
+                // 1. Try local cache first
+                const cached = localStorage.getItem('solis_settings_dropdowns');
+                if (cached) {
+                    const parsed = JSON.parse(cached);
+                    if (parsed && typeof parsed === 'object') {
+                        Object.keys(currentDropdownSettings).forEach(k => {
+                            if (Array.isArray(parsed[k]) && parsed[k].length > 0) {
+                                currentDropdownSettings[k] = parsed[k];
+                            }
+                        });
+                    }
+                }
+                repopulateAllDropdowns();
+
+                // 2. Fetch latest from Firestore document solis/settingsDropdowns
+                const resp = await fetch(FB_REST_SETTINGS);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data && data.fields && data.fields.leadsTrackerJson && data.fields.leadsTrackerJson.stringValue) {
+                        const cloudCfg = JSON.parse(data.fields.leadsTrackerJson.stringValue);
+                        if (cloudCfg && typeof cloudCfg === 'object') {
+                            Object.keys(currentDropdownSettings).forEach(k => {
+                                if (Array.isArray(cloudCfg[k]) && cloudCfg[k].length > 0) {
+                                    currentDropdownSettings[k] = cloudCfg[k];
+                                }
+                            });
+                            localStorage.setItem('solis_settings_dropdowns', JSON.stringify(currentDropdownSettings));
+                            repopulateAllDropdowns();
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn('Notice loading dropdown settings, keeping cached/defaults:', err);
+            }
         }
 
         // Parse and validate coordinates string or Google Maps link
@@ -1828,6 +2558,22 @@
                 else if (sLow.includes('won')) statusClass = 'status-won';
                 else if (sLow.includes('lost')) statusClass = 'status-lost';
 
+                // Status options from dynamic configuration
+                const dynamicStatuses = (currentDropdownSettings && currentDropdownSettings.statuses && currentDropdownSettings.statuses.length > 0)
+                    ? currentDropdownSettings.statuses
+                    : ["New", "Contacted", "Survey Scheduled", "Proposal Sent", "Won / Installed", "Lost / Closed"];
+
+                let statusOpts = '';
+                if (status && !dynamicStatuses.includes(status) && !dynamicStatuses.some(s => s.toLowerCase() === status.toLowerCase())) {
+                    statusOpts += `<option value="${escapeHtml(status)}" selected>${escapeHtml(status)}</option>`;
+                }
+                dynamicStatuses.forEach(st => {
+                    const isSelected = (status === st) || (st.toLowerCase() === status.toLowerCase()) || 
+                                       (st.toLowerCase().startsWith('won') && status.toLowerCase() === 'won') || 
+                                       (st.toLowerCase().startsWith('lost') && status.toLowerCase() === 'lost');
+                    statusOpts += `<option value="${escapeHtml(st)}" ${isSelected ? 'selected' : ''}>${escapeHtml(st)}</option>`;
+                });
+
                 // Assignee dropdown options
                 let assigneeOpts = `<option value="Unassigned" ${assignedTo === 'Unassigned' ? 'selected' : ''}>⚠️ Unassigned</option>`;
                 activeSalesUsers.forEach(u => {
@@ -1926,12 +2672,7 @@
                         <!-- Col 10: Status -->
                         <td>
                             <select class="form-select form-select-sm status-select ${statusClass}" onchange="changeLeadStatus('${lead.id}', this.value, this)">
-                                <option value="New" ${status === 'New' ? 'selected' : ''}>New</option>
-                                <option value="Contacted" ${status === 'Contacted' ? 'selected' : ''}>Contacted</option>
-                                <option value="Survey Scheduled" ${status === 'Survey Scheduled' ? 'selected' : ''}>Survey Scheduled</option>
-                                <option value="Proposal Sent" ${status === 'Proposal Sent' ? 'selected' : ''}>Proposal Sent</option>
-                                <option value="Won" ${status === 'Won' ? 'selected' : ''}>Won / Installed</option>
-                                <option value="Lost" ${status === 'Lost' ? 'selected' : ''}>Lost / Closed</option>
+                                ${statusOpts}
                             </select>
                         </td>
 
@@ -2118,7 +2859,18 @@
             document.getElementById('detailPage').value = lead.page || '/';
             document.getElementById('detailMessage').value = lead.message || '';
             document.getElementById('detailStaffNotes').value = lead.staffNotes || '';
-            document.getElementById('modalStatusSelect').value = lead.status || 'New';
+            const modalStatEl = document.getElementById('modalStatusSelect');
+            if (modalStatEl) {
+                const leadStat = lead.status || 'New';
+                let hasOpt = Array.from(modalStatEl.options).some(o => o.value.toLowerCase() === leadStat.toLowerCase());
+                if (!hasOpt && leadStat) {
+                    const opt = document.createElement('option');
+                    opt.value = leadStat;
+                    opt.textContent = leadStat;
+                    modalStatEl.appendChild(opt);
+                }
+                modalStatEl.value = leadStat;
+            }
             document.getElementById('detailAssignee').value = lead.assignedTo || 'Unassigned';
 
             // Links
