@@ -2211,6 +2211,24 @@
             return { prefix: 'SGES', digits: '26110001' };
         }
 
+        function formatLeadDate(dateStr) {
+            if (!dateStr) return '-';
+            try {
+                const str = String(dateStr).trim();
+                if (/^\d{4}-\d{2}-\d{2}$/.test(str)) {
+                    const [y, m, d] = str.split('-');
+                    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                    return `${d} ${months[parseInt(m, 10) - 1]} ${y}`;
+                }
+                const d = new Date(str);
+                if (isNaN(d.getTime())) return str.split(',')[0].trim();
+                const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                return `${d.getDate().toString().padStart(2, '0')} ${months[d.getMonth()]} ${d.getFullYear()}`;
+            } catch (e) {
+                return String(dateStr).split(',')[0].trim();
+            }
+        }
+
         function renderAttributionTable(leads) {
             const tbody = document.getElementById('attributionTableBody');
             if (!tbody) return;
@@ -2250,7 +2268,7 @@
                                 <span class="lead-id-prefix">${escapeHtml(parts.prefix)}</span>
                                 <span class="lead-id-num">${escapeHtml(parts.digits)}</span>
                             </div>
-                            <small class="text-muted d-block font-mono mt-1" style="font-size: 0.68rem;">${escapeHtml(l.leadDate)}</small>
+                            <small class="text-muted d-block font-mono mt-1" style="font-size: 0.68rem;">${escapeHtml(formatLeadDate(l.leadDate))}</small>
                         </td>
                         <td>
                             <strong class="text-dark d-block">${escapeHtml(l.name)}</strong>
