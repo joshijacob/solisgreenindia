@@ -21,6 +21,8 @@ Disallow: /admin/
 Disallow: /careers/admin/
 Disallow: /projectcostcalculator/
 Disallow: /Login/
+Disallow: /users/
+Disallow: /leads/
 Disallow: /seo/
 Disallow: /analytics/
 Disallow: /private/
