@@ -728,7 +728,7 @@
                     <div class="row g-3 mb-4">
                         <div class="col-md-4">
                             <label class="form-label text-muted small fw-bold">Lead Number / ID</label>
-                            <input type="text" class="form-control font-mono fw-bold text-primary" id="detailLeadNumber" placeholder="SOL-2601">
+                            <input type="text" class="form-control font-mono fw-bold text-primary" id="detailLeadNumber" placeholder="SGES-26110001">
                         </div>
                         <div class="col-md-4">
                             <label class="form-label text-muted small fw-bold">Lead Date</label>
@@ -875,8 +875,8 @@
                         <!-- Sleek Compact Metadata Strip (Lead ID, Date, Source) -->
                         <div class="p-2 mb-3 bg-light rounded-3 d-flex flex-wrap align-items-center justify-content-between gap-2 border">
                             <div class="d-flex align-items-center gap-2">
-                                <span class="badge bg-white text-dark border font-mono fw-bold px-2 py-1" id="newLeadNumberBadge">SOL-2601</span>
-                                <input type="hidden" id="newLeadNumber" value="SOL-2601">
+                                <span class="badge bg-white text-dark border font-mono fw-bold px-2 py-1" id="newLeadNumberBadge">SGES-26110001</span>
+                                <input type="hidden" id="newLeadNumber" value="SGES-26110001">
                                 <span class="text-muted small">|</span>
                                 <span class="text-muted small fw-semibold" id="newLeadDateDisplay">Today</span>
                                 <input type="hidden" id="newLeadDate">
@@ -1156,25 +1156,38 @@
             });
         }
 
-        // Auto-Generate Next Sequential Lead Number (e.g. SOL-2601)
+        // Auto-Generate Next Sequential Lead Number in SGES-YYMM0001 format
         function generateNextLeadNumber() {
-            const currentYear = new Date().getFullYear().toString().slice(-2);
+            const now = new Date();
+            const yy = now.getFullYear().toString().slice(-2);
+            const mm = (now.getMonth() + 1).toString().padStart(2, '0');
+            const prefix = `SGES-${yy}${mm}`;
+
             let maxSeq = 0;
             allLeads.forEach(lead => {
                 if (lead.leadNumber) {
-                    const m = String(lead.leadNumber).match(/SOL-(\d+)/i);
-                    if (m) {
-                        const num = parseInt(m[1], 10);
+                    const str = String(lead.leadNumber).trim();
+                    // Match SGES-YYMMXXXX
+                    const mNew = str.match(new RegExp(`^SGES-${yy}${mm}(\\d{4})$`, 'i'));
+                    if (mNew) {
+                        const num = parseInt(mNew[1], 10);
                         if (!isNaN(num) && num > maxSeq) maxSeq = num;
+                    } else {
+                        // Match SGES-XXXX or legacy SOL-XXXX
+                        const mGen = str.match(/^(?:SGES|SOL)-?(\d+)$/i);
+                        if (mGen) {
+                            const digits = mGen[1];
+                            if (digits.startsWith(yy + mm) && digits.length >= 6) {
+                                const seqPart = parseInt(digits.slice(4), 10);
+                                if (!isNaN(seqPart) && seqPart > maxSeq) maxSeq = seqPart;
+                            }
+                        }
                     }
                 }
             });
-            if (maxSeq === 0) {
-                const base = parseInt(currentYear + "01", 10);
-                const total = allLeads.length + 1;
-                return `SOL-${base + total - 1}`;
-            }
-            return `SOL-${maxSeq + 1}`;
+
+            const nextSeq = (maxSeq + 1).toString().padStart(4, '0');
+            return `${prefix}${nextSeq}`;
         }
 
         // Prepare Add Lead Modal for Quick 15-second entry
@@ -1530,7 +1543,11 @@
                 const status = lead.status || 'New';
                 const assignedTo = lead.assignedTo || 'Unassigned';
                 const siteVisit = escapeHtml(lead.siteVisitPlan || '');
-                const leadNo = escapeHtml(lead.leadNumber || `SOL-${index + 1}`);
+                const dObj = lead.leadDate || lead.createdAt ? new Date(lead.leadDate || lead.createdAt) : new Date();
+                const yyVal = isNaN(dObj.getTime()) ? '26' : dObj.getFullYear().toString().slice(-2);
+                const mmVal = isNaN(dObj.getTime()) ? '11' : (dObj.getMonth() + 1).toString().padStart(2, '0');
+                const defaultLeadNo = `SGES-${yyVal}${mmVal}${String(index + 1).padStart(4, '0')}`;
+                const leadNo = escapeHtml(lead.leadNumber || defaultLeadNo);
 
                 // Source Badge
                 const srcRaw = (lead.source || lead.leadSource || 'Website').toLowerCase();
@@ -2049,7 +2066,7 @@
             ];
 
             const rows = filteredLeads.map((lead, idx) => [
-                cleanCsv(lead.leadNumber || `SOL-${idx + 1}`),
+                cleanCsv(lead.leadNumber || `SGES-2611${String(idx + 1).padStart(4, '0')}`),
                 cleanCsv(lead.leadDate || formatLeadDateTime(lead.createdAt)),
                 cleanCsv(lead.name),
                 cleanCsv(lead.phone),
