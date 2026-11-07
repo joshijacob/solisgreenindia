@@ -1302,6 +1302,13 @@
                                                 <span class="badge bg-secondary text-white rounded-pill ms-1" id="countStatuses">0</span>
                                             </button>
                                         </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link rounded-3 py-2 fw-bold small d-flex align-items-center justify-content-center gap-1.5" id="catRepPhonesTab" onclick="switchDropdownCategory('repPhones')">
+                                                <i class="fa-brands fa-whatsapp text-success"></i>
+                                                <span>Sales WhatsApp</span>
+                                                <span class="badge bg-secondary text-white rounded-pill ms-1" id="countRepPhones">4</span>
+                                            </button>
+                                        </li>
                                     </ul>
 
                                     <!-- Active Category Manager Workspace -->
@@ -1312,7 +1319,7 @@
                                         </div>
 
                                         <!-- Add New Item Form -->
-                                        <div class="input-group mb-3 shadow-sm">
+                                        <div class="input-group mb-3 shadow-sm" id="newOptionInputGroup">
                                             <input type="text" class="form-control" id="newOptionInput" placeholder="Type new option name (e.g. 15kW Commercial Solar)..." onkeydown="if(event.key==='Enter'){event.preventDefault();addCurrentCategoryOption();}">
                                             <button class="btn btn-success fw-bold px-3 d-flex align-items-center gap-1" type="button" onclick="addCurrentCategoryOption()">
                                                 <i class="fa-solid fa-plus"></i> Add Option
@@ -1440,7 +1447,13 @@
                 "Proposal Sent",
                 "Won / Installed",
                 "Lost / Closed"
-            ]
+            ],
+            executivePhones: {
+                "Solis Super Admin": "8301849474",
+                "Joshi Jacob": "8301849474",
+                "Kannan Deepu": "",
+                "Vighnesh Kumar": ""
+            }
         };
 
         let activeSettingsCategory = 'solarRequirements';
@@ -1614,7 +1627,8 @@
                 { key: 'solarRequirements', id: 'catSolarReqTab' },
                 { key: 'districts', id: 'catDistrictsTab' },
                 { key: 'sources', id: 'catSourcesTab' },
-                { key: 'statuses', id: 'catStatusesTab' }
+                { key: 'statuses', id: 'catStatusesTab' },
+                { key: 'repPhones', id: 'catRepPhonesTab' }
             ];
 
             tabs.forEach(t => {
@@ -1652,6 +1666,11 @@
                     title: 'Lead Pipeline Workflow Statuses',
                     desc: "Statuses displayed in 1-Click Status selector, modal, and Status filter",
                     placeholder: 'Type new pipeline status (e.g. Site Survey Completed)...'
+                },
+                repPhones: {
+                    title: 'Sales Team WhatsApp Numbers',
+                    desc: "Saved mobile numbers used when sending Lead Assignments to sales representatives via WhatsApp",
+                    placeholder: ''
                 }
             };
 
@@ -1670,13 +1689,61 @@
             const listEl = document.getElementById('dropdownOptionsList');
             if (!listEl) return;
 
-            const items = currentDropdownSettings[activeSettingsCategory] || [];
+            const inputGroup = document.getElementById('newOptionInputGroup');
+            if (activeSettingsCategory === 'repPhones') {
+                if (inputGroup) inputGroup.classList.add('d-none');
+            } else {
+                if (inputGroup) inputGroup.classList.remove('d-none');
+            }
 
             // Update badge counters
             if (document.getElementById('countSolarReq')) document.getElementById('countSolarReq').textContent = currentDropdownSettings.solarRequirements.length;
             if (document.getElementById('countDistricts')) document.getElementById('countDistricts').textContent = currentDropdownSettings.districts.length;
             if (document.getElementById('countSources')) document.getElementById('countSources').textContent = currentDropdownSettings.sources.length;
             if (document.getElementById('countStatuses')) document.getElementById('countStatuses').textContent = currentDropdownSettings.statuses.length;
+            if (document.getElementById('countRepPhones')) document.getElementById('countRepPhones').textContent = activeSalesUsers.length;
+
+            if (activeSettingsCategory === 'repPhones') {
+                let html = '<li class="list-group-item p-0 border-0"><div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead class="table-light small"><tr><th class="ps-3">Sales Executive</th><th>Role</th><th style="min-width: 220px;">Saved WhatsApp Mobile</th><th class="text-end pe-3">Action</th></tr></thead><tbody>';
+                activeSalesUsers.forEach((u, idx) => {
+                    const savedNum = getSavedExecutivePhone(u.name);
+                    const isSuper = u.name.toLowerCase().includes('admin');
+                    html += `
+                        <tr>
+                            <td class="ps-3">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="rounded-circle bg-primary-subtle text-primary fw-bold d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                                        ${isSuper ? '<i class="fa-solid fa-crown text-warning"></i>' : '<i class="fa-solid fa-user"></i>'}
+                                    </div>
+                                    <div>
+                                        <strong class="text-dark d-block">${escapeHtml(u.name)}</strong>
+                                        <small class="text-muted">${escapeHtml(u.email || '')}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge ${isSuper ? 'bg-warning-subtle text-dark border' : 'bg-light text-secondary border'}">${escapeHtml(u.roleLabel || u.role || 'Sales Rep')}</span>
+                            </td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-text bg-light text-muted font-mono">+91</span>
+                                    <input type="tel" class="form-control font-mono" id="settingsRepPhone-${idx}" value="${escapeHtml(savedNum)}" placeholder="10-digit mobile" maxlength="10">
+                                </div>
+                            </td>
+                            <td class="text-end pe-3">
+                                <button type="button" class="btn btn-sm btn-success fw-bold px-3 rounded-pill shadow-sm" onclick="saveExecutivePhoneFromSettings('${escapeHtml(u.name)}', ${idx})">
+                                    <i class="fa-solid fa-floppy-disk me-1"></i> Save
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                html += '</tbody></table></div></li>';
+                listEl.innerHTML = html;
+                return;
+            }
+
+            const items = currentDropdownSettings[activeSettingsCategory] || [];
 
             if (items.length === 0) {
                 listEl.innerHTML = `
@@ -3351,6 +3418,97 @@
             return lines.join('\n');
         }
 
+        // Retrieve saved WhatsApp number for sales executive
+        function getSavedExecutivePhone(repName) {
+            if (!repName || repName === 'Unassigned') return '';
+            const clean = repName.trim().toLowerCase();
+
+            // 1. Check localStorage
+            try {
+                const map = JSON.parse(localStorage.getItem('solis_rep_phones_map') || '{}');
+                for (let k in map) {
+                    if (k.toLowerCase() === clean && map[k]) return map[k];
+                }
+            } catch (e) {}
+
+            // 2. Check currentDropdownSettings.executivePhones
+            if (currentDropdownSettings && currentDropdownSettings.executivePhones) {
+                for (let k in currentDropdownSettings.executivePhones) {
+                    if (k.toLowerCase() === clean && currentDropdownSettings.executivePhones[k]) {
+                        return currentDropdownSettings.executivePhones[k];
+                    }
+                }
+            }
+
+            // 3. Official Defaults
+            if (clean.includes('admin') || clean.includes('super')) {
+                return '8301849474';
+            }
+            if (clean.includes('joshi')) {
+                return '8301849474';
+            }
+
+            return '';
+        }
+
+        // Save executive phone number permanently to localStorage & Firestore
+        async function saveExecutivePhone(repName, phone) {
+            if (!repName || !phone) return;
+            const clean = String(phone).replace(/[^0-9]/g, '');
+            const num = (clean.startsWith('91') && clean.length === 12) ? clean.slice(2) : clean;
+            if (num.length < 10) return;
+
+            // 1. Save in-memory
+            if (!currentDropdownSettings.executivePhones) currentDropdownSettings.executivePhones = {};
+            currentDropdownSettings.executivePhones[repName] = num;
+
+            // 2. Save in localStorage
+            try {
+                let map = JSON.parse(localStorage.getItem('solis_rep_phones_map') || '{}');
+                map[repName] = num;
+                localStorage.setItem('solis_rep_phones_map', JSON.stringify(map));
+            } catch (e) {}
+
+            // 3. Save to Firestore solis/settingsDropdowns
+            try {
+                const payloadJson = JSON.stringify(currentDropdownSettings);
+                if (typeof db !== 'undefined' && db) {
+                    await db.collection('solis').doc('settingsDropdowns').set({
+                        leadsTrackerJson: payloadJson,
+                        lastUpdated: new Date().toISOString()
+                    }, { merge: true });
+                } else {
+                    const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/settingsDropdowns?updateMask.fieldPaths=leadsTrackerJson&updateMask.fieldPaths=lastUpdated&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
+                    await fetch(patchUrl, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fields: {
+                                leadsTrackerJson: { stringValue: payloadJson },
+                                lastUpdated: { stringValue: new Date().toISOString() }
+                            }
+                        })
+                    });
+                }
+                showLeadToast(`Saved WhatsApp number for ${repName}: +91 ${num}`);
+            } catch (e) {
+                console.warn('Could not sync executive phone to Firestore:', e);
+            }
+        }
+
+        // Save button trigger from Settings modal table
+        function saveExecutivePhoneFromSettings(repName, idx) {
+            const input = document.getElementById(`settingsRepPhone-${idx}`);
+            if (!input) return;
+            const val = input.value.trim();
+            if (!val || val.length < 10) {
+                alert(`Please enter a valid 10-digit WhatsApp number for ${repName}.`);
+                input.focus();
+                return;
+            }
+            saveExecutivePhone(repName, val);
+        }
+
         // Direct 'Send to WhatsApp' from 3-dot menu
         async function sendLeadToWhatsApp(leadId) {
             const lead = allLeads.find(l => l.id === leadId);
@@ -3359,67 +3517,65 @@
                 return;
             }
 
-            const text = buildLeadDossier(lead);
             const repName = lead.assignedTo && lead.assignedTo !== 'Unassigned' ? lead.assignedTo : '';
-            
-            // Check if we have a saved phone for the assigned executive
-            let repPhone = '';
-            if (repName) {
-                try {
-                    const phonesMap = JSON.parse(localStorage.getItem('solis_rep_phones_map') || '{}');
-                    repPhone = phonesMap[repName] || '';
-                } catch (e) {}
+            let repPhone = getSavedExecutivePhone(repName);
 
-                // If not saved, prompt Super Admin (they can enter number or leave blank to choose inside WhatsApp)
-                if (!repPhone) {
-                    const promptVal = prompt(
-                        `Enter WhatsApp number for ${repName} (or leave blank to choose contact directly in WhatsApp):`,
-                        ''
-                    );
-                    if (promptVal && promptVal.trim()) {
-                        const clean = promptVal.replace(/[^0-9]/g, '');
-                        if (clean.length >= 10) {
-                            repPhone = clean.startsWith('91') ? clean : (clean.length === 10 ? '91' + clean : clean);
-                            try {
-                                const phonesMap = JSON.parse(localStorage.getItem('solis_rep_phones_map') || '{}');
-                                phonesMap[repName] = repPhone;
-                                localStorage.setItem('solis_rep_phones_map', JSON.stringify(phonesMap));
-                            } catch (e) {}
-                        }
+            // If assigned to a representative (e.g. Kannan Deepu) but phone not saved yet, prompt once to permanently save
+            if (repName && !repPhone) {
+                const entered = prompt(
+                    `Assignee: ${repName}
+No WhatsApp number is saved yet for ${repName}.
+
+Please enter ${repName}'s 10-digit WhatsApp number to save for all future assignments:`,
+                    ''
+                );
+                if (entered && entered.trim()) {
+                    const clean = entered.replace(/[^0-9]/g, '');
+                    const num = (clean.startsWith('91') && clean.length === 12) ? clean.slice(2) : clean;
+                    if (num.length >= 10) {
+                        repPhone = num;
+                        await saveExecutivePhone(repName, num);
                     }
                 }
             }
 
+            const text = buildLeadDossier(lead);
             let waUrl = '';
+
             if (repPhone) {
-                waUrl = `https://wa.me/${repPhone}?text=${encodeURIComponent(text)}`;
+                const fullPhone = repPhone.startsWith('91') ? repPhone : '91' + repPhone;
+                waUrl = `https://wa.me/${fullPhone}?text=${encodeURIComponent(text)}`;
             } else {
+                // If unassigned or user left blank, open WhatsApp chat chooser
                 waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
             }
 
             // Open WhatsApp in new tab
             window.open(waUrl, '_blank');
 
-            // Record notification in Firestore
+            // Record notification timestamp in Firestore & local state
             try {
                 const nowIso = new Date().toISOString();
                 lead.lastNotifiedAt = nowIso;
                 lead.notifiedChannel = 'WhatsApp';
+                lead.notifiedTo = repName || 'Sales Team';
 
                 if (typeof db !== 'undefined' && db) {
                     await db.collection('solis').doc('forms').collection('submissions').doc(leadId).update({
                         lastNotifiedAt: nowIso,
-                        notifiedChannel: 'WhatsApp'
+                        notifiedChannel: 'WhatsApp',
+                        notifiedTo: repName || 'Sales Team'
                     });
                 } else {
-                    const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${leadId}?updateMask.fieldPaths=lastNotifiedAt&updateMask.fieldPaths=notifiedChannel&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
+                    const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${leadId}?updateMask.fieldPaths=lastNotifiedAt&updateMask.fieldPaths=notifiedChannel&updateMask.fieldPaths=notifiedTo&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
                     await fetch(patchUrl, {
                         method: 'PATCH',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             fields: {
                                 lastNotifiedAt: { stringValue: nowIso },
-                                notifiedChannel: { stringValue: 'WhatsApp' }
+                                notifiedChannel: { stringValue: 'WhatsApp' },
+                                notifiedTo: { stringValue: repName || 'Sales Team' }
                             }
                         })
                     });
@@ -3429,7 +3585,8 @@
             }
 
             const parsed = splitLeadNumber(lead.leadNumber);
-            showLeadToast(`Opening WhatsApp with dossier for ${parsed.prefix}-${parsed.digits}...`);
+            const targetLabel = repName ? `${repName} (${repPhone ? '+91 ' + repPhone : 'WhatsApp'})` : 'WhatsApp';
+            showLeadToast(`Opening WhatsApp to send Lead ${parsed.prefix}-${parsed.digits} to ${targetLabel}...`);
         }
 
         // 1-Click Copy Dossier from 3-dot menu
