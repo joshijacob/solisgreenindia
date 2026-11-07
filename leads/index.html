@@ -1987,18 +1987,26 @@
                     isManual: true
                 };
 
+                let saved = false;
                 if (typeof db !== 'undefined' && db) {
-                    await db.collection('solis').doc('forms').collection('submissions').add(leadData);
-                } else {
+                    try {
+                        await db.collection('solis').doc('forms').collection('submissions').add(leadData);
+                        saved = true;
+                    } catch (sdkErr) {
+                        console.warn('Firestore SDK add notice, trying REST fallback:', sdkErr);
+                    }
+                }
+                if (!saved) {
                     const fieldsObj = {};
                     Object.keys(leadData).forEach(k => {
                         fieldsObj[k] = { stringValue: String(leadData[k]) };
                     });
-                    await fetch(FB_REST_URL, {
+                    const restResp = await fetch(FB_REST_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ fields: fieldsObj })
                     });
+                    if (!restResp.ok) throw new Error('Backend HTTP ' + restResp.status);
                 }
 
                 // Close modal and reset form
