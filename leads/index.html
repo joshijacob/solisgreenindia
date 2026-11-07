@@ -846,13 +846,30 @@
                             <input type="text" class="form-control fw-bold" id="detailName" placeholder="Customer Name">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-muted small fw-bold">Contact Number <span class="text-danger">*</span></label>
+                            <label class="form-label text-muted small fw-bold">Mobile Calling Number <span class="text-danger">*</span></label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-phone"></i></span>
-                                <input type="tel" class="form-control fw-bold font-mono" id="detailPhone" placeholder="10-digit number">
+                                <input type="tel" class="form-control fw-bold font-mono" id="detailPhone" placeholder="10-digit mobile" oninput="handleDetailPhoneInput()">
                                 <a href="#" id="detailCallLink" class="btn btn-outline-primary" title="Call Customer"><i class="fa-solid fa-phone"></i></a>
                                 <a href="#" id="detailWaLink" target="_blank" class="btn btn-success" title="WhatsApp Customer"><i class="fa-brands fa-whatsapp"></i></a>
                             </div>
+                            <div class="form-check mt-1">
+                                <input class="form-check-input" type="checkbox" id="detailSameWhatsApp" checked onchange="toggleDetailWhatsApp()">
+                                <label class="form-check-label text-muted small" for="detailSameWhatsApp" style="font-size: 0.74rem; cursor: pointer;">
+                                    <i class="fa-brands fa-whatsapp text-success me-1"></i> WhatsApp number is same as Mobile Number
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" id="detailWhatsAppGroup" style="display: none;">
+                            <label class="form-label text-muted small fw-bold">
+                                <i class="fa-brands fa-whatsapp text-success me-1"></i> Separate WhatsApp Number
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-success"><i class="fa-brands fa-whatsapp"></i></span>
+                                <input type="tel" class="form-control font-mono fw-bold" id="detailWhatsApp" placeholder="10-digit WhatsApp number" oninput="updateDetailWaLink()">
+                            </div>
+                            <small class="text-muted" style="font-size: 0.72rem;">Customer's WhatsApp number if distinct from calling phone.</small>
                         </div>
 
                         <div class="col-md-6">
@@ -1045,10 +1062,25 @@
                                 <input type="text" class="form-control form-control-lg fs-6 shadow-none" id="newLeadName" placeholder="e.g. Thomas Varghese" required style="border-radius: 10px;">
                             </div>
 
-                            <!-- 2. Contact Phone Number -->
+                            <!-- 2. Contact Phone Number & WhatsApp Option -->
                             <div class="col-sm-6">
-                                <label class="form-label small fw-bold text-dark mb-1">Phone / WhatsApp <span class="text-danger">*</span></label>
-                                <input type="tel" class="form-control form-control-lg fs-6 font-mono shadow-none" id="newLeadPhone" placeholder="10-digit mobile" required style="border-radius: 10px;">
+                                <label class="form-label small fw-bold text-dark mb-1">Mobile Number (Calling) <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control form-control-lg fs-6 font-mono shadow-none" id="newLeadPhone" placeholder="10-digit mobile" required style="border-radius: 10px;" oninput="handleNewLeadPhoneInput()">
+                                <div class="form-check mt-1">
+                                    <input class="form-check-input" type="checkbox" id="newLeadSameWhatsApp" checked onchange="toggleNewLeadWhatsApp()">
+                                    <label class="form-check-label text-muted small" for="newLeadSameWhatsApp" style="font-size: 0.74rem; cursor: pointer;">
+                                        <i class="fa-brands fa-whatsapp text-success me-1"></i> WhatsApp number is same as Mobile Number
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 2b. Separate WhatsApp Number -->
+                            <div class="col-sm-6" id="newLeadWhatsAppGroup" style="display: none;">
+                                <label class="form-label small fw-bold text-dark mb-1">
+                                    <i class="fa-brands fa-whatsapp text-success me-1"></i> WhatsApp Number (Separate)
+                                </label>
+                                <input type="tel" class="form-control form-control-lg fs-6 font-mono shadow-none" id="newLeadWhatsApp" placeholder="10-digit WhatsApp" style="border-radius: 10px;">
+                                <small class="text-muted" style="font-size: 0.72rem;">Customer's WhatsApp number if different from calling SIM.</small>
                             </div>
 
                             <!-- 3. Solar System Requirement -->
@@ -1572,6 +1604,13 @@
                         if (Array.isArray(cloudUsers) && cloudUsers.length > 0) {
                             activeSalesUsers = cloudUsers.filter(u => u.status === 'active' || !u.status);
                             localStorage.setItem('solis_users_db', JSON.stringify(cloudUsers));
+                            // Sync user WhatsApp numbers for lead assignment
+                            cloudUsers.forEach(u => {
+                                if (u.name && (u.whatsapp || u.phone)) {
+                                    if (!currentDropdownSettings.executivePhones) currentDropdownSettings.executivePhones = {};
+                                    currentDropdownSettings.executivePhones[u.name] = (u.whatsapp || u.phone).replace(/[^0-9]/g, '');
+                                }
+                            });
                         }
                     }
                 }
@@ -2277,9 +2316,81 @@
         }
 
         // Prepare Add Lead Modal for Quick 15-second entry
+        
+        // ========================================================
+        // CUSTOMER MOBILE & SEPARATE WHATSAPP TOGGLE HELPERS
+        // ========================================================
+        function handleNewLeadPhoneInput() {
+            const isSame = document.getElementById('newLeadSameWhatsApp').checked;
+            if (isSame) {
+                document.getElementById('newLeadWhatsApp').value = document.getElementById('newLeadPhone').value;
+            }
+        }
+
+        function toggleNewLeadWhatsApp() {
+            const isSame = document.getElementById('newLeadSameWhatsApp').checked;
+            const group = document.getElementById('newLeadWhatsAppGroup');
+            const waInput = document.getElementById('newLeadWhatsApp');
+            const phoneInput = document.getElementById('newLeadPhone');
+
+            if (isSame) {
+                group.style.display = 'none';
+                waInput.value = phoneInput.value;
+            } else {
+                group.style.display = 'block';
+                if (!waInput.value) waInput.value = phoneInput.value;
+                waInput.focus();
+            }
+        }
+
+        function handleDetailPhoneInput() {
+            const isSame = document.getElementById('detailSameWhatsApp').checked;
+            if (isSame) {
+                document.getElementById('detailWhatsApp').value = document.getElementById('detailPhone').value;
+            }
+            updateDetailWaLink();
+        }
+
+        function toggleDetailWhatsApp() {
+            const isSame = document.getElementById('detailSameWhatsApp').checked;
+            const group = document.getElementById('detailWhatsAppGroup');
+            const waInput = document.getElementById('detailWhatsApp');
+            const phoneInput = document.getElementById('detailPhone');
+
+            if (isSame) {
+                group.style.display = 'none';
+                waInput.value = phoneInput.value;
+            } else {
+                group.style.display = 'block';
+                if (!waInput.value) waInput.value = phoneInput.value;
+                waInput.focus();
+            }
+            updateDetailWaLink();
+        }
+
+        function updateDetailWaLink() {
+            const isSame = document.getElementById('detailSameWhatsApp').checked;
+            const rawPhone = document.getElementById('detailPhone').value.trim();
+            const rawWa = isSame ? rawPhone : document.getElementById('detailWhatsApp').value.trim();
+            const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
+            const cleanWa = rawWa.replace(/[^0-9]/g, '');
+            const waPhone = cleanWa.startsWith('91') ? cleanWa : (cleanWa.length === 10 ? '91' + cleanWa : cleanWa);
+
+            const callLink = document.getElementById('detailCallLink');
+            const waLink = document.getElementById('detailWaLink');
+            if (callLink) callLink.href = cleanPhone ? `tel:${cleanPhone}` : '#';
+            if (waLink) waLink.href = waPhone ? `https://wa.me/${waPhone}?text=${encodeURIComponent('Hello, thank you for contacting Solis Green Energy.')}` : '#';
+        }
+
         function prepareNewLeadModal() {
             const form = document.getElementById('manualLeadForm');
             if (form) form.reset();
+            const sameWaCheck = document.getElementById('newLeadSameWhatsApp');
+            if (sameWaCheck) sameWaCheck.checked = true;
+            const waGroup = document.getElementById('newLeadWhatsAppGroup');
+            if (waGroup) waGroup.style.display = 'none';
+            const waInput = document.getElementById('newLeadWhatsApp');
+            if (waInput) waInput.value = '';
 
             const today = new Date();
             const y = today.getFullYear();
@@ -2339,6 +2450,8 @@
                                 leadDate: data.leadDate || '',
                                 name: data.name || 'Website Visitor',
                                 phone: data.phone || '',
+                                whatsapp: data.whatsapp || data.phone || '',
+                                isSameWhatsApp: data.isSameWhatsApp !== false,
                                 consumerNumber: data.consumerNumber || '',
                                 email: data.email || '',
                                 service: data.service || data.leadType || 'Solar Installation',
@@ -2407,6 +2520,8 @@
                             leadDate: f.leadDate ? f.leadDate.stringValue : '',
                             name: f.name ? f.name.stringValue : 'Website Visitor',
                             phone: f.phone ? f.phone.stringValue : '',
+                            whatsapp: f.whatsapp ? f.whatsapp.stringValue : (f.phone ? f.phone.stringValue : ''),
+                            isSameWhatsApp: f.isSameWhatsApp ? Boolean(f.isSameWhatsApp.booleanValue || f.isSameWhatsApp.stringValue === 'true') : true,
                             consumerNumber: f.consumerNumber ? f.consumerNumber.stringValue : '',
                             email: f.email ? f.email.stringValue : '',
                             service: f.service ? f.service.stringValue : (f.leadType ? f.leadType.stringValue : 'Solar Installation'),
@@ -2639,8 +2754,10 @@
                 const formattedDate = formatLeadDateTime(lead.leadDate || lead.createdAt);
                 const safeName = escapeHtml(lead.name || 'Anonymous');
                 const rawPhone = (lead.phone || '').trim();
+                const rawWhatsApp = (lead.whatsapp || lead.phone || '').trim();
                 const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
-                const waPhone = cleanPhone.startsWith('91') ? cleanPhone : (cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone);
+                const cleanWhatsApp = rawWhatsApp.replace(/[^0-9]/g, '');
+                const waPhone = cleanWhatsApp.startsWith('91') ? cleanWhatsApp : (cleanWhatsApp.length === 10 ? '91' + cleanWhatsApp : cleanWhatsApp);
                 const waText = encodeURIComponent(`Hello ${safeName}, thank you for contacting Solis Green Energy regarding your solar installation inquiry. How can we assist you with your subsidy & solar plan?`);
                 const ksebNo = escapeHtml(lead.consumerNumber || '');
                 const service = escapeHtml(lead.service || lead.leadType || 'Solar Installation');
@@ -2729,15 +2846,22 @@
 
                         <!-- Col 4: Contact & 1-Click Chat/Call -->
                         <td>
-                            <div class="d-flex align-items-center gap-1">
-                                <span class="fw-semibold font-mono small">${escapeHtml(rawPhone) || '-'}</span>
-                                ${rawPhone ? `
-                                    <a href="tel:${rawPhone}" class="action-icon-btn btn-call ms-1" title="Direct Phone Call to ${safeName}">
-                                        <i class="fa-solid fa-phone"></i>
-                                    </a>
-                                    <a href="https://wa.me/${waPhone}?text=${waText}" target="_blank" class="action-icon-btn btn-wa" title="Open WhatsApp Chat">
-                                        <i class="fa-brands fa-whatsapp text-success"></i>
-                                    </a>
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center gap-1">
+                                    <span class="fw-semibold font-mono small">${escapeHtml(rawPhone) || '-'}</span>
+                                    ${rawPhone ? `
+                                        <a href="tel:${rawPhone}" class="action-icon-btn btn-call ms-1" title="Direct Phone Call to ${safeName}">
+                                            <i class="fa-solid fa-phone"></i>
+                                        </a>
+                                        <a href="https://wa.me/${waPhone}?text=${waText}" target="_blank" class="action-icon-btn btn-wa" title="Open WhatsApp Chat (${escapeHtml(rawWhatsApp)})">
+                                            <i class="fa-brands fa-whatsapp text-success"></i>
+                                        </a>
+                                    ` : ''}
+                                </div>
+                                ${rawWhatsApp && rawWhatsApp !== rawPhone ? `
+                                    <div class="text-muted font-mono" style="font-size: 0.72rem;">
+                                        <i class="fa-brands fa-whatsapp text-success me-1"></i>${escapeHtml(rawWhatsApp)}
+                                    </div>
                                 ` : ''}
                             </div>
                         </td>
@@ -3015,7 +3139,14 @@
             document.getElementById('detailLeadDate').value = (lead.leadDate || (lead.createdAt ? lead.createdAt.split('T')[0] : ''));
             document.getElementById('detailLeadSource').value = lead.source || lead.leadSource || 'WhatsApp';
             document.getElementById('detailName').value = lead.name || '';
-            document.getElementById('detailPhone').value = lead.phone || '';
+            const leadPhone = lead.phone || '';
+            const leadWa = lead.whatsapp || leadPhone;
+            const isSameCustWa = lead.isSameWhatsApp !== false && (leadWa === leadPhone || !leadWa);
+
+            document.getElementById('detailPhone').value = leadPhone;
+            document.getElementById('detailSameWhatsApp').checked = isSameCustWa;
+            document.getElementById('detailWhatsApp').value = isSameCustWa ? leadPhone : leadWa;
+            document.getElementById('detailWhatsAppGroup').style.display = isSameCustWa ? 'none' : 'block';
             document.getElementById('detailConsumerNumber').value = lead.consumerNumber || '';
             document.getElementById('detailEmail').value = lead.email || '';
             document.getElementById('detailService').value = lead.service || lead.leadType || '3kW Rooftop Solar (PM Surya Ghar)';
@@ -3059,7 +3190,8 @@
 
             // Links
             const cleanPhone = (lead.phone || '').replace(/[^0-9]/g, '');
-            const waPhone = cleanPhone.startsWith('91') ? cleanPhone : (cleanPhone.length === 10 ? '91' + cleanPhone : cleanPhone);
+            const cleanWa = (lead.whatsapp || lead.phone || '').replace(/[^0-9]/g, '');
+            const waPhone = cleanWa.startsWith('91') ? cleanWa : (cleanWa.length === 10 ? '91' + cleanWa : cleanWa);
             const waText = encodeURIComponent(`Hello ${lead.name || ''}, thank you for contacting Solis Green Energy regarding your solar installation inquiry.`);
             
             document.getElementById('detailCallLink').href = `tel:${cleanPhone}`;
@@ -3093,6 +3225,8 @@
                 leadSource: document.getElementById('detailLeadSource').value,
                 name: document.getElementById('detailName').value.trim() || 'Customer',
                 phone: document.getElementById('detailPhone').value.trim(),
+                whatsapp: document.getElementById('detailSameWhatsApp').checked ? document.getElementById('detailPhone').value.trim() : document.getElementById('detailWhatsApp').value.trim(),
+                isSameWhatsApp: document.getElementById('detailSameWhatsApp').checked,
                 consumerNumber: document.getElementById('detailConsumerNumber').value.trim(),
                 email: document.getElementById('detailEmail').value.trim(),
                 service: document.getElementById('detailService').value.trim(),
@@ -3116,7 +3250,7 @@
                 if (typeof db !== 'undefined' && db) {
                     await db.collection('solis').doc('forms').collection('submissions').doc(activeModalLead.id).update(updatedData);
                 } else {
-                    const patchFields = ['leadNumber','leadDate','source','leadSource','name','phone','consumerNumber','email','service','leadType','place','district','location','coordinates','latitude','longitude','siteVisitPlan','assignedTo','status','message','staffNotes'];
+                    const patchFields = ['leadNumber','leadDate','source','leadSource','name','phone','whatsapp','isSameWhatsApp','consumerNumber','email','service','leadType','place','district','location','coordinates','latitude','longitude','siteVisitPlan','assignedTo','status','message','staffNotes'];
                     const maskStr = patchFields.map(f => `updateMask.fieldPaths=${f}`).join('&');
                     const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${activeModalLead.id}?${maskStr}&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
                     
@@ -3197,6 +3331,8 @@
             const source = document.getElementById('newLeadSource').value;
             const name = document.getElementById('newLeadName').value.trim();
             const phone = document.getElementById('newLeadPhone').value.trim();
+            const isSameWhatsApp = document.getElementById('newLeadSameWhatsApp').checked;
+            const whatsapp = isSameWhatsApp ? phone : document.getElementById('newLeadWhatsApp').value.trim();
             const service = document.getElementById('newLeadService').value;
             const assignedTo = document.getElementById('newLeadAssignee').value || 'Unassigned';
             const place = document.getElementById('newLeadPlace').value.trim();
@@ -3218,6 +3354,8 @@
                     leadDate,
                     name,
                     phone,
+                    whatsapp,
+                    isSameWhatsApp,
                     consumerNumber,
                     email,
                     service,
@@ -3381,6 +3519,7 @@
             const leadDateStr = formatLeadDateTime(lead.leadDate || lead.createdAt);
             const custName = lead.name || 'Customer';
             const custPhone = lead.phone || '-';
+            const custWa = (lead.whatsapp || lead.phone || '').trim();
             const requirement = lead.service || lead.leadType || 'Solar Installation';
             const placeStr = [lead.place, lead.district || lead.location].filter(Boolean).join(', ') || 'Kerala';
             const rawCoords = (lead.coordinates || (lead.latitude && lead.longitude ? `${lead.latitude}, ${lead.longitude}` : '')).trim();
@@ -3396,6 +3535,7 @@
                 `📅 *Inquiry Date:* ${leadDateStr}`,
                 `👤 *Customer Name:* ${custName}`,
                 `📞 *Customer Phone:* ${custPhone}`,
+                ...(custWa && custWa !== custPhone ? [`💬 *Customer WhatsApp:* ${custWa}`] : []),
                 `☀️ *Requirement:* ${requirement}`,
                 `📍 *Location:* ${placeStr}`
             ];
@@ -3423,7 +3563,17 @@
             if (!repName || repName === 'Unassigned') return '';
             const clean = repName.trim().toLowerCase();
 
-            // 1. Check localStorage
+            // 1. Check activeSalesUsers (from Solis User Management)
+            if (typeof activeSalesUsers !== 'undefined' && Array.isArray(activeSalesUsers) && activeSalesUsers.length > 0) {
+                const found = activeSalesUsers.find(u => (u.name || '').trim().toLowerCase() === clean);
+                if (found && (found.whatsapp || found.phone)) {
+                    const wa = (found.whatsapp || found.phone).replace(/[^0-9]/g, '');
+                    const cleanWa = (wa.startsWith('91') && wa.length === 12) ? wa.slice(2) : wa;
+                    if (cleanWa.length === 10) return cleanWa;
+                }
+            }
+
+            // 2. Check localStorage
             try {
                 const map = JSON.parse(localStorage.getItem('solis_rep_phones_map') || '{}');
                 for (let k in map) {

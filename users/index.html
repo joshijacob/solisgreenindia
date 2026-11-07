@@ -458,6 +458,36 @@
                             </div>
                         </div>
 
+                        <!-- Mobile & WhatsApp Numbers -->
+                        <div class="row g-3 mb-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label small fw-bold text-dark mb-1">
+                                    <i class="fa-solid fa-phone text-primary me-1"></i> Mobile Number (Calling)
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted font-mono small">+91</span>
+                                    <input type="tel" id="userPhoneInput" class="form-control font-mono" placeholder="10-digit calling mobile" maxlength="10" oninput="handleUserMobileInput()">
+                                </div>
+                                <div class="form-check mt-1">
+                                    <input class="form-check-input" type="checkbox" id="userSameWhatsAppCheck" checked onchange="toggleUserWhatsAppOption()">
+                                    <label class="form-check-label text-muted small" for="userSameWhatsAppCheck" style="cursor: pointer; font-size: 0.78rem;">
+                                        <i class="fa-brands fa-whatsapp text-success me-1"></i> WhatsApp number is same as Mobile Number
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6" id="userWhatsAppGroup" style="display: none;">
+                                <label class="form-label small fw-bold text-dark mb-1">
+                                    <i class="fa-brands fa-whatsapp text-success me-1"></i> WhatsApp Number (Separate)
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted font-mono small">+91</span>
+                                    <input type="tel" id="userWhatsAppInput" class="form-control font-mono" placeholder="10-digit WhatsApp number" maxlength="10">
+                                </div>
+                                <small class="text-muted" style="font-size: 0.72rem;">Receives instant lead assignment dossiers via WhatsApp.</small>
+                            </div>
+                        </div>
+
                         <div class="row g-3 mb-3">
                             <div class="col-12 col-md-6">
                                 <label class="form-label small fw-bold text-dark">Password <span class="text-danger">*</span></label>
@@ -858,6 +888,19 @@
                 ensureSuperAdminPresence();
                 localStorage.setItem('solis_users_db', JSON.stringify(currentUsers));
 
+                // Also sync WhatsApp numbers to solis_rep_phones_map for instant lead assignments across tabs
+                try {
+                    let phoneMap = JSON.parse(localStorage.getItem('solis_rep_phones_map') || '{}');
+                    currentUsers.forEach(u => {
+                        const wa = (u.whatsapp || u.phone || '').replace(/[^0-9]/g, '');
+                        const cleanWa = (wa.startsWith('91') && wa.length === 12) ? wa.slice(2) : wa;
+                        if (cleanWa.length === 10) {
+                            phoneMap[u.name] = cleanWa;
+                        }
+                    });
+                    localStorage.setItem('solis_rep_phones_map', JSON.stringify(phoneMap));
+                } catch (pe) {}
+
                 const payload = {
                     fields: {
                         systemName: { stringValue: 'Solis User Management System' },
@@ -984,6 +1027,12 @@
                                 <div>
                                     <div class="fw-bold text-dark mb-0">${escapeHtml(u.name)}</div>
                                     <div class="text-muted small font-mono" style="font-size: 0.8rem;">${escapeHtml(u.email)}</div>
+                                    ${u.phone || u.whatsapp ? `
+                                        <div class="d-flex align-items-center gap-2 mt-1" style="font-size: 0.74rem;">
+                                            ${u.phone ? `<span class="text-dark font-mono"><i class="fa-solid fa-phone text-primary me-1"></i>${escapeHtml(u.phone)}</span>` : ''}
+                                            ${u.whatsapp ? `<a href="https://wa.me/91${u.whatsapp.replace(/[^0-9]/g, '')}" target="_blank" class="text-success text-decoration-none font-mono" title="Open WhatsApp chat"><i class="fa-brands fa-whatsapp text-success me-1"></i>${escapeHtml(u.whatsapp)}</a>` : ''}
+                                        </div>
+                                    ` : ''}
                                 </div>
                             </div>
                         </td>
@@ -1032,6 +1081,30 @@
         // ========================================================
         // MODAL MANAGEMENT & ROLE PRESETS
         // ========================================================
+                // Mobile & WhatsApp toggle helpers
+        function handleUserMobileInput() {
+            const isSame = document.getElementById('userSameWhatsAppCheck').checked;
+            if (isSame) {
+                document.getElementById('userWhatsAppInput').value = document.getElementById('userPhoneInput').value;
+            }
+        }
+
+        function toggleUserWhatsAppOption() {
+            const isSame = document.getElementById('userSameWhatsAppCheck').checked;
+            const group = document.getElementById('userWhatsAppGroup');
+            const waInput = document.getElementById('userWhatsAppInput');
+            const phoneInput = document.getElementById('userPhoneInput');
+
+            if (isSame) {
+                group.style.display = 'none';
+                waInput.value = phoneInput.value;
+            } else {
+                group.style.display = 'block';
+                if (!waInput.value) waInput.value = phoneInput.value;
+                waInput.focus();
+            }
+        }
+
         function openAddUserModal() {
             document.getElementById('userForm').reset();
             document.getElementById('userIdInput').value = '';
@@ -1039,6 +1112,11 @@
             document.getElementById('userEmailInput').disabled = false;
             document.getElementById('modalAlert').classList.add('d-none');
             
+            document.getElementById('userPhoneInput').value = '';
+            document.getElementById('userSameWhatsAppCheck').checked = true;
+            document.getElementById('userWhatsAppInput').value = '';
+            document.getElementById('userWhatsAppGroup').style.display = 'none';
+
             // Set defaults
             document.getElementById('userRoleSelect').value = 'sales';
             document.getElementById('userStatusSelect').value = 'active';
@@ -1060,6 +1138,14 @@
             document.getElementById('userPasswordInput').value = user.password || '';
             document.getElementById('userRoleSelect').value = user.role || 'custom';
             document.getElementById('userStatusSelect').value = user.status || 'active';
+
+            const uPhone = user.phone || '';
+            const uWa = user.whatsapp || uPhone;
+            const isSame = user.isSameWhatsApp !== false && (uWa === uPhone || !uWa);
+            document.getElementById('userPhoneInput').value = uPhone;
+            document.getElementById('userSameWhatsAppCheck').checked = isSame;
+            document.getElementById('userWhatsAppInput').value = isSame ? uPhone : uWa;
+            document.getElementById('userWhatsAppGroup').style.display = isSame ? 'none' : 'block';
 
             const isSuperAdmin = user.email.toLowerCase() === SUPER_ADMIN_EMAIL.toLowerCase();
             document.getElementById('userEmailInput').disabled = isSuperAdmin;
@@ -1134,6 +1220,10 @@
             const role = document.getElementById('userRoleSelect').value;
             const status = document.getElementById('userStatusSelect').value;
 
+            const phone = document.getElementById('userPhoneInput').value.trim();
+            const isSameWhatsApp = document.getElementById('userSameWhatsAppCheck').checked;
+            const whatsapp = isSameWhatsApp ? phone : document.getElementById('userWhatsAppInput').value.trim();
+
             if (!name || !email || !password) {
                 alertBox.textContent = "Please fill in all mandatory fields.";
                 alertBox.classList.remove('d-none');
@@ -1171,6 +1261,9 @@
                     const idx = currentUsers.findIndex(u => u.id === userId);
                     if (idx !== -1) {
                         currentUsers[idx].name = name;
+                        currentUsers[idx].phone = phone;
+                        currentUsers[idx].whatsapp = whatsapp;
+                        currentUsers[idx].isSameWhatsApp = isSameWhatsApp;
                         currentUsers[idx].passwordHash = await computeSha256(password);
                         delete currentUsers[idx].password;
                         if (currentUsers[idx].email.toLowerCase() !== SUPER_ADMIN_EMAIL.toLowerCase()) {
@@ -1189,6 +1282,9 @@
                         id: newId,
                         email: email,
                         name: name,
+                        phone: phone,
+                        whatsapp: whatsapp,
+                        isSameWhatsApp: isSameWhatsApp,
                         password: password,
                         role: role,
                         roleLabel: (ROLE_PRESET_MAP[role] && ROLE_PRESET_MAP[role].label) || role,
