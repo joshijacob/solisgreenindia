@@ -124,6 +124,40 @@
             z-index: 10;
         }
 
+        .excel-table thead th.sortable {
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .excel-table thead th.sortable:hover {
+            background-color: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .excel-table thead th.sortable.active-sort {
+            background-color: #e0f2fe !important;
+            color: #0369a1 !important;
+            border-bottom: 2px solid #0284c7 !important;
+        }
+
+        .sort-icon {
+            font-size: 0.68rem;
+            margin-left: 4px;
+            opacity: 0.35;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+            vertical-align: middle;
+        }
+
+        .excel-table thead th.sortable:hover .sort-icon {
+            opacity: 0.8;
+        }
+
+        .excel-table thead th.sortable.active-sort .sort-icon {
+            opacity: 1 !important;
+            color: #0284c7 !important;
+        }
+
         .excel-table tbody td {
             padding: 0.75rem 0.85rem;
             vertical-align: middle;
@@ -739,13 +773,34 @@
                     </div>
 
                     <!-- Date Filter -->
-                    <div class="col-6 col-sm-4 col-md-1">
+                    <div class="col-6 col-sm-4 col-md-2 col-lg-1">
                         <select class="form-select form-select-sm" id="dateFilter" onchange="applyFilters()">
                             <option value="all">Dates</option>
                             <option value="today">Today</option>
                             <option value="7days">7 Days</option>
                             <option value="30days">30 Days</option>
                         </select>
+                    </div>
+
+                    <!-- Sort Order Dropdown -->
+                    <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text bg-light text-muted border-end-0" title="Sort Order">
+                                <i class="fa-solid fa-arrow-down-up-across-line text-success"></i>
+                            </span>
+                            <select class="form-select form-select-sm border-start-0 fw-semibold text-dark" id="sortSelect" onchange="handleSortSelectChange(this.value)">
+                                <option value="leadNumber_desc" selected>Sort: Lead ID (Newest)</option>
+                                <option value="leadNumber_asc">Sort: Lead ID (Oldest / 0001)</option>
+                                <option value="date_desc">Sort: Date (Newest First)</option>
+                                <option value="date_asc">Sort: Date (Oldest First)</option>
+                                <option value="name_asc">Sort: Customer (A → Z)</option>
+                                <option value="name_desc">Sort: Customer (Z → A)</option>
+                                <option value="district_asc">Sort: District (A → Z)</option>
+                                <option value="assignedTo_asc">Sort: Assigned Executive</option>
+                                <option value="status_asc">Sort: Status</option>
+                                <option value="source_asc">Sort: Source</option>
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Results Count Badge -->
@@ -761,16 +816,34 @@
                 <table class="table table-hover excel-table" id="leadsTable">
                     <thead>
                         <tr>
-                            <th style="min-width: 95px;" class="text-center">Lead ID</th>
-                            <th style="min-width: 125px;">Date</th>
-                            <th style="min-width: 170px;">Customer Name</th>
+                            <th style="min-width: 95px;" class="text-center sortable active-sort" id="th-leadNumber" onclick="handleHeaderSort('leadNumber')" title="Click to sort by Lead ID">
+                                Lead ID <i class="fa-solid fa-arrow-down-wide-short sort-icon text-primary" id="sortIcon-leadNumber"></i>
+                            </th>
+                            <th style="min-width: 125px;" class="sortable" id="th-date" onclick="handleHeaderSort('date')" title="Click to sort by Date">
+                                Date <i class="fa-solid fa-sort sort-icon text-muted" id="sortIcon-date"></i>
+                            </th>
+                            <th style="min-width: 170px;" class="sortable" id="th-name" onclick="handleHeaderSort('name')" title="Click to sort by Customer Name">
+                                Customer Name <i class="fa-solid fa-sort sort-icon text-muted" id="sortIcon-name"></i>
+                            </th>
                             <th style="min-width: 155px;">Contact & Chat</th>
-                            <th style="min-width: 145px;">Type of Lead</th>
-                            <th style="min-width: 140px;">Place & District</th>
-                            <th style="min-width: 115px;">Source</th>
-                            <th style="min-width: 150px;">Assigned To</th>
-                            <th style="min-width: 135px;">Site Visit / KSEB</th>
-                            <th style="min-width: 130px;">Status</th>
+                            <th style="min-width: 145px;" class="sortable" id="th-service" onclick="handleHeaderSort('service')" title="Click to sort by Type of Lead">
+                                Type of Lead <i class="fa-solid fa-sort sort-icon text-muted" id="sortIcon-service"></i>
+                            </th>
+                            <th style="min-width: 140px;" class="sortable" id="th-district" onclick="handleHeaderSort('district')" title="Click to sort by Place & District">
+                                Place & District <i class="fa-solid fa-sort sort-icon text-muted" id="sortIcon-district"></i>
+                            </th>
+                            <th style="min-width: 115px;" class="sortable" id="th-source" onclick="handleHeaderSort('source')" title="Click to sort by Source">
+                                Source <i class="fa-solid fa-sort sort-icon text-muted" id="sortIcon-source"></i>
+                            </th>
+                            <th style="min-width: 150px;" class="sortable" id="th-assignedTo" onclick="handleHeaderSort('assignedTo')" title="Click to sort by Assigned Executive">
+                                Assigned To <i class="fa-solid fa-sort sort-icon text-muted" id="sortIcon-assignedTo"></i>
+                            </th>
+                            <th style="min-width: 135px;" class="sortable" id="th-siteVisitPlan" onclick="handleHeaderSort('siteVisitPlan')" title="Click to sort by Site Visit / KSEB">
+                                Site Visit / KSEB <i class="fa-solid fa-sort sort-icon text-muted" id="sortIcon-siteVisitPlan"></i>
+                            </th>
+                            <th style="min-width: 130px;" class="sortable" id="th-status" onclick="handleHeaderSort('status')" title="Click to sort by Status">
+                                Status <i class="fa-solid fa-sort sort-icon text-muted" id="sortIcon-status"></i>
+                            </th>
                             <th style="width: 80px;" class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -1498,6 +1571,8 @@
         let activeModalLead = null;
         let unsubscribeFirestore = null;
         let activeTrackerTab = 'web'; // 'web' = Website Form Submissions | 'manual' = Manual (WhatsApp/Call/Referral) | 'all' = All
+        let currentSortColumn = 'leadNumber'; // 'leadNumber' | 'date' | 'name' | 'service' | 'district' | 'source' | 'assignedTo' | 'siteVisitPlan' | 'status'
+        let currentSortDirection = 'desc'; // 'asc' | 'desc'
 
         // Classification helpers for Dual Trackers
         function isWebsiteLead(lead) {
@@ -2608,6 +2683,152 @@
         }
 
         // Filter Leads based on Active Tracker (Web vs Manual), Search, Status, Assignee, Source, District, Date
+        
+        // ========================================================
+        // DYNAMIC TABLE SORTING ENGINE
+        // ========================================================
+        function sortLeadsList(leads) {
+            if (!leads || !Array.isArray(leads)) return [];
+            const dirMult = (currentSortDirection === 'asc') ? 1 : -1;
+
+            return [...leads].sort((a, b) => {
+                let comp = 0;
+
+                switch (currentSortColumn) {
+                    case 'leadNumber': {
+                        const digA = parseInt(splitLeadNumber(a.leadNumber).digits, 10) || 0;
+                        const digB = parseInt(splitLeadNumber(b.leadNumber).digits, 10) || 0;
+                        comp = digA - digB;
+                        break;
+                    }
+                    case 'date': {
+                        const timeA = new Date(a.leadDate || a.createdAt || 0).getTime() || 0;
+                        const timeB = new Date(b.leadDate || b.createdAt || 0).getTime() || 0;
+                        comp = timeA - timeB;
+                        if (comp === 0) {
+                            const digA = parseInt(splitLeadNumber(a.leadNumber).digits, 10) || 0;
+                            const digB = parseInt(splitLeadNumber(b.leadNumber).digits, 10) || 0;
+                            comp = digA - digB;
+                        }
+                        break;
+                    }
+                    case 'name': {
+                        const nameA = (a.name || '').trim();
+                        const nameB = (b.name || '').trim();
+                        comp = nameA.localeCompare(nameB, undefined, { sensitivity: 'base' });
+                        break;
+                    }
+                    case 'service': {
+                        const sA = (a.service || a.leadType || '').trim();
+                        const sB = (b.service || b.leadType || '').trim();
+                        comp = sA.localeCompare(sB, undefined, { sensitivity: 'base' });
+                        break;
+                    }
+                    case 'district': {
+                        const locA = (a.district || a.location || a.place || '').trim();
+                        const locB = (b.district || b.location || b.place || '').trim();
+                        comp = locA.localeCompare(locB, undefined, { sensitivity: 'base' });
+                        if (comp === 0) {
+                            const pA = (a.place || '').trim();
+                            const pB = (b.place || '').trim();
+                            comp = pA.localeCompare(pB, undefined, { sensitivity: 'base' });
+                        }
+                        break;
+                    }
+                    case 'source': {
+                        const srcA = (a.source || a.leadSource || '').trim();
+                        const srcB = (b.source || b.leadSource || '').trim();
+                        comp = srcA.localeCompare(srcB, undefined, { sensitivity: 'base' });
+                        break;
+                    }
+                    case 'assignedTo': {
+                        const asgA = (a.assignedTo || 'Unassigned').trim();
+                        const asgB = (b.assignedTo || 'Unassigned').trim();
+                        if (asgA.toLowerCase() === 'unassigned' && asgB.toLowerCase() !== 'unassigned') comp = 1;
+                        else if (asgA.toLowerCase() !== 'unassigned' && asgB.toLowerCase() === 'unassigned') comp = -1;
+                        else comp = asgA.localeCompare(asgB, undefined, { sensitivity: 'base' });
+                        break;
+                    }
+                    case 'siteVisitPlan': {
+                        const svA = (a.siteVisitPlan || '').trim();
+                        const svB = (b.siteVisitPlan || '').trim();
+                        comp = svA.localeCompare(svB, undefined, { sensitivity: 'base' });
+                        break;
+                    }
+                    case 'status': {
+                        const stA = (a.status || 'New').trim();
+                        const stB = (b.status || 'New').trim();
+                        comp = stA.localeCompare(stB, undefined, { sensitivity: 'base' });
+                        break;
+                    }
+                    default: {
+                        const digA = parseInt(splitLeadNumber(a.leadNumber).digits, 10) || 0;
+                        const digB = parseInt(splitLeadNumber(b.leadNumber).digits, 10) || 0;
+                        comp = digA - digB;
+                        break;
+                    }
+                }
+
+                return comp * dirMult;
+            });
+        }
+
+        // Change sort from toolbar dropdown
+        function handleSortSelectChange(val) {
+            if (!val) return;
+            const parts = val.split('_');
+            currentSortColumn = parts[0];
+            currentSortDirection = parts[1] || 'desc';
+            applyFilters();
+        }
+
+        // Click on table column header to sort
+        function handleHeaderSort(col) {
+            if (currentSortColumn === col) {
+                currentSortDirection = (currentSortDirection === 'asc') ? 'desc' : 'asc';
+            } else {
+                currentSortColumn = col;
+                currentSortDirection = (col === 'leadNumber' || col === 'date') ? 'desc' : 'asc';
+            }
+
+            // Sync sort dropdown if option exists
+            const sortSelect = document.getElementById('sortSelect');
+            if (sortSelect) {
+                const optVal = `${currentSortColumn}_${currentSortDirection}`;
+                const hasOpt = Array.from(sortSelect.options).some(o => o.value === optVal);
+                if (hasOpt) {
+                    sortSelect.value = optVal;
+                }
+            }
+
+            applyFilters();
+        }
+
+        // Update active header styling and icons
+        function updateSortHeaderIcons() {
+            const cols = ['leadNumber', 'date', 'name', 'service', 'district', 'source', 'assignedTo', 'siteVisitPlan', 'status'];
+            cols.forEach(col => {
+                const th = document.getElementById(`th-${col}`);
+                const icon = document.getElementById(`sortIcon-${col}`);
+                if (!icon) return;
+
+                if (currentSortColumn === col) {
+                    if (th) th.classList.add('active-sort');
+                    if (currentSortDirection === 'asc') {
+                        icon.className = 'fa-solid fa-arrow-up-short-wide sort-icon text-primary';
+                        icon.style.opacity = '1';
+                    } else {
+                        icon.className = 'fa-solid fa-arrow-down-wide-short sort-icon text-primary';
+                        icon.style.opacity = '1';
+                    }
+                } else {
+                    if (th) th.classList.remove('active-sort');
+                    icon.className = 'fa-solid fa-sort sort-icon text-muted';
+                    icon.style.opacity = '0.35';
+                }
+            });
+        }
+
         function applyFilters() {
             const searchQuery = (document.getElementById('tableSearchInput').value || '').trim().toLowerCase();
             const statusVal = document.getElementById('statusFilter').value;
@@ -2690,6 +2911,9 @@
 
                 return true;
             });
+
+            filteredLeads = sortLeadsList(filteredLeads);
+            updateSortHeaderIcons();
 
             document.getElementById('filteredCount').textContent = filteredLeads.length;
             renderTable();
