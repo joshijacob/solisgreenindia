@@ -300,6 +300,26 @@
       "permanent": true
     },
     {
+      "source": "/solar-installer-in-thiruvalla",
+      "destination": "/best-solar-installer-in-thiruvalla/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-installer-in-thiruvalla/",
+      "destination": "/best-solar-installer-in-thiruvalla/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-installer-thiruvalla",
+      "destination": "/best-solar-installer-in-thiruvalla/",
+      "permanent": true
+    },
+    {
+      "source": "/solar-installation-thiruvalla",
+      "destination": "/best-solar-installer-in-thiruvalla/",
+      "permanent": true
+    },
+    {
       "source": "/solar-company-in-thiruvalla",
       "destination": "/solar-company-in-pathanamthitta/thiruvalla/",
       "permanent": true
