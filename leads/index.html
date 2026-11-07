@@ -359,7 +359,7 @@
             border-color: #0284c7;
         }
 
-        /* 3-Dot Action Button & Dropdown Menu */
+        /* 3-Dot Action Menu & Dropdown */
         .dropdown-toggle-nocaret::after {
             display: none !important;
         }
@@ -387,13 +387,13 @@
             border-radius: 0.75rem !important;
             border: 1px solid #e2e8f0 !important;
             box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.15), 0 8px 10px -6px rgba(15, 23, 42, 0.1) !important;
-            min-width: 220px !important;
+            min-width: 230px !important;
             padding: 0.4rem 0 !important;
             z-index: 1060 !important;
         }
         .lead-actions-dropdown .dropdown-item {
             font-size: 0.82rem;
-            padding: 0.5rem 1rem;
+            padding: 0.55rem 1rem;
             display: flex;
             align-items: center;
             gap: 0.65rem;
@@ -405,7 +405,7 @@
             color: #0f172a;
         }
         .lead-actions-dropdown .dropdown-item i {
-            width: 16px;
+            width: 18px;
             text-align: center;
         }
 
@@ -961,77 +961,9 @@
                         <i class="fa-solid fa-trash-can me-1"></i> Delete Lead
                     </button>
                     <div class="d-flex gap-2">
-                        <button type="button" class="btn btn-outline-primary fw-semibold" onclick="openDispatchFromDetailModal()" title="Send WhatsApp or Email notification to assigned representative">
-                            <i class="fa-solid fa-paper-plane me-1"></i> Notify / Dispatch Rep
-                        </button>
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-success fw-bold px-4" id="saveModalChangesBtn" onclick="saveLeadChangesFromModal()">
                             <i class="fa-solid fa-floppy-disk me-1"></i> Save Changes
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    
-
-                    <!-- Assignee Selection & Executive Contact -->
-                    <div class="row g-3 mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label text-muted small fw-bold">
-                                <i class="fa-solid fa-user-tie text-primary me-1"></i> Assign To Sales Executive <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-select fw-semibold" id="dispAssigneeSelect" onchange="onDispatchAssigneeChanged()">
-                                <!-- Dynamically populated from activeSalesUsers -->
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label text-muted small fw-bold">
-                                <i class="fa-brands fa-whatsapp text-success me-1"></i> Executive WhatsApp Number <span class="text-danger">*</span>
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light text-muted font-mono small">+91</span>
-                                <input type="tel" class="form-control font-mono" id="dispRepPhone" placeholder="10-digit mobile" maxlength="10" oninput="updateDispatchPreview()">
-                            </div>
-                            <small class="text-muted" style="font-size: 0.72rem;">Saved in browser for quick re-use per sales executive.</small>
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label text-muted small fw-bold">
-                                <i class="fa-regular fa-comment-dots text-secondary me-1"></i> Special Handover Notes / Priority Instructions (Optional)
-                            </label>
-                            <input type="text" class="form-control" id="dispAdminNotes" placeholder="e.g. Customer wants callback after 6 PM / Urgent survey needed" oninput="updateDispatchPreview()">
-                        </div>
-                    </div>
-
-                    <!-- Live Message Preview -->
-                    <div class="mb-2">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <label class="form-label text-muted small fw-bold mb-0">
-                                <i class="fa-solid fa-eye text-primary me-1"></i> Formatted Notification Preview
-                            </label>
-                            <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none small text-primary" onclick="copyDispatchText()">
-                                <i class="fa-regular fa-copy me-1"></i> Copy Text
-                            </button>
-                        </div>
-                        <pre class="p-3 bg-light rounded-3 border font-mono small text-dark mb-0" id="dispMessagePreview" style="max-height: 180px; overflow-y: auto; white-space: pre-wrap; word-break: break-word; font-size: 0.78rem;"></pre>
-                    </div>
-                </div>
-
-                <div class="modal-footer bg-light border-top px-4 py-3 d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-outline-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
-
-                    <div class="d-flex align-items-center gap-2">
-                        <button type="button" class="btn btn-outline-dark fw-bold rounded-pill px-3 shadow-sm" onclick="copyDispatchText()">
-                            <i class="fa-regular fa-copy me-1"></i> Copy Briefing
-                        </button>
-                        <button type="button" class="btn btn-outline-primary fw-bold rounded-pill px-3 shadow-sm" onclick="sendDispatchEmail()">
-                            <i class="fa-regular fa-envelope me-1"></i> Send Email
-                        </button>
-                        <button type="button" class="btn btn-success fw-bold rounded-pill px-4 shadow-sm" onclick="sendDispatchWhatsApp()">
-                            <i class="fa-brands fa-whatsapp me-1"></i> Send via WhatsApp
                         </button>
                     </div>
                 </div>
@@ -1242,71 +1174,6 @@
                     </div>
 
                 </form>
-            </div>
-        </div>
-    </div>
-
-    
-
-                    <!-- Assignee Selection & Executive Contact -->
-                    <div class="row g-3 mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label text-muted small fw-bold">
-                                <i class="fa-solid fa-user-tie text-primary me-1"></i> Assign To Sales Executive <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-select fw-semibold" id="dispAssigneeSelect" onchange="onDispatchAssigneeChanged()">
-                                <!-- Dynamically populated from activeSalesUsers -->
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label text-muted small fw-bold">
-                                <i class="fa-brands fa-whatsapp text-success me-1"></i> Executive WhatsApp Number <span class="text-danger">*</span>
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light text-muted font-mono small">+91</span>
-                                <input type="tel" class="form-control font-mono" id="dispRepPhone" placeholder="10-digit mobile" maxlength="10" oninput="updateDispatchPreview()">
-                            </div>
-                            <small class="text-muted" style="font-size: 0.72rem;">Saved in browser for quick re-use per sales executive.</small>
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label text-muted small fw-bold">
-                                <i class="fa-regular fa-comment-dots text-secondary me-1"></i> Special Handover Notes / Priority Instructions (Optional)
-                            </label>
-                            <input type="text" class="form-control" id="dispAdminNotes" placeholder="e.g. Customer wants callback after 6 PM / Urgent survey needed" oninput="updateDispatchPreview()">
-                        </div>
-                    </div>
-
-                    <!-- Live Message Preview -->
-                    <div class="mb-2">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <label class="form-label text-muted small fw-bold mb-0">
-                                <i class="fa-solid fa-eye text-primary me-1"></i> Formatted Notification Preview
-                            </label>
-                            <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none small text-primary" onclick="copyDispatchText()">
-                                <i class="fa-regular fa-copy me-1"></i> Copy Text
-                            </button>
-                        </div>
-                        <pre class="p-3 bg-light rounded-3 border font-mono small text-dark mb-0" id="dispMessagePreview" style="max-height: 180px; overflow-y: auto; white-space: pre-wrap; word-break: break-word; font-size: 0.78rem;"></pre>
-                    </div>
-                </div>
-
-                <div class="modal-footer bg-light border-top px-4 py-3 d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-outline-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
-
-                    <div class="d-flex align-items-center gap-2">
-                        <button type="button" class="btn btn-outline-dark fw-bold rounded-pill px-3 shadow-sm" onclick="copyDispatchText()">
-                            <i class="fa-regular fa-copy me-1"></i> Copy Briefing
-                        </button>
-                        <button type="button" class="btn btn-outline-primary fw-bold rounded-pill px-3 shadow-sm" onclick="sendDispatchEmail()">
-                            <i class="fa-regular fa-envelope me-1"></i> Send Email
-                        </button>
-                        <button type="button" class="btn btn-success fw-bold rounded-pill px-4 shadow-sm" onclick="sendDispatchWhatsApp()">
-                            <i class="fa-brands fa-whatsapp me-1"></i> Send via WhatsApp
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -1522,120 +1389,6 @@
             </div>
         </div>
     </div>
-
-    
-
-                    <!-- Assignee Selection & Executive Contact -->
-                    <div class="row g-3 mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label text-muted small fw-bold">
-                                <i class="fa-solid fa-user-tie text-primary me-1"></i> Assign To Sales Executive <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-select fw-semibold" id="dispAssigneeSelect" onchange="onDispatchAssigneeChanged()">
-                                <!-- Dynamically populated from activeSalesUsers -->
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label text-muted small fw-bold">
-                                <i class="fa-brands fa-whatsapp text-success me-1"></i> Executive WhatsApp Number <span class="text-danger">*</span>
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light text-muted font-mono small">+91</span>
-                                <input type="tel" class="form-control font-mono" id="dispRepPhone" placeholder="10-digit mobile" maxlength="10" oninput="updateDispatchPreview()">
-                            </div>
-                            <small class="text-muted" style="font-size: 0.72rem;">Saved in browser for quick re-use per sales executive.</small>
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label text-muted small fw-bold">
-                                <i class="fa-regular fa-comment-dots text-secondary me-1"></i> Special Handover Notes / Priority Instructions (Optional)
-                            </label>
-                            <input type="text" class="form-control" id="dispAdminNotes" placeholder="e.g. Customer wants callback after 6 PM / Urgent survey needed" oninput="updateDispatchPreview()">
-                        </div>
-                    </div>
-
-                    <!-- Live Message Preview -->
-                    <div class="mb-2">
-                        <div class="d-flex justify-content-between align-items-center mb-1">
-                            <label class="form-label text-muted small fw-bold mb-0">
-                                <i class="fa-solid fa-eye text-primary me-1"></i> Formatted Notification Preview
-                            </label>
-                            <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none small text-primary" onclick="copyDispatchText()">
-                                <i class="fa-regular fa-copy me-1"></i> Copy Text
-                            </button>
-                        </div>
-                        <pre class="p-3 bg-light rounded-3 border font-mono small text-dark mb-0" id="dispMessagePreview" style="max-height: 180px; overflow-y: auto; white-space: pre-wrap; word-break: break-word; font-size: 0.78rem;"></pre>
-                    </div>
-                </div>
-
-                <div class="modal-footer bg-light border-top px-4 py-3 d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-outline-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
-
-                    <div class="d-flex align-items-center gap-2">
-                        <button type="button" class="btn btn-outline-dark fw-bold rounded-pill px-3 shadow-sm" onclick="copyDispatchText()">
-                            <i class="fa-regular fa-copy me-1"></i> Copy Briefing
-                        </button>
-                        <button type="button" class="btn btn-outline-primary fw-bold rounded-pill px-3 shadow-sm" onclick="sendDispatchEmail()">
-                            <i class="fa-regular fa-envelope me-1"></i> Send Email
-                        </button>
-                        <button type="button" class="btn btn-success fw-bold rounded-pill px-4 shadow-sm" onclick="sendDispatchWhatsApp()">
-                            <i class="fa-brands fa-whatsapp me-1"></i> Send via WhatsApp
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- MODAL 4: LEAD ASSIGNMENT & NOTIFICATION DISPATCH (TO SALES)-->
-    <!-- ======================================================== -->
-    <div class="modal fade" id="dispatchLeadModal" tabindex="-1" aria-labelledby="dispatchLeadModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content rounded-4 border-0 shadow-lg">
-                <div class="modal-header bg-light border-bottom px-4 py-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </div>
-                        <div>
-                            <h5 class="modal-title fw-bold text-dark mb-0 font-display" id="dispatchLeadModalLabel">
-                                Dispatch Lead to Sales Executive
-                            </h5>
-                            <small class="text-muted">Send formatted inquiry dossier via WhatsApp, Email, or Copy to Clipboard</small>
-                        </div>
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body p-4">
-                    <!-- Lead Quick Snapshot Card -->
-                    <div class="card border rounded-3 p-3 mb-3 bg-light-subtle">
-                        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
-                            <div>
-                                <span class="badge bg-dark text-white font-mono px-2 py-1" id="dispLeadNumber">SGES-26110001</span>
-                                <span class="badge bg-light text-secondary border ms-1" id="dispLeadDate">07 Nov 2026</span>
-                                <span class="badge bg-light text-dark border ms-1" id="dispLeadSource"><i class="fa-brands fa-whatsapp text-success me-1"></i>WhatsApp</span>
-                            </div>
-                            <div id="dispNotificationHistory">
-                                <!-- Populated dynamically -->
-                            </div>
-                        </div>
-
-                        <div class="row g-2 small">
-                            <div class="col-md-6">
-                                <span class="text-muted d-block">Customer:</span>
-                                <strong class="text-dark fs-6" id="dispCustomerName">-</strong>
-                                <span class="font-mono text-muted d-block" id="dispCustomerPhone">-</span>
-                            </div>
-                            <div class="col-md-6">
-                                <span class="text-muted d-block">Solar Need:</span>
-                                <strong class="text-dark" id="dispRequirement">-</strong>
-                                <span class="text-muted d-block" id="dispLocation"><i class="fa-solid fa-location-dot text-danger me-1"></i>-</span>
-                            </div>
-                        </div>
-                    </div>
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -2945,27 +2698,11 @@
                             ${srcBadge}
                         </td>
 
-                        <!-- Col 8: Lead Handover / Assigned To (1-Click Switcher & Notification Status) -->
+                        <!-- Col 8: Lead Handover / Assigned To (1-Click Switcher) -->
                         <td>
                             <select class="form-select form-select-sm assignee-select ${assigneeClass}" onchange="changeLeadAssignee('${lead.id}', this.value, this)" title="Change assigned sales executive">
                                 ${assigneeOpts}
                             </select>
-                            ${isAssigned ? (lead.lastNotifiedAt ? `
-                                <div class="mt-1 d-flex align-items-center justify-content-between" style="font-size: 0.68rem;">
-                                    <span class="badge bg-success-subtle text-success border border-success-subtle px-1 py-0 font-monospace" title="Dispatched on ${formatLeadDateTime(lead.lastNotifiedAt)} to ${escapeHtml(lead.notifiedTo || assignedTo)} via ${escapeHtml(lead.notifiedChannel || 'WhatsApp')}">
-                                        <i class="fa-solid fa-check-double me-1"></i>Notified
-                                    </span>
-                                    <button type="button" class="btn btn-link btn-xs p-0 text-decoration-none text-muted" onclick="openDispatchLeadModal('${lead.id}')" title="Re-dispatch notification to executive">
-                                        <i class="fa-solid fa-arrow-rotate-right" style="font-size: 0.65rem;"></i>
-                                    </button>
-                                </div>
-                            ` : `
-                                <div class="mt-1">
-                                    <button type="button" class="btn btn-link btn-xs p-0 text-decoration-none text-primary fw-semibold d-inline-flex align-items-center gap-1" style="font-size: 0.68rem;" onclick="openDispatchLeadModal('${lead.id}')" title="Send WhatsApp / Email notification to ${escapeHtml(assignedTo)}">
-                                        <i class="fa-solid fa-paper-plane text-success"></i> Notify Rep
-                                    </button>
-                                </div>
-                            `) : ''}
                         </td>
 
                         <!-- Col 9: Site Visit / KSEB -->
@@ -2998,55 +2735,66 @@
                         <!-- Col 11: Actions (3-Dot Action Menu) -->
                         <td class="text-center text-nowrap">
                             <div class="dropdown">
-                                <button type="button" class="action-dots-btn dropdown-toggle-nocaret" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" title="Actions menu">
+                                <button type="button" class="action-dots-btn dropdown-toggle-nocaret shadow-sm" data-bs-toggle="dropdown" data-bs-popper-config='{"strategy":"fixed"}' aria-expanded="false" title="Actions menu">
                                     <i class="fa-solid fa-ellipsis-vertical"></i>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-end lead-actions-dropdown py-1">
+                                <ul class="dropdown-menu dropdown-menu-end lead-actions-dropdown shadow-lg py-1">
+                                    <!-- 1. Send to WhatsApp (Forward Lead Assignment) -->
                                     <li>
-                                        <button type="button" class="dropdown-item" onclick="openLeadModal('${lead.id}')">
+                                        <button type="button" class="dropdown-item py-2" onclick="sendLeadToWhatsApp('${lead.id}')">
+                                            <i class="fa-brands fa-whatsapp text-success fs-6"></i>
+                                            <div>
+                                                <span class="fw-bold text-dark d-block">Send to WhatsApp</span>
+                                                <small class="text-muted" style="font-size: 0.68rem;">Forward lead dossier to rep / group</small>
+                                            </div>
+                                        </button>
+                                    </li>
+
+                                    <!-- 2. Edit & Full Details -->
+                                    <li>
+                                        <button type="button" class="dropdown-item py-2" onclick="openLeadModal('${lead.id}')">
                                             <i class="fa-solid fa-pen-to-square text-primary"></i>
                                             <span class="fw-semibold">Edit & Full Details</span>
                                         </button>
                                     </li>
+
+                                    <!-- 3. Copy Lead Dossier -->
                                     <li>
-                                        <button type="button" class="dropdown-item" onclick="openDispatchLeadModal('${lead.id}')">
-                                            <i class="fa-solid fa-paper-plane text-success"></i>
-                                            <span class="fw-semibold">Notify / Dispatch to Rep</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="dropdown-item" onclick="copyLeadQuickDossier('${lead.id}')">
+                                        <button type="button" class="dropdown-item py-2" onclick="copyLeadQuickDossier('${lead.id}')">
                                             <i class="fa-regular fa-copy text-secondary"></i>
                                             <span>Copy Lead Dossier</span>
                                         </button>
                                     </li>
+
                                     ${rawPhone ? `
                                     <li><hr class="dropdown-divider my-1"></li>
                                     <li class="dropdown-header text-uppercase text-muted" style="font-size: 0.65rem; letter-spacing: 0.05em;">Customer Contact</li>
                                     <li>
-                                        <a class="dropdown-item" href="https://wa.me/${waPhone}?text=${waText}" target="_blank">
-                                            <i class="fa-brands fa-whatsapp text-success"></i>
+                                        <a class="dropdown-item py-2" href="https://wa.me/${waPhone}?text=${waText}" target="_blank">
+                                            <i class="fa-solid fa-comment-dots text-success"></i>
                                             <span>WhatsApp Customer</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="tel:${rawPhone}">
+                                        <a class="dropdown-item py-2" href="tel:${rawPhone}">
                                             <i class="fa-solid fa-phone text-primary"></i>
                                             <span>Call Customer</span>
                                         </a>
                                     </li>
                                     ` : ''}
+
                                     ${coords ? `
                                     <li>
-                                        <a class="dropdown-item" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(rawCoords)}" target="_blank">
+                                        <a class="dropdown-item py-2" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(rawCoords)}" target="_blank">
                                             <i class="fa-solid fa-location-crosshairs text-danger"></i>
                                             <span>Open GPS in Maps</span>
                                         </a>
                                     </li>
                                     ` : ''}
+
                                     <li><hr class="dropdown-divider my-1"></li>
                                     <li>
-                                        <button type="button" class="dropdown-item text-danger" onclick="confirmDeleteLead('${lead.id}', '${safeName}')">
+                                        <button type="button" class="dropdown-item py-2 text-danger" onclick="confirmDeleteLead('${lead.id}', '${safeName}')">
                                             <i class="fa-regular fa-trash-can text-danger"></i>
                                             <span class="fw-semibold">Delete Lead</span>
                                         </button>
@@ -3137,13 +2885,7 @@
                         })
                     });
                 }
-                if (newAssignee !== 'Unassigned') {
-                    showLeadToastWithAction(`Lead assigned to ${newAssignee}`, '📢 Notify Rep', () => {
-                        openDispatchLeadModal(leadId, newAssignee);
-                    });
-                } else {
-                    showLeadToast(`Lead moved to Open Pool (Unassigned)`);
-                }
+                showLeadToast(`Lead handed over to ${newAssignee}`);
             } catch (err) {
                 console.error('Failed to update assignee:', err);
                 alert('Could not update assignee: ' + err.message);
@@ -3562,116 +3304,11 @@
 
         
         // ========================================================
-        // LEAD ASSIGNMENT & SALES EXECUTIVE DISPATCH LOGIC
+        // 3-DOT ACTION MENU: SEND TO WHATSAPP & LEAD DOSSIER
         // ========================================================
-        let activeDispatchLead = null;
 
-        // Open Dispatch Modal from Table or Detail Modal
-        function openDispatchLeadModal(leadId, preselectedAssignee) {
-            const lead = allLeads.find(l => l.id === leadId);
-            if (!lead) {
-                alert('Lead record not found.');
-                return;
-            }
-            activeDispatchLead = lead;
-
-            // Header info
-            const parsed = splitLeadNumber(lead.leadNumber);
-            document.getElementById('dispLeadNumber').textContent = `${parsed.prefix}-${parsed.digits}`;
-            document.getElementById('dispLeadDate').textContent = formatLeadDateTime(lead.leadDate || lead.createdAt);
-            
-            const srcRaw = (lead.source || lead.leadSource || 'Website').toLowerCase();
-            let srcIcon = 'fa-globe';
-            if (srcRaw.includes('whatsapp')) srcIcon = 'fa-brands fa-whatsapp text-success';
-            else if (srcRaw.includes('call') || srcRaw.includes('phone')) srcIcon = 'fa-solid fa-phone text-primary';
-            else if (srcRaw.includes('referral')) srcIcon = 'fa-solid fa-handshake text-warning';
-            else if (srcRaw.includes('walk')) srcIcon = 'fa-solid fa-person-walking text-info';
-            document.getElementById('dispLeadSource').innerHTML = `<i class="${srcIcon} me-1"></i> ${escapeHtml(lead.source || lead.leadSource || 'Website')}`;
-
-            // Customer details
-            document.getElementById('dispCustomerName').textContent = lead.name || 'Anonymous Customer';
-            document.getElementById('dispCustomerPhone').textContent = lead.phone || '-';
-            document.getElementById('dispRequirement').textContent = lead.service || lead.leadType || 'Solar Installation';
-            
-            const placePart = lead.place ? `${lead.place}, ` : '';
-            const districtPart = lead.district || lead.location || 'Kerala';
-            const coordsPart = (lead.coordinates || (lead.latitude && lead.longitude ? `${lead.latitude}, ${lead.longitude}` : '')).trim();
-            document.getElementById('dispLocation').innerHTML = `<i class="fa-solid fa-location-dot text-danger me-1"></i> ${escapeHtml(placePart + districtPart)}${coordsPart ? ` <span class="badge bg-light text-primary border font-mono ms-1">${escapeHtml(coordsPart)}</span>` : ''}`;
-
-            // Notification History Badge
-            const histEl = document.getElementById('dispNotificationHistory');
-            if (histEl) {
-                if (lead.lastNotifiedAt) {
-                    histEl.innerHTML = `<span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1"><i class="fa-solid fa-check-double me-1"></i>Last sent: ${formatLeadDateTime(lead.lastNotifiedAt)} to ${escapeHtml(lead.notifiedTo || lead.assignedTo)} via ${escapeHtml(lead.notifiedChannel || 'WhatsApp')}</span>`;
-                } else {
-                    histEl.innerHTML = `<span class="badge bg-warning-subtle text-dark border px-2 py-1"><i class="fa-solid fa-clock me-1"></i>Not yet dispatched</span>`;
-                }
-            }
-
-            // Populate Assignee Select
-            const assigneeSelect = document.getElementById('dispAssigneeSelect');
-            if (assigneeSelect) {
-                let html = '<option value="">-- Select Sales Executive --</option>';
-                activeSalesUsers.forEach(u => {
-                    html += `<option value="${escapeHtml(u.name)}" data-email="${escapeHtml(u.email || '')}">${escapeHtml(u.name)} (${escapeHtml(u.roleLabel || u.role || 'Sales')})</option>`;
-                });
-                assigneeSelect.innerHTML = html;
-
-                const targetRep = preselectedAssignee || lead.assignedTo;
-                if (targetRep && targetRep !== 'Unassigned') {
-                    for (let i = 0; i < assigneeSelect.options.length; i++) {
-                        if (assigneeSelect.options[i].value.toLowerCase() === targetRep.toLowerCase()) {
-                            assigneeSelect.selectedIndex = i;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            // Reset notes
-            document.getElementById('dispAdminNotes').value = '';
-
-            // Load saved phone for selected rep
-            onDispatchAssigneeChanged();
-
-            // Show Modal
-            const modalEl = document.getElementById('dispatchLeadModal');
-            const modal = new bootstrap.Modal(modalEl);
-            modal.show();
-        }
-
-        // Trigger dispatch from Detail Modal
-        function openDispatchFromDetailModal() {
-            if (!activeModalLead) return;
-            const currentRep = document.getElementById('detailAssignee') ? document.getElementById('detailAssignee').value : activeModalLead.assignedTo;
-            openDispatchLeadModal(activeModalLead.id, currentRep);
-        }
-
-        // On Assignee dropdown change in Dispatch Modal
-        function onDispatchAssigneeChanged() {
-            const assigneeSelect = document.getElementById('dispAssigneeSelect');
-            const selectedRep = assigneeSelect ? assigneeSelect.value : '';
-            const repPhoneInput = document.getElementById('dispRepPhone');
-            
-            // Get saved phones dictionary
-            let phonesMap = {};
-            try {
-                phonesMap = JSON.parse(localStorage.getItem('solis_rep_phones_map') || '{}');
-            } catch (e) {
-                phonesMap = {};
-            }
-
-            if (selectedRep && phonesMap[selectedRep]) {
-                repPhoneInput.value = phonesMap[selectedRep];
-            } else {
-                repPhoneInput.value = '';
-            }
-
-            updateDispatchPreview();
-        }
-
-        // Build the text dossier for WhatsApp / Email / Clipboard
-        function buildDispatchDossier(lead, repName, adminNotes) {
+        // Build formatted Solis EPC Lead Dossier for WhatsApp / Clipboard
+        function buildLeadDossier(lead) {
             const parsed = splitLeadNumber(lead.leadNumber);
             const leadIdStr = `${parsed.prefix}-${parsed.digits}`;
             const leadDateStr = formatLeadDateTime(lead.leadDate || lead.createdAt);
@@ -3683,6 +3320,7 @@
             const sourceStr = lead.source || lead.leadSource || 'Website Form';
             const ksebStr = lead.consumerNumber ? lead.consumerNumber : '';
             const siteVisit = lead.siteVisitPlan ? lead.siteVisitPlan : '';
+            const assignedRep = lead.assignedTo || 'Sales Team';
 
             let lines = [
                 `🚨 *SOLIS EPC - NEW LEAD ASSIGNMENT*`,
@@ -3691,7 +3329,7 @@
                 `📅 *Inquiry Date:* ${leadDateStr}`,
                 `👤 *Customer Name:* ${custName}`,
                 `📞 *Customer Phone:* ${custPhone}`,
-                `☀️ *Solar Requirement:* ${requirement}`,
+                `☀️ *Requirement:* ${requirement}`,
                 `📍 *Location:* ${placeStr}`
             ];
 
@@ -3705,212 +3343,106 @@
                 lines.push(`🗓️ *Site Visit Plan:* ${siteVisit}`);
             }
             lines.push(`💬 *Lead Source:* ${sourceStr}`);
-
-            if (adminNotes && adminNotes.trim()) {
-                lines.push(`📝 *Super Admin Note:* ${adminNotes.trim()}`);
-            }
-
+            lines.push(`👤 *Assigned To:* ${assignedRep}`);
             lines.push(`━━━━━━━━━━━━━━━━━━━━`);
-            lines.push(`👤 *Assigned Sales Rep:* ${repName || 'Sales Team'}`);
-            lines.push(`⚡ *Action Required:* Please contact the customer immediately, qualify requirements, and update pipeline status on Solis Portal.`);
-            lines.push(`🔗 *Open Lead Tracker:* https://www.solisgreenindia.in/leads/`);
+            lines.push(`⚡ *Action Required:* Please contact customer immediately and schedule site survey.`);
+            lines.push(`🔗 *Lead Tracker:* https://www.solisgreenindia.in/leads/`);
 
             return lines.join('\n');
         }
 
-        // Update the live preview box in Dispatch Modal
-        function updateDispatchPreview() {
-            if (!activeDispatchLead) return;
-            const assigneeSelect = document.getElementById('dispAssigneeSelect');
-            const repName = assigneeSelect ? assigneeSelect.value : '';
-            const adminNotes = document.getElementById('dispAdminNotes') ? document.getElementById('dispAdminNotes').value : '';
-            const dossier = buildDispatchDossier(activeDispatchLead, repName, adminNotes);
-            const previewEl = document.getElementById('dispMessagePreview');
-            if (previewEl) previewEl.textContent = dossier;
-        }
-
-        // Send Dispatch via WhatsApp
-        async function sendDispatchWhatsApp() {
-            if (!activeDispatchLead) return;
-            const assigneeSelect = document.getElementById('dispAssigneeSelect');
-            const repName = assigneeSelect ? assigneeSelect.value.trim() : '';
-            if (!repName) {
-                alert('Please select a Sales Executive to assign.');
+        // Direct 'Send to WhatsApp' from 3-dot menu
+        async function sendLeadToWhatsApp(leadId) {
+            const lead = allLeads.find(l => l.id === leadId);
+            if (!lead) {
+                alert('Lead record not found.');
                 return;
             }
 
-            const phoneInput = document.getElementById('dispRepPhone');
-            let phone = (phoneInput ? phoneInput.value : '').replace(/[^0-9]/g, '');
-            if (!phone || phone.length < 10) {
-                alert('Please enter a valid 10-digit WhatsApp number for ' + repName);
-                if (phoneInput) phoneInput.focus();
-                return;
+            const text = buildLeadDossier(lead);
+            const repName = lead.assignedTo && lead.assignedTo !== 'Unassigned' ? lead.assignedTo : '';
+            
+            // Check if we have a saved phone for the assigned executive
+            let repPhone = '';
+            if (repName) {
+                try {
+                    const phonesMap = JSON.parse(localStorage.getItem('solis_rep_phones_map') || '{}');
+                    repPhone = phonesMap[repName] || '';
+                } catch (e) {}
+
+                // If not saved, prompt Super Admin (they can enter number or leave blank to choose inside WhatsApp)
+                if (!repPhone) {
+                    const promptVal = prompt(
+                        `Enter WhatsApp number for ${repName} (or leave blank to choose contact directly in WhatsApp):`,
+                        ''
+                    );
+                    if (promptVal && promptVal.trim()) {
+                        const clean = promptVal.replace(/[^0-9]/g, '');
+                        if (clean.length >= 10) {
+                            repPhone = clean.startsWith('91') ? clean : (clean.length === 10 ? '91' + clean : clean);
+                            try {
+                                const phonesMap = JSON.parse(localStorage.getItem('solis_rep_phones_map') || '{}');
+                                phonesMap[repName] = repPhone;
+                                localStorage.setItem('solis_rep_phones_map', JSON.stringify(phonesMap));
+                            } catch (e) {}
+                        }
+                    }
+                }
             }
 
-            // Save phone locally for future use
-            try {
-                let phonesMap = JSON.parse(localStorage.getItem('solis_rep_phones_map') || '{}');
-                phonesMap[repName] = phone;
-                localStorage.setItem('solis_rep_phones_map', JSON.stringify(phonesMap));
-            } catch (e) {}
+            let waUrl = '';
+            if (repPhone) {
+                waUrl = `https://wa.me/${repPhone}?text=${encodeURIComponent(text)}`;
+            } else {
+                waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+            }
 
-            const waPhone = phone.startsWith('91') ? phone : (phone.length === 10 ? '91' + phone : phone);
-            const adminNotes = document.getElementById('dispAdminNotes') ? document.getElementById('dispAdminNotes').value : '';
-            const text = buildDispatchDossier(activeDispatchLead, repName, adminNotes);
-
-            // Open WhatsApp Web/App
-            window.open(`https://wa.me/${waPhone}?text=${encodeURIComponent(text)}`, '_blank');
+            // Open WhatsApp in new tab
+            window.open(waUrl, '_blank');
 
             // Record notification in Firestore
-            await recordLeadNotification(activeDispatchLead.id, repName, 'WhatsApp');
-
-            // Close Modal
-            const modalEl = document.getElementById('dispatchLeadModal');
-            const modalInstance = bootstrap.Modal.getInstance(modalEl);
-            if (modalInstance) modalInstance.hide();
-
-            showLeadToast(`Lead briefing dispatched to ${repName} via WhatsApp!`);
-        }
-
-        // Send Dispatch via Email
-        async function sendDispatchEmail() {
-            if (!activeDispatchLead) return;
-            const assigneeSelect = document.getElementById('dispAssigneeSelect');
-            const repName = assigneeSelect ? assigneeSelect.value.trim() : '';
-            if (!repName) {
-                alert('Please select a Sales Executive to assign.');
-                return;
-            }
-
-            const repUser = activeSalesUsers.find(u => u.name.toLowerCase() === repName.toLowerCase());
-            const repEmail = repUser && repUser.email ? repUser.email : '';
-            if (!repEmail) {
-                alert('No email found on file for ' + repName);
-                return;
-            }
-
-            const parsed = splitLeadNumber(activeDispatchLead.leadNumber);
-            const adminNotes = document.getElementById('dispAdminNotes') ? document.getElementById('dispAdminNotes').value : '';
-            const text = buildDispatchDossier(activeDispatchLead, repName, adminNotes);
-            const subject = `[Lead Assignment] ${parsed.prefix}-${parsed.digits} - ${activeDispatchLead.name || 'Customer'} (${activeDispatchLead.district || 'Kerala'})`;
-
-            window.location.href = `mailto:${encodeURIComponent(repEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
-
-            // Record in Firestore
-            await recordLeadNotification(activeDispatchLead.id, repName, 'Email');
-
-            // Close Modal
-            const modalEl = document.getElementById('dispatchLeadModal');
-            const modalInstance = bootstrap.Modal.getInstance(modalEl);
-            if (modalInstance) modalInstance.hide();
-
-            showLeadToast(`Email handover prepared for ${repName}!`);
-        }
-
-        // Copy Dispatch Text
-        function copyDispatchText() {
-            if (!activeDispatchLead) return;
-            const assigneeSelect = document.getElementById('dispAssigneeSelect');
-            const repName = assigneeSelect ? assigneeSelect.value.trim() : '';
-            const adminNotes = document.getElementById('dispAdminNotes') ? document.getElementById('dispAdminNotes').value : '';
-            const text = buildDispatchDossier(activeDispatchLead, repName, adminNotes);
-
-            navigator.clipboard.writeText(text).then(() => {
-                showLeadToast('Lead briefing dossier copied to clipboard!');
-            }).catch(e => {
-                alert('Copied text!');
-            });
-        }
-
-        // Quick 1-Click Copy from 3-Dot Menu
-        function copyLeadQuickDossier(leadId) {
-            const lead = allLeads.find(l => l.id === leadId);
-            if (!lead) return;
-            const text = buildDispatchDossier(lead, lead.assignedTo || 'Sales Team', '');
-            navigator.clipboard.writeText(text).then(() => {
-                const parsed = splitLeadNumber(lead.leadNumber);
-                showLeadToast(`Dossier for ${parsed.prefix}-${parsed.digits} copied to clipboard!`);
-            });
-        }
-
-        // Record Notification & Assignment in Firestore
-        async function recordLeadNotification(leadId, repName, channel) {
             try {
                 const nowIso = new Date().toISOString();
-                const lead = allLeads.find(l => l.id === leadId);
-                if (lead) {
-                    lead.assignedTo = repName;
-                    lead.lastNotifiedAt = nowIso;
-                    lead.notifiedTo = repName;
-                    lead.notifiedChannel = channel;
-                }
+                lead.lastNotifiedAt = nowIso;
+                lead.notifiedChannel = 'WhatsApp';
 
                 if (typeof db !== 'undefined' && db) {
                     await db.collection('solis').doc('forms').collection('submissions').doc(leadId).update({
-                        assignedTo: repName,
                         lastNotifiedAt: nowIso,
-                        notifiedTo: repName,
-                        notifiedChannel: channel
+                        notifiedChannel: 'WhatsApp'
                     });
                 } else {
-                    const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${leadId}?updateMask.fieldPaths=assignedTo&updateMask.fieldPaths=lastNotifiedAt&updateMask.fieldPaths=notifiedTo&updateMask.fieldPaths=notifiedChannel&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
+                    const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${leadId}?updateMask.fieldPaths=lastNotifiedAt&updateMask.fieldPaths=notifiedChannel&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
                     await fetch(patchUrl, {
                         method: 'PATCH',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             fields: {
-                                assignedTo: { stringValue: repName },
                                 lastNotifiedAt: { stringValue: nowIso },
-                                notifiedTo: { stringValue: repName },
-                                notifiedChannel: { stringValue: channel }
+                                notifiedChannel: { stringValue: 'WhatsApp' }
                             }
                         })
                     });
                 }
-
-                updateStats();
-                applyFilters();
-            } catch (err) {
-                console.error('Error recording lead notification:', err);
+            } catch (e) {
+                console.warn('Could not record notification timestamp:', e);
             }
+
+            const parsed = splitLeadNumber(lead.leadNumber);
+            showLeadToast(`Opening WhatsApp with dossier for ${parsed.prefix}-${parsed.digits}...`);
         }
 
-        // Floating Toast Notification with Action Button
-        function showLeadToastWithAction(msg, actionLabel, actionCallback) {
-            let container = document.getElementById('leadToastContainer');
-            if (!container) {
-                container = document.createElement('div');
-                container.id = 'leadToastContainer';
-                document.body.appendChild(container);
-            }
-            const toast = document.createElement('div');
-            toast.className = 'alert alert-success shadow-lg border-0 py-2 px-3 small d-flex align-items-center justify-content-between gap-3 mb-2 text-dark fw-semibold';
-            toast.style.background = '#dcfce7';
-            toast.style.borderColor = '#86efac';
-            toast.style.borderRadius = '10px';
-            toast.style.boxShadow = '0 8px 20px rgba(0,0,0,0.12)';
-            toast.innerHTML = `
-                <div class="d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-circle-check text-success fs-6"></i>
-                    <span>${escapeHtml(msg)}</span>
-                </div>
-                <button type="button" class="btn btn-xs btn-success fw-bold rounded-pill px-2 py-1 text-white shadow-sm" style="font-size: 0.75rem;">
-                    ${escapeHtml(actionLabel)} &rarr;
-                </button>
-            `;
-            const btn = toast.querySelector('button');
-            if (btn && typeof actionCallback === 'function') {
-                btn.onclick = () => {
-                    toast.remove();
-                    actionCallback();
-                };
-            }
-            container.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transition = 'opacity 0.4s ease';
-                setTimeout(() => toast.remove(), 400);
-            }, 6000);
+        // 1-Click Copy Dossier from 3-dot menu
+        function copyLeadQuickDossier(leadId) {
+            const lead = allLeads.find(l => l.id === leadId);
+            if (!lead) return;
+            const text = buildLeadDossier(lead);
+            navigator.clipboard.writeText(text).then(() => {
+                const parsed = splitLeadNumber(lead.leadNumber);
+                showLeadToast(`Lead brief for ${parsed.prefix}-${parsed.digits} copied to clipboard!`);
+            }).catch(() => {
+                alert('Copied to clipboard!');
+            });
         }
 
         function cleanCsv(val) {
