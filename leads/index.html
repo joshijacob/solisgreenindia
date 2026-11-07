@@ -819,18 +819,44 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label text-muted small fw-bold">District / Location</label>
-                            <input type="text" class="form-control" id="detailLocation" placeholder="e.g. Thiruvalla, Pathanamthitta">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label text-muted small fw-bold">Origin Page / Attribution</label>
-                            <input type="text" class="form-control bg-light small" id="detailPage" readonly>
-                        </div>
-
-                        <div class="col-md-6">
                             <label class="form-label text-muted small fw-bold">Place / Town</label>
                             <input type="text" class="form-control" id="detailPlace" placeholder="e.g. Muthoor, Thiruvalla Town">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold"><i class="fa-solid fa-map-pin text-success me-1"></i> Kerala District</label>
+                            <select class="form-select" id="detailDistrict">
+                                <option value="Pathanamthitta">Pathanamthitta</option>
+                                <option value="Alappuzha">Alappuzha</option>
+                                <option value="Kottayam">Kottayam</option>
+                                <option value="Kollam">Kollam</option>
+                                <option value="Ernakulam">Ernakulam</option>
+                                <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                                <option value="Idukki">Idukki</option>
+                                <option value="Thrissur">Thrissur</option>
+                                <option value="Palakkad">Palakkad</option>
+                                <option value="Malappuram">Malappuram</option>
+                                <option value="Kozhikode">Kozhikode</option>
+                                <option value="Wayanad">Wayanad</option>
+                                <option value="Kannur">Kannur</option>
+                                <option value="Kasaragod">Kasaragod</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold d-flex justify-content-between align-items-center">
+                                <span><i class="fa-solid fa-location-crosshairs text-primary me-1"></i> Location Coordinates (Lat, Long)</span>
+                                <a href="#" id="detailMapLink" target="_blank" class="small text-primary text-decoration-none d-none" style="font-size: 0.74rem;">
+                                    <i class="fa-solid fa-map-location-dot me-1"></i> Open Google Maps
+                                </a>
+                            </label>
+                            <input type="text" class="form-control font-mono" id="detailCoordinates" placeholder="e.g. 9.3835, 76.5741" oninput="handleDetailCoordinatesInput(this.value)">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Full Address / Location Summary</label>
+                            <input type="text" class="form-control bg-light" id="detailLocation" placeholder="e.g. Muthoor, Thiruvalla, Pathanamthitta">
+                            <input type="hidden" id="detailPage">
                         </div>
 
                         <div class="col-md-6">
@@ -977,20 +1003,7 @@
                                 </select>
                             </div>
 
-                            <!-- 4. Place / Town -->
-                            <div class="col-sm-6">
-                                <label class="form-label small fw-bold text-dark mb-1">Place / Town</label>
-                                <input type="text" class="form-control form-control-lg fs-6 shadow-none" id="newLeadPlace" placeholder="e.g. Muthoor, Thiruvalla" style="border-radius: 10px;">
-                                <input type="hidden" id="newLeadDistrict" value="Pathanamthitta">
-                            </div>
-
-                            <!-- 5. Site Visit Plan -->
-                            <div class="col-sm-6">
-                                <label class="form-label small fw-bold text-dark mb-1">Site Visit Plan</label>
-                                <input type="text" class="form-control form-control-lg fs-6 shadow-none" id="newLeadSiteVisit" placeholder="e.g. Tomorrow 10 AM, Saturday..." style="border-radius: 10px;">
-                            </div>
-
-                            <!-- 6. Handover / Assigned To -->
+                            <!-- 4. Handover / Assigned To -->
                             <div class="col-sm-6">
                                 <label class="form-label small fw-bold text-primary mb-1">
                                     <i class="fa-solid fa-user-check me-1"></i> Handover / Assign To
@@ -1001,6 +1014,61 @@
                                     <option value="Kannan Deepu">👤 Kannan Deepu</option>
                                     <option value="Solis Super Admin">👑 Solis Super Admin</option>
                                 </select>
+                            </div>
+
+                            <!-- 5. Place / Town -->
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-bold text-dark mb-1">Place / Town</label>
+                                <input type="text" class="form-control form-control-lg fs-6 shadow-none" id="newLeadPlace" placeholder="e.g. Muthoor, Thiruvalla" style="border-radius: 10px;">
+                            </div>
+
+                            <!-- 6. Kerala District -->
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-bold text-dark mb-1">
+                                    <i class="fa-solid fa-map-pin text-success me-1"></i> Kerala District
+                                </label>
+                                <select class="form-select form-control-lg fs-6 shadow-none" id="newLeadDistrict" style="border-radius: 10px;">
+                                    <option value="Pathanamthitta" selected>Pathanamthitta (Solis HQ)</option>
+                                    <option value="Alappuzha">Alappuzha</option>
+                                    <option value="Kottayam">Kottayam</option>
+                                    <option value="Kollam">Kollam</option>
+                                    <option value="Ernakulam">Ernakulam</option>
+                                    <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                                    <option value="Idukki">Idukki</option>
+                                    <option value="Thrissur">Thrissur</option>
+                                    <option value="Palakkad">Palakkad</option>
+                                    <option value="Malappuram">Malappuram</option>
+                                    <option value="Kozhikode">Kozhikode</option>
+                                    <option value="Wayanad">Wayanad</option>
+                                    <option value="Kannur">Kannur</option>
+                                    <option value="Kasaragod">Kasaragod</option>
+                                </select>
+                            </div>
+
+                            <!-- 7. Site Visit Plan -->
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-bold text-dark mb-1">Site Visit Plan</label>
+                                <input type="text" class="form-control form-control-lg fs-6 shadow-none" id="newLeadSiteVisit" placeholder="e.g. Tomorrow 10 AM, Saturday..." style="border-radius: 10px;">
+                            </div>
+
+                            <!-- 8. Location Coordinates (Lat, Long) -->
+                            <div class="col-sm-6">
+                                <label class="form-label small fw-bold text-dark mb-1 d-flex justify-content-between align-items-center">
+                                    <span><i class="fa-solid fa-location-crosshairs text-primary me-1"></i> Location (Lat, Long)</span>
+                                    <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none text-success fw-bold" onclick="captureCurrentLocation()" style="font-size: 0.74rem;">
+                                        <i class="fa-solid fa-crosshairs me-1"></i> Detect GPS
+                                    </button>
+                                </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-lg fs-6 font-mono shadow-none" id="newLeadCoordinates" placeholder="e.g. 9.3835, 76.5741" oninput="handleCoordinatesInput(this.value)" style="border-radius: 10px 0 0 10px;">
+                                    <button class="btn btn-outline-secondary px-3" type="button" onclick="captureCurrentLocation()" title="Capture device GPS location" style="border-radius: 0 10px 10px 0;">
+                                        <i class="fa-solid fa-location-dot text-danger"></i>
+                                    </button>
+                                </div>
+                                <div class="d-flex justify-content-between mt-1">
+                                    <small class="text-muted" style="font-size: 0.70rem;">Latitude & Longitude for site survey mapping</small>
+                                    <a href="#" id="previewMapLink" target="_blank" class="small text-primary text-decoration-none d-none" style="font-size: 0.70rem;"><i class="fa-solid fa-arrow-up-right-from-square me-1"></i>View Map</a>
+                                </div>
                             </div>
 
                         </div>
@@ -1197,6 +1265,79 @@
             });
         }
 
+        // Parse and validate coordinates string or Google Maps link
+        function parseCoordinatesInput(val) {
+            if (!val) return { lat: '', lng: '', formatted: '' };
+            const str = String(val).trim();
+            // Match Google Maps URL: @9.3835,76.5741 or ?q=9.3835,76.5741 or /place/9.3835,76.5741
+            const urlMatch = str.match(/(?:@|\?q=|\/place\/)(-?\d+\.\d+),(-?\d+\.\d+)/);
+            if (urlMatch) {
+                return { lat: urlMatch[1], lng: urlMatch[2], formatted: `${urlMatch[1]}, ${urlMatch[2]}` };
+            }
+            // Comma or space separated pair e.g. 9.3835, 76.5741
+            const pairMatch = str.match(/(-?\d+\.\d+)\s*[, ]\s*(-?\d+\.\d+)/);
+            if (pairMatch) {
+                return { lat: pairMatch[1], lng: pairMatch[2], formatted: `${pairMatch[1]}, ${pairMatch[2]}` };
+            }
+            return { lat: '', lng: '', formatted: str };
+        }
+
+        // Live coordinate input preview for Quick Lead modal
+        function handleCoordinatesInput(val) {
+            const parsed = parseCoordinatesInput(val);
+            const link = document.getElementById('previewMapLink');
+            if (link) {
+                if (parsed.lat && parsed.lng) {
+                    link.href = `https://www.google.com/maps/search/?api=1&query=${parsed.lat},${parsed.lng}`;
+                    link.classList.remove('d-none');
+                } else {
+                    link.classList.add('d-none');
+                }
+            }
+        }
+
+        // Live coordinate input preview for Details modal
+        function handleDetailCoordinatesInput(val) {
+            const parsed = parseCoordinatesInput(val);
+            const link = document.getElementById('detailMapLink');
+            if (link) {
+                if (parsed.lat && parsed.lng) {
+                    link.href = `https://www.google.com/maps/search/?api=1&query=${parsed.lat},${parsed.lng}`;
+                    link.classList.remove('d-none');
+                } else {
+                    link.classList.add('d-none');
+                }
+            }
+        }
+
+        // 1-Click GPS Location Capture using device Geolocation API
+        function captureCurrentLocation() {
+            if (!navigator.geolocation) {
+                alert('Geolocation is not supported by your current browser.');
+                return;
+            }
+            const input = document.getElementById('newLeadCoordinates');
+            const origPlaceholder = input.placeholder;
+            input.placeholder = 'Detecting GPS coordinates...';
+
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    const lat = pos.coords.latitude.toFixed(6);
+                    const lng = pos.coords.longitude.toFixed(6);
+                    input.value = `${lat}, ${lng}`;
+                    handleCoordinatesInput(`${lat}, ${lng}`);
+                    showLeadToast(`GPS Detected: ${lat}, ${lng}`);
+                },
+                (err) => {
+                    input.placeholder = origPlaceholder;
+                    let msg = 'Unable to fetch GPS: ' + err.message;
+                    if (err.code === 1) msg = 'Location permission denied. Please allow location access in your browser settings.';
+                    alert(msg);
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
+        }
+
         // Split and format Lead Number into { prefix: 'SGES', digits: '26110001' }
         function splitLeadNumber(rawLeadNo) {
             if (!rawLeadNo) {
@@ -1305,6 +1446,11 @@
             const districtInput = document.getElementById('newLeadDistrict');
             if (districtInput) districtInput.value = 'Pathanamthitta';
 
+            const coordsInput = document.getElementById('newLeadCoordinates');
+            if (coordsInput) coordsInput.value = '';
+            const previewLink = document.getElementById('previewMapLink');
+            if (previewLink) previewLink.classList.add('d-none');
+
             const assigneeSelect = document.getElementById('newLeadAssignee');
             if (assigneeSelect) assigneeSelect.value = 'Unassigned';
 
@@ -1340,6 +1486,9 @@
                                 place: data.place || '',
                                 district: data.district || '',
                                 location: data.location || (data.place ? `${data.place}, ${data.district || 'Kerala'}` : 'Kerala'),
+                                coordinates: data.coordinates || (data.latitude && data.longitude ? `${data.latitude}, ${data.longitude}` : ''),
+                                latitude: data.latitude || '',
+                                longitude: data.longitude || '',
                                 siteVisitPlan: data.siteVisitPlan || '',
                                 assignedTo: data.assignedTo || 'Unassigned',
                                 message: data.message || '',
@@ -1402,6 +1551,9 @@
                             place: f.place ? f.place.stringValue : '',
                             district: f.district ? f.district.stringValue : '',
                             location: f.location ? f.location.stringValue : 'Kerala',
+                            coordinates: f.coordinates ? f.coordinates.stringValue : (f.latitude && f.longitude ? `${f.latitude.stringValue}, ${f.longitude.stringValue}` : ''),
+                            latitude: f.latitude ? f.latitude.stringValue : '',
+                            longitude: f.longitude ? f.longitude.stringValue : '',
                             siteVisitPlan: f.siteVisitPlan ? f.siteVisitPlan.stringValue : '',
                             assignedTo: f.assignedTo ? f.assignedTo.stringValue : 'Unassigned',
                             message: f.message ? f.message.stringValue : '',
@@ -1628,6 +1780,8 @@
                 const service = escapeHtml(lead.service || lead.leadType || 'Solar Installation');
                 const place = escapeHtml(lead.place || '');
                 const district = escapeHtml(lead.district || lead.location || 'Kerala');
+                const rawCoords = (lead.coordinates || (lead.latitude && lead.longitude ? `${lead.latitude}, ${lead.longitude}` : '')).trim();
+                const coords = escapeHtml(rawCoords);
                 const status = lead.status || 'New';
                 const assignedTo = lead.assignedTo || 'Unassigned';
                 const siteVisit = escapeHtml(lead.siteVisitPlan || '');
@@ -1711,12 +1865,17 @@
                             <span class="badge bg-light text-dark border fw-semibold">${service}</span>
                         </td>
 
-                        <!-- Col 6: Place & District -->
+                        <!-- Col 6: Place, District & Location Coordinates -->
                         <td class="small">
                             ${place ? `<div class="fw-semibold text-dark">${place}</div>` : ''}
                             <div class="text-muted" style="font-size: 0.75rem;">
                                 <i class="fa-solid fa-location-dot text-danger me-1"></i>${district}
                             </div>
+                            ${coords ? `
+                                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(rawCoords)}" target="_blank" class="badge bg-light text-primary border text-decoration-none mt-1 d-inline-flex align-items-center gap-1 font-mono" title="Open GPS Coordinates in Google Maps" style="font-size: 0.68rem;">
+                                    <i class="fa-solid fa-location-crosshairs text-primary"></i> ${coords}
+                                </a>
+                            ` : ''}
                         </td>
 
                         <!-- Col 7: Lead Source -->
@@ -1923,7 +2082,25 @@
             document.getElementById('detailEmail').value = lead.email || '';
             document.getElementById('detailService').value = lead.service || lead.leadType || '3kW Rooftop Solar (PM Surya Ghar)';
             document.getElementById('detailPlace').value = lead.place || '';
-            document.getElementById('detailLocation').value = lead.district || lead.location || 'Pathanamthitta';
+            const districtVal = lead.district || (lead.location ? lead.location.split(',').pop().trim() : 'Pathanamthitta');
+            const distSelect = document.getElementById('detailDistrict');
+            if (distSelect) {
+                let found = false;
+                for (let i = 0; i < distSelect.options.length; i++) {
+                    if (distSelect.options[i].value.toLowerCase() === districtVal.toLowerCase()) {
+                        distSelect.selectedIndex = i;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found && distSelect.options.length > 0) distSelect.value = 'Pathanamthitta';
+            }
+            const coords = (lead.coordinates || (lead.latitude && lead.longitude ? `${lead.latitude}, ${lead.longitude}` : '')).trim();
+            const coordsInput = document.getElementById('detailCoordinates');
+            if (coordsInput) coordsInput.value = coords;
+            handleDetailCoordinatesInput(coords);
+
+            document.getElementById('detailLocation').value = lead.location || (lead.place ? `${lead.place}, ${districtVal}` : `${districtVal}, Kerala`);
             document.getElementById('detailSiteVisit').value = lead.siteVisitPlan || '';
             document.getElementById('detailPage').value = lead.page || '/';
             document.getElementById('detailMessage').value = lead.message || '';
@@ -1953,6 +2130,13 @@
                 saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Saving...';
             }
 
+            const coordsVal = document.getElementById('detailCoordinates') ? document.getElementById('detailCoordinates').value.trim() : '';
+            const coordObj = parseCoordinatesInput(coordsVal);
+            const districtVal = document.getElementById('detailDistrict') ? document.getElementById('detailDistrict').value : (document.getElementById('detailLocation').value.trim() || 'Pathanamthitta');
+            const placeVal = document.getElementById('detailPlace').value.trim();
+            const fullLoc = placeVal ? `${placeVal}, ${districtVal}` : `${districtVal}, Kerala`;
+            if (document.getElementById('detailLocation')) document.getElementById('detailLocation').value = fullLoc;
+
             const updatedData = {
                 leadNumber: document.getElementById('detailLeadNumber').value.trim() || activeModalLead.leadNumber,
                 leadDate: document.getElementById('detailLeadDate').value.trim(),
@@ -1964,9 +2148,12 @@
                 email: document.getElementById('detailEmail').value.trim(),
                 service: document.getElementById('detailService').value.trim(),
                 leadType: document.getElementById('detailService').value.trim(),
-                place: document.getElementById('detailPlace').value.trim(),
-                district: document.getElementById('detailLocation').value.trim(),
-                location: (document.getElementById('detailPlace').value.trim() ? `${document.getElementById('detailPlace').value.trim()}, ${document.getElementById('detailLocation').value.trim()}` : document.getElementById('detailLocation').value.trim()),
+                place: placeVal,
+                district: districtVal,
+                location: fullLoc,
+                coordinates: coordObj.formatted || coordsVal,
+                latitude: coordObj.lat,
+                longitude: coordObj.lng,
                 siteVisitPlan: document.getElementById('detailSiteVisit').value.trim(),
                 assignedTo: document.getElementById('detailAssignee').value,
                 status: document.getElementById('modalStatusSelect').value,
@@ -1980,7 +2167,7 @@
                 if (typeof db !== 'undefined' && db) {
                     await db.collection('solis').doc('forms').collection('submissions').doc(activeModalLead.id).update(updatedData);
                 } else {
-                    const patchFields = ['leadNumber','leadDate','source','leadSource','name','phone','consumerNumber','email','service','leadType','place','district','location','siteVisitPlan','assignedTo','status','message','staffNotes'];
+                    const patchFields = ['leadNumber','leadDate','source','leadSource','name','phone','consumerNumber','email','service','leadType','place','district','location','coordinates','latitude','longitude','siteVisitPlan','assignedTo','status','message','staffNotes'];
                     const maskStr = patchFields.map(f => `updateMask.fieldPaths=${f}`).join('&');
                     const patchUrl = `https://firestore.googleapis.com/v1/projects/studio-5037599641-c95bb/databases/(default)/documents/solis/forms/submissions/${activeModalLead.id}?${maskStr}&key=AIzaSyB8XGJKxo9jTJDB7UtMpQBuoCT_wqHdEfQ`;
                     
@@ -2065,6 +2252,8 @@
             const assignedTo = document.getElementById('newLeadAssignee').value || 'Unassigned';
             const place = document.getElementById('newLeadPlace').value.trim();
             const district = document.getElementById('newLeadDistrict').value;
+            const rawCoords = document.getElementById('newLeadCoordinates') ? document.getElementById('newLeadCoordinates').value.trim() : '';
+            const coordObj = parseCoordinatesInput(rawCoords);
             const siteVisitPlan = document.getElementById('newLeadSiteVisit').value.trim();
             const consumerNumber = document.getElementById('newLeadConsumerNo').value.trim();
             const email = (document.getElementById('newLeadEmail') ? document.getElementById('newLeadEmail').value.trim() : '');
@@ -2088,6 +2277,9 @@
                     place,
                     district,
                     location: fullLocation,
+                    coordinates: coordObj.formatted || rawCoords,
+                    latitude: coordObj.lat,
+                    longitude: coordObj.lng,
                     siteVisitPlan,
                     message,
                     staffNotes: `Recorded via ${source} on ${leadDate}. Handed over to: ${assignedTo}`,
@@ -2123,6 +2315,10 @@
 
                 // Close modal and reset form
                 document.getElementById('manualLeadForm').reset();
+                const coordsInput = document.getElementById('newLeadCoordinates');
+                if (coordsInput) coordsInput.value = '';
+                const mapLink = document.getElementById('previewMapLink');
+                if (mapLink) mapLink.classList.add('d-none');
                 const modalInst = bootstrap.Modal.getInstance(document.getElementById('newLeadModal'));
                 if (modalInst) modalInst.hide();
                 
@@ -2152,6 +2348,7 @@
                 "Lead Source",
                 "Place / Area",
                 "District",
+                "Location (Lat, Long)",
                 "Site Visit Plan",
                 "Assigned To",
                 "Lead Status",
@@ -2172,6 +2369,7 @@
                 cleanCsv(lead.source || lead.leadSource),
                 cleanCsv(lead.place),
                 cleanCsv(lead.district || lead.location),
+                cleanCsv(lead.coordinates || (lead.latitude && lead.longitude ? `${lead.latitude}, ${lead.longitude}` : '')),
                 cleanCsv(lead.siteVisitPlan),
                 cleanCsv(lead.assignedTo || 'Unassigned'),
                 cleanCsv(lead.status),

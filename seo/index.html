@@ -2128,6 +2128,7 @@
                             service: f.service ? f.service.stringValue : (f.leadType ? f.leadType.stringValue : '3kW Rooftop Solar'),
                             place: f.place ? f.place.stringValue : 'Thiruvalla',
                             district: f.district ? f.district.stringValue : 'Pathanamthitta',
+                            coordinates: f.coordinates ? f.coordinates.stringValue : (f.latitude && f.longitude ? `${f.latitude.stringValue}, ${f.longitude.stringValue}` : ''),
                             source: f.source ? f.source.stringValue : (f.leadSource ? f.leadSource.stringValue : 'WhatsApp'),
                             assignedTo: f.assignedTo ? f.assignedTo.stringValue : 'Unassigned',
                             status: f.status ? f.status.stringValue : 'New',
@@ -2277,7 +2278,14 @@
                         <td>
                             <span class="badge bg-success-subtle text-success border"><i class="fa-brands fa-whatsapp me-1"></i> ${escapeHtml(l.source)}</span>
                         </td>
-                        <td>${escapeHtml(l.place)}, ${escapeHtml(l.district)}</td>
+                        <td>
+                            <span class="d-block text-dark">${escapeHtml(l.place)}, ${escapeHtml(l.district)}</span>
+                            ${l.coordinates ? `
+                                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.coordinates)}" target="_blank" class="badge bg-light text-primary border text-decoration-none mt-1 d-inline-flex align-items-center gap-1 font-mono" style="font-size: 0.68rem;" title="Open in Google Maps">
+                                    <i class="fa-solid fa-location-crosshairs text-primary"></i> ${escapeHtml(l.coordinates)}
+                                </a>
+                            ` : ''}
+                        </td>
                         <td><span class="badge bg-light text-dark border">${escapeHtml(l.service)}</span></td>
                         <td><span class="badge bg-primary-subtle text-primary border"><i class="fa-solid fa-user-tie me-1"></i> ${escapeHtml(l.assignedTo)}</span></td>
                         <td class="text-center">${statusBadge}</td>
