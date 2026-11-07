@@ -226,6 +226,44 @@
         .badge-intent-t { background-color: #dcfce7; color: #15803d; font-weight: 700; }
         .badge-intent-i { background-color: #e0f2fe; color: #0369a1; font-weight: 700; }
 
+        /* Lead ID Stacked Badge: SGES on top, 26110001 below */
+        .lead-id-badge {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 3px 8px;
+            min-width: 86px;
+            line-height: 1.15;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            user-select: all;
+            transition: all 0.15s ease-in-out;
+        }
+        .lead-id-badge:hover {
+            border-color: #cbd5e1;
+            background-color: #f8fafc;
+        }
+        .lead-id-badge .lead-id-prefix {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #15803d;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .lead-id-badge .lead-id-num {
+            font-family: var(--bs-font-monospace, monospace);
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: #1e293b;
+            letter-spacing: 0.5px;
+            line-height: 1.15;
+        }
+
         /* Geo-Grid Map Canvas */
         #geoMapCanvas {
             height: 520px;
@@ -2148,6 +2186,31 @@
             if (document.getElementById('histLeads')) document.getElementById('histLeads').textContent = total + ' Inquiries';
         }
 
+        function splitLeadNumber(rawLeadNo) {
+            if (!rawLeadNo) return { prefix: 'SGES', digits: '26110001' };
+            let str = String(rawLeadNo).trim();
+            if (/^SOL/i.test(str)) {
+                str = str.replace(/^SOL-?/i, '');
+                if (str.startsWith('26') && str.length <= 4) str = '2611' + str.slice(2).padStart(4, '0');
+                else if (str.length <= 4) str = '2611' + str.padStart(4, '0');
+                return { prefix: 'SGES', digits: str };
+            }
+            const m = str.match(/^([A-Za-z]+)[-\s]?(\d+)$/);
+            if (m) {
+                let pfx = m[1].toUpperCase() === 'SOL' ? 'SGES' : m[1].toUpperCase();
+                let dig = m[2];
+                if (dig.length <= 4) dig = '2611' + dig.padStart(4, '0');
+                return { prefix: pfx, digits: dig };
+            }
+            const digitsOnly = str.replace(/[^0-9]/g, '');
+            if (digitsOnly) {
+                let dig = digitsOnly;
+                if (dig.length <= 4) dig = '2611' + dig.padStart(4, '0');
+                return { prefix: 'SGES', digits: dig };
+            }
+            return { prefix: 'SGES', digits: '26110001' };
+        }
+
         function renderAttributionTable(leads) {
             const tbody = document.getElementById('attributionTableBody');
             if (!tbody) return;
@@ -2174,6 +2237,7 @@
 
             let html = '';
             leads.forEach(l => {
+                const parts = splitLeadNumber(l.leadNumber);
                 let statusBadge = '<span class="badge bg-info text-dark">New</span>';
                 if (l.status.toLowerCase().includes('survey')) statusBadge = '<span class="badge bg-purple text-dark fw-bold">Survey Booked</span>';
                 if (l.status.toLowerCase().includes('proposal') || l.status.toLowerCase().includes('quote')) statusBadge = '<span class="badge bg-warning text-dark fw-bold">Quote Sent</span>';
@@ -2182,8 +2246,11 @@
                 html += `
                     <tr>
                         <td>
-                            <strong class="text-dark font-mono">${escapeHtml(l.leadNumber)}</strong>
-                            <small class="text-muted d-block font-mono" style="font-size: 0.68rem;">${escapeHtml(l.leadDate)}</small>
+                            <div class="lead-id-badge" title="${escapeHtml(parts.prefix)}-${escapeHtml(parts.digits)}">
+                                <span class="lead-id-prefix">${escapeHtml(parts.prefix)}</span>
+                                <span class="lead-id-num">${escapeHtml(parts.digits)}</span>
+                            </div>
+                            <small class="text-muted d-block font-mono mt-1" style="font-size: 0.68rem;">${escapeHtml(l.leadDate)}</small>
                         </td>
                         <td>
                             <strong class="text-dark d-block">${escapeHtml(l.name)}</strong>

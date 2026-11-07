@@ -279,6 +279,44 @@
             border: 1px solid #fed7aa;
         }
 
+        /* Lead ID Stacked Badge: SGES on top, 26110001 below */
+        .lead-id-badge {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 3px 8px;
+            min-width: 86px;
+            line-height: 1.15;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            user-select: all;
+            transition: all 0.15s ease-in-out;
+        }
+        .lead-id-badge:hover {
+            border-color: #cbd5e1;
+            background-color: #f8fafc;
+        }
+        .lead-id-badge .lead-id-prefix {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #15803d;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .lead-id-badge .lead-id-num {
+            font-family: var(--bs-font-monospace, monospace);
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: #1e293b;
+            letter-spacing: 0.5px;
+            line-height: 1.15;
+        }
+
         /* Toast Alert Container */
         #leadToastContainer {
             position: fixed;
@@ -875,8 +913,11 @@
                         <!-- Sleek Compact Metadata Strip (Lead ID, Date, Source) -->
                         <div class="p-2 mb-3 bg-light rounded-3 d-flex flex-wrap align-items-center justify-content-between gap-2 border">
                             <div class="d-flex align-items-center gap-2">
-                                <span class="badge bg-white text-dark border font-mono fw-bold px-2 py-1" id="newLeadNumberBadge">SGES-26110001</span>
-                                <input type="hidden" id="newLeadNumber" value="SGES-26110001">
+                                <div class="lead-id-badge bg-white shadow-xs py-1 px-2">
+                                    <span class="lead-id-prefix" id="newLeadNumberPrefix">SGES</span>
+                                    <span class="lead-id-num" id="newLeadNumberBadge">26110001</span>
+                                    <input type="hidden" id="newLeadNumber" value="SGES-26110001">
+                                </div>
                                 <span class="text-muted small">|</span>
                                 <span class="text-muted small fw-semibold" id="newLeadDateDisplay">Today</span>
                                 <input type="hidden" id="newLeadDate">
@@ -1156,6 +1197,47 @@
             });
         }
 
+        // Split and format Lead Number into { prefix: 'SGES', digits: '26110001' }
+        function splitLeadNumber(rawLeadNo) {
+            if (!rawLeadNo) {
+                const now = new Date();
+                const yy = now.getFullYear().toString().slice(-2);
+                const mm = (now.getMonth() + 1).toString().padStart(2, '0');
+                return { prefix: 'SGES', digits: `${yy}${mm}0001` };
+            }
+            let str = String(rawLeadNo).trim();
+            // Normalize legacy SOL- e.g. SOL-2601 -> SGES 26110001
+            if (/^SOL/i.test(str)) {
+                str = str.replace(/^SOL-?/i, '');
+                if (str.startsWith('26') && str.length <= 4) {
+                    str = '2611' + str.slice(2).padStart(4, '0');
+                } else if (str.length <= 4) {
+                    str = '2611' + str.padStart(4, '0');
+                }
+                return { prefix: 'SGES', digits: str };
+            }
+            // Match prefix and digits e.g. SGES-26110001 or SGES 26110001
+            const m = str.match(/^([A-Za-z]+)[-\s]?(\d+)$/);
+            if (m) {
+                let pfx = m[1].toUpperCase();
+                if (pfx === 'SOL') pfx = 'SGES';
+                let dig = m[2];
+                if (dig.length <= 4) {
+                    dig = '2611' + dig.padStart(4, '0');
+                }
+                return { prefix: pfx, digits: dig };
+            }
+            const digitsOnly = str.replace(/[^0-9]/g, '');
+            if (digitsOnly) {
+                let dig = digitsOnly;
+                if (dig.length <= 4) {
+                    dig = '2611' + dig.padStart(4, '0');
+                }
+                return { prefix: 'SGES', digits: dig };
+            }
+            return { prefix: 'SGES', digits: '26110001' };
+        }
+
         // Auto-Generate Next Sequential Lead Number in SGES-YYMM0001 format
         function generateNextLeadNumber() {
             const now = new Date();
@@ -1196,10 +1278,13 @@
             if (form) form.reset();
 
             const nextNo = generateNextLeadNumber();
+            const parts = splitLeadNumber(nextNo);
             const numInput = document.getElementById('newLeadNumber');
             if (numInput) numInput.value = nextNo;
             const numBadge = document.getElementById('newLeadNumberBadge');
-            if (numBadge) numBadge.textContent = nextNo;
+            if (numBadge) numBadge.textContent = parts.digits;
+            const pfxBadge = document.getElementById('newLeadNumberPrefix');
+            if (pfxBadge) pfxBadge.textContent = parts.prefix;
 
             const today = new Date();
             const todayIso = today.toISOString().split('T')[0];
@@ -1414,7 +1499,10 @@
                     const matchLoc = (lead.location || '').toLowerCase().includes(searchQuery);
                     const matchPlace = (lead.place || '').toLowerCase().includes(searchQuery);
                     const matchService = (lead.service || '').toLowerCase().includes(searchQuery);
-                    const matchLeadNo = (lead.leadNumber || '').toLowerCase().includes(searchQuery);
+                    const parsedLeadNo = splitLeadNumber(lead.leadNumber);
+                    const matchLeadNo = (lead.leadNumber || '').toLowerCase().includes(searchQuery) ||
+                                        `${parsedLeadNo.prefix}-${parsedLeadNo.digits}`.toLowerCase().includes(searchQuery) ||
+                                        parsedLeadNo.digits.includes(searchQuery);
                     const matchAssignee = (lead.assignedTo || '').toLowerCase().includes(searchQuery);
                     if (!matchName && !matchPhone && !matchKseb && !matchEmail && !matchLoc && !matchPlace && !matchService && !matchLeadNo && !matchAssignee) {
                         return false;
@@ -1547,7 +1635,7 @@
                 const yyVal = isNaN(dObj.getTime()) ? '26' : dObj.getFullYear().toString().slice(-2);
                 const mmVal = isNaN(dObj.getTime()) ? '11' : (dObj.getMonth() + 1).toString().padStart(2, '0');
                 const defaultLeadNo = `SGES-${yyVal}${mmVal}${String(index + 1).padStart(4, '0')}`;
-                const leadNo = escapeHtml(lead.leadNumber || defaultLeadNo);
+                const parsedLead = splitLeadNumber(lead.leadNumber || defaultLeadNo);
 
                 // Source Badge
                 const srcRaw = (lead.source || lead.leadSource || 'Website').toLowerCase();
@@ -1584,9 +1672,12 @@
 
                 html += `
                     <tr data-lead-id="${lead.id}">
-                        <!-- Col 1: Lead ID -->
+                        <!-- Col 1: Lead ID (SGES on top, 26110001 below) -->
                         <td class="text-center">
-                            <span class="badge bg-white text-dark font-mono border px-2 py-1" style="font-size: 0.78rem; letter-spacing: 0.02em;">${leadNo}</span>
+                            <div class="lead-id-badge" title="${escapeHtml(parsedLead.prefix)}-${escapeHtml(parsedLead.digits)}">
+                                <span class="lead-id-prefix">${escapeHtml(parsedLead.prefix)}</span>
+                                <span class="lead-id-num">${escapeHtml(parsedLead.digits)}</span>
+                            </div>
                         </td>
 
                         <!-- Col 2: Date -->
@@ -1818,7 +1909,8 @@
             document.getElementById('modalDateBadge').textContent = 'Recorded on: ' + formatLeadDateTime(lead.leadDate || lead.createdAt);
             
             // Populate fields
-            document.getElementById('detailLeadNumber').value = lead.leadNumber || '';
+            const pNo = splitLeadNumber(lead.leadNumber);
+            document.getElementById('detailLeadNumber').value = `${pNo.prefix}-${pNo.digits}`;
             document.getElementById('detailLeadDate').value = (lead.leadDate || (lead.createdAt ? lead.createdAt.split('T')[0] : ''));
             document.getElementById('detailLeadSource').value = lead.source || lead.leadSource || 'WhatsApp';
             document.getElementById('detailName').value = lead.name || '';
@@ -2065,8 +2157,10 @@
                 "Staff Notes"
             ];
 
-            const rows = filteredLeads.map((lead, idx) => [
-                cleanCsv(lead.leadNumber || `SGES-2611${String(idx + 1).padStart(4, '0')}`),
+            const rows = filteredLeads.map((lead, idx) => {
+                const p = splitLeadNumber(lead.leadNumber || `SGES-2611${String(idx + 1).padStart(4, '0')}`);
+                return [
+                    cleanCsv(`${p.prefix}-${p.digits}`),
                 cleanCsv(lead.leadDate || formatLeadDateTime(lead.createdAt)),
                 cleanCsv(lead.name),
                 cleanCsv(lead.phone),
@@ -2081,7 +2175,8 @@
                 cleanCsv(lead.email),
                 cleanCsv(lead.message),
                 cleanCsv(lead.staffNotes)
-            ]);
+                ];
+            });
 
             let csvContent = "\uFEFF";
             csvContent += headers.map(h => `"${h}"`).join(",") + "\r\n";
